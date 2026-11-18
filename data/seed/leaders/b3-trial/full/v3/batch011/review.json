@@ -1,0 +1,87 @@
+{
+ "batch": "011",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 5,
+  "editedSentences": 7,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "mc-louis-ii",
+   "bioId": "01a1b4b2-2f13-71fa-aa50-c0381b8bb71d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "第4段英文 took a close interest 改為 considerable interest（照原文）",
+    "重抓 ihr-1949（UNB PDF）與已存原文逐位元相同；ihr-1949／ihr-1999 為國際水文局（政府間組織）官方刊物所載訃告傳略，無個人署名但非百科條目，維持 B",
+    "上西里西亞職務無日期、第五軍司令部服役與 1922／1939 軍銜皆屬 R5 且無起迄日，維持不入 positions（gap 已記）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bt-jigme-wangchuck",
+   "bioId": "01a1b4b2-2f5f-789f-a0f3-025285dd9ac1",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 14,
+   "changes": [
+    "第1段刪「生於不丹」的地點（引文未寫）與 Trongsa Droenyer 的「宮廷總管」譯注（無引文）",
+    "第1段補引文 Thinlay Rabten 校名兩筆（原文已抓）",
+    "第2段「不到半年」改「僅約半年後」（原文 barely six months）；1926 引文延長含 Ugyen Wangchuck 名",
+    "第3段「減輕稅負」改為「以減輕稅負為主要目標」（原文是 aim）；任命權引文延長含 poenlops／dzongpoens；K.C.I.E. 引文延長含 A.J. Hopkins；補 Deothang『was returned』引文",
+    "第4段補『health gradually deteriorated』引文；刪「第三任國王」（引文未寫）",
+    "5 筆引文不含日期卻填 datePrecision，改為 null（Q8）",
+    "gap trongsa_offices 誤寫通薩宗本，改為通薩內務官（Droenyer）",
+    "重抓倫敦公報 PDF 與已存原文相同；rec.gov.bt 教科書可開（HTTP 200，大小相同）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-belisario-porras",
+   "bioId": "01a1b4b2-2f71-7898-932a-32258de5c1aa",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "第1段「加入自由黨」改「與自由黨有所聯繫」（原文 se vinculó）",
+    "第3段 Valdés 引文延長含 In 1918（原引文無年份卻標 year）",
+    "第5段補『para conmemorar el descubrimiento del Mar del Sur』引文",
+    "重抓 encyclopedia.com 條目與 Archivalia 摘要頁，引文仍在"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "三人經歷（通薩職務、上西里西亞委員會、主權州司法職）均缺起或迄日，研究者以 field gap 記錄而未依最低標準以 start＋『待查證：缺迄日』gap 建 position；審查未補建（不新增內容），列待下輪",
+  "名單 recordId 01a1aa4a-659f-7d43-b194-713cfe790587 標題『(Albert-Honoré-Charles Grimaldi)』是阿爾貝一世的本名，非路易二世；名單迄日 1942-11-11 亦與傳略在位至 1949 不同，需核對 5442",
+  "rawmap 含未列於 sources 的 rbge-jigme（not_relevant），無害"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

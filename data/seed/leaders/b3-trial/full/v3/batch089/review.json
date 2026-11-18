@@ -1,0 +1,78 @@
+{
+  "batch": "089",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {
+    "returned": 0,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 0,
+    "deletedCitations": 0,
+    "addedCitations": 6,
+    "editedSentences": 2,
+    "spotRefetched": 4,
+    "searchLogShort": 0
+  },
+  "people": [
+    {
+      "key": "tr-sarac",
+      "bioId": "01a1b492-3f52-74cf-b44d-216e5c98cd7c",
+      "verdict": "pass_with_changes",
+      "paragraphs": 4,
+      "positions": 3,
+      "roleCandidates": 2,
+      "gaps": 4,
+      "searchLogSteps": 10,
+      "changes": [
+        "段1：補引文「(1886, Ödemiş – 27 Aralık 1953, İstanbul)」支撐「傳記標題行寫1886年」子句（原無引文）",
+        "段2：Milli Eğitim／Maliye 兩筆引文改取同句含 Fethi Okyar、Dördüncü ve Beşinci İnönü 的完整句，支撐政府名稱子句",
+        "段2：刪除無出處的總結評語「這段經歷從文教…銜接到1942年」，改為有引文的「1942年他受命組閣」（中英同步）",
+        "段3：補引文「…Programını Sunuş」支撐「宣讀施政綱領」、補「dikkat ve gayretimizi sarfetmekteyiz.」補齊被截掉的謂語"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "ar-farrell",
+      "bioId": "5adc2d5d-9cfc-420c-87ce-ee937c0ab3ce",
+      "verdict": "pass_with_changes",
+      "paragraphs": 3,
+      "positions": 0,
+      "roleCandidates": 0,
+      "gaps": 4,
+      "searchLogSteps": 11,
+      "changes": [
+        "段3：原引文未支撐「不贊同阿根廷宣示的半球防衛政策」與「指示大使」；補 hs-arg 三筆引文，中英文句改寫貼合原文",
+        "gap target role:farrell-vicepresidente 改為 position:（note 已判 R5 經歷層）",
+        "searchLog step 2 result found_B→unrated（url null、結果為私人彙編）"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "se-hammarskjold",
+      "bioId": "01a1b512-8aba-7282-8f37-d6f07800993b",
+      "verdict": "pass",
+      "paragraphs": 4,
+      "positions": 3,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 11,
+      "changes": [],
+      "returnedReasons": []
+    }
+  ],
+  "issues": [
+    "段落子句（政府名稱、政策描述）常只由部分引文支撐，審查補同一已抓原文的引文",
+    "研究者偶有無出處總結句（薩拉吉奧盧段2），已刪",
+    "提示寫本批5人，實際名單3人"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 80
+  }
+}

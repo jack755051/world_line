@@ -1,0 +1,257 @@
+{
+ "decision": "Tai 2026-11-11 21:24",
+ "ops": {
+  "bios_update": [
+   {
+    "person": "mironas",
+    "field": "death_date",
+    "old": "1953-02-17（day）",
+    "new": "1953-02-18（day）",
+    "why": "以段落為準：Seimas（A）「Mirė 1953 m. vasario 18 d.」"
+   },
+   {
+    "person": "noronha",
+    "field": "birth_date",
+    "old": "1873-07-06（day）",
+    "new": "1873-01-01（year）",
+    "why": "保留年份＋conflict（§16.7.3 放寬規則）"
+   },
+   {
+    "person": "lyzohub",
+    "field": "birth_date",
+    "old": "1851-11-06（day）",
+    "new": "1851-01-01（year）",
+    "why": "保留年份＋conflict（§16.7.3 放寬規則）"
+   },
+   {
+    "person": "avila",
+    "field": "birth_date",
+    "old": "1897-04-24（day）",
+    "new": "NULL（—）",
+    "why": "留空＋conflict（年份互斥 1896／1897）"
+   }
+  ],
+  "field_cit_insert": [
+   {
+    "person": "mironas",
+    "id": "4b911b09-6013-5fe2-9a2c-564eb06a3ea8",
+    "field": "deathDate",
+    "url": "https://www.lrs.lt/pls/inter/w5_show?p_r=4165&p_d=159798&p_k=1",
+    "quote": "Mirė 1953 m. vasario 18 d. Vladimiro kalėjime (Rusija)",
+    "grade": "A"
+   }
+  ],
+  "field_cit_retract": [
+   {
+    "person": "mironas",
+    "id": "01a1b545-5f9b-7b3a-9c61-4d35e19af689",
+    "quote": "Vladas 1880 06 22 Kuodiškių vienkiemis (Panemunio vlsč.) 1953 02 17 Vladimir",
+    "url": "https://www.vle.lt/straipsnis/vladas-mironas/"
+   }
+  ],
+  "gap_retract": [
+   {
+    "person": "hansson",
+    "id": "b889729c-fc03-4370-97b2-a5599bad9353",
+    "target": "field:deathDate",
+    "kind": "not_found"
+   },
+   {
+    "person": "mironas",
+    "id": "6577e30e-8143-4527-8f09-fe46a719b292",
+    "target": "field:deathDate",
+    "kind": "not_found"
+   },
+   {
+    "person": "avila",
+    "id": "1fe2799d-5faf-4525-9d9a-317ae27d3551",
+    "target": "field:birthDate",
+    "kind": "not_found"
+   }
+  ],
+  "gap_insert": [
+   {
+    "person": "wu",
+    "id": "5c1329b3-9487-5fe5-89ae-217b67efd03f",
+    "target": "field:birthDate",
+    "resolved": true,
+    "resolvedBy": "01a1c437-b43f-78cb-b8df-0150971deb93",
+    "note": "BnF 權威記錄 1842-07-30 vs X-Boorman 轉載《民國人物傳記辭典》9 July 1842；Tai 2026-11-11 21:24 以基本資料（BnF，A）為準，段落改版"
+   },
+   {
+    "person": "wu",
+    "id": "2fda4822-6d6d-58b7-990f-f1b3cbcb053b",
+    "target": "field:birthPlace",
+    "resolved": true,
+    "resolvedBy": "01a1c437-b440-77da-ba1d-3f3f9a4ebbc6",
+    "note": "BnF 權威記錄 Malacca vs X-Boorman 轉載《民國人物傳記辭典》Singapore；Tai 2026-11-11 21:24 以基本資料（BnF，A）為準，段落改版"
+   },
+   {
+    "person": "hansson",
+    "id": "40637e1b-f96d-5bb7-936f-a70d076b82f1",
+    "target": "field:deathDate",
+    "resolved": true,
+    "resolvedBy": "01a1b4b0-6fea-7f53-ae6b-4357e7174ee7",
+    "note": "Malmö stad、BnF 1946-10-06 vs Lex、SNL 1946-10-05；Tai 2026-11-11 21:24 以基本資料為準，段落改版"
+   },
+   {
+    "person": "mironas",
+    "id": "f480f9a6-0f4a-5c7c-9ebf-395f6f6a746d",
+    "target": "field:deathDate",
+    "resolved": true,
+    "resolvedBy": "4b911b09-6013-5fe2-9a2c-564eb06a3ea8",
+    "note": "Seimas（A）1953-02-18 vs Visuotinė lietuvių enciklopedija 1953 02 17；Tai 2026-11-11 21:24 以段落（Seimas）為準，基本資料改為 1953-02-18"
+   },
+   {
+    "person": "noronha",
+    "id": "b82e6538-941e-539e-9c91-7df8b9c879dd",
+    "target": "field:birthDate",
+    "resolved": false,
+    "resolvedBy": null,
+    "note": "保留現有值：\"1873-01-01\"；[birthDate (day)] Arquivo Nacional（field_sources）1873-07-06 vs FGV CPDOC DHBB「no dia 6 de junho de 1873」；年份一致，依 §16.7.3 保留年份（Tai 2026-11-11 21:24）"
+   },
+   {
+    "person": "lyzohub",
+    "id": "4285230c-042a-53e5-8611-3d6df6aca1c5",
+    "target": "field:birthDate",
+    "resolved": false,
+    "resolvedBy": null,
+    "note": "保留現有值：\"1851-01-01\"；[birthDate (day)] Encyclopedia of Ukraine「b 6 November 1851」vs Український історичний журнал「народився в жовтні 1851 р.」；年份一致，依 §16.7.3 保留年份（Tai 2026-11-11 21:24）"
+   },
+   {
+    "person": "avila",
+    "id": "9aa9c3bd-f160-5050-8b5f-272194cdc43d",
+    "target": "field:birthDate",
+    "resolved": false,
+    "resolvedBy": null,
+    "note": "Museo de los Presidentes Coahuilenses（field_sources）1897-04-24 vs gob.mx「Nació el 24 de abril de 1896」；年份互斥，依 §16 該欄留空（Tai 2026-11-11 21:24）"
+   },
+   {
+    "person": "leygues",
+    "id": "97ca1d03-0a3e-5bdc-8505-8a53837c6a31",
+    "target": "field:birthDate",
+    "resolved": false,
+    "resolvedBy": null,
+    "note": "Assemblée nationale fiche 1857-10-26 vs Sycomore 1856-10-29（field_sources 註記；段落採 Sycomore「Né le 29 octobre 1856」）；年份互斥，依 §16 該欄維持空（Tai 2026-11-11 21:24）"
+   }
+  ],
+  "par_supersede": [
+   {
+    "person": "wu",
+    "old": "37d0857a-9d93-462a-931b-05bb2c756887",
+    "new": "836f299d-c379-5617-ac54-3b6e3cc977d9",
+    "ord": 1,
+    "oldPeriod": "[1842-07-09,1898-01-01)",
+    "newPeriod": "[1842-07-30,1898-01-01)",
+    "oldPrecision": [
+     "day",
+     "year"
+    ],
+    "newPrecision": [
+     "day",
+     "year"
+    ],
+    "oldBody": {
+     "en": "According to the Biographical Dictionary of Republican China, Wu T'ing-fang was born on 9 July 1842 at Singapore. He was called to the English bar in 1876, becoming the first Chinese barrister, and in 1897 he was appointed minister to the United States, Spain and Peru.",
+     "zh-Hant": "據《民國人物傳記辭典》條目，伍廷芳生於1842年7月9日，出生於新加坡；1876年取得英國律師資格，成為首位華人大律師，1897年被任命為駐美國、西班牙與秘魯公使。"
+    },
+    "newBody": {
+     "en": "According to the BnF authority record, Wu Tingfang was born on 30 July 1842 in Malacca. He was called to the English bar in 1876, becoming the first Chinese barrister, and in 1897 he was appointed minister to the United States, Spain and Peru.",
+     "zh-Hant": "據法國國家圖書館（BnF）權威記錄，伍廷芳於1842年7月30日生於馬六甲；1876年取得英國律師資格，成為首位華人大律師，1897年被任命為駐美國、西班牙與秘魯公使。"
+    },
+    "droppedCitations": [
+     {
+      "id": "124157ae-aa27-4c36-95b8-4b4d4e8916ff",
+      "quote": "Although Wu T'ing-fang was born at Singapore",
+      "locator": "條目正文",
+      "url": "https://xboorman.enpchina.eu/biographie/wu-tingfang/",
+      "why": "出生地 Singapore 與 BnF Malacca 矛盾（Tai 21:24 以基本資料為準）"
+     },
+     {
+      "id": "bc302e78-ed21-40cd-916d-665d0a99b108",
+      "quote": "Wu T'ing-fang (9 July 1842-23 June 1922)",
+      "locator": "條目正文",
+      "url": "https://xboorman.enpchina.eu/biographie/wu-tingfang/",
+      "why": "生日 9 July 1842 與 BnF 1842-07-30 矛盾（Tai 21:24 以基本資料為準）"
+     }
+    ],
+    "keptCitations": 3
+   },
+   {
+    "person": "hansson",
+    "old": "6456dabd-c1ae-4bf2-a3b7-f79d036c9c9b",
+    "new": "05ee61f7-a876-5030-a4cd-46ec4329e784",
+    "ord": 3,
+    "oldPeriod": "[1932-01-01,1946-10-05)",
+    "newPeriod": "[1932-01-01,1946-10-07)",
+    "oldPrecision": [
+     "year",
+     "day"
+    ],
+    "newPrecision": [
+     "year",
+     "day"
+    ],
+    "oldBody": {
+     "en": "In 1932, in the midst of the economic crisis, Hansson became leader of a Social Democratic minority government, and in 1933 reached the so-called crisis settlement with the Agrarian League. His government was replaced by an Agrarian League government in summer 1936, but in September that year he formed a government again. After the outbreak of the Winter War in December 1939 he formed a national coalition government, and externally Sweden’s formal, later somewhat contested neutrality was secured. He died in Stockholm on 5 October 1946.",
+     "zh-Hant": "1932年經濟危機中，漢森出任社會民主黨少數政府的領導人，1933年與農民聯盟達成「危機協議」。1936年夏天其政府被農民聯盟政府取代，同年9月他再度組閣。1939年12月冬季戰爭爆發後他組成國家聯合政府，對外確保瑞典形式上、後來頗受爭議的中立。他於1946年10月5日在斯德哥爾摩逝世。"
+    },
+    "newBody": {
+     "en": "In 1932, in the midst of the economic crisis, Hansson became leader of a Social Democratic minority government, and in 1933 reached the so-called crisis settlement with the Agrarian League. His government was replaced by an Agrarian League government in summer 1936, but in September that year he formed a government again. After the outbreak of the Winter War in December 1939 he formed a national coalition government, and externally Sweden’s formal, later somewhat contested neutrality was secured. He died on 6 October 1946.",
+     "zh-Hant": "1932年經濟危機中，漢森出任社會民主黨少數政府的領導人，1933年與農民聯盟達成「危機協議」。1936年夏天其政府被農民聯盟政府取代，同年9月他再度組閣。1939年12月冬季戰爭爆發後他組成國家聯合政府，對外確保瑞典形式上、後來頗受爭議的中立。他於1946年10月6日逝世。"
+    },
+    "droppedCitations": [
+     {
+      "id": "485a2e57-c2b3-4f82-991d-7ac36b1e0133",
+      "quote": "5. oktober 1946, Stockholm, Sverige",
+      "locator": "Faktaboks",
+      "url": "https://lex.dk/Per_Albin_Hansson",
+      "why": "卒日 5. oktober 1946 與基本資料 1946-10-06 矛盾（Tai 21:24 以基本資料為準）；逝世地 Stockholm 僅此引文支持，新版刪去地點"
+     }
+    ],
+    "keptCitations": 9
+   }
+  ],
+  "par_cit_copy": 12,
+  "par_cit_new": [
+   {
+    "person": "wu",
+    "id": "425f82a5-450c-53dd-bac6-ba131e892274",
+    "source": "https://catalogue.bnf.fr/ark:/12148/cb16776173k",
+    "locator": "Naissance",
+    "quote": "1842-07-30, Malacca (Malaisie)",
+    "grade": "A"
+   },
+   {
+    "person": "hansson",
+    "id": "287473dd-b4d7-5a6b-ac24-7b27f9eb3321",
+    "source": "https://catalogue.bnf.fr/ark:/12148/cb13327459z",
+    "locator": "Mort",
+    "quote": "Mort : 1946-10-06",
+    "grade": "A"
+   }
+  ],
+  "noop": [
+   {
+    "person": "meierovics",
+    "target": "field:birthDate",
+    "why": "該欄已為 NULL，且已有未解 conflict 缺漏（e1702877-f64e-401e-970c-065bd6639065）；不需變更"
+   },
+   {
+    "person": "negrin",
+    "target": "field:birthDate",
+    "why": "該欄已為 NULL，且已有未解 conflict 缺漏（c9609ab9-47f8-4476-8848-12f6c24e6e95）；不需變更"
+   },
+   {
+    "person": "saidhalim",
+    "target": "field:birthDate",
+    "why": "該欄已為 NULL，且已有未解 conflict 缺漏（9cb2e36c-fc09-42b9-b3a8-373e9bacbb5a）；不需變更"
+   },
+   {
+    "person": "hilmi",
+    "target": "field:deathDate",
+    "why": "該欄已為 NULL，且已有未解 conflict 缺漏（f12ecfd5-9b85-4dba-98d0-cfc8d0c8eca1）；不需變更"
+   }
+  ]
+ }
+}

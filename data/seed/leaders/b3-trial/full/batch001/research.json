@@ -1,0 +1,3648 @@
+{
+ "batch": "b3-full-batch001",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；直接寫 b0b0e0f 對齊格式。Mussolini／FDR 沿用試跑批 01／03 已審內容（引文重新對本次抓取的原文核對）；Stalin 因 Treccani 條目無署名改用 LeMO。",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（positionKind／role_kind／t14Rule／roleEligible）；黨職一律 de_facto_leader（Tai 2026-11-11 12:12、12:47）；T14 R0–R6 於研究時套用。未寫庫。",
+ "rawDir": "/tmp/b3full/batch001/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "govuk-churchill": {
+   "title": "Sir Winston Churchill (Past Prime Ministers)",
+   "authors": [],
+   "publisher": "GOV.UK（英國政府）",
+   "published_text": "History of the UK government／Past Prime Ministers",
+   "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（T1 A）"
+  },
+  "nobel-churchill": {
+   "title": "Winston Churchill – Biographical",
+   "authors": [],
+   "publisher": "Nobel Foundation（NobelPrize.org）",
+   "published_text": "Nobel Lectures, Literature 1901-1967, ed. Horst Frenz, Elsevier, 1969",
+   "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Nobel Foundation（NobelPrize.org） → C（grade-ungraded-b3-2026-11-14，原：無具名作者、非政府機構；保守不評等，僅作 gap 候選來源）"
+  },
+  "dhm-hitler": {
+   "title": "Adolf Hitler 1889-1945（LeMO Biografie）",
+   "authors": [
+    "Daniel Wosnitzka"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin（LeMO）",
+   "published_text": "Stand: 12. Oktober 1998",
+   "url": "https://www.dhm.de/lemo/biografie/adolf-hitler",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "聯邦級歷史博物館具名作者傳記（T1 B）"
+  },
+  "treccani-hitler": {
+   "title": "Hitler, Adolf",
+   "authors": [
+    "Gabriella Nisticò"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line",
+   "url": "https://www.treccani.it/enciclopedia/adolf-hitler/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家級百科機構具名條目（T1 B）"
+  },
+  "dhm-stalin": {
+   "title": "Josef W. Stalin 1878/79-1953（LeMO Biografie）",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin（LeMO）",
+   "published_text": "Stand: 20. Januar 2016",
+   "url": "https://www.dhm.de/lemo/biografie/josef-stalin",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "聯邦級歷史博物館具名作者傳記（T1 B）"
+  },
+  "treccani-stalin": {
+   "title": "Stalin, Iosif Vissarionovič",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line",
+   "url": "https://www.treccani.it/enciclopedia/iosif-vissarionovic-stalin/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Istituto della Enciclopedia Italiana (Treccani) → C（grade-ungraded-b3-2026-11-14，原：無署名百科條目（Q9）→未評等，僅作 gap 候選）"
+  },
+  "treccani-mussolini": {
+   "title": "MUSSOLINI, Benito",
+   "authors": [
+    "Emilio Gentile"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani, Volume 77 (2012)",
+   "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（T1 A）"
+  },
+  "treccani-fdr": {
+   "title": "ROOSEVELT, Franklin Delano",
+   "authors": [
+    "Roberto Lopez",
+    "Samuel Hugh Brockunier"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana, II Appendice (1949)",
+   "url": "https://www.treccani.it/enciclopedia/franklin-delano-roosevelt_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的國家級百科機構條目（T1 B）"
+  },
+  "miller-fdr": {
+   "title": "Franklin D. Roosevelt: Life in Brief",
+   "authors": [
+    "William E. Leuchtenburg"
+   ],
+   "publisher": "Miller Center, University of Virginia",
+   "published_text": "Presidential biography",
+   "url": "https://millercenter.org/president/fdroosevelt/life-in-brief",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構具名作者傳記（T1 B）"
+  }
+ },
+ "people": [
+  {
+   "key": "gb-churchill",
+   "bioId": "01a1c86e-c89b-70af-afe0-1ad0f4be2bf8",
+   "name": "Winston Churchill",
+   "nameZh": "溫斯頓·邱吉爾",
+   "recordIds": [
+    "01a1c86e-c9a8-774a-92a1-bcf284ffe54d"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1874-11-30",
+      "end": "1896-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與從軍",
+      "en": "Birth and army"
+     },
+     "body": {
+      "zh-Hant": "1874年11月30日生於牛津郡布倫海姆宮，1895年加入皇家騎兵。",
+      "en": "Born on 30 November 1874 at Blenheim Palace, Oxfordshire; he joined the Royal Cavalry in 1895."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 開頭",
+       "quote": "was born on 30 November 1874, in Blenheim Palace, Oxfordshire",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 開頭",
+       "quote": "saw him join the Royal Cavalry in 1895",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1900-01-01",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "進入議會",
+      "en": "Entering Parliament"
+     },
+     "body": {
+      "zh-Hant": "1900年他以保守黨議員身分當選奧爾德姆選區議員；1904年轉投自由黨。",
+      "en": "In 1900 he was elected Conservative MP for Oldham; in 1904 he defected to the Liberal Party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Churchill was elected as Conservative MP for Oldham in 1900",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "before defecting to the Liberal Party in 1904",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "海軍大臣與加里波利",
+      "en": "Admiralty and Gallipoli"
+     },
+     "body": {
+      "zh-Hant": "他擔任海軍大臣（皇家海軍的文官首長）；GOV.UK 稱加里波利戰役是他發動的，他因此遭嚴厲批評並辭去該職，前往西線。來源未寫以上各事的日期。",
+      "en": "He was First Lord of the Admiralty, the civil head of the Royal Navy. GOV.UK says he created the Gallipoli campaign; heavily criticised, he resigned and went to the Western Front. The source gives no dates for these events."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "He was First Lord of the Admiralty (the civil/political head of the Royal Navy)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "by the time of the disastrous Gallipoli campaign, which he created",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Heavily criticised for this error",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "he resigned from this position and travelled to the Western Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "財政大臣與下野",
+      "en": "Chancellor and out of office"
+     },
+     "body": {
+      "zh-Hant": "他自1924年起任財政大臣；1929年保守黨選敗，他失去議席。",
+      "en": "He served as Chancellor of the Exchequer from 1924; after the Tory defeat of 1929 he lost his seat."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "He served as Chancellor of the Exchequer from 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Following the Tory electoral defeat in 1929, Churchill lost his seat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰時首相",
+      "en": "Wartime Prime Minister"
+     },
+     "body": {
+      "zh-Hant": "張伯倫1940年辭職後，邱吉爾獲選接任首相，領導全黨派聯合政府，並另設自創的國防大臣一職。1945年大選工黨獲勝，他下台。",
+      "en": "After Chamberlain resigned in 1940 Churchill was chosen to succeed him as Prime Minister of an all-party coalition, and also adopted the self-created post of Minister for Defence. Labour's general-election victory in 1945 put him out of office."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Following Neville Chamberlain ’s resignation in 1940",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "resignation in 1940, Churchill was chosen to succeed him as Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "of an all-party coalition government.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Churchill, who also adopted the self-created position of Minister for Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "General Election victory in 1945 saw Churchill out of office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Labour leader Clement Attlee ’s unexpected General Election victory in 1945",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "churchill-mp-oldham",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons"
+     },
+     "title": {
+      "orig": "Conservative MP for Oldham",
+      "zh-Hant": "奧爾德姆選區議員（保守黨）",
+      "en": "Conservative MP for Oldham"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1900-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Churchill was elected as Conservative MP for Oldham in 1900",
+       "quoteLang": "en",
+       "evidenceNote": "來源未寫任期迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "before defecting to the Liberal Party in 1904",
+       "quoteLang": "en",
+       "evidenceNote": "以保守黨身分的任期最晚至 1904 年轉黨（本句）；迄日不填",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "職稱明寫以保守黨身分取得的席位（比照黨職 R1 類，Tai 12:47），但同來源寫 1904 年轉投自由黨，以保守黨身分的任期最晚止於 1904，與 1908–1945 無交集 → 窗外 R5（審查改判，原 t14Ambiguous）"
+    },
+    {
+     "key": "churchill-first-lord-admiralty",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國海軍部",
+      "en": "Admiralty"
+     },
+     "title": {
+      "orig": "First Lord of the Admiralty",
+      "zh-Hant": "海軍大臣",
+      "en": "First Lord of the Admiralty"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "He was First Lord of the Admiralty",
+       "quoteLang": "en",
+       "evidenceNote": "GOV.UK 未寫任期起迄日；Nobel 頁寫 1911–1915（未評等，見 gaps）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "海軍大臣屬單獨海軍部，非四部（R3① 不符）→R5"
+    },
+    {
+     "key": "churchill-chancellor-exchequer",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Chancellor of the Exchequer",
+      "zh-Hant": "財政大臣",
+      "en": "Chancellor of the Exchequer"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1924-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "He served as Chancellor of the Exchequer from 1924",
+       "quoteLang": "en",
+       "evidenceNote": "GOV.UK 只寫 from 1924，未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職；迄日 NULL 無法證明 ≥90 天，且英國政權是否在系統中未查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "churchill-minister-defence",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Minister for Defence",
+      "zh-Hant": "國防大臣（自創職位）",
+      "en": "Minister for Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography",
+       "quote": "Churchill, who also adopted the self-created position of Minister for Defence",
+       "quoteLang": "en",
+       "evidenceNote": "GOV.UK 未寫該職起迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "國防屬四部、正職；GOV.UK 無起迄日，無法證明 ≥90 天，英國政權是否在系統中未查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:churchill-first-lord-admiralty",
+     "gapKind": "not_found",
+     "note": "GOV.UK 未寫海軍大臣任期；Nobel Foundation 頁寫「1911 to 1915」與 1939 年再任，但該頁無具名作者、本批保守不評等，故只放候選引文",
+     "candidateCitations": [
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 第一段",
+       "quote": "a post which he had earlier held from 1911 to 1915",
+       "quoteLang": "en",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:churchill-minister-defence",
+     "gapKind": "not_found",
+     "note": "Nobel 頁寫 1940 年 5 月起兼國防大臣至 1945 年（未評等）；GOV.UK 無日期。需 A 級官方任命紀錄（如 London Gazette／議會紀錄）才能由 R6 升 R3",
+     "candidateCitations": [
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 第一段",
+       "quote": "he became Prime Minister and Minister of Defence",
+       "quoteLang": "en",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:churchill-chancellor-exchequer",
+     "gapKind": "not_found",
+     "note": "GOV.UK 只寫 from 1924，未寫 1929 卸任；需另一 A/B 來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:early-career",
+     "gapKind": "not_found",
+     "note": "1895–1900 軍旅與記者經歷、1906–1911 自由黨政府職務、1939–1940 起的 Admiralty 再任、1951–1955 第二任首相（窗外）均未寫入；GOV.UK 無日期或僅概述",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "GOV.UK Past Prime Ministers Winston Churchill",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+     "result": "found_A",
+     "note": "curl 成功，取得 Biography 全文"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Nobel Prize 1953 Churchill Biographical",
+     "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+     "result": "unrated",
+     "note": "curl 成功，無具名作者→只作 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Treccani 站內 winston-leonard-spencer-churchill（猜測網址）",
+     "url": "https://www.treccani.it/enciclopedia/winston-leonard-spencer-churchill/",
+     "result": "not_relevant",
+     "note": "回傳首頁，非人物條目"
+    }
+   ]
+  },
+  {
+   "key": "de-hitler",
+   "bioId": "01a19f15-35f4-7d9a-847a-aeccc98305ec",
+   "name": "Adolf Hitler",
+   "nameZh": "阿道夫·希特勒",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1889-04-20",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與維也納",
+      "en": "Origins and Vienna"
+     },
+     "body": {
+      "zh-Hant": "1889年4月20日生於奧地利上奧地利州的布勞瑙，父為海關官員阿洛伊斯·希特勒；1903年父親去世，1907年他在雙親均亡後遷往維也納。",
+      "en": "Born on 20 April 1889 at Braunau am Inn, Upper Austria, the son of the customs official Alois Hitler; his father died in 1903 and in 1907, after his mother's death too, he moved to Vienna."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目首段",
+       "quote": "Braunau am Inn, Austria Superiore, 20 aprile 1889",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1889 條目",
+       "quote": "Adolf Hitler wird als Sohn des Zollbeamten Alois Hitler",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自 LeMO 年表條目標題 1889",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1903 條目",
+       "quote": "1903 Tod des Vaters.",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1907 條目",
+       "quote": "1907 Nach dem Tod der Mutter Übersiedlung nach Wien",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1919-10-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "戰爭與加入德意志工人黨",
+      "en": "War service and joining the DAP"
+     },
+     "body": {
+      "zh-Hant": "1914年他以志願兵身分加入巴伐利亞部隊；1919年9月加入德意志工人黨（DAP）。",
+      "en": "In 1914 he joined a Bavarian unit as a wartime volunteer; in September 1919 he joined the German Workers' Party (DAP)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1914 條目",
+       "quote": "1914 Hier tritt er als Kriegsfreiwilliger",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1914 條目",
+       "quote": "tritt er als Kriegsfreiwilliger in das Bayerische Reserve-Infanterie-Regiment",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1914",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "Entrato nel settembre 1919 nel Deutsche Arbeiterpartei",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-07-29",
+      "end": "1925-02-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "接掌黨與慕尼黑政變",
+      "en": "Taking the party and the Munich putsch"
+     },
+     "body": {
+      "zh-Hant": "1921年7月29日他在納粹黨非常會員大會上取得帶獨裁權力的黨領導權；1923年11月8至9日發動慕尼黑政變，失敗後被判五年要塞監禁，1924年12月獲釋，1925年2月27日黨重建。",
+      "en": "On 29 July 1921 he took the NSDAP leadership with dictatorial powers; he led the Munich putsch of 8–9 November 1923, was sentenced to five years' fortress detention, released in December 1924, and the party was re-founded on 27 February 1925."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1921 條目",
+       "quote": "1921 29. Juli: Als Agitator unterdessen unentbehrlich geworden",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1921 條目",
+       "quote": "auf einer außerordentlichen Mitgliederversammlung der NSDAP",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1921 條目",
+       "quote": "die Führung der Partei mit diktatorischen Vollmachten zu übernehmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "organizzare il putsch di Monaco (8-9 novembre 1923)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "fu condannato a cinque anni di fortezza",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "Nel dicembre 1924 H. veniva rilasciato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1925 條目",
+       "quote": "1925 27. Februar: Neugründung der NSDAP",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1930-09-01",
+      "end": "1934-08-03"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "奪權與獨裁",
+      "en": "Seizure of power and dictatorship"
+     },
+     "body": {
+      "zh-Hant": "1930年9月國會選舉讓納粹黨得六百多萬票；1933年1月30日他被任命為帝國總理，同年3月取得全權，建立一黨獨裁。1934年8月2日總統與總理職務合一，他稱「元首兼總理」。",
+      "en": "The September 1930 Reichstag elections gave his movement over six million votes; on 30 January 1933 he became Reich Chancellor, obtained full powers that March and imposed a one-party dictatorship. On 2 August 1934 the offices of president and chancellor were merged in him as 'Führer und Reichskanzler'."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "elezioni per il Reichstag del settembre 1930",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "oltre sei milioni di voti",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "Cancelliere del Reich dal 30 gennaio 1933",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "ottenuti già nel marzo seguente i pieni poteri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "impose al paese una ferrea dittatura di partito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "Il 2 agosto del 1934",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第三段",
+       "quote": "le cariche di presidente del Reich e di cancelliere furono unificate",
+       "quoteLang": "it",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1934 條目",
+       "quote": "führt den Titel \"Führer und Reichskanzler\"",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1938-02-04",
+      "end": "1939-09-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "擴張與戰爭",
+      "en": "Expansion and war"
+     },
+     "body": {
+      "zh-Hant": "1938年2月4日他接掌國防軍最高指揮權；同年3月15日在維也納宣布併吞奧地利；1939年9月1日德國進攻波蘭，第二次世界大戰爆發。",
+      "en": "On 4 February 1938 he took the supreme command of the Wehrmacht; on 15 March 1938 he proclaimed the Anschluss of Austria in Vienna; the German attack on Poland on 1 September 1939 began the Second World War."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "1938 4. Februar: Hitler entlässt die militärische Spitze",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "übernimmt den Oberbefehl über die Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": "同句；日期見前一筆引文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "15. März: Nach dem Einmarsch deutscher Truppen in Österreich",
+       "quoteLang": "de",
+       "evidenceNote": "日月見引文；年份為年表標題 1938（同段第一筆引文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "verkündet Hitler vor einer begeisterten Menschenmenge auf dem Wiener Heldenplatz",
+       "quoteLang": "de",
+       "evidenceNote": "日期 15. März、年份 1938 取自同條目",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "den \"Anschluss\" Österreichs an das Deutsche Reich",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1939 條目",
+       "quote": "1. September: Mit dem deutschen Angriff auf Polen beginnt der Zweite Weltkrieg",
+       "quoteLang": "de",
+       "evidenceNote": "日月見引文；年份取自年表標題 1939（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1945-04-30",
+      "end": "1945-05-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "終局",
+      "en": "End"
+     },
+     "body": {
+      "zh-Hant": "1945年4月30日他與妻子在柏林總理府地下掩體內自殺。",
+      "en": "On 30 April 1945 he committed suicide with his wife in the bunker beneath the Reich Chancellery in Berlin."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1945 條目",
+       "quote": "30. April: Adolf Hitler begeht gemeinsam mit seiner Ehefrau im Bunker",
+       "quoteLang": "de",
+       "evidenceNote": "日月見引文；年份取自年表標題 1945（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1945 條目",
+       "quote": "im Bunker unter der Reichskanzlei in Berlin Selbstmord",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hitler-wehrmacht-supreme-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍",
+      "en": "Wehrmacht"
+     },
+     "title": {
+      "orig": "Oberbefehl über die Wehrmacht",
+      "zh-Hant": "國防軍最高指揮官",
+      "en": "Supreme commander of the Wehrmacht"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-02-04",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "übernimmt den Oberbefehl über die Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": "同句；日期見另一筆引文；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1938 條目",
+       "quote": "1938 4. Februar: Hitler entlässt die militärische Spitze",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "來源明寫 Oberbefehl über die Wehrmacht（最高統帥）；迄日 NULL，且德意志國政權對應待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "hitler-nsdap-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家社會主義德意志工人黨（NSDAP）",
+      "en": "National Socialist German Workers' Party (NSDAP)"
+     },
+     "title": {
+      "orig": "Führung der NSDAP（Parteiführer）",
+      "zh-Hant": "納粹黨領袖",
+      "en": "Leader of the NSDAP"
+     },
+     "period": {
+      "start": "1921-07-29",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1921 條目",
+       "quote": "die Führung der Partei mit diktatorischen Vollmachten zu übernehmen",
+       "quoteLang": "de",
+       "evidenceNote": "同句；日期見另一筆引文；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "nel luglio 1921 H. ne divenne il capo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1921 條目",
+       "quote": "1921 29. Juli: Als Agitator unterdessen unentbehrlich geworden",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附希特勒的 recordId（selection-full 只有 records=2、首任 1933-01-30）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:origins",
+     "gapKind": "conflict",
+     "note": "遷居慕尼黑年份兩份已抓來源矛盾：Treccani 寫 1912，LeMO 寫 1913（5月24日）；正文不採，待第三來源",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-hitler",
+       "locator": "條目第二段",
+       "quote": "Trasferitosi a Monaco di Baviera nel 1912",
+       "quoteLang": "it",
+       "grade": "B"
+      },
+      {
+       "sourceKey": "dhm-hitler",
+       "locator": "1913 條目",
+       "quote": "Er übersiedelt nach München",
+       "quoteLang": "de",
+       "grade": "B"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:hitler-wehrmacht-supreme-command",
+     "gapKind": "not_found",
+     "note": "LeMO 未寫最高統帥的迄日（1945-04-30 自殺為推論，未作迄日）；需 A/B 來源明寫",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:1939-1945",
+     "gapKind": "not_found",
+     "note": "1939–1945 戰爭經過、1934-08-02 元首職（名單內 leader_records 已有）均只簡述，其餘待補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 猜測 ID sfz36774",
+     "url": "https://www.deutsche-biographie.de/sfz36774.html",
+     "result": "not_relevant",
+     "note": "回傳 Jäger, Karl Christoph Friedrich von，非本人"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Hitler, Adolf（Nisticò）",
+     "url": "https://www.treccani.it/enciclopedia/adolf-hitler/",
+     "result": "found_B",
+     "note": "curl 成功，具名作者"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LoC Name Authority n79019493",
+     "url": "https://id.loc.gov/authorities/names/n79019493.html",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "LeMO Adolf Hitler（DHM）",
+     "url": "https://www.dhm.de/lemo/biografie/adolf-hitler",
+     "result": "found_B",
+     "note": "curl 成功，Daniel Wosnitzka"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 猜測 ID pnd118551167",
+     "url": "https://www.deutsche-biographie.de/pnd118551167.html",
+     "result": "not_relevant",
+     "note": "回傳 Hilligen, Wolfgang，非本人"
+    }
+   ]
+  },
+  {
+   "key": "su-stalin",
+   "bioId": "01a1b492-3efd-7d05-8a70-3f38fdf9d599",
+   "name": "Иосиф Виссарионович Сталин (Джугашвили)",
+   "nameZh": "約瑟夫·史達林",
+   "recordIds": [
+    "01a1aacc-d4a0-7155-89f6-16cf22143d7d"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早期革命",
+      "en": "Origins and early revolutionary career"
+     },
+     "body": {
+      "zh-Hant": "生於格魯吉亞的哥里，父為鞋匠、母為洗衣婦，11歲才學俄語。1894年進入第比利斯東正教神學院，1898年成為俄國社會民主工黨黨員，1899年因參與革命活動被神學院開除；1912年列寧召他進入布爾什維克中央委員會。LeMO 載生日為1878年12月18日，另說1879年12月21日。",
+      "en": "Born in Gori, Georgia, to a cobbler and a washerwoman, he learned Russian only at eleven. He entered the Orthodox seminary in Tiflis in 1894, became a member of the Russian Social Democratic Labour Party in 1898 and was expelled from the seminary in 1899 for revolutionary activity; in 1912 Lenin called him onto the Bolshevik central committee. LeMO gives 18 December 1878 as his birth date, or 21 December 1879 by other accounts."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "18. Dezember 1878 (oder nach anderen Angaben 21. Dezember 1879)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "in Gori (Georgien) geboren",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "Als Kind eines Schuhmachers und einer Waschfrau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "lernt er erst mit elf Jahren Russisch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1894 條目",
+       "quote": "1894 Eintritt in das orthodoxe Priesterseminar von Tiflis",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1898 條目",
+       "quote": "1898 Stalin wird Mitglied der Sozialdemokratischen Arbeiterpartei Russlands",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "1899 Wegen seiner Beteiligung an revolutionären Aktivitäten",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1899 條目",
+       "quote": "wird er aus dem Priesterseminar ausgeschlossen",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1899",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1878/79 條目",
+       "quote": "1912 Lenin, der ihn als glänzenden Organisator schätzt",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1912 條目",
+       "quote": "beruft ihn in das Zentralkomitee der Bolschewiken",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1912",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-01-01",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "列寧政府與黨機器",
+      "en": "Lenin's government and the party apparatus"
+     },
+     "body": {
+      "zh-Hant": "列寧的布爾什維克政府成立後，他先任民族事務人民委員，後任工農檢查人民委員；1919年同時成為政治局與組織局委員，這使他在黨內擁有特殊權力基礎；1922年新設的總書記一職被他擴建成黨內權力的關鍵位置。",
+      "en": "In Lenin's Bolshevik government he first became People's Commissar for Nationalities and later for the Workers' and Peasants' Inspectorate; in 1919 he became a member of both the Politburo and the Orgburo, giving him a special power base in the party; in 1922 he built the newly created post of General Secretary into the key to his power."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "1917-1923 In der bolschewistischen Regierung Lenins",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "wird er zunächst Volkskommissar für Nationalitätenfragen",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1917-1923",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919-1922 條目",
+       "quote": "1919-1922 Als Volkskommissar für Arbeiter- und Bauerninspektion",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "1919 Mit der Neuorganisation der Partei wird Stalin sowohl",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919 條目",
+       "quote": "Mitglied des Polit- als auch des Organisationsbüros",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1919",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919 條目",
+       "quote": "erreicht damit eine besondere innerparteiliche Machtbasis",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1922 條目",
+       "quote": "1922 Das neugeschaffene Amt des Generalsekretärs wird von Stalin",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "zur Schlüsselstellung seiner innerparteilichen Machtbasis ausgebaut",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "排除對手與集體化",
+      "en": "Eliminating rivals and collectivisation"
+     },
+     "body": {
+      "zh-Hant": "列寧去世後他保住各項職務，借助權位與結盟逐一排除對手、壓制黨內反對；1929年他以「一國社會主義」為準則推行強制農業集體化與嚴酷工業化。",
+      "en": "After Lenin's death he kept his offices and, through his power and alliances, eliminated competitors one after another and suppressed internal opposition; in 1929 under 'socialism in one country' he pushed forced collectivisation and rigorous industrialisation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "behält er seine Ämter nach dessen Tod",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1924-1929",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "Mit Hilfe seiner Machtstellung und skrupellos geschlossener Allianzen",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "kann Stalin seine Konkurrenten nacheinander ausschalten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "jegliche innerparteiliche Opposition unterdrücken",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "1929 Unter der Maxime des \"Sozialismus in einem Land\"",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1929 條目",
+       "quote": "Zwangskollektivierung in der Landwirtschaft",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1929",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1924-1929 條目",
+       "quote": "einer rigorosen Industrialisierung mit Hilfe von Fünfjahrplänen",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1934-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "大清洗與戰爭",
+      "en": "Great Purge and war"
+     },
+     "body": {
+      "zh-Hant": "1934至1939年的「大清洗」中他消滅一切潛在與被指的對手，包括列寧時代的老布爾什維克領導層；1939年蘇聯與德國簽互不侵犯條約；1941年他任人民委員會議主席，並在德軍入侵後接掌戰事指導；1945年雅爾塔與波茨坦會議上其擴張性的權力追求獲得成功。",
+      "en": "In the 'Great Purge' of 1934–39 he destroyed all potential and supposed opponents, including Lenin's old Bolshevik leadership; in 1939 the USSR concluded the non-aggression pact with Germany; in 1941 he became chairman of the Council of People's Commissars and took over the conduct of the war after the German invasion; at Yalta and Potsdam in 1945 his expansionist drive succeeded."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1934-1939 條目",
+       "quote": "1934-1939 Mit der \"Großen Säuberung\"",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1934-1939 條目",
+       "quote": "vernichtet Stalin alle potentiellen und vermeintlichen Gegner seiner Herrschaft",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1934-1939",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1934-1939 條目",
+       "quote": "die alte Bolschewikenführung aus der Zeit Lenins verurteilt und hingerichtet",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1934-1939 條目",
+       "quote": "1939 Als Ergebnis einer um Sicherheit bemühten Außenpolitik",
+       "quoteLang": "de",
+       "evidenceNote": "年份見引文（年表標題與條目相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1939 條目",
+       "quote": "schließt die UdSSR den Nichtangriffspakt mit dem Deutschen Reich",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1939",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1941 條目",
+       "quote": "1941 Stalin wird Vorsitzender des Rates der Volkskommissare",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1941 條目",
+       "quote": "übernimmt nach dem deutschen Überfall auf die Sowjetunion die Kriegführung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1945 條目",
+       "quote": "1945 Auf den Konferenzen von Jalta und Potsdam",
+       "quoteLang": "de",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1934-1939 條目",
+       "quote": "setzt sich Stalins expansionistisches Machtstreben erfolgreich durch",
+       "quoteLang": "de",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "stalin-nationalities-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯／蘇維埃人民委員會議",
+      "en": "Council of People's Commissars"
+     },
+     "title": {
+      "orig": "Volkskommissar für Nationalitätenfragen",
+      "zh-Hant": "民族事務人民委員",
+      "en": "People's Commissar for Nationalities"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "wird er zunächst Volkskommissar für Nationalitätenfragen",
+       "quoteLang": "de",
+       "evidenceNote": "起訖取自 LeMO 年表標題「1917-1923」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1917-1923 條目",
+       "quote": "1917-1923 In der bolschewistischen Regierung Lenins",
+       "quoteLang": "de",
+       "evidenceNote": "起訖取自相連年表標題「1917-1923」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "民族事務人民委員非外交／國防／財政／內政四部（R3① 不符）→R5"
+    },
+    {
+     "key": "stalin-rabkrin-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯／蘇維埃人民委員會議",
+      "en": "Council of People's Commissars"
+     },
+     "title": {
+      "orig": "Volkskommissar für Arbeiter- und Bauerninspektion",
+      "zh-Hant": "工農檢查人民委員",
+      "en": "People's Commissar for the Workers' and Peasants' Inspectorate"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1923-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919-1922 條目",
+       "quote": "1919-1922 Als Volkskommissar für Arbeiter- und Bauerninspektion",
+       "quoteLang": "de",
+       "evidenceNote": "起訖取自相連年表標題「1919-1922」；Treccani（未評等）寫 1919–23",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "工農檢查人民委員非四部之一（R3① 不符）→R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "stalin-gensec",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the Communist Party"
+     },
+     "title": {
+      "orig": "Generalsekretär",
+      "zh-Hant": "總書記",
+      "en": "General Secretary"
+     },
+     "period": {
+      "start": "1922-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1922 條目",
+       "quote": "1922 Das neugeschaffene Amt des Generalsekretärs wird von Stalin",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "stalin-politburo-orgburo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布爾什維克黨",
+      "en": "Bolshevik Party"
+     },
+     "title": {
+      "orig": "Mitglied des Polit- und Organisationsbüros",
+      "zh-Hant": "政治局與組織局委員",
+      "en": "Member of the Politburo and the Orgburo"
+     },
+     "period": {
+      "start": "1919-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919 條目",
+       "quote": "Mitglied des Polit- als auch des Organisationsbüros",
+       "quoteLang": "de",
+       "evidenceNote": "同句；年份見另一筆引文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1919 條目",
+       "quote": "1919 Mit der Neuorganisation der Partei wird Stalin sowohl",
+       "quoteLang": "de",
+       "evidenceNote": "來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "stalin-central-committee-1912",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布爾什維克黨中央委員會",
+      "en": "Central Committee of the Bolsheviks"
+     },
+     "title": {
+      "orig": "Zentralkomitee der Bolschewiken",
+      "zh-Hant": "布爾什維克中央委員",
+      "en": "Member of the Bolshevik Central Committee"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1912 條目",
+       "quote": "beruft ihn in das Zentralkomitee der Bolschewiken",
+       "quoteLang": "de",
+       "evidenceNote": "年份取自年表標題 1912；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhm-stalin",
+       "locator": "1912 條目",
+       "quote": "1912 Lenin, der ihn als glänzenden Organisator schätzt",
+       "quoteLang": "de",
+       "evidenceNote": "同句；來源未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:birthDate",
+     "gapKind": "not_found",
+     "note": "LeMO 單一來源自載 1878-12-18 與 1879-12-21 兩說；Treccani（無署名、未評等）只寫 1878，未與任一說矛盾 → 非兩份已抓來源矛盾，審查改 not_found。出生日與段落起點留空，待 A 級權威檔",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-stalin",
+       "locator": "條目首段",
+       "quote": "Gori, Tiflis, 1878 - Mosca 1953",
+       "quoteLang": "it",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:stalin-rabkrin-commissar",
+     "gapKind": "conflict",
+     "note": "工農檢查人民委員迄年：LeMO 寫 1919–1922，Treccani（未評等）寫 1919–23；採 LeMO",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-stalin",
+       "locator": "條目第二段",
+       "quote": "commissario del popolo all'Ispezione operaia e contadina (1919-23)",
+       "quoteLang": "it",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:stalin-gensec",
+     "gapKind": "not_found",
+     "note": "LeMO 未寫總書記卸任（死於1953）；迄日留空",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:1941-1945",
+     "gapKind": "not_found",
+     "note": "1941 年起的政府首腦與軍事統帥任期已在名單 leader_records；統帥職稱（Treccani 未署名）未入候選，待 A/B 來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Stalin, Iosif Vissarionovič",
+     "url": "https://www.treccani.it/enciclopedia/iosif-vissarionovic-stalin/",
+     "result": "unrated",
+     "note": "curl 成功但無署名（Q9）→只作 gap 候選"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Joseph Stalin",
+     "url": "https://www.britannica.com/biography/Joseph-Stalin",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 猜測 ID sfz122578",
+     "url": "https://www.deutsche-biographie.de/sfz122578.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "LeMO Josef W. Stalin（DHM）",
+     "url": "https://www.dhm.de/lemo/biografie/josef-stalin",
+     "result": "found_B",
+     "note": "curl 成功，Manfred Wichmann"
+    }
+   ]
+  },
+  {
+   "key": "us-fdr",
+   "bioId": "01a1b48b-c87a-768a-b372-2918df397b6c",
+   "name": "Franklin D. Roosevelt",
+   "nameZh": "富蘭克林·德拉諾·羅斯福",
+   "recordIds": [
+    "01a1a20c-bbd6-7ea0-a746-4c656c9d31c4",
+    "01a1a20c-bbd0-7bf9-bde7-ed7f7312950d"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-01-01",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、求學與早期政治生涯",
+      "en": "Origins, schooling and early political career"
+     },
+     "body": {
+      "zh-Hant": "羅斯福1882年生於紐約海德帕克，十四歲被送入格羅頓學校，後入哈佛學院，1905年在紐約市與愛蓮娜結婚。他1910年當選紐約州參議員，1912年連任；1913年進入威爾遜政府任海軍助理部長；1920年被民主黨提名為副總統候選人。",
+      "en": "Franklin Delano Roosevelt was born in 1882 in Hyde Park, New York. At 14 his parents sent him to the Groton School, and he went on to Harvard College; he married Eleanor in New York City in 1905. He won election to the New York State Senate in 1910 and was re-elected in 1912; in 1913 he joined the Wilson administration as assistant secretary of the Navy; in 1920 the party named him its vice-presidential candidate."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Franklin Delano Roosevelt was born in 1882 in Hyde Park, New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "At age 14, Franklin's parents sent him to the Groton School",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "FDR went on to Harvard College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Franklin and Eleanor were married in New York City in 1905",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "successfully for the New York State Senate in 1910 and was re-elected in 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In 1913, he joined the Wilson administration as assistant secretary of the Navy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "in 1920, the party named him its vice-presidential candidate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1933-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "小兒麻痺、紐約州長與當選總統",
+      "en": "Polio, governorship and election"
+     },
+     "body": {
+      "zh-Hant": "1921年羅斯福罹患小兒麻痺，雙腿癱瘓；1920年代他把相當部分家產投入整修喬治亞州溫泉鎮的療養地。1928年他贏得紐約州長，1930年連任；1932年大蕭條加劇，民主黨推他挑戰胡佛總統，他以壓倒性票數當選。",
+      "en": "Roosevelt contracted polio in 1921 and was left paralysed in his legs; he invested a considerable part of his fortune in rehabilitating a spa at Warm Springs, Georgia. He won the governorship of New York in 1928 and was re-elected in 1930. With the Depression worse by 1932 the Democrats turned to him to challenge President Hoover, and he was swept into office in a landslide."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Roosevelt contracted polio, a terrifying and incurable disease",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "that left him paralyzed in his legs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Tragedy struck, however, in 1921.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In the 1920s, he invested a considerable part of his fortune",
+       "quoteLang": "en",
+       "evidenceNote": "",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "rehabilitating a spa in Warm Springs, Georgia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "began in earnest in 1928 when he won the governorship of New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "FDR's efforts also won him reelection as governor in 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "By the presidential election season of 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "the Great Depression had only worsened",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Democrats turned to FDR",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "to challenge President Hoover",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "FDR was swept into office in a landslide",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1933-03-04",
+      "end": "1940-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "新政與連任",
+      "en": "The New Deal and re-election"
+     },
+     "body": {
+      "zh-Hant": "他在就職演說中告訴美國人「唯一值得恐懼的就是恐懼本身」。上任後的「百日新政」推動銀行金融改革，並以電台「爐邊談話」安撫公眾。1935年新政轉向更自由主義的方向，通過《華格納法》與《社會安全法》。羅斯福在1936、1940、1944年三度連任，為美國史上唯一。義大利百科條目另指出，他延攬專家組成「智囊團」，並選柯德爾·赫爾為國務卿。",
+      "en": "In his inaugural address he told Americans they had 'nothing to fear but fear itself'. In the First Hundred Days FDR pushed through legislation reforming banking and finance, and his radio 'fireside chats' calmed the public. In 1935 the New Deal turned in a more liberal direction with the Wagner Act and the Social Security Act. He was re-elected in 1936, 1940 and 1944, a unique case in US history. The Italian encyclopedia adds that he surrounded himself with expert advisers (the 'Brains Trust') and chose Cordell Hull as secretary of state."
+     },
+     "relatedRecordIds": [
+      "01a1a20c-bbd6-7ea0-a746-4c656c9d31c4",
+      "01a1a20c-bbd0-7bf9-bde7-ed7f7312950d"
+     ],
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In his inaugural address, Roosevelt gave hope to dispirited Americans",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "nothing to fear but fear itself",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In the famous \"First Hundred Days\" of his presidency",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "FDR pushed through legislation that reformed the banking and financial sectors",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Roosevelt's reassuring \"fireside chats,\"",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "in which he spoke to the nation via radio",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "calmed a worried public",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In 1935, FDR took the New Deal in a more liberal direction",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "The Wagner Act allowed labor unions to organize and bargain collectively",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "The Social Security Act set up programs designed to provide for the needs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "caso unico nella storia degli S. U., tre volte, nel 1936, nel 1940, nel 1944",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "si circondò di consiglieri esperti e specializzati",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "a questo Brains Trust",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "Con lo scegliere Cordell Hull quale segretario di stato",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1945-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "戰時領導與逝世",
+      "en": "Wartime leadership and death"
+     },
+     "body": {
+      "zh-Hant": "1940至1941年間，羅斯福對抵抗納粹的英國提供大量援助。1941年12月7日日本偷襲珍珠港，美國正式參戰；到1943年，美軍與盟國已扭轉對德日的戰局。1945年4月，在德國投降前數週，他因腦出血去世。義大利百科條目記他在美國參戰很久以前就向國會發表「四大自由」咨文。",
+      "en": "In 1940 and 1941 Roosevelt extended massive aid to Great Britain as it held out against Nazi Germany. Japan's surprise attack on Pearl Harbor on 7 December 1941 brought the United States into the war; by 1943 the US military and its allies had turned the tide against Germany and Japan. In April 1945, weeks before the German surrender, he died of a cerebral hemorrhage. The Italian encyclopedia notes his Four Freedoms message to Congress, well before the US entered the war."
+     },
+     "relatedRecordIds": [
+      "01a1a20c-bbd6-7ea0-a746-4c656c9d31c4",
+      "01a1a20c-bbd0-7bf9-bde7-ed7f7312950d"
+     ],
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Roosevelt did extend massive amounts of aid to Great Britain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "against the Nazi onslaught during 1940 and 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "Japan's surprise attack on the American Navy at Pearl Harbor on December 7, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "officially brought the United States into World War II",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "by 1943, the United States military, along with its allies, had turned the tide",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "had turned the tide against both Germany and Japan",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In April 1945, just weeks before the German surrender",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "the president collapsed and died of a cerebral hemorrhage",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "nel suo messaggio al Congresso americano, assai prima dell'entrata in guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-fdr",
+       "locator": "EI 條目正文",
+       "quote": "sulle quattro libertà",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "fdr-ny-state-senator",
+     "positionKind": "legislator",
+     "title": {
+      "orig": "New York State Senator",
+      "zh-Hant": "紐約州參議員",
+      "en": "New York State Senator"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紐約州參議院",
+      "en": "New York State Senate"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "successfully for the New York State Senate in 1910 and was re-elected in 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "fdr-asst-sec-navy",
+     "positionKind": "minister",
+     "title": {
+      "orig": "Assistant Secretary of the Navy",
+      "zh-Hant": "海軍助理部長",
+      "en": "Assistant Secretary of the Navy"
+     },
+     "regimeId": "01a191b4-36ac-792e-9113-9a46cc51fc9b",
+     "organization": null,
+     "period": {
+      "start": "1913-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "In 1913, he joined the Wilson administration as assistant secretary of the Navy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14_RECOMMENDATION.md §2 #10：助理職；海軍部不在四部（文件 §4）"
+    },
+    {
+     "key": "fdr-ny-governor",
+     "positionKind": "other",
+     "title": {
+      "orig": "Governor of New York",
+      "zh-Hant": "紐約州長",
+      "en": "Governor of New York"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紐約州政府",
+      "en": "State of New York"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "miller-fdr",
+       "locator": "Life in Brief 正文",
+       "quote": "began in earnest in 1928 when he won the governorship of New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:fdr-asst-sec-navy",
+     "gapKind": "not_found",
+     "note": "Miller Center 只寫1913年加入威爾遜政府任海軍助理部長，未寫卸任年；迄日留空。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:fdr-ny-governor",
+     "gapKind": "not_found",
+     "note": "Miller Center 只寫1928年當選、1930年連任，未寫就任與卸任日；期間留空。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:fdr-ny-state-senator",
+     "gapKind": "not_found",
+     "note": "Miller Center 只寫1910年當選、1912年連任，未寫任期起迄日；期間留空。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:party-posts",
+     "gapKind": "not_found",
+     "note": "來源只寫 1920 年被民主黨提名為副總統候選人，未寫黨職或以黨身分取得的席位；無黨職候選",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "roleCandidates": [],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana Roosevelt, Franklin Delano",
+     "url": "https://www.treccani.it/enciclopedia/franklin-delano-roosevelt_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "curl 成功（具名作者）；沿用試跑批 03 已審內容，引文重新核對"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Miller Center FDR Life in Brief",
+     "url": "https://millercenter.org/president/fdroosevelt/life-in-brief",
+     "result": "found_B",
+     "note": "curl 成功（William E. Leuchtenburg）"
+    }
+   ]
+  },
+  {
+   "key": "it-mussolini-benito",
+   "bioId": "0ff6f55e-8f9c-49aa-b9ba-5858a17c9dc3",
+   "name": "Benito Mussolini",
+   "nameZh": "貝尼托·墨索里尼",
+   "recordIds": [
+    "01a19eb7-b070-7bd6-9122-7f7eb2606029"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1883-07-29",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身",
+      "en": "Origins"
+     },
+     "body": {
+      "zh-Hant": "1883年7月29日生於福爾利省普雷達皮奧的多維亞村，是鐵匠亞歷山德羅與小學教師羅莎·馬爾托尼的長子。",
+      "en": "Born on 29 July 1883 at Dovia, a hamlet of Predappio (Forlì), the eldest son of Alessandro, a blacksmith, and Rosa Maltoni, an elementary-school teacher."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 開頭",
+       "quote": "Nacque il 29 luglio 1883 a Dovia, frazione di Predappio (Forlì)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 開頭",
+       "quote": "primogenito di Alessandro, fabbro, e di Rosa Maltoni, insegnante elementare",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": "1914-11-16"
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "記者與政治轉向",
+      "en": "Journalism and political turn"
+     },
+     "body": {
+      "zh-Hant": "他曾獲任命為《前進報》（Avanti!）主編。1914年11月15日，他創辦並主持的《意大利人民報》（Il Popolo d'Italia）出刊。",
+      "en": "He was appointed editor of Avanti!; on 15 November 1914 Il Popolo d'Italia, which he founded and directed, appeared."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "Nominato direttore dell’ Avanti!",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "Il 15 novembre usciva nelle edicole Il Popolo d’Italia",
+       "quoteLang": "it",
+       "evidenceNote": "日月見引文；年份 1914 依同段前文「Avanti! , 18 ottobre 1914」（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "fondatore e direttore era Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-10-29",
+      "end": "1922-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "上台",
+      "en": "Coming to power"
+     },
+     "body": {
+      "zh-Hant": "1922年10月29日墨索里尼以電報獲命組閣，並自兼內政部與外交部。Treccani 稱，這是歐洲議會制國家第一次把政府交給武裝政黨的領袖。",
+      "en": "On 29 October 1922 Mussolini was telegrammed the task of forming a government and kept the Interior and Foreign ministries himself. Treccani notes it was the first time in European parliamentary states that government passed to the head of an armed party."
+     },
+     "relatedRecordIds": [
+      "01a19eb7-b070-7bd6-9122-7f7eb2606029"
+     ],
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 向羅馬進軍",
+       "quote": "Il 29 ottobre, Mussolini ricevette con un telegramma l’incarico",
+       "quoteLang": "it",
+       "evidenceNote": "日月見引文；年份 1922 依前文「Nell’ottobre 1922」（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 向羅馬進軍",
+       "quote": "per sé tenne i ministeri dell’Interno e degli Esteri.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 向羅馬進軍",
+       "quote": "prima volta, nella storia degli Stati parlamentari europei",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 向羅馬進軍",
+       "quote": "che la guida del governo era affidata al capo di un partito armato",
+       "quoteLang": "it",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1925-01-03",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "獨裁與教廷和解",
+      "en": "Dictatorship and the Lateran Pacts"
+     },
+     "body": {
+      "zh-Hant": "1925年1月3日他在眾議院演說，承擔法西斯所作所為的全部責任，並展開明確的獨裁政策；1929年簽署《拉特朗條約》，結束羅馬問題。",
+      "en": "On 3 January 1925, in a speech to the Chamber, he took full responsibility for everything Fascism had done and launched a decidedly dictatorial policy; in 1929 he signed the Lateran Pacts, ending the Roman Question."
+     },
+     "relatedRecordIds": [
+      "01a19eb7-b070-7bd6-9122-7f7eb2606029"
+     ],
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 獨裁化",
+       "quote": "il 3 gennaio 1925 Mussolini, con un discorso alla Camera",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 獨裁化",
+       "quote": "si assunse tutta la responsabilità di quanto il fascismo aveva compiuto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 獨裁化",
+       "quote": "avviò una decisa politica dittatoriale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1929",
+       "quote": "firma dei Patti lateranensi, che posero fine alla Questione romana",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1935-01-01",
+      "end": "1945-04-29"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰爭與終局",
+      "en": "War and end"
+     },
+     "body": {
+      "zh-Hant": "1935年入侵衣索比亞是轉折點；1940年6月10日他把意大利拖入戰爭。1943年7月25日後政權崩潰，他被國王免職、逮捕，隨後被德軍救出並帶往德國，再出任義大利社會共和國（RSI）首腦。1945年4月27日被游擊隊俘獲，次日遭槍決。",
+      "en": "The 1935 aggression against Ethiopia was the turning point; on 10 June 1940 he dragged Italy into the war. After 25 July 1943 the regime collapsed; the king dismissed and arrested him, the Germans freed him and took him to Germany, and he then headed the Italian Social Republic (RSI). Partisans captured him on 27 April 1945 and he was shot the next day."
+     },
+     "relatedRecordIds": [
+      "01a19eb7-b070-7bd6-9122-7f7eb2606029"
+     ],
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1935",
+       "quote": "La svolta decisiva avvenne nel 1935, con l’aggressione all’Etiopia.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1940",
+       "quote": "il 10 giugno 1940 trascinò il paese in guerra",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1943",
+       "quote": "Il regime fascista crollò all’indomani del 25 luglio 1943",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1943",
+       "quote": "fu destituito dal re, arrestato e trasportato prima a Ponza",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1943",
+       "quote": "fu liberato dai tedeschi e condotto in Germania",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, RSI",
+       "quote": "mettersi a capo di un nuovo Stato fascista, la Repubblica sociale italiana (RSI)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1945",
+       "quote": "il 27 aprile fu catturato dai partigiani",
+       "quoteLang": "it",
+       "evidenceNote": "日月見引文；年份 1945 依前句「il 25 aprile 1945」（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 1945",
+       "quote": "Il giorno successivo fu fucilato insieme con l’amante a Giulino di Mezzegra.",
+       "quoteLang": "it",
+       "evidenceNote": "「次日」相對前一筆 4 月 27 日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "mussolini-avanti-editor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "《前進報》",
+      "en": "Avanti!"
+     },
+     "title": {
+      "orig": "direttore dell’Avanti!",
+      "zh-Hant": "《前進報》主編",
+      "en": "Editor of Avanti!"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "Nominato direttore dell’ Avanti!",
+       "quoteLang": "it",
+       "evidenceNote": "來源未寫起訖日；正文暫以同段『1912年12月遷米蘭』推估而不採，期間留空",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "《前進報》是否義大利社會黨黨報、主編是否算黨職：Treccani 引文只寫「direttore dell'Avanti!」，未明寫黨報／黨職；不猜"
+    },
+    {
+     "key": "mussolini-popolo-editor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "《意大利人民報》",
+      "en": "Il Popolo d'Italia"
+     },
+     "title": {
+      "orig": "fondatore e direttore de Il Popolo d’Italia",
+      "zh-Hant": "《意大利人民報》創辦人兼主編",
+      "en": "Founder and director of Il Popolo d'Italia"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1914-11-15",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "fondatore e direttore era Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 社會黨時期",
+       "quote": "Il 15 novembre usciva nelle edicole Il Popolo d’Italia",
+       "quoteLang": "it",
+       "evidenceNote": "日月見引文；年份 1914 依同段前文「Avanti! , 18 ottobre 1914」（未相連）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "《意大利人民報》為其自辦報紙，來源未寫是否黨報；不猜"
+    },
+    {
+     "key": "mussolini-interior-foreign",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利王國政府",
+      "en": "Government of the Kingdom of Italy"
+     },
+     "title": {
+      "orig": "ministro dell’Interno e degli Esteri",
+      "zh-Hant": "內政部長兼外交部長",
+      "en": "Minister of the Interior and of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "Voce, 向羅馬進軍",
+       "quote": "per sé tenne i ministeri dell’Interno e degli Esteri.",
+       "quoteLang": "it",
+       "evidenceNote": "來源只寫組閣時自兼，未寫卸任日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14_RECOMMENDATION.md §2 #1：內政＋外交皆屬四部；期間 NULL 無法證明 ≥90 天。文件建議拆兩段，本腳本不拆（拆段需新建 key／標題），兩職同屬 R6、結論相同",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates"
+     ]
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:mussolini-interior-foreign",
+     "gapKind": "not_found",
+     "note": "內政部長、外交部長各自的卸任日：Treccani 只寫1922年組閣時自兼，未寫異動；本次未開到其他 A/B 來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:early-career",
+     "gapKind": "not_found",
+     "note": "1883–1912 間的教職、流亡瑞士、社會黨活動與入獄年份：Treccani 有敘述但本批只取出生與編輯任職；其餘待補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:mussolini-avanti-editor",
+     "gapKind": "not_found",
+     "note": "《前進報》主編任期起訖日：Treccani 未直書任命日，只寫獲任後於1912年12月遷居米蘭；另寫『Il 20 ottobre』（前句可知為1914年）在波隆那會議後辭去主編。原研究稱來源未寫離任日，審查更正；本批未建起訖，待下一輪以逐字引文補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:mussolini-rsi-head",
+     "gapKind": "not_found",
+     "note": "RSI 首腦的就任日（1943-09 下半）與正式職稱 Treccani 未直書；需 A/B 來源逐字寫明",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:mussolini-fasci-founder-leader",
+     "gapKind": "not_found",
+     "note": "Treccani 寫 1919-03-23 創立 Fasci 與「fondatore e capo」，未寫其任黨魁／PNF 領袖的起迄日（PNF 1921-11 成立）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "mussolini-fasci-founder-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "意大利戰鬥法西斯（Fasci italiani di combattimento）／國家法西斯黨（PNF）",
+      "en": "Fasci italiani di combattimento / National Fascist Party (PNF)"
+     },
+     "title": {
+      "orig": "fondatore e capo del fascismo",
+      "zh-Hant": "法西斯運動創始人兼領袖",
+      "en": "Founder and head of Fascism"
+     },
+     "period": {
+      "start": "1919-03-23",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，法西斯創建",
+       "quote": "il 23 marzo 1919 diede vita ai Fasci italiani di combattimento",
+       "quoteLang": "it",
+       "evidenceNote": "起點取創立日；來源在1921年脈絡另稱其為「fondatore e capo del fascismo」，未寫「領袖」就任日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，1921 年和平協議",
+       "quote": "come fondatore e capo del fascismo",
+       "quoteLang": "it",
+       "evidenceNote": "該句出現在1921年脈絡，未寫迄日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "mussolini-gran-consiglio",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家法西斯黨大委員會（Gran Consiglio del fascismo）",
+      "en": "Grand Council of Fascism (PNF organ)"
+     },
+     "title": {
+      "orig": "presidente del Gran Consiglio del fascismo",
+      "zh-Hant": "法西斯大委員會主席",
+      "en": "Chairman of the Grand Council of Fascism"
+     },
+     "period": {
+      "start": "1922-12-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，大委員會",
+       "quote": "costituito nel dicembre 1922 per volontà di Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，大委員會",
+       "quote": "che lo presiedeva come capo del governo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，大委員會",
+       "quote": "un nuovo organo dirigente del PNF, il Gran Consiglio del fascismo",
+       "quoteLang": "it",
+       "evidenceNote": "審查補引文（opus 2026-11-11，逐字核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "mussolini-rsi-head",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "義大利社會共和國（RSI，薩洛共和國）",
+      "en": "Italian Social Republic (RSI)"
+     },
+     "title": {
+      "orig": "a capo di un nuovo Stato fascista, la Repubblica sociale italiana",
+      "zh-Hant": "義大利社會共和國首腦",
+      "en": "Head of the Italian Social Republic"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "treccani-mussolini",
+       "locator": "條目，終局",
+       "quote": "mettersi a capo di un nuovo Stato fascista, la Repubblica sociale italiana (RSI)",
+       "quoteLang": "it",
+       "evidenceNote": "來源未寫就任日與正式職稱",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "來源明寫他受希特勒施壓而「mettersi a capo」RSI；名單 5442 任期止於1943年（1 筆），RSI 任期不在名單。未寫正式職稱，依字面暫列 head_of_state 候選，起迄日待查證",
+     "t14Rule": "R0"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Treccani DBI Mussolini, Benito (Emilio Gentile)",
+     "url": "https://www.treccani.it/enciclopedia/benito-mussolini_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "curl 成功；沿用試跑批 01 已審的段落與職位，引文重新對本次原文核對"
+    }
+   ]
+  }
+ ]
+}

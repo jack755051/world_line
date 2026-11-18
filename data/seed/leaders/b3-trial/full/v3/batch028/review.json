@@ -1,0 +1,89 @@
+{
+  "batch": "028",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {
+    "returned": 0,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 0,
+    "deletedCitations": 2,
+    "addedCitations": 22,
+    "editedSentences": 11,
+    "spotRefetched": 3,
+    "searchLogShort": 0
+  },
+  "people": [
+    {
+      "key": "py-ayala",
+      "bioId": "01a1aa4a-e5ef-7da3-a021-6c4738cdbbe2",
+      "verdict": "pass_with_changes",
+      "paragraphs": 7,
+      "positions": 0,
+      "roleCandidates": 0,
+      "gaps": 4,
+      "searchLogSteps": 43,
+      "changes": [
+        "第1段：出生地「巴列羅瓜蘇（今稱尤塞維奧·阿亞拉）」無引文支撐（BnF 引文為 Barrero Grande；「今稱」取自 GND 其他同地出生者紀錄，屬推論）→ 改為「巴雷羅格蘭德（Barrero Grande）」，刪「今稱」子句（中英）",
+        "alignNote 原寫「僅取得人名權威檔、篇幅不足已記 gap」與現況（7 段、FRUS 官方公文）不符，已更正",
+        "抽查重抓 history.state.gov FRUS 1921 v02 d574，引文一致",
+        "check_min：7 段／747 字，達最低標準；無任期項，外交部長、駐華盛頓公使缺起日已在 gaps"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "va-pius-xi",
+      "bioId": "01a1b4ae-0d7b-7b5b-9867-6f0fdde207f4",
+      "verdict": "pass_with_changes",
+      "paragraphs": 3,
+      "positions": 2,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 5,
+      "changes": [
+        "第1段：「在羅馬晉鐸」引文只有日期 → 補引文 viene ordinato sacerdote nella Basilica di San Giovanni in Laterano，正文改為「在拉特朗聖若望大殿晉鐸」",
+        "第1段：三項學位原只引「laurea in teologia」且誤標 datePrecision=year → 刪該引文，改補 1882 年、神學、教會法、哲學四筆引文",
+        "第1段：補 Ambrosiana 引文，正文改為「他是安布羅夏納圖書館的學者，1907年出任館長」",
+        "第2段：梵蒂岡圖書館、波蘭與立陶宛宗座視察員、宗座大使、華沙祝聖、米蘭主教座堂就任各子句原只有日期引文 → 各補一筆原文引文；「駐華沙教廷大使」改「宗座大使」（來源只寫 Nunzio apostolico）",
+        "第3段：l’Italia riconosce… 無日期卻標 datePrecision=day → 改 null；補「sotto la sovranità del Sommo Pontefice」引文支撐「教宗主權之下」",
+        "抽查重抓 vatican.va 傳記頁，引文一致"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "danzig-greiser",
+      "bioId": "01a1b4ae-0db5-7e9f-8f85-2ef9f6583b4d",
+      "verdict": "pass_with_changes",
+      "paragraphs": 4,
+      "positions": 4,
+      "roleCandidates": 4,
+      "gaps": 3,
+      "searchLogSteps": 15,
+      "changes": [
+        "第1段：「生於波森省」與引文 Aufgewachsen（長大）不符 → 改「在普魯士波森省…長大」",
+        "第1段：1919 年、20 年代在但澤經商、1929 年入黨無引文 → 補 schloss sich 1919…、war Greiser während der 1920er Jahre…、Freien Stadt Danzig…als Kaufmann tätig、Lebenslauf 1929 - 1945 Mitglied NSDAP；Freikorps、Ende desselben Jahres 兩筆無日期 → datePrecision 改 null",
+        "第2段：「黨報《前哨》」與 positions 的 partyPostAmbiguous（來源未寫是黨報）矛盾 → 刪「黨報」，改為 1931 至 1933 年任總編輯（依 Lebenslauf）",
+        "第3段：「但澤最高政府機關首長」補 womit er an der Spitze…引文；反波蘭反猶引文改為含 seit 1934 的完整片段並改寫子句",
+        "第4段：「1940年起稱瓦爾特蘭」「針對波蘭人、猶太人與天主教徒」「公開處決」補引文；Germanisierungspolitik 引文 datePrecision 改 null",
+        "T14：副議長兼內政參議員維持 t14Ambiguous（副職與內政正職合寫，不硬判）；帝國總督 R6/regime、民政長官 R5、四筆 R1 候選核對無誤",
+        "抽查重抓 deutsche-biographie.de NDB-online，引文一致"
+      ],
+      "returnedReasons": []
+    }
+  ],
+  "issues": [
+    "研究者常以只含日期的短引文支撐含地點、職稱的整句，審查逐句補了 22 筆原文引文",
+    "無日期引文誤填 datePrecision（4 筆），已改 null",
+    "flags 未標 major★，不適用 6b"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 80
+  }
+}

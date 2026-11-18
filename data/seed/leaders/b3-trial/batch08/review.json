@@ -1,0 +1,119 @@
+{
+ "batch": "08",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 1,
+  "editedSentences": 8,
+  "spotRefetched": 6
+ },
+ "countsNote": "editedSentences 只計正文句（zh／en 各算一句）；另改 1 個段落標題（迪亞斯段4，zh／en）。toUnverified＝蘇慕薩國民警衛隊職位改待查證（移到 gaps），其唯一 citation 隨之改為 gap candidateCitations，計入 deletedCitations=1。另有 14 筆 citation 的 locator 段號修正（研究者段號錯一段）、3 筆 quote 依原文改寫以涵蓋句意、新增 15 筆 citation（全取自已抓原文、支撐既有句子，未加新事實；段落＋職位引用 96 → 110）。刪除 1 筆錯誤 gap（查希爾 field:deathDate）、新增 1 筆 gap（蘇慕薩 field:birthPlace conflict）。6 個來源全部以 curl（無 -k）重抓，HTTP 200，110 筆引文＋gap 候選引文全部逐字出現在重抓頁面。審前檔備份於 /tmp/b3trial/batch08/research.pre-review.json。",
+ "people": [
+  {
+   "key": "hu-horthy",
+   "bioId": "01a1b4af-e4eb-720d-9ddd-df710ac38339",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "gaps": 2,
+   "changes": [
+    "locator 修正：Kállay／驅逐猶太人／拒絕同意 3 筆 第8段→第7段；10月15日退出戰爭、被捕、箭十字黨、流亡葡萄牙 4 筆 第9段→第8段（原文第7、8段）",
+    "段2：「國民軍發動的白色恐怖」補引文「The socalled White Terror initiated by the National Army」；「蘇維埃共和國被羅馬尼亞軍隊擊潰後」補引文「After the Republic of Soviets had been crushed by the Romanian Army」",
+    "段3：「一心收復戰後失去的領土」補引文「Horthy was intent on reannexing at least some of the territory Hungary had lost」",
+    "段4：「被迫任命親納粹政府」補引文「Horthy was forced to appoint a pro-Nazi government」",
+    "段2–4 relatedRecordIds 補攝政任期 01a1aa4a-4a52-763b-…",
+    "positions 2 筆核對無誤（1918 艦隊司令、1919年5月戰爭部長，regimeId=null＋organization 合 Q5；起點寫法合 Q3、迄日留空）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "af-zahir",
+   "bioId": "01a1b4b0-700e-7f42-85f7-aa94c6275d85",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 2,
+   "gaps": 1,
+   "changes": [
+    "段1：「生於喀布爾」原引文只有日期 → quote 改為「15 Octubre 1914 Kabul, provincia de Kabul (Kabol)」（人物頁資料欄）",
+    "段1：「喀布爾及法國的中學」原引文只到 Habiba → quote 改為「colegios Habiba e Istiqlal de Kabul y en los liceos Janson de Sailly de París」",
+    "段1：「次年任教育部長」補引文「y al año siguiente ministro de Educación」",
+    "段2：「穆罕默德·哈希姆汗任首相」補引文「Mohammad Hashim Khan, primer ministro desde la toma del poder en 1929」",
+    "刪 gap field:deathDate：標 not_found 但 CIDOB 資料欄明寫卒於 2007-07-23，note 內容也與卒日無關，屬錯誤登錄",
+    "保留 gap paragraph:reign-end-1973（conflict：CIDOB 7月17日政變日 vs EWB 8月24日正式退位）；EWB（enc-zahir）無具名作者、未評等，只在 candidateCitations，合 Q9",
+    "段1–2 relatedRecordIds 補國王任期 01a1aa96-cf95-72fe-…",
+    "positions 2 筆（1932 國防部副部長、1933 教育部長）核對無誤；regimeId 維持 null（見 issues）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ir-reza",
+   "bioId": "01a1b4b2-2faf-7405-999a-8394816e968b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "gaps": 2,
+   "changes": [
+    "段2：zh「有英國背景的政變」→「由英國策劃的政變」（原文 British-orchestrated）",
+    "職位 war-minister-1921：原文只寫 1921 年政變「soon after」任戰爭部長，引文本身無年份 → 補政變引文「In 1921 he headed a British-orchestrated coup and occupied Teheran」，任職引文 datePrecision 改 null、evidenceNote 與 note 標明起始年 1921 為推論",
+    "gap field:birthDate：note 原稱「encyclopedia.com 他條有1877之說」，查已抓的 enc-reza、enc-reza2 兩頁都寫 1878，無 1877 → 刪去無據說法",
+    "段2 relatedRecordIds 補 1925 臨時政府首長與皇帝任期兩筆；段3 補 1935–1941 伊朗帝國任期"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mx-diaz",
+   "bioId": "01a1aa4a-da3c-785a-9054-1780b3382cc8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "gaps": 1,
+   "changes": [
+    "locator 修正：反萊爾多 第7段→第6段；1877年5月5日就職 第8段→第7段",
+    "段2：原文「triumph of the Plan of Ayutla (1854)」中 1854 是計畫年份，研究者寫成「1854年計畫成功後」→ zh／en 改為「阿尤特拉計畫（1854）成功後」",
+    "段2：zh「1871年因胡亞雷斯連任而發動諾里亞計畫」無引文支撐 1871（en 也未寫）→ 刪年份；補引文「His Plan of la Noria claimed the election had been fraudulent」「His Plan of Tuxtepec retained the principle of no reelection」",
+    "段3：補引文「Díaz made good on his promise and did not run for reelection」「losing his antipathy to reelection in 1888, 1892, 1904, and 1910」「increased Mexico's reliance on foreign capital」「His power became dictatorial」，對齊正文各句",
+    "段4：period 原為 [1908-01-01,1911-06-01)，但正文從「1900年後」寫起，並寫到卒於巴黎（1915）→ period 改為 null（兩端精度 null），標題改「晚期統治與下台／Late rule and resignation」；relatedRecordIds 補 1908–1911 首腦、元首兩筆任期",
+    "職位 subprefect-ixtlan-1854：起點 1854 是由計畫年份推得而非來源所寫 → period 與精度改 null，note、evidenceNote 註明"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ni-somoza",
+   "bioId": "01a1b4b2-2f8a-7c19-bc59-9daf906fcd97",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "locator 修正：「As president…」「reestablished…」2 筆 第4段→第3段；沒收德義財產、1944 最大地主 2 筆 第5段→第4段；1944 勞工法典 第6段→第5段",
+    "段1：出生地無引文且來源自相矛盾（先寫 San Marcos，又寫「Carazo, department of San Marcos」）→ zh／en 刪出生地，新增 gap field:birthPlace（conflict，並列兩句候選引文）",
+    "段1：zh「因英語與親美態度受到史汀生注意」→ 原文是因英語與親美而被任命為史汀生的特使，不是因此受注意 → 改為「受到美國國務卿史汀生注意」",
+    "段1：「1927年美國讓他指揮國民警衛隊」只有單一來源，且與一般史述（1933 年初接任）可能不符 → zh／en 刪年份，citation datePrecision 改 null 並加 evidenceNote",
+    "職位 national-guard-1927 改待查證：起始年存疑、迄日未寫，職銜原文「Jefe Director de la Guardia Nacional」不是來源用語 → 從 positions 移到 gap position:national-guard-1927（not_found，附原引文為候選）",
+    "段2：「以國民警衛隊為權力基礎」補引文「Using the guard as a power base, Somoza ousted Sacasa from the presidency」（原 1936 引文保留）",
+    "段3：「二戰期間趁機擴張私人財產」補引文「his opportunism during World War II increased his private holdings dramatically」",
+    "段2–3 relatedRecordIds 補 1937–1945 首腦、元首兩筆任期"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "locator 段號普遍錯一段（霍爾蒂、迪亞斯、蘇慕薩共 14 筆），且同一人內錯法不一致；之後研究者應以原文空行分段實際數段，或改用引文首句當錨點",
+  "研究者常以「整句的一小段」當 quote，該句其他事實（年份、地點、因果）落在 quote 外；本批補 15 筆 citation、改 3 筆 quote 才對齊。建議研究階段逐句對 quote 自查",
+  "把括號內的年份或上下文年份當成任職年份（迪亞斯 1854 副省長、禮薩 1921 戰爭部長），屬推論；Q7 以外的推論也應在 evidenceNote 標明，或留空",
+  "positions 的 title.orig 填入來源沒寫的原文職銜（如 Jefe Director de la Guardia Nacional、General de brigada、Diputado al Congreso、Subprefecto de Ixtlán）；除了已改待查證的蘇慕薩一筆，其餘本批保留，但建議日後 orig 只填來源原文用語",
+  "Q5：查希爾 1932–33 兩個職位落在 1908–1945，可能對得到 5442 阿富汗王國（selection.json regimeId 01a1948c-dbbd-…）；但無法在不連庫下確認該政權有效期涵蓋 1932，維持 null＋organization，留給寫庫前確認",
+  "所有段落都沒寫 relatedRecordIds（研究者全空）；本批審查依段落內容補上 5442 任期 recordId",
+  "全批出處只有 Gale 系具名百科（encyclopedia.com）與 CIDOB，每人僅 1 個可用 A／B 來源；段落品質合格，但收錄門檻（1 A 或 2 獨立 B）要另靠 leader_records 的出處"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

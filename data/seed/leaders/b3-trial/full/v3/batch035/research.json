@@ -1,0 +1,2984 @@
+{
+ "batch": "b3-full-v3-batch035",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；regimeId 因不連庫一律 null＋organization，R3 類因此以 R5／R6 留在 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch035/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "elysee-lebrun": {
+   "title": "Albert Lebrun（歷任總統官方頁）",
+   "authors": [],
+   "publisher": "Présidence de la République française（愛麗舍宮）",
+   "published_text": "Les anciens présidents de la République, 年表",
+   "url": "https://www.elysee.fr/albert-lebrun",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國總統府官方頁，列勒布倫生平年表"
+  },
+  "senat-lebrun": {
+   "title": "LEBRUN Albert（Ancien sénateur de la IIIe République）",
+   "authors": [],
+   "publisher": "Sénat（法國參議院）",
+   "published_text": "Anciens sénateurs de la IIIe République；含《Jean Jolly》辭典摘錄",
+   "url": "https://www.senat.fr/senateur-3eme-republique/lebrun_albert0945r3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國參議院官方前參議員資料頁，列選舉、任期與部長任期日期"
+  },
+  "an-lebrun": {
+   "title": "Albert Lebrun（Base de données des députés français depuis 1789）",
+   "authors": [],
+   "publisher": "Assemblée nationale（法國國民議會）",
+   "published_text": "Sycomore 議員資料庫",
+   "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/7652",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國國民議會官方議員資料庫，列各屆議員任期起訖日"
+  },
+  "histstate-saudi": {
+   "title": "Saudi Arabia - Countries",
+   "authors": [],
+   "publisher": "Office of the Historian, U.S. Department of State",
+   "published_text": "A Guide to the United States’ History of Recognition, Diplomatic, and Consular Relations, by Country, since 1776",
+   "url": "https://history.state.gov/countries/saudi-arabia",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方頁，列承認與建交日期"
+  },
+  "histstate-yemen": {
+   "title": "Yemen - Countries",
+   "authors": [],
+   "publisher": "Office of the Historian, U.S. Department of State",
+   "published_text": "A Guide to the United States’ History of Recognition, Diplomatic, and Consular Relations, by Country, since 1776",
+   "url": "https://history.state.gov/countries/yemen",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方頁，列承認與建交日期"
+  },
+  "snl-abdulaziz": {
+   "title": "Abdulaziz Al Saud",
+   "authors": [
+    "Charlotte Lysa"
+   ],
+   "publisher": "Store norske leksikon（奧斯陸大學等機構所有）",
+   "published_text": "Store norske leksikon 具名條目，作者 Charlotte Lysa（奧斯陸大學）",
+   "url": "https://snl.no/Abdulaziz_Al_Saud",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（奧斯陸大學研究員）之機構百科條目"
+  },
+  "snl-saudihist": {
+   "title": "Saudi-Arabias historie",
+   "authors": [
+    "Charlotte Lysa",
+    "Dag Leraand"
+   ],
+   "publisher": "Store norske leksikon（奧斯陸大學等機構所有）",
+   "published_text": "Store norske leksikon 具名條目，作者 Charlotte Lysa、Dag Leraand",
+   "url": "https://snl.no/Saudi-Arabias_historie",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之機構百科條目"
+  },
+  "snl-yemen": {
+   "title": "Jemens nyere historie",
+   "authors": [
+    "Dag Leraand"
+   ],
+   "publisher": "Store norske leksikon（奧斯陸大學等機構所有）",
+   "published_text": "Store norske leksikon 具名條目，作者 Dag Leraand",
+   "url": "https://snl.no/Jemens_nyere_historie",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之機構百科條目"
+  },
+  "bostanci-1934": {
+   "title": "Arap Yarımadası’nın Güneyinde Bir Hâkimiyet Mücadelesi: 1934 Hicaz-Yemen Harbi",
+   "authors": [
+    "Mustafa Bostancı"
+   ],
+   "publisher": "Karadeniz Araştırmaları Enstitüsü Dergisi（Ankara Hacı Bayram Veli Üniversitesi 作者）",
+   "published_text": "Karadeniz Araştırmaları Enstitüsü Dergisi 10/21 (2024), 51-76；DOI 10.31765/karen.1417159",
+   "url": "https://dergipark.org.tr/en/download/article-file/3649787",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術期刊論文，具名作者（大學副教授），引英國與奧斯曼檔案"
+  }
+ },
+ "people": [
+  {
+   "key": "ye-yahya",
+   "bioId": "01a1b4b5-fa07-7891-b5f8-6b36cbc96506",
+   "name": "Yahya ibn Muhammad Hamid al-Din",
+   "nameZh": "葉海亞·穆罕默德·哈米德丁",
+   "recordIds": [
+    "01a1aa96-cf95-737d-96d4-9627c4a764fd"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1869-01-01",
+      "end": "1905-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與即位",
+      "en": "Birth and accession"
+     },
+     "body": {
+      "zh-Hant": "依土耳其學者穆斯塔法·博斯坦奇（Mustafa Bostancı）的論文，葉海亞（Yahya b. Muhammed Hamîdiddîn）於伊斯蘭曆1286年（1869年）生於薩那。伊瑪目哈米丁（Hamidüddin）去世後，他於1904年6月5日在卡夫萊特阿濟爾（Kafletüazir）以「穆塔瓦基勒·阿拉安拉」（Mütevekkil-Alellah）稱號就任伊瑪目。1904年底他起兵反抗奧斯曼，1905年4月攻佔薩那及其周邊。",
+      "en": "According to the study by the Turkish scholar Mustafa Bostancı, Yahya b. Muhammed Hamîdiddîn was born in Sanaa in AH 1286 (1869). After the death of Imam Hamidüddin he took up the imamate on 5 June 1904 at Kafletüazir with the title al-Mutawakkil ʿalā Allāh. At the end of 1904 he rose against the Ottomans, and in April 1905 he took Sanaa and its surroundings."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "1286 (1869) yılında San’a’da dünyaya gelen İmam Yahya",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "İmam Hamidüddin’in ölümü üzerine",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "20 Rebîülevvel 1322’de (5 Haziran 1904)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "Kafletüazir’de “Mütevekkil-Alellah” unvanıyla imâmet görevini üstlenmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "1904 yılı sonlarında Osmanlı Devleti’ne karşı isyan başlatmıştır",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "1905 Nisanında San’a ve çevresini ele geçirmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1911-10-09",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "達安條約與獨立統治",
+      "en": "The Treaty of Daan and independent rule"
+     },
+     "body": {
+      "zh-Hant": "1911年10月9日雙方簽訂《達安（Daân）條約》，葉海亞因此取得管理宗教基金、任命栽德派法官等權利。他遵守條約，一戰中與奧斯曼人並肩為葉門作戰。奧斯曼軍隊依《穆德羅斯停戰協定》撤出阿拉伯半島後，他成為獨立葉門的統治者，1920年起栽德派伊瑪目國被稱為「葉門穆塔瓦基勒王國」；《Store norske leksikon》也寫道，奧斯曼軍隊於一戰後撤出，栽德派伊瑪目葉海亞掌控了全國。",
+      "en": "On 9 October 1911 the Treaty of Daan was signed, and Yahya gained rights such as the administration of pious endowments and the appointment of Zaydi judges. He kept to the treaty and in the First World War fought for Yemen alongside the Ottomans. When Ottoman troops left the Arabian Peninsula under the Armistice of Mudros he became the ruler of an independent Yemen, and from 1920 the Zaydi imamate was called the Mutawakkilite Kingdom of Yemen; Store norske leksikon likewise says that after the Ottoman withdrawal following the First World War the Zaydi imam Yahya secured control of the country."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "9 Ekim 1911’de Daân (Dean) Antlaşması imzalanmıştır",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "İmam Yahya bu anlaşma ile “vakıfların yönetimi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "Zeydî kadılarının ve San’a’da kurulacak istînaf mahkemesi reisinin tayini",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "İmam Yahya da bu antlaşmaya bağlı kalmış",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "Yemen için Osmanlılar ile birlikte savaşmış",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "Mondros Mütarekesi ile Türk birlikleri Arap Yarımadası’ndan çekilince",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "bağımsız Yemen’in hükümdarı olmuş ve 1920’den itibaren Zeydî İmamlığı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "“Yemen Mütevekkilî Krallığı” olarak isimlendirilmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "sikret zaidi-imamen Yahya seg kontroll over landet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1934-06-26"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "擴張、與義大利往來及沙葉戰爭",
+      "en": "Expansion, ties with Italy and the Saudi-Yemeni war"
+     },
+     "body": {
+      "zh-Hant": "1925年葉海亞攻佔荷臺達（Hudeyde）；1926年他與義大利簽訂為期十年的友好貿易條約，藉此取得義大利的武器與技術援助。葉門軍隊佔領奈季蘭（Najran）；兩國代表團在薩那會面，首次會議於1933年7月10日舉行。1934年沙烏地阿拉伯與葉門發生短暫的邊界戰爭，沙烏地方獲勝；雙方全權代表於5月19日簽署《塔伊夫條約》，葉海亞於1934年6月26日在薩那批准。《Store norske leksikon》另記，伊瑪目於1934年接受了英國與土耳其之間劃定的邊界。",
+      "en": "In 1925 Yahya took Hudeyde; in 1926 he concluded a ten-year friendship and trade treaty with Italy and obtained Italian arms and technical aid. Yemeni forces occupied Najran; the two delegations met in Sanaa, and the first session was held on 10 July 1933. In 1934 a short border war between Saudi Arabia and Yemen ended in a Saudi victory; the plenipotentiaries signed the Treaty of Taif on 19 May, and Yahya ratified it in Sanaa on 26 June 1934. Store norske leksikon adds that the imam accepted in 1934 the border drawn between the British and the Turks."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "1925’te Hudeyde’yi ele geçirmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "1926’da İtalyanlarla on yıllık bir dostluk ve ticaret antlaşması yaparak",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "İtalya’dan silâh ve teknik yardım elde etmeyi başarmıştır",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "2.2.3",
+       "quote": "Yemen birlikleri Necran’ı işgal etti",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "2.2.3",
+       "quote": "iki heyet San’a’da bir araya geldi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "2.2.3",
+       "quote": "10 Temmuz 1933 Pazartesi günü yapıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "kom det til en kortvarig grensekrig mellom Saudi-Arabia og Jemen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "som saudierne vant",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "6 Safer 1353’te/19 Mayıs 1934 imzalandı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "Taif Antlaşması her iki tam yetkili tarafından 6 Safer 1353’te/19 Mayıs 1934",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "İmam Yahya 26 Haziran 1934’te San’a’da onaylamış",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "Imamen aksepterte i 1934 imidlertid grensedragningen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1946-03-04",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "二戰中立、美國承認與1948年遇害",
+      "en": "Wartime neutrality, US recognition and the 1948 killing"
+     },
+     "body": {
+      "zh-Hant": "《Store norske leksikon》指出，葉海亞與法西斯義大利早有往來，但二戰期間保持中立。1946年3月4日，美國總統杜魯門致函「葉門國王」伊瑪目葉海亞，承認葉門王國為主權國家；美國與葉門並同意派遣美國特別外交使團，由威廉·埃迪出任團長。1948年葉海亞在一場政變中遇害，其子艾哈邁德接掌政權。",
+      "en": "Store norske leksikon notes that Yahya had an established relationship with Fascist Italy but stayed neutral in the Second World War. On 4 March 1946 President Truman, in a letter to the Imam Yahya, the King of the Yemen, recognised the Kingdom of the Yemen as a sovereign state; the United States and Yemen also agreed to an American Special Diplomatic Mission headed by William A. Eddy. In 1948 Yahya was killed in a coup and his son Ahmad took power."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "Yahya var nøytral under Andre verdenskrig",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "et etablert forhold til det fascistiske Italia",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-yemen",
+       "locator": "Recognition",
+       "quote": "sovereign state on March 4, 1946, in a letter from President Harry Truman",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-yemen",
+       "locator": "Recognition",
+       "quote": "the Imam Yahya, the King of the Yemen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-yemen",
+       "locator": "Diplomatic Relations",
+       "quote": "agreed to the appointment of an American Special Diplomatic Mission",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-yemen",
+       "locator": "Diplomatic Relations",
+       "quote": "William A. Eddy was named Chief of this mission",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "Imam Yahya ble i 1948 drept i et kupp",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "og hans sønn Ahmad overtok makten",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "yahya-imam-yemen",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "栽德派伊瑪目國／葉門穆塔瓦基勒王國",
+      "en": "Zaydi Imamate / Mutawakkilite Kingdom of Yemen"
+     },
+     "title": {
+      "orig": "al-Mutawakkil ʿalā Allāh（Mütevekkil-Alellah）, Imām",
+      "zh-Hant": "伊瑪目（穆塔瓦基勒·阿拉安拉），後為葉門王國統治者",
+      "en": "Imam (al-Mutawakkil ʿalā Allāh), later ruler of the Kingdom of Yemen"
+     },
+     "period": {
+      "start": "1904-06-05",
+      "end": "1949-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "20 Rebîülevvel 1322’de (5 Haziran 1904)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "“Mütevekkil-Alellah” unvanıyla imâmet görevini üstlenmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "bağımsız Yemen’in hükümdarı olmuş ve 1920’den itibaren Zeydî İmamlığı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "Imam Yahya ble i 1948 drept i et kupp",
+       "quoteLang": "no",
+       "evidenceNote": "迄日依年精度（1948）寫下一年起日；SNL 只寫 1948 年遇害，未寫月日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "元首／統治者：Bostancı 明寫 1904-06-05 就任伊瑪目，奧斯曼撤出後成為獨立葉門統治者、1920 年起稱穆塔瓦基勒王國；SNL 明寫 1948 年被殺。1904–1918 年間尚屬奧斯曼名義宗主，何時起算元首無來源明寫（見 gap）。本任期與名單 5442 的 1937-07-07～1945-10-01 紀錄重疊，審查時可依名單裁切",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:independent_rule_start",
+     "gapKind": "not_found",
+     "note": "待查證：葉海亞成為獨立葉門統治者的確切起日——Bostancı 只寫「Mondros 停戰後土耳其軍撤出」且 1920 年起稱王國，未給日期；SNL 只寫一戰後。已查 Bostancı、SNL（Jemens nyere historie、Saudi-Arabias historie）、美國國務院歷史辦公室；Britannica 403、Encyclopedia of Islam 未取得。候選 head_of_state 任期因此依 Bostancı 明寫的 1904-06-05 就任伊瑪目日起算，並於 reason 註明",
+     "candidateCitations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.2",
+       "quote": "bağımsız Yemen’in hükümdarı olmuş ve 1920’den itibaren Zeydî İmamlığı",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:yahya-imam-yemen",
+     "gapKind": "not_found",
+     "note": "待查證：迄日只有 SNL 的「1948 年遇害」年精度，缺月日；本批來源未取得遇害的確切月日，已用年精度寫 1949-01-01（Q3）",
+     "candidateCitations": [
+      {
+       "sourceKey": "snl-yemen",
+       "locator": "Nord-Jemen",
+       "quote": "Imam Yahya ble i 1948 drept i et kupp",
+       "quoteLang": "no"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Yahya Muhammad Hamid ad-Din",
+     "url": "https://www.britannica.com/biography/Yahya-Muhammad-Hamid-ad-Din",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Imam Yahya Muhammad Hamid al-Din Yemen 1904 1948 biography Mutawakkilite Kingdom（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果皆為 Wikipedia 及其鏡像，只當索引，不引用、不抓取"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Yahya Muhammad Hamid ed-Din（猜測網址）",
+     "url": "https://snl.no/Yahya_Muhammad_Hamid_ed-Din",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Yahya ibn Muhammad（猜測網址）",
+     "url": "https://snl.no/Yahya_ibn_Muhammad",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Jemens nyere historie",
+     "url": "https://snl.no/Jemens_nyere_historie",
+     "result": "found_B",
+     "note": "200，具名作者 Dag Leraand"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Yahya ibn Muhammad Hamid al-Din（猜測網址）",
+     "url": "https://www.encyclopedia.com/people/history/middle-eastern-history-biographies/yahya-ibn-muhammad-hamid-al-din",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Yahya Muhammad Hamid al-Din imam Yemen Store norske leksikon OR Encyclopaedia of Islam OR Oxford Islamic Studies OR Historical Dictionary of Yemen（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只回 Wikipedia 鏡像與 Taylor & Francis（Burrowes）章節頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Burrowes, From Imamate to Republic: 1904–1967（Taylor & Francis 章節頁）",
+     "url": "https://www.taylorfrancis.com/chapters/mono/10.4324/9781315645308-2/imamate-republic-1904%E2%80%931967-robert-burrowes",
+     "result": "no_result",
+     "note": "200 但只有章節頁殼，無全文"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "history.state.gov Yemen 承認與建交",
+     "url": "https://history.state.gov/countries/yemen",
+     "result": "found_A",
+     "note": "200，取得 1946 承認與特別使團"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Imam Yahya 1934 Treaty of Taif Saudi war Hamid al-Din isolation（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Bostancı 論文與 Qatar Digital Library 英國檔案掃描（只有影像，未引用）"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Bostancı, 1934 Hicaz-Yemen Harbi（DergiPark PDF）",
+     "url": "https://dergipark.org.tr/en/download/article-file/3649787",
+     "result": "found_B",
+     "note": "200 PDF，pdftotext 轉文字；具名作者，引英國與奧斯曼檔案"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "LoC Country Study Yemen PDF（CS_Yemen.pdf）",
+     "url": "https://www.loc.gov/rr/frd/cs/pdf/CS_Yemen.pdf",
+     "result": "challenge_page",
+     "note": "轉到 loc.gov 403 Cloudflare，不繞過"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Saudi-Arabias historie（1934 沙葉邊界戰爭）",
+     "url": "https://snl.no/Saudi-Arabias_historie",
+     "result": "found_B",
+     "note": "200，具名作者"
+    }
+   ]
+  },
+  {
+   "key": "sa-ibn-saud",
+   "bioId": "01a1b4b5-fa0c-7978-b7ac-e9ed00d0aa5c",
+   "name": "ʿAbd al-ʿAziz ibn ʿAbd al-Rahman Al Saʿud (Ibn Saud)",
+   "nameZh": "阿卜杜勒-阿齊茲·伊本·紹德",
+   "recordIds": [
+    "01a1aa96-cf95-739b-bb3b-6979cd08000a"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-01-01",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與奪回內志",
+      "en": "Background and the recovery of Najd"
+     },
+     "body": {
+      "zh-Hant": "挪威《Store norske leksikon》條目稱，阿卜杜勒-阿齊茲·本·阿卜杜勒-拉赫曼·阿勒沙特（西方稱伊本·紹德）是沙烏地阿拉伯國的建立者與首任國王；條目載其生於1875年9月23日，但註明生年不確定，另有來源作1880年。沙特家族於1891年被逐往科威特流亡；1901年伊本·紹德自科威特出發，設法奪回故地，到1902年已掌控內志（Najd）。",
+      "en": "The Store norske leksikon entry says that Abdulaziz bin Abdulrahman Al Saud, known in the West as Ibn Saud, founded the state of Saudi Arabia and was its first king; it gives his birth as 23 September 1875 but notes that the year is uncertain and that some sources give 1880. The Saud family was driven into exile in Kuwait in 1891; in 1901 Ibn Saud left Kuwait to try to win the territory back, and by 1902 he had secured control of Najd."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "導言",
+       "quote": "var grunnleggeren av staten Saudi-Arabia og landets første konge",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Faktaboks",
+       "quote": "Født 23. september 1875",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Faktaboks",
+       "quote": "Usikkert fødselsår. Noen kilder oppgir 1880.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Bakgrunn",
+       "quote": "fordrevet til eksil i Kuwait i 1891",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Bakgrunn",
+       "quote": "I år 1901 dro Ibn Saud fra Kuwait i et forsøk på å vinne tilbake området",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Bakgrunn",
+       "quote": "i 1902 hadde han sikret seg herredømmet i Najd",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-12-26",
+      "end": "1927-05-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "與英國的協議與取得漢志",
+      "en": "The agreement with Britain and the conquest of Hejaz"
+     },
+     "body": {
+      "zh-Hant": "1915年12月26日，伊本·紹德與英國簽訂協議，英國承認內志的獨立地位。一戰後他向漢志推進：沙烏地軍隊1924年攻下麥加、1925年攻下吉達，其中1925年12月24日進入吉達；1926年1月7日漢志民眾向他宣誓效忠，他因此得「漢志之王暨內志蘇丹」的稱號。1927年5月20日他與英國簽訂《吉達條約》，英國藉此確認他的完全獨立。",
+      "en": "On 26 December 1915 Ibn Saud concluded an agreement with Britain, and Britain recognised the independence of Najd. After the First World War he pressed into Hejaz: Saudi forces took Mecca in 1924 and Jeddah in 1925, entering Jeddah on 24 December 1925; on 7 January 1926 the people of Hejaz swore allegiance to him, and he took the title King of Hejaz and Sultan of Najd. On 20 May 1927 he signed the Treaty of Jeddah with Britain, by which Britain confirmed his full independence."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.2",
+       "quote": "26 Aralık 1915’te İbn-i Suud ile İngiltere arasında",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Etterkommere",
+       "quote": "fikk britisk anerkjennelse for Najds selvstendighet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "Saudierne erobret Mekka i 1924 og Jeddah i 1925",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "24 Aralık 1925’te Suudi kuvvetleri Cidde’ye girmiş",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "Hicaz halkı İbn-i Suud’a, 22 Cemaziyelsani 1344/7 Ocak 1926",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "“Hicaz Meliki” olarak biat etmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "I januar 1926 utropte Ibn Saud seg til hersker av Hijaz",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "“Hicaz Meliki ve Necid ve Mülhakatı Sultanı” unvanını",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.4",
+       "quote": "20 Mayıs 1927 (28 Zilkade 1345) tarihinde Cidde Antlaşması imzalanmıştır",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.4",
+       "quote": "tam bağımsızlığını Britanya’ya onaylatmış",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-05-01",
+      "end": "1932-09-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "沙烏地阿拉伯王國的成立",
+      "en": "Founding of the Kingdom of Saudi Arabia"
+     },
+     "body": {
+      "zh-Hant": "1931年5月1日，美國承認「漢志與內志王國及其屬地」。依1932年9月18日的敕令，國名改為沙烏地阿拉伯王國；王國的宣告並於9月22日通告英國。《Store norske leksikon》的另一條目則寫，漢志與內志的雙重王國連同哈薩與阿西爾，於1932年9月23日成為獨立的沙烏地阿拉伯王國。",
+      "en": "On 1 May 1931 the United States recognised the Kingdom of Hejaz and Nejd and its Dependencies. By a decree of 18 September 1932 the name of the state was changed to the Kingdom of Saudi Arabia, and the proclamation of the kingdom was notified to Britain on 22 September. A Store norske leksikon article instead says that the double kingdom, together with Hasa and Asir, became the independent Kingdom of Saudi Arabia on 23 September 1932."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "histstate-saudi",
+       "locator": "Recognition",
+       "quote": "recognized the Kingdom of Hejaz and Nejd and its Dependencies on May 1, 1931",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-saudi",
+       "locator": "Recognition",
+       "quote": "changed to the Kingdom of Saudi Arabia by a decree of September 18, 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.5",
+       "quote": "22 Eylül 1932’de Britanya’ya da tebliğ edilmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "til det selvstendige kongedømmet Saudi-Arabia 23. september 1932",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1933-01-01",
+      "end": "1934-06-12"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "阿西爾、對葉門的戰爭與石油特許",
+      "en": "Asir, the war with Yemen and the oil concession"
+     },
+     "body": {
+      "zh-Hant": "1933年沙烏地阿拉伯把第一份石油勘探特許權給了加州標準石油公司，即後來的阿美公司。《Store norske leksikon》記載他在1933至1934年征服阿西爾；1934年沙葉兩國發生短暫的邊界戰爭，沙烏地方獲勝。1934年5月19日雙方全權代表簽署《塔伊夫條約》，阿卜杜勒-阿齊茲於6月12日在麥加批准。",
+      "en": "In 1933 Saudi Arabia granted the first oil exploration concession to Standard Oil of California, later Aramco. Store norske leksikon records that he conquered Asir in 1933-1934; in 1934 a short border war between Saudi Arabia and Yemen ended in a Saudi victory. The two plenipotentiaries signed the Treaty of Taif on 19 May 1934, and Abdulaziz ratified it in Mecca on 12 June."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "1938–1958",
+       "quote": "konsesjon for leting etter olje ble gitt til Standard Oil of California",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "1938–1958",
+       "quote": "senere Arabian American Oil Company (Aramco), i 1933",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Etableringen",
+       "quote": "erobret i årene 1921 til 1925 Hijaz og i 1933 til 1934 Asir",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "kom det til en kortvarig grensekrig mellom Saudi-Arabia og Jemen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "Etableringen",
+       "quote": "som saudierne vant",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "6 Safer 1353’te/19 Mayıs 1934 imzalandı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "Taif Antlaşması her iki tam yetkili tarafından 6 Safer 1353’te/19 Mayıs 1934",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "3.2",
+       "quote": "Kral Abdulaziz, 12 Haziran 1934’te Mekke’de Antlaşmayı onaylarken",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1953-11-09"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "二戰中立、與美國往來與晚年",
+      "en": "Wartime neutrality, ties with the United States and later years"
+     },
+     "body": {
+      "zh-Hant": "《Store norske leksikon》載，沙烏地阿拉伯在1938年開始商業開採石油。1940年2月4日，美國公使伯特·菲什遞交國書，兩國建立外交關係。二戰期間沙烏地阿拉伯官方保持中立，實際上傾向同盟國；1945年2月14日，阿卜杜勒-阿齊茲在美國軍艦昆西號上會見羅斯福總統。1953年11月9日他逝世，兒子紹德繼位。",
+      "en": "Store norske leksikon says commercial oil extraction began in 1938. Diplomatic relations with the United States were established on 4 February 1940 when Bert Fish presented his credentials. During the Second World War Saudi Arabia was officially neutral but in practice leaned towards the Allies; on 14 February 1945 Abdulaziz met President Roosevelt aboard the US warship Quincy. He died on 9 November 1953 and his son Saud succeeded him."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "1938–1958",
+       "quote": "kommersiell utvinning startet i 1938",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-saudi",
+       "locator": "Diplomatic Relations",
+       "quote": "Diplomatic relations were established on February 4, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-saudi",
+       "locator": "Diplomatic Relations",
+       "quote": "Bert Fish presented his credentials as U.S. Envoy Extraordinary",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-saudihist",
+       "locator": "1938–1958",
+       "quote": "var Saudi-Arabia offisielt nøytral, men lente i realiteten mot de allierte",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Bildetekst",
+       "quote": "Ibn Saud i møte med USAs president Franklin D. Roosevelt",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Bildetekst",
+       "quote": "ombord på det amerikanske krigsskipet USS Quincy 14. februar 1945",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Etterkommere",
+       "quote": "Ved Abdulazizs død 9. november 1953 overtok sønnen Saud",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "ibnsaud-king-hejaz-najd",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "漢志與內志王國及其屬地",
+      "en": "Kingdom of Hejaz and Nejd and its Dependencies"
+     },
+     "title": {
+      "orig": "Hicaz Meliki ve Necid ve Mülhakatı Sultanı",
+      "zh-Hant": "漢志之王暨內志蘇丹（後稱漢志與內志及其屬地之王）",
+      "en": "King of Hejaz and Sultan of Najd (later King of Hejaz and Nejd and its Dependencies)"
+     },
+     "period": {
+      "start": "1926-01-07",
+      "end": "1932-09-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "22 Cemaziyelsani 1344/7 Ocak 1926",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bostanci-1934",
+       "locator": "1.1.3",
+       "quote": "“Hicaz Meliki ve Necid ve Mülhakatı Sultanı” unvanını",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "histstate-saudi",
+       "locator": "Recognition",
+       "quote": "changed to the Kingdom of Saudi Arabia by a decree of September 18, 1932",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取國名更改敕令日；該日起國名為沙烏地阿拉伯王國（同一統治者繼續在位）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_state",
+     "reason": "元首：Bostancı 寫 1926-01-07 漢志人民向他宣誓為漢志之王並得「漢志之王暨內志蘇丹」稱號；1932-09-18 敕令將國名改為沙烏地阿拉伯王國。名單 5442 沙烏地首任起日為 1937-07-07，此前任期不在名單，依規則（名單外但來源明寫且在 1908–1945）補候選",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:head_of_state_1932_1937",
+     "gapKind": "not_found",
+     "note": "待查證：沙烏地阿拉伯王國成立（敕令 1932-09-18）至名單首任起日 1937-07-07 之間，伊本·紹德仍為國王，但本批來源未寫該段任期的起迄與稱號變動，未另建候選；上列漢志與內志候選迄於更名敕令日",
+     "candidateCitations": [
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "導言",
+       "quote": "var grunnleggeren av staten Saudi-Arabia og landets første konge",
+       "quoteLang": "no"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "not_found",
+     "note": "待查證：生年不確定（SNL 載 1875-09-23 但註「Usikkert fødselsår. Noen kilder oppgir 1880」）；本批未取得官方傳記辭典的確切生日",
+     "candidateCitations": [
+      {
+       "sourceKey": "snl-abdulaziz",
+       "locator": "Faktaboks",
+       "quote": "Usikkert fødselsår. Noen kilder oppgir 1880.",
+       "quoteLang": "no"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Abd al-Aziz ibn Saud",
+     "url": "https://www.britannica.com/biography/Abd-al-Aziz-ibn-Saud",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "LoC Federal Research Division Saudi Arabia country study（tile.loc.gov djvu 文字）",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/sa/sauditarabiacou00metz/sauditarabiacou00metz_djvu.txt",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "LoC Country Study PDF CS_Saudi_Arabia.pdf",
+     "url": "https://www.loc.gov/rr/frd/cs/pdf/CS_Saudi_Arabia.pdf",
+     "result": "challenge_page",
+     "note": "轉到 loc.gov 403 Cloudflare，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Darah（King Abdulaziz Foundation）首頁",
+     "url": "https://www.darah.org.sa/",
+     "result": "no_result",
+     "note": "DNS 解析失敗"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Ibn Saud Abd al-Aziz king Saudi Arabia 1932 biography Library of Congress country study OR Encyclopaedia of Islam OR Oxford Islamic Studies（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只回 Britannica、百科鏡像與非 A／B 彙編，無 LoC／EI 頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Abdulaziz Al Saud（Ibn Saud）",
+     "url": "https://snl.no/Abdulaziz_Al_Saud",
+     "result": "found_B",
+     "note": "200，具名作者 Charlotte Lysa（奧斯陸大學）"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Saudi-Arabias historie",
+     "url": "https://snl.no/Saudi-Arabias_historie",
+     "result": "found_B",
+     "note": "200，具名作者 Charlotte Lysa、Dag Leraand"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Abd al-Aziz ibn Saud（Encyclopedia of World Biography）",
+     "url": "https://encyclopedia.com/people/history/middle-eastern-history-biographies/abd-al-aziz-ibn-saud",
+     "result": "unrated",
+     "note": "200，但為 Encyclopedia of World Biography 無署名條目，依 Q9 不引用"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "saudiembassy.net King Abdulaziz",
+     "url": "https://www.saudiembassy.net/king-abdulaziz-ibn-abd-al-rahman-al-saud",
+     "result": "no_result",
+     "note": "SSL 憑證主機名不符，curl 驗證失敗；不用 -k，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "my.gov.sa 沙烏地政府入口 王國歷史",
+     "url": "https://my.gov.sa/",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖頁，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "history.state.gov Saudi Arabia 承認與建交",
+     "url": "https://history.state.gov/countries/saudi-arabia",
+     "result": "found_A",
+     "note": "200，取得 1931 承認、1932 更名敕令、1940 建交日期"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Imam Yahya 1934 Treaty of Taif Saudi war（WebSearch）→ Bostancı 論文",
+     "url": "https://dergipark.org.tr/en/download/article-file/3649787",
+     "result": "found_B",
+     "note": "200 PDF，具名作者（Ankara Hacı Bayram Veli Üniversitesi），pdftotext 轉文字"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "history.state.gov 1937-1945 milestones Saudi Arabia（猜測網址）",
+     "url": "https://history.state.gov/milestones/1937-1945/saudi-arabia",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  },
+  {
+   "key": "fr-lebrun",
+   "bioId": "b3595aed-e835-4c0e-9341-c2fb8c75856f",
+   "name": "Albert Lebrun",
+   "nameZh": "阿爾貝·勒布倫",
+   "recordIds": [
+    "01a19eb7-b36a-76b9-b0e7-a4b13f455676"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1871-08-29",
+      "end": "1900-12-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、求學與進入政壇",
+      "en": "Origins, studies and entry into politics"
+     },
+     "body": {
+      "zh-Hant": "勒布倫1871年8月29日生於默爾特-摩澤爾省的梅西勒歐（Mercy-le-Haut），出身農家，是巴黎綜合理工學院與礦業學院的第一名畢業生，先在礦業工程師團任職於維蘇爾，再轉南錫。他進入省議會（Conseil général）的年份，參議院傳記作1892年，愛麗舍宮年表作1898年，兩者不一致；他代表奧迪翁勒羅曼（Audun-le-Romain）選區。1900年阿爾弗雷德·梅濟耶爾（Alfred Mézières）轉任參議員，勒布倫以「左派共和黨人」名義競選布里埃（Briey）選區空出的席位當選；國民議會資料載其首個眾議員任期自1900年12月23日起。",
+      "en": "Lebrun was born on 29 August 1871 at Mercy-le-Haut (Meurthe-et-Moselle) into a farming family and graduated first from both the École polytechnique and the École des mines, then served as a mining engineer at Vesoul and Nancy. The Senate biography dates his entry into the departmental council (Conseil général) to 1892 and the Élysée chronology to 1898; the two sources disagree; he represented the canton of Audun-le-Romain. In 1900 Alfred Mézières left the Chamber for the Senate, and Lebrun stood for the vacant Briey seat under the label of 'républicain de gauche' and won; the National Assembly record gives his first deputy mandate as starting on 23 December 1900."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "né le 29 août 1871 à Mercy-le-Haut (Meurthe-et-Moselle)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "Naissance d’Albert, François Lebrun à Mercy-le-Haut",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Issu d'une famille de cultivateurs",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "Major de l’École polytechnique et de l’Ecole des mines",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "il devient ingénieur du corps des Mines à Vesoul, puis à Nancy",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "il entra dès 1892 au Conseil général",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1898 Conseiller général du canton d’Audun-le-Roman",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "représenta le canton d'Audun-le-Romain",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Mézières abandonna la Chambre des députés pour le Sénat, en 1900",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "sous l'étiquette «républicain de gauche »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1900 Élu député de Briey, réélu de 1902 à 1919",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Mandats 欄",
+       "quote": "Du 23 décembre 1900 au 31 mai 1902",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1903-01-01",
+      "end": "1919-11-06"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "眾議員生涯與部長職務",
+      "en": "Deputy and minister"
+     },
+     "body": {
+      "zh-Hant": "1903年勒布倫出任眾議院秘書，1913年當選副議長，1917年主持預算委員會。1911年6月27日至1913年1月12日他任殖民地部長；1月12日至21日在米勒蘭辭職後接掌陸軍（戰爭）部；1913年12月9日至1914年6月9日再任殖民地部長。戰爭爆發後他以砲兵營長身分動員入伍。1917年克里蒙梭擔任總理，堅持要他接任封鎖部，之後轉任解放區部，任期自1917年11月23日至1919年11月6日。",
+      "en": "In 1903 Lebrun became a secretary of the Chamber of Deputies, in 1913 its vice-president, and in 1917 he chaired the budget commission. He was Minister of the Colonies from 27 June 1911 to 12 January 1913, took the War portfolio from 12 to 21 January 1913 after Millerand's resignation, and was again Minister of the Colonies from 9 December 1913 to 9 June 1914. At the outbreak of war he was mobilised as an artillery squadron commander. When Clemenceau became premier in 1917 he insisted that Lebrun accept the Blockade ministry, then the ministry of the Liberated Regions, a post held from 23 November 1917 to 6 November 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Dès 1903, il fut secrétaire de la Chambre des députés",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "en 1913, il en fut élu vice-président",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "la commission du budget, qu'il présida en 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre des Colonies du 27 juin 1911 au 12 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre de la Guerre du 12 au 21 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "le portefeuille de la Guerre lors de la démission de M. Millerand",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre des Colonies du 9 décembre 1913 au 9 juin 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "il fut mobilisé comme chef d'escadron d'artillerie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Clemenceau, devenu président du Conseil en 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "insista pour qu'il accepte le ministère du Blocus",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "puis celui des Régions libérées",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "du 23 novembre 1917 au 6 novembre 1919",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-01-11",
+      "end": "1932-05-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參議員與參議院議長",
+      "en": "Senator and President of the Senate"
+     },
+     "body": {
+      "zh-Hant": "1920年1月11日勒布倫進入參議院，代表默爾特-摩澤爾省，1924年1月6日連任，至1932年5月12日辭職。1922至1924年他擔任法國駐國際聯盟代表，1923年任殖民科學院院長。1926年起他任參議院副議長，同年受普恩加萊（Poincaré）延攬主持國債償還基金（Caisse autonome d'amortissement），任職五年。1931年杜梅爾（Doumer）當選總統後，勒布倫接任參議院議長，並於次年無對手連任。",
+      "en": "Lebrun entered the Senate for Meurthe-et-Moselle on 11 January 1920, was re-elected on 6 January 1924, and his mandate ended on 12 May 1932 with his resignation. From 1922 to 1924 he was France's delegate to the League of Nations, and in 1923 he became president of the Académie des sciences coloniales. From 1926 he was vice-president of the Senate, and that year Poincaré called him to head the Caisse autonome d'amortissement, which he kept for five years. When Paul Doumer became President of the Republic in 1931, Lebrun succeeded him in the Senate presidency and was re-elected the following year without an opponent."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Élection",
+       "quote": "Elu le 11 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Sénateur de Meurthe-et-Moselle de 1920 à 1932",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Mandats au Sénat",
+       "quote": "du 11 janvier 1920 au 12 mai 1932",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Élection",
+       "quote": "Elu le 6 janvier 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Élection",
+       "quote": "Fin de mandat le 12 mai 1932 ( Démissionnaire )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1922-1924 Délégué de la France à la Société des Nations",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1923 Président de l’Académie des sciences coloniales",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Dès 1926, il fut élu vice-président du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "appelé par Poincaré à la présidence de la Caisse autonome d'amortissement",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "qu'il conserva pendant cinq ans",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1931-1932 Président du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Quand Paul Doumer devint Président de la République, en 1931",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Albert Lebrun lui succéda au fauteuil sénatorial",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "IL fut réélu l'année suivante, sans concurrent",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1932-05-10",
+      "end": "1939-04-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "共和國總統",
+      "en": "President of the Republic"
+     },
+     "body": {
+      "zh-Hant": "1932年5月10日杜梅爾遇刺後，國民議會在凡爾賽集會，勒布倫於第一輪投票就以777張有效票中的633票當選共和國總統；1939年4月再度連任（愛麗舍宮記為5日，參議院傳記記為6日，兩者不一致）。愛麗舍宮的年表指出，除了1934年召回杜梅格（Doumergue）與1936年挑選布魯姆（Blum）之外，他很少介入政府事務，其任內1932至1940年間更換了17位部長會議主席。1934年2月6日騷亂之後，他召請前總統加斯東·杜梅格組成國民聯合政府。",
+      "en": "After President Doumer's assassination the National Assembly met at Versailles on 10 May 1932, and Lebrun was elected President of the Republic on the first ballot with 633 of 777 votes cast. He was re-elected in April 1939 (the Élysée gives the 5th, the Senate biography the 6th; the two disagree). The Élysée chronology notes that, apart from recalling Gaston Doumergue in 1934 and choosing Léon Blum in 1936, he intervened little in the conduct of government, and there were 17 premiers between 1932 and 1940. After the riot of 6 February 1934 he recalled former president Gaston Doumergue to head a government of national union."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Doumer était assassiné",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "se réunit le 10 mai à Versailles",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "10 mai 1932 Élu président de la République.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "dès le premier tour, 633 voix sur 777 suffrages exprimés",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "5 avril 1939 Albert Lebrun est réélu président de la République.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Il fut réélu le 6 avril",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "Albert Lebrun intervient peu dans la conduite des affaires gouvernementales",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "du rappel de Gaston Doumergue en 1934 et du choix de Léon Blum en 1936",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "17 présidents du conseil entre 1932 et 1940",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "6 février 1934 Après l’émeute",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "Albert Lebrun rappelle à la tête du gouvernement Gaston Doumergue",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "ancien président de la République, qui forme un gouvernement d’Union nationale",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1940-06-16",
+      "end": "1950-03-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1940年的危機與晚年",
+      "en": "The 1940 crisis and later years"
+     },
+     "body": {
+      "zh-Hant": "1940年6月16日，勒布倫在保羅·雷諾因反對停戰而辭職後，任命貝當為部長會議主席；7月10日他未辭職便把權力交給貝當，前往伊澤爾省的維濟耶（Vizille）。1943年8月27日他被蓋世太保逮捕，押往德國控制下蒂羅爾的伊特爾城堡（Itter）。1944年10月11日戴高樂接見他，1945年4月25日他在貝當與賴伐爾的審判中作證，1950年3月6日於巴黎去世。",
+      "en": "On 16 June 1940, after the resignation of Paul Reynaud, who opposed the armistice, Lebrun named Philippe Pétain president of the council; on 10 July he left power to Pétain without resigning and went to Vizille (Isère). On 27 August 1943 he was arrested by the Gestapo and deported to Germany, to the Itter castle in the Tyrol. On 11 October 1944 he was received by General de Gaulle, on 25 April 1945 he testified at the trials of Pétain and Laval, and he died in Paris on 6 March 1950."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "16 juin 1940 Albert Lebrun désigne Philippe Pétain président du conseil",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "après la démission de Paul Reynaud, hostile à l’armistice",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "10 juillet 1940 Sans démissionner, Albert Lebrun laisse le pouvoir à Pétain",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "part pour Vizille (Isère)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "27 août 1943 Arrêté le par la Gestapo, Albert Lebrun est déporté en Allemagne",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "au château d’Itter, dans le Tyrol",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "11 octobre 1944 Il est reçu par le général de Gaulle",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "25 avril 1945 Il témoigne aux procès de Pétain et de Laval.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "6 mars 1950 Albert Lebrun s’éteint à Paris.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "lebrun-deputy-meurthe-et-moselle",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院（默爾特-摩澤爾省）",
+      "en": "Chamber of Deputies (Meurthe-et-Moselle)"
+     },
+     "title": {
+      "orig": "Député de Meurthe-et-Moselle",
+      "zh-Hant": "眾議員（默爾特-摩澤爾省）",
+      "en": "Deputy for Meurthe-et-Moselle"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1900-12-23",
+      "end": "1920-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Mandats 欄",
+       "quote": "Du 23 décembre 1900 au 31 mai 1902",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Mandats 欄",
+       "quote": "Du 16 novembre 1919 au 20 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "sous l'étiquette «républicain de gauche »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "參議院傳記寫 1900 年以「républicain de gauche」名義（étiquette）競選，國民議會另列各屆所屬議會黨團（Républicains progressistes、Gauche démocratique 等）；來源未明寫是以某政黨身分取得席位，是否算黨職不確定，不猜，留在經歷層"
+    },
+    {
+     "key": "lebrun-senator-meurthe-et-moselle",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院（默爾特-摩澤爾省）",
+      "en": "Senate (Meurthe-et-Moselle)"
+     },
+     "title": {
+      "orig": "Sénateur de Meurthe-et-Moselle",
+      "zh-Hant": "參議員（默爾特-摩澤爾省）",
+      "en": "Senator for Meurthe-et-Moselle"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1920-01-11",
+      "end": "1932-05-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Mandats au Sénat",
+       "quote": "du 11 janvier 1920 au 12 mai 1932",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Élection",
+       "quote": "Fin de mandat le 12 mai 1932 ( Démissionnaire )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "lebrun-minister-colonies-1911",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民地部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1911-06-27",
+      "end": "1913-01-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre des Colonies du 27 juin 1911 au 12 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民地部不屬外交、國防／陸軍、財政、內政四部，依 R3① 不入角色層，歸 R5"
+    },
+    {
+     "key": "lebrun-minister-war-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "Ministre de la Guerre",
+      "zh-Hant": "陸軍（戰爭）部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-01-12",
+      "end": "1913-01-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre de la Guerre du 12 au 21 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "戰爭部屬四部、正職，但任期 1913-01-12 至 1913-01-21 僅 9 天，不足 R3③ 的 90 天，歸 R5"
+    },
+    {
+     "key": "lebrun-minister-colonies-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "Ministre des Colonies",
+      "zh-Hant": "殖民地部長",
+      "en": "Minister of the Colonies"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-12-09",
+      "end": "1914-06-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre des Colonies du 9 décembre 1913 au 9 juin 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "殖民地部不屬四部，依 R3① 歸 R5"
+    },
+    {
+     "key": "lebrun-minister-blockade-liberated",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "Ministre du Blocus et des Régions libérées",
+      "zh-Hant": "封鎖與解放區部長",
+      "en": "Minister of the Blockade and the Liberated Regions"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-11-23",
+      "end": "1919-11-06"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Ministre du Blocus et des Régions libérées",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "du 23 novembre 1917 au 6 novembre 1919",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "封鎖部與解放區部不屬四部，依 R3① 歸 R5"
+    },
+    {
+     "key": "lebrun-president-conseil-general",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "默爾特-摩澤爾省議會",
+      "en": "Conseil général of Meurthe-et-Moselle"
+     },
+     "title": {
+      "orig": "Président du Conseil général de Meurthe-et-Moselle",
+      "zh-Hant": "默爾特-摩澤爾省議會議長",
+      "en": "President of the Conseil général of Meurthe-et-Moselle"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1906-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1906-1932 Élu président du Conseil général de Meurthe-et-Moselle",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "lebrun-delegate-league",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "Délégué de la France à la Société des Nations",
+      "zh-Hant": "法國駐國際聯盟代表",
+      "en": "French delegate to the League of Nations"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1922-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1922-1924 Délégué de la France à la Société des Nations",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "lebrun-vice-president-senate",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院",
+      "en": "Senate of France"
+     },
+     "title": {
+      "orig": "Vice-président du Sénat",
+      "zh-Hant": "參議院副議長",
+      "en": "Vice-President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1926-01-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1926-1931 Vice-président du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "lebrun-president-senate",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院",
+      "en": "Senate of France"
+     },
+     "title": {
+      "orig": "Président du Sénat",
+      "zh-Hant": "參議院議長",
+      "en": "President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1931-1932 Président du Sénat",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:birth_date",
+     "gapKind": "conflict",
+     "note": "國民議會 Sycomore 頁首「Informations générales」寫生於 1871-08-20，同頁摘錄的《Jean Jolly》傳記、參議院頁與愛麗舍宮年表皆寫 1871-08-29；本檔採 08-29（三處一致），未解 Sycomore 頁首異文",
+     "candidateCitations": [
+      {
+       "sourceKey": "an-lebrun",
+       "locator": "Informations générales",
+       "quote": "Né le 20 août 1871 à Mercy-le-haut",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "État civil",
+       "quote": "Né le 29 août 1871",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:1",
+     "gapKind": "conflict",
+     "note": "進入省議會年份：參議院傳記「dès 1892 au Conseil général」，愛麗舍宮年表「1898 Conseiller général du canton d’Audun-le-Roman」；兩份 A 級來源不一致，正文並陳，未裁決",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "il entra dès 1892 au Conseil général",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "1898 Conseiller général du canton d’Audun-le-Roman",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:4",
+     "gapKind": "conflict",
+     "note": "1939 年連任日期：愛麗舍宮「5 avril 1939」，參議院傳記「réélu le 6 avril」；兩份 A 級來源不一致，正文並陳，未裁決",
+     "candidateCitations": [
+      {
+       "sourceKey": "elysee-lebrun",
+       "locator": "年表",
+       "quote": "5 avril 1939 Albert Lebrun est réélu président de la République.",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Il fut réélu le 6 avril",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:head_of_state",
+     "gapKind": "not_found",
+     "note": "法蘭西第三共和國總統任期 1932-05-10～1940-06-22（名單 5442）已在 leader_records，不重建；本批來源（愛麗舍宮、參議院）寫任期迄 1940-07-11（參議院）／1940-07-10 交權（愛麗舍宮），與名單迄日 1940-06-22 不同，留待主 session 比對名單",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-lebrun",
+       "locator": "Jean Jolly 辭典摘錄",
+       "quote": "Président de la République du 10 mai 1932 au 11 juillet 1940.",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Albert Lebrun sénateur IIIe République（猜測網址 lebrun_albert0308r3）",
+     "url": "https://www.senat.fr/senateur-3eme-republique/lebrun_albert0308r3.html",
+     "result": "no_result",
+     "note": "404，猜錯識別碼"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Albert Lebrun 歷任總統 élysée.fr",
+     "url": "https://www.elysee.fr/albert-lebrun",
+     "result": "found_A",
+     "note": "200，取得官方年表"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Albert Lebrun",
+     "url": "https://www.britannica.com/biography/Albert-Lebrun",
+     "result": "challenge_page",
+     "note": "403 Cloudflare「Just a moment」，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Larousse Albert Lebrun",
+     "url": "https://www.larousse.fr/encyclopedie/personnage/Albert_Lebrun/129185",
+     "result": "unrated",
+     "note": "200，但無署名作者，只當線索，未引用"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Albert Lebrun président de la République 1932 1940 biographie Assemblée nationale Sycomore（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果多為百科鏡像與 geneawiki，未直接給出 Sycomore 或 Sénat 頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "senat.fr ancien sénateur IIIe République Lebrun Albert Meurthe-et-Moselle（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只回他人頁面"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Lebrun Albert député Briey 1900 1919 ancien sénateur（WebSearch，限 senat.fr／assemblee-nationale.fr）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Sénat 與 Sycomore 正確網址"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "LEBRUN Albert 參議院前參議員頁",
+     "url": "https://www.senat.fr/senateur-3eme-republique/lebrun_albert0945r3.html",
+     "result": "found_A",
+     "note": "200，取得選舉、任期、部長任期日期與《Jean Jolly》傳記"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Albert Lebrun Sycomore 國民議會議員資料庫",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/7652",
+     "result": "found_A",
+     "note": "200，取得各屆議員任期日期"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Assemblée nationale 舊版 gouv_parl 人物卡 LebrunA.asp",
+     "url": "https://archives.assemblee-nationale.fr/gouv_parl/fiches_personnalites/LebrunA.asp",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Lebrun, Albert",
+     "url": "https://id.loc.gov/search/?q=Lebrun%2C+Albert&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "200 但只回搜尋殼頁，無可用內容"
+    },
+    {
+     "step": 12,
+     "sourceType": "national_dictionary",
+     "query": "Sénat 他人頁（Michaut）確認 1920 年選舉敘述",
+     "url": "https://www.senat.fr/senateur-3eme-republique/michaut_henri0948r3.html",
+     "result": "not_relevant",
+     "note": "200，只提到 1920 年 Lebrun 與 Louis Michel 當選，未引用"
+    }
+   ]
+  }
+ ]
+}

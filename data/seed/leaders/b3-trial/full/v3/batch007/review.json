@@ -1,0 +1,94 @@
+{
+ "batch": "007",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 8,
+  "editedSentences": 5,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "bg-boris-iii",
+   "bioId": "01a1b4af-e4dc-7192-9ac3-e0156fc701ae",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 15,
+   "changes": [
+    "段1：刪「在保加利亞戰敗後」（NDB 引文只寫 3.10.1918 遜位予王儲，無戰敗子句）",
+    "段1：補引文 Universalis「au cours des deux guerres balkaniques et de la Première Guerre mondiale」支撐巴爾幹戰爭／一戰子句",
+    "段2：補引文 Treccani「entrare in contatti più frequenti con gli ambienti di governo italiani」支撐與義大利政府圈接觸子句",
+    "段3：刪「二戰初期」（無引文支撐）",
+    "段3：補引文 Universalis「il laisse son gouvernement déclarer la guerre à la Grande-Bretagne」（原引文截掉受詞「英國」）",
+    "段3：「自希特勒處返國後不久猝死」改為「與希特勒會面後返國時猝死」（原文 al ritorno，無「不久」）",
+    "gap field:militaryAndOtherPositions：刪與主題無關的候選引文",
+    "抽查重抓 Treccani（Cataluccio）條目，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "sv-hernandez-martinez",
+   "bioId": "01a1b4af-e4e3-7bde-bfd7-dbad26d4ae2a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 15,
+   "changes": [
+    "段1：引文改為「spent most of his army career as a professor at the Salvadoran Military Academy」以支撐「多半軍旅生涯」子句",
+    "段2：引文改為「Receiving only a plurality of the votes in the January 1931 election」支撐相對多數子句；補引文「in accordance with the constitutional provisions」",
+    "段3：補引文「consolidation of power was facilitated by a leftist-led peasant uprising」與「Contending that the Washington Treaties of 1923 precluded recognition」",
+    "段4：刪「被認為」（原文 did stamp out，非傳聞語氣）；補引文「a general strike protesting a new effort to extend his tenure yet again」",
+    "gap field:presidencyDates：gapKind conflict→not_found（庫值 vs 單一來源，不屬兩份已抓來源矛盾）",
+    "抽查重抓 encyclopedia.com Grieb 條目，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hu-horthy-miklos",
+   "bioId": "01a1b4af-e4eb-720d-9ddd-df710ac38339",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 27,
+   "changes": [
+    "段1：補引文 MEK「Az I. világháború kitörésekor 1914-ben a Habsburg csatahajó parancsnoka」支撐「一戰期間」",
+    "段2：GND 引文改為含受詞「…Regierung Gyula Károlyis」；MEK 引文改為「Károlyi lemondása után a nemzeti hadsereg fővezére lett」支撐「卡羅伊辭職後」",
+    "段3：引文改為「fiát H. Istvánt kormányzóhelyettessé választották」支撐其子獲選；period 迄點 1943-01-01→1945-01-01（段內攝政 1920-1944 為最後一事）",
+    "段4：「以國家元首的權力讓位予薩拉希」誤譯改為「放棄國家元首權力，讓予薩拉希」，引文改為「államfői hatalmáról lemondott Szálasi Ferenc javára」",
+    "刪 gap field:emigrationYear（GND A vs Universalis 未評等，依來源規則以合格出處為準，不屬說法衝突）",
+    "check_min 未達僅因艦隊司令 1918、戰爭部長 1919 兩筆缺迄日；兩筆皆有「待查證：缺迄日」gap，searchLog 有 11 筆 round=retry 加強搜尋，篇幅已達標（4 段 445 字），依審查項 6c 不退回",
+    "T14：塔烏魯斯艦長 R5、艦隊司令 R6（dates/regime）、戰爭部長 R6（dates/regime）核對無誤；國民軍總司令缺起日留 gap",
+    "抽查重抓 MEK 條目與 lobid GND JSON，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常把引文截在受詞前或只引日期片段，導致子句（受詞、時間、因果）無引文支撐；本批補 8 筆引文、改 6 筆引文",
+  "gapKind=conflict 誤用於庫值 vs 單一來源、或合格 vs 未評等來源（應為 not_found 或不立 gap）",
+  "提示寫「本批 5 人」但名單只有 3 人；以名單 3 人為準"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

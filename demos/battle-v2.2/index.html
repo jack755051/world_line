@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>敦克爾克 1940｜兩軍對壘示範 v2.2（示例，非史料）</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<div id="app">
+  <header id="hud-top">
+    <div id="date-block" aria-live="polite">
+      <div id="date-main">1940年5月10日</div>
+      <div id="date-sub"><span id="phase">黃色方案</span><span id="interp" hidden>位置內插・推估</span></div>
+    </div>
+    <div id="banner" role="note">示例，非史料</div>
+    <button id="legend-btn" aria-expanded="false" aria-controls="legend">圖例</button>
+  </header>
+  <main id="map-wrap">
+    <div id="map" role="application" aria-label="敦克爾克戰役動態地圖（示例資料，可拖曳與縮放）"></div>
+    <div id="pk-tags" aria-hidden="true"></div>
+    <div id="tip" class="glass" hidden></div>
+    <button id="follow" class="glass" hidden title="回到自動鏡頭（快捷鍵 F）">◎ 跟隨鏡頭</button>
+    <div id="event" class="glass" aria-hidden="true"><div class="ev-zh"></div><div class="ev-rule"></div><div class="ev-en"></div></div>
+    <aside id="legend" class="glass" hidden>
+      <div class="lg-title">圖例 <button id="legend-close" aria-label="關閉圖例">×</button></div>
+      <div class="lg-sec">A｜控制區（常駐）</div><div class="lg-row"><i class="sw sw-axis"></i>軸心控制區</div>
+      <div class="lg-row"><i class="sw sw-allied"></i>盟軍控制區</div>
+      <div class="lg-row"><i class="sw sw-front"></i>前線（示例）</div>
+      <div class="lg-row"><i class="sw sw-pocket"></i>包圍圈（盟軍據守，示例）</div>
+      <div class="lg-sec">B｜兵力調動</div><div class="lg-row"><i class="sw sw-arrow-a"></i>裝甲主攻軸</div>
+      <div class="lg-row"><i class="sw sw-arrow-i"></i>步兵推進</div>
+      <div class="lg-row"><i class="sw sw-arrow-c"></i>盟軍反擊／撤退</div>
+      <div class="lg-row"><i class="sw sw-naval"></i>海上撤退航線</div>
+      <div class="lg-row"><i class="sw sw-dash"></i>虛框符號＝位置內插（推估）</div>
+      <div class="lg-row"><i class="sw sw-dim"></i>淡色小符號＝非當日焦點</div>
+      <div class="lg-row"><i class="sw sw-stack"></i>疊在一起＋數字＝同一格還有幾個單位</div>
+      <div class="lg-sec">C｜交戰</div><div class="lg-row"><i class="sw sw-eng"></i>交戰（滑過或點選看兵種配對）</div>
+      <div class="lg-sec">D｜地名與註記</div><div class="lg-row">城市、河流、國界（現代國界近似）</div>
+      <div class="lg-note">符號採 APP-6／MIL-STD-2525（milsymbol）。可自由拖曳、縮放：拉遠看集團軍，中距離看軍，拉近展開成師。拖曳後按「跟隨鏡頭」回到自動鏡頭。底圖：Natural Earth（公有領域）。</div>
+    </aside>
+    <aside id="info" class="glass" hidden>
+      <button id="info-close" aria-label="關閉">×</button>
+      <div id="info-body"></div>
+    </aside>
+  </main>
+  <nav id="layers" aria-label="圖層（醋酸片）"></nav>
+  <footer id="timeline" class="glass">
+    <div id="tl-controls">
+      <button id="btn-prev" aria-label="上一個關鍵日">⏮</button>
+      <button id="btn-play" aria-label="播放">▶</button>
+      <button id="btn-next" aria-label="下一個關鍵日">⏭</button>
+      <div id="speed" role="group" aria-label="速度">
+        <button data-s="1" class="on">1x</button><button data-s="2">2x</button><button data-s="4">4x</button>
+      </div>
+    </div>
+    <div id="tl-track-wrap">
+      <div id="tl-chip">5/10</div>
+      <div id="tl-track" role="slider" tabindex="0" aria-label="日期" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0">
+        <div id="tl-fill"></div><div id="tl-ticks"></div><div id="tl-head"></div>
+      </div>
+      <div id="tl-labels"></div>
+    </div>
+  </footer>
+</div>
+<script src="vendor/maplibre-gl.js"></script>
+<script src="vendor/earcut.min.js"></script>
+<script src="vendor/milsymbol.js"></script>
+<script src="js/gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

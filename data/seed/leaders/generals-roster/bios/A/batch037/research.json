@@ -1,0 +1,4181 @@
+{
+ "batch": "b3-full-v3-batch037",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "gradePolicy": "ABC-2026-11-12",
+ "alignNote": "直接以對齊格式撰寫；蘇聯 regimeId 一律 null；符合 R3／R4 類別但僅 C 級來源者留 positions 標 R6；本批無黨職角色候選（黨職任期來源未載，記為 gap）。Britannica、ww2db 403，bigenc.ru 401，未取得；本批全部以具名 C 級來源撐起，預算所限查詢次數少於最低嘗試標準，已如實寫入 searchLog。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch037/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "enc-vor": {
+   "title": "Voroshilov, Kliment Efremovich",
+   "authors": [
+    "Bruce W. Menning"
+   ],
+   "publisher": "Macmillan Reference USA（Encyclopedia of Russian History，經 Encyclopedia.com 收錄）",
+   "published_text": "Encyclopedia of Russian History 條目",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/voroshilov-kliment-efremovich",
+   "grade": "B",
+   "gradeBasis": "具名作者 Bruce W. Menning 之機構百科條目（Macmillan Reference USA, Encyclopedia of Russian History）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "vle-vor": {
+   "title": "Kliment Vorošilov",
+   "authors": [],
+   "publisher": "LNB 科學與百科全書出版中心（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "Visuotinė lietuvių enciklopedija（立陶宛通用百科全書）線上條目",
+   "url": "https://www.vle.lt/straipsnis/kliment-vorosilov/",
+   "grade": "C",
+   "gradeBasis": "立陶宛 LNB 科學與百科全書出版中心（具名出版機構）發行之 VLE 線上條目；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "vle-gov": {
+   "title": "Leonid Govorov",
+   "authors": [],
+   "publisher": "LNB 科學與百科全書出版中心（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "Visuotinė lietuvių enciklopedija（立陶宛通用百科全書）線上條目",
+   "url": "https://www.vle.lt/straipsnis/leonid-govorov/",
+   "grade": "C",
+   "gradeBasis": "立陶宛 LNB 科學與百科全書出版中心（具名出版機構）發行之 VLE 線上條目；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "vle-yer": {
+   "title": "Andrej Jeriomenko",
+   "authors": [],
+   "publisher": "LNB 科學與百科全書出版中心（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "Visuotinė lietuvių enciklopedija（立陶宛通用百科全書）線上條目",
+   "url": "https://www.vle.lt/straipsnis/andrej-jeriomenko/",
+   "grade": "C",
+   "gradeBasis": "立陶宛 LNB 科學與百科全書出版中心（具名出版機構）發行之 VLE 線上條目；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "spb-gov": {
+   "title": "GOVOROV Leonid Alexandrovich（Saint Petersburg encyclopaedia）",
+   "authors": [
+    "A. Y. Chistyakov"
+   ],
+   "publisher": "Saint Petersburg encyclopaedia（encspb.ru）",
+   "published_text": "Saint Petersburg encyclopaedia 線上條目",
+   "url": "https://encspb.ru/object/2804034897?lc=en",
+   "grade": "C",
+   "gradeBasis": "該頁署名作者 A. Y. Chistyakov，encspb.ru 聖彼得堡百科全書計畫發布；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "spb-mer": {
+   "title": "VOLKHOV FRONT / MERETSKOV（Saint Petersburg encyclopaedia）",
+   "authors": [
+    "G. V. Kalashnikov"
+   ],
+   "publisher": "Saint Petersburg encyclopaedia（encspb.ru）",
+   "published_text": "Saint Petersburg encyclopaedia 線上條目「Volkhov Front」",
+   "url": "http://www.encspb.ru/object/2804035100?lc=en",
+   "grade": "C",
+   "gradeBasis": "該頁署名作者 G. V. Kalashnikov，encspb.ru 聖彼得堡百科全書計畫發布；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "bk-mer": {
+   "title": "Мерецков Кирилл Афанасьевич（БСЭ）",
+   "authors": [],
+   "publisher": "издательство «Советская энциклопедия»（Большая советская энциклопедия，3-е изд.，經 booksite.ru 轉載）",
+   "published_text": "Большая советская энциклопедия 條目",
+   "url": "https://www.booksite.ru/fulltext/1/001/008/075/609.htm",
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名出版機構「Советская энциклопедия」出版之《大蘇維埃百科全書》條目（條目無署名，出版機構具名）；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "bk-vat": {
+   "title": "Ватутин Николай Федорович（БСЭ）",
+   "authors": [],
+   "publisher": "издательство «Советская энциклопедия»（Большая советская энциклопедия，3-е изд.，經 booksite.ru 轉載）",
+   "published_text": "Большая советская энциклопедия 條目",
+   "url": "https://booksite.ru/FullText/1/001/008/003/499.htm",
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名出版機構「Советская энциклопедия」出版之《大蘇維埃百科全書》條目（條目無署名，出版機構具名）；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "bsu-vat": {
+   "title": "Николай Фёдорович Ватутин",
+   "authors": [],
+   "publisher": "Белгородский государственный национальный исследовательский университет（bsuedu.ru）",
+   "published_text": "大學網站 PDF 人物簡介（NF Vatutin.pdf）",
+   "url": "https://bsuedu.ru/upload/iblock/246/jngy21wfh1k8i4hr6epnxc96de8lk27g/NF%20Vatutin.pdf",
+   "grade": "C",
+   "gradeBasis": "別爾哥羅德國立研究型大學（具名機構）發布之人物簡介 PDF；依具名 C 級政策收入",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "rf-booksite-fronts": {
+   "title": "Фронты Советских Вооружённых Сил во время Великой Отечественной войны 1941—45（《偉大衛國戰爭1941—1945百科全書》條目）",
+   "authors": [
+    "С. И. Исаев"
+   ],
+   "publisher": "Советская энциклопедия（booksite.ru 全文轉載）",
+   "published_text": "Москва, 1985",
+   "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名作者 С. И. Исаев（條目末署名）、具名出版機構 Советская энциклопедия 之軍事百科條目；具名 C 級",
+   "addedAt": "2026-11-13T08:36:10+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "bse-eremenko": {
+   "title": "Еременко Андрей Иванович",
+   "authors": [],
+   "publisher": "издательство «Советская энциклопедия»（Большая советская энциклопедия, 3-е изд., 經 booksite.ru 轉載）",
+   "published_text": "Большая советская энциклопедия 條目（3-е изд.）",
+   "url": "https://booksite.ru/FullText/1/001/008/037/655.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（Большая советская энциклопедия，國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B；與舊格式人物生平同一來源的評等一致，2026-11-14）；原：具名出版機構 Советская энциклопедия 的百科條目（條目無署名）；與本檔既有 bk-mer、bk-vat（同站 БСЭ 條目）評 C 一致",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  }
+ },
+ "people": [
+  {
+   "key": "klimentvoroshilov",
+   "bioId": null,
+   "name": "Kliment Voroshilov",
+   "nameZh": "克利緬特·伏羅希洛夫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1903-01-01",
+      "end": "1926-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "入黨、內戰與軍區指揮",
+      "en": "Party, Civil War and district commands"
+     },
+     "body": {
+      "zh-Hant": "據《俄羅斯史百科全書》，伏羅希洛夫1903年加入布爾什維克，此後近十年處於地下或流放狀態，1917年底出任彼得格勒委員。內戰期間他參與1918年的察里津戰役，在該處站在史達林一方。立陶宛通用百科全書另載，他1921至24年任北高加索軍區部隊司令，1924至25年任莫斯科軍區部隊司令。",
+      "en": "According to the Encyclopedia of Russian History, Voroshilov joined the Bolsheviks in 1903, spent nearly a decade underground and in exile, and in late 1917 became commissar of Petrograd. In the Civil War he took part in the 1918 fighting at Tsaritsyn, where he sided with Stalin. The Lithuanian Universal Encyclopedia adds that he commanded the North Caucasus military district in 1921-24 and the Moscow military district in 1924-25."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "joined the Bolsheviks in 1903",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "spent nearly a decade underground and in exile",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "emerged in late 1917 to become the commissar of Petrograd",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "including Tsaritsyn in 1918, where he sided with Josef V. Stalin against",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1921–24 Šiaurės Kaukazo, 1924–25 Maskvos karinės apygardos kariuomenės vadas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "軍事與海軍事務、國防人民委員",
+      "en": "People's Commissar for military and naval affairs and for defence"
+     },
+     "body": {
+      "zh-Hant": "《俄羅斯史百科全書》載，1925年底伏龍芝去世後，伏羅希洛夫任軍事與海軍事務人民委員至1934年中，其後任國防人民委員至1940年5月。同條目稱他在1930年代推動紅軍機械化，並曾支持T-34坦克。立陶宛通用百科全書則說他參與軍中鎮壓，並因蘇芬戰爭戰事不順於1940年被免職。",
+      "en": "The Encyclopedia of Russian History records that after Frunze's death in late 1925 Voroshilov was commissar of military and naval affairs until mid-1934 and then defence commissar until May 1940. It says he oversaw the mechanization of the Red Army in the 1930s, including support for the T-34 tank. The Lithuanian encyclopedia adds that he took part in repressions in the army and was removed in 1940 as the Soviet-Finnish war went badly."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "Following the death of Mikhail V. Frunze in late 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "served until mid-1934 as commissar of military and naval affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "and subsequently until May 1940 as defense commissar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "he oversaw an impressive campaign for the mechanization of the Red Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "including support for the T-34 tank over Stalin's initial objections",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "Prisidėjo prie kariuomenėje vykdomų represijų.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "Nesėkmingai klostantis",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1940 atšauktas iš pareigų",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1961-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰時職務與戰後",
+      "en": "Wartime posts and after"
+     },
+     "body": {
+      "zh-Hant": "據《俄羅斯史百科全書》，伏羅希洛夫在二戰期間擔任重要的指揮與顧問職務，但被評為與其說是嚴肅的指揮官，不如說是政治附庸，結果往往不佳。立陶宛通用百科全書載他1941至44年為國家防衛委員會成員，1942至43年任游擊運動總司令，1945至47年任盟國駐匈牙利管制委員會主席。史達林死後的1953年，他出任最高蘇維埃主席團主席，1960年被迫辭職。",
+      "en": "According to the Encyclopedia of Russian History, Voroshilov held important command and advisory posts in the Second World War but was judged more a political toady than a serious commander, often with baleful results. The Lithuanian encyclopedia lists him as a member of the State Defence Committee in 1941-44, commander-in-chief of the partisan movement in 1942-43, and chairman of the Allied Control Commission in Hungary in 1945-47. After Stalin's death in 1953 he became chairman of the Presidium of the Supreme Soviet, and was forced to resign in 1960."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "he served in important command and advisory capacities during",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "Known more as a political toady than a serious commander",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "often with baleful results",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1941–44 Valstybės gynimo komiteto narys",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1942–43 partizaninio judėjimo vyriausiasis vadas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1945–47 Sąjungininkų kontrolės komisijos Vengrijoje pirmininkas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "After Stalin's death in 1953 Voroshilov was named chairman of the Presidium",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "a post he held until he was forced to resign in 1960",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "voroshilov-commissar-military-naval",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（軍事與海軍事務人民委員部）",
+      "en": "USSR (People's Commissariat for Military and Naval Affairs)"
+     },
+     "title": {
+      "zh-Hant": "軍事與海軍事務人民委員",
+      "en": "People's Commissar of Military and Naval Affairs",
+      "orig": "commissar of military and naval affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1925-01-01",
+      "end": "1935-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "Following the death of Mikhail V. Frunze in late 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "served until mid-1934 as commissar of military and naval affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1925–34 SSRS kariuomenės ir laivyno reikalų liaudies komisaras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R3（戰爭兼海軍），任期以年精度可證明逾 90 天，但僅一筆 B 加一筆 C 來源、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "voroshilov-defense-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（國防人民委員部）",
+      "en": "USSR (People's Commissariat of Defence)"
+     },
+     "title": {
+      "zh-Hant": "國防人民委員",
+      "en": "People's Commissar of Defence",
+      "orig": "defense commissar"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1934-01-01",
+      "end": "1940-06-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "and subsequently until May 1940 as defense commissar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-vor",
+       "locator": "全文",
+       "quote": "served until mid-1934 as commissar of military and naval affairs",
+       "quoteLang": "en",
+       "evidenceNote": "起日取自前任職迄於 1934 年中，來源僅寫年／月，起點年精度。",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1934–40 gynybos liaudies komisaras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R3（國防），任期可證明逾 90 天，但僅一筆 B 加一筆 C 來源、蘇聯 regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "voroshilov-northcaucasus-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "北高加索軍區",
+      "en": "North Caucasus Military District"
+     },
+     "title": {
+      "zh-Hant": "北高加索軍區部隊司令",
+      "en": "Commander, North Caucasus Military District",
+      "orig": "Šiaurės Kaukazo karinės apygardos kariuomenės vadas"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1921–24 Šiaurės Kaukazo, 1924–25 Maskvos karinės apygardos kariuomenės vadas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，非國家級最高軍職亦非戰區／方面軍司令，依 R5 留 positions。"
+    },
+    {
+     "key": "voroshilov-moscow-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "莫斯科軍區",
+      "en": "Moscow Military District"
+     },
+     "title": {
+      "zh-Hant": "莫斯科軍區部隊司令",
+      "en": "Commander, Moscow Military District",
+      "orig": "Maskvos karinės apygardos kariuomenės vadas"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1926-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1921–24 Šiaurės Kaukazo, 1924–25 Maskvos karinės apygardos kariuomenės vadas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，非國家級最高軍職亦非戰區／方面軍司令，依 R5 留 positions。"
+    },
+    {
+     "key": "voroshilov-state-defense-committee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家防衛委員會",
+      "en": "State Defence Committee"
+     },
+     "title": {
+      "zh-Hant": "國家防衛委員會成員",
+      "en": "Member, State Defence Committee",
+      "orig": "Valstybės gynimo komiteto narys"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1941-01-01",
+      "end": "1945-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1941–44 Valstybės gynimo komiteto narys",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "委員身分，非 R0–R4 類別，依 R5 留 positions。"
+    },
+    {
+     "key": "voroshilov-partisan-cinc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "游擊運動指揮機構",
+      "en": "Partisan movement command"
+     },
+     "title": {
+      "zh-Hant": "游擊運動總司令",
+      "en": "Commander-in-Chief of the partisan movement",
+      "orig": "partizaninio judėjimo vyriausiasis vadas"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1942–43 partizaninio judėjimo vyriausiasis vadas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "游擊運動總司令不屬全軍／軍種總司令亦非戰區方面軍司令，依 R5 留 positions。"
+    },
+    {
+     "key": "voroshilov-hungary-acc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟國駐匈牙利管制委員會",
+      "en": "Allied Control Commission in Hungary"
+     },
+     "title": {
+      "zh-Hant": "盟國駐匈牙利管制委員會主席",
+      "en": "Chairman, Allied Control Commission in Hungary",
+      "orig": "Sąjungininkų kontrolės komisijos Vengrijoje pirmininkas"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1948-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "vle-vor",
+       "locator": "全文",
+       "quote": "1945–47 Sąjungininkų kontrolės komisijos Vengrijoje pirmininkas.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "占領管制機構主席，非轄區最高行政長官，依 R5 留 positions。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:10th_army_command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；內戰期間任第10軍司令，立陶宛通用百科全書只寫「第10軍司令」未寫任期，已查 Encyclopedia of Russian History、VLE。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:party_posts",
+     "gapKind": "not_found",
+     "note": "待查證：政治局／中央委員會等黨職任期；已查 Encyclopedia of Russian History、VLE，僅見1903年入黨與1960年前後的主席團職務，未見黨職起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:presidium_chair_1953",
+     "gapKind": "not_found",
+     "note": "待查證：1953–1960 最高蘇維埃主席團主席超出 1908–1945 窗，僅寫正文（Q4）；來源亦未寫起日精確到日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "Voroshilov Kliment Efremovich Encyclopedia of Russian History",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/voroshilov-kliment-efremovich",
+     "result": "found_B",
+     "note": "curl 成功；作者 Bruce W. Menning"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija Kliment Vorošilov",
+     "url": "https://www.vle.lt/straipsnis/kliment-vorosilov/",
+     "result": "unrated",
+     "note": "curl 成功；具名出版機構，依 C 級收入"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Kliment Yefremovich Voroshilov",
+     "url": "https://www.britannica.com/biography/Kliment-Yefremovich-Voroshilov",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "historyofwar.org Voroshilov",
+     "url": "https://www.historyofwar.org/articles/people_voroshilov.html",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  },
+  {
+   "key": "leonidgovorov",
+   "bioId": null,
+   "name": "Leonid Govorov",
+   "nameZh": "列昂尼德·戈沃羅夫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1916-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Early life and training"
+     },
+     "body": {
+      "zh-Hant": "據聖彼得堡百科全書，戈沃羅夫生於1897年，1916年入彼得格勒工學院並同年被徵入伍，在康士坦丁諾夫炮兵學校完成速成課程。他1918至19年曾在高爾察克海軍上將的軍隊服役，1920年起入紅軍，1932年畢業於伏龍芝軍事學院，1938年畢業於總參謀學院。",
+      "en": "According to the Saint Petersburg encyclopaedia, Govorov was born in 1897, enrolled at the Petrograd Polytechnic Institute in 1916 and was drafted the same year, completing an accelerated course at the Konstantinovsky artillery school. He served in Admiral Kolchak's army in 1918-19, joined the Red Army in 1920, and graduated from the Frunze Military Academy in 1932 and the General Staff Academy in 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "GOVOROV Leonid Alexandrovich (1897-1955)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In 1916 enrolled in Petrograd Polytechnic Institute",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "completed an accelerated training course at the Konstantinovsky artillery school",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In 1918-19 served in the army of Admiral A.V. Kolchak, from 1920 in the Red Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "He graduated from Frunze Military Academy (1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "the Academy of General Staff (1938)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1942-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "蘇芬戰爭與莫斯科戰場",
+      "en": "Winter War and the Moscow front"
+     },
+     "body": {
+      "zh-Hant": "聖彼得堡百科全書載，戈沃羅夫在1939至40年的蘇芬戰爭中任第7集團軍炮兵主任，1940至41年任紅軍副炮兵總監。1941年10月起，他指揮駐於莫斯科附近的第5集團軍；立陶宛通用百科全書稱他在莫斯科戰役中統率第5集團軍。1942年4月，他轉任列寧格勒方面軍。",
+      "en": "The Saint Petersburg encyclopaedia records that in the Soviet-Finnish War of 1939-40 Govorov was chief of artillery staff of the 7th Army and in 1940-41 deputy inspector general of artillery of the Red Army. From October 1941 he commanded the 5th Army near Moscow, and the Lithuanian encyclopedia says he led it in the battle of Moscow. In April 1942 he moved to the Leningrad Front."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In the Soviet-Finnish War of 1939-40",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "was appointed Chief of Artillery Staff of the 7th Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In 1940-41, served as Deputy Inspector General of Artillery of the Red Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From October 1941, commander of the 5th Army located near Moscow",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-gov",
+       "locator": "全文",
+       "quote": "Maskvos mūšyje vadovavo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From April 1942, commander of troops on the Leningrad Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-04-01",
+      "end": "1947-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "列寧格勒方面軍與戰後",
+      "en": "Leningrad Front and after"
+     },
+     "body": {
+      "zh-Hant": "據聖彼得堡百科全書，戈沃羅夫自1942年4月起統率列寧格勒方面軍，領導1943年的突破封鎖與1944年的解除封鎖行動，並參與解放波羅的海地區。1944年他獲授蘇聯元帥，1944年10月起協調列寧格勒一帶的作戰，1945至46年任列寧格勒軍區司令。立陶宛通用百科全書另載，他1948至54年任蘇聯防空軍司令。",
+      "en": "According to the Saint Petersburg encyclopaedia, Govorov commanded the Leningrad Front from April 1942, led the operations that broke the blockade in 1943 and lifted it in 1944, and took part in the liberation of the Baltic. He became Marshal of the Soviet Union in 1944, coordinated operations around Leningrad from October 1944 and commanded the Leningrad Military District in 1945-46. The Lithuanian encyclopedia adds that he commanded the USSR air-defence forces in 1948-54."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From April 1942, commander of troops on the Leningrad Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "Led the operations on the breaking (1943) and lifting of the blockade (1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "liberation of the Baltics",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "Marshal of the Soviet Union (1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From October 1944, co-ordinated operations in Leningrad",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In 1945-46, commander of the Leningrad Military District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-gov",
+       "locator": "全文",
+       "quote": "1948–54 SSRS priešlėktuvinės gynybos kariuomenės vadas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "govorov-5th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紅軍第5集團軍",
+      "en": "5th Army (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第5集團軍司令",
+      "en": "Commander, 5th Army",
+      "orig": "commander of the 5th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-10-01",
+      "end": "1942-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From October 1941, commander of the 5th Army located near Moscow",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From April 1942, commander of troops on the Leningrad Front",
+       "quoteLang": "en",
+       "evidenceNote": "依來源所載下一任職起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍司令，非國家級最高軍職亦非戰區／方面軍司令，依 R5 留 positions。"
+    },
+    {
+     "key": "govorov-leningrad-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "列寧格勒方面軍",
+      "en": "Leningrad Front"
+     },
+     "title": {
+      "zh-Hant": "列寧格勒方面軍司令",
+      "en": "Commander, Leningrad Front",
+      "orig": "commander of troops on the Leningrad Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-04-01",
+      "end": "1945-05-09"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "From April 1942, commander of troops on the Leningrad Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "from June 1942 to the end of war, served as commander of Leningrad Front forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "Led the operations on the breaking (1943) and lifting of the blockade (1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「Ленинградский фронт」條",
+       "quote": "Ленинградский фронт (26. 8.1941 — 9.5.1945).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「Ленинградский фронт」條（司令名單）",
+       "quote": "Л. А. Говоров (до 9.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令），1943 年突破、1944 年解除封鎖為有年份與地點的戰役連結，但迄日缺、僅 C 級來源、regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "govorov-leningrad-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "列寧格勒軍區",
+      "en": "Leningrad Military District"
+     },
+     "title": {
+      "zh-Hant": "列寧格勒軍區司令",
+      "en": "Commander, Leningrad Military District",
+      "orig": "commander of the Leningrad Military District"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "In 1945-46, commander of the Leningrad Military District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，非國家級最高軍職亦非戰區／方面軍司令，依 R5 留 positions。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:primary_sources",
+     "gapKind": "not_found",
+     "note": "來源不足：未取得 A／B 級來源（Britannica 403、encyclopedia.com 無條目）；列寧格勒方面軍迄日來源只寫「到戰爭結束」，僅以具名 C 級支撐，T14 不升角色。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Govorov Leonid Aleksandrovich Leningrad Front commander",
+     "url": "https://encspb.ru/object/2804034897?lc=en",
+     "result": "unrated",
+     "note": "curl 成功；署名 A. Y. Chistyakov，依 C 收入"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija Leonid Govorov",
+     "url": "https://www.vle.lt/straipsnis/leonid-govorov/",
+     "result": "unrated",
+     "note": "curl 成功"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Leonid Govorov",
+     "url": "https://www.britannica.com/biography/Leonid-Aleksandrovich-Govorov",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "encyclopedia.com Govorov",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/govorov-leonid-aleksandrovich",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Говоров Ленинградский фронт 1945 расформирован командующий",
+     "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+     "result": "found_C",
+     "note": "方面軍列表載列寧格勒方面軍 26.8.1941—9.5.1945，戈沃羅夫「до 9.5.1945」，補迄日。"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Britannica／bigenc.ru Говоров",
+     "url": "https://bigenc.ru/c/govorov-leonid-aleksandrovich",
+     "result": "challenge_page",
+     "note": "bigenc.ru 回傳 qrator 防機器人挑戰頁，未繞過。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:govorov-leningrad-front",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；來源只寫「to the end of war」未寫卸任日；已查 聖彼得堡百科全書、立陶宛通用百科全書、Britannica（403）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "spb-gov",
+       "locator": "全文",
+       "quote": "from June 1942 to the end of war, served as commander of Leningrad Front forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "kirillmeretskov",
+   "bioId": null,
+   "name": "Kirill Meretskov",
+   "nameZh": "基里爾·梅列茨科夫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1897-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Early life and Spanish Civil War"
+     },
+     "body": {
+      "zh-Hant": "據《大蘇維埃百科全書》，梅列茨科夫1897年生於農民家庭，1918年入紅軍，1921年畢業於紅軍軍事學院。他曾任莫斯科與白俄羅斯軍區參謀長、特別紅旗遠東集團軍參謀長及副總參謀長，並於1936至37年作為志願者參加西班牙內戰。",
+      "en": "According to the Great Soviet Encyclopedia, Meretskov was born in 1897 to a peasant family, joined the Red Army in 1918 and graduated from the Red Army Military Academy in 1921. He served as chief of staff of the Moscow and Belorussian military districts and of the Special Red Banner Far Eastern Army, and as deputy chief of the General Staff, and volunteered in the Spanish Civil War in 1936-37."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Кирилл Афанасьевич [26.5(7.6).1897",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Родился в семье крестьянина.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В Красной Армии с 1918.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Окончил Военную академию РККА (1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "заместителем начальника Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В 1936—37 участвовал добровольцем в Гражданской войне в Испании",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-12-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "蘇芬戰爭與總參謀長",
+      "en": "Winter War and Chief of the General Staff"
+     },
+     "body": {
+      "zh-Hant": "《大蘇維埃百科全書》載，蘇芬戰爭（1939至40年）期間，梅列茨科夫指揮第7集團軍，該軍參與突破維堡方向的曼納海姆防線，1940年3月他獲蘇聯英雄稱號。1940年8月起他任總參謀長，1941年1月起任國防人民委員副手。戰爭初期他先後指揮第7、第4、第33集團軍，並主持了季赫溫附近擊潰德軍的行動。",
+      "en": "The Great Soviet Encyclopedia records that in the Soviet-Finnish War of 1939-40 Meretskov commanded the 7th Army, which took part in breaking the Mannerheim Line in the Vyborg direction, and that he was made Hero of the Soviet Union in March 1940. From August 1940 he was Chief of the General Staff and from January 1941 deputy People's Commissar of Defence. Early in the war he commanded the 7th, 4th and 33rd armies and directed the defeat of German forces at Tikhvin."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Во время советско-финской войны 1939—40 командовал 7-й армией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "принимавшей участие в прорыве линии Маннергейма на выборгском направлении",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Герой Советского Союза (21.3.1940)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "С августа 1940 начальник Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "с января 1941 заместитель наркома обороны СССР",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "руководил разгромом немецко-фашистских войск под Тихвином",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-12-01",
+      "end": "1945-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "沃爾霍夫、卡累利阿與遠東戰線",
+      "en": "Volkhov, Karelian and Far Eastern fronts"
+     },
+     "body": {
+      "zh-Hant": "據《大蘇維埃百科全書》，梅列茨科夫1941年12月至1944年2月指揮沃爾霍夫方面軍，1944年2至11月指揮卡累利阿方面軍，1945年4月起指揮濱海集群，同年8月任遠東第1方面軍司令，該方面軍參與擊潰滿洲與北朝鮮的日軍。聖彼得堡百科全書稱，沃爾霍夫方面軍1944年1至2月的諾夫哥羅德—盧加戰役促成了解除列寧格勒之圍，該方面軍由梅列茨科夫統率。",
+      "en": "According to the Great Soviet Encyclopedia, Meretskov commanded the Volkhov Front from December 1941 to February 1944 and the Karelian Front from February to November 1944, led the Primorye Group of Forces from April 1945, and in August 1945 commanded the 1st Far Eastern Front, which took part in defeating Japanese forces in Manchuria and North Korea. The Saint Petersburg encyclopaedia says the Volkhov Front's Novgorod-Luga operation of January-February 1944 resulted in the lifting of the siege of Leningrad and that the front was commanded by Meretskov."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "С декабря 1941 по февраль 1944 командовал войсками Волховского",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "в феврале — ноябре 1944 — Карельского фронтов",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "с апреля 1945 — Приморской группой войск",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "участвовавшего в разгроме японских войск в Маньчжурии и Северной Корее",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-mer",
+       "locator": "全文",
+       "quote": "in January - February 1944, they were successful in the Novgorod-Luga Operation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-mer",
+       "locator": "全文",
+       "quote": "which resulted in the Lifting the Siege",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-mer",
+       "locator": "全文",
+       "quote": "The front was commanded by General of the Army K. A. Meretskov.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "meretskov-7th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紅軍第7集團軍",
+      "en": "7th Army (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第7集團軍司令",
+      "en": "Commander, 7th Army",
+      "orig": "командовал 7-й армией"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "Во время советско-финской войны 1939—40 командовал 7-й армией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍司令，非國家級最高軍職亦非方面軍司令，依 R5 留 positions。"
+    },
+    {
+     "key": "meretskov-chief-general-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯紅軍總參謀部",
+      "en": "General Staff of the Red Army"
+     },
+     "title": {
+      "zh-Hant": "總參謀長",
+      "en": "Chief of the General Staff",
+      "orig": "начальник Генштаба"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-08-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "С августа 1940 начальник Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "с января 1941 заместитель наркома обороны СССР",
+       "quoteLang": "ru",
+       "evidenceNote": "依來源所載下一任職起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（參謀總長，職稱引文明寫），但僅一筆 C 級來源、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "meretskov-volkhov-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "沃爾霍夫方面軍",
+      "en": "Volkhov Front"
+     },
+     "title": {
+      "zh-Hant": "沃爾霍夫方面軍司令",
+      "en": "Commander, Volkhov Front",
+      "orig": "командовал войсками Волховского фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-01",
+      "end": "1944-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "С декабря 1941 по февраль 1944 командовал войсками Волховского",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "spb-mer",
+       "locator": "全文",
+       "quote": "On 15 February 1944, the Volkhov Front was disbanded",
+       "quoteLang": "en",
+       "evidenceNote": "方面軍撤銷日 1944-02-15 與百科全書「至2月」月精度一致；迄日採月精度。",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有1944年1至2月諾夫哥羅德—盧加戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "meretskov-karelian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "卡累利阿方面軍",
+      "en": "Karelian Front"
+     },
+     "title": {
+      "zh-Hant": "卡累利阿方面軍司令",
+      "en": "Commander, Karelian Front",
+      "orig": "командовал войсками Карельского фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-02-01",
+      "end": "1944-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "в феврале — ноябре 1944 — Карельского фронтов",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令），但缺戰役連結、僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "meretskov-primorye-group",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "濱海集群",
+      "en": "Primorye Group of Forces"
+     },
+     "title": {
+      "zh-Hant": "濱海集群司令",
+      "en": "Commander, Primorye Group of Forces",
+      "orig": "командовал Приморской группой войск"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-04-01",
+      "end": "1945-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "с апреля 1945 — Приморской группой войск",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": "依來源所載下一任職起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集群司令，非國家級最高軍職亦非確認之方面軍，依 R5 留 positions。"
+    },
+    {
+     "key": "meretskov-1st-far-eastern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "遠東第1方面軍",
+      "en": "1st Far Eastern Front"
+     },
+     "title": {
+      "zh-Hant": "遠東第1方面軍司令",
+      "en": "Commander, 1st Far Eastern Front",
+      "orig": "командующий войсками 1-го Дальневосточного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-08-01",
+      "end": "1945-09-03"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "участвовавшего в разгроме японских войск в Маньчжурии и Северной Корее",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「1-й Дальневосточный фронт」條",
+       "quote": "1-й Дальневосточный фронт (5.8. — 3.9.1945).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "方面軍列表「1-й Дальневосточный фронт」條（司令）",
+       "quote": "Командующий — Маршал Советского Союза К. А. Мерецков.",
+       "quoteLang": "ru",
+       "evidenceNote": "迄日採來源所載該方面軍存續終日 3.9.1945（方面軍撤銷日）。",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，1945年8月滿洲戰役），但迄日缺、僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "source",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:postwar_district_commands",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；戰後濱海、莫斯科、白海、北方軍區司令，BSE 只列名稱未寫任期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:7th_army_exact_dates",
+     "gapKind": "not_found",
+     "note": "待查證：蘇芬戰爭第7集團軍司令僅有年精度（1939—40）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:primary_sources",
+     "gapKind": "not_found",
+     "note": "來源不足：未取得 A／B 級來源（Britannica 403、bigenc.ru 401、ww2db 403）；遠東第1方面軍迄日未見，全數以具名 C 級支撐，T14 不升角色。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Мерецков Кирилл Афанасьевич БСЭ",
+     "url": "https://www.booksite.ru/fulltext/1/001/008/075/609.htm",
+     "result": "unrated",
+     "note": "curl 成功；cp1251 解碼；BSE 條目，具名出版機構，依 C 收入"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Volkhov Front Saint Petersburg encyclopaedia Meretskov",
+     "url": "http://www.encspb.ru/object/2804035100?lc=en",
+     "result": "unrated",
+     "note": "curl 成功；署名 G. V. Kalashnikov"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Meretskov prlib.ru",
+     "url": "https://prlib.ru/en/history/685603",
+     "result": "no_result",
+     "note": "頁面無可用文字"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "bigenc.ru Мерецков",
+     "url": "https://bigenc.ru/c/meretskov-kirill-afanas-evich-9a17a2",
+     "result": "blocked_403",
+     "note": "401 未授權，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Meretskov",
+     "url": "https://www.britannica.com/biography/Kirill-Afanasyevich-Meretskov",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "ww2db Meretskov",
+     "url": "https://ww2db.com/person_bio.php?person_id=1181",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Мерецков 1-й Дальневосточный фронт расформирован 1945",
+     "url": "https://booksite.ru/fulltext/1/001/008/117/708.htm",
+     "result": "found_C",
+     "note": "方面軍列表載遠東第1方面軍 5.8.—3.9.1945，司令梅列茨科夫，補迄日。"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "bigenc.ru Мерецков",
+     "url": "https://bigenc.ru/c/meretskov-kirill-afanas-evich-9a17a2",
+     "result": "challenge_page",
+     "note": "bigenc.ru 回傳 qrator 防機器人挑戰頁，未繞過。"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:meretskov-1st-far-eastern-front",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；《大蘇維埃百科全書》只寫1945年8月任遠東第1方面軍司令，未寫迄日；已查 BSE、聖彼得堡百科全書、Britannica（403）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bk-mer",
+       "locator": "全文",
+       "quote": "В августе 1945 командующий войсками 1-го Дальневосточного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "andreyyeryomenko",
+   "bioId": null,
+   "name": "Andrey Yeryomenko",
+   "nameZh": "安德烈·葉廖緬科",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1892-01-01",
+      "end": "1942-03-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與戰爭初期",
+      "en": "Origins and the opening of the war"
+     },
+     "body": {
+      "zh-Hant": "葉廖緬科生於馬爾科夫卡（今盧甘斯克州）一個烏克蘭貧農家庭。1913至1917年他在舊軍隊服役，一戰時為列兵。1918年他組織游擊隊，其後併入紅軍（立陶宛通用百科全書則記他1919年起在紅軍）；1935年自伏龍芝軍事學院畢業。1941年6月30日他接替巴甫洛夫任西方面軍司令至7月2日，7月19日至29日再任，並參與斯摩棱斯克附近的戰鬥；8月起指揮新成立的布良斯克方面軍至10月。1941年12月至1942年2月他指揮第4突擊集團軍。",
+      "en": "Yeremenko was born in Markovka, in today’s Luhansk region, to a poor Ukrainian peasant family. He served in the old army from 1913 to 1917, fighting in the First World War as a private. In 1918 he organised a partisan detachment that later merged into the Red Army (the Lithuanian encyclopedia dates his Red Army service from 1919), and he graduated from the Frunze Military Academy in 1935. On 30 June 1941 he succeeded Pavlov as commander of the Western Front until 2 July, and again from 19 to 29 July, and he fought in the battles near Smolensk; from August to October he commanded the newly formed Bryansk Front. From December 1941 to February 1942 he commanded the 4th Shock Army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "с. Марковка, ныне Ворошиловградской области",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "Родился в семье украинского крестьянина-бедняка.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "Markivka (dabartinė Luhansko sr.)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "В 1913—17 служил в старой армии",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "Nuo 1913 tarnavo Rusijos kariuomenėje",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "В 1918 организовал партизанский отряд, влившийся затем в части Красной Армии",
+       "quoteLang": "ru",
+       "evidenceNote": "說法不一：БСЭ 記 1918 年組織游擊隊、隨後併入紅軍；VLE 記 1919 年起在紅軍",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "nuo 1919 – Raudonojoje armijoje",
+       "quoteLang": "lt",
+       "evidenceNote": "說法不一：БСЭ 記 1918 年組織游擊隊、隨後併入紅軍；VLE 記 1919 年起在紅軍",
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "участвовал в 1-й мировой войне рядовым",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "Военную академию им. Фрунзе (1935)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал-лейтенант А. И. Еременко (до 2.7.1941 и 19.7. — 29.7.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии Д. Г. Павлов (до 30.6.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "боях под Смоленском",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "командовал войсками Брянского фронта (август — октябрь 1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Брянский фронт (1-го формирования, 16.8. — 10.11.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Командующий — генерал-лейтенант А. И. Еременко (до 13.10.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1941 08–09 vadovavo Briansko",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "4-й ударной армии (декабрь 1941 — февраль 1942)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1942-08-01",
+      "end": "1943-03-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "史達林格勒",
+      "en": "Stalingrad"
+     },
+     "body": {
+      "zh-Hant": "1942年8月起葉廖緬科指揮8月7日成立的東南方面軍，該方面軍於1942年9月30日改稱史達林格勒方面軍（第2次組建），仍由他指揮；同期他也指揮史達林格勒方面軍（第1次組建）至9月30日，並參與史達林格勒會戰。史達林格勒方面軍於1942年12月31日至1943年1月1日之交改為南方面軍。立陶宛通用百科全書的任期為：東南方面軍1942年8至9月、史達林格勒方面軍1942年8至12月、南方面軍1943年1至2月。",
+      "en": "From August 1942 Yeremenko commanded the South Eastern Front, formed on 7 August, which was renamed the Stalingrad Front (second formation) on 30 September 1942 and remained under him; he also commanded the first-formation Stalingrad Front until 30 September, and he took part in the Battle of Stalingrad. At the turn of 1942–43 (31 December 1942 / 1 January 1943) the Stalingrad Front became the Southern Front. The Lithuanian encyclopedia dates his commands as South Eastern Front August-September 1942, Stalingrad Front August-December 1942 and Southern Front January-February 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Юго-Восточный фронт (7.8.1942, с 30.9.1942 — Сталинградский фронт",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал-полковник А. И. Еременко (до 30.9.1942)",
+       "quoteLang": "ru",
+       "evidenceNote": "斯大林格勒方面軍（第1次組建）司令至 1942-09-30",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "Участвовал в Московской и Сталинградской битвах",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Сталинградский фронт (2-го формирования, 30.9.1942, с 31.12.1942 — Южный фронт",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Южный фронт (2-го формирования, 1.1.1943",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1942 08–09 – Pietryčių",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1942 08–12 – Stalingrado",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 01–02 – Pietų",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-05-01",
+      "end": "1959-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "加里寧、波羅的海與烏克蘭方面軍",
+      "en": "Kalinin, Baltic and Ukrainian fronts"
+     },
+     "body": {
+      "zh-Hant": "立陶宛通用百科全書列出：1943年5至10月任加里寧方面軍、1943年10至11月任波羅的海第1方面軍、1944年4月至1945年2月任波羅的海第2方面軍、1945年3至7月任烏克蘭第4方面軍。蘇聯百科記他參與解放克里米亞、波羅的海地區與捷克斯洛伐克；1945年3月26日他接替彼得羅夫指揮烏克蘭第4方面軍，直至該方面軍於5月11日撤編。戰後他先後指揮喀爾巴阡、西西伯利亞與北高加索軍區（蘇聯百科記1945至1958年，立陶宛通用百科全書記1945至1948年）。",
+      "en": "The Lithuanian encyclopedia lists his commands as Kalinin Front May-October 1943, 1st Baltic Front October-November 1943, 2nd Baltic Front April 1944 to February 1945 and 4th Ukrainian Front March-July 1945. The Soviet encyclopedia records that he took part in the liberation of the Crimea, the Baltic region and Czechoslovakia; on 26 March 1945 he succeeded Petrov in command of the 4th Ukrainian Front, which he held until 11 May. After the war he commanded in turn the Carpathian, West Siberian and North Caucasus military districts (1945–58 per the Soviet encyclopedia; 1945–48 per the Lithuanian encyclopedia)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 05–10 – Kalinino",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 10–11– I Pabaltijo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1944 04–1945 02 – II Pabaltijo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1945 03–07 – IV Ukrainos",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "И. Е. Петров (до 26.3.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии А. И. Еременко (до 11.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "4-го Украинского (март — май 1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "И. Е. Петров (до 26.3.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии А. И. Еременко (до 11.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1944 04–1945 02 – II Pabaltijo, 1945 03–07 – IV Ukrainos",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "освобождении Крыма, Прибалтики и Чехословакии",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "Прикарпатского, Западно-Сибирского и Северо-Кавказского военных округов",
+       "quoteLang": "ru",
+       "evidenceNote": "說法不一：БСЭ 記戰後三個軍區合計 1945—58；VLE 記 1945–48（БСЭ 原句後接「(1945—58)」）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1945–48 vadovavo Priekarpatės, Vakarų Sibiro ir Šiaurės Kaukazo karinių apygardų",
+       "quoteLang": "lt",
+       "evidenceNote": "說法不一：БСЭ 記戰後三個軍區合計 1945—58；VLE 記 1945–48",
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "yeremenko-bryansk-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布良斯克方面軍",
+      "en": "Bryansk Front"
+     },
+     "title": {
+      "zh-Hant": "布良斯克方面軍司令",
+      "en": "Commander, Bryansk Front",
+      "orig": "Commander, Bryansk Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-08-01",
+      "end": "1941-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1941 08–09 vadovavo Briansko",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Брянский фронт (1-го формирования, 16.8. — 10.11.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Командующий — генерал-лейтенант А. И. Еременко (до 13.10.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-southeastern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東南方面軍",
+      "en": "South Eastern Front"
+     },
+     "title": {
+      "zh-Hant": "東南方面軍司令",
+      "en": "Commander, South Eastern Front",
+      "orig": "Commander, South Eastern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-08-01",
+      "end": "1942-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1942 08–09 – Pietryčių",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Юго-Восточный фронт (7.8.1942, с 30.9.1942 — Сталинградский фронт",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1942 08–09 – Pietryčių",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-stalingrad-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "史達林格勒方面軍",
+      "en": "Stalingrad Front"
+     },
+     "title": {
+      "zh-Hant": "史達林格勒方面軍司令",
+      "en": "Commander, Stalingrad Front",
+      "orig": "Commander, Stalingrad Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-08-01",
+      "end": "1943-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1942 08–12 – Stalingrado",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал-полковник А. И. Еременко (до 30.9.1942)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "Сталинградский фронт (2-го формирования, 30.9.1942, с 31.12.1942 — Южный фронт",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "Юго-Восточного, Сталинградского и Южного (август 1942 — февраль 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-southern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "南方面軍",
+      "en": "Southern Front"
+     },
+     "title": {
+      "zh-Hant": "南方面軍司令",
+      "en": "Commander, Southern Front",
+      "orig": "Commander, Southern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1943-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 01–02 – Pietų",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-kalinin-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "加里寧方面軍",
+      "en": "Kalinin Front"
+     },
+     "title": {
+      "zh-Hant": "加里寧方面軍司令",
+      "en": "Commander, Kalinin Front",
+      "orig": "Commander, Kalinin Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-05-01",
+      "end": "1943-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 05–10 – Kalinino",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-1st-baltic-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波羅的海第1方面軍",
+      "en": "1st Baltic Front"
+     },
+     "title": {
+      "zh-Hant": "波羅的海第1方面軍司令",
+      "en": "Commander, 1st Baltic Front",
+      "orig": "Commander, 1st Baltic Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-01",
+      "end": "1943-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1943 10–11– I Pabaltijo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-2nd-baltic-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波羅的海第2方面軍",
+      "en": "2nd Baltic Front"
+     },
+     "title": {
+      "zh-Hant": "波羅的海第2方面軍司令",
+      "en": "Commander, 2nd Baltic Front",
+      "orig": "Commander, 2nd Baltic Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-04-01",
+      "end": "1945-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1944 04–1945 02 – II Pabaltijo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "2-го Прибалтийского (апрель 1944 — февраль 1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии А. И. Еременко (23.4.1944 — 4.2.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-4th-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "烏克蘭第4方面軍",
+      "en": "4th Ukrainian Front"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第4方面軍司令",
+      "en": "Commander, 4th Ukrainian Front",
+      "orig": "Commander, 4th Ukrainian Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-03-01",
+      "end": "1945-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1945 03–07 – IV Ukrainos",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "И. Е. Петров (до 26.3.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии А. И. Еременко (до 11.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "И. Е. Петров (до 26.3.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии А. И. Еременко (до 11.5.1945)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "yeremenko-carpathian-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "喀爾巴阡軍區",
+      "en": "Carpathian Military District"
+     },
+     "title": {
+      "zh-Hant": "喀爾巴阡軍區司令",
+      "en": "Commander in Chief, Carpathian Military District",
+      "orig": "Commander in Chief of the Carpathian Military District"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "bse-eremenko",
+       "locator": "全文",
+       "quote": "После войны — командующий войсками Прикарпатского",
+       "quoteLang": "ru",
+       "evidenceNote": "БСЭ 合併記三個軍區 1945—58，未單列喀爾巴阡軍區迄年",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "vle-yer",
+       "locator": "全文",
+       "quote": "1945–48 vadovavo Priekarpatės",
+       "quoteLang": "lt",
+       "evidenceNote": "VLE 合併記三個軍區 1945–48，未單列喀爾巴阡軍區迄年",
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，非國家級最高軍職亦非方面軍司令，依 R5 留 positions。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:western_front_command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；How-yer 寫「蘇德戰爭爆發八天後被召回莫斯科任西方面軍司令」，未寫確切起迄日；VLE 未列西方面軍。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал-лейтенант А. И. Еременко (до 2.7.1941 и 19.7. — 29.7.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-fronts",
+       "locator": "全文",
+       "quote": "генерал армии Д. Г. Павлов (до 30.6.1941)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:primary_sources",
+     "gapKind": "not_found",
+     "note": "來源不足：未取得 A／B 級來源（Britannica 403、bigenc.ru 401、prlib 無文字）；全數以具名 C 級支撐，T14 不升角色。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Yeremenko Andrei Ivanovich Stalingrad Front commander biography",
+     "url": "https://www.historyofwar.org/articles/people_yeremenko.html",
+     "result": "unrated",
+     "note": "curl 成功；作者 Peter Antill，依 C 收入"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija Andrej Jeriomenko",
+     "url": "https://www.vle.lt/straipsnis/andrej-jeriomenko/",
+     "result": "unrated",
+     "note": "curl 成功"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Andrey I. Yeremenko",
+     "url": "https://www.britannica.com/biography/Andrey-I-Yeremenko",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "encyclopedia.com Yeremenko",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/yeremenko-andrei-ivanovich",
+     "result": "no_result",
+     "note": "404"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 1,
+     "basis": "bse-eremenko",
+     "diff": "原：依禁用來源 how-yer（History of War）寫「近哈爾科夫」「1913被徵入」「1918加入紅軍」「八天後召回莫斯科」「在斯摩棱斯克擋住德軍、負傷」「1942年1月任第4突擊集團軍」；改：刪 History of War 歸屬，依 БСЭ／VLE／方面軍條目改寫；入紅軍年份為合法來源間說法不一（БСЭ 1918 游擊隊併入、VLE 1919），兩說並陳；第4突擊集團軍依 БСЭ 改為 1941-12 至 1942-02，段落迄點改 1942-03-01",
+     "changes": {
+      "body": {
+       "before": {
+        "zh-Hant": "據 History of War 網站的人物條目，葉廖緬科生於哈爾科夫附近的馬爾科夫卡農家，1913年被徵入帝俄軍隊，1918年加入紅軍，1935年自伏龍芝軍事學院畢業。蘇德戰爭爆發八天後，他被召回莫斯科出任西方面軍司令，在斯摩棱斯克附近擋住德軍攻勢後負傷，改任新成立的布良斯克方面軍。1942年1月他受命指揮第4突擊集團軍。",
+        "en": "According to the History of War biography, Yeremenko was born in Markovka near Kharkov to a peasant family, was drafted into the Imperial Army in 1913, joined the Red Army in 1918 and graduated from the Frunze Military Academy in 1935. Eight days after the invasion he was recalled to Moscow as commander of the Western Front, halted the German offensive outside Smolensk, was wounded and moved to the newly created Bryansk Front. In January 1942 he was appointed commander of the 4th Shock Army."
+       },
+       "after": {
+        "zh-Hant": "葉廖緬科生於馬爾科夫卡（今盧甘斯克州）一個烏克蘭貧農家庭。1913至1917年他在舊軍隊服役，一戰時為列兵。1918年他組織游擊隊，其後併入紅軍（立陶宛通用百科全書則記他1919年起在紅軍）；1935年自伏龍芝軍事學院畢業。1941年6月30日他接替巴甫洛夫任西方面軍司令至7月2日，7月19日至29日再任，並參與斯摩棱斯克附近的戰鬥；8月起指揮新成立的布良斯克方面軍至10月。1941年12月至1942年2月他指揮第4突擊集團軍。",
+        "en": "Yeremenko was born in Markovka, in today’s Luhansk region, to a poor Ukrainian peasant family. He served in the old army from 1913 to 1917, fighting in the First World War as a private. In 1918 he organised a partisan detachment that later merged into the Red Army (the Lithuanian encyclopedia dates his Red Army service from 1919), and he graduated from the Frunze Military Academy in 1935. On 30 June 1941 he succeeded Pavlov as commander of the Western Front until 2 July, and again from 19 to 29 July, and he fought in the battles near Smolensk; from August to October he commanded the newly formed Bryansk Front. From December 1941 to February 1942 he commanded the 4th Shock Army."
+       }
+      },
+      "period.end": {
+       "before": "1942-02-01",
+       "after": "1942-03-01"
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 2,
+     "basis": "rf-booksite-fronts",
+     "diff": "原：依禁用來源寫「8月發動反擊（藍色行動）」「9月28日改名」「天王星行動中協助包圍第6集團軍」；改：依方面軍條目（7.8 成立、30.9 改名、12-31／1-1 改南方面軍）與 БСЭ（參與斯大林格勒會戰）改寫，刪反擊、天王星、包圍第6集團軍等無合法來源的細節；新來源 30.9 與舊值 28.9 不同，以新來源為準",
+     "changes": {
+      "body": {
+       "before": {
+        "zh-Hant": "History of War 載，葉廖緬科後來轉任東南方面軍，1942年8月在藍色行動期間發動多次反擊，同年9月28日該方面軍更名為史達林格勒方面軍。1942年11月天王星行動中，他的部隊協助圍住德軍第6集團軍。1943年1月1日史達林格勒方面軍更名為南方面軍。立陶宛通用百科全書的任期為：東南方面軍1942年8至9月、史達林格勒方面軍1942年8至12月、南方面軍1943年1至2月。",
+        "en": "History of War says Yeremenko was transferred to the South Eastern Front, where in August 1942 he launched counterattacks during Operation Blau, and that front was renamed the Stalingrad Front on 28 September. In November 1942, during Operation Uranus, his forces helped surround the German 6th Army. On 1 January 1943 the Stalingrad Front was renamed the Southern Front. The Lithuanian encyclopedia dates his commands as South Eastern Front August-September 1942, Stalingrad Front August-December 1942 and Southern Front January-February 1943."
+       },
+       "after": {
+        "zh-Hant": "1942年8月起葉廖緬科指揮8月7日成立的東南方面軍，該方面軍於1942年9月30日改稱史達林格勒方面軍（第2次組建），仍由他指揮；同期他也指揮史達林格勒方面軍（第1次組建）至9月30日，並參與史達林格勒會戰。史達林格勒方面軍於1942年12月31日至1943年1月1日之交改為南方面軍。立陶宛通用百科全書的任期為：東南方面軍1942年8至9月、史達林格勒方面軍1942年8至12月、南方面軍1943年1至2月。",
+        "en": "From August 1942 Yeremenko commanded the South Eastern Front, formed on 7 August, which was renamed the Stalingrad Front (second formation) on 30 September 1942 and remained under him; he also commanded the first-formation Stalingrad Front until 30 September, and he took part in the Battle of Stalingrad. At the turn of 1942–43 (31 December 1942 / 1 January 1943) the Stalingrad Front became the Southern Front. The Lithuanian encyclopedia dates his commands as South Eastern Front August-September 1942, Stalingrad Front August-December 1942 and Southern Front January-February 1943."
+       }
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 3,
+     "basis": "bse-eremenko",
+     "diff": "原：依禁用來源寫「波羅的海第2方面軍攻占里加」「1945至46年任喀爾巴阡軍區司令」；改：依 БСЭ 改為參與解放波羅的海地區；戰後三軍區合計年限 БСЭ 1945—58 與 VLE 1945–48 說法不一，兩說並陳，段落迄點放寬至 1959-01-01（year）",
+     "changes": {
+      "body": {
+       "before": {
+        "zh-Hant": "立陶宛通用百科全書列出：1943年5至10月任加里寧方面軍、1943年10至11月任波羅的海第1方面軍、1944年4月至1945年2月任波羅的海第2方面軍、1945年3至7月任烏克蘭第4方面軍。History of War補充，波羅的海第2方面軍夏季戰役向西推進並攻占里加，他1945年3月26日改指揮烏克蘭第4方面軍，直至戰爭結束；戰後1945至46年任喀爾巴阡軍區司令。",
+        "en": "The Lithuanian encyclopedia lists his commands as Kalinin Front May-October 1943, 1st Baltic Front October-November 1943, 2nd Baltic Front April 1944 to February 1945 and 4th Ukrainian Front March-July 1945. History of War adds that the 2nd Baltic Front advanced west in the summer campaign and captured Riga, that on 26 March 1945 he moved to command the 4th Ukrainian Front until the end of the war, and that in 1945-46 he commanded the Carpathian Military District."
+       },
+       "after": {
+        "zh-Hant": "立陶宛通用百科全書列出：1943年5至10月任加里寧方面軍、1943年10至11月任波羅的海第1方面軍、1944年4月至1945年2月任波羅的海第2方面軍、1945年3至7月任烏克蘭第4方面軍。蘇聯百科記他參與解放克里米亞、波羅的海地區與捷克斯洛伐克；1945年3月26日他接替彼得羅夫指揮烏克蘭第4方面軍，直至該方面軍於5月11日撤編。戰後他先後指揮喀爾巴阡、西西伯利亞與北高加索軍區（蘇聯百科記1945至1958年，立陶宛通用百科全書記1945至1948年）。",
+        "en": "The Lithuanian encyclopedia lists his commands as Kalinin Front May-October 1943, 1st Baltic Front October-November 1943, 2nd Baltic Front April 1944 to February 1945 and 4th Ukrainian Front March-July 1945. The Soviet encyclopedia records that he took part in the liberation of the Crimea, the Baltic region and Czechoslovakia; on 26 March 1945 he succeeded Petrov in command of the 4th Ukrainian Front, which he held until 11 May. After the war he commanded in turn the Carpathian, West Siberian and North Caucasus military districts (1945–58 per the Soviet encyclopedia; 1945–48 per the Lithuanian encyclopedia)."
+       }
+      },
+      "period.end": {
+       "before": "1947-01-01",
+       "after": "1959-01-01"
+      }
+     },
+     "rule": "說法衝突降精度"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "yeremenko-stalingrad-front",
+     "basis": "bse-eremenko",
+     "diff": "原：含禁用來源引文（協助包圍第6集團軍）；改：移除，改掛 БСЭ 任期句；起迄不變",
+     "changes": {
+      "citations": {
+       "before": "含 how-yer",
+       "after": "bse-eremenko"
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "yeremenko-2nd-baltic-front",
+     "basis": "bse-eremenko",
+     "diff": "原：含禁用來源引文（攻占里加）；改：移除，改掛 БСЭ 與方面軍條目任期句；起迄（month）不變",
+     "changes": {
+      "citations": {
+       "before": "含 how-yer",
+       "after": [
+        "bse-eremenko",
+        "rf-booksite-fronts"
+       ]
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "yeremenko-carpathian-md",
+     "basis": "bse-eremenko",
+     "diff": "原：1945–1947（year，即 1945–46），只有禁用來源支撐迄年；改：起 1945 年由 БСЭ／VLE 支撐，迄日改為缺（兩來源都只給三軍區合計年限，未單列本軍區迄年）",
+     "changes": {
+      "period.end": {
+       "before": "1947-01-01",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "year",
+       "after": null
+      }
+     },
+     "rule": "以新來源為準"
+    }
+   ]
+  },
+  {
+   "key": "николаиватутин",
+   "bioId": null,
+   "name": "Никола́й Вату́тин",
+   "nameZh": "尼古拉·瓦圖京",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1901-01-01",
+      "end": "1941-07-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與戰前",
+      "en": "Origins and pre-war career"
+     },
+     "body": {
+      "zh-Hant": "據《大蘇維埃百科全書》，瓦圖京生於1901年，出身農民家庭，1920年起在蘇軍服役，1929年畢業於伏龍芝軍事學院，1937年畢業於總參謀學院。戰前他曾任師參謀長、基輔軍區參謀長及總參謀部作戰局局長。別爾哥羅德國立大學的簡介則說，他1940年調任總參謀部。",
+      "en": "According to the Great Soviet Encyclopedia, Vatutin was born in 1901 to a peasant family, served in the Soviet Army from 1920, and graduated from the Frunze Military Academy in 1929 and the General Staff Academy in 1937. Before the war he was a division chief of staff, chief of staff of the Kiev Military District and head of the Operations Directorate of the General Staff. The Belgorod State University profile says he was transferred to the General Staff in 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "3(16).12.1901—15.4.1944",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Родился в с. Чепухино Курской губернии в семье крестьянина.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "В Советской Армии с 1920.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Военную академию им. Фрунзе (1929)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "и Академию Генштаба (1937)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "начальником штаба Киевского военного округа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "начальником Оперативного управления Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "Накануне войны, в 1940 году Ватутина переводят на работу в Генеральный",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-07-01",
+      "end": "1943-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "參謀職務與史達林格勒",
+      "en": "Staff posts and Stalingrad"
+     },
+     "body": {
+      "zh-Hant": "《大蘇維埃百科全書》載，瓦圖京1941年7月至1942年5月任西北方面軍參謀長，1942年5至7月任副總參謀長。他1942年7至10月指揮沃羅涅日方面軍，1942年10月至1943年3月指揮西南方面軍。別爾哥羅德國立大學的簡介稱，1942年12月他的部隊進行了中頓河戰役。",
+      "en": "The Great Soviet Encyclopedia records that Vatutin was chief of staff of the North-Western Front from July 1941 to May 1942 and deputy chief of the General Staff from May to July 1942. He commanded the Voronezh Front from July to October 1942 and the South-Western Front from October 1942 to March 1943. The Belgorod State University profile says that in December 1942 his troops carried out the Middle Don operation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "с июля 1941 по май 1942 начальник штаба Северо-Западного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "в мае — июле 1942 заместитель начальника Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Воронежского (июль — октябрь 1942, март — октябрь 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Юго-Западного (октябрь 1942 — март 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "Среднедонскую операцию",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-03-01",
+      "end": "1944-04-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "庫爾斯克、基輔與死亡",
+      "en": "Kursk, Kiev and death"
+     },
+     "body": {
+      "zh-Hant": "別爾哥羅德國立大學的簡介載，瓦圖京1943年3月再度受命指揮沃羅涅日方面軍，部隊於1943年11月參與解放基輔。《大蘇維埃百科全書》載他1943年10月至1944年3月指揮烏克蘭第1方面軍，其部隊參與了史達林格勒與庫爾斯克戰役。1944年2月29日他前往部隊，途中遭游擊隊襲擊負傷，4月15日夜間因敗血症去世。",
+      "en": "The Belgorod State University profile says that in March 1943 Vatutin was again appointed commander of the Voronezh Front, whose troops took part in the liberation of Kiev in November 1943. The Great Soviet Encyclopedia says he commanded the 1st Ukrainian Front from October 1943 to March 1944 and that his troops took part in the Stalingrad and Kursk battles. On 29 February 1944 he left for the troops, was ambushed on the way and wounded, and died of blood poisoning on the night of 15 April 1944."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "В марте 1943 года Н.Ф. Ватутин вновь назначен командующим Воронежским",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "ноябре 1943 года)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "1-го Украинского (октябрь 1943 — март 1944)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "в Сталинградской и Курской битвах",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "29 февраля 1944 года Н.Ф. Ватутин выехал в войска.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "В ночь на 15 апреля 1944 года Николай Фёдорович Ватутин",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "скончался от заражения крови.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "vatutin-nw-front-cos",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西北方面軍",
+      "en": "North-Western Front"
+     },
+     "title": {
+      "zh-Hant": "西北方面軍參謀長",
+      "en": "Chief of Staff, North-Western Front",
+      "orig": "начальник штаба Северо-Западного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-07-01",
+      "end": "1942-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "с июля 1941 по май 1942 начальник штаба Северо-Западного фронта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "方面軍參謀長，非司令或國家級最高軍職，依 R5 留 positions。"
+    },
+    {
+     "key": "vatutin-deputy-cgs",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯紅軍總參謀部",
+      "en": "General Staff of the Red Army"
+     },
+     "title": {
+      "zh-Hant": "副總參謀長",
+      "en": "Deputy Chief of the General Staff",
+      "orig": "заместитель начальника Генштаба"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-05-01",
+      "end": "1942-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "в мае — июле 1942 заместитель начальника Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職，依 R5 留 positions。"
+    },
+    {
+     "key": "vatutin-voronezh-front-1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "沃羅涅日方面軍",
+      "en": "Voronezh Front"
+     },
+     "title": {
+      "zh-Hant": "沃羅涅日方面軍司令（第一次）",
+      "en": "Commander, Voronezh Front (first term)",
+      "orig": "Commander, Voronezh Front (first term)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-07-01",
+      "end": "1942-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Воронежского (июль — октябрь 1942, март — октябрь 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "активно участвовали в обороне Воронежа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，但缺戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "vatutin-sw-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西南方面軍",
+      "en": "South-Western Front"
+     },
+     "title": {
+      "zh-Hant": "西南方面軍司令",
+      "en": "Commander, South-Western Front",
+      "orig": "Commander, South-Western Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-10-01",
+      "end": "1943-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Юго-Западного (октябрь 1942 — март 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "Среднедонскую операцию",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "vatutin-voronezh-front-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "沃羅涅日方面軍",
+      "en": "Voronezh Front"
+     },
+     "title": {
+      "zh-Hant": "沃羅涅日方面軍司令（第二次）",
+      "en": "Commander, Voronezh Front (second term)",
+      "orig": "Commander, Voronezh Front (second term)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-03-01",
+      "end": "1943-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "В марте 1943 года Н.Ф. Ватутин вновь назначен командующим Воронежским",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "Воронежского (июль — октябрь 1942, март — октябрь 1943)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "в Сталинградской и Курской битвах",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "vatutin-1st-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "烏克蘭第1方面軍",
+      "en": "1st Ukrainian Front"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第1方面軍司令",
+      "en": "Commander, 1st Ukrainian Front",
+      "orig": "Commander, 1st Ukrainian Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-01",
+      "end": "1944-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "1-го Украинского (октябрь 1943 — март 1944)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bsu-vat",
+       "locator": "全文",
+       "quote": "ноябре 1943 года)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍司令，有戰役連結），但僅 C 級來源、regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:kiev_md_chief_of_staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；BSE 列基輔軍區參謀長但未寫任期。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "начальником штаба Киевского военного округа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:operations_directorate_head",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；總參謀部作戰局局長，BSE 未寫期間，BSU 僅寫「1940 年調任」。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bk-vat",
+       "locator": "全文",
+       "quote": "начальником Оперативного управления Генштаба",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:primary_sources",
+     "gapKind": "not_found",
+     "note": "來源不足：未取得 A／B 級來源（Britannica 403、ww2db 403、VLE 無個人條目）；全數以具名 C 級支撐，T14 不升角色。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Ватутин Николай Федорович БСЭ",
+     "url": "https://booksite.ru/FullText/1/001/008/003/499.htm",
+     "result": "unrated",
+     "note": "curl 成功；cp1251；BSE 條目，具名出版機構，依 C 收入"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Ватутин Николай Фёдорович Белгородский университет",
+     "url": "https://bsuedu.ru/upload/iblock/246/jngy21wfh1k8i4hr6epnxc96de8lk27g/NF%20Vatutin.pdf",
+     "result": "unrated",
+     "note": "curl 成功，pdftotext；具名大學機構，依 C 收入"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Nikolay Fyodorovich Vatutin",
+     "url": "https://www.britannica.com/biography/Nikolay-Fyodorovich-Vatutin",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "ww2db Vatutin",
+     "url": "https://ww2db.com/person_bio.php?person_id=33",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "VLE Vatutin",
+     "url": "https://www.vle.lt/straipsnis/nikolaj-vatutin/",
+     "result": "no_result",
+     "note": "404；VLE 無個人條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "encyclopedia.com Vatutin",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/vatutin-nikolai-fedorovich",
+     "result": "no_result",
+     "note": "404"
+    }
+   ]
+  }
+ ]
+}

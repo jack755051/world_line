@@ -1,0 +1,4873 @@
+{
+ "batch": "b3-full-v3-batch007",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 與 b3-trial/ALIGN.md 直接以對齊格式撰寫；5 人均為英國將領，政權 regimeId 一律待查證（null），軍職／殖民長官依 T14 留 positions 為 R5／R6；無黨職、無元首／首腦任期；Bennett 的黨籍議席因缺日期寫入 gap。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch007/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "nam-auchinleck": {
+   "title": "Claude Auchinleck: The auk",
+   "authors": [],
+   "publisher": "National Army Museum (London)",
+   "published_text": "Great Commanders 系列專文",
+   "url": "https://www.nam.ac.uk/explore/claude-auchinleck",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家陸軍博物館（官方機構）Great Commanders 專文；頁面無署名，依 T1 暫列 B（機構傳記），請主管確認"
+  },
+  "ency-auchinleck": {
+   "title": "Auchinleck, Claude",
+   "authors": [
+    "R. A. C. Parker"
+   ],
+   "publisher": "Oxford University Press（經 Encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to British History",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/auchinleck-claude",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之牛津辭典條目（R. A. C. Parker；T1 B）"
+  },
+  "hw-medII-a8": {
+   "title": "The Mediterranean & Middle East, Vol. II, Appendix 8: Principal Commanders and Staff Officers",
+   "authors": [],
+   "publisher": "英國官方二戰史（HyperWar／ibiblio 轉載）",
+   "published_text": "The Mediterranean and Middle East, Vol. II, Appendix 8",
+   "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-Med-II/UK-Med-2-A8.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "官方戰史附錄（T1 A，官方戰史）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "hw-chrono": {
+   "title": "Chronology 1941-1945",
+   "authors": [],
+   "publisher": "美國陸軍官方戰史（HyperWar／ibiblio 轉載）",
+   "published_text": "Chronology 1941-1945（1942 年段）",
+   "url": "https://www.ibiblio.org/hyperwar///USA/USA-SS-Chronology/USA-SS-Chronology-2.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方戰史年表（T1 A，官方戰史）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "nam-burma-timeline": {
+   "title": "A timeline of Burma and the Army",
+   "authors": [],
+   "publisher": "National Army Museum (London)",
+   "published_text": "機構專文",
+   "url": "https://www.nam.ac.uk/explore/timeline-burma-army",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家陸軍博物館（官方機構）Great Commanders 專文；頁面無署名，依 T1 暫列 B（機構傳記），請主管確認"
+  },
+  "govuk-burma": {
+   "title": "VJ Day 70: The Second World War in Burma",
+   "authors": [],
+   "publisher": "GOV.UK（英國政府）",
+   "published_text": "GOV.UK 新聞稿",
+   "url": "https://www.gov.uk/government/news/vj-day-70-the-second-world-war-in-burma",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（T1 A）"
+  },
+  "africana-wingate": {
+   "title": "WINGATE, O.C.",
+   "authors": [
+    "Richard Pankhurst"
+   ],
+   "publisher": "Encyclopaedia Africana",
+   "published_text": "African History Encyclopaedia 條目",
+   "url": "https://encyclopaediaafricana.com/wingate-o-c/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之機構百科條目（Richard Pankhurst；T1 B）"
+  },
+  "fa-ironside": {
+   "title": "Ironside",
+   "authors": [
+    "Harold Nicolson"
+   ],
+   "publisher": "Foreign Affairs (Council on Foreign Relations)",
+   "published_text": "Foreign Affairs, July 1940",
+   "url": "https://www.foreignaffairs.com/articles/united-kingdom/1940-07-01/ironside",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之期刊文章（Harold Nicolson, 1940；當時人物特寫，T1 B 學術機構期刊）"
+  },
+  "hansard-ironside": {
+   "title": "Mr William Ironside (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": "Historic Hansard 人物頁",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-william-ironside",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國會官方頁（T1 A）"
+  },
+  "ebsco-dunkirk": {
+   "title": "Evacuation of Dunkirk",
+   "authors": [
+    "Samuel K. Eddy",
+    "Donald L. Layton"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2020",
+   "url": "https://www.ebsco.com/research-starters/military-history-and-science/evacuation-dunkirk/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者之學術參考條目（Eddy & Layton；T1 B）"
+  },
+  "hw-comnaveu3": {
+   "title": "Administrative History of U.S. Naval Forces in Europe, 1940-1946, Chapter III: THE STRATEGIC BACKGROUND OF OVERLORD",
+   "authors": [],
+   "publisher": "Historical Section, COMNAVEU（HyperWar／ibiblio 轉載）",
+   "published_text": "United States Naval Administrative History of World War II #147-E",
+   "url": "https://www.ibiblio.org/hyperwar/USN/Admin-Hist/147.5-ComNavEu/ComNavEu-3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍部官方行政史（Historical Section, COMNAVEU, 1946；T1 A，官方戰史；HyperWar 轉載）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "hw-comnaveu6": {
+   "title": "Administrative History of U.S. Naval Forces in Europe, 1940-1946, Chapter VI: Chapter VI, Part I",
+   "authors": [],
+   "publisher": "Historical Section, COMNAVEU（HyperWar／ibiblio 轉載）",
+   "published_text": "United States Naval Administrative History of World War II #147-E",
+   "url": "https://www.ibiblio.org/hyperwar/USN/Admin-Hist/147.5-ComNavEu/ComNavEu-6.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍部官方行政史（Historical Section, COMNAVEU, 1946；T1 A，官方戰史；HyperWar 轉載）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "hw-comnaveu9": {
+   "title": "Administrative History of U.S. Naval Forces in Europe, 1940-1946, Chapter IX: THE NEPTUNE ASSAULTS",
+   "authors": [],
+   "publisher": "Historical Section, COMNAVEU（HyperWar／ibiblio 轉載）",
+   "published_text": "United States Naval Administrative History of World War II #147-E",
+   "url": "https://www.ibiblio.org/hyperwar/USN/Admin-Hist/147.5-ComNavEu/ComNavEu-9.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍部官方行政史（Historical Section, COMNAVEU, 1946；T1 A，官方戰史；HyperWar 轉載）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "awm-bennett": {
+   "title": "Air Vice Marshal Donald Clifford Tyndall Bennett",
+   "authors": [],
+   "publisher": "Australian War Memorial",
+   "published_text": "人物檔（People profile P10676768）",
+   "url": "https://www.awm.gov.au/people/P10676768",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲國家戰爭紀念館官方人物檔（T1 A）"
+  },
+  "nam-ironside-coll": {
+   "title": "General Ironside at his desk, 1939-1940 (c)",
+   "authors": [],
+   "publisher": "National Army Museum Online Collection",
+   "published_text": "館藏圖說",
+   "url": "https://collection.nam.ac.uk/detail.php?acc=1985-04-49-46",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構：National Army Museum 館藏圖說（無署名）→ C（grade-ungraded-2026-11-14，原：無作者館藏圖說（Q9：未評等，僅作 gap 候選））"
+  },
+  "ency-ironside": {
+   "title": "Ironside, William Edmund Ironside, 1st Baron",
+   "authors": [],
+   "publisher": "The Columbia Encyclopedia, 6th ed.（經 Encyclopedia.com）",
+   "published_text": "無署名條目",
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/ironside-william-edmund-ironside-1st-baron",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名條目（Q9：未評等，僅作 gap 候選）"
+  },
+  "ency-ramsay": {
+   "title": "Ramsay, Sir Bertram Home",
+   "authors": [],
+   "publisher": "The Columbia Encyclopedia, 6th ed.（經 Encyclopedia.com）",
+   "published_text": "無署名條目",
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/ramsay-sir-bertram-home/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構：Columbia Encyclopedia 6th ed.（Columbia University Press，經 Encyclopedia.com）無署名條目 → C（grade-ungraded-2026-11-14，原：無署名條目（Q9：未評等，僅作 gap 候選））"
+  },
+  "rf-gazette-34642": {
+   "title": "The London Gazette, 4 July 1939 (issue 34642, p. 4564)",
+   "authors": [],
+   "publisher": "The London Gazette（英國官方公報）",
+   "published_text": "1939-07-04",
+   "url": "https://www.thegazette.co.uk/London/issue/34642/page/4564/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報 The London Gazette 任命公告（T1 A）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-gazette-34902": {
+   "title": "Second Supplement to The London Gazette, 23 July 1940 (issue 34902, p. 4493)",
+   "authors": [],
+   "publisher": "The London Gazette（英國官方公報）",
+   "published_text": "1940-07-23",
+   "url": "https://www.thegazette.co.uk/London/issue/34902/supplement/4493/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報 The London Gazette 任命公告（T1 A）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-dmn-monty": {
+   "title": "Lt. Gen. Bernard Montgomery Takes Command of Eighth Army",
+   "authors": [
+    "Dwight Jon Zimmerman"
+   ],
+   "publisher": "Defense Media Network",
+   "published_text": "2012-08-13",
+   "url": "https://www.defensemedianetwork.com/stories/lt-gen-bernard-montgomery-takes-command-of-eighth-army/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Dwight Jon Zimmerman、具名出版者 Defense Media Network（Faircount Media Group）的軍事史文章（具名 C）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-nam-pennant": {
+   "title": "Union Flag car pennant, Field Marshal Sir Claude Auchinleck, India, 1947",
+   "authors": [],
+   "publisher": "National Army Museum（英國國家陸軍博物館）",
+   "published_text": null,
+   "url": "https://collection.nam.ac.uk/detail.php?acc=1951-11-2-1",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名機構 National Army Museum 線上館藏條目（B，依 PROMPT 英語國家具名機構規則）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-rmg-ramsay": {
+   "title": "M1049 Window in Portsmouth Cathedral dedicated to Admiral Bertram Ramsay d.1945",
+   "authors": [],
+   "publisher": "Royal Museums Greenwich — Maritime Memorials（英國皇家格林威治博物館）",
+   "published_text": null,
+   "url": "https://memorials.rmg.co.uk/m1049/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 Royal Museums Greenwich 的 Maritime Memorials 紀念物資料庫條目（具名 C）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-awm-mae": {
+   "title": "Mae West flap lifejacket : Wing Commander Donald Clifford Tyndall Bennett, 10 Squadron, RAF",
+   "authors": [],
+   "publisher": "Australian War Memorial（澳洲國家戰爭紀念館）",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/collection/C1138767",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲國家戰爭紀念館官方館藏條目（T1 A，官方機構）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-ibcc-groups": {
+   "title": "Royal Air Force groups",
+   "authors": [],
+   "publisher": "International Bomber Command Centre Digital Archive（林肯大學）",
+   "published_text": null,
+   "url": "https://ibccdigitalarchive.lincoln.ac.uk/royal-air-force-groups",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 International Bomber Command Centre／University of Lincoln 數位檔案館頁（具名 C）",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  }
+ },
+ "people": [
+  {
+   "key": "claudeauchinleck",
+   "bioId": null,
+   "name": "Claude Auchinleck",
+   "nameZh": "克勞德·奧金萊克",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-01-01",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、一戰與戰間期",
+      "en": "Origins, the First World War and the inter-war years"
+     },
+     "body": {
+      "zh-Hant": "奧金萊克（1884–1981）出身軍人家庭，從威靈頓公學畢業後進入桑德赫斯特軍校，1904年獲任第62旁遮普團軍官。一戰期間他在中東與美索不達米亞戰役中作戰，因此獲頒傑出服務勳章。戰間期他在奎達參謀學院任教官；1934年，因前一年在莫赫曼德地區指揮一個旅，獲頒巴斯勳章（CB）。",
+      "en": "Claude Auchinleck (1884–1981) was born into a military family; after Wellington College he entered Sandhurst and in 1904 was commissioned into the 62nd Punjab Regiment. In the First World War he saw action in the Middle East and the Mesopotamia campaign and received the Distinguished Service Order. Between the wars he was an instructor at the Quetta Staff College, and in 1934 he was awarded the CB for leading a brigade in the Mohmand area the previous year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Early career」",
+       "quote": "Claude Auchinleck (1884-1981) was born into a military family.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Early career」",
+       "quote": "After graduating from Wellington College, he entered Sandhurst.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Early career」",
+       "quote": "Then, in 1904, he gained his commission in the 62nd Punjab Regiment.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Mesopotamia」",
+       "quote": "saw action in the Middle East and in the hard fought campaign in Mesopotamia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Mesopotamia」",
+       "quote": "He received a Distinguished Service Order for his efforts.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Inter-war years」",
+       "quote": "he was an instructor at the Quetta Staff College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Inter-war years」",
+       "quote": "In 1934, he was awarded a CB",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Inter-war years」",
+       "quote": "for his leadership of a brigade in the Mohmand area the previous year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-07-05"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "二戰初期與印度總司令",
+      "en": "Early Second World War and Commander-in-Chief India"
+     },
+     "body": {
+      "zh-Hant": "1939年大戰爆發時他已是少將，並指揮了1940年失利的納爾維克遠征部隊；其後在英國先任軍長，再任南方司令部司令。1940年11月晉升上將，隨即出任印度總司令；他迅速派兵平定1941年的伊拉克叛亂，贏得首相邱吉爾的讚許。至1941年7月5日，他卸下印度總司令職務，轉任中東總司令。",
+      "en": "A major-general at the outbreak of war in 1939, he commanded the troops in the ill-fated Narvik expedition (1940), then served in England as a corps commander and as head of Southern Command. Promoted general in November 1940, he was appointed Commander-in-Chief India; his swift dispatch of troops against the 1941 uprising in Iraq won Churchill's approval. On 5 July 1941 he ceased to be Commander-in-Chief, India, and became Commander-in-Chief, Middle East."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "A major-general on the outbreak of war in 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "he commanded the troops involved in the ill-fated Narvik expedition (1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "first as a corps commander and then as head of Southern Command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "Promoted to general in November 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "was appointed Commander-in-Chief India",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "His swift dispatch of soldiers to deal with the uprising in Iraq (1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "won him the approval of Prime Minister Winston Churchill",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "Appendix 8「The Army」",
+       "quote": "General Sir Claude Auchinleck (from 5th July 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-07-05",
+      "end": "1942-01-07"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "中東總司令與「十字軍」攻勢",
+      "en": "Middle East command and Operation Crusader"
+     },
+     "body": {
+      "zh-Hant": "1941年7月他接替韋弗爾出任中東總司令。11月17日，第八集團軍在堪寧漢指揮下向西進攻昔蘭尼加，即「十字軍」行動；隆美爾於22日反攻，堪寧漢決定撤退，奧金萊克則親自接手，並於26日以里奇取代堪寧漢。攻勢繼續進行，至1942年1月6日肅清昔蘭尼加。",
+      "en": "In July 1941 he succeeded Wavell as Commander-in-Chief, Middle East. On 17 November the Eighth Army under Alan Cunningham attacked westward into Cyrenaica (Operation Crusader); Rommel counter-attacked on 22 November and Cunningham decided to retreat, but Auchinleck took direct command and replaced him with Neil Ritchie on 26 November. The offensive continued, clearing Cyrenaica by 6 January 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "succeeded Wavell as commander-in-chief, Middle East, in July 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "the 8th Army, under Alan Cunningham, attacked westward into Cyrenaica",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "On 17 November the 8th Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "Rommel counter-attacked on 22 November and Cunningham decided to retreat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "Auchinleck took direct command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "replaced Cunningham by Neil Ritchie on 26 November",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "offensive continued, clearing Cyrenaica by 6 January",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Middle East Command」",
+       "quote": "His initial success, with Operation Crusader in November 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-05-01",
+      "end": "1942-08-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "加查拉敗退、第一次阿拉曼與去職",
+      "en": "Retreat, First Alamein and removal"
+     },
+     "body": {
+      "zh-Hant": "1942年5月隆美爾先發制人，第八集團軍被德軍集中的裝甲兵力擊敗，托布魯克迅速陷落。6月25日奧金萊克親自接掌第八集團軍，在阿拉曼組織防禦，終於擋住隆美爾（第一次阿拉曼戰役）；但他無力協調反攻。8月邱吉爾飛抵開羅，改以亞歷山大任總司令、蒙哥馬利任集團軍司令；8月15日亞歷山大接掌中東總部。",
+      "en": "Rommel struck first in May 1942 and the Eighth Army was defeated by concentrations of German armour; Tobruk fell rapidly. On 25 June Auchinleck took over direct command, organised a defence at El Alamein and finally stopped Rommel (First Battle of Alamein), but could not co-ordinate a counter-attack. In August Churchill flew to Cairo and substituted Alexander and Montgomery as Commander-in-Chief and army commander; Alexander took command of the Middle East Forces on 15 August."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "Rommel struck first in May 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "the rapid fall of Tobruk",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "On 25 June Auchinleck took over direct command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "organized a defence at El Alamein",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "and finally stopped Rommel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Middle East Command」",
+       "quote": "checked the German advance at the First Battle of Alamein",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Middle East Command」",
+       "quote": "but was unable to co-ordinate a successful counter-attack",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "Churchill flew to Cairo, and substituted Alexander and Montgomery",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "MIDDLE EAST--Gen Alexander takes command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "of MEF from Gen Auchinleck.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "15 August",
+       "quoteLang": "en",
+       "evidenceNote": "日期取自編年表當日條目標題；條目寫 Alexander 自 Auchinleck 手中接掌中東部隊總部",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1943-06-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "再任印度總司令與分治",
+      "en": "Second term in India and Partition"
+     },
+     "body": {
+      "zh-Hant": "1943年6月他再度出任印度總司令，任內大力動員印度資源，尤其是對斯利姆第十四軍在緬甸的補給與增援。他不贊成戰後印度分治，仍協助印度軍隊準備分成印度與巴基斯坦兩軍；1946年6月1日晉升元帥，卻拒絕接受貴族爵位，1948年返回英國。",
+      "en": "In June 1943 he accepted the post of Commander-in-Chief in India for a second time, mobilising India's resources for the war, notably the supply and reinforcement of Slim's Fourteenth Army in Burma. Though he disliked partition, he helped prepare the Indian Army for its division into the armies of Pakistan and India; promoted field marshal on 1 June 1946, he refused a peerage, and he returned to Britain in 1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "In June 1943, Auchinleck once more accepted the post",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "Commander-in-Chief in India",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "he did much to mobilise India",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "the supply and reinforcement of General William Slim",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Partition」",
+       "quote": "helped prepare the Indian Army for its division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Partition」",
+       "quote": "On 1 June 1946, he was promoted to field marshal.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Partition」",
+       "quote": "But he refused to accept a peerage",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Partition」",
+       "quote": "Auchinleck returned to Britain in 1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "auchinleck-narvik-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（挪威納爾維克戰役）",
+      "en": "British expeditionary force, Narvik campaign (Norway)"
+     },
+     "title": {
+      "orig": "Commander of the troops in the Narvik expedition",
+      "zh-Hant": "納爾維克遠征部隊指揮官",
+      "en": "Commander, Narvik expedition troops"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「Second World War」",
+       "quote": "he commanded the troops involved in the ill-fated Narvik expedition (1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "遠征部隊指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；日期僅年精度"
+    },
+    {
+     "key": "auchinleck-cinc-middle-east",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國中東司令部",
+      "en": "British Middle East Command"
+     },
+     "title": {
+      "orig": "Commander-in-Chief, Middle East",
+      "zh-Hant": "中東總司令",
+      "en": "Commander-in-Chief, Middle East"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-07-05",
+      "end": "1942-08-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hw-medII-a8",
+       "locator": "Appendix 8「The Army」",
+       "quote": "General Sir Claude Auchinleck (from 5th July 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "MIDDLE EAST--Gen Alexander takes command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "of MEF from Gen Auchinleck.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 8 月 15 日條目",
+       "quote": "15 August",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取亞歷山大接掌日（編年表當日條目標題）；Auchinleck 去職日以此推得，來源未另寫解職日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區總司令，有日期＋地點＋出處之戰役連結（1941 年 11 月「十字軍」攻勢，昔蘭尼加），但政權（英國）regimeId 待查證，R4② 無法證明（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "auchinleck-eighth-army-direct-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第八集團軍",
+      "en": "British Eighth Army"
+     },
+     "title": {
+      "orig": "Commander, Eighth Army (direct command)",
+      "zh-Hant": "第八集團軍司令（親自接掌）",
+      "en": "Commander, Eighth Army (took direct command)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-06-25",
+      "end": "1942-08-13"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "On 25 June Auchinleck took over direct command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "organized a defence at El Alamein",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 6 月 25 日條目",
+       "quote": "personal command of Br Eighth Army, relieving Gen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-chrono",
+       "locator": "1942 年 6 月 25 日條目",
+       "quote": "Ritchie",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-dmn-monty",
+       "locator": "正文首段",
+       "quote": "On Aug. 13, 1942, Lt. Gen. Bernard Law Montgomery assumed command of the British",
+       "quoteLang": "en",
+       "evidenceNote": "依下一任（蒙哥馬利）接任第八集團軍日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級指揮官，非國家級最高軍職（T14 R5）；迄日待查（見 gap）"
+    },
+    {
+     "key": "auchinleck-cinc-india-1943",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英屬印度軍隊",
+      "en": "British Indian Army"
+     },
+     "title": {
+      "orig": "Commander-in-Chief, India",
+      "zh-Hant": "印度總司令",
+      "en": "Commander-in-Chief, India"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-06-01",
+      "end": "1947-08-15"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "In June 1943, Auchinleck once more accepted the post",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-auchinleck",
+       "locator": "「India」",
+       "quote": "Commander-in-Chief in India",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-auchinleck",
+       "locator": "條目正文",
+       "quote": "Auchinleck ended his career as C.-in-C. of the Indian army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-nam-pennant",
+       "locator": "館藏說明",
+       "quote": "on 14 August 1947. At midnight on that day the post of Commander-in-Chief",
+       "quoteLang": "en",
+       "evidenceNote": "來源寫 1947-08-14 午夜印度總司令一職隨分治消失，迄日取翌日起日（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "印度軍隊總司令（職位等級有引文），但迄日未查得、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:auchinleck-cinc-india-1941",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NAM 專文寫 1940 年 11 月晉升上將後出任印度總司令，未寫起日；英國官方史（Gazette）只寫至 1941-07-05 為止，需 Gazette 任命公告或 ODNB。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:auchinleck-southern-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NAM 專文寫曾任南方司令部司令，無日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：1946 年後（最高統帥、1947 年分治）及死亡細節未查到 A／B 日期來源；ODNB／Britannica／Gazette 部分被擋或未取得（見 searchLog）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Auchinleck Claude John Eyre biography",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 僅得維基系（不採）與 NAM／encyclopedia.com；LoC／VIAF 未取"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Claude Auchinleck britannica",
+     "url": "https://www.britannica.com/biography/Claude-Auchinleck",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Claude Auchinleck: The auk（National Army Museum）",
+     "url": "https://www.nam.ac.uk/node/815",
+     "result": "found_B",
+     "note": "已 curl 轉文字"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Auchinleck, Claude（Oxford Companion to British History, Encyclopedia.com）",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/auchinleck-claude",
+     "result": "found_B",
+     "note": "R. A. C. Parker 具名"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Auchinleck assumed command Middle East 5 July 1941 official history",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-Med-II/UK-Med-2-A8.html",
+     "result": "found_A",
+     "note": "英國官方戰史附錄，已 curl"
+    },
+    {
+     "step": 6,
+     "sourceType": "treaty_law",
+     "query": "London Gazette supplement 37685（Wavell 戰報）",
+     "url": "http://www.ibiblio.org/hyperwar/UN/UK/LondonGazette/37685.pdf",
+     "result": "found_A",
+     "note": "PDF 已 pdftotext；用於旁證 1941-07-05"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "HyperWar Chronology 1941-1945",
+     "url": "https://www.ibiblio.org/hyperwar///USA/USA-SS-Chronology/USA-SS-Chronology-2.html",
+     "result": "found_A",
+     "note": "1942-06-25、1942-08-15 條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Auchinleck Papers（Rylands, Manchester）",
+     "url": "https://www.library.manchester.ac.uk/rylands/special-collections/a-to-z/detail/?mms_id=992983876708801631",
+     "result": "no_result",
+     "note": "僅見檢索結果，未抓取"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "El Alamein battles（AWM）",
+     "url": "https://www.awm.gov.au/articles/encyclopedia/el_alamein/reading",
+     "result": "found_A",
+     "note": "已 curl；只用於旁證 8 月中旬交接，未入引文"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Auchinleck",
+     "url": "https://www.britannica.com/biography/Sir-Claude-Auchinleck",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 102,
+     "sourceType": "academic",
+     "query": "Archives Hub Auchinleck papers Commander-in-Chief India",
+     "url": "https://archiveshub.jisc.ac.uk/data/gb133-auc",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "London Gazette 1943 Auchinleck C-in-C India",
+     "url": "https://www.thegazette.co.uk/London/issue/36133/page/3653/data.pdf",
+     "result": "found_A",
+     "note": "1943 年 8 月公報任命日與名簿起日（1943-06）不同，未採用"
+    },
+    {
+     "step": 104,
+     "sourceType": "other",
+     "query": "Defense Media Network Montgomery takes command of Eighth Army; NAM pennant 1947",
+     "url": "https://collection.nam.ac.uk/detail.php?acc=1951-11-2-1",
+     "result": "found_B",
+     "note": "取得第八集團軍交接日與印度總司令終止日"
+    }
+   ],
+   "nameZhOrig": "克劳德·奥金莱克",
+   "resolvedGaps": [
+    {
+     "target": "position:auchinleck-eighth-army-direct-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 NAM 專文、Oxford Companion（R. A. C. Parker）、US Army 年表，只寫「8 月中旬由蒙哥馬利接替」（AWM 亦為 mid-August），未見解除日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:auchinleck-cinc-india-1943",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 NAM 專文（只寫 1946 年晉升元帥、1948 年返英）、Oxford Companion；未見卸任印度總司令（含 1947 年分治後最高統帥）之日期，需官方公報或國家級傳記辭典。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "ordewingate",
+   "bioId": null,
+   "name": "Orde Wingate",
+   "nameZh": "奧德·查爾斯·溫蓋特",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1903-02-26",
+      "end": "1940-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與戰前經歷",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "溫蓋特1903年2月26日生於印度奈尼塔爾，是英屬印度陸軍一名上校之子；他就讀查特豪斯公學與伍爾維奇皇家軍事學院，並在倫敦的東方研究學院進修。1929至1933年他在蘇丹國防軍服役；1936至1939年在巴勒斯坦執行特別任務，發展出對付襲擊輸油管的阿拉伯人的游擊戰術，並組織猶太小隊保衛猶太定居點。",
+      "en": "Orde Wingate was born at Naini Tal, India, on 26 February 1903, the son of a British Indian Army colonel; he was educated at Charterhouse, trained at the Royal Military Academy at Woolwich and studied at the School of Oriental Studies in London. He served in the Sudan Defence Force from 1929 to 1933; on special duty in Palestine (1936–39) he developed guerrilla tactics against Arabs seeking to cut the Haifa pipeline and organised Jewish squads to defend Jewish settlements."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目開頭",
+       "quote": "Major-General Orde Charles Wingate (February 26, 1903-March 24, 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "Born in Naini Tal, in the foothills of the Himalayas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "the son of a British Indian Army colonel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "Orde was educated at Charterhouse",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "trained at the Royal Military Academy at Woolwich",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "studied at the School of Oriental Studies in London",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "served in the Sudan Defense Force from 1929 to 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "while serving on special duty (1936-39) in Palestine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "developed guerrilla tactics against Arabs seeking to cut the Haifa pipeline",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "organised Jewish squads to defend Jewish settlements",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-06-10",
+      "end": "1941-05-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "衣索比亞解放戰役與基甸軍",
+      "en": "The Ethiopian campaign and Gideon Force"
+     },
+     "body": {
+      "zh-Hant": "1940年6月10日墨索里尼對英法宣戰後，英國安排海爾·塞拉西皇帝飛往蘇丹，並任命當時為少校的溫蓋特為與流亡皇帝的聯絡官。1941年1月20日，他與皇帝越過衣索比亞邊界，隨行是他稱為「基甸軍」的一小支英國與衣索比亞部隊；他在隨後的解放戰役中擔任皇帝的總司令，這場戰役使戈贊擺脫義大利統治。1941年5月5日，他率領皇帝的軍隊進入亞的斯亞貝巴。",
+      "en": "After Mussolini declared war on Britain and France on 10 June 1940, Britain arranged for Haile Selassie to fly to the Sudan and appointed Wingate, then a major, as liaison officer with the exiled emperor. On 20 January 1941 Wingate crossed the Ethiopian frontier with the emperor and a small group of British and Ethiopian troops he termed \"Gideon Force\"; he served as the emperor's commander-in-chief throughout the liberation campaign, which freed Gojam, and led the emperor's army into Addis Ababa on 5 May 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "declared war on Britain and France on June 10, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "appointed Wingate, then a major, as the British liaison officer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "On January 20, 1941, Wingate crossed the Ethiopian frontier with the emperor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "a small group of British and Ethiopian troops he termed the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "commander-in-chief throughout the ensuing liberation campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "which freed Gojam from Italian rule",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "into Addis Ababa on May 5, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-02-24",
+      "end": "1943-05-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "組建欽迪特與長布行動",
+      "en": "Raising the Chindits and Operation Longcloth"
+     },
+     "body": {
+      "zh-Hant": "1942年2月24日溫蓋特晉升准將，受老長官韋弗爾之託，組織一支由英國人、印度人與緬甸人構成的游擊部隊，到緬甸對日作戰；他把這支部隊稱為「欽迪特」。1943年2月至4月，欽迪特展開第一次行動「長布行動」（Operation Longcloth），由溫蓋特統率，目標是破壞日軍交通線，並檢驗長程滲透戰術的成效。",
+      "en": "On 24 February 1942 Wingate was promoted brigadier and entrusted by Wavell with organising a guerrilla force of British, Indians and Burmese to fight the Japanese in Burma, which he called the \"Chindits\". From February to April 1943 the Chindits mounted their first operation, Operation Longcloth, under Wingate, aiming to disrupt Japanese lines of communication and to test long-range penetration tactics."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "On February 24, 1942, he was promoted to brigadier",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "organising a guerrilla force of British, Indians, and Burmese",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "Wingate called this force the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1943",
+       "quote": "February–April 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1943",
+       "quote": "Operation Longcloth",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1943",
+       "quote": "Led by Brigadier Orde Wingate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1943",
+       "quote": "to disrupt Japanese lines of communication",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1943",
+       "quote": "long-range penetration tactics",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-burma",
+       "locator": "「Burma」",
+       "quote": "the 77th Indian Infantry Brigade under Brigadier Orde Wingate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-03-01",
+      "end": "1944-03-24"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "星期四行動與逝世",
+      "en": "Operation Thursday and death"
+     },
+     "body": {
+      "zh-Hant": "1944年3月至8月的「星期四行動」中，欽迪特的規模擴大為六倍，約兩萬三千名受過完整訓練的士兵部署，支援中美軍向緬甸北部密支那推進。溫蓋特於3月24日探視一支欽迪特部隊時死於空難；邱吉爾在悼詞中稱他是「可能成為命運之人的天才」。",
+      "en": "In Operation Thursday (March–August 1944) the Chindits, now six times larger, deployed around 23,000 fully trained men to support the Chinese and American advance on Myitkyina in northern Burma. Wingate was killed in a plane crash on 24 March while visiting a Chindit unit; Churchill called him \"a man of genius who might well have also become a man of destiny\"."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1944",
+       "quote": "March–August 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1944",
+       "quote": "Operation Thursday",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1944",
+       "quote": "Now six times larger, the Chindits embark on their second operation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-burma-timeline",
+       "locator": "時間軸 1944",
+       "quote": "Around 23,000 fully trained men are deployed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "he was killed in a plane crash on March 24, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "a man of genius who might well have also become a man of destiny",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "wingate-sudan-defence-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇丹國防軍",
+      "en": "Sudan Defence Force"
+     },
+     "title": {
+      "orig": "Sudan Defence Force (service)",
+      "zh-Hant": "蘇丹國防軍服役",
+      "en": "Service, Sudan Defence Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1929-01-01",
+      "end": "1934-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "served in the Sudan Defense Force from 1929 to 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "來源只寫「服役」，未寫指揮職位；非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "wingate-palestine-special-duty",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國駐巴勒斯坦部隊",
+      "en": "British forces in Palestine"
+     },
+     "title": {
+      "orig": "Special duty in Palestine",
+      "zh-Hant": "巴勒斯坦特別任務",
+      "en": "Special duty, Palestine"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "while serving on special duty (1936-39) in Palestine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "特別任務軍官，非指揮職（T14 R5）"
+    },
+    {
+     "key": "wingate-gideon-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "基甸軍（衣索比亞）",
+      "en": "Gideon Force (Ethiopia)"
+     },
+     "title": {
+      "orig": "Commander, \"Gideon Force\" / emperor's commander-in-chief",
+      "zh-Hant": "基甸軍指揮官（皇帝的總司令）",
+      "en": "Commander, Gideon Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-01-20",
+      "end": "1941-05-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "On January 20, 1941, Wingate crossed the Ethiopian frontier with the emperor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "commander-in-chief throughout the ensuing liberation campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "into Addis Ababa on May 5, 1941",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取進入亞的斯亞貝巴日；來源未另寫基甸軍解散日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "特遣部隊指揮官，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "wingate-chindits",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "欽迪特（英屬印度軍，緬甸）",
+      "en": "Chindits (British Indian Army, Burma)"
+     },
+     "title": {
+      "orig": "Commander of the Chindits",
+      "zh-Hant": "欽迪特部隊指揮官",
+      "en": "Commander, Chindit force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-02-24",
+      "end": "1944-03-24"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "On February 24, 1942, he was promoted to brigadier",
+       "quoteLang": "en",
+       "evidenceNote": "起日取晉升准將並受命組建該部隊之日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "organising a guerrilla force of British, Indians, and Burmese",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "africana-wingate",
+       "locator": "條目正文",
+       "quote": "he was killed in a plane crash on March 24, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "特種部隊／戰區級指揮官，有日期與地點之戰役連結（長布行動 1943 年 2–4 月、星期四行動 1944 年 3–8 月，緬甸），但最高軍職等級來源未明寫、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "待查證：長布行動、星期四行動的細部戰事（地點、日期、損失）只取得 NAM／GOV.UK 概要；Britannica、ODNB（Callahan）、Oxford Reference、IWM、Lords Library 被擋或未取得（見 searchLog）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:wingate-gideon-force",
+     "gapKind": "not_found",
+     "note": "待查證：基甸軍解散日未見來源；迄日暫取進入亞的斯亞貝巴日（推論）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wingate Orde Charles biography Chindits",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 僅得維基系（不採）與二手網站；LoC／VIAF 未取"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Orde Wingate britannica",
+     "url": "https://www.britannica.com/biography/Orde-Wingate",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Chindits (act. 1943–1944) ODNB",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-95557",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Orde Charles Wingate（Oxford Reference）",
+     "url": "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803124156541",
+     "result": "blocked_403",
+     "note": "CloudFront 403"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "WINGATE, O.C.（Encyclopaedia Africana，Richard Pankhurst）",
+     "url": "https://encyclopaediaafricana.com/wingate-o-c/",
+     "result": "found_B",
+     "note": "已 curl"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "VJ Day 75: Role of the Chindits（Lords Library）",
+     "url": "https://lordslibrary.parliament.uk/vj-day-75-role-of-the-chindits-in-the-burma-campaign/",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "A timeline of Burma and the Army（NAM）",
+     "url": "https://www.nam.ac.uk/explore/timeline-burma-army",
+     "result": "found_B",
+     "note": "已 curl"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "VJ Day 70: The Second World War in Burma（GOV.UK）",
+     "url": "https://www.gov.uk/government/news/vj-day-70-the-second-world-war-in-burma",
+     "result": "found_A",
+     "note": "已 curl"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Wingate Chindits official history Longcloth Thursday",
+     "url": null,
+     "result": "no_result",
+     "note": "官方戰史網域搜尋無直接結果"
+    }
+   ],
+   "nameZhOrig": "奥德·查尔斯·温盖特"
+  },
+  {
+   "key": "bertramramsay",
+   "bioId": null,
+   "name": "Bertram Ramsay",
+   "nameZh": "伯特倫·拉姆齊",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1940-05-19",
+      "end": "1940-06-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "多佛與敦克爾克撤退",
+      "en": "Dover and the Dunkirk evacuation"
+     },
+     "body": {
+      "zh-Hant": "1940年5月，拉姆齊以多佛海軍司令（flag officer commanding Dover）的身分，與海軍部、陸軍部一同擬定以「發電機」為代號的撤離計畫。撤退自5月26日進行至6月4日；英軍在法軍部分協助下共救出約三十三萬八千人，來源稱這是皇家海軍與拉姆齊高度組織能力的成果。",
+      "en": "In May 1940 Ramsay, as flag officer commanding Dover, began with the Admiralty and War Office to improvise plans for an evacuation under the code name Dynamo. The evacuation ran from 26 May to 4 June 1940; the British, with some French assistance, rescued 338,000 men, which the source calls a feat of heroism and great organizational skill on the part of the Royal Navy and Ramsay."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "Admiral Sir Bertram H. Ramsay, the flag officer commanding Dover",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "began to improvise plans for such an evacuation under the code name Dynamo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "DATE May 26–June 4, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "Altogether, the British, with some French assistance, rescued 338,000 men",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "a feat of heroism and great organizational skill",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "條目 Summary of Event",
+       "quote": "on the part of the Royal Navy and Ramsay",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "聯合指揮官委員會的海軍總司令",
+      "en": "Naval C-in-C of the Combined Commanders"
+     },
+     "body": {
+      "zh-Hant": "1942年拉姆齊仍任多佛海軍中將，早在1942年初就加入聯合指揮官委員會，擔任海軍總司令，這是他額外兼任的職務。他在此職上擬定計畫並建立海軍編組，用於北非登陸；當時認為跨海峽作戰將從多佛發起，攻擊加萊海峽地區，這也是他獲選的原因。",
+      "en": "In 1942 Ramsay was Vice-Admiral Dover and, from early 1942, was assigned extra duty as Naval Commander-in-Chief of the Combined Commanders. In that capacity he drew up the plans and set up the naval organization employed in the North African invasion; he was chosen because the cross-channel operation was then expected to be mounted from Dover against the Pas de Calais."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "In 1942 Admiral Sir Bertram Ramsay had been V.A. Dover",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "he was assigned extra duty as the Naval C-in-C of the Combined Commanders",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "he drew up the plans and set up the Naval organization",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "as Naval CinC joined the Combined Commanders early in 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "mounted from Dover and would assault the Pas de Calais",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1943-05-05"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "調任地中海",
+      "en": "Transfer to the Mediterranean"
+     },
+     "body": {
+      "zh-Hant": "1943年初拉姆齊調往地中海，起草西西里與義大利登陸的海軍計畫，並在坎寧安上將之下指揮參戰的皇家海軍部隊。1943年5月5日，他在英國聯合指揮官委員會的海軍總司令職位由另一位海軍上將查爾斯爵士接任。",
+      "en": "Early in 1943 Ramsay was transferred to the Mediterranean, where he drafted the naval plans for the invasions of Sicily and Italy and, under Admiral Cunningham, commanded the Royal Navy forces engaged. On 5 May 1943 his place as Naval C-in-C of the British Combined Commanders was taken by Admiral Sir Charles."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "Early in 1943, Admiral Ramsay was transferred to the Mediterranean.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "There he drafted the Naval Plans for the invasions of Sicily and Italy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "under Admiral Cunningham, commanded the R.N. forces engaged",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "On 5 May 1943 his place, as Naval C-in-C on the British Combined Commanders",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-10-25",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "盟軍遠征軍海軍總司令與「海王星」",
+      "en": "Allied Naval Commander-in-Chief and Operation Neptune"
+     },
+     "body": {
+      "zh-Hant": "1943年10月25日，拉姆齊獲任為盟軍遠征軍海軍總司令（ANCXF），其唯一職責是在最高統帥之下，指揮分配給「海王星」（即「霸王」行動突擊階段）的英、美與盟軍海軍部隊。1944年6月1日12時，他接掌「海王星」部隊的作戰指揮權，並總管海峽內的行動。他在報告中總結：就海軍觀點而言，儘管天候不佳，計畫在每一項主要方面都照寫的執行，戰術奇襲也已達成。",
+      "en": "Ramsay was appointed Allied Naval Commander-in-Chief (ANCXF) on 25 October 1943; his only function was to exercise operational command, under the Supreme Commander, of the British, U.S. and Allied naval forces assigned to NEPTUNE, the assault phase of OVERLORD. At 1200 on 1 June 1944 he assumed operational command of NEPTUNE forces and general control of operations in the Channel. In his report he summarised that, from the naval point of view, the plan was carried out as written in every main essential despite the weather, and that tactical surprise was achieved."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Admiral Ramsay Designated ANCXF」",
+       "quote": "appointed Allied Naval Commander-in-Chief on the 25th October, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Admiral Ramsay Designated ANCXF」",
+       "quote": "exercise operational command, under the Supreme Commander",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Admiral Ramsay Designated ANCXF」",
+       "quote": "assigned to the NEPTUNE, or assault phase, of the OVERLORD operations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu6",
+       "locator": "「Weather Intervenes」前",
+       "quote": "At 1200, 1st June 1944, Admiral Sir Bertram Ramsay",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu6",
+       "locator": "「Weather Intervenes」前",
+       "quote": "assumed operational command of \"NEPTUNE\" Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu6",
+       "locator": "「Weather Intervenes」前",
+       "quote": "general control of operations in the Channel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu9",
+       "locator": "「The Normandy Landings」",
+       "quote": "in every main essential the plan was carried out as written",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu9",
+       "locator": "「The Normandy Landings」",
+       "quote": "Tactical surprise, which had not been expected, was achieved",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "ramsay-combined-commanders-naval-cinc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國聯合指揮官委員會",
+      "en": "British Combined Commanders organization"
+     },
+     "title": {
+      "orig": "Naval Commander-in-Chief, Combined Commanders",
+      "zh-Hant": "聯合指揮官委員會海軍總司令",
+      "en": "Naval C-in-C, Combined Commanders"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1943-05-05"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "as Naval CinC joined the Combined Commanders early in 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "On 5 May 1943 his place, as Naval C-in-C on the British Combined Commanders",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取接任者接替日（來源寫「his place … was taken by」；以此推得，推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "計畫／委員會性質的海軍總司令，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "ramsay-mediterranean-naval-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家海軍（地中海）",
+      "en": "Royal Navy (Mediterranean)"
+     },
+     "title": {
+      "orig": "Commander, R.N. forces, Sicily and Italy invasions (under Cunningham)",
+      "zh-Hant": "地中海皇家海軍部隊指揮（西西里、義大利登陸）",
+      "en": "Commander of RN forces in the Mediterranean invasions"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1943-10-25"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "Early in 1943, Admiral Ramsay was transferred to the Mediterranean.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Formation of the OVERLORD system」",
+       "quote": "under Admiral Cunningham, commanded the R.N. forces engaged",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Admiral Ramsay Designated ANCXF」",
+       "quote": "appointed Allied Naval Commander-in-Chief on the 25th October, 1943",
+       "quoteLang": "en",
+       "evidenceNote": "依下一職（ANCXF）任命日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "卡寧安上將之下的特遣海軍指揮，非國家級最高軍職（T14 R5）；迄日待查"
+    },
+    {
+     "key": "ramsay-ancxf",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍遠征軍海軍司令部",
+      "en": "Allied Naval Expeditionary Force"
+     },
+     "title": {
+      "orig": "Allied Naval Commander-in-Chief, Expeditionary Force (ANCXF)",
+      "zh-Hant": "盟軍遠征軍海軍總司令",
+      "en": "Allied Naval Commander-in-Chief, Expeditionary Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-25",
+      "end": "1945-01-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hw-comnaveu3",
+       "locator": "「Admiral Ramsay Designated ANCXF」",
+       "quote": "appointed Allied Naval Commander-in-Chief on the 25th October, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hw-comnaveu6",
+       "locator": "「Weather Intervenes」前",
+       "quote": "assumed operational command of \"NEPTUNE\" Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-rmg-ramsay",
+       "locator": "人物欄",
+       "quote": "Date of Death: 2/1/1945",
+       "quoteLang": "en",
+       "evidenceNote": "任至逝世日（推論；來源未明寫卸任）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "盟軍諾曼第海軍行動最高指揮官，有日期＋地點之戰役連結（海王星，1944 年 6 月，諾曼第），但迄日未查得、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:ramsay-flag-officer-dover",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；EBSCO 條目（Eddy & Layton）證明 1940 年 5 月任多佛海軍司令（flag officer commanding Dover），美國海軍行政史證明 1942 年為 V.A. Dover，但均未寫起迄日（他來源稱 1939 年，未取得 A／B 原文）。已查 Columbia（無署名，未評等）、English Heritage、IWM（被擋）、Cambridge Churchill Archives（被擋）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-ramsay",
+       "locator": "條目正文",
+       "quote": "A career naval officer who retired in 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：北非（火炬）、西西里、義大利的海軍行動日期及拉姆齊的具體職務；NHHC、ODNB、Britannica 被擋或未取得；現有來源只寫計畫與指揮，未寫戰役日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Admiral Sir Bertram Ramsay biography",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 僅得維基系（不採）與二手；LoC／VIAF 未取"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Bertram Home Ramsay britannica",
+     "url": "https://www.britannica.com/biography/Bertram-Home-Ramsay",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Bertram Ramsay（royalnavy.mod.uk）",
+     "url": "https://www.royalnavy.mod.uk/news/2021/january/02/20210102-bertram-ramsay",
+     "result": "blocked_403",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Papers of Admiral Sir Bertram Home Ramsay（Churchill Archives Centre）",
+     "url": "https://archivesearch.lib.cam.ac.uk/repositories/9/resources/1808",
+     "result": "blocked_403",
+     "note": "CloudFront 403"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Ramsay, Sir Bertram Home（Columbia Encyclopedia via Encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/ramsay-sir-bertram-home/",
+     "result": "unrated",
+     "note": "無署名，僅作 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Dunkirk 1940 / Operation Dynamo（English Heritage）",
+     "url": "https://www.english-heritage.org.uk/visit/inspire-me/dunkirk-1940-the-making-of-the-miracle/",
+     "result": "unrated",
+     "note": "已 curl；無署名機構頁，不採為出處"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Evacuation of Dunkirk（EBSCO Research Starters，Eddy & Layton）",
+     "url": "https://www.ebsco.com/research-starters/military-history-and-science/evacuation-dunkirk/",
+     "result": "found_B",
+     "note": "已 curl"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "NHHC Operation Neptune 各章",
+     "url": "https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/o/operation-neptune-invasion-normandy/",
+     "result": "no_result",
+     "note": "curl 回空白（404／擋），改用 HyperWar 轉載的同一官方行政史"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Administrative History of U.S. Naval Forces in Europe ch. III／VI／IX（HyperWar）",
+     "url": "https://www.ibiblio.org/hyperwar/USN/Admin-Hist/147.5-ComNavEu/ComNavEu-3.html",
+     "result": "found_A",
+     "note": "已 curl；另 ch. IV、V、VII、VIII 已 curl 檢索，未入引文"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "IWM 館藏／Who's who of D-Day",
+     "url": "https://www.iwm.org.uk/history/second-world-war/d-day/whos-who-of-d-day",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Bertram Ramsay",
+     "url": "https://www.britannica.com/biography/Bertram-Ramsay",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "Royal Navy Ramsay 2 January 1945",
+     "url": "https://www.royalnavy.mod.uk/news/2021/january/02/20210102-bertram-ramsay",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 103,
+     "sourceType": "other",
+     "query": "Eisenhower Foundation Ramsay",
+     "url": "https://eisenhowerfoundation.net/ikes-wwii-soldiers/bertram-h-ramsey/",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 104,
+     "sourceType": "other",
+     "query": "Maritime Memorials Ramsay M1049",
+     "url": "https://memorials.rmg.co.uk/m1049/",
+     "result": "found_C",
+     "note": "取得逝世日 1945-01-02"
+    }
+   ],
+   "nameZhSource": {
+    "method": "zhwiki-interlanguage-link-template",
+    "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+    "zhwikiArticles": [
+     "敦刻尔克撤退",
+     "诺曼底72小时",
+     "霸王行动"
+    ],
+    "occurrences": 5,
+    "variants": {
+     "伯特蘭·拉姆西": 1,
+     "伯特倫·拉姆齊": 1,
+     "伯特兰·拉姆西": 1,
+     "伯特倫·拉姆斯": 1,
+     "拉姆齐海军上将": 1
+    },
+    "matchedOriginal": "Bertram Ramsay",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "nameZhOrig": "伯特伦·拉姆齐",
+   "resolvedGaps": [
+    {
+     "target": "position:ramsay-mediterranean-naval-forces",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；美國海軍行政史只寫 1943 年初調地中海、同年 10 月被海軍部召回（未寫日），未見指揮職起迄細節。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:ramsay-ancxf",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查美國海軍行政史、EBSCO；死亡日（1945-01-02，空難）僅見未評等或被擋來源，未得 A／B 原文。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-ramsay",
+       "locator": "條目正文",
+       "quote": "He was killed in a plane crash.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "donbennett",
+   "bioId": null,
+   "name": "Don Bennett",
+   "nameZh": "待查證",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1910-09-14",
+      "end": "1936-02-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、空軍與航空公司",
+      "en": "Origins, air force and airline"
+     },
+     "body": {
+      "zh-Hant": "班尼特1910年9月14日生於昆士蘭的圖文巴，1930年入伍澳洲皇家空軍，翌年轉入英國皇家空軍第29中隊。他完成水上飛機課程後被派到彭布羅克碼頭的第210中隊，1933年成為水上飛機教官；1935年他認為和平時期空軍升遷有限而辭職，1936年1月在英國加入新創的商業水上飛機航空公司帝國航空。",
+      "en": "Don Bennett was born in Toowoomba, Queensland, on 14 September 1910; he enlisted in the RAAF in 1930 and transferred to No. 29 Squadron RAF the following year. After a flying boat course he was posted to 210 Squadron at Pembroke Dock and became a flying boat instructor in 1933; in 1935, seeing limited prospects in the peacetime air force, he resigned, and in January 1936 he joined the commercial seaplane airline Imperial Airways in England."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "was born in Toowoomba, Queensland on 14 September 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "Having enlisted in 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "to 29 Squadron RAF the following year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "posted to 210 Squadron at Pembroke Dock",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "becoming a flying boat instructor in 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "1935 Resigned from the RAF.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "recognising the limited prospects for advancement in the peacetime air force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "In January 1936, now back in England, Bennett joined",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "a fledgling commercial seaplane airline, Imperial Airways",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-07-01",
+      "end": "1942-07-05"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大西洋渡運與第77、第10中隊",
+      "en": "Atlantic ferry and Nos. 77 and 10 Squadrons"
+     },
+     "body": {
+      "zh-Hant": "1940年7月他成為大西洋渡運服務的飛行主管，並率領首批七架哈德遜機飛越大西洋。1941年9月25日他以代理中校身分回到皇家空軍，1941年12月出任轟炸機司令部第77中隊指揮官，1942年4月轉任第10中隊指揮官。他親自出擊許多任務，在一次攻擊提爾皮茨號戰艦的行動中於挪威上空被擊落，設法逃脫、取道瑞典返國，並因此獲頒傑出服務勳章。",
+      "en": "In July 1940 he became flying superintendent of the Atlantic Ferry service and led the first flight of seven Hudsons across. On 25 September 1941 he returned to the RAF as an acting wing commander; in December 1941 he took command of Bomber Command's 77 Squadron and in April 1942 moved to command 10 Squadron. He flew many operations himself; shot down over Norway in an attack on the Tirpitz, he evaded capture, reached Sweden and was awarded the Distinguished Service Order."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "07/1940 Became flying superintendent of the Atlantic Ferry service.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "Bennett led the first flight of seven Hudson aircraft",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "25/09/1941 Bennett returned to the RAF as an acting wing commander.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "in December that year he was given command of Bomber Command's 77 Squadron",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "Bennett was transferred to command 10 Squadron in April 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "he was shot down over Norway in an attack on the Tirpitz",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "He managed to evade capture and reach Sweden",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "was awarded the Distinguished Service Order for this episode",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-07-05",
+      "end": "1944-06-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "開路者部隊與第8大隊",
+      "en": "The Pathfinder Force and No. 8 Group"
+     },
+     "body": {
+      "zh-Hant": "1942年7月5日，班尼特獲任命指揮轟炸機司令部新成立的開路者部隊，其任務是為主力機組找出並標示目標。1943年1月他再度晉升，並受命指揮轟炸機司令部的第8開路者大隊。1943年7月2日他獲頒大英帝國司令勳章，1944年6月8日獲頒巴斯勳章（CB）。",
+      "en": "On 5 July 1942 Bennett was given command of Bomber Command's new Pathfinder Force, whose job was to find and mark targets for the main force crews. In January 1943 he was promoted again and placed in command of Bomber Command's 8 Pathfinder Force Group. He was made CBE on 2 July 1943 and Companion of the Order of the Bath on 8 June 1944."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "On 5 July 1942 Bennett, now an acting group captain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "was given command of Bomber Command's new Pathfinder Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "whose job was to find and mark targets for main force crews",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "In January 1943 Bennett was again promoted",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "placed in command of Bomber Command's 8 Pathfinder Force Group",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "02/07/1943 Commander of the Order of the British Empire.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Timeline",
+       "quote": "08/06/1944 Companion of the Order of the Bath.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-06-08",
+      "end": "1986-09-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後與逝世",
+      "en": "After the war and death"
+     },
+     "body": {
+      "zh-Hant": "班尼特是主張成立國際警察部隊以防止戰爭的人，並以自由黨黨員身分贏得國會議席，但最終對自己無法發揮影響力感到失望。戰後他也設計並製造了數款輕型飛機與汽車。他於1986年9月15日去世。",
+      "en": "A keen advocate of an international police force to prevent war, Bennett won a seat in Parliament as a Liberal Party member, but was ultimately disappointed at his inability to exert influence. After the war he also designed and built several light aircraft and cars. He died on 15 September 1986."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "A keen advocate of an international police force that would prevent war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "winning a seat in Parliament as a Liberal Party member",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "Ultimately he was disappointed at his inability to exert influence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "After the war Bennett also designed and built several light aircraft and cars",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "He died on 15 September 1986.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": "1942-04-27",
+      "end": "1942-04-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "提爾皮茨號空襲作戰",
+      "en": "The Tirpitz air attack"
+     },
+     "body": {
+      "zh-Hant": "1942 年 4 月 27／28 日夜，班尼特率領第 10 中隊，隨同五個中隊進攻停泊在挪威特隆赫姆峽灣的德國戰艦提爾皮茨號。他的哈利法克斯轟炸機是以 200 英尺低空進襲的 20 架之一，進場時即被擊中；他再作第二次進襲，投下的水雷落在提爾皮茨號附近，飛機再度中彈，他隨即命令機組棄機。他在當地挪威人協助下與無線電員逃入中立的瑞典，但在瑞典被當作戰俘拘留；他施壓後一個月內回到英國，並因領導與勇氣獲頒傑出服務勳章（DSO）。",
+      "en": "On the night of 27/28 April 1942 Bennett led No. 10 Squadron as part of an attack by five squadrons on German warships, chiefly the battleship Tirpitz at Trondheim, Norway. His Halifax was one of 20 aircraft that attacked at 200 feet and was hit almost immediately on its approach run. He made a second approach and dropped his mines close to Tirpitz, but the Halifax was hit again and he told his crew to abandon it. With help from local Norwegians he and his wireless operator escaped to neutral Sweden, where he was interned as a prisoner of war; he applied pressure, was back in England within a month, and was awarded the Distinguished Service Order (DSO)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "On the evening of 27/28 April 1942, he was leading his squadron",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "as part of an attack by five squadrons",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "on German warships, primarily against the Bismark class battleship, Tirpitz",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "Trondheim, Norway",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "Bennett's Halifax was one of 20 aircraft which attacked at 200 feet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "his bomber was almost immediately hit on its approach run",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "Bennett decided to make a second approach",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "Although he managed to drop the mines close to the Tirpitz",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "he immediately told his crew to abandon the plane",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "With the assistance of local Norwegians, Bennett and his wireless operator",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "managed to escape to neutral Sweden but was interned as a prisoner of war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "Bennett applied pressure and was back in England within a month",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-awm-mae",
+       "locator": "館藏條目 History / Summary",
+       "quote": "he was awarded the Distinguished Service Order (DSO)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
+    }
+   ],
+   "positions": [
+    {
+     "key": "bennett-77-squadron",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍轟炸機司令部第77中隊",
+      "en": "No. 77 Squadron, Bomber Command, RAF"
+     },
+     "title": {
+      "orig": "Commander, No. 77 Squadron",
+      "zh-Hant": "第77中隊指揮官",
+      "en": "Commander, No. 77 Squadron"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-01",
+      "end": "1942-05-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "in December that year he was given command of Bomber Command's 77 Squadron",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "Bennett was transferred to command 10 Squadron in April 1942",
+       "quoteLang": "en",
+       "evidenceNote": "迄點取調任第10中隊之月（1942 年 4 月）依 Q3 寫下一月起日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "中隊長，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "bennett-10-squadron",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍轟炸機司令部第10中隊",
+      "en": "No. 10 Squadron, Bomber Command, RAF"
+     },
+     "title": {
+      "orig": "Commander, No. 10 Squadron",
+      "zh-Hant": "第10中隊指揮官",
+      "en": "Commander, No. 10 Squadron"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-04-01",
+      "end": "1942-07-05"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "Bennett was transferred to command 10 Squadron in April 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "On 5 July 1942 Bennett, now an acting group captain",
+       "quoteLang": "en",
+       "evidenceNote": "依下一職（開路者部隊）起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "中隊長，非國家級最高軍職（T14 R5）；迄日待查"
+    },
+    {
+     "key": "bennett-pathfinder-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍轟炸機司令部開路者部隊",
+      "en": "Pathfinder Force, Bomber Command, RAF"
+     },
+     "title": {
+      "orig": "Commander, Pathfinder Force",
+      "zh-Hant": "開路者部隊指揮官",
+      "en": "Commander, Pathfinder Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-07-05",
+      "end": "1943-02-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "On 5 July 1942 Bennett, now an acting group captain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "was given command of Bomber Command's new Pathfinder Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "In January 1943 Bennett was again promoted",
+       "quoteLang": "en",
+       "evidenceNote": "迄點取改編為第8大隊之月（1943 年 1 月）依 Q3 寫下一月起日；來源以升任並改指揮第8大隊敘述，未明寫部隊改編日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "特種部隊指揮官，非國家級最高軍職（T14 R5）"
+    },
+    {
+     "key": "bennett-8-pathfinder-group",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍轟炸機司令部第8開路者大隊",
+      "en": "No. 8 (Pathfinder Force) Group, Bomber Command, RAF"
+     },
+     "title": {
+      "orig": "Commander, 8 Pathfinder Force Group",
+      "zh-Hant": "第8開路者大隊指揮官",
+      "en": "Commander, No. 8 (PFF) Group"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "In January 1943 Bennett was again promoted",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "placed in command of Bomber Command's 8 Pathfinder Force Group",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "大隊（group）指揮官，非國家級最高軍職（T14 R5）；迄日待查"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:bennett-8-pathfinder-group",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物檔未寫第8大隊卸任日；ADB 頁面 curl 無正文，rafweb.org 為私人彙編（未評等）未用。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:bennett-liberal-mp",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；AWM 寫「以自由黨黨員身分贏得國會議席」（以政黨身分取得的席位，依規則應為 R1 de_facto_leader 候選），但無當選日期與選區；需 UK Parliament／ADB。",
+     "candidateCitations": [
+      {
+       "sourceKey": "awm-bennett",
+       "locator": "人物檔 Description",
+       "quote": "winning a seat in Parliament as a Liberal Party member",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:bennett-air-navigation-school",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日、迄日；AWM 寫 1941 年以代理中校身分指揮一所空中領航學校，無日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：1945 年後（議員任期、提爾皮茨號襲擊日期）及開路者部隊戰績，AWM 以外 A／B 來源（ADB 動態頁）未取得文字。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Don Bennett Donald Clifford Tyndall biography",
+     "url": null,
+     "result": "no_result",
+     "note": "維基系（不採）；LoC／VIAF 未取"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Bennett, Donald Clifford Tyndall（Australian Dictionary of Biography）",
+     "url": "https://adb.anu.edu.au/biography/bennett-donald-clifford-tyndall-don-12194",
+     "result": "no_result",
+     "note": "curl 取得之 HTML 為前端動態頁，無傳記正文"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Air Vice Marshal Donald Clifford Tyndall Bennett（AWM 人物檔）",
+     "url": "https://www.awm.gov.au/people/P10676768",
+     "result": "found_A",
+     "note": "已 curl；Description＋Timeline"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "rafweb.org Air of Authority — Bennett",
+     "url": "https://rafweb.org/Biographies/BennettD.htm",
+     "result": "unrated",
+     "note": "私人彙編，僅見檢索結果，未抓、未引"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "People Australia — Bennett",
+     "url": "https://peopleaustralia.anu.edu.au/biography/bennett-donald-clifford-don-12194",
+     "result": "no_result",
+     "note": "同 ADB 平台，未抓取"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Bennett Pathfinder Force 8 Group（官方戰史網域搜尋）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無官方戰史頁"
+    },
+    {
+     "step": 101,
+     "sourceType": "national_dictionary",
+     "query": "ADB Bennett Donald Clifford 12194",
+     "url": "https://adb.anu.edu.au/biography/bennett-donald-clifford-don-12194",
+     "result": "challenge_page",
+     "note": "頁面動態載入，curl 僅得 Loading 殼，無正文"
+    },
+    {
+     "step": 102,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Donald Bennett",
+     "url": "https://www.britannica.com/biography/Donald-Bennett",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "AWM Mae West Bennett 10 Squadron",
+     "url": "https://www.awm.gov.au/collection/C1138767",
+     "result": "found_A",
+     "note": "取得提爾皮茨號襲擊細節；只寫「開路者部隊至戰爭結束」，無第8大隊卸任日"
+    },
+    {
+     "step": 104,
+     "sourceType": "academic",
+     "query": "IBCC Digital Archive RAF groups 8 Group Bennett",
+     "url": "https://ibccdigitalarchive.lincoln.ac.uk/royal-air-force-groups",
+     "result": "found_C",
+     "note": "只寫 Bennett 指揮第8大隊，無卸任日"
+    },
+    {
+     "step": 105,
+     "sourceType": "other",
+     "query": "8 Group AOC Bennett successor 1945",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得無署名或私人彙編頁（rafweb 等），未採用"
+    }
+   ],
+   "nameZhSource": {
+    "method": "none",
+    "note": "名冊／索引無中文名，維持待查證",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "none",
+    "status": "pending",
+    "verified": false,
+    "isCitation": false
+   },
+   "resolvedGaps": [
+    {
+     "target": "position:bennett-10-squadron",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 人物檔只寫 1942 年 4 月接任，未寫卸任（1942-07-05 轉任開路者部隊為推測，未寫入）；ADB（adb.anu.edu.au）頁面為前端動態載入，curl 取得無正文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "edmundironside1stbaronironside",
+   "bioId": null,
+   "name": "Edmund Ironside, 1st Baron Ironside",
+   "nameZh": "待查證",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-05-06",
+      "end": "1918-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、南非戰爭與一戰",
+      "en": "Origins, the South African War and the First World War"
+     },
+     "body": {
+      "zh-Hant": "艾恩賽德1880年5月6日生。他十九歲離開伍爾維奇後投入南非戰爭，獲通報嘉獎並升至參謀上尉，其後留在非洲，被調入情報機構。1914年8月，他以參謀上尉身分成為第一位踏上法國土地的英軍制服軍官；1915年獲頒傑出服務勳章，1918年3月至10月間指揮第99旅。",
+      "en": "Ironside was born on 6 May 1880. He left Woolwich at nineteen and served in the South African War, was mentioned in despatches and reached the rank of staff captain, then stayed in Africa and was seconded to the Secret Service. In August 1914, as a staff captain, he was the first British officer in uniform to land in France; he received the DSO in 1915 and commanded the 99th Brigade in France from March to October 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hansard-ironside",
+       "locator": "人物頁",
+       "quote": "May 6, 1880 - September 23, 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He left Woolwich at the age of nineteen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "served in the South African War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "was mentioned in despatches and reached the rank of a staff captain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "he decided to remain in Africa and was seconded to the Secret Service",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "In August 1914 Ironside, with the rank of Staff Captain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "was actually the first British officer in uniform to land in France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "in 1915 he was accorded the D.S.O.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He commanded the 99th brigade in France from March till October 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-11-01",
+      "end": "1919-09-27"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "阿爾漢格爾的盟軍指揮",
+      "en": "Command of the Allied force at Archangel"
+     },
+     "body": {
+      "zh-Hant": "1918年11月，艾恩賽德被選為阿爾漢格爾盟軍的指揮官。他的部隊占據一塊與大不列顛同樣大的地區，成分混雜、紀律困難，他仍設法鞏固陣地並招募約兩萬五千名當地人，一度看似能與高爾察克會合。1919年夏盟國決定撤出，他以不斷的後衛作戰將部隊撤離，未造成重大損失；他本人於1919年9月27日離開阿爾漢格爾。",
+      "en": "In November 1918 Ironside was chosen to command the Allied forces at Archangel. His force occupied an area as large as Great Britain and was of mixed character; he nevertheless consolidated his position and recruited some 25,000 local men, and at one moment it seemed the Archangel force might join up with Kolchak. By the summer of 1919 the Allied governments decided to withdraw, and by constant rear-guard action he embarked his force without serious losses; he himself left Archangel on 27 September 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "In November 1918, he was chosen to command the Allied forces at Archangel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "an area as large as Great Britain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "recruit some 25,000 of the local population",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "the Archangel force would be able to join up with Kolchak",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "By the summer of 1919 the Allied Governments had decided to withdraw",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "he was able to embark his force without serious losses",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He himself left Archangel on September 27, 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-09-27",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "伊斯米特、波斯與參謀學院",
+      "en": "Ismid, Persia and the Staff College"
+     },
+     "body": {
+      "zh-Hant": "其後盟軍派兵占領伊斯米特半島，艾恩賽德受命指揮這支部隊，於1920年夏末被召回。之後他接任伊拉克的一個師指揮官，並指揮北波斯部隊；返回英國後出任坎伯利參謀學院院長。其後他曾回印度任軍需總監，並出任英國東部司令部司令。",
+      "en": "An Allied force was then sent to occupy the Ismid Peninsula, and Ironside was appointed to command it until he was recalled in the late summer of 1920. He then took over a divisional command in Iraq and commanded the North Persian Force; back home he became Commandant of the Staff College at Camberley, later returned to India as Quartermaster General and was appointed G.O.C. Eastern Command in England."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "an Allied force was therefore sent to occupy the Ismid Peninsula",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "It was this force which Ironside was appointed to command.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "in the late summer of 1920 he was recalled for other duties",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "asked to take over a divisional command in 'Iraq",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "to command the North Persian Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "became Commandant of the Staff College at Camberley",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "he returned to India as Quartermaster General",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "he was appointed G.O.C. Eastern Command in England",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1938-11-01",
+      "end": "1941-01-29"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "直布羅陀、帝國總參謀長與本土部隊",
+      "en": "Gibraltar, CIGS and Home Forces"
+     },
+     "body": {
+      "zh-Hant": "1938年11月，艾恩賽德被派任直布羅陀總督兼總司令，投入大量精力使該地具備現代戰爭下的防禦能力。大戰爆發時他被召回擔任帝國總參謀長；德軍於5月26日抵達加萊時，他改任本土部隊總司令。他於1941年1月29日受封艾恩賽德男爵。",
+      "en": "In November 1938 Ironside was sent out as Governor and Commander in Chief of Gibraltar and flung his energy into making it capable of defence in modern warfare. When war came he was recalled to be Chief of the Imperial General Staff; as the Germans reached Calais on 26 May he was made Commander in Chief of the home forces. He became Baron Ironside on 29 January 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "in November 1938 he was sent out as Governor and Commander in Chief to Gibraltar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He flung his huge energy into the task of rendering Gibraltar capable of defense",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He was recalled, when the war came, to be Chief of the Imperial General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "as the Germans reached Calais on May 26, he was made Commander in Chief",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-ironside",
+       "locator": "人物頁",
+       "quote": "Baron Ironside January 29, 1941 - September 23, 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": "1918-11-01",
+      "end": "1919-09-28"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "阿爾漢格爾作戰與撤退",
+      "en": "The Archangel campaign and withdrawal"
+     },
+     "body": {
+      "zh-Hant": "1918 年 11 月，艾恩賽德被選為指揮阿爾漢格爾的盟軍部隊。1919 年夏，盟國政府決定自阿爾漢格爾撤軍；布爾什維克得知部隊將撤退後猛烈進攻，來源稱他須以全部技能與決心才避免大災難。他以持續的後衛戰鬥讓部隊登船撤出，未遭重大損失，並於 1919 年 9 月 27 日離開阿爾漢格爾。",
+      "en": "In November 1918 Ironside was chosen to command the Allied forces at Archangel. By the summer of 1919 the Allied Governments had decided to withdraw; the Bolsheviks, learning the force was about to retire, attacked it without stint, and the source says it required all his skill and resolution to avert a major disaster. Through constant rear-guard action he embarked his force without serious losses, and he left Archangel on 27 September 1919."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "In November 1918, he was chosen to command the Allied forces at Archangel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "the Allied Governments had decided to withdraw from Archangel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "The Bolsheviks had learnt that the force was about to retire",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "they attacked it without stint",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "It required all Ironside's skill and resolution to avert a major disaster",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "By constant rear guard action, admirably planned and executed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "he was able to embark his force without serious losses",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He himself left Archangel on September 27, 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
+    }
+   ],
+   "positions": [
+    {
+     "key": "ironside-archangel-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "阿爾漢格爾盟軍（北俄羅斯）",
+      "en": "Allied force at Archangel (North Russia)"
+     },
+     "title": {
+      "orig": "Commander of the Allied forces at Archangel",
+      "zh-Hant": "阿爾漢格爾盟軍指揮官",
+      "en": "Commander, Allied forces at Archangel"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-11-01",
+      "end": "1919-09-27"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "In November 1918, he was chosen to command the Allied forces at Archangel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "He himself left Archangel on September 27, 1919",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取其離開阿爾漢格爾之日；來源未另寫解除指揮日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級盟軍指揮官，但來源無日期＋地點之特定戰役連結、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "ironside-gibraltar-governor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "直布羅陀（英屬殖民地）",
+      "en": "Gibraltar (British colony)"
+     },
+     "title": {
+      "orig": "Governor and Commander in Chief, Gibraltar",
+      "zh-Hant": "直布羅陀總督兼總司令",
+      "en": "Governor and Commander-in-Chief, Gibraltar"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1938-11-01",
+      "end": "1939-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "in November 1938 he was sent out as Governor and Commander in Chief to Gibraltar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gazette-34642",
+       "locator": "War Office 任命欄",
+       "quote": "from C. injC., Gibraltar, to be Inspr.Gen. of Oversea Forces, ist July 1939.",
+       "quoteLang": "en",
+       "evidenceNote": "公報任命他自直布羅陀總司令調任海外部隊總監，起日 1939-07-01，依下一職起日推得（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "英屬殖民地最高長官，但迄日未查得、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "ironside-home-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國本土部隊",
+      "en": "British Home Forces"
+     },
+     "title": {
+      "orig": "Commander in Chief of the Home Forces",
+      "zh-Hant": "本土部隊總司令",
+      "en": "Commander-in-Chief, Home Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-05-26",
+      "end": "1940-07-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "as the Germans reached Calais on May 26, he was made Commander in Chief",
+       "quoteLang": "en",
+       "evidenceNote": "起日取文中「德軍抵達加萊」之 5 月 26 日；他處未評等來源寫 5 月 27 日（見 gap）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "fa-ironside",
+       "locator": "正文",
+       "quote": "Commander in Chief of the home forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gazette-34902",
+       "locator": "War Office 任命欄",
+       "quote": "as C.-in-C., Home Forces. 20th July 1940.",
+       "quoteLang": "en",
+       "evidenceNote": "公報載卸任本土部隊總司令日",
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "本土部隊總司令（職位等級有引文），但迄日未查得、起日有分歧、政權 regimeId 待查證（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "ironside-house-of-lords",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國上議院",
+      "en": "House of Lords (UK)"
+     },
+     "title": {
+      "orig": "Baron Ironside (peer)",
+      "zh-Hant": "艾恩賽德男爵（上議院議員）",
+      "en": "Baron Ironside, member of the House of Lords"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1941-01-29",
+      "end": "1959-09-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-ironside",
+       "locator": "人物頁",
+       "quote": "Baron Ironside January 29, 1941 - September 23, 1959",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "世襲貴族上議院議員，非四部閣員／軍職（T14 R5）；無零發言紀錄（Hansard 貢獻 0 筆）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:ironside-cigs",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；FA（Nicolson 1940）只寫「戰爭爆發時被召回任帝國總參謀長」，無日期。NAM 館藏圖說寫 3 September 1939 起、1940-05-27 轉任本土部隊總司令，但為無作者圖說（未評等，不可當出處）；迄日同缺。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nam-ironside-coll",
+       "locator": "館藏圖說",
+       "quote": "Ironside was appointed Chief of the Imperial General Staff on 3 September 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:ironside-ismid-force",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；FA 寫指揮伊斯米特部隊、1920 年夏末被召回，無起日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:ironside-north-persian-force",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日、迄日；FA 寫指揮北波斯部隊，無日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:ironside-staff-college",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日、迄日；FA 寫任坎伯利參謀學院院長，無日期（military_education，T14 R5）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:ironside-eastern-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日、迄日；FA 寫任東部司令部司令，無日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：南非戰爭、一戰戰役（FA 僅寫參戰與升遷）及 1940 年 5 月 CIGS 去職細節；Britannica、Iranica、KCL Liddell Hart Centre、ODNB 被擋或未取得（見 searchLog）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Edmund Ironside 1st Baron Ironside biography",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 僅得維基系（不採）與二手網站；LoC／VIAF 未取"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Ironside, Edmund（Britannica）",
+     "url": "https://www.britannica.com/biography/Edmund-Ironside-1st-Baron-Ironside",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Ironside, William Edmund（Encyclopaedia Iranica）",
+     "url": "https://iranicaonline.org/articles/ironside-william-edmund",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Ironside（KCL Liddell Hart Centre for Military Archives）",
+     "url": "https://archives.kingscollections.org/index.php/ironside-william-edmund-1880-1959-1st-baron-ironside-of-archangel-and-of-ironside-field-marshal",
+     "result": "blocked_403",
+     "note": "Cloudflare 擋"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Ironside, William Edmund（Columbia Encyclopedia via Encyclopedia.com）",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/ironside-william-edmund-ironside-1st-baron",
+     "result": "unrated",
+     "note": "無署名，僅作 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Ironside（Harold Nicolson，Foreign Affairs 1940）",
+     "url": "https://www.foreignaffairs.com/articles/united-kingdom/1940-07-01/ironside",
+     "result": "found_B",
+     "note": "已 curl；全文含文章正文"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Mr William Ironside（Historic Hansard）",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-william-ironside",
+     "result": "found_A",
+     "note": "已 curl；僅生卒與貴族封號，無發言"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "General Ironside at his desk, 1939-1940（NAM 館藏）",
+     "url": "https://collection.nam.ac.uk/detail.php?acc=1985-04-49-46",
+     "result": null,
+     "note": "無作者館藏圖說，僅作 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "General Sir Edmund Ironside（IWM 館藏）",
+     "url": "https://www.iwm.org.uk/collections/item/object/15148",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁（同批 IWM 頁面皆如此）"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ironside",
+     "url": "https://www.britannica.com/biography/William-Edmund-Ironside-1st-Baron-Ironside",
+     "result": "blocked_403",
+     "note": "Cloudflare 挑戰頁"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "London Gazette 4 July 1939 Ironside Gibraltar Inspector-General",
+     "url": "https://www.thegazette.co.uk/London/issue/34642/page/4564/data.pdf",
+     "result": "found_A",
+     "note": "取得直布羅陀卸任調職日"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "London Gazette 23 July 1940 Ironside Home Forces",
+     "url": "https://www.thegazette.co.uk/London/issue/34902/supplement/4493/data.pdf",
+     "result": "found_A",
+     "note": "取得本土部隊總司令卸任日"
+    }
+   ],
+   "nameZhSource": {
+    "method": "none",
+    "note": "名冊／索引無中文名，維持待查證",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "none",
+    "status": "pending",
+    "verified": false,
+    "isCitation": false
+   },
+   "resolvedGaps": [
+    {
+     "target": "position:ironside-gibraltar-governor",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；FA 只寫 1938 年 11 月赴任，未寫卸任；Columbia（無署名，未評等）亦無。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:ironside-home-forces",
+     "gapKind": "conflict",
+     "note": "待查證：缺迄日；起日 FA（B）寫德軍抵加萊的 5 月 26 日改任，NAM 圖說（未評等）寫 27 May 1940，故暫依 FA；Hansard 無任職紀錄。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nam-ironside-coll",
+       "locator": "館藏圖說",
+       "quote": "on 27 May 1940, was appointed Commander-in-Chief, Home Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2508 @@
+{
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 對齊格式直接產出（Tai 2026-11-11 10:03 T11／T12；12:12 黨職與 role_kind；12:47 黨籍席位與 T14 R0–R6）；未建角色資料、未寫庫。",
+ "batch": "b3-run100-batch09",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "b0b0e0f 對齊格式（人物／角色／經歷三層）；positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職規則照 Tai 2026-11-11 12:12／12:47 套用（兩層互斥）。recordIds 未提供於名單（留空）。",
+ "rawDir": "/tmp/b3run100/batch09/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "dbl-neergaard": {
+   "title": "Niels Neergaard",
+   "authors": [
+    "Kristian Hvidt"
+   ],
+   "publisher": "Dansk Biografisk Leksikon（3. udg.），Lex.dk",
+   "published_text": "Dansk Biografisk Leksikon, 3. udgave 1979–84，2014–16 更新；Lex.dk 線上版",
+   "url": "https://biografiskleksikon.lex.dk/Niels_Neergaard",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "丹麥國家傳記辭典（Dansk Biografisk Leksikon）具名條目（Kristian Hvidt）"
+  },
+  "lex-neergaard": {
+   "title": "Niels Neergaard - Dansk politiker og historiker",
+   "authors": [
+    "Kristian Hvidt"
+   ],
+   "publisher": "Lex.dk（含 Den Store Danske 文本）",
+   "published_text": "Lex.dk 條目，署名 Kristian Hvidt",
+   "url": "https://lex.dk/Niels_Neergaard",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Kristian Hvidt，dr.phil.）的機構百科條目（Lex.dk／Den Store Danske）"
+  },
+  "lex-regeringer": {
+   "title": "Kort oversigt over de danske regeringer fra 1901-1924",
+   "authors": [
+    "danmarkshistorien.dk's redaktion"
+   ],
+   "publisher": "Lex.dk／danmarkshistorien.dk（奧胡斯大學歷史網站）",
+   "published_text": "Lex.dk 條目，署名 danmarkshistorien.dk 編輯部",
+   "url": "https://lex.dk/Danske_regeringer_1901-1924",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Lex.dk／danmarkshistorien.dk（奧胡斯大學歷史網站） → C（grade-ungraded-b3-2026-11-14，原：審查（Opus）降為未評等：lex.dk 條目只署「danmarkshistorien.dk's redaktion」（編輯部），無具名作者，依 Q9 無具名作者的百科條目只能作 gap 候選；所列內閣起訖日改列 gap candidateCitations）"
+  },
+  "enc-rodriguez": {
+   "title": "Rodríguez Luján, Abelardo (1889–1967)",
+   "authors": [
+    "Roderic Ai Camp"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale），via Encyclopedia.com",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/rodriguez-lujan-abelardo-1889-1967",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Roderic Ai Camp，條末署名）的機構百科條目（Gale）"
+  },
+  "enc-kalinin": {
+   "title": "Kalinin, Mikhail Ivanovich",
+   "authors": [
+    "Kate Transchel"
+   ],
+   "publisher": "Encyclopedia of Russian History（Gale），via Encyclopedia.com",
+   "published_text": "Encyclopedia of Russian History",
+   "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/mikhail-ivanovich-kalinin",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Kate Transchel，條末署名）的機構百科條目（Gale）"
+  },
+  "frus-d98": {
+   "title": "Document 98: Caffery to the Acting Secretary of State, Habana, January 18, 1934",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian（FRUS）",
+   "published_text": "Foreign Relations of the United States, Diplomatic Papers, 1934, The American Republics, Volume V",
+   "url": "https://history.state.gov/historicaldocuments/frus1934v05/d98",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交檔案彙編（政府官方頁）"
+  },
+  "frus-d100": {
+   "title": "Document 100: The Chargé in Cuba (Matthews) to the Acting Secretary of State, Habana, January 19, 1934",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian（FRUS）",
+   "published_text": "Foreign Relations of the United States, Diplomatic Papers, 1934, The American Republics, Volume V",
+   "url": "https://history.state.gov/historicaldocuments/frus1934v05/d100",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交檔案彙編（政府官方頁）"
+  },
+  "frus-d169": {
+   "title": "Document 169: The Cuban Ambassador (Márquez Sterling) to the Secretary of State, Washington, February 12, 1934",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian（FRUS）",
+   "published_text": "Foreign Relations of the United States, Diplomatic Papers, 1934, The American Republics, Volume V",
+   "url": "https://history.state.gov/historicaldocuments/frus1934v05/d169",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交檔案彙編（政府官方頁）"
+  },
+  "frus-d170": {
+   "title": "Document 170: Treaty of Relations Between the United States of America and the Republic of Cuba, Signed at Washington, May 29, 1934",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian（FRUS）",
+   "published_text": "Foreign Relations of the United States, Diplomatic Papers, 1934, The American Republics, Volume V",
+   "url": "https://history.state.gov/historicaldocuments/frus1934v05/d170",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交檔案彙編（政府官方頁）"
+  },
+  "bse-kalinin": {
+   "title": "Калинин Михаил Иванович（Большая советская энциклопедия, 3-е изд.）",
+   "authors": [],
+   "publisher": "booksite.ru（BSE 轉載）",
+   "published_text": "booksite.ru（BSE 轉載）",
+   "url": "https://booksite.ru/FullText/1/001/008/057/875.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：booksite.ru（BSE 轉載） → C（grade-ungraded-b3-2026-11-14，原：轉載站未見具名作者；未評等，只可作 gap 候選（Q9））"
+  }
+ },
+ "people": [
+  {
+   "key": "dk-neergaard",
+   "bioId": "01a1b4c1-cdd3-7987-a211-b2295d2d83af",
+   "name": "Niels Neergaard",
+   "nameZh": "尼爾斯·內爾高",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1879-01-01",
+      "end": "1893-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "學歷與初入政壇",
+      "en": "Education and entry into politics"
+     },
+     "body": {
+      "zh-Hant": "內爾高起初學神學，隨即轉向宗教史，1879年取得碩士資格，專攻古代猶太史。他1884年創辦《Tilskueren》刊物；1887年在納斯科夫（Nakskov）選區當選，任期三年，1892年再度當選丹麥國會（Folketing）議員。",
+      "en": "Neergaard began with theology but quickly switched to the history of religion, and took his master's degree in 1879 with a specialty in ancient Jewish history. He founded the journal Tilskueren in 1884, was elected in the Nakskov constituency in 1887 for the following three years, and was elected to the Folketing again in 1892."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第2段",
+       "quote": "tro med teologi, men opgav det ret hurtigt til fordel for religionshistorie",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第2段",
+       "quote": "tog magisterkonferens 1879 med speciale i ældre jødisk historie",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第4段",
+       "quote": "han 1884 grundlagde tidsskriftet Tilskueren",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第5段",
+       "quote": "1887 blev han opstillet og valgt i Nakskov-kredsen for de følgende tre år",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第5段",
+       "quote": "1892 valgtes han igen til folketinget",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-09-01",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1908年：出任首相",
+      "en": "Prime minister from 1908"
+     },
+     "body": {
+      "zh-Hant": "他先被任命為財政部長，試圖穩住搖搖欲墜的內閣；1908年9月P. A. Alberti垮台，也使內閣崩潰，內爾高被稱為當時唯一毫無污點的部長，藉著局勢成為新的首相（konseilspræsident），並兼任國防部長。",
+      "en": "He was first made finance minister in an attempt to prop up a wavering ministry. P. A. Alberti's collapse in September 1908 brought the government down too; Neergaard, described as the only entirely unstained minister, became the new konseilspræsident (prime minister) and also took the defence portfolio."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "S.å. blev N. gjort til finansminister",
+       "quoteLang": "da",
+       "evidenceNote": "S.å.（同年）承前文 1907-08 關稅法案，年份不明確，不據以寫年份",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "i et forsøg på at stive et vaklende ministerium af",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "Men P. A. Albertis sammenbrud sept.1908 blev også regeringens sammenbrud",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "I den forfærdelige situation var N. den eneste helt uplettede minister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "og han blev da ved omstændighedernes hjælp den ny konseilspræsident",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "Tillige måtte han påtage sig posten som forsvarsminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1925-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1920–1924年：出任首相兼財政部長",
+      "en": "Prime minister and finance minister, 1920–1924"
+     },
+     "body": {
+      "zh-Hant": "1920年復活節危機後，內爾高在J. C. Christensen推辭下接任首相；他在1920年夏天完成重新統一（genforeningen），並於7月11日在迪博爾（Dybbøl）發表著名演說。1920至1924年任首相期間他同時兼任財政部長；任內因戰後經濟危機與1922年Landmandsbanken倒閉而動盪。",
+      "en": "After the Easter Crisis of 1920 Neergaard became prime minister because J. C. Christensen declined the post, and in summer 1920 he saw the reunification (genforeningen) through, giving his famous Dybbøl speech on 11 July. During his 1920–24 premiership he was also finance minister; his term was turbulent because of the post-war economic crises and the collapse of the Landmandsbank in summer 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "der blev statsminister i venstreregeringen efter påskekrisen 1920",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "skyldtes det kun at J. C. Christensen undslog sig",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "Han holdt fx den berømte tale på Dybbøl den 11.7.1920",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "Det blev således N. der kom til at fuldføre genforeningen i sommeren 1920",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "Hans tid som statsminister 1920-24 blev fyldt med dramatik",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "Foruden statsminister var han også finansminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第10段",
+       "quote": "Landmandsbankens sammenbrud sommeren 1922 rystede ikke alene landet politisk",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文",
+       "quote": "som følge af de voldsomme økonomiske kriser efter krigen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1910-01-01",
+      "end": "1929-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "其他任期的財政部長職務",
+      "en": "Further terms as finance minister"
+     },
+     "body": {
+      "zh-Hant": "1910至1913年，內爾高在貝恩特森（Klaus Berntsen）政府任財政部長；1926至1929年他在Madsen-Mygdal政府再度出任財政部長，這是他第五度主掌財政部，並於1929年4月隨其餘閣員離任。",
+      "en": "In 1910–1913 Neergaard was finance minister in the Berntsen government. In 1926–1929 he was finance minister again in the Madsen-Mygdal government, the fifth time he held the finance ministry, and he left office with the rest of the government in April 1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第5段",
+       "quote": "1910-1913 var han finansminister i regeringen Berntsen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第5段",
+       "quote": "1926-1929 var Niels Neergaard atter finansminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第5段",
+       "quote": "denne gang i regeringen Madsen-Mygdal",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第11段",
+       "quote": "Den nu 72-årige N. fik for femte gang finansministeriet",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第11段",
+       "quote": "I april 1929 afgik han sammen med den øvrige regering",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "folketing-1892",
+     "title": {
+      "orig": "medlem af Folketinget",
+      "zh-Hant": "丹麥國會議員",
+      "en": "Member of the Folketing"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥國會",
+      "en": "Folketing (Danish Parliament)"
+     },
+     "period": {
+      "start": "1892-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第3段",
+       "quote": "medlem af Folketinget 1887-1890 og 1892-1932",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫1887–1890與1892–1932兩段議席；1887–1890落在時間窗外，此處只記與1908–1945有交集的1892–1932段（迄年依 Q3 寫下一年起日）；來源只寫議員、未寫以何黨身分取得席位，不算黨職",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：議員不屬四部閣員，留經歷層"
+    },
+    {
+     "key": "defence-1908-neergaard",
+     "title": {
+      "orig": "Minister of Defence",
+      "zh-Hant": "國防部長",
+      "en": "Minister of Defence"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥王國政府",
+      "en": "Government of Denmark"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第9段",
+       "quote": "Tillige måtte han påtage sig posten som forsvarsminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "與首相職同時兼任；DBL 未寫起訖日；內閣名單（lex-regeringer）已降為未評等，起訖日改列 gap 待查證",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：國防部長屬 R3①，但唯一已評等來源（DBL）未寫起訖日（任一端 NULL，無法證明 ≥90 天），regimeId 亦待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "finance-1910-berntsen",
+     "title": {
+      "orig": "Minister of Finance",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥王國政府",
+      "en": "Government of Denmark"
+     },
+     "period": {
+      "start": "1910-01-01",
+      "end": "1914-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第5段",
+       "quote": "1910-1913 var han finansminister i regeringen Berntsen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文",
+       "quote": "en post han siden igen påtog sig 1910-13 under regeringen Klaus Berntsen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "lex-neergaard 只寫 1910-1913（Q3 迄寫 1914-01-01）；原用內閣名單日精度起訖已因來源降級移至 gap",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：財政部長屬 R3①，DBL（A）與 lex-neergaard（B）年精度可證明 ≥90 天（1913-01-01－1910-12-31），但 regimeId 未取得、政權待查證（R3④）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "finance-1920-neergaard",
+     "title": {
+      "orig": "Minister of Finance",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥王國政府",
+      "en": "Government of Denmark"
+     },
+     "period": {
+      "start": "1920-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文",
+       "quote": "Foruden statsminister var han også finansminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文",
+       "quote": "Hans tid som statsminister 1920-24 blev fyldt med dramatik",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "DBL 寫其任首相 1920-24 期間兼任財政部長（年精度）；日精度起訖原出自已降級的內閣名單，移至 gap",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：財政部長屬 R3①，DBL（A）年精度可證明 ≥90 天，但 regimeId 未取得、政權待查證（R3④）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "finance-1926-madsen-mygdal",
+     "title": {
+      "orig": "Minister of Finance",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥王國政府",
+      "en": "Government of Denmark"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": "1929-05-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lex-neergaard",
+       "locator": "正文第5段",
+       "quote": "1926-1929 var Niels Neergaard atter finansminister",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文第11段",
+       "quote": "I april 1929 afgik han sammen med den øvrige regering",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "起點只有年（1926）；迄點為1929年4月離任（Q3 寫5月1日）；DBL 另寫該政府於1926年12月組成，但未明寫其到任日",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：類別符合（財政／國防部長），任期日期可證明 ≥90 天，但 regimeId 未取得、政權是否在系統中待查證（R3④），門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "pm-1920-1924",
+     "title": {
+      "orig": "statsminister",
+      "zh-Hant": "首相（statsminister）",
+      "en": "Prime Minister (statsminister)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "丹麥王國政府",
+      "en": "Government of Denmark"
+     },
+     "period": {
+      "start": "1920-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dbl-neergaard",
+       "locator": "正文",
+       "quote": "Hans tid som statsminister 1920-24 blev fyldt med dramatik",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "名單年代為 1908–1918，1920–1924 任期應在 5442 任期之外（需與 leader_records 比對）；1908–1909 任期在名單內，不重建。",
+     "role_kind": "head_of_government",
+     "reason": "R0：DBL（A）明寫其 1920-24 任 statsminister（首相）；日精度起訖原出自已降級的內閣名單，移至 gap",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:pm-1908-1909",
+     "gapKind": "not_found",
+     "note": "1908–1909 首相任期（konseilspræsident；日精度起訖僅見已降級的內閣名單）依規則視為已在名單 5442 任期內，不建候選；已寫入段落正文。若比對 leader_records 發現缺，再補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:finance-1908-1909-and-cabinet-dates",
+     "gapKind": "not_found",
+     "note": "審查刪除兩筆財政部長職位（J. C. Christensen 第 2 屆內閣 1908-07-24～1908-10-12、Holstein-Ledreborg 內閣 1909-08-16～1909-10-28），並把國防部長 1908–09、財政部長 1910–13／1920–24、首相 1920–24 的日精度起訖降為年精度或 NULL：原唯一出處 lex.dk「Danske regeringer 1901-1924」只署編輯部、無具名作者，降為未評等。需 A／B 來源（如丹麥政府／議會官方歷屆內閣名單、Statsministeriet 官網）核對日精度起訖。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "J.C. Christensen (2)",
+       "quote": "Venstre (V)24. juli – 12. oktober 1908",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "J.C. Christensen (2)",
+       "quote": "Finansminister: Niels Neergaard (V)",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "Niels Neergaard (1)",
+       "quote": "Venstre (V)12. oktober 1908 – 16. august 1909",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "Ludvig Holstein(-Ledreborg)",
+       "quote": "Venstre (V)16. august 1909 – 28. oktober 1909",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "Klaus Berntsen",
+       "quote": "Venstre (V)5. juli 1910 – 21. juni 1913",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "Niels Neergaard (2)",
+       "quote": "Venstre (V)5. maj 1920 – 9. oktober 1922",
+       "quoteLang": "da",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "lex-regeringer",
+       "locator": "Niels Neergaard (3)",
+       "quote": "Venstre (V)9. oktober 1922 – 23. april 1924",
+       "quoteLang": "da",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Niels Neergaard Dansk Biografisk Leksikon konseilspræsident",
+     "url": "https://lex.dk/Niels_Neergaard",
+     "result": "found_B",
+     "note": "Lex.dk 條目具名作者 Kristian Hvidt；已 curl 存檔 lex-neergaard"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Niels Neergaard（curl）",
+     "url": "https://lex.dk/Niels_Neergaard",
+     "result": "found_B",
+     "note": "抓取原文，取 1910–1913、1926–1929 財長與議員年份"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Danske regeringer 1901-1924（curl）",
+     "url": "https://lex.dk/Danske_regeringer_1901-1924",
+     "result": "found_B",
+     "note": "各屆內閣逐日起訖與閣員名單（danmarkshistorien.dk 編輯部署名）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Neergaard 1908 konseilspræsident regering 12. oktober 1908 finansminister Albertiaffæren Dansk Biografisk Leksikon",
+     "url": "https://biografiskleksikon.lex.dk/Niels_Neergaard",
+     "result": "found_A",
+     "note": "找到 DBL 條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Dansk Biografisk Leksikon Niels Neergaard（curl）",
+     "url": "https://biografiskleksikon.lex.dk/Niels_Neergaard",
+     "result": "found_A",
+     "note": "抓取全文，Kristian Hvidt 署名"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "danmarkshistorien.dk Danske regeringer 1901-1924（curl）",
+     "url": "https://danmarkshistorien.dk/vis/materiale/danske-regeringer-1901-1924",
+     "result": "found_B",
+     "note": "與 lex.dk 同文，未另引"
+    }
+   ]
+  },
+  {
+   "key": "pe-schreiber",
+   "bioId": "01a1c35f-182f-7d20-b8ef-02776539324c",
+   "name": "Germán Schreiber Waddington",
+   "nameZh": "赫爾曼·施賴伯·沃丁頓",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:life-overview",
+     "gapKind": "not_found",
+     "note": "只找到未評等來源：rulers.org 私人彙編（只有一行官職摘要）與 fuenteshistoricasdelperu.com 私人整理的部長名單；Britannica／Encyclopedia.com 站內搜尋無此人（Britannica 為挑戰頁，未繞過）；LoC、GND（lobid）查無對應權威記錄；秘魯國會網站無對應傳記 PDF（猜測網址皆 404）。需另覓 A／B 來源：秘魯國會歷史檔案（Congreso de la República 議員名錄）、PCM「Historia de la Presidencia del Consejo de Ministros」官方彙編、Basadre《Historia de la República del Perú》出版社頁、MEF 歷任部長官方頁。本批 0 段。；已試 https://rulers.org/indexs2.html（rulers.org 私人彙編，grade-ungraded-b3-2026-11-14）；已試 https://rulers.org/indexs2.html（rulers.org 私人彙編，grade-ungraded-b3-2026-11-14）；已試 https://fuenteshistoricasdelperu.com/2021/08/12/ministerio-de-hacienda-y-comercio-memorias-ministeriales/（私人網站整理，grade-ungraded-b3-2026-11-14）；已試 https://fuenteshistoricasdelperu.com/2021/08/12/ministerio-de-hacienda-y-comercio-memorias-ministeriales/（私人網站整理，grade-ungraded-b3-2026-11-14）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pm-1910",
+     "gapKind": "not_found",
+     "note": "1910 與 1914–1915 首相任期（依規則若在名單 5442 內不重建）。來源僅 rulers.org 未評等彙編寫到年份，無 A／B 可證起訖日；待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:finance-minister",
+     "gapKind": "not_found",
+     "note": "財政與商業部長（1907–1908、1910、1914–1915）只見未評等來源（rulers.org、fuenteshistoricasdelperu.com，後者列「1907-1908」「1909-1910」兩個年份，與前者 1910 有出入但不構成已評等來源的 conflict）；無 A／B 來源，留待查證，且 regimeId 待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Germán Schreiber Waddington presidente del Consejo de Ministros Perú 1908 biografía",
+     "url": null,
+     "result": "no_result",
+     "note": "結果幾乎全為 Wikipedia 及其鏡像（不採用，網址不記）；無 A／B"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Schreiber Waddington, Germán Perú presidente Consejo de Ministros 1910 ministro de Hacienda Congreso de la República（限 congreso.gob.pe、gob.pe 等）",
+     "url": null,
+     "result": "no_result",
+     "note": "只有現行 PCM／國會頁，無此人"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "\"Schreiber\" presidente del Consejo de Ministros agosto 1910 Leguía gabinete Perú Basadre",
+     "url": null,
+     "result": "no_result",
+     "note": "只有 Wikipedia 鏡像與 Leguía 傳記，無 A／B"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Germán Schreiber Huaraz 1862 diputado senador ministro de Hacienda museo del Congreso Perú（限官方網域）",
+     "url": null,
+     "result": "no_result",
+     "note": "無此人"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Diario de los debates Congreso 1910 \"Schreiber\" presidente del Consejo de ministros Hacienda（限國會網域）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果為現代議員 Tubino Arias Schreiber，無關"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "\"Germán Schreiber\" ministro de Hacienda 1907 1908 Perú galería de ministros（extended）",
+     "url": null,
+     "result": "unrated",
+     "note": "得到 fuenteshistoricasdelperu.com 部長名單（私人網站，未評等）"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Archontology／rulers.org Peru Schreiber Waddington prime minister 1910 1914",
+     "url": null,
+     "result": "unrated",
+     "note": "rulers.org 只有一行官職摘要（未評等）"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "rulers.org Index Sc-Sg（curl）",
+     "url": "https://rulers.org/indexs2.html",
+     "result": "unrated",
+     "note": "抓取原文；未評等，只作 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "fuenteshistoricasdelperu.com 部長名單（curl）",
+     "url": "https://fuenteshistoricasdelperu.com/2021/08/12/ministerio-de-hacienda-y-comercio-memorias-ministeriales/",
+     "result": "unrated",
+     "note": "抓取原文；未評等"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 搜尋 Schreiber Waddington（curl）",
+     "url": "https://id.loc.gov/search/?q=Schreiber+Waddington",
+     "result": "no_result",
+     "note": "搜尋頁無可用結果"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "GND 經 lobid.org 搜尋 Schreiber Waddington（curl）",
+     "url": "https://lobid.org/gnd/search?q=Schreiber+Waddington&format=json",
+     "result": "not_relevant",
+     "note": "唯一結果為無關著作"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 站內搜尋 Germán Schreiber Waddington（curl）",
+     "url": "https://www.britannica.com/search?query=Germ%C3%A1n+Schreiber+Waddington",
+     "result": "challenge_page",
+     "note": "挑戰頁，未繞過"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com 站內搜尋 Schreiber Waddington（curl）",
+     "url": "https://www.encyclopedia.com/gsearch?q=Schreiber+Waddington",
+     "result": "no_result",
+     "note": "無此人"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "秘魯國會 museo/congreso/files 猜測 PDF 網址（curl，共4個）",
+     "url": "https://www.congreso.gob.pe/Docs/participacion/museo/congreso/files/files/german_schreiber.pdf",
+     "result": "no_result",
+     "note": "皆 404"
+    }
+   ]
+  },
+  {
+   "key": "mx-rodriguez-abelardo",
+   "bioId": "01a1aa4a-da74-710d-8472-8d539f887be4",
+   "name": "Abelardo L. Rodríguez",
+   "nameZh": "阿韋拉多·L·羅德里格斯",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1913-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍旅",
+      "en": "Origins and military career"
+     },
+     "body": {
+      "zh-Hant": "羅德里格斯出身索諾拉州瓜伊馬斯的清寒家庭，受教育不多，做過許多無技術工作，1913年加入立憲派，從軍後一路晉升，1928年成為師長級將領（三星）。1923至1929年他任下加利福尼亞北部的省長兼軍事指揮官，並利用此職發展個人的漁業與包裝業投資。",
+      "en": "Rodríguez came from a humble family in Guaymas, Sonora, with little formal education, and worked many unskilled jobs before joining the Constitutionalists in 1913. He made the military his career, reaching division general (three stars) in 1928. He was governor and military commander of Baja California del Norte in 1923–1929, a post he used to build up personal holdings in fishing and packing."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "From a humble family in Guaymas, Sonora, and with little formal education",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "worked at many unskilled jobs before joining the Constitutionalists in 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "rising through the ranks to division general (three stars) in 1928",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "governor and military commander of Baja California del Norte (1923–1929)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "a post he used to develop his personal financial holdings",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "in the fishing and packing industries",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "He made the military his career",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1932–1934年：入閣與出任總統",
+      "en": "Cabinet posts and presidency, 1932–1934"
+     },
+     "body": {
+      "zh-Hant": "1932年他歷任工商部長與戰爭暨海軍部長；他接替辭職的帕斯誇爾·奧爾蒂斯·魯維奧（Pascual Ortiz Rubio），成為1932至1934年的墨西哥總統，是1928至1934年間三位總統中的最後一位。評價上他通常被視為看守性質的總統，聽命於導師普魯塔爾科·埃利亞斯·卡列斯（Plutarco Elías Calles）。",
+      "en": "In 1932 he held cabinet posts including secretary of industry and commerce and secretary of war and the navy. He replaced Pascual Ortiz Rubio when the latter resigned and was president of Mexico in 1932–1934, the last of the troika of presidents of the 1928–1934 administration. He is generally considered a caretaker subordinate to his mentor, General Plutarco Elías Calles."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "secretary of industry and commerce (1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "secretary of war and the navy (1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "General Rodríguez replaced Pascual Ortiz Rubio when he resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "president of Mexico (1932–1934)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "Last of the troika of presidents during the 1928–1934 administration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "generally considered to have been a caretaker",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "subordinate to his mentor, General Plutarco Elías Calles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "二戰期間與晚年",
+      "en": "World War II and later years"
+     },
+     "body": {
+      "zh-Hant": "第二次世界大戰期間，他擔任區域軍事指揮官，並於1943至1948年出任家鄉索諾拉州州長。",
+      "en": "He served as a regional military commander during World War II and as governor of his home state of Sonora in 1943–1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "He served as a regional military commander during World War II",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "governor of his home state (1943–1948)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "baja-california-governor",
+     "title": {
+      "orig": "governor and military commander of Baja California del Norte",
+      "zh-Hant": "下加利福尼亞北部省長兼軍事指揮官",
+      "en": "Governor and military commander of Baja California del Norte"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "下加利福尼亞北部（領地）",
+      "en": "Baja California del Norte"
+     },
+     "period": {
+      "start": "1923-01-01",
+      "end": "1930-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "governor and military commander of Baja California del Norte (1923–1929)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源以同一職稱寫省長兼軍事指揮官，迄年依 Q3 寫下一年起日；title.orig 為英文來源用語",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：轄區內地方長官（領地省長），不是最高行政長官／最高軍職"
+    },
+    {
+     "key": "industry-commerce-1932",
+     "title": {
+      "orig": "secretary of industry and commerce",
+      "zh-Hant": "工商部長",
+      "en": "Secretary of Industry and Commerce"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "墨西哥政府",
+      "en": "Government of Mexico"
+     },
+     "period": {
+      "start": "1932-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "secretary of industry and commerce (1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1932年",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：工商部長不屬外交／國防／財政／內政四部"
+    },
+    {
+     "key": "war-navy-1932",
+     "title": {
+      "orig": "secretary of war and the navy",
+      "zh-Hant": "戰爭暨海軍部長",
+      "en": "Secretary of War and the Navy"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "墨西哥政府",
+      "en": "Government of Mexico"
+     },
+     "period": {
+      "start": "1932-01-01",
+      "end": "1933-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "secretary of war and the navy (1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1932年",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：戰爭兼海軍部屬國防類（R3①），但來源只有年精度，結束最早值－開始最晚值＝1 天，無法證明 ≥90 天；regimeId 亦待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "ww2-regional-commander",
+     "title": {
+      "orig": "regional military commander",
+      "zh-Hant": "區域軍事指揮官（二戰）",
+      "en": "Regional military commander (World War II)"
+     },
+     "positionKind": "military_command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "墨西哥陸軍",
+      "en": "Mexican Army"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "He served as a regional military commander during World War II",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫二戰期間，無起訖日、地點或戰役",
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：類別為將領（R4），但來源未寫職位等級（區域，非國家級最高軍職）、無日期、無戰役連結；regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "sonora-governor",
+     "title": {
+      "orig": "governor of his home state",
+      "zh-Hant": "索諾拉州州長",
+      "en": "Governor of Sonora"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "索諾拉州",
+      "en": "State of Sonora"
+     },
+     "period": {
+      "start": "1943-01-01",
+      "end": "1949-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "governor of his home state (1943–1948)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫「家鄉州」（前文為索諾拉州瓜伊馬斯）；迄年依 Q3 寫下一年起日",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：州長為轄區內地方長官"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "president-1932-1934",
+     "title": {
+      "orig": "president of Mexico",
+      "zh-Hant": "墨西哥總統",
+      "en": "President of Mexico"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "墨西哥合眾國",
+      "en": "United Mexican States"
+     },
+     "period": {
+      "start": "1932-01-01",
+      "end": "1935-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "president of Mexico (1932–1934)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-rodriguez",
+       "locator": "正文",
+       "quote": "General Rodríguez replaced Pascual Ortiz Rubio when he resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "審查由段落／gap 移入：selection100 此人 eraBasis=無（不在 worklist 任期內），故不屬『已在名單 5442 任期內』；需與 leader_records 比對是否另有記錄。來源只有年精度（Q3 迄寫 1935-01-01）。",
+     "role_kind": "head_of_state",
+     "reason": "R0：B 級具名條目明寫其為墨西哥總統（1932–1934），接替辭職的 Ortiz Rubio；名單無此任期",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:president-1932-1934-dates",
+     "gapKind": "not_found",
+     "note": "總統任期（1932–1934）已由審查移入 roleCandidates（selection 不在 worklist 任期內）；B 級條目只有年份，需 A／B 來源（如墨西哥總統府／國會官方頁）給出日精度起訖（其他來源如 Memoria Política de México、gob.mx 頁面抓回為空殼／無內文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:war-navy-1932",
+     "gapKind": "not_found",
+     "note": "戰爭暨海軍部長任期起訖日只有年（1932）；需 A／B 來源給出日期，才能判定 R3（≥90 天）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:birth-and-death",
+     "gapKind": "not_found",
+     "note": "B 級條目寫生日（12 May 1889）與卒日（13 February 1967）；未取得第二份 A／B 來源互核（檢索摘要提到另有 1891 說法，僅為摘要、未抓原文），出生年留待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Abelardo L. Rodríguez presidente de México 1932 1934 biografía",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Encyclopedia.com（Gale）條目；其餘為 Wikipedia 鏡像與私人傳記站（不採用）"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture 條目（curl）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/rodriguez-lujan-abelardo-1889-1967",
+     "result": "found_B",
+     "note": "Roderic Ai Camp 署名；存檔 enc-rodriguez"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Abelardo L. Rodríguez Luján presidente interino 1932 secretario de Guerra y Marina gobernador Baja California（限 gob.mx、senado、inehrm 等）",
+     "url": null,
+     "result": "no_result",
+     "note": "找到 Memoria Política de México 與 gob.mx 頁（見後兩步）（審查：此步本身未取得內文，兩頁抓回皆空殼，改記 no_result）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Memoria Política de México 傳記（curl）",
+     "url": "https://www.memoriapoliticademexico.org/Biografias/RAL89.html",
+     "result": "no_result",
+     "note": "抓回僅 168 字元殼頁，無內文"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "gob.mx 總統府「Natalicio de Abelardo L. Rodríguez」（curl）",
+     "url": "https://www.gob.mx/epn/es/articulos/natalicio-de-abelardo-l-rodriguez?tab=",
+     "result": "no_result",
+     "note": "抓回無內文（動態頁）"
+    }
+   ]
+  },
+  {
+   "key": "cu-marquez-sterling",
+   "bioId": "01a1c440-bd57-7c7c-93fb-61fc07745e84",
+   "name": "Manuel Márquez Sterling",
+   "nameZh": "曼努埃爾·馬克斯·斯特林",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1934-01-18",
+      "end": "1934-05-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1934年：代理國事與簽署條約",
+      "en": "1934: caretaker of the presidency and the treaty signing"
+     },
+     "body": {
+      "zh-Hant": "1934年1月18日清晨，總統哈維亞（Hevia）離開總統府，把總統職位交到國務卿（Secretary of State）馬克斯·斯特林手上，由他召集各政治團體代表開會，選出新總統；當天卡洛斯·門迭塔（Mendieta）經指定為臨時總統，中午宣誓就職。2月12日他以古巴駐美大使身分致函美國國務卿；5月29日他在華盛頓代表古巴簽署與美國的《關係條約》。",
+      "en": "On the morning of 18 January 1934, President Hevia left the Palace, leaving the presidency in the hands of the Secretary of State, Márquez Sterling, who was to convene representatives of all the political groups to elect a new president; Colonel Carlos Mendieta was designated Provisional President that day and took the oath at noon. On 12 February he wrote to the U.S. Secretary of State as Cuban Ambassador, and on 29 May 1934 he signed the Treaty of Relations with the United States at Washington as Cuba's plenipotentiary."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus-d98",
+       "locator": "電報首句",
+       "quote": "Habana , January 18, 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d98",
+       "locator": "電報本文",
+       "quote": "Hevia left Palace early this morning leaving Presidency in the hands of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d98",
+       "locator": "正文",
+       "quote": "the Secretary of State, Doctor Márquez Sterling",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d98",
+       "locator": "正文",
+       "quote": "who will convoke a meeting of representatives of all the political groups",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d98",
+       "locator": "正文",
+       "quote": "at 10 this morning to elect a new President",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d100",
+       "locator": "函文第1段",
+       "quote": "Colonel Carlos Mendieta was designated Provisional President of Cuba",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d100",
+       "locator": "正文",
+       "quote": "Habana , January 19, 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d100",
+       "locator": "正文",
+       "quote": "meeting yesterday morning at which Colonel Carlos Mendieta was designated",
+       "quoteLang": "en",
+       "evidenceNote": "函件日期為1月19日，稱「yesterday」，故指1月18日（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d100",
+       "locator": "函文第2段",
+       "quote": "took the oath of office before the Supreme Court at noon yesterday",
+       "quoteLang": "en",
+       "evidenceNote": "函件日期為1月19日，稱「yesterday」，故指1月18日（與 Document 98 同日）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d169",
+       "locator": "函文首",
+       "quote": "The Cuban Ambassador ( Márquez Sterling ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d169",
+       "locator": "函文首",
+       "quote": "Washington , February 12, 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d170",
+       "locator": "條約標題",
+       "quote": "Signed at Washington, May 29, 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d170",
+       "locator": "條約前言",
+       "quote": "Manuel Márquez Sterling, Ambassador Extraordinary and Plenipotentiary",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "secretary-of-state-1934",
+     "title": {
+      "orig": "Secretary of State",
+      "zh-Hant": "國務卿（古巴）",
+      "en": "Secretary of State (Cuba)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "古巴政府",
+      "en": "Government of Cuba"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "frus-d98",
+       "locator": "電報本文",
+       "quote": "the Secretary of State, Doctor Márquez Sterling",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "FRUS 只證明1934-01-18當日其任國務卿；起訖日皆待查證；古巴 Secretary of State 即外交首長乃常識，來源未明寫",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：職稱 Secretary of State 對應外交部（R3①，來源未明寫職掌）；起訖日皆 NULL（任期不可證明）；regimeId 待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "ambassador-to-us-1934",
+     "title": {
+      "orig": "Ambassador Extraordinary and Plenipotentiary of the Republic of Cuba to the United States of America",
+      "zh-Hant": "駐美大使（特命全權大使）",
+      "en": "Cuban Ambassador to the United States"
+     },
+     "positionKind": "diplomat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "古巴政府",
+      "en": "Government of Cuba"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "frus-d169",
+       "locator": "函文首",
+       "quote": "The Cuban Ambassador ( Márquez Sterling ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-d170",
+       "locator": "條約前言",
+       "quote": "Manuel Márquez Sterling, Ambassador Extraordinary and Plenipotentiary",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只證明1934年2月12日與5月29日其任駐美大使；起訖日待查證",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：外交使節不屬 R2–R4"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:life-overview",
+     "gapKind": "not_found",
+     "note": "生卒、出身（利馬）、記者與外交生涯等，已抓的 A／B 來源（FRUS）只涵蓋 1934 年公文；EcuRed 為未評等協作百科，只可作候選。VIAF 回 Cloudflare 封鎖頁（未繞過）。需另覓 A／B：古巴國家圖書館權威檔、DBE、學術出版社傳記。；已試 http://www.ecured.cu/Manuel_M%C3%A1rquez_Sterling（EcuRed 協作編輯百科，grade-ungraded-b3-2026-11-14）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:secretary-of-state-1934-dates",
+     "gapKind": "not_found",
+     "note": "國務卿任期起訖日未見 A／B 來源（FRUS 只在1月18日提及；Welles 電報提到其曾提辭呈，但未寫任命日）；待查證。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:acting-presidency-1934-01-18",
+     "gapKind": "not_found",
+     "note": "1934-01-18 代理總統數小時（Hevia 離開到 Mendieta 宣誓）依規則視為已在名單 5442 任期內，不建候選；FRUS 只證明「總統職位留在國務卿手上」，未明寫其職稱為代總統或具體起訖時刻。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Manuel Márquez Sterling Cuba embajador secretario de Estado 1934 biografía",
+     "url": null,
+     "result": "unrated",
+     "note": "多為 Wikipedia 鏡像與古巴媒體；不採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Márquez Sterling, Manuel 1872-1934 Cuban diplomat journalist ... encyclopedia（限百科／官方網域）",
+     "url": null,
+     "result": "unrated",
+     "note": "找到 EcuRed（未評等）與 FRUS 公文"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "FRUS 1934 vol.V Document 169（curl）",
+     "url": "https://history.state.gov/historicaldocuments/frus1934v05/d169",
+     "result": "found_A",
+     "note": "大使致國務卿函"
+    },
+    {
+     "step": 4,
+     "sourceType": "treaty_law",
+     "query": "FRUS 1934 vol.V Document 170（curl）",
+     "url": "https://history.state.gov/historicaldocuments/frus1934v05/d170",
+     "result": "found_A",
+     "note": "1934-05-29 條約文本"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "VIAF 100904477（curl）",
+     "url": "https://viaf.org/viaf/100904477/",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖頁，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Márquez Sterling Cuban Secretary of State January 1934 Hevia ... FRUS（限 history.state.gov）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Document 74/76/87/97/98/100"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "FRUS 1934 vol.V Document 98（curl）",
+     "url": "https://history.state.gov/historicaldocuments/frus1934v05/d98",
+     "result": "found_A",
+     "note": "1月18日電報"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "FRUS 1934 vol.V Document 100（curl）",
+     "url": "https://history.state.gov/historicaldocuments/frus1934v05/d100",
+     "result": "found_A",
+     "note": "Mendieta 宣誓"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "FRUS 1934 vol.V Documents 74、76、87、97、173、persons（curl）",
+     "url": "https://history.state.gov/historicaldocuments/frus1934v05/d74",
+     "result": "not_relevant",
+     "note": "與其職位起訖日無直接證據，未引"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "EcuRed Manuel Márquez Sterling（curl）",
+     "url": "http://www.ecured.cu/Manuel_M%C3%A1rquez_Sterling",
+     "result": "unrated",
+     "note": "協作百科，只作 gap 候選"
+    }
+   ]
+  },
+  {
+   "key": "su-kalinin",
+   "bioId": "01a1b4c2-3f2b-78f4-a9e6-00624c20f620",
+   "name": "Mikhail Ivanovich Kalinin",
+   "nameZh": "米哈伊爾·加里寧",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1889-01-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與革命前後",
+      "en": "Origins and the revolutionary years"
+     },
+     "body": {
+      "zh-Hant": "加里寧出生於特維爾省農民家庭，1889年遷往聖彼得堡，進入普提洛夫工廠工作；自1898年起活躍於俄國社會民主黨，成為老布爾什維克。1917年十月革命後，他出任彼得格勒的首席行政官。",
+      "en": "Kalinin was born to peasant parents in Tver Province, moved to St. Petersburg in 1889 and found work at the Putilov factory. Active in the Russian Social Democratic Party from 1898, he was an Old Bolshevik. After the October Revolution in 1917 he became the chief administrator in Petrograd."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "Born of peasant parents in Tver Province",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "moved to St. Petersburg in 1889",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "found employment at the Putilov factory",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "Active in the Russian Social Democratic Party from 1898",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "an Old Bolshevik",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "After the October Revolution in 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "he became the chief administrator in Petrograd",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1919年後的黨政職務與政治立場",
+      "en": "Party and state posts and political stance after 1919"
+     },
+     "body": {
+      "zh-Hant": "1919年他擔任全俄中央執行委員會主席，同年起成為黨中央委員，1922年任蘇聯總統（此為來源用語），1925年成為政治局正式委員，1923年與1936年主持憲法起草委員會。列寧去世後的權力鬥爭中，他先與史達林聯手對抗托洛茨基與左翼反對派；史達林轉向強制集體化後，他與布哈林一同主張溫和。",
+      "en": "He was chairman of the All-Russian Central Executive Committee in 1919 and a member of the party's Central Committee from 1919, president of the USSR in 1922 (the source's wording), and a full member of the Politburo from 1925; he chaired commissions that prepared the Soviet constitutions of 1923 and 1936. After Lenin's death he allied with Stalin against Trotsky and the Left Opposition, but when Stalin turned to forced collectivization he sided with Bukharin in advocating moderation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "chairman of the All-Russian Central Executive Committee (1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "Central Committee from 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "president of the USSR (1922)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "a full member of the Politburo from 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "chair of commissions to prepare Soviet constitutions in 1923 and 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "allied with Josef Stalin against Leon Trotsky and the Left Opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "Kalinin sided with Nikolai Bukharin in advocating moderation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "petrograd-chief-administrator",
+     "title": {
+      "orig": "chief administrator in Petrograd",
+      "zh-Hant": "彼得格勒首席行政官",
+      "en": "Chief administrator in Petrograd"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "彼得格勒",
+      "en": "Petrograd"
+     },
+     "period": {
+      "start": "1917-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "After the October Revolution in 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "he became the chief administrator in Petrograd",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫十月革命後，未寫確切起訖；起日依年寫1917-01-01（year）；title.orig 為英文來源用語",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：城市行政官屬轄區內地方長官"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "central-committee-1919",
+     "title": {
+      "orig": "member of the Central Committee",
+      "zh-Hant": "共產黨中央委員",
+      "en": "Member of the party Central Committee"
+     },
+     "originalPositionKind": "party",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯共產黨（布）／蘇聯共產黨",
+      "en": "Communist Party (Bolshevik) of Russia / USSR"
+     },
+     "period": {
+      "start": "1919-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "Central Committee from 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫「from 1919」，未寫卸任；迄日留空；title.orig 為英文來源用語",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "politburo-1925",
+     "title": {
+      "orig": "full member of the Politburo",
+      "zh-Hant": "政治局正式委員",
+      "en": "Full member of the Politburo"
+     },
+     "originalPositionKind": "party",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯共產黨（布）／蘇聯共產黨",
+      "en": "Communist Party (Bolshevik) of Russia / USSR"
+     },
+     "period": {
+      "start": "1925-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "a full member of the Politburo from 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫「from 1925」，未寫卸任；迄日留空；title.orig 為英文來源用語",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "president-ussr-1922",
+     "title": {
+      "orig": "president of the USSR",
+      "zh-Hant": "蘇聯總統（來源用語）",
+      "en": "President of the USSR (source wording)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯",
+      "en": "USSR"
+     },
+     "period": {
+      "start": "1922-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-kalinin",
+       "locator": "正文",
+       "quote": "president of the USSR (1922)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "審查由段落移入：名單任期為 1919 年俄羅斯蘇維埃聯邦（russian-sfsr-1917）全俄中執委主席，1922 年蘇聯元首屬另一政權、不能確定已在 5442 任期內，需與 leader_records 比對；來源只寫 1922，未寫卸任，迄日留空；正式職稱（蘇聯中央執行委員會主席）來源未寫，待查證。",
+     "role_kind": "head_of_state",
+     "reason": "R0：B 級具名條目明寫其為 president of the USSR（1922），屬國家元首",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:vtsik-chair-dates",
+     "gapKind": "not_found",
+     "note": "全俄中央執行委員會主席與蘇聯中執委主席的確切起訖日：B 級 Encyclopedia.com 條目只有年份；Britannica 回挑戰頁（未繞過）；俄語 БСЭ 轉載站與 prlib.ru 為未評等或無內文。1919 年全俄中執委主席視為已在名單 5442 任期內，不建候選；1922 年「president of the USSR」已由審查移入 roleCandidates（迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bse-kalinin",
+       "locator": "Калинин",
+       "quote": "Свердлова был избран председателем ВЦИК.",
+       "quoteLang": "ru",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:politburo-dates",
+     "gapKind": "not_found",
+     "note": "政治局正式委員起日：Encyclopedia.com 寫1925年；BSE 轉載站（未評等）寫「14-го съезда ВКП (б) (1925)」後入政治局；另有說法稱1926年1月，但未抓到 A／B 原文互相矛盾，故不記 conflict；待查證。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bse-kalinin",
+       "locator": "Калинин",
+       "quote": "После 14-го съезда ВКП (б) (1925) вошёл в состав Политбюро ЦК ВКП (б).",
+       "quoteLang": "ru",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Mikhail Kalinin Britannica chairman Central Executive Committee",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋找到 Britannica 與 Encyclopedia.com 條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Mikhail Ivanovich Kalinin（curl）",
+     "url": "https://www.britannica.com/biography/Mikhail-Ivanovich-Kalinin",
+     "result": "challenge_page",
+     "note": "Just a moment 挑戰頁，未繞過；改用 Encyclopedia.com"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Russian History 條目（curl）",
+     "url": "https://www.encyclopedia.com/people/history/russian-soviet-and-cis-history-biographies/mikhail-ivanovich-kalinin",
+     "result": "found_B",
+     "note": "Kate Transchel 署名；存檔 enc-kalinin"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "prlib.ru 總統圖書館 Kalinin 頁（curl）",
+     "url": "https://www.prlib.ru/en/node/1995555",
+     "result": "no_result",
+     "note": "抓回僅 114 字元，無內文"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Калинин Михаил Иванович председатель ВЦИК 1919 член Политбюро Большая российская энциклопедия",
+     "url": null,
+     "result": "unrated",
+     "note": "找到 booksite.ru（БСЭ 轉載）；未見 BRE 本文"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "booksite.ru БСЭ 轉載（curl）",
+     "url": "https://booksite.ru/FullText/1/001/008/057/875.htm",
+     "result": "unrated",
+     "note": "無具名作者；只作 gap 候選"
+    }
+   ]
+  }
+ ]
+}

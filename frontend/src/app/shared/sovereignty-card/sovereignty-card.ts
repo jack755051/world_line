@@ -1,41 +1,79 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
 import { LucideX } from '@lucide/angular';
-import type { RegimeEventDto, SovereigntyFeatureProperties } from '../../core/api/api-types';
-import type { Lang } from '../../core/i18n';
-import { EventRef } from '../event-ref/event-ref';
+import type { ControlFeatureProperties, RegimeEventDto, SovereigntyFeatureProperties, TheaterStateDto } from '../../core/api/api-types';
+import type { CapitalRecord, LeaderRecord } from '../../core/api/world-line-api';
+import { localized, type Lang } from '../../core/i18n';
+import { theaterLabel } from '../../core/theater-tracks';
 import { SANRING_TABS_IMPORTS } from '../../components/ui/tabs';
-import { campOf } from '../map/map-style';
+import { campOf, type Evidence } from '../map/map-style';
+import { CitationPopover } from '../citation/citation-popover';
+import { PersonCard } from '../person-card/person-card';
+import { SourceDisclosure } from '../source-disclosure/source-disclosure';
+import { capitalSourceItems, citationItems, geometrySourceItems } from '../../core/record-sources';
+import { numberSources } from '../../core/footnotes';
+import { FootnoteList, FootnoteSups, StatusChip } from '../footnotes/footnote-ui';
+import { groupLeaders } from '../../core/person-format';
+
+/** 控制區欄位（從 atlas 頁傳入，顯示在面板「概要」分頁的控制區區塊）。 */
+export interface ControlZoneSection {
+  props: ControlFeatureProperties;
+  evidence: Evidence;
+  theater: TheaterStateDto | null;
+}
 
 const TXT = {
   'zh-Hant': {
     period: '國界期間', status: '性質', deJure: '國界', notSovereign: '非主權（佔領行政區）', start: '起始變動', end: '結束變動',
     none: '本試驗範圍前即存在（不追溯）', open: '本試驗範圍內未結束', camp: '陣營（補充）',
-    campNone: '陣營未建置', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
+    campNone: '陣營未建置', dispute: '主權爭議', disputeLayered: '主權並存', disputeLayeredNote: '名義上的主權與實際治理並存，不是兩方爭地；本系統兩者都記。', disputeNote: '這塊地有不只一方主張；本系統不裁判誰對。', disputeNoRecord: '查無出處，未畫範圍', disputeEffective: '當時實際生效', confBeyond: '形狀沿用前一段，但前一段的出處是 1910 年前後的地圖，證明不到這一段；這一段還沒有自己的出處', sourcesTitle: '資料來源', usedFor: '用於', sourceRef: '來源', noCitation: '尚無正式出處', eventBelow: '有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', confidence: '可信程度', confVerified: '已查證', confPending: '待查證', confDataset: '國界形狀取自資料集；起訖日還沒有正式出處', confRecordB: '這段疆界有出處，但只有一個 B 級來源', startMonth: '起始日只確定到月；畫面用的日期取自資料集，沒有正式出處', startYear: '起始日只確定到年；畫面用的日期取自資料集，沒有正式出處', borderSources: '疆界出處', grade: '等級', confBaseline: '1908 年起點時既有的疆界；形狀取自資料集，還沒有正式出處', confNew: '這個政權或領地是新出現的，但還沒有記載它成立的事件與出處', confChange: '疆界在這一天有變動，但還沒有記載變動原因的事件與出處', confMinor: '形狀與前一段只有細微差異，可能是資料版本不同，也可能是小幅調整，尚未確認', confNoCite: '起始變動沒有出處', confBelow: '起始變動有出處，但還不到已查證的門檻（一筆 A 級，或兩個獨立來源的 B 級）', geometry: '國界來源', license: '幾何授權', osm: '含 OpenStreetMap 來源線段（ODbL）', close: '關閉',
     campNote: '陣營只作補充，不影響填色', until: '至',
     conflicts: '相關衝突（當日進行中）', noConflicts: '當日沒有進行中的衝突', events: '事件', noEvents: '沒有相關事件',
-    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於',
+    loading: '載入中…', tabOverview: '概要', note: '註記', tabEvents: '事件', tabsLabel: '政權資訊分頁', loadError: '事件載入失敗', jump: '跳到此日', now: '目前日期', appended: '事後追加', appendedAt: '追加於', verifiedTag: '已查證', showOnMap: '在地圖上看', battle: '戰役', pendingTag: '待考證',
+    capital: '首都', capitalNone: '無資料',
+    tabLeaders: '人物', leadersNone: '無資料', inheritFrom: '沿用主要政權：', inheritNote: '此地為併入地，沒有自己的元首或政府首腦，下列為主要政權當日的人物。',
     occ: { annexed: '併入', civil_administration: '佔領', military_administration: '佔領' } as Record<string, string>,
     occSuffix: '（非主權）',
     kind: { annexed: '併入（正式或事實；國際未承認割讓）', civil_administration: '民政管理（帝國專員轄區、保護國、總督府等）', military_administration: '軍事管理' } as Record<string, string>,
     occupation: '佔領', occKind: '控制程度', occBasis: '依據', occPending: '待查證（依據事件尚無合格出處）', occNoBasis: '待查證（尚無依據事件）', coOccupied: '共同佔領：缺分區幾何，標示主要佔領方',
     role: { belligerent: '交戰方', signatory: '簽署方', other: '相關', border_start: '國界起始', border_end: '國界結束', conflict_start: '開戰', conflict_end: '停戰／投降' } as Record<string, string>,
+    controlZone: '控制區',
+    czEvidence: '史料狀態', czPeriod: '有效期間', czTheater: '戰區', czCamp: '陣營',
+    czCampBasis: '依據', czCampNone: '陣營未建置', czSupplement: '補充', czDisputed: '爭議領土',
+    czUncertain: '不確定', czAttested: '已查證', czInterp: '非史料', czOutside: '不在有效區間', czUnknown: '不明',
   },
   en: {
     period: 'Valid', status: 'Status', deJure: 'Border', notSovereign: 'Not sovereign (occupation administration)', start: 'Began with', end: 'Ended with',
     none: 'Existed before this trial (not traced)', open: 'Not ended within this trial', camp: 'Camp (supplement)',
-    campNone: 'Camp not set', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
+    campNone: 'Camp not set', dispute: 'Sovereignty dispute', disputeLayered: 'Layered sovereignty', disputeLayeredNote: 'Nominal sovereignty and actual government stood side by side; this was not a territorial quarrel. Both are recorded.', disputeNote: 'More than one party claimed this land; this system does not rule on who was right.', disputeNoRecord: 'no source found; extent not drawn', disputeEffective: 'in effect at the time', confBeyond: 'Same shape as the preceding period, whose sources are maps of about 1910 and do not reach this period; no source of its own yet', sourcesTitle: 'Sources', usedFor: 'Used for', sourceRef: 'Source', noCitation: 'No formal source yet', eventBelow: 'Sourced, but below the threshold for verified (one grade A, or two independent grade B sources)', confidence: 'Confidence', confVerified: 'Verified', confPending: 'Pending verification', confDataset: 'Border shape comes from a dataset; its dates have no formal source yet', confRecordB: 'This border has a source, but only one grade-B source', startMonth: 'The start date is certain only to the month; the day shown comes from the dataset and has no formal source', startYear: 'The start date is certain only to the year; the day shown comes from the dataset and has no formal source', borderSources: 'Border sources', grade: 'grade', confBaseline: 'Border as it stood at the 1908 starting point; shape comes from a dataset and has no formal source yet', confNew: 'This regime or territory is new here, but the event that created it has not been recorded with a source', confChange: 'The border changed on this day, but the event behind the change has not been recorded with a source', confMinor: 'The shape differs only slightly from the previous segment; it may be a dataset revision or a small adjustment — not yet confirmed', confNoCite: 'The starting change has no source', confBelow: 'The starting change is sourced but below the verified threshold (one grade-A source, or grade-B sources from two independent families)', geometry: 'Border source', license: 'Geometry licence', osm: 'Contains OpenStreetMap-derived segments (ODbL)', close: 'Close',
     campNote: 'Camp is supplementary and does not affect fill', until: 'to',
     conflicts: 'Conflicts (ongoing on this date)', noConflicts: 'No ongoing conflict on this date', events: 'Events', noEvents: 'No related events',
-    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added',
+    loading: 'Loading…', tabOverview: 'Overview', note: 'Note', tabEvents: 'Events', tabsLabel: 'Regime details', loadError: 'Could not load events', jump: 'Go to this date', now: 'Current date', appended: 'Added later', appendedAt: 'added', verifiedTag: 'Verified', showOnMap: 'Show on map', battle: 'Battle', pendingTag: 'Unverified',
+    capital: 'Capital', capitalNone: 'No data',
+    tabLeaders: 'People', leadersNone: 'No data', inheritFrom: 'From the governing state: ', inheritNote: 'Annexed territory with no head of state or government of its own; people shown are those of the governing state on this date.',
     occ: { annexed: 'annexation', civil_administration: 'occupation', military_administration: 'occupation' } as Record<string, string>,
     occSuffix: ' (not sovereign)',
     kind: { annexed: 'Annexed (formal or de facto; not internationally recognised)', civil_administration: 'Civil administration (Reichskommissariat, protectorate, General Government…)', military_administration: 'Military administration' } as Record<string, string>,
     occupation: 'Occupation', occKind: 'Control', occBasis: 'Basis', occPending: 'Pending (basis event has no qualified source)', occNoBasis: 'Pending (no basis event)', coOccupied: 'Joint occupation: no zone geometry, main occupier shown',
     role: { belligerent: 'Belligerent', signatory: 'Signatory', other: 'Related', border_start: 'Border begins', border_end: 'Border ends', conflict_start: 'War begins', conflict_end: 'War ends' } as Record<string, string>,
+    controlZone: 'Control zone',
+    czEvidence: 'Evidence', czPeriod: 'Valid period', czTheater: 'Theater', czCamp: 'Camp',
+    czCampBasis: 'Basis', czCampNone: 'Camp not set', czSupplement: 'Supplement', czDisputed: 'Disputed',
+    czUncertain: 'uncertain', czAttested: 'Attested', czInterp: 'Not attested', czOutside: 'Outside range', czUnknown: 'Unknown',
   },
 } as const;
-export type SovereigntyTab = 'overview' | 'events';
+interface TimelineItem {
+  ev: RegimeEventDto;
+  roles: string[];
+  additions: { role: string; roleText: string; addedOn: string; note: string }[];
+  when: 'past' | 'future';
+  /** 目前日期標線插在這張卡片前（T2）。 */
+  markerBefore: boolean;
+  title: string;
+  pending: boolean;
+  battle: boolean;
+}
+export type SovereigntyTab = 'overview' | 'events' | 'leaders';
 /** 佔領方簡稱（面板性質用：「德國佔領（非主權）」）；沒列的用政權名。 */
 const OCCUPIER_SHORT: Record<string, { 'zh-Hant': string; en: string }> = {
   'deutsches-reich': { 'zh-Hant': '德國', en: 'German' }, 'kingdom-of-italy': { 'zh-Hant': '義大利', en: 'Italian' },
@@ -56,7 +94,7 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
 @Component({
   selector: 'wl-sovereignty-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideX, EventRef, NgTemplateOutlet, ...SANRING_TABS_IMPORTS],
+  imports: [LucideX, NgTemplateOutlet, CitationPopover, PersonCard, SourceDisclosure, FootnoteList, FootnoteSups, StatusChip, ...SANRING_TABS_IMPORTS],
   template: `
     <article data-testid="sovereignty-card" [class]="embedded() ? 'flex min-h-0 flex-1 flex-col' : 'wl-paper flex max-h-[inherit] min-h-0 w-[340px] flex-col p-4'"
       [attr.role]="embedded() ? null : 'dialog'" [attr.aria-label]="embedded() ? null : regimeName()" [attr.data-layer-status]="props().layerStatus">
@@ -79,8 +117,14 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
               <span data-testid="sovereignty-card-tab-events-count" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ regimeEvents()?.length }}</span>
             }
           </sanring-tabs-trigger>
+          <sanring-tabs-trigger value="leaders" data-testid="sovereignty-card-tab-leaders">{{ t().tabLeaders }}
+            @if (personCount() > 0) {
+              <!-- 不重複的人數（同一人多個角色只算 1；沿用主要政權時算實際列出的人） -->
+              <span data-testid="sovereignty-card-tab-leaders-count" class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ personCount() }}</span>
+            }
+          </sanring-tabs-trigger>
         </sanring-tabs-list>
-        <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+        <div data-testid="sovereignty-card-body" class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain pr-1 [overflow-wrap:anywhere]">
           <sanring-tabs-content value="overview" class="mt-3">
             <div data-testid="sovereignty-card-panel-overview">
               <ng-container *ngTemplateOutlet="overview" />
@@ -101,40 +145,136 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         </section>
             </div>
           </sanring-tabs-content>
+          <sanring-tabs-content value="leaders" class="mt-3">
+            <!-- 人物分頁（Tai 2026-11-07：由「領導人」改名；P1 只放當天在任的領導人）。查看詳情開大型閱讀對話框，不在面板內展開。 -->
+            <div data-testid="sovereignty-card-panel-leaders">
+              @if (ownGroups().length === 0 && inheritedGroups().length === 0) {
+                <p class="wl-text2 text-wl-on-surface-variant">{{ t().leadersNone }}</p>
+              }
+              @if (ownGroups().length > 0) {
+                <ul class="space-y-2" [attr.aria-label]="t().tabLeaders">
+                  @for (g of ownGroups(); track g.key) {
+                    <li data-testid="sovereignty-card-leader"><wl-person-card [records]="g.records" [lang]="lang()" (open)="personOpen.emit($event)" /></li>
+                  }
+                </ul>
+              }
+              @if (inheritedGroups().length > 0) {
+                <!-- 併入地沒有自己的元首／首腦：沿用主要政權（依 occupation.occupierRegimeId，controlKind = annexed），另起一組並明示 -->
+                <section data-testid="sovereignty-card-leaders-inherited" [class.mt-4]="ownGroups().length > 0">
+                  <p data-testid="sovereignty-card-leaders-inherited-note" class="mb-2 rounded-sm border-l-2 border-wl-primary bg-wl-surface-container px-2 py-1.5 wl-text2">
+                    {{ t().inheritFrom }}{{ inheritedFrom() }}
+                    <span class="block text-[11px] text-wl-on-surface-variant">{{ t().inheritNote }}</span>
+                  </p>
+                  <ul class="space-y-2" [attr.aria-label]="t().inheritFrom + inheritedFrom()">
+                    @for (g of inheritedGroups(); track g.key) {
+                      <li data-testid="sovereignty-card-leader" data-inherited="true"><wl-person-card [records]="g.records" [lang]="lang()" (open)="personOpen.emit($event)" /></li>
+                    }
+                  </ul>
+                </section>
+              }
+            </div>
+          </sanring-tabs-content>
           <sanring-tabs-content value="events" class="mt-3">
             <div data-testid="sovereignty-card-panel-events">
-        <!-- 事件時間線：與此政權相關、有日期的事件（結構同起訖變動：名稱 → 日期 → 查證＋出處）；點日期跳到該日 -->
-        <section data-testid="sovereignty-card-timeline" class="">
+        <!-- 事件時間線 v2（ARCHITECTURE.md §10 v2 §2–§3）：左側 24px 時間線欄（2px 中灰直線從第一個事件畫到最後一個，每事件一個 10px 節點，
+             6px 短橫線連到卡片；實心＝已查證、空心＝待考證、⚔＝戰役；選取時節點 14px 品牌色＋卡片左 3px 品牌色邊）。
+             卡片不收合：日期列（13px 等寬灰＋考證圖示）、標題（15px 粗體最多兩行）、tag（12px）；點卡片選取（同時只有一張）並熱跳日期，
+             選取時往下延伸：補充參與方、出處（C1：只有選取後才顯示）、「在地圖上看」；再點一次收起。
+             目前日期（T2）：一條品牌色標線插在前後兩個事件之間；晚於目前日期的事件 60% 透明（T1）。月份標頭 sticky 28px，前面 6px 小方塊。 -->
+        <section data-testid="sovereignty-card-timeline" class="relative">
           <h3 class="sr-only">{{ t().events }}</h3>
           @switch (eventsStatus()) {
             @case ('loading') { <p class="wl-text2 text-wl-on-surface-variant">{{ t().loading }}</p> }
             @case ('error') { <p class="wl-text2 text-wl-error">{{ t().loadError }}</p> }
             @default {
-              <ol class="relative ml-1 border-l border-wl-outline-variant">
-                @for (e of timeline(); track e.ev.id) {
-                  <li data-testid="sovereignty-card-timeline-item" [attr.data-event-id]="e.ev.id" [attr.data-when]="e.when" class="relative mb-3 pl-4 wl-text2"
-                    [class.opacity-60]="e.when === 'future'">
-                    <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full border border-wl-outline" [class.bg-wl-secondary]="e.when === 'now'" [class.bg-wl-surface]="e.when !== 'now'" aria-hidden="true"></span>
-                    <div class="mb-0.5 flex flex-wrap items-center gap-1.5">
-                      <button type="button" data-testid="sovereignty-card-timeline-jump" class="tabular-nums font-semibold underline decoration-dotted underline-offset-2 hover:text-wl-secondary"
-                        [attr.aria-label]="t().jump + ' ' + e.ev.occurred.start" (click)="eventJump.emit(e.ev.occurred.start ?? '')">{{ e.ev.occurred.start }}</button>
-                      @for (r of e.roles; track r) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] text-wl-on-surface-variant">{{ r }}</span> }
-                      @if (e.when === 'now') { <span class="text-[11px] text-wl-secondary">{{ t().now }}</span> }
+              @if (timeline().length === 0) {
+                <p class="wl-text2 text-wl-on-surface-variant">{{ t().noEvents }}</p>
+              } @else {
+                <div class="relative" [attr.data-virtual]="timeline().length > 50 ? 'true' : null">
+                  <!-- 直線：從第一個節點到最後一個節點（節點中心＝卡片頂 + 14px） -->
+                  <span data-testid="sovereignty-card-timeline-rail" aria-hidden="true" class="absolute bottom-[14px] left-[11px] top-[42px] w-[2px] bg-wl-outline"></span>
+                  @for (g of timelineGroups(); track g.month) {
+                    <!-- 標線落在月份交界：畫在月份標頭之前（介於前後兩個事件之間） -->
+                    @if (g.items[0].markerBefore) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
+                    <div data-testid="sovereignty-card-timeline-group" [attr.data-month]="g.month">
+                      <div data-testid="sovereignty-card-timeline-month" class="sticky top-0 z-[2] flex h-[28px] items-center gap-2 bg-wl-surface wl-label text-wl-on-surface-variant">
+                        <span aria-hidden="true" class="ml-[9px] size-[6px] bg-wl-outline"></span>{{ g.label }}</div>
+                      <ol class="flex flex-col gap-2 pb-2">
+                        @for (e of g.items; track e.ev.id; let first = $first) {
+                          @if (e.markerBefore && !first) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
+                          <li data-testid="sovereignty-card-timeline-item" [attr.data-event-id]="e.ev.id" [attr.data-when]="e.when"
+                            [attr.data-selected]="selectedEvent() === e.ev.id ? 'true' : null" [attr.data-pending]="e.pending ? 'true' : null" [attr.data-battle]="e.battle ? 'true' : null"
+                            class="relative pl-6" [class.opacity-60]="e.when === 'future'"
+                            [style.content-visibility]="timeline().length > 50 ? 'auto' : null" [style.contain-intrinsic-size]="timeline().length > 50 ? 'auto 84px' : null">
+                            <!-- 節點＋6px 短橫線（和日期列垂直對齊） -->
+                            <span data-testid="sovereignty-card-timeline-node" aria-hidden="true" [attr.data-kind]="e.battle ? 'battle' : e.pending ? 'pending' : 'verified'"
+                              class="absolute left-[12px] top-[14px] z-[1] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
+                              [class.size-[10px]]="selectedEvent() !== e.ev.id && !e.battle" [class.size-[14px]]="selectedEvent() === e.ev.id || e.battle"
+                              [class.border-2]="!e.battle" [class.border-wl-outline]="!e.battle && selectedEvent() !== e.ev.id" [class.border-wl-secondary]="!e.battle && selectedEvent() === e.ev.id"
+                              [class.bg-wl-outline]="!e.battle && !e.pending && selectedEvent() !== e.ev.id" [class.bg-wl-secondary]="!e.battle && !e.pending && selectedEvent() === e.ev.id"
+                              [class.bg-wl-surface]="e.battle || e.pending" [class.text-wl-secondary]="e.battle && selectedEvent() === e.ev.id"
+                              [class.text-[12px]]="e.battle" [class.leading-none]="e.battle">@if (e.battle) {⚔}</span>
+                            <span aria-hidden="true" class="absolute left-[17px] top-[13px] h-px w-[7px] bg-wl-outline"></span>
+                            <div role="button" tabindex="0" data-testid="sovereignty-card-timeline-card" [attr.aria-expanded]="selectedEvent() === e.ev.id"
+                              class="wl-event-card cursor-pointer rounded-wl-sm border bg-wl-surface px-3 py-1.5 transition-shadow hover:shadow-[var(--wl-shadow-panel)] focus-visible:outline-2 focus-visible:outline-wl-secondary"
+                              [class.border-dashed]="e.pending" [class.border-wl-outline]="e.pending" [class.border-wl-outline-variant]="!e.pending"
+                              [class.border-l-[3px]]="selectedEvent() === e.ev.id" [class.border-l-wl-secondary]="selectedEvent() === e.ev.id"
+                              (click)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')" (keydown.enter)="pickEvent(e.ev.id, e.ev.occurred.start ?? '')"
+                              (keydown.space)="$event.preventDefault(); pickEvent(e.ev.id, e.ev.occurred.start ?? '')">
+                              <div class="flex h-[20px] items-center gap-1.5 font-mono text-[13px] leading-[20px] text-wl-on-surface-variant">
+                                <span data-testid="sovereignty-card-timeline-date" class="tabular-nums">{{ e.ev.occurred.start }}</span>
+                                <span data-testid="sovereignty-card-timeline-status" class="ml-auto" [attr.title]="e.battle ? t().battle : e.pending ? t().pendingTag : t().verifiedTag"
+                                  [class.text-wl-tertiary]="!e.pending && !e.battle">{{ e.battle ? '⚔' : e.pending ? '?' : '✓' }}</span>
+                              </div>
+                              <div data-testid="sovereignty-card-timeline-title" class="line-clamp-2 text-[15px] font-semibold leading-[20px] text-wl-on-surface">{{ e.title }}</div>
+                              <div class="mt-1 flex flex-wrap items-center gap-1 text-[12px] leading-[16px]">
+                                @for (r of e.roles; track r) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-wl-on-surface-variant">{{ r }}</span> }
+                                @if (e.battle) { <span data-testid="sovereignty-card-timeline-battle" class="rounded-sm bg-wl-surface-container-high px-1">⚔ {{ t().battle }}</span> }
+                                @if (e.pending) { <span data-testid="sovereignty-card-timeline-pending" class="wl-chip-interp">{{ t().pendingTag }}</span> }
+                              </div>
+                              @if (selectedEvent() === e.ev.id) {
+                                <div data-testid="sovereignty-card-timeline-detail" class="mt-2 border-t border-wl-outline-variant pt-2 wl-text2" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+                                  @for (a of e.additions; track a.role) {
+                                    <!-- 事後追加的參與方（方案 A）：角色、追加日期、理由；原有參與方與引用不變 -->
+                                    <p data-testid="sovereignty-card-timeline-addition" [attr.data-role]="a.role" class="mb-1 rounded-sm border-l-2 border-wl-outline pl-2 text-[11px] text-wl-on-surface-variant">
+                                      <span class="font-semibold">{{ t().appended }}・{{ a.roleText }}</span>
+                                      <span class="tabular-nums">（{{ t().appendedAt }} {{ a.addedOn }}）</span>
+                                      @if (a.note) { <span class="block">{{ a.note }}</span> }
+                                    </p>
+                                  }
+                                  <!-- C1：出處只在選取後顯示（不重複標題與日期） -->
+                                  <!-- 查證標籤＋出處：出處用共用的來源元件列出（含等級）；沒有出處時寫明 -->
+                                  <div class="mb-1"><wl-status-chip [text]="e.ev.verification === 'pending' ? t().confPending : t().confVerified" [tip]="e.ev.verification === 'pending' ? eventWhy(e.ev) : ''"
+                                    [verified]="e.ev.verification !== 'pending'" [testId]="e.ev.verification === 'pending' ? 'sovereignty-card-timeline-detail-pending' : 'sovereignty-card-timeline-detail-verified'" /></div>
+                                  @if (e.ev.citations.length) {
+                                    <wl-source-disclosure data-testid="sovereignty-card-timeline-detail-sources" [items]="eventSources(e.ev)" [lang]="lang()" [inline]="true" />
+                                  } @else {
+                                    <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-timeline-detail-no-citation">{{ t().noCitation }}</div>
+                                  }
+                                  <div class="mt-2 flex gap-2">
+                                    <button type="button" data-testid="sovereignty-card-timeline-map" class="wl-btn-secondary h-8 px-3 text-[12px]"
+                                      (click)="showEventOnMap(e.ev.occurred.start ?? '')">{{ t().showOnMap }}</button>
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          </li>
+                        }
+                      </ol>
                     </div>
-                    <wl-event-ref [ev]="e.ev" prefix="sovereignty-card-timeline" [lang]="lang()" />
-                    @for (a of e.additions; track a.role) {
-                      <!-- 事後追加的參與方（方案 A）：角色、追加日期、理由；原有參與方與引用不變 -->
-                      <p data-testid="sovereignty-card-timeline-addition" [attr.data-role]="a.role" class="mt-1 rounded-sm border-l-2 border-wl-outline pl-2 text-[11px] text-wl-on-surface-variant">
-                        <span class="font-semibold">{{ t().appended }}・{{ a.roleText }}</span>
-                        <span class="tabular-nums">（{{ t().appendedAt }} {{ a.addedOn }}）</span>
-                        @if (a.note) { <span class="block">{{ a.note }}</span> }
-                      </p>
-                    }
-                  </li>
-                } @empty {
-                  <li class="pl-4 wl-text2 text-wl-on-surface-variant">{{ t().noEvents }}</li>
-                }
-              </ol>
+                  }
+                  @if (markerAtEnd()) { <ng-container [ngTemplateOutlet]="nowMarker" /> }
+                </div>
+                <ng-template #nowMarker>
+                  <!-- T2：目前日期標線（左 12px 品牌色圓點、右 1px 品牌色虛線＋日期） -->
+                  <div data-testid="sovereignty-card-timeline-now" class="relative z-[1] my-1 flex h-5 items-center" aria-current="date">
+                    <span aria-hidden="true" class="ml-[6px] size-3 flex-none rounded-full bg-wl-secondary"></span>
+                    <span aria-hidden="true" class="mx-1 flex-1 border-t border-dashed border-wl-secondary"></span>
+                    <span class="flex-none font-mono text-[12px] tabular-nums text-wl-secondary">{{ currentDate() }}</span>
+                    <span aria-hidden="true" class="ml-1 w-3 border-t border-dashed border-wl-secondary"></span>
+                  </div>
+                </ng-template>
+              }
             }
           }
         </section>
@@ -143,12 +283,63 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
         </div>
       </sanring-tabs>
       } @else {
-      <div data-testid="sovereignty-card-body" class="mt-2 min-h-0 overflow-y-auto overscroll-contain pr-1">
+      <div data-testid="sovereignty-card-body" class="mt-2 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain pr-1 [overflow-wrap:anywhere]">
         <ng-container *ngTemplateOutlet="overview" />
       </div>
       }
       <ng-template #overview>
-      <dl class="grid grid-cols-[76px_1fr] gap-x-2 gap-y-1.5 wl-text2">
+      @if (controlZone(); as cz) {
+        <!-- 控制區欄位：史料狀態、有效期間、戰區、陣營＋依據、補充（預設收合）、爭議 -->
+        <section class="mb-4 border-b border-wl-outline-variant pb-4">
+          <h3 class="wl-sub-title mb-2">{{ t().controlZone }}</h3>
+          <dl class="grid grid-cols-[72px_minmax(0,1fr)] gap-x-2 gap-y-3.5 wl-text2">
+            <dt class="text-wl-on-surface-variant">{{ t().czEvidence }}</dt>
+            <dd data-testid="feature-card-evidence">
+              @if (czEvidence() === 'attested') {
+                <span class="wl-stamp">{{ t().czAttested }} {{ czAttestedDate() }}</span>
+              } @else {
+                <span class="wl-chip-interp">{{ czEvidenceText() }}</span>
+              }
+            </dd>
+            <dt class="text-wl-on-surface-variant">{{ t().czPeriod }}</dt>
+            <dd>{{ czPeriod() }}
+              @if (czUncertainty(); as u) { <div class="text-wl-on-surface-variant">{{ u }}</div> }
+            </dd>
+            <dt class="text-wl-on-surface-variant">{{ t().czTheater }}</dt>
+            <dd>{{ czTheater() }}</dd>
+            <dt class="text-wl-on-surface-variant">{{ t().czCamp }}</dt>
+            <dd data-testid="feature-card-camp" [attr.data-camp]="czCamp() ?? 'unassigned'">
+              @if (cz.props.controllerAlignment; as al) {
+                {{ czCampLabel() }}（{{ czAlignmentPeriod() }}）<span data-testid="feature-card-camp-basis"><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('cz-camp') }" /></span>
+              } @else {
+                <span class="text-wl-on-surface-variant">{{ t().czCampNone }}</span>
+              }
+            </dd>
+            @if (czSupplements().length > 0) {
+              <dt class="text-wl-on-surface-variant">
+                <span class="wl-badge" data-testid="feature-card-supplement-label">{{ t().czSupplement }}</span>
+              </dt>
+              <dd data-testid="feature-card-supplements">
+                <details>
+                  <summary class="cursor-pointer text-wl-on-surface-variant wl-text2">（{{ czSupplements().length }}）</summary>
+                  @for (e of czSupplements(); track e.eventId) {
+                    <div class="mt-1" data-testid="feature-card-supplement">
+                      <span>{{ e.date }}　{{ e.summary }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('cz-supp:' + e.eventId) }" />
+                    </div>
+                  }
+                </details>
+              </dd>
+            }
+            @if (cz.props.isDisputed) {
+              <dt class="text-wl-on-surface-variant"></dt><dd><span class="wl-badge">{{ t().czDisputed }}</span></dd>
+            }
+          </dl>
+          <footer class="mt-2 flex justify-end">
+            <wl-citation-popover [citations]="cz.props.citations" [lang]="lang()" />
+          </footer>
+        </section>
+      }
+      <dl class="grid grid-cols-[76px_minmax(0,1fr)] gap-x-2 gap-y-3.5 wl-text2">
         <dt class="text-wl-on-surface-variant">{{ t().status }}</dt>
         <dd data-testid="sovereignty-card-status" [attr.data-control-kind]="occupation()?.controlKind ?? null">{{ statusText() }}</dd>
         @if (occupation(); as o) {
@@ -162,12 +353,28 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           <dt class="text-wl-on-surface-variant">{{ t().occBasis }}</dt>
           <dd data-testid="sovereignty-card-occupation-basis" class="min-w-0" [attr.data-verification]="o.verification">
             @if (o.basisEvent; as ev) {
-              <wl-event-ref [ev]="ev" prefix="sovereignty-card-occupation" [lang]="lang()" />
+              <span data-testid="sovereignty-card-occupation-evidence" class="mr-1 inline-block align-baseline">
+                @if (ev.verification === 'pending') {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: eventWhy(ev), verified: false, testId: 'sovereignty-card-occupation-pending' }" />
+                } @else {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-occupation-verified' }" />
+                }
+              </span>
+              <span data-testid="sovereignty-card-occupation-event-date" class="mr-1 tabular-nums text-wl-on-surface-variant">{{ ev.occurred.start }}</span>
+              <span data-testid="sovereignty-card-occupation-event-name">{{ loc(ev.summary) || ev.eventKind }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('occupation') }" />
             } @else { <span class="text-wl-on-surface-variant">{{ t().occNoBasis }}</span> }
           </dd>
         }
         <dt class="text-wl-on-surface-variant">{{ t().period }}</dt>
         <dd>{{ props().validPeriod.start }} {{ t().until }} {{ props().validPeriod.end ?? '—' }}</dd>
+        <dt class="text-wl-on-surface-variant">{{ t().capital }}</dt>
+        <dd data-testid="sovereignty-card-capital">
+          @if (capital(); as cap) {
+            <span data-testid="sovereignty-card-capital-name">{{ capitalName() }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('capital') }" />
+          } @else {
+            <span class="text-wl-on-surface-variant" data-testid="sovereignty-card-capital-none">{{ t().capitalNone }}</span>
+          }
+        </dd>
         @if (noteText(); as n) {
           <dt class="text-wl-on-surface-variant">{{ t().note }}</dt>
           <dd data-testid="sovereignty-card-note" class="min-w-0 whitespace-pre-line">{{ n }}</dd>
@@ -176,8 +383,17 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           <dt class="text-wl-on-surface-variant">{{ row.label }}</dt>
           <dd [attr.data-testid]="'sovereignty-card-' + row.key" class="min-w-0">
             @if (row.ev; as ev) {
-              <!-- 起始／結束變動同一結構：事件名稱 → 日期 → 查證狀態＋出處（Tai 2026-10-31；與衝突卡共用 wl-event-ref） -->
-              <wl-event-ref [ev]="ev" prefix="sovereignty-card" [lang]="lang()" />
+              <!-- 標籤在最前面，接著日期、事件名稱，出處用上標編號（統一列在底部「資料來源」；Tai 2026-11-14） -->
+              <span data-testid="sovereignty-card-evidence" class="mr-1 inline-block align-baseline">
+                @if (ev.verification === 'pending') {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: eventWhy(ev), verified: false, testId: 'sovereignty-card-pending' }" />
+                } @else {
+                  <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-verified' }" />
+                }
+              </span>
+              <span data-testid="sovereignty-card-event-date" class="mr-1 tabular-nums text-wl-on-surface-variant">{{ ev.occurred.start }}</span>
+              <span data-testid="sovereignty-card-event-name">{{ loc(ev.summary) || ev.eventKind }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor(row.key) }" />
+              @if (!ev.citations.length) { <span class="sr-only" data-testid="sovereignty-card-no-citation">{{ t().noCitation }}</span> }
             } @else {
               <span class="text-wl-on-surface-variant">{{ row.key === 'start' ? t().none : t().open }}</span>
             }
@@ -188,21 +404,93 @@ const CAMP_NAME: Record<string, { 'zh-Hant': string; en: string }> = {
           {{ campText() }}
           <div class="text-wl-on-surface-variant">{{ t().campNote }}</div>
         </dd>
+        @if (props().confidence; as conf) {
+          <dt class="text-wl-on-surface-variant">{{ t().confidence }}</dt>
+          <dd data-testid="sovereignty-card-confidence" [attr.data-confidence]="conf" class="min-w-0">
+            <!-- 原因放在標籤的提示裡（滑鼠移上去或鍵盤聚焦時顯示），不再佔一行 -->
+            @if (conf === 'verified') {
+              <ng-container *ngTemplateOutlet="chip; context: { text: t().confVerified, tip: '', verified: true, testId: 'sovereignty-card-confidence-chip' }" />
+            } @else {
+              <ng-container *ngTemplateOutlet="chip; context: { text: t().confPending, tip: confidenceWhy(), verified: false, testId: 'sovereignty-card-confidence-chip' }" />
+            }<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('confidence') }" />
+            @if (props().startDatePrecision; as sp) {
+              <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-start-precision" [attr.data-precision]="sp">{{ sp === 'year' ? t().startYear : t().startMonth }}</div>
+            }
+          </dd>
+        }
+        @for (d of props().disputes ?? []; track d.id) {
+          <dt class="text-wl-on-surface-variant" data-testid="sovereignty-card-dispute-label">{{ d.kind === 'layered' ? t().disputeLayered : t().dispute }}</dt>
+          <dd data-testid="sovereignty-card-dispute" [attr.data-dispute]="d.slug" [attr.data-kind]="d.kind" class="min-w-0">
+            <div class="border-l-2 pl-2" [style.border-color]="d.kind === 'layered' ? '#6b5d52' : '#b3261e'">{{ loc(d.summary) }}</div>
+            <ul class="mt-1 flex flex-col gap-1">
+              @for (c of d.claims; track $index) {
+                <li data-testid="sovereignty-card-dispute-claim" [attr.data-claimant]="c.claimantRegimeSlug" [attr.data-own]="c.claimantRegimeId === props().regimeId">
+                  <span class="font-semibold">{{ claimantName(c.claimantRegimeId, c.claimantRegimeSlug) }}</span>@if (c.effective) { <span class="wl-badge ml-1">{{ t().disputeEffective }}</span> }：{{ loc(c.position) }}
+                  @if (!c.recordId) { <span class="text-wl-on-surface-variant">（{{ t().disputeNoRecord }}）</span> }
+                </li>
+              }
+            </ul>
+            <div class="mt-1 text-wl-on-surface-variant">{{ d.kind === 'layered' ? t().disputeLayeredNote : t().disputeNote }}</div>
+          </dd>
+        }
         <dt class="text-wl-on-surface-variant">{{ t().geometry }}</dt>
-        <dd data-testid="sovereignty-card-geometry">
-          <div>{{ props().geometry.sourceTitle }}</div>
-          <div class="text-wl-on-surface-variant">{{ props().geometry.locator }}</div>
-          <div class="text-wl-on-surface-variant">{{ t().license }}：{{ props().geometry.geometryLicense }}@if (props().geometry.attribution; as a) {；{{ a }}}</div>
+        <dd data-testid="sovereignty-card-geometry" class="min-w-0">
+          <!-- 國界形狀的來源也是來源：只留名稱與上標，引用位置、授權、署名在底部「資料來源」 -->
+          <span>{{ props().geometry.sourceTitle }}</span><ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('geometry') }" />
           @if (osmDerived()) { <div class="text-wl-on-surface-variant" data-testid="sovereignty-card-osm">{{ t().osm }}</div> }
         </dd>
       </dl>
+      <!-- 資料來源：與人物彈窗同一種做法——內容旁只放編號，出處統一列在這裡（core/footnotes.ts 編號、shared/footnotes 顯示） -->
+      <wl-footnote-list #srcList class="mt-5" prefix="sovereignty-card" [footnotes]="footnotes()" [lang]="lang()" />
       </ng-template>
+      <!-- 上標來源編號、狀態標籤：共用零件（shared/footnotes/footnote-ui.ts） -->
+      <ng-template #sup let-ns><wl-footnote-sups [ns]="ns" prefix="sovereignty-card" [lang]="lang()" (pick)="showNote($event)" /></ng-template>
+      <ng-template #chip let-text="text" let-tip="tip" let-verified="verified" let-testId="testId"><wl-status-chip [text]="text" [tip]="tip" [verified]="verified" [testId]="testId" /></ng-template>
     </article>
   `,
 })
 export class SovereigntyCard {
   readonly props = input.required<SovereigntyFeatureProperties>();
+  /** 首都、主權紀錄引文的來源項（core/record-sources.ts）；顯示交給 wl-source-disclosure。 */
+  protected readonly capitalSources = computed(() => capitalSourceItems(this.capital(), this.t().capital));
+  protected readonly recordSources = computed(() => citationItems(this.props().recordCitations));
+  /** 概要各欄的來源 → 編號清單（與人物彈窗共用 core/footnotes.ts）。欄位順序＝編號順序。 */
+  private readonly notes = computed(() => {
+    const t = this.t(); const p = this.props();
+    const cz = this.controlZone();
+    return numberSources([
+      ...(cz ? [
+        { key: 'cz-camp', label: t.czCamp, items: citationItems(this.czPrimaryAlignmentCitations()) },
+        ...this.czSupplements().map((e) => ({ key: 'cz-supp:' + e.eventId, label: t.czSupplement, items: citationItems(e.citations) })),
+      ] : []),
+      { key: 'occupation', label: t.occBasis, items: citationItems(p.occupation?.basisEvent?.citations) },
+      { key: 'capital', label: t.capital, items: this.capitalSources() },
+      { key: 'start', label: t.start, items: citationItems(p.startEvent?.citations) },
+      { key: 'end', label: t.end, items: citationItems(p.endEvent?.citations) },
+      { key: 'confidence', label: t.confidence, items: this.recordSources() },
+      { key: 'geometry', label: t.geometry, items: geometrySourceItems(p.geometry) },
+    ]);
+  });
+  protected readonly footnotes = computed(() => this.notes().list);
+  protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
+  private readonly srcListRef = viewChild<FootnoteList>('srcList');
+  /** 上標編號：展開「資料來源」、捲到該筆並聚焦。 */
+  protected showNote(n: number): void { this.srcListRef()?.reveal(n); }
+  /** 事件的出處 → 來源項（事件分頁展開時用）。 */
+  protected eventSources(ev: { citations: Parameters<typeof citationItems>[0] }) { return citationItems(ev.citations); }
+  /** 事件標「待查證」的原因（放在標籤的提示裡）。 */
+  protected eventWhy(ev: { citations: readonly unknown[] }): string {
+    return ev.citations.length ? this.t().eventBelow : this.t().noCitation;
+  }
   readonly regimeName = input('');
+  /** 爭議各方的顯示名稱（regimeId → 名稱）；沒給的用代號。 */
+  readonly claimantNames = input<Record<string, string>>({});
+  protected loc(text: Record<string, string> | null | undefined): string {
+    return localized(text ?? null, this.lang()).text;
+  }
+  protected claimantName(id: string, slug: string): string {
+    return this.claimantNames()[id] || slug;
+  }
   readonly originalName = input('');
   readonly originalLang = input('');
   /** 佔領方政權名（沒有簡稱時用） */
@@ -216,22 +504,96 @@ export class SovereigntyCard {
   readonly eventsStatus = input<'idle' | 'loading' | 'ok' | 'error'>('idle');
   /** 目前日期：時間線標示「目前」（最後一個不晚於此日的事件）與之後的事件。 */
   readonly currentDate = input('');
+  /** 該政權在當前日期的首都記錄（由頁面從 capitals 圖層資料取出，不額外請求）。 */
+  readonly capital = input<CapitalRecord | null>(null);
+  /** 該政權在當前日期的領導人列表（由頁面從 leaders 資料過濾，不額外請求）。 */
+  readonly leaders = input<LeaderRecord[]>([]);
+  /** 併入地沿用的主要政權人物（頁面依 occupation.occupierRegimeId 取出；只在 controlKind = annexed 時傳入）。 */
+  readonly inheritedLeaders = input<LeaderRecord[]>([]);
+  /** 沿用的主要政權顯示名（來自政權資料）；空字串＝不沿用。 */
+  readonly inheritedFrom = input('');
   /** 目前分頁（embedded 時）：由頁面保存，切換政權時保留（例如連續比較各政權的事件），面板關閉後回到「概要」。 */
   readonly tab = input<SovereigntyTab>('overview');
+  /** 控制區欄位（點控制區開面板時由頁面傳入，在概要分頁頂部顯示）。 */
+  readonly controlZone = input<ControlZoneSection | null>(null);
+  /** §13「在時間線上看」：選取並捲到這則事件（交戰方之一的面板，同時高亮）。 */
+  readonly highlightEvent = input<string | null>(null);
   readonly tabChange = output<SovereigntyTab>();
   readonly closed = output<void>();
   readonly conflictSelect = output<string>();
   readonly eventJump = output<string>();
+  /** 人物卡「查看詳情」：由頁面開人物閱讀對話框（trigger 用來在關閉後還原焦點）。 */
+  readonly personOpen = output<{ personId: string; trigger: HTMLElement }>();
   protected onTab(v: string) {
-    if (v === 'overview' || v === 'events') this.tabChange.emit(v);
+    if (v === 'overview' || v === 'events' || v === 'leaders') this.tabChange.emit(v);
   }
-  protected readonly timeline = computed(() => {
+
+
+  // ── 控制區 computeds ────────────────────────────────────────────────────────
+  protected readonly czEvidence = computed(() => this.controlZone()?.evidence ?? 'unknown');
+  protected readonly czAttestedDate = computed(() => this.controlZone()?.theater?.attestingSnapshot?.asOf ?? '');
+  protected readonly czEvidenceText = computed(() => {
+    const cz = this.controlZone();
+    if (!cz) return '';
+    const s = cz.theater;
+    switch (cz.evidence) {
+      case 'interpolated': return `${this.t().czInterp}：${s?.prevSnapshot?.asOf ?? '?'} → ${s?.nextSnapshot?.asOf ?? '?'}`;
+      case 'outside': return this.t().czOutside;
+      default: return this.t().czUnknown;
+    }
+  });
+  /** 區間字串（半開 [start, end)）。 */
+  private czPeriodStr(p: { start?: string | null; end?: string | null } | null | undefined): string {
+    if (!p) return '';
+    return `${p.start ?? '…'} – ${p.end ?? '…'}`;
+  }
+  protected readonly czPeriod = computed(() => this.czPeriodStr(this.controlZone()?.props.validPeriod));
+  protected readonly czUncertainty = computed(() => {
+    const v = this.controlZone()?.props.validPeriod;
+    if (!v) return '';
+    const parts: string[] = [];
+    const u = this.t().czUncertain;
+    const en = this.lang() === 'en';
+    if (v.startUncertainty) parts.push(`${en ? 'start' : '起'} ${u} ${this.czPeriodStr(v.startUncertainty)}`);
+    if (v.endUncertainty) parts.push(`${en ? 'end' : '迄'} ${u} ${this.czPeriodStr(v.endUncertainty)}`);
+    return parts.join('；');
+  });
+  protected readonly czTheater = computed(() => {
+    const cz = this.controlZone();
+    return cz ? theaterLabel(cz.props.theaterCode, this.lang()) : '';
+  });
+  protected readonly czCamp = computed(() => campOf(this.controlZone()?.props.controllerAlignment ?? null));
+  protected readonly czCampLabel = computed(() => {
+    const c = this.czCamp();
+    return c ? (CAMP_NAME[c]?.[this.lang() === 'en' ? 'en' : 'zh-Hant'] ?? c) : this.t().czCampNone;
+  });
+  protected readonly czAlignmentPeriod = computed(() =>
+    this.czPeriodStr(this.controlZone()?.props.controllerAlignment?.validPeriod),
+  );
+  protected readonly czPrimaryAlignmentCitations = computed(
+    () => this.controlZone()?.props.controllerAlignment?.citations.filter((c) => c.role === 'primary') ?? [],
+  );
+  /** 只列 occurred.start <= currentDate 的補充，預設收合在 <details>。 */
+  protected readonly czSupplements = computed(() => {
+    const cz = this.controlZone();
+    if (!cz) return [];
+    const date = this.currentDate();
+    return (cz.props.controllerSupplements ?? [])
+      .filter((e) => !date || (e.occurred.start ?? '') <= date)
+      .map((e) => ({
+        eventId: e.eventId,
+        date: e.occurred.start ?? '',
+        summary: localized(e.summary as Record<string, string> | null, this.lang()).text,
+        citations: e.citations,
+      }));
+  });
+  // ── end 控制區 computeds ─────────────────────────────────────────────────────
+
+  protected readonly timeline = computed((): TimelineItem[] => {
     const d = this.currentDate();
     const list = this.regimeEvents() ?? [];
-    let nowIdx = -1;
-    list.forEach((e, i) => {
-      if (d && (e.occurred.start ?? '') <= d) nowIdx = i;
-    });
+    // 目前日期標線插在第一個「晚於目前日期」的事件前（T2）；全部都早於目前日期時放在清單最後
+    const markerIdx = d ? list.findIndex((e) => (e.occurred.start ?? '') > d) : -1;
     return list.map((ev, i) => ({
       ev,
       roles: [...new Set(ev.roles.map((r) => this.t().role[r] ?? r))],
@@ -241,10 +603,106 @@ export class SovereigntyCard {
         addedOn: (a.addedAt ?? '').slice(0, 10),
         note: a.note ? ((this.lang() === 'en' ? a.note['en'] || a.note['zh-Hant'] : a.note['zh-Hant'] || a.note['en']) ?? '') : '',
       })),
-      when: (i === nowIdx ? 'now' : i < nowIdx ? 'past' : 'future') as 'past' | 'now' | 'future',
+      when: (d && (ev.occurred.start ?? '') > d ? 'future' : 'past') as 'past' | 'future',
+      markerBefore: !!d && i === markerIdx,
+      title: localized(ev.summary as Record<string, string> | null, this.lang()).text || ev.eventKind,
+      pending: ev.verification === 'pending',
+      battle: /battle/i.test(ev.eventKind ?? ''),
     }));
   });
 
+  /** 同一個月份的事件歸成一組（月份標頭 sticky）。 */
+  protected readonly timelineGroups = computed(() => {
+    const out: { month: string; label: string; items: TimelineItem[] }[] = [];
+    for (const e of this.timeline()) {
+      const month = (e.ev.occurred.start ?? '').slice(0, 7);
+      let g = out[out.length - 1];
+      if (!g || g.month !== month) {
+        const [y, m] = month.split('-');
+        g = { month, label: this.lang() === 'en' ? month : `${y}年${Number(m)}月`, items: [] };
+        out.push(g);
+      }
+      g.items.push(e);
+    }
+    return out;
+  });
+
+  /** 全部事件都早於目前日期：標線放在清單最後。 */
+  protected readonly markerAtEnd = computed(() => {
+    const items = this.timeline();
+    return !!this.currentDate() && items.length > 0 && !items.some((e) => e.markerBefore);
+  });
+  /** 卡片選取（同時只有一張；§10 v2 不再有收合按鈕）：選取時往下延伸細節。 */
+  protected readonly selectedEvent = signal<string | null>(null);
+  /** 點卡片：選取並把時間軸跳到該日期（熱跳）；再點一次被選取的卡片就收起。 */
+  protected pickEvent(id: string, date: string): void {
+    if (this.selectedEvent() === id) {
+      this.selectedEvent.set(null);
+      return;
+    }
+    this.selectedEvent.set(id);
+    if (date) this.eventJump.emit(date);
+  }
+  protected showEventOnMap(date: string): void {
+    if (date) this.eventJump.emit(date);
+  }
+
+  private readonly host = inject(ElementRef<HTMLElement>);
+  constructor() {
+    effect(() => {
+      const id = this.highlightEvent();
+      if (!id) return;
+      const items = this.timeline();
+      if (!items.length) return;
+      untracked(() => {
+        this.selectedEvent.set(id);
+        afterNextRender(() => {
+          const host = this.host.nativeElement as HTMLElement;
+          // sanring-tabs 只吃 defaultValue：切到事件分頁用分頁鈕本身（同使用者點擊）
+          const tabBtn = host.querySelector<HTMLElement>('[data-testid="sovereignty-card-tab-events"]');
+          if (tabBtn && tabBtn.getAttribute('aria-selected') !== 'true') tabBtn.click();
+        }, { injector: this.injector });
+        setTimeout(() => {
+          const host = this.host.nativeElement as HTMLElement;
+          const el = host.querySelector<HTMLElement>(`[data-testid="sovereignty-card-timeline-item"][data-event-id="${id}"]`);
+          const box = el?.closest<HTMLElement>('[data-testid="sovereignty-card-body"]');
+          if (!el || !box) return;
+          const delta = el.getBoundingClientRect().top - (box.getBoundingClientRect().top + box.clientHeight / 3);
+          box.scrollTo({ top: box.scrollTop + delta, behavior: 'auto' });
+        }, 120);
+      });
+    });
+    // 時間軸日期變動：清單自動捲到最接近的卡片（「目前」那張）
+    effect(() => {
+      const items = this.timeline();
+      if (this.tab() !== 'events' && !this.embedded()) return;
+      if (!items.length) return;
+      untracked(() => afterNextRender(() => {
+        // 清單平滑捲動，讓目前日期標線停在可見區域上方約 1/3 處（§10 v2 §3）
+        const el = (this.host.nativeElement as HTMLElement).querySelector<HTMLElement>('[data-testid="sovereignty-card-timeline-now"]');
+        // 只捲面板內的捲動區（不用 scrollIntoView，以免連帶捲動地圖區等外層容器）
+        const box = el && el.offsetParent !== null ? el.closest<HTMLElement>('[data-testid="sovereignty-card-body"]') : null;
+        if (!el || !box) return;
+        const er = el.getBoundingClientRect();
+        const br = box.getBoundingClientRect();
+        const delta = er.top - (br.top + br.height / 3);
+        if (Math.abs(delta) > 4) box.scrollTo({ top: box.scrollTop + delta, behavior: matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }, { injector: this.injector }));
+    });
+  }
+  private readonly injector = inject(Injector);
+
+  /** 同一人多角色合併成一張卡（依 personId）。 */
+  protected readonly ownGroups = computed(() => groupLeaders(this.leaders()));
+  protected readonly inheritedGroups = computed(() => (this.inheritedFrom() ? groupLeaders(this.inheritedLeaders()) : []));
+  /** 分頁數量：實際列出的不重複人數（兩組間同一 personId 也只算一次）。 */
+  protected readonly personCount = computed(() => new Set([...this.ownGroups(), ...this.inheritedGroups()].map((g) => g.key)).size);
+  protected readonly capitalName = computed(() => {
+    const cap = this.capital();
+    if (!cap) return '';
+    const n = cap.cityName;
+    return (this.lang() === 'en' ? n.en || n['zh-Hant'] : n['zh-Hant'] || n.en) ?? '';
+  });
   protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
   protected readonly occupation = computed(() => this.props().occupation ?? null);
   /** 性質：一般國界／非主權；有佔領歸屬時顯示「德國佔領（非主權）」「德國併入（非主權）」 */
@@ -278,6 +736,13 @@ export class SovereigntyCard {
     const n = (this.props() as unknown as { note?: Record<string, string> | null }).note;
     if (!n) return '';
     return (this.lang() === 'en' ? n['en'] || n['zh-Hant'] : n['zh-Hant'] || n['en']) ?? '';
+  });
+  /** 待查證的原因（docs/source-rules.md §5；confidenceBasis 來自 API）。 */
+  protected readonly confidenceWhy = computed(() => {
+    const b = this.props().confidenceBasis ?? '';
+    const t = this.t();
+    const fixed: Record<string, string> = { dataset_only: t.confDataset, baseline: t.confBaseline, new_no_event: t.confNew, change_no_event: t.confChange, minor_revision_no_event: t.confMinor, beyond_source: t.confBeyond, record_citation_single_b: t.confRecordB };
+    return fixed[b] ?? (b.endsWith('no_citation') || b.endsWith('missing') ? t.confNoCite : t.confBelow);
   });
   protected readonly osmDerived = computed(() => {
     const f = this.props().geometry.flags as unknown as { osmDerivedWayCount?: number } | null;

@@ -1,0 +1,86 @@
+{
+ "batch": "092",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 4,
+  "deletedParagraphs": 3,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 2,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 40,
+  "addedCitations": 2,
+  "editedSentences": 2,
+  "spotRefetched": 6,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "dk-berntsen",
+   "bioId": "01a1b512-8b26-76e0-afc0-e2690a71f153",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 9,
+   "changes": [
+    "第1段 period 迄點 1889-01-01 改 1890-01-01（段內最後一事為 1881–1889 任校長，Q3）",
+    "第2段「1925年因從政滿五十年」改為「1849年以來第一位擔任民眾院議員滿五十年」，對齊 DBL 原文（folketingsmand 50 年，不是從政）",
+    "第4段 period 改 1910-05-01（month）～1916-01-01（year）：段內始於 1910 年 5 月選舉、止於 1915 年憲法通過；補 DBL 引文「Ved folketingsvalget foråret 1913 …」支撐「1913年春選舉」",
+    "berntsen-interior-1908 迄日依 DBL「beholdt han indenrigsministerposten indtil Holsteins regering faldt i oktober」由 1910-01-01（year）改 1909-11-01（month）並補該引文；可證明逾 90 天，roleGap 由 [dates, regime] 改 [regime]，t14Reason 與對應 gap note 同步更新",
+    "重抓 lex.dk 與 biografiskleksikon.lex.dk 比對引文一致；三段國防／內政大臣 R6（regime）、不管部大臣 R5、議員 R5（來源未寫以政黨身分當選）判斷維持"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mn-genden",
+   "bioId": "01a1b512-8b32-794e-b679-4862ab380cc8",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 16,
+   "changes": [
+    "來源 taragt-genden 由 A 降為 C：實為塔拉格特蘇木行政機關網站「Блог」欄介紹文（僅署名 энхцэцэг），非任職機關原始文件、非國家級辭典或權威檔，屬 source-rules「機構網站的介紹文」（頁面生年 1985 顯誤）",
+    "刪第2–4段（35 筆引文）、刪 position genden-foreign-minister-1932、刪 roleCandidates genden-pm-1932（R0）與 genden-mprp-secretary（R1）；內容改寫成 4 筆 gaps（primeMinisterTerm、partySecretaryTerm、earlyLifeAndKhural、deathAndRehabilitation）並附 candidateCitations",
+    "刪除指向已刪項目的 3 筆 position/role gap；新增 paragraph:length「篇幅不足」gap；searchLog 第6、7步 result 改 unrated 並註記",
+    "重抓 lobid GND 1217283188 與 taragt.ov.gov.mn 頁比對一致（確認頁面位於 Блог 欄）"
+   ],
+   "returnedReasons": [
+    "最低標準未達：降級後中文僅 1 段、108 字，無任何 positions／roleCandidates，且 searchLog 無 round: retry 加強搜尋",
+    "唯一提供任期與生平細節的來源（塔拉格特蘇木網站介紹文）為 C，總理 1932–1936、黨中央書記 1928–1932、外交部長、處決與平反日期均需 A／B 來源",
+    "建議下一個具體來源：蒙古國政府歷任總理頁（zasag.mn／gov.mn「Монгол Улсын Ерөнхий сайд нар」）、國家大呼拉爾歷任小呼拉爾主席頁（parliament.mn）、Монгол Улсын Үндэсний Төв Архив、Большая российская энциклопедия 具名條目（bigenc.ru 重試）、蒙古科學院歷史研究所出版品或 C. R. Bawden《The Modern History of Mongolia》等學術著作"
+   ]
+  },
+  {
+   "key": "bo-tejada-sorzano",
+   "bioId": "01a1b512-8b3a-768c-be5d-241ff955166f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "第3段「條目說他確實嘗試過…尋求和平」改為「條目說當時確有…尋求和平的真誠努力，但特哈達·索爾薩諾得到的支持很少」：原文 There were genuine attempts 為無主語句，不替原文補主語",
+    "重抓 Encyclopedia.com（Gale，Charles W. Arnade）與 lobid GND 143815172 比對引文一致；財政部長缺起日已在 gaps、副總統 R5、議員 R5 維持"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "地方政府網站上的人物介紹文（非任職機關、非國家級辭典）不應記 A；本批塔拉格特蘇木 Блог 介紹文降為 C，研究者 gradeBasis 只看 gov 網域即給 A",
+  "regimeId 全批 null（不連庫），四部閣員以 R6 roleGap=regime 留 positions，入庫補 regimeId 後可重判 R3"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

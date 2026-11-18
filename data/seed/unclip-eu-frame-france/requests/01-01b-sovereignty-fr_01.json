@@ -1,0 +1,139 @@
+{
+ "_placeholder": "UNCLIP_FR_01",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "U_01a18e71-d6f6-7d40-a9e3-1c1f8a120448",
+ "_meta": {
+  "replaces": "01a18e71-d6f6-7d40-a9e3-1c1f8a120448",
+  "slug": "french-third-republic",
+  "old_km2": 804257,
+  "new_km2": 2870216,
+  "inside_change_km2": 0
+ },
+ "body": {
+  "regimeId": "01a18e71-cb8c-761f-83c5-944ad7c6a879",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1918-11-22",
+   "end": "1940-06-22"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a18e71-c8a6-74a4-b3a1-e0e3a3762eac",
+  "geometryLocator": "relation/2696299 v155（框外阿爾及利亞南部取自 v157）",
+  "geometryLicense": "cc_by",
+  "attribution": "© Instituto Geográfico Nacional de España（CNIG，Líneas límite municipales），CC BY 4.0",
+  "startEventId": null,
+  "endEventId": "01a18e71-cf6d-7e60-adb3-1813e221262f",
+  "ohmRelationId": 2696299,
+  "ohmVersion": 155,
+  "ohmFetchedAt": "2026-10-30T19:27:29+00:00",
+  "ohmStartRaw": "1918-11-22",
+  "ohmEndRaw": "1940-06-22",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "ohmChangeset": 275240,
+   "ohmTimestamp": "2026-10-11T13:18:45Z",
+   "licenseReview": "osm_derived_ways",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "cc0": 1,
+    "cnig": 85,
+    "untagged(OHM CC0)": 604
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 58,
+   "unclip": {
+    "batch": "unclip-eu-frame-france",
+    "replaces": "01a18e71-d6f6-7d40-a9e3-1c1f8a120448",
+    "frameRemoved": "box(-12,34,42,72)",
+    "method": "框內幾何沿用原紀錄；框外部分（阿爾及利亞北緯 34 度以南）取自同一 OHM 關係，Natural Earth 10m 陸地裁切、簡化到 0.02 度後併入",
+    "outsideFromVersion": 157,
+    "outsideVersionTimestamp": "2026-11-13T20:33:10Z",
+    "rawRefetched": "2026-11-14T11:48:37Z",
+    "versionNote": "紀錄記的是 v155，原始下載檔不在本機；OHM 於 2026-11-13 改過這個關係，2026-11-14 取回的是 v157，舊版本取不回來。框外部分用 v157。新版本與原紀錄在阿爾及利亞北部（框內）相差約 1103.9 平方公里。",
+    "outsideMemberWayLicense": {
+     "untagged(OHM CC0)": 20
+    },
+    "cutAgainstExisting": [
+     {
+      "slug": "spanish-state",
+      "period": [
+       "1939-04-01",
+       "1945-09-03"
+      ],
+      "km2": 7
+     },
+     {
+      "slug": "spanish-protectorate-morocco",
+      "period": [
+       "1918-11-12",
+       "1921-06-01"
+      ],
+      "km2": 53
+     },
+     {
+      "slug": "french-protectorate-morocco",
+      "period": [
+       "1918-11-12",
+       "1921-01-01"
+      ],
+      "km2": 214
+     },
+     {
+      "slug": "italian-tripolitania",
+      "period": [
+       "1918-11-12",
+       "1934-01-01"
+      ],
+      "km2": 1119
+     },
+     {
+      "slug": "french-protectorate-tunisia",
+      "period": [
+       "1918-11-12",
+       "1942-11-09"
+      ],
+      "km2": 1258
+     },
+     {
+      "slug": "mauritania-french-1912",
+      "period": [
+       "1918-11-12",
+       "1945-09-03"
+      ],
+      "km2": 146
+     },
+     {
+      "slug": "upper-senegal-and-niger",
+      "period": [
+       "1912-01-01",
+       "1919-01-01"
+      ],
+      "km2": 190
+     },
+     {
+      "slug": "french-west-africa",
+      "period": [
+       "1916-12-27",
+       "1919-03-01"
+      ],
+      "km2": 497
+     },
+     {
+      "slug": "french-protectorate-morocco",
+      "period": [
+       "1926-05-27",
+       "1945-10-01"
+      ],
+      "km2": 170
+     }
+    ],
+    "cutNote": "與同期其他政權既有紀錄重疊處扣除，保留既有紀錄"
+   }
+  },
+  "note": {
+   "zh-Hant": "（2026-11-14 修正：補回試驗框外的幾何——阿爾及利亞北緯 34 度以南。南界是資料集的線，沒有另外查證。）",
+   "en": "(Fixed 2026-11-14: geometry outside the trial frame restored — Algeria south of 34°N.)"
+  }
+ }
+}

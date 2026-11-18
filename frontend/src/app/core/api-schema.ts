@@ -27,7 +27,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        get: operations["GetRegimesBatch"];
         put?: never;
         post: operations["CreateRegime"];
         delete?: never;
@@ -244,6 +244,54 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty-records/{id}/citations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AddSovereigntyRecordCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-disputes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateSovereigntyDispute"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sovereignty-disputes/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractSovereigntyDispute"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sovereignty-records/{id}/retraction": {
         parameters: {
             query?: never;
@@ -322,6 +370,134 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/api/v1/capital-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateCapitalRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/capital-records/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractCapitalRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateLeaderRecord"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateLeaderBio"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios/{id}/field-citations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AddLeaderBioFieldCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bio-field-citations/{id}/retraction": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["RetractLeaderBioFieldCitation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios/{id}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["ReviseLeaderBio"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-records/{id}/person": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["LinkLeaderPerson"];
         trace?: never;
     };
     "/api/v1/sources/{id}": {
@@ -484,6 +660,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sovereignty/dispute-zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetSovereigntyDisputeZones"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/regimes/{id}/geometry": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetRegimeGeometry"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/conflicts": {
         parameters: {
             query?: never;
@@ -500,10 +708,104 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/capitals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCapitals"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leaders": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetLeaders"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/leader-bios/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetLeaderBio"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/campaigns/{slug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCampaign"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ApiResponseOfCapitalMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CapitalMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfCapitalRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CapitalRecordDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfCitationDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["CitationDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfConflictMapDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -564,6 +866,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        ApiResponseOfDisputeZonesDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["DisputeZonesDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfEventDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -589,6 +901,56 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["RegimeEventDto"][];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfJsonObject: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["JsonObject"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderBioDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderBioDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderBioFieldCitationDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderBioFieldCitationDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderMapDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderMapDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfLeaderRecordDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["LeaderRecordDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -644,6 +1006,16 @@ export interface components {
                 [key: string]: string[];
             };
         };
+        "ApiResponseOfRegimeDto[]": {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["RegimeDto"][];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
         ApiResponseOfRegimeInteractionsDto: {
             /** Format: int32 */
             statusCode: number | string;
@@ -679,6 +1051,16 @@ export interface components {
             statusCode: number | string;
             message: string;
             data: null | components["schemas"]["SourceDto"];
+            code?: null | string;
+            errors?: null | {
+                [key: string]: string[];
+            };
+        };
+        ApiResponseOfSovereigntyDisputeDto: {
+            /** Format: int32 */
+            statusCode: number | string;
+            message: string;
+            data: null | components["schemas"]["SovereigntyDisputeDto"];
             code?: null | string;
             errors?: null | {
                 [key: string]: string[];
@@ -742,6 +1124,113 @@ export interface components {
                 [key: string]: string;
             };
         };
+        BioDetailCitationDto: {
+            /** Format: uuid */
+            id: string;
+            locator: string;
+            quote: string;
+            quoteLang: null | string;
+            evidenceNote: null | string;
+            accessedOn: string;
+            grade: null | string;
+            datePrecision: null | string;
+            source: components["schemas"]["SourceDto"];
+        };
+        BioGapDto: {
+            /** Format: uuid */
+            id: string;
+            target: string;
+            gapKind: string;
+            note: null | string;
+            checkedOn: string;
+        };
+        BioParagraphDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: int32 */
+            ord: number | string;
+            period: null | components["schemas"]["DatePeriodDto"];
+            periodStartPrecision: null | string;
+            periodEndPrecision: null | string;
+            heading: null | {
+                [key: string]: string;
+            };
+            body: {
+                [key: string]: string;
+            };
+            citations: components["schemas"]["BioDetailCitationDto"][];
+        };
+        BioPositionDto: {
+            /** Format: uuid */
+            id: string;
+            seedKey: string;
+            /** Format: uuid */
+            regimeId: null | string;
+            organization: null | {
+                [key: string]: string;
+            };
+            title: {
+                [key: string]: string;
+            };
+            positionKind: string;
+            period: components["schemas"]["DatePeriodDto"];
+            startPrecision: null | string;
+            endPrecision: null | string;
+            note: null | string;
+            citations: components["schemas"]["BioDetailCitationDto"][];
+        };
+        BioRoleDto: {
+            /** Format: uuid */
+            id: string;
+            seedKey: string;
+            /** Format: uuid */
+            regimeId: null | string;
+            organization: null | {
+                [key: string]: string;
+            };
+            title: {
+                [key: string]: string;
+            };
+            roleKind: string;
+            period: components["schemas"]["DatePeriodDto"];
+            startPrecision: null | string;
+            endPrecision: null | string;
+            acting: boolean;
+            t14Rule: null | string;
+            note: null | string;
+            citations: components["schemas"]["BioDetailCitationDto"][];
+        };
+        CapitalFeature: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            cityName: {
+                [key: string]: string;
+            };
+            location: components["schemas"]["JsonElement"];
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            sourceRef: null | string;
+        };
+        CapitalMapDto: {
+            /** Format: date */
+            date: string;
+            features: components["schemas"]["CapitalFeature"][];
+        };
+        CapitalRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            cityName: {
+                [key: string]: string;
+            };
+            location: components["schemas"]["JsonElement"];
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            sourceRef: null | string;
+            note: null | string;
+        };
         CitationDto: {
             /** Format: uuid */
             sourceId: string;
@@ -751,6 +1240,7 @@ export interface components {
             locator: string;
             role: string;
             evidenceNote: string;
+            grade?: null | string;
         };
         CitationInput: {
             /** Format: uuid */
@@ -886,6 +1376,18 @@ export interface components {
             };
             researchRef: null | string;
         };
+        CreateCapitalRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            cityName: null | {
+                [key: string]: string;
+            };
+            location: null | components["schemas"]["JsonElement"];
+            validStart: null | string;
+            validEnd: null | string;
+            sourceRef: null | string;
+            note?: null | string;
+        };
         CreateConflictRecordRequest: {
             /** Format: uuid */
             regimeAId: null | string;
@@ -958,6 +1460,62 @@ export interface components {
             participants?: null | components["schemas"]["EventParticipantInput"][];
             citations?: null | components["schemas"]["EventCitationInput"][];
         };
+        CreateLeaderBioFieldCitationRequest: {
+            field: null | string;
+            /** Format: uuid */
+            sourceId: null | string;
+            locator: null | string;
+            evidenceNote?: null | string;
+            accessedOn?: null | string;
+        };
+        CreateLeaderBioRequest: {
+            name: null | string;
+            nameZh?: null | string;
+            birthDate?: null | string;
+            birthDatePrecision?: null | string;
+            deathDate?: null | string;
+            birthPlace?: null | {
+                [key: string]: string;
+            };
+            party?: null | {
+                [key: string]: string;
+            };
+            summary?: null | {
+                [key: string]: string;
+            };
+            fieldSources?: unknown;
+            /** @default false */
+            isTest: boolean;
+            deathDatePrecision?: null | string;
+            wikidataQid?: null | string;
+            portrait?: null | components["schemas"]["CreateLeaderPortraitRequest"];
+            citations?: null | components["schemas"]["CreateLeaderBioFieldCitationRequest"][];
+        };
+        CreateLeaderPortraitRequest: {
+            url: null | string;
+            sourceUrl: null | string;
+            author: null | string;
+            licenseCode: null | string;
+            licenseUrl: null | string;
+            attribution: null | string;
+            retrievedOn: null | string;
+        };
+        CreateLeaderRecordRequest: {
+            /** Format: uuid */
+            regimeId: null | string;
+            name: null | string;
+            nameZh: null | string;
+            role: null | string;
+            title: null | string;
+            validFrom: null | string;
+            validTo: null | string;
+            source: null | string;
+            sourceUrl?: null | string;
+            /** @default true */
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
+        };
         CreateOccupationAttributionRequest: {
             /** Format: uuid */
             occupiedRegimeId: null | string;
@@ -1013,6 +1571,35 @@ export interface components {
             localCopyPath?: null | string;
             catalogId?: null | string;
             note?: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
+            family?: null | string;
+        };
+        CreateSovereigntyDisputeClaimRequest: {
+            /** Format: uuid */
+            claimantRegimeId: null | string;
+            /** Format: uuid */
+            recordId: null | string;
+            position: null | {
+                [key: string]: string;
+            };
+            effective?: null | boolean;
+        };
+        CreateSovereigntyDisputeRequest: {
+            slug: null | string;
+            summary: null | {
+                [key: string]: string;
+            };
+            claims: null | components["schemas"]["CreateSovereigntyDisputeClaimRequest"][];
+            kind?: null | string;
+        };
+        CreateSovereigntyRecordCitationRequest: {
+            /** Format: uuid */
+            sourceId: null | string;
+            locator: null | string;
+            evidenceNote: null | string;
+            grade: null | string;
+            gradeBasis: null | string;
         };
         CreateSovereigntyRecordRequest: {
             /** Format: uuid */
@@ -1055,11 +1642,38 @@ export interface components {
             /** Format: date */
             end: null | string;
         };
+        DisputeZoneCollection: {
+            features: components["schemas"]["DisputeZoneFeature"][];
+            type?: null | string;
+        };
+        DisputeZoneFeature: {
+            /** Format: uuid */
+            id: string;
+            geometry: components["schemas"]["JsonElement"];
+            properties: components["schemas"]["DisputeZoneProperties"];
+            type?: null | string;
+        };
+        DisputeZoneProperties: {
+            /** Format: uuid */
+            disputeId: string;
+            slug: string;
+            summary: {
+                [key: string]: string;
+            };
+            claimantRegimeSlugs: string[];
+        };
+        DisputeZonesDto: {
+            /** Format: date */
+            date: string;
+            featureCollection: components["schemas"]["DisputeZoneCollection"];
+        };
         EventCitationInput: {
             /** Format: uuid */
             sourceId: null | string;
             locator: null | string;
             evidenceNote: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
         };
         EventDto: {
             /** Format: uuid */
@@ -1122,6 +1736,139 @@ export interface components {
             endUncertainty?: null | components["schemas"]["DatePeriodDto"];
         };
         JsonElement: unknown;
+        JsonObject: Record<string, never>;
+        LeaderBioDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            nameZh: null | string;
+            birthDate: null | string;
+            birthDatePrecision: null | string;
+            deathDate: null | string;
+            birthPlace: null | {
+                [key: string]: string;
+            };
+            party: null | {
+                [key: string]: string;
+            };
+            summary: null | {
+                [key: string]: string;
+            };
+            fieldSources: null | components["schemas"]["JsonElement"];
+            isTest: boolean;
+            /** Format: date-time */
+            retractedAt: null | string;
+            retractionReason: null | string;
+            /** Format: date-time */
+            createdAt: string;
+            deathDatePrecision?: null | string;
+            wikidataQid?: null | string;
+            portrait?: null | components["schemas"]["LeaderPortraitDto"];
+            /** Format: uuid */
+            supersededBy?: null | string;
+            fieldCitations?: null | components["schemas"]["LeaderBioFieldCitationDto"][];
+            terms?: null | components["schemas"]["LeaderTermDto"][];
+            paragraphs?: null | components["schemas"]["BioParagraphDto"][];
+            positions?: null | components["schemas"]["BioPositionDto"][];
+            roles?: null | components["schemas"]["BioRoleDto"][];
+            gaps?: null | components["schemas"]["BioGapDto"][];
+        };
+        LeaderBioFieldCitationDto: {
+            /** Format: uuid */
+            id: string;
+            field: string;
+            locator: string;
+            evidenceNote: null | string;
+            accessedOn: string;
+            source: components["schemas"]["SourceDto"];
+            quote?: null | string;
+            quoteLang?: null | string;
+            grade?: null | string;
+            datePrecision?: null | string;
+        };
+        LeaderBioSummaryDto: {
+            /** Format: uuid */
+            id: string;
+            name: string;
+            nameZh: null | string;
+            birthDate: null | string;
+            birthDatePrecision: null | string;
+            deathDate: null | string;
+            summary: null | {
+                [key: string]: string;
+            };
+            deathDatePrecision?: null | string;
+            portrait?: null | components["schemas"]["LeaderPortraitDto"];
+        };
+        LeaderFeature: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            name: string;
+            nameZh: null | string;
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
+            bio?: null | components["schemas"]["LeaderBioSummaryDto"];
+            citations?: null | components["schemas"]["BioDetailCitationDto"][];
+        };
+        LeaderMapDto: {
+            /** Format: date */
+            date: string;
+            features: components["schemas"]["LeaderFeature"][];
+        };
+        LeaderPortraitDto: {
+            url: string;
+            sourceUrl: string;
+            author: null | string;
+            licenseCode: string;
+            licenseUrl: null | string;
+            attribution: string;
+            retrievedOn: string;
+        };
+        LeaderRecordDto: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            regimeId: string;
+            name: string;
+            nameZh: null | string;
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
+            verified: boolean;
+            /** Format: uuid */
+            personId?: null | string;
+        };
+        LeaderTermDto: {
+            /** Format: uuid */
+            recordId: string;
+            /** Format: uuid */
+            regimeId: string;
+            regimeSlug: string;
+            regimeName: null | {
+                [key: string]: string;
+            };
+            role: string;
+            title: null | string;
+            validPeriod: components["schemas"]["DatePeriodDto"];
+            source: string;
+            sourceUrl: null | string;
+            citations?: null | components["schemas"]["BioDetailCitationDto"][];
+        };
+        LinkLeaderPersonRequest: {
+            /** Format: uuid */
+            personId: null | string;
+        };
         OccupationAttributionDto: {
             /** Format: uuid */
             id: string;
@@ -1269,6 +2016,10 @@ export interface components {
         RetractionRequest: {
             reason: null | string;
         };
+        ReviseLeaderBioRequest: {
+            reason: null | string;
+            bio: null | components["schemas"]["CreateLeaderBioRequest"];
+        };
         SnapshotRefDto: {
             /** Format: uuid */
             id: string;
@@ -1296,6 +2047,31 @@ export interface components {
             localCopyPath: null | string;
             catalogId: null | string;
             note: null | string;
+            grade?: null | string;
+            gradeBasis?: null | string;
+            family?: null | string;
+        };
+        SovereigntyDisputeClaimDto: {
+            /** Format: uuid */
+            claimantRegimeId: string;
+            claimantRegimeSlug: string;
+            /** Format: uuid */
+            recordId: null | string;
+            position: {
+                [key: string]: string;
+            };
+            effective: null | boolean;
+        };
+        SovereigntyDisputeDto: {
+            /** Format: uuid */
+            id: string;
+            slug: string;
+            summary: {
+                [key: string]: string;
+            };
+            claims: components["schemas"]["SovereigntyDisputeClaimDto"][];
+            /** @default contested */
+            kind: string;
         };
         SovereigntyEventRefDto: {
             /** Format: uuid */
@@ -1335,6 +2111,11 @@ export interface components {
             };
             regimeAlignment?: null | components["schemas"]["RegimeAlignmentDto"];
             occupation?: null | components["schemas"]["OccupationRefDto"];
+            confidence?: null | string;
+            confidenceBasis?: null | string;
+            recordCitations?: null | components["schemas"]["CitationDto"][];
+            startDatePrecision?: null | string;
+            disputes?: null | components["schemas"]["SovereigntyDisputeDto"][];
         };
         SovereigntyMapDto: {
             /** Format: date */
@@ -1457,6 +2238,37 @@ export interface operations {
             };
             /** @description Unauthorized */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetRegimesBatch: {
+        parameters: {
+            query?: {
+                ids?: string[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRegimeDto[]"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2260,6 +3072,181 @@ export interface operations {
             };
         };
     };
+    AddSovereigntyRecordCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyRecordCitationRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCitationDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateSovereigntyDispute: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSovereigntyDisputeRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyDisputeDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractSovereigntyDispute: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
     RetractSovereigntyRecord: {
         parameters: {
             query?: never;
@@ -2530,6 +3517,442 @@ export interface operations {
             };
             /** @description Conflict */
             409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateCapitalRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateCapitalRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCapitalRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractCapitalRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateLeaderRecord: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderRecordRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    CreateLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderBioRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    AddLeaderBioFieldCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateLeaderBioFieldCitationRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioFieldCitationDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    RetractLeaderBioFieldCitation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RetractionRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfRetractionDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    ReviseLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReviseLeaderBioRequest"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    LinkLeaderPerson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LinkLeaderPersonRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderRecordDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2814,6 +4237,7 @@ export interface operations {
         parameters: {
             query?: {
                 date?: string;
+                zoom?: number | string;
             };
             header?: never;
             path?: never;
@@ -2832,6 +4256,80 @@ export interface operations {
             };
             /** @description Bad Request */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetSovereigntyDisputeZones: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfDisputeZonesDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetRegimeGeometry: {
+        parameters: {
+            query?: {
+                date?: string;
+                zoom?: number | string;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfSovereigntyMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2863,6 +4361,131 @@ export interface operations {
             };
             /** @description Bad Request */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetCapitals: {
+        parameters: {
+            query?: {
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfCapitalMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetLeaders: {
+        parameters: {
+            query?: {
+                date?: string;
+                regime?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderMapDto"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetLeaderBio: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfLeaderBioDto"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfObject"];
+                };
+            };
+        };
+    };
+    GetCampaign: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiResponseOfJsonObject"];
+                };
+            };
+            /** @description Not Found */
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };

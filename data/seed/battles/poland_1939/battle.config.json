@@ -1,0 +1,208 @@
+{
+ "battle": "poland_1939",
+ "mainPhase": {
+  "start": "1939-09-01",
+  "end": "1939-10-06",
+  "basis": "主管 2026-11-13 14:15：主期 9/1–10/6，含 9/17 蘇聯入侵；不另設前段"
+ },
+ "leadIn": null,
+ "battleFactGrades": [
+  "A",
+  "B"
+ ],
+ "sourceFamilies": {
+  "rule": "同一來源家族只算一個獨立來源（主管 2026-11-13 14:03 規則沿用）。Kennedy 取材自德軍擄獲檔案與前德軍將領，但為美國陸軍出版，另成一族；德方學術（bpb 的 ZMSBw 作者與 DHM LeMO）合為一族；波方 IPN 一族；德軍原始 OKH 圖一族；西點圖集一族。",
+  "map": {
+   "kennedy-dapam-20-255": "us-army-dapam",
+   "usma-atlas-wwii-europe": "usma-atlas",
+   "okh-lagekarten-1939": "de-okh-records",
+   "bpb-vogel-lieb-blitzkriege": "de-academic",
+   "lemo-scriba-polen-1939": "de-academic",
+   "ipn-suleja-wrzesien-1939": "pl-ipn",
+   "ipn-biuletyn-2019-9": "pl-ipn"
+  },
+  "sides": {
+   "de-okh-records": "axis",
+   "de-academic": "third",
+   "pl-ipn": "allied",
+   "us-army-dapam": "third",
+   "usma-atlas": "third"
+  },
+  "sidesNote": "來源立場（docs/source-rules.md §4、§5）：家族是哪一方的說法；third＝第三方或戰後學術。2026-11-13 依各來源的出版者填入，待考證組複核。"
+ },
+ "r8": {
+  "box": [
+   13.0,
+   45.0,
+   33.0,
+   58.0
+  ],
+  "window": [
+   "1939-09-01",
+   "1939-10-06"
+  ],
+  "focusRegimes": [
+   "polish-republic",
+   "deutsches-reich",
+   "slovak-state-1939",
+   "republic-of-lithuania",
+   "republic-of-latvia",
+   "soviet-union",
+   "kingdom-of-hungary",
+   "kingdom-of-romania",
+   "free-city-of-danzig"
+  ],
+  "decision": "主管 2026-11-13 14:15：疆界切片取 9/1，另加主權資料實際有變的日期；R8 只用主專案主權資料（OpenHistoricalMap 來源），不手描"
+ },
+ "labelMatch": {
+  "note": "tools/battles/match_units.py 一般化規則（poland_1939）。Kennedy 圖例：框內橢圓＝裝甲、交叉框＝步兵、(Mtz)＝摩托化、(L)＝輕裝師、Mt＝山地",
+  "sideMap": {
+   "german": "axis",
+   "polish": "allied",
+   "soviet": "soviet"
+  },
+  "romanCorps": {
+   "axis": "de-{r}-ak"
+  },
+  "typeHints": {
+   "mot": [
+    "MTZ",
+    "摩托化"
+   ],
+   "light": [
+    "L",
+    "輕裝"
+   ],
+   "geb": [
+    "MT",
+    "山地"
+   ],
+   "pz": [
+    "裝甲"
+   ],
+   "inf": [
+    "步兵"
+   ]
+  },
+  "typeSuffix": {
+   "pz": [
+    "-pz-div"
+   ],
+   "mot": [
+    "-mot-div"
+   ],
+   "geb": [
+    "-geb-div",
+    "-dpg"
+   ],
+   "inf": [
+    "-inf-div",
+    "-dp"
+   ],
+   "light": []
+  }
+ },
+ "r4": {
+  "maps": [
+   "kennedy-map-7",
+   "kennedy-map-8",
+   "kennedy-map-9",
+   "kennedy-map-10",
+   "usma-europe-04",
+   "usma-europe-05",
+   "usma-europe-06",
+   "usma-europe-07",
+   "okh-355-luftgau"
+  ],
+  "box": [
+   13.0,
+   47.5,
+   27.0,
+   56.0
+  ],
+  "dates": [
+   "1939-09-01",
+   "1939-09-03",
+   "1939-09-06",
+   "1939-09-08",
+   "1939-09-10",
+   "1939-09-12",
+   "1939-09-14",
+   "1939-09-17",
+   "1939-09-20",
+   "1939-09-22",
+   "1939-09-28",
+   "1939-10-01",
+   "1939-10-06"
+  ],
+  "dateGapNotes": {
+   "1939-09-20": "Kennedy p.118：9/20 下令撤至 Narew–Vistula–San 河線，原文只有河名、無點名城鎮，未數位化",
+   "1939-09-01": "9/1 起始態勢＝開戰時國界，見 R8 疆界切片；文字只有 Danzig 一點，不另畫前線（文字推定，主管 20:22）",
+   "1939-09-28": "文字推定：9/28 原文只有被圍區（Modlin、Warsaw 9/27）與 Narew–Vistula–San 河名分界線，無具名到達點，不成線",
+   "1939-10-06": "文字推定：10/6 原文只有 Kock／Lublin 投降，無德蘇分界線具名點；10/1 分界線見 de-su-demarcation-1939-10-01",
+   "1939-10-01": "10/1 只有德蘇分界線北端 Ostrołęka–Ostrów Mazowiecka 一段（文字推定）；另 Hela 10/1 請降為被圍區"
+  },
+  "defaultGapNote": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+ },
+ "gradeDecisions": {
+  "kennedy-dapam-20-255": {
+   "grade": "A",
+   "basis": "主管 2026-11-13 14:58：視同官方戰史，比照 Ellis"
+  },
+  "sourceFamilies": "主管 2026-11-13 14:58：bpb＋LeMO 維持同一家族 de-academic",
+  "wbh": "主管 2026-11-13 14:58：不下載 WBH PDF，留在 gaps"
+ },
+ "texts": {
+  "note": "tools/battles/fetch_readable.py 與 citelib.py 讀；本機文字放 .dev/battle/<battle>/（不進版控，可重建）",
+  "readable": {
+   "kI": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-I.html",
+   "kII": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-II.html",
+   "kIII": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+   "kChron": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html"
+  },
+  "cite": {
+   "kennedy-dapam-20-255": {
+    "kind": "paged-html",
+    "pageMarker": "--(\\d+)--",
+    "markerAt": "page-end",
+    "files": {
+     "Campaign-I.html": "rd/kI.txt",
+     "Campaign-II.html": "rd/kII.txt",
+     "Campaign-III.html": "rd/kIII.txt",
+     "Campaign-Chron.html": "rd/kChron.txt"
+    },
+    "unpaged": [
+     "Campaign-Chron.html"
+    ],
+    "unpagedLocator": "Chronology",
+    "baseUrl": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/",
+    "lang": "en"
+   },
+   "bpb-vogel-lieb-blitzkriege": {
+    "kind": "single",
+    "file": "src/bpb-vogel-lieb.txt",
+    "locator": "bpb 線上專文（單頁）",
+    "lang": "de"
+   },
+   "lemo-scriba-polen-1939": {
+    "kind": "single",
+    "file": "src/lemo-scriba.txt",
+    "locator": "LeMO 線上專文（單頁，Stand 19. Mai 2015）",
+    "lang": "de"
+   },
+   "ipn-suleja-wrzesien-1939": {
+    "kind": "single",
+    "file": "src/ipn-suleja.txt",
+    "locator": "Przystanek Historia 線上專文（單頁）",
+    "lang": "pl"
+   },
+   "ipn-biuletyn-2019-9": {
+    "kind": "pdf-text",
+    "file": "src/ipn-biuletyn-2019-9.txt",
+    "locator": "Biuletyn IPN 2019 nr 9 PDF",
+    "lang": "pl"
+   }
+  },
+  "workDir": ".dev/battle/poland"
+ }
+}

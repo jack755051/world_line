@@ -1,0 +1,2793 @@
+{
+ "mapKey": "ellis-sm-30may",
+ "mapDate": "1940-05-30",
+ "dateNote": "圖題 evening of 30th May；本圖為敦克爾克周界大比例圖（與 26–29 May 圖不同版面），圖例：英軍紅、法軍綠、德軍藍（灰階掃描無法分辨顏色）",
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-10.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "method": "用 Swift 將 1200×652 原圖切成 400×250 塊、放大 3 倍並疊 20 px 紅色座標格線逐塊目視讀圖，換算回原圖像素（原點左上；本圖為周界大比例圖、地圖佔滿整幅，版面與 26–29 May 圖完全不同，px 皆於本圖重讀）；城鎮取村鎮符號（影線／小點群）中心，部隊取符號／標字中心，讀圖誤差約 ±3 px（約 0.5–1 km）。圖面範圍只涵蓋 Dunkirk 周界（Mardyck–Bourbourg 至 Nieuport–Noordschote），控制點 27 個、全圖分布但無西南以外地區，多為小村（符號為影線團而非圓點，取團中心，誤差略大）；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon），同名地點沿用同一 OSM 結果。部隊標註只收師／軍／軍團／裝甲群層級；圖上大量旅（BDE）、團（Rgt／RI／AR）、營（如 2 Hamps）標註未收（屬 R1 名冊之下層）。",
+ "control_points": {
+  "Nieuport": {
+   "px": [
+    1056,
+    92
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Coxyde": {
+   "px": [
+    863,
+    163
+   ],
+   "lonlat": [
+    2.6349,
+    51.1188
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1487782
+   },
+   "nameOsm": "Koksijde",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Wulpen": {
+   "px": [
+    952,
+    178
+   ],
+   "lonlat": [
+    2.6993,
+    51.1013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148467
+   },
+   "nameOsm": "Wulpen",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "La Panne": {
+   "px": [
+    743,
+    176
+   ],
+   "lonlat": [
+    2.5924,
+    51.0988
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516156
+   },
+   "nameOsm": "De Panne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Adinkerke": {
+   "px": [
+    762,
+    239
+   ],
+   "lonlat": [
+    2.6022,
+    51.0755
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148437
+   },
+   "nameOsm": "Adinkerke",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Furnes": {
+   "px": [
+    880,
+    268
+   ],
+   "lonlat": [
+    2.6621,
+    51.0724
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516302
+   },
+   "nameOsm": "Veurne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bulscamp": {
+   "px": [
+    843,
+    345
+   ],
+   "lonlat": [
+    2.6501,
+    51.0433
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242979
+   },
+   "nameOsm": "Bulskamp",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Wulveringhem": {
+   "px": [
+    851,
+    425
+   ],
+   "lonlat": [
+    2.6551,
+    51.0153
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1392648
+   },
+   "nameOsm": "Wulveringem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Houthem": {
+   "px": [
+    762,
+    432
+   ],
+   "lonlat": [
+    2.6078,
+    51.0111
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242982
+   },
+   "nameOsm": "Houtem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Les Moeres": {
+   "px": [
+    656,
+    407
+   ],
+   "lonlat": [
+    2.5488,
+    51.0146
+   ],
+   "osm": {
+    "type": "node",
+    "id": 149345216
+   },
+   "nameOsm": "Les Moëres",
+   "note": "OSM node"
+  },
+  "Uxem": {
+   "px": [
+    557,
+    387
+   ],
+   "lonlat": [
+    2.485,
+    51.0205
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139641
+   },
+   "nameOsm": "Uxem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Warhem": {
+   "px": [
+    566,
+    517
+   ],
+   "lonlat": [
+    2.493,
+    50.9768
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139247
+   },
+   "nameOsm": "Warhem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Hoymille": {
+   "px": [
+    491,
+    507
+   ],
+   "lonlat": [
+    2.4485,
+    50.973
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139256
+   },
+   "nameOsm": "Hoymille",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bergues": {
+   "px": [
+    447,
+    532
+   ],
+   "lonlat": [
+    2.4325,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139259
+   },
+   "nameOsm": "Bergues",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Hondschoote": {
+   "px": [
+    713,
+    522
+   ],
+   "lonlat": [
+    2.5863,
+    50.9809
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139236
+   },
+   "nameOsm": "Hondschoote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Killem": {
+   "px": [
+    661,
+    579
+   ],
+   "lonlat": [
+    2.5626,
+    50.9578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139238
+   },
+   "nameOsm": "Killem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Quaedypre": {
+   "px": [
+    488,
+    633
+   ],
+   "lonlat": [
+    2.4556,
+    50.9354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135847
+   },
+   "nameOsm": "Quaëdypre",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Pitgam": {
+   "px": [
+    252,
+    638
+   ],
+   "lonlat": [
+    2.3305,
+    50.9278
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135786
+   },
+   "nameOsm": "Pitgam",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Mardick": {
+   "px": [
+    115,
+    354
+   ],
+   "lonlat": [
+    2.2496,
+    51.0204
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 4656706
+   },
+   "nameOsm": "Mardyck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Fort Mardick": {
+   "px": [
+    226,
+    335
+   ],
+   "lonlat": [
+    2.3067,
+    51.0293
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3213987
+   },
+   "nameOsm": "Fort-Mardyck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Loon Plage": {
+   "px": [
+    54,
+    430
+   ],
+   "lonlat": [
+    2.2192,
+    50.9946
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139311
+   },
+   "nameOsm": "Loon-Plage",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Spycker": {
+   "px": [
+    267,
+    517
+   ],
+   "lonlat": [
+    2.323,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139278
+   },
+   "nameOsm": "Spycker",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Bourbourg": {
+   "px": [
+    7,
+    563
+   ],
+   "lonlat": [
+    2.1974,
+    50.9467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139283
+   },
+   "nameOsm": "Bourbourg",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Loo": {
+   "px": [
+    1018,
+    542
+   ],
+   "lonlat": [
+    2.7492,
+    50.98
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452701
+   },
+   "nameOsm": "Lo",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Noordschote": {
+   "px": [
+    1128,
+    628
+   ],
+   "lonlat": [
+    2.8099,
+    50.9546
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452700
+   },
+   "nameOsm": "Noordschote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Beveren": {
+   "px": [
+    805,
+    638
+   ],
+   "lonlat": [
+    2.6414,
+    50.9389
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2239343
+   },
+   "nameOsm": "Beveren aan de IJzer",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  },
+  "Dunkirk": {
+   "px": [
+    347,
+    347
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）"
+  }
+ },
+ "features": [
+  {
+   "label": "4 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    840,
+    117
+   ],
+   "unitKey": "uk-4-div",
+   "note": "標字中心，英軍第 4 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "4 DIV",
+    "reason": null,
+    "distPx": 4.5
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 4 號師，國別依讀圖註記（uk）"
+  },
+  {
+   "label": "3 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    763,
+    231
+   ],
+   "unitKey": "uk-3-div",
+   "note": "標字中心，英軍第 3 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "3 DIV",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 3 號師，國別依讀圖註記（uk）"
+  },
+  {
+   "label": "5 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    725,
+    283
+   ],
+   "unitKey": "uk-5-div",
+   "note": "虛線橢圓，英軍第 5 師（預備／移動中）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "5 DIV",
+    "reason": null,
+    "distPx": 3.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 5 號師，國別依讀圖註記（uk）"
+  },
+  {
+   "label": "23 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    765,
+    307
+   ],
+   "unitKey": null,
+   "note": "虛線橢圓，英軍第 23 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "23 DIV",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "盟軍 23 號師不在 R1 名冊"
+  },
+  {
+   "label": "50 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    717,
+    310
+   ],
+   "unitKey": "uk-50-div",
+   "note": "標字中心，英軍第 50 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "50 DIV",
+    "reason": null,
+    "distPx": 4.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 50 號師，國別依讀圖註記（uk）"
+  },
+  {
+   "label": "32 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    443,
+    341
+   ],
+   "unitKey": "fr-32-di",
+   "note": "虛線橢圓，英軍第 32 師（圖例：虛線＝預備／移動中）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "32 DIV",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "讀圖註記國別 uk 與名冊唯一候選 fr-32-di 不符，待查證"
+  },
+  {
+   "label": "46 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    475,
+    362
+   ],
+   "unitKey": "uk-46-div",
+   "note": "標字中心，英軍第 46 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "46 DIV",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 46 號師，國別依讀圖註記（uk）"
+  },
+  {
+   "label": "60 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    576,
+    294
+   ],
+   "unitKey": "fr-60-di",
+   "note": "虛線橢圓，位於摺痕附近（Camp des Dunes 南）；盟軍師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "60 DIV",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "盟軍 60 號師只靠編號對上（灰階圖無法辨英法比）"
+  },
+  {
+   "label": "68 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    243,
+    437
+   ],
+   "unitKey": "fr-68-di",
+   "note": "標字中心，法軍第 68 師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "68 DIV",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "盟軍 68 號師，國別依讀圖註記（fr）"
+  },
+  {
+   "label": "21 C.I.DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法分辨英法比；依圖例，盟軍師為無粗線橢圓的數字標註（虛線圈＝預備／移動中）",
+   "px": [
+    503,
+    422
+   ],
+   "unitKey": null,
+   "note": "標字中心；字跡「21 C.I.DIV」，疑為法軍單位，待對名冊",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "21 CI.DIV",
+    "reason": null,
+    "distPx": 9.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "C.I.DIV 單位不在名冊"
+  },
+  {
+   "label": "256 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    1103,
+    117
+   ],
+   "unitKey": "de-256-id",
+   "note": "標字中心，Nieuport 東南，德軍第 256 步兵師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "256 DIV",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "德軍 256 號師，兵種依標註（id）"
+  },
+  {
+   "label": "14 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    703,
+    503
+   ],
+   "unitKey": "de-14-id",
+   "note": "標字中心，Hondschoote 旁，德軍第 14 步兵師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "14 DIV",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "德軍 14 號師，兵種依標註（id）"
+  },
+  {
+   "label": "20 MOT DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    438,
+    592
+   ],
+   "unitKey": "de-20-mot-div",
+   "note": "標字中心，Quaedypre 以北，德軍第 20 摩托化師",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "20 MOT DIV",
+    "reason": null,
+    "distPx": 6.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "德軍 20 號師，兵種依標註（mot）"
+  },
+  {
+   "label": "9 ARMD DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例：德軍符號為粗線／雙線橢圓或弧線包住的數字",
+   "px": [
+    218,
+    567
+   ],
+   "unitKey": "de-9-pzdiv",
+   "note": "標字中心；圖註：9 Armd Div 指揮 11 Mot Bde、Mot Regt Grossdeutschland、SS Adolf Hitler Regt",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "9 ARMD DIV",
+    "reason": null,
+    "distPx": 4.1
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "德軍 9 號師，兵種依標註（pz）"
+  },
+  {
+   "label": "I CORPS",
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "圖例：軍＝羅馬數字，盟軍",
+   "px": [
+    628,
+    227
+   ],
+   "unitKey": "uk-i-corps",
+   "note": "標字中心，位於摺痕附近，英軍 I Corps",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "I CORPS",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：I CORPS，讀圖註記英軍"
+  },
+  {
+   "label": "II CORPS",
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "圖例：軍＝羅馬數字，盟軍",
+   "px": [
+    728,
+    234
+   ],
+   "unitKey": "uk-ii-corps",
+   "note": "標字中心，英軍 II Corps",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "II CORPS",
+    "reason": null,
+    "distPx": 3.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：II CORPS，讀圖註記英軍"
+  },
+  {
+   "label": "XXVI CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    1103,
+    219
+   ],
+   "unitKey": "de-xxvi-ak",
+   "note": "羅馬數字框＋標字，德軍 XXVI 軍",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XXVI CORPS",
+    "reason": null,
+    "distPx": 6.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：XXVI CORPS"
+  },
+  {
+   "label": "IX CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    990,
+    398
+   ],
+   "unitKey": "de-ix-ak",
+   "note": "羅馬數字框＋標字，德軍 IX 軍",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "IX CORPS",
+    "reason": null,
+    "distPx": 3.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：IX CORPS"
+  },
+  {
+   "label": "X CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    680,
+    620
+   ],
+   "unitKey": "de-x-ak",
+   "note": "羅馬數字＋標字，德軍 X 軍",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "X CORPS",
+    "reason": null,
+    "distPx": 5.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：X CORPS"
+  },
+  {
+   "label": "XIV CORPS (KLEIST GROUP)",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "德軍軍級標註",
+   "px": [
+    183,
+    627
+   ],
+   "unitKey": "de-xiv-ak",
+   "note": "羅馬數字＋標字，德軍 XIV 軍（Kleist 裝甲群）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "(KLEIST GROUP)",
+    "reason": null,
+    "distPx": 27.0,
+    "note": "一方只抄部分文字",
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 27 px（> 容差 18 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：XIV CORPS (KLEIST GROUP)"
+  },
+  {
+   "label": "EIGHTEENTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    1022,
+    302
+   ],
+   "unitKey": "de-18-armee",
+   "note": "標字中心",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "EIGHTEENTH ARMY",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：EIGHTEENTH ARMY"
+  },
+  {
+   "label": "SIXTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    800,
+    569
+   ],
+   "unitKey": "de-6-armee",
+   "note": "標字中心（跨兩行「SIXTH／ARMY」）",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SIXTH ARMY",
+    "reason": null,
+    "distPx": 3.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：SIXTH ARMY"
+  },
+  {
+   "label": "FOURTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "德軍軍團標註，依圖例",
+   "px": [
+    367,
+    626
+   ],
+   "unitKey": "de-4-armee",
+   "note": "標字中心",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTH ARMY",
+    "reason": null,
+    "distPx": 5.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：FOURTH ARMY"
+  },
+  {
+   "label": "GHQ",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "盟軍標註",
+   "px": [
+    745,
+    161
+   ],
+   "unitKey": "uk-bef",
+   "note": "旗標，英軍總部，La Panne 北",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "GHQ",
+    "reason": null,
+    "distPx": 17.1
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "名稱別名：GHQ 旗標＝BEF 總司令部位置，非部隊本身"
+  },
+  {
+   "label": "XIV CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "依文字名稱判斷為德軍",
+   "px": [
+    150,
+    627
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：後接 (KLEIST GROUP)（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "XIV CORPS",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "名冊無對應名稱"
+  },
+  {
+   "label": "SFF",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依文字縮寫及周界內位置",
+   "px": [
+    466,
+    370
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：46 DIV 左下，縮寫名稱（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "SFF",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "11 Mot Bde",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "依文字名稱判斷為德軍",
+   "px": [
+    217,
+    586
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：9 ARMD DIV 下屬清單（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "11 Mot Bde",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "Mot Regt \"Grossdeutschland\"",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "依文字名稱判斷為德軍",
+   "px": [
+    247,
+    596
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：9 ARMD DIV 下屬清單（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "Mot Regt \"Grossdeutschland\"",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "SS \"Adolf Hitler\" Regt",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "依文字名稱判斷為德軍",
+   "px": [
+    237,
+    606
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：9 ARMD DIV 下屬清單（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "SS \"Adolf Hitler\" Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "8 Zouaves",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    655,
+    243
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "8 Zouaves",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "150 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    648,
+    288
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "150 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "? Regt",
+   "echelon": "other",
+   "sideGuess": "unknown",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    622,
+    297
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕右側，僅見「…ied Regt」樣字跡（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "? Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "陣營未判"
+  },
+  {
+   "label": "208 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    140,
+    367
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "208 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "225 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    188,
+    457
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "225 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "341 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    312,
+    510
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "341 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "407 AR",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    400,
+    399
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "407 AR",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "14 Ter Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    433,
+    375
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "14 Ter Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "310 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    418,
+    456
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "310 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "15 Regional Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    505,
+    391
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "15 Regional Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "65 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    548,
+    405
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：三行 RI 之第一行（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "65 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "110 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    544,
+    412
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：三行 RI 之第二行（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "110 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "129 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    542,
+    418
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：三行 RI 之第三行（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "129 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "137 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    505,
+    449
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "137 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "48 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    453,
+    510
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "48 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "270 RI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    463,
+    546
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "270 RI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "Recce G? GRD 92",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    582,
+    362
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：兩行，右端入摺痕；第一行似 Recce Gp，第二行 GRD 92（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "Recce G? GRD 92",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "GRD 9?",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "依法軍部隊名稱／縮寫（RI、AR、GRD、Zouaves 等）及周界內位置判斷；灰階看不出顏色",
+   "px": [
+    589,
+    460
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕處，末位數字不可辨（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "GRD 9?",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "9 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    803,
+    285
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "9 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "151 Bde",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    783,
+    328
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "151 Bde",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "150 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    732,
+    368
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "150 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "3 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    654,
+    432
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "3 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "138 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    491,
+    382
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "138 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "139 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    468,
+    453
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "139 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "126 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    553,
+    443
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "126 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 GDS B?",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    587,
+    433
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：右端入摺痕，似 1 GDS BDE（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 GDS B?",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "11 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    921,
+    100
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "11 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "12 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    1005,
+    67
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "12 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "10 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    988,
+    120
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "10 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "8 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    878,
+    180
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "8 BDE",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "7 Gds Bde",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    840,
+    235
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "7 Gds Bde",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "53 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    805,
+    228
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "53 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "30 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    824,
+    147
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "30 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "7 & 76 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    832,
+    205
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "7 & 76 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "91 & 92 Fd Regts",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    741,
+    262
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "91 & 92 Fd Regts",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "22 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    936,
+    120
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "22 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "18 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    733,
+    330
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "18 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    668,
+    388
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "16 & 53 Fd Regts",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    521,
+    372
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "16 & 53 Fd Regts",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "88 A Fd R?",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    580,
+    409
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：右端入摺痕（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "88 A Fd R?",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "?HA",
+   "echelon": "other",
+   "sideGuess": "unknown",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    612,
+    387
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕右側極淡，三行之第一行（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "?HA",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "陣營未判"
+  },
+  {
+   "label": "? A Fd Regt",
+   "echelon": "other",
+   "sideGuess": "unknown",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    624,
+    395
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕右側極淡，編號不可辨（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "? A Fd Regt",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "陣營未判"
+  },
+  {
+   "label": "? Fd Regts",
+   "echelon": "other",
+   "sideGuess": "unknown",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    620,
+    404
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕右側極淡，編號不可辨（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "? Fd Regts",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "陣營未判"
+  },
+  {
+   "label": "2 Lincolns",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    787,
+    265
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 Lincolns",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "3 Gren Gds",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    767,
+    318
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "3 Gren Gds",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "4 NF",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    742,
+    340
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "4 NF",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "8 DLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    778,
+    348
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "8 DLI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "9 DLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    820,
+    345
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "9 DLI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "6 DLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    783,
+    383
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "6 DLI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 KOSB",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    828,
+    312
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 KOSB",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 RUR",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    838,
+    278
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 RUR",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 S Lan R",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    1007,
+    49
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：「1」與「S」緊貼（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 S Lan R",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "6 Bw",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    982,
+    85
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：小虛線橢圓內，有箭頭指向北；字很小（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "6 Bw",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 RF",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    1035,
+    92
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：Nieuport 西（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 RF",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1/6 Surreys",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    1023,
+    107
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1/6 Surreys",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 DCLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    995,
+    131
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：6 Bw（虛線橢圓）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 DCLI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 Bedfs Herts",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    978,
+    147
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 Bedfs Herts",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 E Yorks",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    914,
+    174
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 E Yorks",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 Suffolk",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    894,
+    190
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 Suffolk",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "4 R Berks",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    880,
+    215
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "4 R Berks",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 Gren Gds",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    876,
+    232
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 Gren Gds",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 Coldm Gds",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    866,
+    245
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 Coldm Gds",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 Gren Gds",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    872,
+    258
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：Furnes（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 Gren Gds",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2/5 Leicesters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    416,
+    433
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2/5 Leicesters",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "9 Foresters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    433,
+    483
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "9 Foresters",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "6 Lincolns",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    450,
+    390
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀列為未解（unresolved：SFF））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "6 Lincolns",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "6 Y&L",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    516,
+    399
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：字小（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "6 Y&L",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 Hamps",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    567,
+    397
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 Hamps",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 E Lan R",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    533,
+    480
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 E Lan R",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "5 Border",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    567,
+    476
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "5 Border",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2 C?",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    597,
+    476
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕處，僅見「2 Co…」（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2 C?",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "2/5 Foresters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    491,
+    493
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "2/5 Foresters",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 Loyals",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    454,
+    527
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：Bergues（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 Loyals",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 Coy",
+   "echelon": "other",
+   "sideGuess": "unknown",
+   "sideNote": "位於 Bergues 周界上，緊接 1 Loyals 下方",
+   "px": [
+    463,
+    538
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：連級標註（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 Coy",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "陣營未判"
+  },
+  {
+   "label": "? Own",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "書脊摺痕處模糊，依周界內位置推測",
+   "px": [
+    622,
+    437
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：摺痕右側極淡，前半不可辨（信心 low）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "? Own",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 DWR",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    644,
+    477
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：字淡（信心 medium）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 DWR",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1 KSLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    678,
+    398
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1 KSLI",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "Det 2 Foresters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    658,
+    417
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "Det 2 Foresters",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "1/6 S Staffords",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    732,
+    389
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1/6 S Staffords",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "5 Green Howards",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    755,
+    398
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "5 Green Howards",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "4 E Yorks",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    733,
+    406
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "4 E Yorks",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  },
+  {
+   "label": "4 Green Howards",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "位於周界內，依英軍部隊名稱／位置判斷（圖註：英紅、法綠、德藍，掃描為灰階看不出顏色）",
+   "px": [
+    708,
+    428
+   ],
+   "unitKey": null,
+   "note": "第二次判讀：兩行（信心 high）",
+   "origin": "second-reading-only",
+   "originNote": "第一次判讀未列，僅第二次獨立判讀讀到（第一次判讀附近沒有（可能漏讀））；主管 2026-11-13 14:03 裁示不重讀此圖、併入並標待查證",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "4 Green Howards",
+    "reason": "僅第二次判讀讀到（第一次未列），併入待查證"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級"
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "6 Bw（虛線橢圓）",
+   "px": [
+    982,
+    85
+   ],
+   "reason": "Nieuport Bains 東南虛線橢圓，內字疑「6 Bw」，單位不明"
+  },
+  {
+   "label": "SFF",
+   "px": [
+    468,
+    372
+   ],
+   "reason": "標字，Teteghem 北，縮寫無法確定所屬"
+  },
+  {
+   "label": "各旅／團／營標註（BDE、Fd Regt、RI、Gds 等）",
+   "px": [
+    840,
+    200
+   ],
+   "reason": "屬師以下層級，依任務範圍未收"
+  }
+ ],
+ "lines": [],
+ "linesNote": "圖上沒有畫出盟軍／德軍前線或周界線：粗黑線皆為運河與道路（Furnes 運河、Bergues 運河、Loo 運河），虛線橢圓與標字為部隊位置，師／軍界線只見點劃線且不屬前線；依「以圖上實際畫出的線為準」不讀頂點。",
+ "labelCheckMethod": "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/ellis-sm-30may.json",
+ "secondReadingImport": {
+  "count": 87,
+  "decidedBy": "主管 2026-11-13 14:03",
+  "status": "待查證"
+ }
+}

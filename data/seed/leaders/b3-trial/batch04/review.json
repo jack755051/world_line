@@ -1,0 +1,115 @@
+{
+ "batch": "04",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedCitations": 9,
+  "editedSentences": 23,
+  "spotRefetched": 8
+ },
+ "countsNote": "toUnverified 與 deletedPositions 是同一項（昭和天皇攝政職位刪除後記入 gap）。deletedCitations 9 筆＝尼古拉二世 1 筆（引文對不到任何句子）＋哈蒂相 6 筆 LC 欄位（LC 款目依據 Wikipedia）＋攝政職位 2 筆（隨職位刪除）。schema 沒有欄位記的另外幾項：新增 40 筆引文，全部逐字取自研究當天已抓的原文，並在審查重抓的頁面逐字比對到，只用來撐住原有句子，沒有加新事實；改寫 3 筆 quote（擴成同一原句的較長片段）；修正 11 筆 citation 的 datePrecision；2 段 period 修正；新增 3 筆 gap、1 筆 gap conflict 改 not_found；1 個來源 url 改為條目正式網址。",
+ "people": [
+  {
+   "key": "ru-nicholas-ii",
+   "bioId": "01a1b4b5-f9bc-7f2f-90ba-f2af428ba89c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "gaps": 1,
+   "changes": [
+    "重抓 encyc-nicholas2、loc-nicholas2（皆 200），全部引文逐字比對到。",
+    "段1：補「丹麥出身的瑪麗亞·費奧多羅芙娜」的引文；「父親去世後一個月內成婚」引文沒有年份，datePrecision 由 year 改 null。",
+    "段2：「1905年1月9日聖彼得堡示威」「和平示威」「各地罷工與農民騷動」「在讓步中」原本沒有引文，補 5 筆原句引文；開火死傷那筆引文沒有日期，datePrecision 改 null。",
+    "段3：「鎮壓與改革並行」「不認為需要改革」「局勢平靜後」補 3 筆原句引文。",
+    "段4：「大戰初期俄軍表現不佳」補引文。",
+    "段5：period 起點 1917-03-01 改 1917-02-01（正文從 1917 年 2 月底寫起）。刪掉對不到句子的引文「there was no segment of society…」，改補「2 月底示威與暴動」「莫吉廖夫」「醫生說阿列克謝不適任」「羅曼諾夫王朝告終」「1918 年 4 月底移往葉卡捷琳堡」5 筆引文。退位日改為兩來源都同意的『1917 年 3 月』，括號並列 3 月 2 日／3 月 15 日，刪掉後設句「本段不裁定」；兩筆退位引文 datePrecision 改 month。「軟禁」改「拘禁」（原文 placed under arrest）。",
+    "gap abdication-date 維持 conflict，note 加審查註：LoC 同一頁把血腥星期日記為 1905-01-23，Encyclopedia.com 記為 1 月 9 日，相差 13 天，與退位日差距相同，Encyclopedia.com 可能用舊曆（來源沒有說明）；段2–4 的月份換成新曆可能落在下一個月，待查證。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jp-showa-hirohito",
+   "bioId": "01a1b4b2-2f65-7cca-9a4b-ff875f18c192",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "重抓 encyc-hirohito：原 url（/history/educational-magazines/hirohito）今天重抓已不含本條目（Encyclopedia of World Biography）；改抓頁面「Cite this article」給的正式網址 /history/encyclopedias-almanacs-transcripts-and-maps/hirohito-0（200），42 筆引文全部逐字比對到；sources.url 已改成這個網址。",
+    "刪除職位 hirohito-regent-1921：§16.3.1 把攝政歸 head_of_state（角色層），依 Q4 元首／首腦任期不建 positions；改記 gap position:hirohito-regent-1921（附候選引文），段1 正文保留攝政任命。",
+    "段1：補「長子」「1921 年 3 月出訪歐洲」「任命為攝政」「父親精神狀況惡化」4 筆引文；「父親病情加重」照原文改成「精神狀況日益惡化」。",
+    "段2：「Enlightened Peace」引文擴成含譯名的原句片段；正文改成「該條目英譯為」，免得把英譯當成年號原意。",
+    "段3：條目把張作霖遇刺記在 1927 年，可能有誤（一般記載為 1928 年），手上又沒有第二份 A/B 來源可以核對，所以正文刪掉年份，改寫「即位後不久」，另記 gap paragraph:chang-tso-lin-year。補「震怒」「1931 年 9 月同樣憤慨」「1936 年 2 月 26 日」「國家機關」4 筆引文；3 筆沒有日期的引文 datePrecision 改 null。",
+    "段4：英文正文少了主詞（「…1941 was confined」），補上 his opposition；補「宮中顧問」「暗示和平願望」等 4 筆引文；正文補「日益好戰的」「向盟國」，照原文。",
+    "段5：補「1945 年 9 月正式投降」引文，撐住 period 起點。",
+    "gap war-responsibility-debate：原本記 conflict，但沒有任何並列來源，note 還寫成「兩個 Gale 條目」（實際只有一個），改成 not_found 並改寫 note。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mn-genden",
+   "bioId": "01a1b512-8b32-794e-b679-4862ab380cc8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "重抓 lc-genden（id.loc.gov JSON，200），引文逐字比對到；確認 LC 款目依據的是 P. Gėndėn（2000）頁 163–165，不是同一筆紀錄裡的 Vikipedia 款目，各 citation 的 evidenceNote 已註明。",
+    "段1：Ȯvȯrkhangaĭ 譯成「溫都爾汗省」是錯的，改「前杭愛省」；「在位期間」改「任」（總理不是君主）；刪掉括號後設句「出生年兩說…本段不採用」（這一句段落裡沒有引文撐，gap field:birthDate 已記）。",
+    "附註（不改資料）：正文的總理任期 1932–1936 屬首腦任期，5442 名單只有 1924–1927 主席團主席一筆，這段總理任期要不要補進 leader_records，另外再議。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "am-khatisian",
+   "bioId": "01a1c30e-dcb2-7378-a341-4f30f8de6ae5",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 4,
+   "changes": [
+    "重抓 lc-khatisian（JSON，200）、encyc-dashnak（200），引文逐字比對到。",
+    "刪 6 筆 LC 引文（生卒日、生卒地、記者、政治人物）：重抓確認這些欄位的 citationSource 是「Wikipedia. WWW page. viewed on January 21, 2021」，依 gap-830／§16.4.4『LoC 引自 Wikipedia 者不採』不能用。研究者的 evidenceNote 只寫「線上網頁資料」，沒有說出是 Wikipedia。對應句子一起刪掉，段落 period 改成無界（null）；新增 gap field:birthDate（not_found）說明原因。",
+    "段1 改寫為只寫 encyc-dashnak 寫到的事：曾任第比利斯市長；共和國時期 ARF 幾乎掌握整個政府、許多俄屬亞美尼亞名流與該黨結合；阿哈羅尼安任總統、哈蒂相任總理。補 2 筆引文；「同屬該黨崛起人物」原文沒有這樣寫，改成「與該黨結合」。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-yrigoyen",
+   "bioId": "477e851d-8e39-4da5-8a50-33d0c8a77067",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "gaps": 3,
+   "changes": [
+    "重抓 casa-yrigoyen、encyc-irigoyen（皆 200），全部引文逐字比對到。",
+    "段1：出生地總統府頁寫市（ciudad），Encyclopedia.com 寫 provincial Buenos Aires，兩說不一致，正文改成只寫「布宜諾斯艾利斯」，另記 gap field:birthPlace（conflict）。刪掉後設括號「（原文作 uncle）」，改寫「叔舅」；警察分局長引文擴成含 Alem 的原句片段。period 終點 1891-01-01 改 1881-01-01（段內最後一件事在 1880 年，原值和段2 重疊）。",
+    "段2：補「1891 年分裂」「從阿萊姆手中奪得主導權」「十五年拒絕參選」3 筆引文；正文補上總統府頁寫的「創黨人之一」（原本已有引文）。",
+    "段3：首句改成「1916 年當選總統」，補 2 筆引文；relatedRecordIds 填第一任期兩筆 5442 任期；「公營企業」照原文補「新型」。",
+    "段4：「被認為鋪路」改照原文「變得令人無法容忍、為政變鋪路」；補「侵蝕民眾基礎」引文；總統府去世引文擴成含「en Buenos Aires」；9 月 6 日那筆在 evidenceNote 註明年份取自同段；relatedRecordIds 填第二任期兩筆。",
+    "職位 title.orig 原本寫 Diputado／Consejo Nacional de Educación，原文沒有這兩個詞，改成來源用語（seat in Congress／high position on the National Council for Education）；regimeId=null＋organization、迄日留空，合規。"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "延續 batch03 最常見的問題：很多句子只有日期片段引文，或完全沒有引文（本批補了 40 筆）。verify.py 只查引文存不存在，查不出句子沒有依據。",
+  "研究者沒有檢查 LC 權威檔欄位自己的 citationSource：哈蒂相的生卒資料其實出自 Wikipedia，evidenceNote 卻含糊寫「線上網頁資料」。下批提示應要求：用 LC／GND 欄位時要寫出款目依據，依據是 Wikipedia 的不採。",
+  "角色層誤建成職位：昭和天皇的攝政屬 head_of_state（§16.3.1），卻被建成 roleKind=other 的 position，繞過了 verify.py 的元首／首腦檢查。建議提示寫明「攝政、代理元首也屬角色層」。",
+  "曆法：Encyclopedia of Russian History 的俄國日期疑為舊曆，LoC 用新曆；月精度日期可能差一個月。新舊曆怎麼處理，§16 沒有規定，建議 Tai 定一條規則（例如一律新曆，或在 evidenceNote 註明曆法）。",
+  "gap 類型誤用（同 batch03）：沒有並列來源也記 conflict（昭和天皇）。",
+  "Encyclopedia.com 同一網址可能換內容：要用條目自己「Cite this article」給的正式網址，不要用 educational-magazines 之類的聚合頁網址。",
+  "名單和角色層對不上（不改資料，只提出）：根登 1932–1936 總理、昭和天皇 1921–1926 攝政，5442 都沒有對應的任期。",
+  "來源全部是 A／B，沒有 Wikipedia／Wikidata／百度。LC HTML 遇到防機器人驗證，改用同一權威檔的官方 JSON 輸出，符合規則。沒有未評等來源，Q2 字數合規。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

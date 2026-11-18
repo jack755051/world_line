@@ -5,6 +5,7 @@ import { Legend } from './legend';
 describe('Legend（PRD §8.4）', () => {
   it('固定樣式說明：五種控制類型、控制資料缺說明、戰線、史料／推估', async () => {
     const fixture = TestBed.createComponent(Legend);
+    fixture.componentRef.setInput('open', true);
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
     for (const ct of ['direct_rule', 'military_occupation', 'puppet_administration', 'partial', 'contested'])
@@ -17,6 +18,7 @@ describe('Legend（PRD §8.4）', () => {
 
   it('政權清單：empty 與 success', async () => {
     const fixture = TestBed.createComponent(Legend);
+    fixture.componentRef.setInput('open', true);
     fixture.componentRef.setInput('regimesStatus', 'ok');
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
@@ -32,11 +34,29 @@ describe('Legend（PRD §8.4）', () => {
     expect(el.querySelector('[data-testid="legend-regime-item"]')?.textContent).toContain('軸心');
   });
 
-  it('收合後只剩標題列', async () => {
+  it('§10-3：預設關閉，只有左下 40×40 ⓘ 按鈕；展開時按鈕上方 240px 浮動面板（最高 50vh）；按鈕與 Esc 送出 toggle', async () => {
     const fixture = TestBed.createComponent(Legend);
-    fixture.componentRef.setInput('open', false);
     await fixture.whenStable();
-    expect((fixture.nativeElement as HTMLElement).querySelector('[data-testid="legend-control-gap"]')).toBeNull();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(el.querySelector('[data-testid="legend"]')?.getAttribute('data-state')).toBe('collapsed');
+    expect(el.querySelector('[data-testid="legend-control-gap"]')).toBeNull();
+    const btn = el.querySelector('[data-testid="legend-expand"]') as HTMLButtonElement;
+    expect(btn.className).toContain('size-10');
+    expect(btn.getAttribute('aria-expanded')).toBe('false');
+    let n = 0;
+    fixture.componentInstance.toggle.subscribe(() => n++);
+    btn.click();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    expect(n).toBe(1); // 關著時 Esc 不動作
+    fixture.componentRef.setInput('open', true);
+    await fixture.whenStable();
+    const panel = el.querySelector('[data-testid="legend-panel"]') as HTMLElement;
+    expect(panel.className).toContain('w-[240px]');
+    expect(panel.className).toContain('max-h-[50vh]');
+    // 面板在按鈕上方
+    expect(panel.compareDocumentPosition(el.querySelector('[data-testid="legend-expand"]')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    expect(n).toBe(2);
   });
 });
 
@@ -53,6 +73,7 @@ describe('Legend：主權圖層與收合動畫', () => {
     };
     TestBed.configureTestingModule({ providers: [{ provide: MotionService, useValue: fake }] });
     const fixture = TestBed.createComponent(Legend);
+    fixture.componentRef.setInput('open', true);
     return { fixture, calls, finish: () => finish() };
   }
   const state = (f: { nativeElement: HTMLElement }) => f.nativeElement.querySelector('[data-testid="legend"]')?.getAttribute('data-state');
@@ -75,16 +96,18 @@ describe('Legend：主權圖層與收合動畫', () => {
     expect(el.querySelector('[data-testid="legend-sov-occupation-annexed"]')?.textContent).toContain('併入');
     expect(el.querySelector('[data-testid="legend-sov-occupation-civil_administration"]')?.textContent).toContain('總督府');
     expect(el.querySelector('[data-testid="legend-sov-occupation-military_administration"]')?.textContent).toContain('軍事管理');
-    expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('待查證');
+    expect(el.querySelector('[data-testid="legend-sov-blank"]')?.textContent).toContain('主權資料缺');
+    expect(el.querySelector('[data-testid="legend-sov-dispute"]')?.textContent).toContain('主權爭議'); // 憲法 R6、I3
   });
 
-  it('收合：先播 motion 收合（data-state=closing），結束後才換成收合按鈕；展開也播', async () => {
+  it('收合：先播淡出收合（data-state=closing），結束後才換成收合按鈕；展開也播；不 tween 高度（§17.5）', async () => {
     const { fixture, calls, finish } = setup(false);
     await fixture.whenStable();
     fixture.componentRef.setInput('open', false);
     await fixture.whenStable();
     expect(state(fixture)).toBe('closing');
     expect(calls.at(-1)?.['opacity']).toEqual([1, 0]);
+    expect(Object.keys(calls.at(-1) ?? {})).not.toContain('height');
     finish();
     await new Promise((r) => setTimeout(r));
     await fixture.whenStable();
@@ -92,7 +115,8 @@ describe('Legend：主權圖層與收合動畫', () => {
     fixture.componentRef.setInput('open', true);
     await fixture.whenStable();
     expect(state(fixture)).toBe('open');
-    expect(calls.at(-1)?.['opacity']).toEqual([0.4, 1]);
+    expect(calls.at(-1)?.['opacity']).toEqual([0, 1]);
+    expect(Object.keys(calls.at(-1) ?? {})).not.toContain('height');
   });
 
   it('prefers-reduced-motion：直接切換，不播動畫', async () => {

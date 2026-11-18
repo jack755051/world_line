@@ -1,0 +1,95 @@
+{
+ "batch": "060",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 1,
+  "deletedCitations": 0,
+  "addedCitations": 21,
+  "editedSentences": 11,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "it-giolitti",
+   "bioId": "02c63ee6-5546-4b01-a428-e85bfc003b7d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1：『數月』『接受提名』補 quote（同頁 DBI 原文：incarico che ricoprì per pochi mesi／accettò la candidatura politica），改長既有引文",
+    "段2：刪無 quote 子句『因與克里斯皮不合』與『首次出任內閣總理』（標題同改）；補 quote：capolista、進入眾議院、國王（il re）、組成新政府；Rudinì 引文 datePrecision year→day",
+    "段3：1901–1903 日期是扎納德利內閣起迄，改寫為內閣期間而非他個人任期；『土耳其、利比亞』與標題『焦利蒂時代』補 quote",
+    "段4：向國王陳述日期依 quote 改為 5 月 10 日（原文 colloquio del 10 maggio，原句混成 9 日）；『退居卡沃爾』補 quote",
+    "段5：period 起點 1923-01-01 無任何 quote 含 1923，改為 null；『法西斯掌權』『法西斯主導的全國名單』補 quote",
+    "gap field:identity note 改為不自相矛盾的寫法（原寫未取得第二個 A／B 卻列出 GND A）",
+    "抽查重抓 Treccani DBI（200，引文 'Il G. costituì il suo terzo ministero il 29 maggio 1906' 相符）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lt-stulginskis",
+   "bioId": "01a1b4bb-0746-7c81-86c9-aeddd27fff40",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 9,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 28,
+   "changes": [
+    "段2：『立陶宛委員會』『即獨立宣言』補 quote",
+    "段4：1922-12-21 當選總統的日期原無含日期 quote，補 quote",
+    "段5：『斯梅托納』『解散第三屆議會』補 quote",
+    "段6：原句『1941年6月蘇聯占領立陶宛後』把占領與逮捕混為同月，改寫；『流放』改為原文 išvežtas（押走）；務農、蘇聯占領補 quote",
+    "農民聯盟主席自 roleCandidates 移回 positions（positionKind=other、partyPostAmbiguous）：來源未稱該聯盟為政黨，與研究者對同一聯盟名單席位標 ambiguous 的處理不一致；缺迄日 gap target 隨之改為 position:",
+    "議員席位 partyPostAmbiguousReason 改為準確理由（來源有寫依聯盟名單當選，不確定處在於該聯盟是否為政黨）；副總理兼內政部長 t14Reason 修正措辭",
+    "抽查重抓 lrs.lt 議員頁（200，'atsisakė Seimo nario mandato' 相符）與 Šilutė PDF（200，'ministras be portfelio' 相符）",
+    "Šilutė 公共圖書館展板（具名館員、無書目）維持 B 為邊界判斷；三筆內閣職位另有 lrs.lt（A）年精度佐證"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cl-aguirre-cerda",
+   "bioId": "aecd36be-887c-4c7f-9310-38678f016443",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 4,
+   "gaps": 6,
+   "searchLogSteps": 16,
+   "changes": [
+    "段1：『法國、進修科目』『回國』補 quote（改長既有引文）",
+    "段2：『桑富恩特斯政府』補 quote；period 迄 1921-01-01 依 Q3（年精度到 1921）改 1922-01-01",
+    "段3：『關閉國會』『流亡歐洲』補 quote，補回原文 1925 年回國；period 迄 1927-01-01 依 Q3 改 1928-01-01",
+    "段4：『人民陣線正式提名』無 quote 支撐，改為原文所寫反對派各黨大會並補 quote",
+    "眾議員兩任迄日誤寫為迄年當年 1 月 1 日（1918-01-01、1921-01-01），依 Q3 改為 1919-01-01、1922-01-01 並更正 evidenceNote",
+    "抽查重抓 BCN 人物頁（200，'cargo que ejerció entre el 18 de enero y el 6 de septiembre de 1918' 相符）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "多處子句（人名、地點、原因、組織名）只靠鄰近日期引文、無逐字 quote 支撐，審查自同一已抓原文補 21 筆引文、刪 3 個無據子句",
+  "Q3 年精度迄點誤寫為迄年當年 1 月 1 日（阿吉雷眾議員兩任、段2、段3），已更正",
+  "段落 period 起點無 quote 含該年（焦利蒂段5 寫 1923）→ 改 null",
+  "同一組織（立陶宛農民聯盟）主席當黨職、其名單席位卻標 ambiguous，前後不一致；主席移回 positions 標 ambiguous",
+  "斯圖爾金斯基斯與阿吉雷 check_min 未達僅因黨職／聯盟職缺迄日，均已有「待查證：缺迄日」gap，篇幅達標"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

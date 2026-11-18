@@ -1,0 +1,17 @@
+{
+ "batch": "064", "reviewedOn": "2026-11-17", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 2, "addedCitations": 1, "editedSentences": 4, "spotRefetched": 4, "searchLogShort": 0},
+ "people": [
+  {"key": "nl-heemskerk", "bioId": "01a1b4bb-0789-760c-80c5-eae3618dbb4c", "verdict": "pass_with_changes", "paragraphs": 6, "positions": 7, "roleCandidates": 5, "gaps": 3, "searchLogSteps": 8,
+   "changes": ["第3段：Parlement.com 引文延長為「werd in 1908 tegen diens zin kabinetsleider, hetgeen leidde tot een conflict」，支撐「兩人因而起衝突」子句", "第4段：刪無引文支撐的「隨即」", "第6段：Colijn 譯名「科爾赫」改「科萊恩（Colijn）」；補 Parlement.com 生卒欄引文「Utrecht, 12 juni 1932」支撐卒地烏特勒支", "T14 逐筆核對：內政大臣 R6（roleGap=regime，比照前批慣例）、殖民（代理）／司法／國務部長等 R5、ARP 議員團主席／副主席與以 ARP 身分取得的第二院席位 R1 均成立", "重抓 Parlement.com 人物頁比對引文一致"],
+   "returnedReasons": []},
+  {"key": "is-jon-magnusson", "bioId": "01a1b4bb-0796-77d7-9690-273f34131dfb", "verdict": "pass_with_changes", "paragraphs": 7, "positions": 5, "roleCandidates": 0, "gaps": 5, "searchLogSteps": 29,
+   "changes": ["第1段：刪重複句「德國國家圖書館權威檔也記他生於1859年、卒於1926年」（中英文）及其 2 筆 GND 引文（生卒年已由 lex.dk 引文支撐）", "第7段：「前往東冰島的旅途中」改「東冰島旅行途中」，照 DBL「død under en rejse i Østisland」原意", "position jon-althing-member：加 partyPostAmbiguous（DBL 只寫入議會後與自治黨立場一致，未明寫以黨身分取得席位）", "篇幅不足 gap 字數更新為 823 字；議席缺迄日已有「待查證：缺迄日」gap，searchLog 有 round: retry 加強搜尋（althingi.is 403 Cloudflare 未繞過）", "重抓冰島政府 1924 內閣頁與 DBL 條目比對引文一致"],
+   "returnedReasons": []},
+  {"key": "bg-lyapchev", "bioId": "01a1b4bb-079f-79b6-881e-8cab61613615", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 12,
+   "changes": ["第3段 period 迄點 1931-01-01 改 1935-01-01（段內最後一件事為穆沙諾夫在位至 1934 年，Q3 年精度寫下一年起日）", "薄人物最低嘗試核對：5 種來源類型、12 次查詢（保加利亞語 3 次）、實抓 ≥5 頁，達標；無署名 Treccani 個人條目與 BNR 稿已正確只放 gap 候選", "重抓 lobid GND 121085430 比對生卒日期與 Regierungschef 一致"],
+   "returnedReasons": []}
+ ],
+ "issues": ["冰島 1917-01-04～1918-11-30 的總理任期在名單 5442 之外、來源明寫，研究者以政權待查證為由只記 gap（field:pm_1917_1918），未建 R0 候選；審查不新增，留待主 session 決定是否補建", "研究者偶有無引文支撐的修飾語（隨即）與為湊字數的重複句，審查已刪"],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

@@ -1,0 +1,40 @@
+{
+ "batch": "029",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 1, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 6, "editedSentences": 1, "spotRefetched": 3, "searchLogShort": 0},
+ "people": [
+  {"key": "li-franz-i", "bioId": "01a1b4ae-0da5-74fa-9e13-d8faa3f65fc4", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 2, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 8,
+   "changes": [
+    "第1段：引文改為「auf Wunsch seines Bruders Fürst Johanns II. 1879 nicht mehr nach Brüssel zurück」，補足「不再返回布魯塞爾」子句（原引文缺謂語）",
+    "第2段：補引文「der ein Bündnis der Donaumonarchie mit dem Zarenreich anstrebte」支撐「主張與沙俄結盟」",
+    "第3段：補引文「Er war massgeblich an der Schaffung eines Lehrstuhls」支撐「大力促成」",
+    "第4段：補引文「mit 76 Jahren Landesfürst」（成為在位親王）與「ungleichen Stands war, nicht erlaubt」（約翰二世不允許婚姻；原引文截掉謂語）",
+    "重抓 HLFL 條目比對（200，引文一致）；元首任期在名單 5442，不重建，正確"
+   ], "returnedReasons": []},
+  {"key": "gt-orellana", "bioId": "01a1b4ae-0e1f-70e2-878c-07ceacd3f7c9", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 0, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 14,
+   "changes": [
+    "第4段：日期錯誤更正：FRUS 1922 d510 電報日期 8 月 18 日、原文寫「I called on President Orellana yesterday」，拜會在前一天；正文改為「8月18日，蓋斯勒電告，他前一天拜會了奧雷利亞納總統」（中英同改）",
+    "第1段：引文「overthrowing Herrera government.」改為原文「morning overthrowing Herrera government.」以支撐「清晨五時」",
+    "第2段：引文改為「The Assembly this afternoon gave first of three daily readings to a resolution」以支撐「議會當天下午」",
+    "1921-12-06 三將軍臨時政府未建角色候選、留 gap（缺迄日、集體領導）判斷合理，保留",
+    "重抓 FRUS d510 比對（200，引文一致）；Biografías y Vidas 記 C 只作 gap 候選，正確"
+   ], "returnedReasons": []},
+  {"key": "no-knudsen", "bioId": "01a1b4ae-0dd2-7345-b4e3-e8ba1ff01118", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 4, "roleCandidates": 1, "gaps": 5, "searchLogSteps": 7,
+   "changes": [
+    "第1段：補引文「blei vald til ordførar i Gjerpen」支撐地名耶爾彭",
+    "第4段：引文「men då sa han nei」改為「Otto Bahr Halvorsen gjekk i 1921, men då sa han nei」以支撐 1921 年；補引文「øvde i denne tida framleis stor innverknad i partiet」支撐「在黨內保持很大影響力」",
+    "新增 gap field:stortingVenstreforeningChair：1908 年議會自由黨協會主席屬黨職，但無起迄日，移入待查證（未建候選）",
+    "自由黨主席 R1 de_facto_leader、農業與審計部 R5、議長 legislator（非黨籍席位）核對無誤",
+    "重抓 SNL 條目比對（200，引文一致）"
+   ], "returnedReasons": []}
+ ],
+ "issues": [
+  "研究者多處引文截掉謂語或關鍵詞（nicht erlaubt、nicht mehr nach Brüssel zurück、Landesfürst），verify.py 只核逐字存在、不核語意支撐，需人工比對",
+  "研究者把只缺迄日的職位（Franz 貴族院世襲議員 1917-05-19 起、Knudsen 1908-03-18 起首相兼財政大臣的財政職）寫成 gap 而非『照寫 start＋待查證：缺迄日』；審查不新增條目，維持 gap，供下一輪補建",
+  "本批實際 3 人（提示標題寫 5 人）"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 79}
+}

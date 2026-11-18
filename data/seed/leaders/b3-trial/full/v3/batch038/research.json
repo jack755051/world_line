@@ -1,0 +1,2765 @@
+{
+ "batch": "b3-full-v3-batch038",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式：經歷層 positionKind；黨職在 roleCandidates（role_kind=de_facto_leader，t14Rule R1）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch038/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "cpdoc-bernardes": {
+   "title": "BERNARDES, Artur（DHBB 傳記條目）",
+   "authors": [
+    "Mauro Malin"
+   ],
+   "publisher": "CPDOC/Fundação Getulio Vargas，Dicionário Histórico-Biográfico Brasileiro (DHBB)",
+   "published_text": "CPDOC 線上條目",
+   "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-biografico/artur-da-silva-bernardes",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構傳記辭典，具名作者（Mauro Malin）"
+  },
+  "enc-bernardes": {
+   "title": "Bernardes, Artur da Silva (1875–1955)",
+   "authors": [
+    "Iêda Siqueira Wiarda"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "Encyclopedia of Latin American History and Culture 條目",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/bernardes-artur-da-silva-1875-1955",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目"
+  },
+  "enc-santos": {
+   "title": "Santos, Eduardo (1888–1974)",
+   "authors": [
+    "Richard Stoller"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "Encyclopedia of Latin American History and Culture 條目",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/santos-eduardo-1888-1974",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目"
+  },
+  "enc-schaerer": {
+   "title": "Schaerer, Eduardo (1873–1941)",
+   "authors": [
+    "Thomas L. Whigham"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "Encyclopedia of Latin American History and Culture 條目",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/schaerer-eduardo-1873-1941",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目"
+  },
+  "acad-hist-santos": {
+   "title": "Presidentes Anteriores：Eduardo Santos（Academia Colombiana de Historia）",
+   "authors": [],
+   "publisher": "Academia Colombiana de Historia",
+   "published_text": "學院官網「Presidentes Anteriores」頁 Eduardo Santos 條目",
+   "url": "https://academiahistoria.org.co/presidentes-anteriores/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構（國家級歷史學院）官方人物頁；無具名作者故不評 A"
+  },
+  "gnd-santos": {
+   "title": "Santos, Eduardo（GND 1056437030）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/1056437030",
+   "archive_url": null,
+   "catalog_id": "GND 1056437030",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔"
+  },
+  "gnd-schaerer": {
+   "title": "Schaerer, Eduardo（GND 1056190787）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/1056190787",
+   "archive_url": null,
+   "catalog_id": "GND 1056190787",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔"
+  },
+  "banrep-santos": {
+   "title": "Eduardo Santos Montejo（Enciclopedia Banrepcultural）",
+   "authors": [],
+   "publisher": "Banco de la República（MediaWiki 型百科）",
+   "published_text": "Enciclopedia Banrepcultural 條目（無署名）",
+   "url": "https://enciclopedia.banrepcultural.org/index.php/Eduardo_Santos_Montejo",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名百科條目，未評等（Q9），只作缺漏候選"
+  },
+  "portalguarani-schaerer": {
+   "title": "EDUARDO SCHAERER (+)（Portal Guaraní）",
+   "authors": [],
+   "publisher": "Portal Guaraní（私人入口網站）",
+   "published_text": "傳記頁（無署名）",
+   "url": "https://www.portalguarani.com/2067_eduardo_schaerer__.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "私人網站，未評等，只作缺漏候選"
+  }
+ },
+ "people": [
+  {
+   "key": "br-bernardes-artur",
+   "bioId": "1d7886ac-03b6-4018-81d1-1537ff78eb98",
+   "name": "Artur da Silva Bernardes",
+   "nameZh": "阿圖爾·貝爾納德斯",
+   "recordIds": [
+    "cd2bfd83-a03d-4c81-9f86-b299ee23b595",
+    "50a1a79c-0644-4497-9c5c-660b738040e6"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1875-08-08",
+      "end": "1901-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與求學",
+      "en": "Origins and schooling"
+     },
+     "body": {
+      "zh-Hant": "阿圖爾·達席爾瓦·貝爾納德斯（Artur da Silva Bernardes）1875年8月8日生於米納斯吉拉斯州維索薩，父親是葡萄牙人。1900年12月他取得法學學士文憑；DHBB 稱他是自該縣設立以來第一位取得法學學位的維索薩子弟。",
+      "en": "Artur da Silva Bernardes was born in Viçosa, Minas Gerais, on 8 August 1875, the son of a Portuguese father. In December 1900 he received his law degree; the DHBB says he was the first son of Viçosa to graduate in law since the district was established."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭",
+       "quote": "nasceu em Viçosa (MG) no dia 8 de agosto de 1875",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭",
+       "quote": "Seu pai era português",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 求學",
+       "quote": "Em dezembro de 1900 recebeu o diploma de bacharel em ciências jurídicas",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 求學",
+       "quote": "era o primeiro filho de Viçosa a diplomar-se em direito",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1904-11-19",
+      "end": "1918-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "地方政治到米納斯州州長",
+      "en": "From local politics to the state presidency of Minas"
+     },
+     "body": {
+      "zh-Hant": "1904年11月19日州內舉行市議員選舉，共和黨米納斯派（PRM）維索薩支部提名他為特謝拉斯區市議員。1909年5月24日，他的聯邦眾議員選舉結果獲確認並就任；1910年9月他中斷任期，出任米納斯州政府財政廳長。1918年9月，他的米納斯州州長任期開始。",
+      "en": "On 19 November 1904 municipal elections were held across the state, and the Viçosa section of the Partido Republicano Mineiro (PRM) put him forward as a councillor for the district of Teixeiras. On 24 May 1909 his election as federal deputy was recognised and he took his seat; in September 1910 he interrupted that term to become finance secretary of the Minas government. His government of Minas began in September 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "O início de sua carreira ocorreu em abril de 1904",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "Em 19 de novembro do mesmo ano realizaram-se em todo o estado",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "realizaram-se em todo o estado eleições municipais",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "A seção de Viçosa do Partido Republicano Mineiro (PRM),",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "indicou Bernardes para vereador pelo distrito de Teixeiras",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Realizado o pleito em janeiro em 1909",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "uma cadeira de deputado federal pelo segundo distrito eleitoral",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "em 24 de maio ele teve sua eleição reconhecida e tomou posse",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "Interrompeu seu mandato em setembro de 1910 para assumir a Secretaria de",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "Finanças do governo de Minas, presidido por Júlio Bueno Brandão",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 州長",
+       "quote": "governo de Bernardes em Minas teve início em setembro de 1918",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-03-01",
+      "end": "1926-11-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "共和國總統",
+      "en": "President of the Republic"
+     },
+     "body": {
+      "zh-Hant": "1922年3月的選舉中，各共和黨的黨機器運作順利，從一開始就顯示他將獲勝。1922年11月15日他就任巴西總統，是第一位在戒嚴期間就職的總統。DHBB 認為他任內最重要的舉動，是1926年6月10日讓巴西退出國際聯盟；同年11月15日他把政府交給新任總統。",
+      "en": "In the March 1922 election the Republican party machines worked smoothly and made his victory clear from the start. On 15 November 1922 he took office as president of Brazil, the first president to be inaugurated under a state of siege. The DHBB calls his most important act the withdrawal of Brazil from the League of Nations, on 10 June 1926; on 15 November of that year he handed the government to the new president."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1922 選舉",
+       "quote": "funcionaram a contento no pleito de março de 1922",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1922 選舉",
+       "quote": "fazendo ver desde o início a vitória de Bernardes",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 總統任內",
+       "quote": "o primeiro presidente a tomar posse (15 de novembro de 1922) na vigência",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 外交",
+       "quote": "Mas seu ato mais importante foi a retirada do Brasil da Liga das Nações",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 外交",
+       "quote": "Quando o Brasil se retirou da organização, em 10 de junho de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 交棒",
+       "quote": "no dia 15 de novembro Bernardes passou o governo ao novo presidente da República",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1932-02-01",
+      "end": "1933-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "立憲革命與流亡",
+      "en": "Constitutionalist revolt and exile"
+     },
+     "body": {
+      "zh-Hant": "1932年2月，米納斯協議促成社會民族黨（PSN）成立，他列名該黨領導委員會；該黨於同年5月解散。9月23日他在阿拉龐加被捕，12月底抵達里斯本流亡。",
+      "en": "In February 1932 the Minas Agreement produced the Partido Social Nacionalista (PSN), and he sat on its directing committee; the party was dissolved in May of the same year. On 23 September he was arrested at Araponga, and he reached Lisbon in late December 1932 to go into exile."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Em fevereiro de 1932 essa aliança ficou conhecida como Acordo Mineiro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "e se traduziu na criação do Partido Social Nacionalista (PSN)",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Nacionalista (PSN), com Bernardes, Virgílio de Melo Franco, Venceslau Brás e",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Venceslau Brás e Antônio Carlos na comissão diretora",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "dissolução do PSN em maio de 1932",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Em 23 de setembro, Bernardes foi preso em Araponga",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Bernardes chegou a Lisboa em fins de dezembro de 1932",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "para um exílio que duraria ano e meio",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-04-07",
+      "end": "1955-03-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "UDN、共和黨與晚年",
+      "en": "The UDN, the Republican Party and later years"
+     },
+     "body": {
+      "zh-Hant": "1945年4月7日UDN舉行首次全國大會；4月21日第二次會議指派首屆全國領導委員會，臨時領導委員會成員包括貝爾納德斯。8月14日他宣布成立共和黨（PR）並使其派系脫離UDN；10月15日他獲指派主持該黨，並一直擔任到去世。1955年新一屆國會於2月1日開議，他於3月23日在里約逝世。",
+      "en": "The UDN held its first national convention on 7 April 1945; on 21 April a second meeting named its first national directorate, with a provisional directing committee that included Bernardes. On 14 August he announced the creation of the Partido Republicano (PR) and the withdrawal of his faction from the UDN; on 15 October he was named to preside over that party, which he did until his death. The new legislature of 1955 opened on 1 February, and he died in Rio on 23 March."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1945",
+       "quote": "desembocou na criação da União Democrática Nacional (UDN)",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, UDN",
+       "quote": "primeira convenção nacional em 7 de abril de 1945",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, UDN",
+       "quote": "Em 21 de abril, uma segunda reunião da UDN designou seu primeiro diretório",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, UDN",
+       "quote": "comissão diretora provisória integrada por Bernardes, Armando Sales,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "realizada em 14 de agosto e que começou sob a presidência de Bernardes,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "ele anunciou a criação do Partido Republicano (PR) e o conseqüente",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1945",
+       "quote": "o conseqüente desligamento de sua facção da UDN",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "Em 15 de outubro Bernardes foi designado para presidir o partido",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "o que iria fazer ininterruptamente até sua morte, em 1955",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 逝世",
+       "quote": "A nova legislatura teve início no dia 1º de fevereiro de 1955",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 逝世",
+       "quote": "faleceu, no Rio, em 23 de março seguinte",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "bernardes-fazenda-mg",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "米納斯吉拉斯州政府",
+      "en": "Government of the State of Minas Gerais"
+     },
+     "title": {
+      "orig": "Secretário de Finanças de Minas Gerais",
+      "zh-Hant": "米納斯吉拉斯州財政廳長",
+      "en": "Finance Secretary of Minas Gerais"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1910-09-01",
+      "end": "1914-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "Interrompeu seu mandato em setembro de 1910 para assumir a Secretaria de",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "Finanças do governo de Minas, presidido por Júlio Bueno Brandão",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "O governo de Bueno Brandão terminou em setembro de 1914",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "州級（非國家級）財政廳長，不是四部閣員，且政權不在系統中，R5"
+    },
+    {
+     "key": "bernardes-pres-mg",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "米納斯吉拉斯州政府",
+      "en": "Government of the State of Minas Gerais"
+     },
+     "title": {
+      "orig": "Presidente do Estado de Minas Gerais",
+      "zh-Hant": "米納斯吉拉斯州州長（州總統）",
+      "en": "President (governor) of the State of Minas Gerais"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1918-09-01",
+      "end": "1923-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 州長",
+       "quote": "governo de Bernardes em Minas teve início em setembro de 1918",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭摘要",
+       "quote": "pres. MG 1918-1922; pres. Rep. 1922-1926; sen. MG 1927-1930; dep.",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "轄區內地方長官（州長），R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "bernardes-psn",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "社會民族黨（PSN）",
+      "en": "Partido Social Nacionalista (PSN)"
+     },
+     "title": {
+      "orig": "Comissão diretora do Partido Social Nacionalista",
+      "zh-Hant": "社會民族黨領導委員會委員",
+      "en": "Member of the directing committee of the Partido Social Nacionalista"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1932-02-01",
+      "end": "1932-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Em fevereiro de 1932 essa aliança ficou conhecida como Acordo Mineiro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Nacionalista (PSN), com Bernardes, Virgílio de Melo Franco, Venceslau Brás e",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Venceslau Brás e Antônio Carlos na comissão diretora",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "dissolução do PSN em maio de 1932",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日依黨解散月（5月）寫下一月起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "bernardes-udn",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "União Democrática Nacional（UDN）",
+      "en": "União Democrática Nacional (UDN)"
+     },
+     "title": {
+      "orig": "Comissão diretora provisória da UDN",
+      "zh-Hant": "UDN 臨時領導委員會委員",
+      "en": "Member of the provisional directing committee of the UDN"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1945-04-21",
+      "end": "1945-08-14"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, UDN",
+       "quote": "Em 21 de abril, uma segunda reunião da UDN designou seu primeiro diretório",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, UDN",
+       "quote": "comissão diretora provisória integrada por Bernardes, Armando Sales,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1945",
+       "quote": "realizada em 14 de agosto e que começou sob a presidência de Bernardes,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "ele anunciou a criação do Partido Republicano (PR) e o conseqüente",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日取他宣布脫離UDN並成立PR的8月14日會議日（推定，來源未明寫其委員資格終止日）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1945",
+       "quote": "o conseqüente desligamento de sua facção da UDN",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "bernardes-pr",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "Partido Republicano（PR）",
+      "en": "Partido Republicano (PR)"
+     },
+     "title": {
+      "orig": "Presidente do Partido Republicano",
+      "zh-Hant": "共和黨（PR）主席",
+      "en": "President of the Partido Republicano (PR)"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1945-10-15",
+      "end": "1956-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "Em 15 de outubro Bernardes foi designado para presidir o partido",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, PR",
+       "quote": "o que iria fazer ininterruptamente até sua morte, em 1955",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bernardes",
+       "locator": "Entry, 末段",
+       "quote": "he was president until his death in 1955",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "bernardes-dep-1909",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴西聯邦眾議院",
+      "en": "Chamber of Deputies of Brazil"
+     },
+     "title": {
+      "orig": "Deputado federal por Minas Gerais",
+      "zh-Hant": "聯邦眾議員（米納斯吉拉斯州）",
+      "en": "Federal deputy for Minas Gerais"
+     },
+     "period": {
+      "start": "1909-05-24",
+      "end": "1910-09-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "em 24 de maio ele teve sua eleição reconhecida e tomou posse",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 財政廳",
+       "quote": "Interrompeu seu mandato em setembro de 1910 para assumir a Secretaria de",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Realizado o pleito em janeiro em 1909",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "credenciaram-no à indicação do PRM para disputar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "uma cadeira de deputado federal pelo segundo distrito eleitoral",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；DHBB 明寫由 PRM 提名／列入 PRM 名單當選",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "bernardes-dep-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴西聯邦眾議院",
+      "en": "Chamber of Deputies of Brazil"
+     },
+     "title": {
+      "orig": "Deputado federal por Minas Gerais",
+      "zh-Hant": "聯邦眾議員（米納斯吉拉斯州）",
+      "en": "Federal deputy for Minas Gerais"
+     },
+     "period": {
+      "start": "1915-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭摘要",
+       "quote": "dep. fed. MG 1909-1910, 1915-1918;",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Mais uma vez, foi indicado pelo PRM para disputar uma das cadeiras de deputado",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Nas eleições de janeiro de 1915 foi o candidato mais sufragado da circunscrição",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；DHBB 明寫由 PRM 提名／列入 PRM 名單當選",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "bernardes-dep-1935",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴西聯邦眾議院",
+      "en": "Chamber of Deputies of Brazil"
+     },
+     "title": {
+      "orig": "Deputado federal por Minas Gerais",
+      "zh-Hant": "聯邦眾議員（米納斯吉拉斯州）",
+      "en": "Federal deputy for Minas Gerais"
+     },
+     "period": {
+      "start": "1935-01-01",
+      "end": "1938-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭摘要",
+       "quote": "fed. MG 1935-1937; const. 1946; dep. fed. MG 1946-1955.",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Para a Câmara Federal, o partido apresentou uma lista com 38 candidatos",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 聯邦眾議員",
+       "quote": "Bernardes foi eleito em ambos os pleitos,",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；DHBB 明寫由 PRM 提名／列入 PRM 名單當選",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:bernardes-prm",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DHBB 只寫他在1919年2月事件「之後」實際掌握共和黨米納斯派（PRM）領導，並保持到1937年黨解散（有迄日但無起日），Encyclopedia of Latin American History and Culture 未提；Britannica 擋 403",
+     "candidateCitations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "Bernardes assumiu de fato a direção do PRM",
+       "quoteLang": "pt"
+      },
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 米納斯政治",
+       "quote": "até a extinção do partido, em 1937",
+       "quoteLang": "pt"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:bernardes-senador",
+     "gapKind": "conflict",
+     "note": "參議員任期兩份已抓來源不一致：DHBB 開頭摘要寫 sen. MG 1927-1930，Encyclopedia of Latin American History and Culture 寫 1929 至 1932；未擇一寫入職位",
+     "candidateCitations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 開頭摘要",
+       "quote": "pres. MG 1918-1922; pres. Rep. 1922-1926; sen. MG 1927-1930; dep.",
+       "quoteLang": "pt"
+      },
+      {
+       "sourceKey": "enc-bernardes",
+       "locator": "Entry, 末段",
+       "quote": "a senator from 1929 to 1932",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:exile-duration",
+     "gapKind": "conflict",
+     "note": "1932年流亡長度兩份已抓來源不一致：DHBB 寫「一年半」（1932年12月底抵里斯本），Encyclopedia of Latin American History and Culture 寫 for five years；正文只寫抵達里斯本，未寫流亡長度",
+     "candidateCitations": [
+      {
+       "sourceKey": "cpdoc-bernardes",
+       "locator": "Verbete, 1932",
+       "quote": "Bernardes chegou a Lisboa em fins de dezembro de 1932, para um exílio que",
+       "quoteLang": "pt"
+      },
+      {
+       "sourceKey": "enc-bernardes",
+       "locator": "Entry, 末段",
+       "quote": "He was exiled to Portugal in 1932 for five years",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "CPDOC DHBB 舊網址 verbete-biografico/bernardes-artur-da-silva",
+     "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-biografico/bernardes-artur-da-silva",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "CPDOC DHBB 新網址 artur-da-silva-bernardes（原文語言 pt）",
+     "url": "https://www18.fgv.br/cpdoc/acervo/dicionarios/verbete-biografico/artur-da-silva-bernardes",
+     "result": "found_B",
+     "note": "具名作者 Mauro Malin；段落／職位／角色主要出處"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "CPDOC DHBB 舊版 Primeira República PDF",
+     "url": "https://cpdoc.fgv.br/sites/default/files/verbetes/primeira-republica/BERNARDES,%20Artur.pdf",
+     "result": "no_result",
+     "note": "抓到檔案但非本人條目可用文字，未採用"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Presidência da República 歷任總統頁 Artur Bernardes",
+     "url": "https://www.gov.br/planalto/pt-br/conheca-a-presidencia/acervo/galeria-de-presidentes-da-republica/artur-da-silva-bernardes",
+     "result": "blocked_403",
+     "note": "回 429「Acesso Temporariamente Interrompido」，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture：Bernardes, Artur da Silva",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/bernardes-artur-da-silva-1875-1955",
+     "result": "found_B",
+     "note": "具名作者 Iêda Siqueira Wiarda"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Artur da Silva Bernardes",
+     "url": "https://www.britannica.com/biography/Artur-da-Silva-Bernardes",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "GND／lobid.org：Bernardes, Artur da Silva",
+     "url": "https://lobid.org/gnd/search?q=Artur+Bernardes&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 1089596529 生卒 1875–1955，職業 Politiker；身分確認"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "id.loc.gov：Bernardes, Artur da Silva",
+     "url": "https://id.loc.gov/search/?q=Bernardes%2C+Artur+da+Silva&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "LCNAF 1875-1955，Pres. Brazil；身分確認"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "WebSearch：Artur Bernardes verbete biográfico DHBB CPDOC FGV presidente 1922 1926",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 DHBB 作者線索；其餘結果為禁用網域或私人網站，未使用"
+    }
+   ]
+  },
+  {
+   "key": "co-santos-eduardo",
+   "bioId": "db5f1565-69d9-4069-95b9-45300c73823c",
+   "name": "Eduardo Santos Montejo",
+   "nameZh": "愛德華多·桑托斯",
+   "recordIds": [
+    "46223ccd-fadd-488c-8511-67ee41af0739",
+    "b0ba8d65-1ad6-407b-944e-9b8c344bf8a8"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1888-01-01",
+      "end": "1910-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early years"
+     },
+     "body": {
+      "zh-Hant": "愛德華多·桑托斯（Eduardo Santos Montejo）生於1888年，出生地為通哈，1974年卒於波哥大。德國國家圖書館權威檔稱他是哥倫比亞的記者、法學家與政治人物。他取得國立大學法律與政治學博士，並從1909年起擔任《評論》（La Revista）的負責人。",
+      "en": "Eduardo Santos Montejo was born in Tunja in 1888 and died in Bogotá in 1974. The German National Library authority record calls him a Colombian journalist, jurist and politician. He took a doctorate in law and political science at the Universidad Nacional and from 1909 was director of La Revista."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, 開頭",
+       "quote": "(Tunja, 1888-Bogotá, 1974)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-santos",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Kolumbian. Journalist, Jurist und Politiker (Präsident Kolumbiens 1938-1942)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Estudios",
+       "quote": "Doctor en Derecho y Ciencias Políticas de la Universidad Nacional.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Desde el año de 1909 fue director de “La Revista”.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "外交與地方公職",
+      "en": "Diplomatic and local posts"
+     },
+     "body": {
+      "zh-Hant": "1909至1911年他是哥倫比亞駐巴黎公使館的名譽隨員，1911年任外交部高級事務官（Oficial Mayor）。1915至1917年任波哥大市參議員，1917至1918年任昆迪納馬卡議會議員，1921至1923年任波哥大市議會議員。",
+      "en": "From 1909 to 1911 he was an honorary attaché at the Colombian legation in Paris, and in 1911 he was Oficial Mayor of the Ministry of Foreign Affairs. He was a Bogotá councillor (regidor) in 1915–1917, a deputy in the Cundinamarca assembly in 1917–1918, and a Bogotá municipal councillor in 1921–1923."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Adjunto ad honorem a la Legación de Colombia en París entre 1909 y 1911.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Oficial Mayor del Ministerio de Relaciones Exteriores en 1911.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Regidor de Bogotá entre 1915 y 1917.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Diputado a la Asamblea de Cundinamarca entre 1917 y 1918.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Consejero Municipal de Bogotá entre 1921 y 1923.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1933-02-21",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國會、國聯與總統任期",
+      "en": "Congress, the League and the presidency"
+     },
+     "body": {
+      "zh-Hant": "1933年2月21日他以哥倫比亞代表身分在國際聯盟發表演說。他於1935至1939年任參議員，1939年出任參議院議長。1938年他接替洛佩斯·普馬雷霍就任總統，任期到1942年；任內成立工業發展局、市政發展局與領土信貸局等機構。二戰期間，他是拉丁美洲最親美的領導人之一。",
+      "en": "On 21 February 1933 he addressed the League of Nations as Colombia's delegate. He was a senator from 1935 to 1939 and in 1939 became president of the Senate. In 1938 he succeeded Alfonso López Pumarejo as president, serving until 1942; his administration created institutes including the Industrial Development Institute, the Municipal Development Institute and the Territorial Credit Institute. During the Second World War he was among the most pro-U.S. leaders of Latin America."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Publicaciones",
+       "quote": "Discurso pronunciado el 21 de febrero de 1933 ante la Sociedad de las Naciones",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Publicaciones",
+       "quote": "Excmo. Sr. Eduardo Santos, Delegado de Colombia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "Senador de la República por la circunscripción de Cundinamarca entre 1935 y 1939",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "llegando en este último año a ocupar la presidencia de la corporación.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-santos",
+       "locator": "Entry, 首段",
+       "quote": "In 1938 he succeeded Alfonso López Pumarejo in the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Ocupó el cargo de Presidente de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Cargos",
+       "quote": "para el periodo comprendido entre 1938 y 1942.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-santos",
+       "locator": "Entry, 首段",
+       "quote": "The Industrial Development Institute, the Municipal Development Institute,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-santos",
+       "locator": "Entry, 首段",
+       "quote": "and the Territorial Credit Institute, among others, were created",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-santos",
+       "locator": "Entry",
+       "quote": "were created during his administration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-santos",
+       "locator": "Entry, 次段",
+       "quote": "During World War II Santos was among the most pro-U.S. leaders of Latin America",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-12-01",
+      "end": "1947-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "歷史學院",
+      "en": "The Academy of History"
+     },
+     "body": {
+      "zh-Hant": "1942年12月1日他成為哥倫比亞歷史學院的正式院士。1943年12月25日，這位卸任總統把終身退休金捐給學院。學院的歷任院長名單列有他1945至1946年的任期。",
+      "en": "On 1 December 1942 he became a full member of the Academia Colombiana de Historia. On 25 December 1943 the former president gave the Academy his lifetime pension. The Academy's list of past presidents shows his term in 1945–1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Trayectoria",
+       "quote": "pasó a ser miembro de Número el 1º de diciembre de 1942",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Trayectoria",
+       "quote": "El 25 de diciembre de 1943 el expresidente Santos realizó a la Academia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, Trayectoria",
+       "quote": "una generosa donación de $15.800 correspondientes a su pensión vitalicia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Eduardo Santos 條目, 開頭",
+       "quote": "Periodo: 1945-1946, 1959-1962",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "santos-paris-attache",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞駐巴黎公使館",
+      "en": "Colombian Legation in Paris"
+     },
+     "title": {
+      "orig": "Adjunto ad honorem a la Legación de Colombia en París",
+      "zh-Hant": "駐巴黎公使館名譽隨員",
+      "en": "Honorary attaché, Colombian Legation in Paris"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1909-01-01",
+      "end": "1912-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Adjunto ad honorem a la Legación de Colombia en París entre 1909 y 1911.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-oficial-mayor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞外交部",
+      "en": "Ministry of Foreign Affairs of Colombia"
+     },
+     "title": {
+      "orig": "Oficial Mayor del Ministerio de Relaciones Exteriores",
+      "zh-Hant": "外交部高級事務官",
+      "en": "Oficial Mayor, Ministry of Foreign Affairs"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1911-01-01",
+      "end": "1912-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Oficial Mayor del Ministerio de Relaciones Exteriores en 1911.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "部內高階事務官，不是部長（非正職閣員），R5"
+    },
+    {
+     "key": "santos-regidor-bogota",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波哥大市",
+      "en": "City of Bogotá"
+     },
+     "title": {
+      "orig": "Regidor de Bogotá",
+      "zh-Hant": "波哥大市參議員",
+      "en": "Councillor (regidor) of Bogotá"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1915-01-01",
+      "end": "1918-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Regidor de Bogotá entre 1915 y 1917.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-asamblea-cundinamarca",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "昆迪納馬卡省議會",
+      "en": "Assembly of Cundinamarca"
+     },
+     "title": {
+      "orig": "Diputado a la Asamblea de Cundinamarca",
+      "zh-Hant": "昆迪納馬卡議會議員",
+      "en": "Deputy, Assembly of Cundinamarca"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Diputado a la Asamblea de Cundinamarca entre 1917 y 1918.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-consejero-bogota",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "波哥大市議會",
+      "en": "Municipal Council of Bogotá"
+     },
+     "title": {
+      "orig": "Consejero Municipal de Bogotá",
+      "zh-Hant": "波哥大市議會議員",
+      "en": "Municipal councillor of Bogotá"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1921-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Consejero Municipal de Bogotá entre 1921 y 1923.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-camara-1933",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞眾議院",
+      "en": "Chamber of Representatives of Colombia"
+     },
+     "title": {
+      "orig": "Miembro de la Cámara de Representantes",
+      "zh-Hant": "眾議員",
+      "en": "Member of the Chamber of Representatives"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1933-01-01",
+      "end": "1935-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Miembro de la Cámara de Representantes entre 1933-1934, 1938-1940.",
+       "quoteLang": "es",
+       "evidenceNote": "只取1933–1934一段；迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-senado",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞參議院",
+      "en": "Senate of Colombia"
+     },
+     "title": {
+      "orig": "Senador de la República por Cundinamarca",
+      "zh-Hant": "參議員（昆迪納馬卡選區）",
+      "en": "Senator for Cundinamarca"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1935-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Senador de la República por la circunscripción de Cundinamarca entre 1935 y 1939",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-presidente-senado",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞參議院",
+      "en": "Senate of Colombia"
+     },
+     "title": {
+      "orig": "Presidente del Senado",
+      "zh-Hant": "參議院議長",
+      "en": "President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "llegando en este último año a ocupar la presidencia de la corporación.",
+       "quoteLang": "es",
+       "evidenceNote": "「este último año」指1939年；迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "santos-presidente-academia",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥倫比亞歷史學院",
+      "en": "Academia Colombiana de Historia"
+     },
+     "title": {
+      "orig": "Presidente de la Academia Colombiana de Historia",
+      "zh-Hant": "歷史學院院長",
+      "en": "President of the Academia Colombiana de Historia"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1945-01-01",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "條目開頭「Periodo」",
+       "quote": "Periodo: 1945-1946, 1959-1962",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日；1959–1962 段在時間窗外只入正文不入職位",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:santos-ministro-rree",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；學院頁只列「Ministro de Relaciones Exteriores.」無任期，Encyclopedia of Latin American History and Culture 未提，Banrepcultural（未評等）亦只寫「canciller」無日期；Britannica、Banrepcultural 文獻庫（Radware）、Cancillería 皆 403，Presidencia 歷史頁逾時。外交部長屬 R3 類，日期補到後再判",
+     "candidateCitations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Ministro de Relaciones Exteriores.",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:santos-gob-norte-santander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；學院頁只寫「Gobernador de Norte de Santander.」無任期；Banrepcultural（未評等）則寫「gobernador de Santander」，兩者地名不同且皆無日期",
+     "candidateCitations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Gobernador de Norte de Santander.",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:santos-director-liberal",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；學院頁只有1944年出版品標題稱他為「Director del Partido Liberal」，以及1951年任黨大會主席與黨共同主席（時間窗外），沒有黨領導職的起迄日；黨職依規定屬 de_facto_leader 候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Publicaciones",
+       "quote": "Análisis de la política colombiana que hace el Director del Partido Liberal.",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:santos-camara-1938",
+     "gapKind": "not_found",
+     "note": "待查證：同頁另寫眾議員 1938-1940，與同頁的總統任期（1938–1942）及參議員 1935–1939 重疊，未寫入職位；已查 Encyclopedia of Latin American History and Culture、GND 皆無此項",
+     "candidateCitations": [
+      {
+       "sourceKey": "acad-hist-santos",
+       "locator": "Cargos",
+       "quote": "Miembro de la Cámara de Representantes entre 1933-1934, 1938-1940.",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:santos-banrep-biografia",
+     "gapKind": "not_found",
+     "note": "待查證：Banrepcultural 百科條目（無署名，未評等）內容較詳（含外交、國聯、參眾議員等經歷）但依 Q9 不能當出處；需具名作者的傳記（如 Credencial Historia 的 Posada Carbó 傳略，已被 Radware 擋下）",
+     "candidateCitations": [
+      {
+       "sourceKey": "banrep-santos",
+       "locator": "Biografía, 1930 年段",
+       "quote": "Bajo el gobierno de Olaya, Santos ocupó varios puestos públicos",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Enciclopedia Banrepcultural：Eduardo Santos Montejo",
+     "url": "https://enciclopedia.banrepcultural.org/index.php/Eduardo_Santos_Montejo",
+     "result": "unrated",
+     "note": "無署名百科條目，只能作缺漏候選"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Banrepcultural Biblioteca Virtual 人物頁",
+     "url": "https://www.banrepcultural.org/biblioteca-virtual/eduardo-santos",
+     "result": "no_result",
+     "note": "純前端殼頁，無正文"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Banrepcultural 館藏特輯 Eduardo Santos Montejo",
+     "url": "https://www.banrepcultural.org/coleccion-bibliografica/especiales/eduardo-santos-montejo",
+     "result": "challenge_page",
+     "note": "Radware Bot Manager 擋下，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Credencial Historia 109 期 Eduardo Santos（Posada Carbó）",
+     "url": "https://www.banrepcultural.org/biblioteca-virtual/credencial-historia/numero-109/eduardo-santos",
+     "result": "challenge_page",
+     "note": "Radware Bot Manager 擋下，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Presidencia de la República 歷任總統頁 Eduardo Santos",
+     "url": "https://es.presidencia.gov.co/presidencia/galeria-presidentes/eduardo-santos",
+     "result": "no_result",
+     "note": "連線逾時（40 秒）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Presidencia 歷史頁 asiescolombia/presidentes/59.htm",
+     "url": "http://historico.presidencia.gov.co/asiescolombia/presidentes/59.htm",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica：Eduardo Santos Montejo",
+     "url": "https://www.britannica.com/biography/Eduardo-Santos-Montejo",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Cancillería 歷任部長 Cronología de Ministros",
+     "url": "https://www.cancilleria.gov.co/ministry/the_ministry/history/historical",
+     "result": "blocked_403",
+     "note": "403；搜尋摘要稱 1919–1939 年表有缺"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture：Santos, Eduardo (1888–1974)",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/santos-eduardo-1888-1974",
+     "result": "found_B",
+     "note": "具名作者 Richard Stoller"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Academia Colombiana de Historia：Presidentes Anteriores／Eduardo Santos",
+     "url": "https://academiahistoria.org.co/presidentes-anteriores/",
+     "result": "found_B",
+     "note": "職位年表與學院事蹟；主要出處"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "GND／lobid.org：Santos, Eduardo",
+     "url": "https://lobid.org/gnd/search?q=Eduardo+Santos+Montejo&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 1056437030，1888–1974"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "id.loc.gov：Santos, Eduardo, 1888-1974",
+     "url": "https://id.loc.gov/search/?q=Santos+Montejo%2C+Eduardo&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "LCNAF；身分確認"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "WebSearch：Eduardo Santos Montejo presidente 1938 1942 reseña biográfica（西班牙文）",
+     "url": null,
+     "result": "found_B",
+     "note": "導向 Banrepcultural／Britannica／學院頁"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "WebSearch：cancilleria.gov.co ministros de relaciones exteriores Eduardo Santos 1930 canciller（西班牙文）",
+     "url": null,
+     "result": "no_result",
+     "note": "未取得 1930 年外交部長任期"
+    }
+   ]
+  },
+  {
+   "key": "py-schaerer-eduardo",
+   "bioId": "01a1b4b7-28b7-7ef1-b3ab-26d72b85f8e6",
+   "name": "Eduardo Schaerer",
+   "nameZh": "愛德華多·謝雷爾",
+   "recordIds": [
+    "34f7b7b1-adc8-44a8-9bca-344c010f9ac0",
+    "2a6dffaa-7bae-4fc8-810b-72f8d51d0078"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1873-12-02",
+      "end": "1941-11-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身",
+      "en": "Origins"
+     },
+     "body": {
+      "zh-Hant": "愛德華多·謝雷爾（Eduardo Schaerer）1873年12月2日生，1941年11月12日去世。他與戰爭後來到巴拉圭的德國殖民者有親屬關係，出生於內陸小村卡阿薩帕。他的都市氣質與效率，對他在國立中學與日後的商業事務上都有益處。",
+      "en": "Eduardo Schaerer was born on 2 December 1873 and died on 12 November 1941. He was related to German colonists who came to Paraguay after the war, and was born in Caazapá, a small hamlet in the interior. His urban ambitions and efficiency served him well at the Colegio Nacional and later in business."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "Eduardo Schaerer (b. 2 December 1873; d. 12 November 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schaerer",
+       "locator": "dateOfBirth",
+       "quote": "1873-12-02",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schaerer",
+       "locator": "dateOfDeath",
+       "quote": "1941-11-12",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "Schaerer was related to German colonists who came to Paraguay in the wake",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "of the disastrous War of the Triple Alliance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "Though he was born in Caazapá, a small hamlet in the Paraguayan interior",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "Schaerer displayed distinctly urban ambitions and efficiency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "which stood him in good stead at the Colegio Nacional",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "and ultimately in his business affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1904-01-01",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "自由黨與總統任期",
+      "en": "The Liberal Party and the presidency"
+     },
+     "body": {
+      "zh-Hant": "謝雷爾屬於自由黨。1904年革命後自由黨掌權，他擔任過海關總署署長、亞松森市長與內政部長等要職。他用自己的財富推動競選總統，總統任期為1912至1916年。任內亞松森持續現代化，以啟用電車系統最為突出；第一次世界大戰期間他讓巴拉圭保持中立。",
+      "en": "Schaerer was a Liberal. After the Liberal Party came to power following the 1904 revolution, he held posts including director general of the Customs House, mayor of Asunción and interior minister. He used his money to promote his candidacy for president, and served as president in 1912–1916. During his administration Asunción was modernised, most visibly by the inauguration of a tramway system, and he kept Paraguay neutral during the First World War."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "Politically, Schaerer was a Liberal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "after the Liberal Party came to power after the 1904 revolution",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "he held a variety of important government posts, including",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "director general of the Customs House, mayor of Asunción, and interior minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "he used his money to promote his candidacy for president",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "considerable progress was made in the modernization of Asunción",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 首段",
+       "quote": "Paraguayan statesman and president (1912–1916)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "highlighted by the inauguration of a tramway system",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "he kept Paraguay neutral during World War I",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schaerer",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Politiker, 1912 - 1916 Präsident von Parabuay",
+       "quoteLang": "de",
+       "evidenceNote": "權威檔原文拼字為「Parabuay」，不替原文更正",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": "1941-11-13"
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "卸任後",
+      "en": "After the presidency"
+     },
+     "body": {
+      "zh-Hant": "任期結束後，謝雷爾仍在自由黨圈子中很有影響力。他一度擔任國家參議員，最後成為參議院議長。他也為多份自由黨報紙提供資金，直到1930年代仍是黨內重要力量；1941年11月12日去世。",
+      "en": "After his term ended Schaerer remained influential in Liberal circles. For a time he was a national senator and eventually became president of the Senate. He also financed various Liberal newspapers and remained an important force in the party into the 1930s; he died on 12 November 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 末段",
+       "quote": "Schaerer remained influential in Liberal circles after his term",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 末段",
+       "quote": "For a time he was a national senator and eventually became president",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 末段",
+       "quote": "He provided financial backing for various Liberal newspapers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 末段",
+       "quote": "remained an important force in the party into the 1930s",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-schaerer",
+       "locator": "dateOfDeath",
+       "quote": "1941-11-12",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:schaerer-director-aduana",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Encyclopedia of Latin American History and Culture（Whigham）只列「director general of the Customs House」無日期；GND／LoC 無職位；Britannica 403；Portal Guaraní（私人網站，未評等）不能當出處",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 次段",
+       "quote": "director general of the Customs House, mayor of Asunción, and interior minister",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:schaerer-intendente-asuncion",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Whigham 只寫 mayor of Asunción 無日期；Portal Guaraní（私人網站，未評等）有 1908-07-05 至 1911-01-17 的日期，只能當候選，需 A／B 來源確認（地方首長屬 R5）",
+     "candidateCitations": [
+      {
+       "sourceKey": "portalguarani-schaerer",
+       "locator": "Biografía",
+       "quote": "intendente municipal de Asunción (5 de julio de 1908 a 17 de enero de 1911)",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:schaerer-ministro-interior",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Whigham 只寫 interior minister 無日期；Portal Guaraní（未評等）僅寫「ministro del Interior (1912)」；內政部長屬 R3 類，日期補到後再判",
+     "candidateCitations": [
+      {
+       "sourceKey": "portalguarani-schaerer",
+       "locator": "Biografía",
+       "quote": "ministro del Interior (1912)",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:schaerer-presidente-senado",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Whigham 只寫 for a time a national senator 並最後成為議長，無年份；Portal Guaraní（未評等）寫「senador en 1921」；各國參議院名錄未查得（巴拉圭國會官網搜尋無果）",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-schaerer",
+       "locator": "Entry, 末段",
+       "quote": "For a time he was a national senator and eventually became president",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:schaerer-partido-liberal",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；兩份 A／B 來源只說他在自由黨內有影響力，沒有寫出任何黨職名稱或日期，不寫入角色候選",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture：Schaerer, Eduardo (1873–1941)",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/schaerer-eduardo-1873-1941",
+     "result": "found_B",
+     "note": "具名作者 Thomas L. Whigham；主要出處"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica：Eduardo Schaerer",
+     "url": "https://www.britannica.com/biography/Eduardo-Schaerer",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "GND／lobid.org：Schaerer, Eduardo",
+     "url": "https://lobid.org/gnd/search?q=Schaerer+Eduardo&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1056190787：1873-12-02、1941-11-12、Staatspräsident"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "id.loc.gov：Schaerer, Eduardo, 1873-1941",
+     "url": "https://id.loc.gov/search/?q=Schaerer%2C+Eduardo&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "LCNAF；身分確認"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Portal Guaraní：EDUARDO SCHAERER",
+     "url": "https://www.portalguarani.com/2067_eduardo_schaerer__.html",
+     "result": "unrated",
+     "note": "私人網站，只作缺漏候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "WebSearch：Eduardo Schaerer presidente Paraguay 1912 1916 biografía（西班牙文）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為維基類或私人網站，未使用"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "WebSearch：Eduardo Schaerer senador presidente Cámara de Senadores bacn.gov.py／senado.gov.py",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到巴拉圭國會官方人物頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "WebSearch：Schaerer Eduardo Biblioteca Nacional／Congreso／Presidencia 歷任總統頁（西班牙文）",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到官方歷任總統頁"
+    }
+   ]
+  }
+ ]
+}

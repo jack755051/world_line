@@ -1,0 +1,2453 @@
+{
+ "batch": "b3-full-v3-batch003",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式。三人皆為君主／獨裁者，元首任期均在名簿 leader_records，本批 positions、roleCandidates 為空；名簿外的黨職或閣員、將領職位來源未載，缺漏寫成 gaps。regimeId 因不連庫無法查證，一律 null。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json（無署名條目只放 gap 候選）。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch003/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "dbl-christian10": {
+   "title": "Christian 10.",
+   "authors": [
+    "Helge Larsen",
+    "Povl Eller"
+   ],
+   "publisher": "Dansk Biografisk Leksikon (Lex)",
+   "published_text": "Dansk Biografisk Leksikon 3. udg., 1979–84",
+   "url": "https://biografiskleksikon.lex.dk/Christian_10.",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "丹麥國家傳記辭典（Dansk Biografisk Leksikon），具名作者"
+  },
+  "gnd-christian10": {
+   "title": "Christian X., Dänemark, König (GND 119376903)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119376903",
+   "archive_url": null,
+   "catalog_id": "GND 119376903",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "gnd-gomez": {
+   "title": "Gómez, Juan Vicente (GND 119289040)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119289040",
+   "archive_url": null,
+   "catalog_id": "GND 119289040",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "gnd-ve3": {
+   "title": "Viktor Emanuel III., Italien, König (GND 118804545)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org 官方鏡像）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118804545",
+   "archive_url": null,
+   "catalog_id": "GND 118804545",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND，經 lobid.org 官方鏡像）"
+  },
+  "lex-christian10": {
+   "title": "Christian 10. - Konge af Danmark 1912-1947",
+   "authors": [
+    "Emma Rønberg Paaske"
+   ],
+   "publisher": "Lex（Den Store Danske），作者隸屬 Rigsarkivet",
+   "published_text": "Lex 條目（最後修改 2026-09-01）",
+   "url": "https://denstoredanske.lex.dk/Christian_10.",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（丹麥國家檔案館檔案員）的機構百科條目"
+  },
+  "polar-gomez": {
+   "title": "Gómez, Juan Vicente",
+   "authors": [
+    "Ramón J. Velásquez"
+   ],
+   "publisher": "Fundación Empresas Polar",
+   "published_text": "Diccionario de Historia de Venezuela（BiblioFEP 線上版）",
+   "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/g/gomez-juan-vicente/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Ramón J. Velásquez）的機構辭典條目"
+  },
+  "treccani-gomez": {
+   "title": "Gómez, Juan Vicente",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line（無署名條目）",
+   "url": "https://www.treccani.it/enciclopedia/juan-vicente-gomez/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無具名作者的百科條目，依 Q9 視為未評等；僅放 gap 候選"
+  },
+  "treccani-ve3": {
+   "title": "VITTORIO EMANUELE III di Savoia, re d'Italia",
+   "authors": [
+    "Paolo Colombo"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Dizionario Biografico degli Italiani, Volume 100 (2020)",
+   "url": "https://www.treccani.it/enciclopedia/vittorio-emanuele-iii-di-savoia-re-d-italia_(Dizionario-Biografico)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "義大利國家傳記辭典（DBI），具名作者"
+  }
+ },
+ "people": [
+  {
+   "key": "dk-christian-x",
+   "bioId": "01a1b4af-e4b4-74f8-b14c-c959999beea2",
+   "name": "Christian X",
+   "nameZh": "克里斯蒂安十世",
+   "recordIds": [
+    "01a1aa96-cf95-7195-8a10-d1d9a94e1552",
+    "01a1aa4a-659d-764a-9eab-17e3dd950277"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1870-09-26",
+      "end": "1912-05-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身、軍事教育與繼位",
+      "en": "Birth, military training and accession"
+     },
+     "body": {
+      "zh-Hant": "克里斯蒂安十世生於1870年9月26日。丹麥傳記辭典說他是第一位有中學畢業資格的丹麥國王，但軍事教育對他影響最強。他於1906年因祖父去世成為王儲，1908年升任少將。1912年父王弗雷德里克八世去世後繼位：該辭典記為1912年5月15日，Lex 條目則寫他於5月14日父親去世時成為國王，並於5月15日在阿馬林堡被宣布。",
+      "en": "Christian X was born on 26 September 1870. The Dansk Biografisk Leksikon says he was the first Danish king to have passed the school-leaving examination, although the military side of his education was by far the strongest. He became crown prince in 1906 on the death of his grandfather and was made a major general in 1908. He succeeded his father Frederik VIII in 1912: the biographical dictionary gives 15 May 1912, while the Lex entry says he became king on 14 May, the day his father died, and was proclaimed on 15 May at Amalienborg."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "首段",
+       "quote": "Christian Carl Frederik Albert Alexander Vilhelm, 26.9.1870-20.4.1947, konge",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第二段",
+       "quote": "Christian var den første danske konge der havde studentereksamen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第二段",
+       "quote": "den militære side af hans opdragelse og uddannelse var utvivlsomt den stærkeste",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "首段",
+       "quote": "blev Christian kronprins",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "首段",
+       "quote": "Ved bedstefaderen Christian 9.s død 1906",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kronprins",
+       "quote": "Han blev udnævnt til generalmajor i 1908.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "首段",
+       "quote": "blev han konge 15.5.1912",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "De første år som konge",
+       "quote": "Christian 10. blev konge den 14. maj 1912, da hans far Frederik 8. døde.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "De første år som konge",
+       "quote": "Efter Frederik 8.s død blev Christian 10. udråbt som konge fra balkonen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "1. Verdenskrig 前（Amalienborg 宣布）",
+       "quote": "udråbt som konge fra balkonen på Amalienborg Slot den 15. maj 1912",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-08-05",
+      "end": "1920-07-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "憲政糾紛、1915年憲法與北石勒蘇益格重回丹麥",
+      "en": "Constitutional disputes, the 1915 constitution and the return of Northern Schleswig"
+     },
+     "body": {
+      "zh-Hant": "1914年8月5日德國要求在丹麥各海峽布雷，他在阿馬林堡的國務會議上近乎熱烈地支持布雷；並對戰時中立政策全力支持。1915年6月5日他在各黨支持的新六月憲法上簽名。1920年復活節危機中，他撤換了薩勒政府，在工會決定發動總罷工之後，他於4月4日復活節當天讓步，由中間內閣籌備選舉。1920年7月9日他簽署把北石勒蘇益格割讓給丹麥的條約，次日騎馬越過舊邊界進入日德蘭南部。",
+      "en": "When Germany demanded on 5 August 1914 that the Danish straits be mined, he backed the mine-laying almost passionately at a council of state at Amalienborg; he fully supported the neutrality policy during the war. On 5 June 1915 he signed the new June constitution, backed by all parties. In the Easter Crisis of 1920 he dismissed the Zahle government; after the trade unions decided on a general strike, he gave way on Easter Day, 4 April, and a caretaker ministry was left to call elections. On 9 July 1920 he signed the treaty transferring Northern Schleswig to Denmark and on the next day rode across the old border into Southern Jutland."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "1914 年布雷段",
+       "quote": "Tysklands krav 5.8.1914 om minespærring af de danske bælter",
+       "quoteLang": "da",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "1914 年布雷段",
+       "quote": "tog til statsråd på Amalienborg",
+       "quoteLang": "da",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第四段",
+       "quote": "gik næsten lidenskabeligt ind for mineudlægningen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第四段",
+       "quote": "Neutralitetspolitikken der førtes under krigen havde Christians fulde støtte",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第五段",
+       "quote": "5.6.1915 kunne Christian sætte sit navn under den nye junigrundlov",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "第五段",
+       "quote": "der var støttet af alle partier",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Påskekrisen",
+       "quote": "da Christian 10. i 1920 afsatte den siddende regering",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Påskekrisen",
+       "quote": "Under Påskekrisen afskedigede Christian 10. den radikale Zahle",
+       "quoteLang": "da",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Påskekrisen",
+       "quote": "De samvirkende Fagforbund besluttede at gå i generalstrejke",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Påskekrisen",
+       "quote": "Påskedag den 4. april 1920 bøjede Christian 10. sig for presset.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Påskekrisen",
+       "quote": "et forretningsministerium, som fik til opgave at udskrive folketingsvalg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Genforeningen",
+       "quote": "Traktaten der overdrog Nordslesvig til Danmark",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Genforeningen",
+       "quote": "blev underskrevet af Christian 9.7.1920",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Genforeningen",
+       "quote": "dagen efter red han ved Taps over den slettede grænse ind i Sønderjylland",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-12-01",
+      "end": "1944-06-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "兼任冰島國王",
+      "en": "King of Iceland as well"
+     },
+     "body": {
+      "zh-Hant": "1918年12月1日，丹麥—冰島聯合法生效，承認冰島為主權國家，但兩國仍為共主邦聯，由丹麥國王共同擔任國家元首；兩國只共有國王與外交，國王頭銜因此加上「冰島國王」。他以此身分在1921年首次訪問冰島。丹麥傳記辭典說他與冰島人的關係從未真正熱絡。1940年德國占領丹麥後，冰島議會撤銷丹麥國王的攝政權；聯合法於1943年底期滿，1944年6月17日冰島正式成為共和國。據丹麥傳記辭典，冰島改行共和時他致電祝福冰島民族的未來。",
+      "en": "On 1 December 1918 the Danish-Icelandic Act of Union took effect and recognised Iceland as a sovereign state, but it remained in personal union with Denmark, with the Danish king as joint head of state; the two countries shared only the king and foreign policy, and 'King of Iceland' was added to his title. In that capacity he first visited Iceland in 1921, though according to the Dansk Biografisk Leksikon his relations with the Icelanders never became truly warm. After Germany occupied Denmark in 1940 the Althing withdrew the Danish king's powers as regent; the Act of Union expired at the end of 1943, and Iceland formally became a republic on 17 June 1944. According to the dictionary, he sent a telegram wishing the Icelandic nation well when it adopted the republic."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "Den 1. december 1918 trådte den dansk-islandske Forbundslov af 1918 i kraft",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "der anerkendte Island som en suveræn stat",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "havde den danske konge som fælles statsoverhoved",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Island",
+       "quote": "de to lande kun havde konge og udenrigspolitik fælles",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Island",
+       "quote": "føjede til Christians titel: konge af Island",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Island",
+       "quote": "Det var i den egenskab han første gang besøgte Island 1921.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Island",
+       "quote": "blev forholdet mellem Christian og islændingene aldrig rigtig hjertevarmt",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "med den tyske besættelse af Danmark den 9. april 1940",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "frasagde Altinget den danske konge som regent",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "Den 31. december 1943 udløb den dansk-islandske forbundslov.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "Island blev formelt en republik med virkning fra 17. juni 1944",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Island",
+       "quote": "sendte Christian telegram med de bedste ønsker for den islandske nations fremtid",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-christian10",
+       "locator": "Biografische Angaben",
+       "quote": "1918-1944 König von Island",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-04-09",
+      "end": "1945-05-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "德國占領時期",
+      "en": "The German occupation"
+     },
+     "body": {
+      "zh-Hant": "1940年4月9日德軍進攻時，他與政府一致認為繼續抵抗毫無希望，同意停火。他在占領下的每日騎馬成為國民象徵，1940年9月26日七十歲生日更成為全國慶典。1942年9月他72歲生日時，希特勒致電祝賀，他只簡短回電；10月他墜馬，之後健康衰退。1943年8月28至29日夜間德軍衝入他所在的宮殿，他事實上成為宮中囚犯。1945年5月4日晚解放消息經BBC傳來，次日他向國民發表廣播演說，5月9日坐輪椅出席議會重開。",
+      "en": "When the Germans attacked on 9 April 1940 he agreed with the government that further resistance was hopeless and accepted the order to cease fighting. His daily rides through Copenhagen under the occupation made him a national symbol, and his 70th birthday on 26 September 1940 became a national festival. At his 72nd birthday in September 1942 Hitler sent him a congratulatory telegram, which he answered very briefly; in October he fell from his horse and his health declined. On the night of 28–29 August 1943 German troops stormed the palace where he was and he was in effect a prisoner there. The news of liberation came over the BBC on the evening of 4 May 1945, and the next day he gave a radio address, and on 9 May he attended the reopening of the Rigsdag in a wheelchair."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Besættelsen",
+       "quote": "Ved det tyske angreb 9. april 1940",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Besættelsen",
+       "quote": "fortsat kamp mod den overvældende styrke var håbløs",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Besættelsen",
+       "quote": "tiltrådte han ordren om at indstille kampen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Besættelsen 1940-1945",
+       "quote": "ved at fortsætte sin daglige ridetur i Københavns gader, til et nationalt symbol",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Besættelsen",
+       "quote": "på sin 70 års dag 26.9.1940",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "Besættelsen",
+       "quote": "Fødselsdagen blev landet over en national festdag",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Telegramkrisen",
+       "quote": "I forbindelse med Christian 10.s 72-års fødselsdag i september 1942",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Telegramkrisen",
+       "quote": "Hitler sendte et lykønskningstelegram til Christian 10.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Telegramkrisen",
+       "quote": "som besvarede det ganske kort",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Telegramkrisen",
+       "quote": "I oktober 1942 styrtede Christian 10. med hesten",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Telegramkrisen",
+       "quote": "Dette forårsagede en varig svækkelse af hans helbred",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Husarrest på Sorgenfri Slot",
+       "quote": "natten mellem den 28. og 29. august 1943",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Husarrest på Sorgenfri Slot",
+       "quote": "hvor slottet blev stormet af tyske soldater",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Husarrest på Sorgenfri Slot",
+       "quote": "Christian 10. reelt var fange på slottet",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Befrielsen",
+       "quote": "Om aftenen 4. maj 1945 kom befrielsesbudskabet over BBC",
+       "quoteLang": "da",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Befrielsen",
+       "quote": "dagen efter holdt Christian 10. en radiotale til det danske folk",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Befrielsen",
+       "quote": "Kongen overværede Rigsdagens genåbning den 9. maj 1945 bundet til en kørestol",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:reignStart1912",
+     "gapKind": "conflict",
+     "note": "丹麥傳記辭典寫繼位日為1912年5月15日（blev han konge 15.5.1912），Lex 條目寫5月14日（父親去世當日）成為國王、5月15日被宣布（兩份已抓來源措辭不同；名簿為1912-05-14）。本批不建任期（元首任期在 leader_records），僅在正文兩說並陳。",
+     "candidateCitations": [
+      {
+       "sourceKey": "dbl-christian10",
+       "locator": "首段",
+       "quote": "blev han konge 15.5.1912",
+       "quoteLang": "da"
+      },
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "De første år som konge",
+       "quote": "Christian 10. blev konge den 14. maj 1912, da hans far Frederik 8. døde.",
+       "quoteLang": "da"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:icelandTenureEnd",
+     "gapKind": "not_found",
+     "note": "待查證：名簿冰島元首任期迄 1944-06-16；Lex 與 GND 只寫到1944年（Island blev formelt en republik med virkning fra 17. juni 1944），未見把迄日定為6月16日的原文；本批不建任期，僅供名簿核對。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lex-christian10",
+       "locator": "Kongeriget Island",
+       "quote": "Island blev formelt en republik med virkning fra 17. juni 1944",
+       "quoteLang": "da"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Christian X Dänemark König GND",
+     "url": "https://lobid.org/gnd/search?q=Christian+X+K%C3%B6nig+D%C3%A4nemark",
+     "result": "found_A",
+     "note": "GND 119376903：1912-1947 König von Dänemark, 1918-1944 König von Island（取得，存為 gnd-christian10）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Christian 10. Dansk Biografisk Leksikon",
+     "url": "https://biografiskleksikon.lex.dk/Christian_10.",
+     "result": "found_A",
+     "note": "Helge Larsen／Povl Eller；全文已存（dbl-christian10）"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Christian X（DBL 另一網址）",
+     "url": "https://biografiskleksikon.lex.dk/Christian_X",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Christian 10. Lex / Den Store Danske",
+     "url": "https://denstoredanske.lex.dk/Christian_10.",
+     "result": "found_B",
+     "note": "作者 Emma Rønberg Paaske（Rigsarkivet）（lex-christian10）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "kongehuset.dk Kong Christian X",
+     "url": "https://www.kongehuset.dk/monarkiet-i-danmark/kong-christian-x",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Christian X",
+     "url": "https://www.britannica.com/biography/Christian-X",
+     "result": "blocked_403",
+     "note": "403，放棄，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Cristiano X",
+     "url": "https://www.treccani.it/enciclopedia/cristiano-x-re-di-danimarca/",
+     "result": "no_result",
+     "note": "回傳首頁而非條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "treaty_law",
+     "query": "Christian X konge Island 1918 forbundslov Althingi（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為百科鏡像／維基類，不收；改以 DBL／Lex 的敘述為準"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Sambandslögin 1918 stjornarradid.is PDF",
+     "url": "https://www.stjornarradid.is/library/01--Frontpage/Sambandslogin-1918.pdf",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Kongeriget Island 1918–1944 (Lex) 與 Alþingi 撤回攝政權",
+     "url": null,
+     "result": "found_B",
+     "note": "Lex 條目已載；未另取冰島議會原件"
+    }
+   ]
+  },
+  {
+   "key": "it-vittorio-emanuele-iii",
+   "bioId": "2e92f31f-cda7-4be2-bdb3-953fac108b0d",
+   "name": "Vittorio Emanuele III",
+   "nameZh": "維克托·伊曼紐三世",
+   "recordIds": [
+    "01a1aa96-cf95-76fb-ae40-bc2f8f3d911f",
+    "01a1aa4a-65c4-7c3c-8fe5-f9e475da4adb"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1869-11-11",
+      "end": "1900-07-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與登基",
+      "en": "Birth and accession"
+     },
+     "body": {
+      "zh-Hant": "維托里奧·伊曼紐三世1869年11月11日生於那不勒斯，父親是翁貝托一世、母親是瑪格麗塔。義大利傳記辭典說他二十歲起展開軍旅生涯，並具備錢幣學、歷史與地理方面的知識。1900年7月29日翁貝托一世遇刺，繼位為國王；GND 權威檔標示他在位期間為1900至1946年。",
+      "en": "Victor Emmanuel III was born in Naples on 11 November 1869, the son of Umberto I and Margherita. The Dizionario Biografico degli Italiani says he began a military career at twenty and had knowledge of numismatics, history and geography. He came to the throne after Umberto I was assassinated on 29 July 1900; the GND authority record gives his reign as 1900 to 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "首段",
+       "quote": "Vittorio Emanuele Ferdinando Maria Gennaro di Savoia nacque da Umberto I",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "首段",
+       "quote": "l’11 novembre 1869 a Napoli",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第二段",
+       "quote": "A venti anni iniziò una rapida carriera militare",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第二段",
+       "quote": "le conoscenze di numismatica, storia e geografia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第二段",
+       "quote": "tra il 1910 e il 1943 scrisse il Corpus nummorum Italicorum",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第三段",
+       "quote": "Quando Umberto I fu assassinato (29 luglio 1900)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-ve3",
+       "locator": "Biografische Angaben",
+       "quote": "König von Italien (1900-1946)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1926-02-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "法西斯上台與一黨體制",
+      "en": "Mussolini's rise and the one-party state"
+     },
+     "body": {
+      "zh-Hant": "1922年墨索里尼籌備向羅馬進軍，法克塔前來請國王在法令上簽字時，國王拒絕簽字並決定另組政府，後來指派墨索里尼組閣。義大利傳記辭典分析他的考量包括王朝、對革命的恐懼，以及缺乏墨索里尼以外的替代人選。1925年12月至1926年1月間，國王簽署了「最法西斯」的法律，使首相只對國王負責，並取締法西斯黨以外的政黨。",
+      "en": "In 1922, when Mussolini prepared the March on Rome, King Victor Emmanuel refused to sign the decree that Facta brought him for signature and decided to form a new government; Mussolini was then charged with forming it. The Dizionario Biografico lists dynastic considerations, fear of revolution and the scarcity of alternatives to Mussolini among his reasons. Between December 1925 and January 1926 the king signed the 'fascistissime' laws, which made the head of government responsible only to the monarch and dissolved all parties except the Fascist one."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "nel 1922, Mussolini preparò la marcia delle camicie nere su Roma",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "Il mattino dopo Facta si presentò da Vittorio Emanuele per la firma sul decreto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "ma questi lo sorprese con un rifiuto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "con la decisione di formare un nuovo governo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "Mussolini fu incaricato di formare il governo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "il timore di una rivoluzione che avrebbe travolto il Paese",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "la scarsità delle alternative a Mussolini",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "pesarono considerazioni dinastiche",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "Tra il dicembre del 1925 e il gennaio del 1926",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "il re Vittorio Emanuele firmò le ‘leggi fascistissime’",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "resero il capo del governo responsabile solo davanti al monarca",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第六段",
+       "quote": "lo scioglimento di tutti i partiti, tranne quello fascista",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "帝國、元帥銜與併吞阿爾巴尼亞",
+      "en": "Empire, the marshalcy and the annexation of Albania"
+     },
+     "body": {
+      "zh-Hant": "1936年他被宣布為皇帝；GND 權威檔載明他為衣索比亞皇帝（1936–1941）與阿爾巴尼亞國王（1939–1943）。1938年3月參議院設立「帝國第一元帥」一階，同時授予領袖與國王，他一度威脅不簽署。1939年4月義大利迅速併吞阿爾巴尼亞，傳記辭典說他認為此舉是不必要的冒險。",
+      "en": "In 1936 he was proclaimed emperor; the GND record lists him as Emperor of Ethiopia (1936–1941) and King of Albania (1939–1943). In March 1938 the Senate created the rank of First Marshal of the Empire and conferred it on both the Duce and the king, and he threatened not to sign the law. In April 1939 Italy rapidly annexed Albania, which the dictionary says the king judged an unnecessary risk."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "Nel 1936 Vittorio Emanuele fu proclamato imperatore",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-ve3",
+       "locator": "Biografische Angaben",
+       "quote": "Kaiser von Abessinien (1936-1941) und König von Albanien (1939-1943)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "il Senato creò il grado di primo maresciallo dell’Impero",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "La tensione crebbe nel marzo del 1938",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "lo conferì tanto al duce quanto al re",
+       "quoteLang": "it",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "Vittorio Emanuele minacciò di non firmare la legge",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十一段",
+       "quote": "Nell’aprile ’39 l’Italia annesse rapidamente l’Albania.",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十一段",
+       "quote": "Il re giudicava l’impresa un inutile rischio",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-07-25",
+      "end": "1947-12-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "墨索里尼倒台、逃離羅馬與退位",
+      "en": "The fall of Mussolini, the flight from Rome and abdication"
+     },
+     "body": {
+      "zh-Hant": "1943年7月25日法西斯大議會通過格蘭迪議案後，國王下令讓卡賓槍兵逮捕墨索里尼，改由巴多利奧組閣。9月3日他簽署無條件投降書，9月8日艾森豪宣布停戰後，他在深夜離開羅馬南下。1944年6月5日他把全部權力與「王國副王」職位交給王儲翁貝托。1946年5月9日他退位，流亡埃及，1947年12月28日去世。",
+      "en": "On 25 July 1943, after the Grand Council of Fascism approved the Grandi motion, the king had Mussolini taken into custody by the carabinieri, and Pietro Badoglio became head of government. On 3 September he signed the unconditional surrender, and after Eisenhower announced the armistice on 8 September he left Rome in the middle of the night for the south. On 5 June 1944 he assigned all powers and the post of Lieutenant General of the Realm to his son Umberto. He abdicated on 9 May 1946, went into exile in Egypt, and died on 28 December 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "Il 25 luglio il Gran Consiglio del fascismo approvò l’ordine del giorno Grandi",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "lo fece prendere in custodia dai carabinieri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "Pietro Badoglio andò a capo del governo",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "il 3 settembre, Vittorio Emanuele firmò la resa incondizionata",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "denunciò l’armistizio l’8 settembre",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "Il generale americano Dwight D. Eisenhower",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "per riparare al Sud",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "Nel cuore della notte Vittorio Emanuele lasciò Roma",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "(5 giugno 1944)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "carica di luogotenente del Regno a Umberto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "il re abdicò il 9 maggio 1946",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十三段",
+       "quote": "Scelse poi l’esilio volontario ad Alessandria d’Egitto",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第十四段",
+       "quote": "Morì il 28 dicembre 1947",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:ethiopiaAlbaniaTenures",
+     "gapKind": "not_found",
+     "note": "待查證：義大利傳記辭典只寫「1936年被宣布為皇帝」「1939年4月併吞阿爾巴尼亞」，未載衣索比亞皇帝與阿爾巴尼亞國王的起迄日；GND 只給年份（1936-1941、1939-1943）。這兩段頭銜已含在名簿 kingdom-of-italy／albania-under-italy 任期內，本批不另建候選。Quirinale（403）、Camera storia（403）未取得。",
+     "candidateCitations": [
+      {
+       "sourceKey": "gnd-ve3",
+       "locator": "Biografische Angaben",
+       "quote": "Kaiser von Abessinien (1936-1941) und König von Albanien (1939-1943)",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:first-marshal-of-the-empire",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；傳記辭典只寫1938年3月參議院創設並授予「帝國第一元帥」，未給授予日與終止日；此為軍銜（R5），本批不建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-ve3",
+       "locator": "第九段",
+       "quote": "il Senato creò il grado di primo maresciallo dell’Impero",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Viktor Emanuel III Italien König GND",
+     "url": "https://lobid.org/gnd/search?q=Viktor+Emanuel+III+Italien",
+     "result": "found_A",
+     "note": "GND 118804545（gnd-ve3）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "VITTORIO EMANUELE III Dizionario Biografico degli Italiani",
+     "url": "https://www.treccani.it/enciclopedia/vittorio-emanuele-iii-di-savoia-re-d-italia_(Dizionario-Biografico)/",
+     "result": "found_A",
+     "note": "Paolo Colombo，DBI 第100卷（treccani-ve3）"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Quirinale Vittorio Emanuele III",
+     "url": "https://www.quirinale.it/page/vittorio-emanuele-iii",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Quirinale 歷任元首頁",
+     "url": "https://www.quirinale.it/elementi/48989",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Camera dei deputati storia 人物頁",
+     "url": "https://storia.camera.it/deputato/vittorio-emanuele-iii-di-savoia",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Victor Emmanuel III",
+     "url": "https://www.britannica.com/biography/Victor-Emmanuel-III",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana Vittorio Emanuele III",
+     "url": "https://www.treccani.it/enciclopedia/vittorio-emanuele-iii-re-d-italia_(Enciclopedia-Italiana)/",
+     "result": "no_result",
+     "note": "已抓但無可用條目文字（取得 treccani 通用頁），未用"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Vittorio Emanuele III Imperatore d'Etiopia Re d'Albania 1939（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果為維基類／ 博物館與私人網站，不收"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "National WWII Museum Fascist King Victor Emmanuel III",
+     "url": "https://www.nationalww2museum.org/war/articles/fascist-king-victor-emmanuel-iii-italy",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Vittorio Emanuele III di Savoia Senato／Camera／Quirinale 生平（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果未含官方頁"
+    }
+   ]
+  },
+  {
+   "key": "ve-gomez",
+   "bioId": "01a1b488-1462-7bec-aa9e-7bccbbd15bc2",
+   "name": "Juan Vicente Gómez",
+   "nameZh": "胡安·比森特·戈麥斯",
+   "recordIds": [
+    "4fe37315-0086-49c0-b899-8ca22e8c305e",
+    "1482e2d0-11eb-4fbf-bc51-35eb93a4d157",
+    "97c96c23-abda-43c7-a555-11eaafc76c80",
+    "0fb119d7-a0fa-4f50-8645-b8fb3fcc332f",
+    "77d3b782-55c4-436d-8a4b-95887f595e6f",
+    "4976adfe-094f-43f1-936c-173ed9fc29cd",
+    "dfc12fb6-c71b-4a6d-bf2c-c6a932018ae8",
+    "d7c0b793-66e4-4c15-8995-0ae2f2202c9e",
+    "4d745611-6b2d-4394-9eda-13472f507956",
+    "58206ba8-4df5-4068-8271-1c1957b3adf8",
+    "04e742e8-72df-4f67-be9f-b039662f0158",
+    "64a60537-3523-45d1-a3e8-cadd84993261",
+    "49b96fe8-9840-4445-94dc-fd348d54b543",
+    "526a3956-331e-4e63-acc3-093ad97c39b7",
+    "15ec7fb9-ad4a-4524-a87b-f964335c93c0"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1857-07-24",
+      "end": "1908-11-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與追隨卡斯特羅",
+      "en": "Origins and rise under Castro"
+     },
+     "body": {
+      "zh-Hant": "胡安·比森特·戈麥斯生於1857年7月24日，出生地是塔奇拉州的拉穆萊拉莊園。他自1892年起流亡哥倫比亞，至1899年5月23日為止；隨後西普里亞諾·卡斯特羅出征時，他已具將軍銜並任遠征軍第二指揮，同年10月22日進入加拉加斯。1901年制憲議會任命他為第二副總統，1905年起為第一副總統。1908年11月23日卡斯特羅因病離開權力，戈麥斯以第一副總統身分接掌總統職務。",
+      "en": "Juan Vicente Gómez was born on 24 July 1857 at the La Mulera estate in Táchira. He lived in exile in Colombia from 1892 until 23 May 1899; in the expedition that followed he already held the rank of general and was second-in-command, and the force entered Caracas on 22 October 1899. In 1901 the Constituent Assembly named him second vice-president, and from 1905 he was first vice-president. On 23 November 1908 Castro left power because of illness and Gómez took over the presidency as first vice-president."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "首段",
+       "quote": "Hacienda La Mulera (Edo. Táchira) 24.7.1857",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第三段",
+       "quote": "En el exilio permanecerán desde 1892 hasta el 23 de mayo de 1899",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第三段",
+       "quote": "Durante sus 7 años de exilio en Colombia",
+       "quoteLang": "es",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第四段",
+       "quote": "pero ya con el rango de general y como segundo jefe expedicionario",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第四段",
+       "quote": "haciendo su entrada triunfal a Caracas en la tarde del 22 de octubre de 1899",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第四段",
+       "quote": "y al general Juan Vicente Gómez, segundo vicepresidente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第四段",
+       "quote": "La Asamblea Nacional Constituyente que se reúne en Caracas en febrero de 1901",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第六段",
+       "quote": "al general Gómez primer vicepresidente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第六段",
+       "quote": "para el período constitucional 1905-1911",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第八段",
+       "quote": "El 23 de noviembre de 1908, Castro se separa del poder",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第八段",
+       "quote": "entra Gómez a desempeñar la presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第八段",
+       "quote": "en su condición de primer vicepresidente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1908-12-19",
+      "end": "1914-01-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1908年政變與臨時、憲法總統",
+      "en": "The 1908 coup and the provisional and constitutional presidencies"
+     },
+     "body": {
+      "zh-Hant": "1908年12月19日，戈麥斯以一封據稱卡斯特羅發自柏林的電報為藉口發動行動，撤換卡斯特羅派軍官並逮捕仍效忠卡斯特羅的部長。1909年8月5日國會通過憲法修正，總統任期縮為四年；8月11日他當選臨時總統。1910年4月25日國會晉升他為「大將」（general en jefe），4月27日選他為憲法總統。1913年他決定繼續掌權，並中止選舉程序，1914年1月1日凱旋進入加拉加斯。",
+      "en": "On 19 December 1908, using a cable supposedly sent by Castro from Berlin as a pretext, Gómez began his move, dismissing the Castroist military chiefs and arresting the ministers who remained loyal to Castro. On 5 August 1909 Congress approved a constitutional reform cutting the presidential term to four years, and on 11 August he was elected provisional president. On 25 April 1910 Congress raised him to the rank of general en jefe (full general), and on 27 April elected him constitutional president. In 1913 he decided to remain in power, and suspended the electoral process, and he entered Caracas in triumph on 1 January 1914."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第九段",
+       "quote": "El 19 de diciembre de 1908, con el pretexto de un cable",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第九段",
+       "quote": "supuestamente dirigido desde Berlín por Castro",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第九段",
+       "quote": "Se destituye a los jefes militares castristas y se apresa a los ministros",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "El 5 de agosto de 1909, el Congreso Nacional aprueba una reforma constitucional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "que reduce el período presidencial a 4 años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "El 11 de agosto, es elegido Gómez presidente provisional de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "el 25 de abril de 1910, es elevado por el Congreso al rango de general en jefe",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "El 27 de abril, las cámaras legislativas lo eligen presidente constitucional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "Gómez decide continuar en el ejercicio del poder",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "suspendido el proceso electoral",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十一段",
+       "quote": "Gómez hace su entrada triunfal a Caracas, el 1 de enero de 1914",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-04-19",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "總司令與總統並立（1914–1922）",
+      "en": "Commander-in-chief and president (1914–1922)"
+     },
+     "body": {
+      "zh-Hant": "1914年4月19日，全權代表國會決定指定戈麥斯為臨時總統兼陸軍總司令，隨即又以維克托里諾·馬爾克斯·布斯蒂略斯為臨時總統，戈麥斯保留陸軍總司令一職。1915年5月3日國會選他為1915至1921年任期的憲法總統，但他留在馬拉凱，由馬爾克斯·布斯蒂略斯在加拉加斯處理多數行政事務。第一次世界大戰期間（1914至1918年）他維持中立。1921年12月他幾乎因病喪命，後來推動修憲，國會再選他連任1922至1929年。",
+      "en": "On 19 April 1914 the Congress of Plenipotentiaries named Gómez provisional president and commander-in-chief of the army, then named Victorino Márquez Bustillos provisional president, leaving Gómez commander-in-chief. On 3 May 1915 Congress elected him constitutional president for 1915–1921, but he stayed in Maracay while Márquez Bustillos handled most administration in Caracas. He kept the country neutral during the First World War (1914–1918). In December 1921 he nearly died of illness; he then promoted a constitutional reform, and Congress re-elected him for 1922–1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十二段",
+       "quote": "El 19 de abril de 1914 un Congreso Nacional de Plenipotenciarios",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十三段",
+       "quote": "designar al general Juan Vicente Gómez presidente provisional de la República",
+       "quoteLang": "es",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十二段",
+       "quote": "designa presidente provisional de la República a Victorino Márquez Bustillos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十二段",
+       "quote": "comandante en jefe del Ejército al general Juan Vicente Gómez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十三段",
+       "quote": "El 3 de mayo de 1915, el Congreso Nacional eligió al general Juan Vicente Gómez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十三段",
+       "quote": "presidente constitucional de la República para el Septenio 1915-1921",
+       "quoteLang": "es",
+       "evidenceNote": "審查補引（原文已抓，審查者核對）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十三段",
+       "quote": "Pero Gómez permanece en Maracay como comandante en jefe del Ejército",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十三段",
+       "quote": "atiende durante 6 años, la mayor parte de los problemas de la administración",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十五段",
+       "quote": "Durante la Primera Guerra Mundial (1914-1918) mantuvo la neutralidad del país",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十六段",
+       "quote": "En diciembre de 1921 una retención de orina lo lleva al umbral de la muerte",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十六段",
+       "quote": "Gómez promueve entonces una reforma constitucional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十六段",
+       "quote": "El Congreso reelige presidente para el período 1922-1929",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1929-04-01",
+      "end": "1935-12-18"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1929年後的總司令身分與去世",
+      "en": "The commander-in-chief after 1929, and death"
+     },
+     "body": {
+      "zh-Hant": "1929年4月總統任期屆滿後，戈麥斯推動修憲，恢復總統與陸軍總司令分設，推薦胡安·包蒂斯塔·佩雷斯為總統候選人並讓自己被指定為陸軍總司令；此安排維持到1931年6月，佩雷斯被迫辭職，總統與總司令再度合併。1931年7月7日他最後一次宣誓就任總統。他於1935年12月17日在馬拉凱去世；德國國家圖書館權威檔稱他為「1908至1935年的將軍與獨裁者」。",
+      "en": "After the presidential term ended in April 1929, Gómez promoted a constitutional reform restoring a separate president and commander-in-chief of the army, recommended Juan Bautista Pérez as presidential candidate and had himself designated commander-in-chief; the arrangement lasted until June 1931, when Pérez was forced to resign and the two offices were again merged. On 7 July 1931 he took the presidential oath for the last time. He died in Maracay on 17 December 1935; the German National Library authority record calls him a general and dictator from 1908 to 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "En abril de 1929 concluye el período presidencial 1922-1929",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "un presidente de la República y un comandante en jefe del Ejército",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "Gómez considera necesaria una nueva reforma constitucional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "recomienda como candidato a la presidencia de la República a Juan Bautista Pérez",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "y se hace designar comandante en jefe del Ejército",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "Juan Bautista Pérez se ve obligado a presentar la renuncia de su cargo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "Esta situación se mantendrá vigente hasta junio de 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "fundir en uno solo los cargos de presidente de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第二十段",
+       "quote": "El 7 de julio de 1931 presta por última vez su juramento como presidente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "首段",
+       "quote": "Maracay (Edo. Aragua) 17.12.1935",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-gomez",
+       "locator": "Biografische Angaben",
+       "quote": "Venezolan. General und Diktator 1908-1935",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:commander-in-chief-1929",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Polar 辭典只寫「1929年4月總統任期屆滿」並接著敘述修憲後「se hace designar comandante en jefe del Ejército」，未給指定日；迄日為「hasta junio de 1931」（月精度）。Treccani Enciclopedia on line 無署名條目（未評等）亦只說1929年由 J. B. Pérez 擔任臨時總統、戈麥斯為 generale in capo。Britannica（403）、DBE（RAH）未取得條目。名簿 1929-04-19 起戈麥斯無元首任期至 1931-07-13，此段是否算掌權者待審查。",
+     "candidateCitations": [
+      {
+       "sourceKey": "polar-gomez",
+       "locator": "第十九段",
+       "quote": "y se hace designar comandante en jefe del Ejército",
+       "quoteLang": "es"
+      },
+      {
+       "sourceKey": "treccani-gomez",
+       "locator": "摘要",
+       "quote": "nella sua qualità di generale in capo",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:ungradedSources",
+     "gapKind": "not_found",
+     "note": "待查證：Encyclopedia.com（Gale，無署名）與 Treccani Enciclopedia on line（無署名）均為未評等來源，只能列為候選；本批正文只用 Polar（B）與 GND（A）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-gomez",
+       "locator": "摘要",
+       "quote": "assunse la presidenza provvisoria",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Gómez Juan Vicente 1857 GND",
+     "url": "https://lobid.org/gnd/search?q=G%C3%B3mez+Juan+Vicente+1857",
+     "result": "found_A",
+     "note": "GND 119289040（gnd-gomez）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Gómez, Juan Vicente LoC Name Authority",
+     "url": "https://id.loc.gov/search/?q=G%C3%B3mez%2C+Juan+Vicente",
+     "result": "unrated",
+     "note": "搜尋頁已抓，未取得可引條目文字，未用"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Juan Vicente Gómez DBE Real Academia de la Historia",
+     "url": "https://dbe.rah.es/biografias/12579/juan-vicente-gomez",
+     "result": "no_result",
+     "note": "網址猜測無效，導回首頁；站內 WebSearch 亦只找到同姓他人"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Gómez, Juan Vicente Real Academia de la Historia biografía（WebSearch 限 dbe.rah.es）",
+     "url": null,
+     "result": "no_result",
+     "note": "無此人條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Diccionario de Historia de Venezuela Gómez, Juan Vicente",
+     "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/g/gomez-juan-vicente/",
+     "result": "found_B",
+     "note": "Ramón J. Velásquez（polar-gomez）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Juan Vicente Gómez",
+     "url": "https://www.britannica.com/biography/Juan-Vicente-Gomez",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Gómez, Juan Vicente (1857–1935)",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/gomez-juan-vicente-1857-1935",
+     "result": "unrated",
+     "note": "已抓；無署名條目，依 Q9 不收"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Gómez, Juan Vicente",
+     "url": "https://www.treccani.it/enciclopedia/juan-vicente-gomez/",
+     "result": "unrated",
+     "note": "已抓；Enciclopedia on line 無署名，只放 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Boletín de la Academia Nacional de la Historia Biord 2004（Gómez 時期）",
+     "url": "https://biblat.unam.mx/hevila/BoletindelaAcademiaNacionaldelaHistoriaCaracas/2004/vol87/no345/11.pdf",
+     "result": "not_relevant",
+     "note": "已抓並轉文字；談酋長制與文化變遷，無總司令任期資料，未用"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Juan Vicente Gómez Biblioteca Nacional／Academia Nacional de la Historia comandante en jefe 1929 1931（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為維基類，不收"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Juan Vicente Gómez dbe.rah.es biografía presidente Venezuela（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為維基類與私人傳記站，不收"
+    }
+   ]
+  }
+ ]
+}

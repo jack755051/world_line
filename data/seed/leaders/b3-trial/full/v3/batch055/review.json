@@ -1,0 +1,27 @@
+{
+  "batch": "055",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {"returned": 0, "toUnverified": 2, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 9, "editedSentences": 2, "spotRefetched": 4, "searchLogShort": 0},
+  "people": [
+    {"key": "co-suarez-marco-fidel", "bioId": "f7bd611e-f3ca-41dd-af79-7a472dde0ed8", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 5, "searchLogSteps": 34,
+     "changes": ["P3 改寫：刪與 P2 重複的「生卒年與GND一致」及空泛的「可用於檢索其原文姓名」；著作改述為 LC 名稱／題名權威記錄", "encyclopedia.com 條目文末署名 Helen Delpar（Encyclopedia of Latin American History and Culture），研究者誤記無署名；改列 sources（B）並新增 gap paragraph:presidency-1918-1921（3 筆候選引文），審查不代寫段落", "gaps 註記中「Encyclopedia.com（無署名）」更正", "重抓 senado.gov.co 歷史頁與 encyclopedia.com 條目比對一致"],
+     "returnedReasons": []},
+    {"key": "lv-ulmanis-karlis", "bioId": "01a1b4c0-c873-7e9c-ada0-410fd48388cf", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 7, "roleCandidates": 4, "gaps": 3, "searchLogSteps": 8,
+     "changes": ["P1 引文改含 1896、1902–1903 年份，補「參與1905年革命」引文，1906/1907 引文 datePrecision 改 year", "P2 補農民協會工作引文、1918-11-17 含日期引文；1914–1916、1916、1917年3月引文 datePrecision 補正", "P3 補 11月18日、1919年1月含日期引文，原無日期引文 datePrecision 改 null", "P4 1931／1934 引文原截掉受詞（…the Minister），改為完整片段並補「Minister of Foreign Affairs」引文；period 起點依段內 1919年9月 改 1919-09-01，標題同步", "foreign-minister-1931／1934 citations 改為含外交部長的完整引文", "agriculture-minister-1918 evidenceNote 註明年份據上下文", "新增 gap paragraph:pm-1925（來源 1925-09-24 與 5442 1925-12-24 不符）", "重抓 president.lv 比對一致；T14 R0/R5/R6 判定與 security-minister t14Ambiguous 維持"],
+     "returnedReasons": []},
+    {"key": "iq-faisal-ii", "bioId": "01a1b4b5-7228-7bfa-8ec6-5027b886cadf", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 1, "searchLogSteps": 11,
+     "changes": ["P1 刪無引文支撐的「隨即」；period 迄點依段內 1953 改 1954-01-01", "P2 period 迄點依段內 1951 改 1952-01-01", "P3 補「安撫阿拉伯民族主義者」「使伊拉克成為共和國」引文", "重抓 snl.no Feisal_2. 比對一致"],
+     "returnedReasons": []}
+  ],
+  "issues": [
+    "本批名單實為 3 人（提示標題寫 5 人）",
+    "研究者多筆引文缺日期而填 datePrecision、或截掉受詞，審查以已抓原文補 9 筆完整引文",
+    "研究者把有署名的 encyclopedia.com（Gale ELAHC）條目誤判為無署名；蘇亞雷斯總統任期內容留待下一輪據此補寫",
+    "Ulmanis 各段僅一個 A 來源（president.lv）；該頁「On 11 April 1934 … State President」年份疑誤，研究者已留 gap 未採；1925 任期起日與 5442 不符亦留 gap",
+    "WebSearch 額度用盡導致三人原文語言補查未做（searchLog 已記）"
+  ],
+  "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

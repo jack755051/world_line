@@ -1,0 +1,39 @@
+{
+ "batch": "057", "reviewedOn": "2026-11-15", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 7, "editedSentences": 3, "spotRefetched": 4, "searchLogShort": 0},
+ "people": [
+  {"key": "es-primo-de-rivera", "bioId": "01a1b4b5-725c-77e3-a275-04c672ff75a7", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 0, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 9,
+   "changes": [
+    "段1 補引文 'During the 1890s he experienced combat'（1890年代子句原無日期支撐）",
+    "段3 引文改為含 \"to the country and the army\"、'Alfonso XIII handed him political power'、'Military Directory, which continued...4 December 1925'，使宣言對象、國王、軍事執政團子句有逐字支撐",
+    "段4 補引文 'A failed effort was made to institutionalize the regime'（制度化子句）與 'In January 1930, when Primo de Rivera canvassed the captain generals'（1930年1月）；探詢支持引文延長為 'canvassed the captain generals to gauge their support...'",
+    "gap position:primo-captain-general-catalonia 修正錯誤轉述：Fleming 條目寫 1919 年起任瓦倫西亞、馬德里、巴塞隆納 captain general，非『1922 年巴塞隆納』；兩筆缺迄日 gap 刪去『依規則不寫入 positions』的錯誤規則說明",
+    "重抓 snl.no 條目比對引文一致"
+   ],
+   "returnedReasons": []},
+  {"key": "iq-abd-al-ilah", "bioId": "01a1b4b5-722f-7bbd-96ae-fee62fd13f4b", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 0, "roleCandidates": 0, "gaps": 1, "searchLogSteps": 14,
+   "changes": [
+    "段1 刪『清晨／On the morning of』（無引文支撐）；'four army leaders' 引文延長含 'to force'（迫使子句）",
+    "段3 補引文 'and British Ambassador and myself met him several miles outside Baghdad'；『新政府當晚組成』改『將於當晚組成』（原文 will be formed tonight）",
+    "段4 引文改為 'arrangements were completed for the Regent to arrive on April 19'、'As a result of the President’s death on April 12, the visit was suspended'（羅斯福4月12日去世子句）；補 'late in May, and the invitation was accepted'（攝政接受子句）",
+    "重抓 FRUS 1941 d532 比對一致",
+    "注意：searchLog 無阿拉伯文原文查詢（僅土耳其文 Abdülilah 變體），未達『原文字查詢』要求；因 4 段皆 A 級 FRUS 一手文件且達最低標準，未退回，下一輪補查"
+   ],
+   "returnedReasons": []},
+  {"key": "uy-williman", "bioId": "0eeebb06-a605-40a8-a091-6b802300b053", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 1, "roleCandidates": 0, "gaps": 1, "searchLogSteps": 12,
+   "changes": [
+    "段2 誤述修正：稱他為政府部長的是公使 1907-03-06 No. 246 公函（3月2日是致外長覆函與私函），句子與引文改為 March 6, 1907 抬頭",
+    "段3 『接掌國家最高指揮權』『依憲法』原無支撐：引文改為 'the citizen Dr. Claudio Williman has just assumed supreme command of the State'，補 'the oath prescribed by the constitution of the Republic' 與 3月6日公函抬頭引文",
+    "position williman-minister-gobierno 由 R6 改 R5：任期 1904–1907（迄點 1908-01-01 半開，1907-03-01 已任總統）與 1908–1945 時間窗無交集；刪 roleEligible／roleEligibleKind／roleGap，t14Reason 改寫",
+    "重抓 FRUS 1907 d447 與 encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": []}
+ ],
+ "issues": [
+  "研究者把缺迄日職位改寫成 gap 而不建 position（Primo 加的斯參議員、加泰隆尼亞軍區司令），與『迄日查不到照寫 start＋待查證 gap』規則不符；審查不新增，留待下一輪",
+  "庫值差異（僅記錄、未改）：Williman 5442 任期起 1908-01-01，FRUS 1907 d447 載 1907-03-01 宣誓就任；Abd al-Ilah 第一段攝政迄 1941-04-01，FRUS d498／d509 載 4月2日出走、4月10日議會免職",
+  "兩合格來源出生地不同：Primo 生於 Jerez（Fleming）vs Cádiz（SNL）；愛國聯盟成立 1924（Fleming）vs 1923（SNL）。正文未寫，下一輪可列 conflict gap",
+  "hu-williman 同頁內法學學位年份 1886／1888 不一致；正文採與 Gale 條目一致的 1888"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 78}
+}

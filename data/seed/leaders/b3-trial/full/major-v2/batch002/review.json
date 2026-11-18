@@ -1,0 +1,95 @@
+{
+ "batch": "002",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 5,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 7,
+  "addedCitations": 18,
+  "editedSentences": 3,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "us-fdr",
+   "bioId": "01a1b48b-c87a-768a-b372-2918df397b6c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 43,
+   "changes": [
+    "第4段「隨即推動新政」補 FDR 圖書館引文 He undertook immediate actions to initiate his New Deal programs",
+    "第4段「在阿根夏與邱吉爾會談」補 history.state.gov 引文（原引文只有大西洋憲章與日期）",
+    "重抓 fdrlibrary.org/fdr-biography：HTTP 200，as a Democrat 句逐字相符",
+    "重審（retry 後）：州參議員迄日 1913-03-17 改由 GSA《FDR and Conservation》編註明寫辭職日支撐（非推論，符合 Q7），起日改 1911（紐約州立博物館頁 came to Albany ... in 1911），已移除缺迄日 gap",
+    "州長 1929-01-01～1933-01-01：FDR 圖書館 finding aid 寫 January 1, 1929 to December 31, 1932，迄點依半開區間寫次日，逐字核對 raw 相符",
+    "第2段辭職句、第4段 govinfo／FDR 圖書館就職引文逐字核對相符",
+    "州參議員候選 fdrlib-bio 引文（as a Democrat）不含日期：datePrecision 改 null（Q8），evidenceNote 改寫為起年取自州立博物館",
+    "searchLog 43 步、7 種 sourceType（含 academic、treaty_law），達加強規格",
+    "重抓 nysm.nysed.gov/node/31899：HTTP 200，1911 句逐字相符；npshistory.com 審查時 curl 回 403（openresty），未繞過，以研究者已抓 raw 為準"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "it-mussolini-benito",
+   "bioId": "0ff6f55e-8f9c-49aa-b9ba-5858a17c9dc3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 3,
+   "gaps": 12,
+   "searchLogSteps": 16,
+   "changes": [
+    "4 筆以事件推得的迄日（不符 Q7）改 null＋「待查證：缺迄日」gap，刪對應引文：trento-labour-chamber-secretary（被逐出特倫托日）、psi-executive-committee（米蘭支部開除日）、pnf-duce（大委員會推翻日）、rsi-leader（被俘日）",
+    "rsi-leader 補 t14Rule=R0＋t14Reason；LeMO 引文「23. September: Mit deutscher Hilfe bildet Mussolini」缺受詞，保留為日期錨點並補完整子句引文（段落 5 同）",
+    "第1段補引文：1902 年份、返回福爾利、福爾利社會黨聯合會書記",
+    "第2段「主張介入戰爭」改為「立場轉變在波隆那會議上遭黨領導層否決」並補 20 ottobre／respinta 引文；《前進報》引文延長至 si trasferì a Milano；補 24 novembre 引文",
+    "第3段補 1919 年 11 月選舉、承認為 duce 引文",
+    "第4段「自1922年10月31日起主政」無引文支撐，改為「10月29日受命組閣，國王任命他為首相」並補 DBI 引文；補「走向獨裁」「衣索比亞」引文",
+    "第5段補「國王免職並逮捕」「德軍救出」引文",
+    "gap mussolini-forli-federation-secretary 改標「待查證：缺起日」（DBI 無就任日）",
+    "重抓 dhm.de/lemo/biografie/benito-mussolini：HTTP 200，引文逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jp-hirohito",
+   "bioId": "01a1b4b2-2f65-7cca-9a4b-ff875f18c192",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 20,
+   "changes": [
+    "第4段「1945年5月25日東京遭空襲，宮殿燒毀」改為「1945年東京遭空襲，宮殿於5月26日燒毀」：引文寫（5月26日），5/25 只是年表列日期欄，不在引文內",
+    "皇太子迄日、攝政迄日以踐祚日為界屬定義上必然（成為天皇即不再是皇太子／攝政），保留",
+    "重抓 kunaicho.go.jp history11：HTTP 200，攝政句逐字相符"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處以事件（被逐、被俘、被推翻、接任他職）推得迄日，不符 Q7，審查一律改為留空並標待查證；墨索里尼因此 check_min 未達，但搜尋量達加強規格，不退回",
+  "check_min.py 對 roleCandidates 找 role:<key> gap，verify.py 只收 position:<key>；角色缺迄日因而記為 termsMissing（與 batch001 同一問題，待主 session 統一）",
+  "墨索里尼眾議員（1921-05 當選，DBI 有起點）研究者只放 gap，未建 position；四部閣員任期因 Camera 403、EI 無署名而全在 gap",
+  "regimeId：羅斯福海軍助理部長填了 regimeId（R5，不影響角色判定），其餘多為 null",
+  "FDR 重審：州參議員辭職日唯一出處 npshistory.com（第三方電子版，B），審查時重抓回 403，無法再比對；同日宣誓海軍助理部長有 NPS A 來源佐證"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

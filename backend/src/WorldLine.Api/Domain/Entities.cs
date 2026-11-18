@@ -21,6 +21,12 @@ public sealed class Source
     public string? LocalCopyPath { get; set; }
     public string? CatalogId { get; set; }
     public string? Note { get; set; }
+    /// <summary>來源等級 A／B／C／X（docs/source-rules.md §2）；NULL＝尚未評等。評的是這份出處本身，不因來源數目更動。</summary>
+    public string? Grade { get; set; }
+    /// <summary>評等依據（為什麼是這一級）。</summary>
+    public string? GradeBasis { get; set; }
+    /// <summary>來源家族：同機構、同底稿或互相轉引者填同一個代號，只算一個獨立來源；NULL＝自成一族。</summary>
+    public string? Family { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
     public int Version { get; set; }
@@ -31,6 +37,9 @@ public sealed class Regime
     public Guid Id { get; set; }
     public string Slug { get; set; } = "";
     public string? WikidataQid { get; set; }
+    /// <summary>名稱與起訖的出處（docs/source-rules.md §6）；NULL＝只取自資料集，待查證。</summary>
+    public Guid? SourceId { get; set; }
+    public string? SourceLocator { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
@@ -205,6 +214,23 @@ public sealed class EventParticipant
     public string? AdditionNote { get; set; }
 }
 
+/// <summary>
+/// 事件引文的等級（docs/source-rules.md §2：評的是實際讀到的那份文件，不是整冊）。
+/// event_citations 寫入後不可改，所以等級另存一表；有這一列時優先於 sources.grade。更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class EventCitationGrade
+{
+    public Guid Id { get; set; }
+    public Guid EventId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string Grade { get; set; } = "";
+    public string GradeBasis { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
 /// <summary>事件引用（PRD §6.3 event_citations；格式同其他 citation 表）。寫入後不可改、不可刪（I5）。</summary>
 public sealed class EventCitation
 {
@@ -270,6 +296,88 @@ public sealed class SovereigntyRecord
 }
 
 /// <summary>
+/// 主權紀錄的來歷（docs/source-rules.md §5、D5）。sovereignty_records 寫入後不可改，所以「這一筆是怎麼來的」另存一表：
+/// kind＝baseline（第一階段起點時既有）｜continuation（接續同政權的前一筆、形狀相同，只是資料分段）｜
+/// minor_revision（接續前一筆、形狀只有細微差異）｜change（接續前一筆、形狀有變）｜new（同政權沒有前一筆）。
+/// continuation 的可信程度沿用前一筆；也可事後補上起始事件（StartEventId）。更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class SovereigntyRecordLink
+{
+    // kind 另有 beyond_source（Tai 2026-11-14「切段」）：形狀沿用前一筆，但前一筆的出處是某個年代的快照（例：1910 年的地圖集），
+    // 撐不到這一段（憲法 I1）。這一段不沿用前一筆的可信程度，要有自己的出處才算已查證。
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public string Kind { get; set; } = "";
+    public Guid? ContinuesRecordId { get; set; }
+    public Guid? StartEventId { get; set; }
+    /// <summary>
+    /// 起始日能由出處確定到什麼精度（day｜month｜year）；null＝未標示（視為 day）。
+    /// 主權紀錄的日期取自資料集且不可改；出處只能確定到月或年時在這裡標明，畫面照實顯示（docs/source-rules.md §5）。
+    /// </summary>
+    public string? StartDatePrecision { get; set; }
+    /// <summary>與前一筆的形狀差（對稱差面積／前一筆面積）；沒有前一筆為 null。</summary>
+    public double? ShapeChangeRatio { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 主權紀錄本身的引文（docs/source-rules.md D5）：支持「這段期間的疆界是這樣」的出處，例如當時的地圖集圖版、劃界條約。
+/// 給沒有起始事件可補的紀錄用（期初既有的疆界）。等級記在每筆引文上；不可修改，更正用「撤回＋重寫」（I5）。
+/// </summary>
+public sealed class SovereigntyRecordCitation
+{
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string EvidenceNote { get; set; } = "";
+    public string Grade { get; set; } = "";
+    public string GradeBasis { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 主權爭議（憲法 R6、I3「明確標記為爭議並存」）：同一塊地在同一期間有不只一方主張時，用一筆爭議把各方的主張串起來。
+/// 系統不裁判誰對；summary 寫爭議點。不可修改，更正用「撤回＋重寫」（I5）。主張列跟著爭議一起撤回。
+/// </summary>
+public sealed class SovereigntyDispute
+{
+    public Guid Id { get; set; }
+    public string Slug { get; set; } = "";
+    /// <summary>
+    /// contested＝各方爭奪同一塊地；layered＝名義上的主權（宗主權）與實際治理並存，不是爭地（例：1908 年的保加利亞公國、1914 年以前的埃及）。
+    /// 畫面上前者標「主權爭議」，後者標「主權並存」（Tai 2026-11-14）。
+    /// </summary>
+    public string Kind { get; set; } = "contested";
+    /// <summary>爭議點（多語 jsonb）：爭的是哪裡、何時起訖、各方依據為何。</summary>
+    public string Summary { get; set; } = "";
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 爭議裡某一方的主張。record_id＝畫出這一方主張範圍的主權紀錄；這一方的主張查無出處、畫不出範圍時為 null（只記有這個主張，不替它畫範圍）。
+/// 同一方的主張範圍跨好幾筆前後相接的主權紀錄時，每筆紀錄各寫一列。
+/// position＝這一方主張什麼、誰承認（R6：標明主張方與承認方）。effective＝當時實際生效的是不是這一方；有爭議或未判定為 null。
+/// </summary>
+public sealed class SovereigntyDisputeClaim
+{
+    public Guid Id { get; set; }
+    public Guid DisputeId { get; set; }
+    public Guid ClaimantRegimeId { get; set; }
+    public Guid? RecordId { get; set; }
+    public string Position { get; set; } = "";
+    public bool? Effective { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
 /// 佔領歸屬（occupation_attributions）：某政權（非主權的佔領區、併入區）在某期間由哪個政權佔領、控制程度為何。
 /// 依政權＋期間（不綁單筆主權紀錄，國界修正撤回再新增時不必重寫）；同一被佔領政權的有效紀錄期間不可重疊（EXCLUDE）。
 /// basis_event_id＝有出處的事件；沒有事件或事件沒有引用＝「待查證」。共同佔領缺分區幾何時記主要佔領方並 co_occupied＝true、在 note 註記。
@@ -309,6 +417,209 @@ public sealed class ConflictRecord
     public Point Location { get; set; } = null!;
     /// <summary>圖示位置怎麼來的（例：兩國主權圖層在開戰日的共同邊界中點）。</summary>
     public string LocationMethod { get; set; } = "";
+    public string? Note { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 領導人紀錄（leader_records）：某政權在某期間由誰擔任國家元首或政府首腦。
+/// - role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// - 每筆附出處文字（source），查不到標「待查證」（verified=false）。
+/// - 修正走軟撤回（I5），不硬刪。2026-11-03 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class LeaderRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    /// <summary>FK → leader_bios.id（選填，同一人多筆任期共用一份生平）。</summary>
+    public Guid? PersonId { get; set; }
+    public string Name { get; set; } = "";
+    public string? NameZh { get; set; }
+    /// <summary>head_of_state | head_of_government。</summary>
+    public string Role { get; set; } = "";
+    /// <summary>選填職銜（如 Reichspräsident）。</summary>
+    public string? Title { get; set; }
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>出處文字（「待查證」若未找到文獻）。</summary>
+    public string Source { get; set; } = "";
+    public string? SourceUrl { get; set; }
+    /// <summary>true＝已有可信出處；false＝待查證。</summary>
+    public bool Verified { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 領導人生平（leader_bios）：一人一筆，跨越多個任期共用。
+/// - 與 leader_records（任期粒度）分開，避免同一人多筆任期重複儲存生平且出處難維護。
+/// - LeaderRecord.PersonId（nullable FK）指向此表。
+/// - birth_place / party / summary：jsonb 雙語 {"zh-Hant": "...", "en": "..."}。
+/// - field_sources：各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。
+/// - is_test=true 標記測試資料；修正走軟撤回（I5）。2026-11-03 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class LeaderBio
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = "";
+    public string? NameZh { get; set; }
+    public DateOnly? BirthDate { get; set; }
+    /// <summary>day | month | year（NULL 表示精確度未知）。</summary>
+    public string? BirthDatePrecision { get; set; }
+    public DateOnly? DeathDate { get; set; }
+    /// <summary>出生地（jsonb 雙語）。</summary>
+    public string? BirthPlace { get; set; }
+    /// <summary>卒地（jsonb 雙語）。ARCHITECTURE §16.6，2026-11-10 新增（B1）；有 conflict 缺口時須為 NULL。</summary>
+    public string? DeathPlace { get; set; }
+    /// <summary>黨籍（jsonb 雙語）。</summary>
+    public string? Party { get; set; }
+    /// <summary>簡介（jsonb 雙語）。</summary>
+    public string? Summary { get; set; }
+    /// <summary>各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。</summary>
+    public string? FieldSources { get; set; }
+    /// <summary>測試資料標記，測試完成後可依此批次撤回。</summary>
+    public bool IsTest { get; set; }
+    /// <summary>卒日精確度：day | month | year（NULL 表示精確度未知）。2026-11-07 新增。</summary>
+    public string? DeathDatePrecision { get; set; }
+    /// <summary>Wikidata 項目（Q 號），只當辨識線索，不是出處。2026-11-07 新增。</summary>
+    public string? WikidataQid { get; set; }
+    /// <summary>照片檔案 URL（只收允許授權；欄位不全不可寫入，見 CHECK）。2026-11-07 新增。</summary>
+    public string? PortraitUrl { get; set; }
+    /// <summary>照片出處頁（例：Wikimedia Commons 檔案頁）。</summary>
+    public string? PortraitSourceUrl { get; set; }
+    public string? PortraitAuthor { get; set; }
+    /// <summary>授權代碼，限 <see cref="CitationPolicy.PrimaryLicenseAllowlist"/>。</summary>
+    public string? PortraitLicenseCode { get; set; }
+    public string? PortraitLicenseUrl { get; set; }
+    /// <summary>署名文字（顯示用）。</summary>
+    public string? PortraitAttribution { get; set; }
+    /// <summary>查證授權的日期。</summary>
+    public DateOnly? PortraitRetrievedOn { get; set; }
+    /// <summary>撤回重寫時指向取代它的新生平（I5）。2026-11-07 新增。</summary>
+    public Guid? SupersededBy { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+    public int Version { get; set; }
+}
+
+/// <summary>
+/// 生平欄位引用（leader_bio_field_citations；2026-11-07）：把生平的單一欄位（或簡介段落）接到 <see cref="Source"/>。
+/// - 格式照 event_citations：source_id＋locator＋evidence_note，另加查證日期 accessed_on。
+/// - field：name | nameZh | birthDate | deathDate | birthPlace | deathPlace | party | summary | portrait。
+/// - 修正走軟撤回（I5），不硬刪。
+/// - 2026-11-10（ARCHITECTURE §16.4.1，B1）新增式補欄：quote、quote_lang、grade、date_precision、policy_version，全部可空（舊列留空）。
+///   quote 給了就不可空白（DB CHECK）；≤ 80 字（NFC 後字元，Tai 2026-11-10 21:52）只在 <see cref="BioSourcePolicy"/> 檢查。grade DB CHECK 只收 A／B。
+/// </summary>
+public sealed class LeaderBioFieldCitation
+{
+    public Guid Id { get; set; }
+    public Guid BioId { get; set; }
+    public string Field { get; set; } = "";
+    public Guid SourceId { get; set; }
+    public string Locator { get; set; } = "";
+    public string? EvidenceNote { get; set; }
+    public DateOnly AccessedOn { get; set; }
+    /// <summary>引文原文（證據）；舊列為 NULL，B2 由 seed evidence 回填。</summary>
+    public string? Quote { get; set; }
+    /// <summary>引文語言（BCP 47），可空。</summary>
+    public string? QuoteLang { get; set; }
+    /// <summary>來源等級 A｜B（T1）；未評等為 NULL。</summary>
+    public string? Grade { get; set; }
+    /// <summary>這份來源支撐到的日期精度：day | month | year。</summary>
+    public string? DatePrecision { get; set; }
+    /// <summary>寫入時的 <see cref="BioSourcePolicy.PolicyVersion"/>。</summary>
+    public string? PolicyVersion { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 任期引用（leader_record_citations；ARCHITECTURE §16.3-2、§16.4.1，B1，2026-11-10）：
+/// 每筆 leader_records 任期可接多筆 sources，取代自由文字 leader_records.source（過渡期該欄只當備註）。
+/// 欄位採 §16.4.1 統一 citation 格式；修正走軟撤回（I5，trigger 在 migration 以 SQL 建立）。
+/// - Grade：T1 已決只收 A／B（C／X 不進 DB）；DB CHECK 依 Tai 2026-11-10 16:20 核准，於 migration BioCitationFieldsAndGaps 加上（未套用前 DB 尚無此 CHECK）。
+/// - PolicyVersion：T2（白名單）未決；寫入時記 <see cref="BioSourcePolicy.PolicyVersion"/>，DB 不檢查。
+/// - ClaimSpan：T4 已決選填；任期引用通常不用，保留是為了與其他 citation 表同格式。
+/// </summary>
+public sealed class LeaderRecordCitation
+{
+    public Guid Id { get; set; }
+    public Guid RecordId { get; set; }
+    public Guid SourceId { get; set; }
+    /// <summary>頁碼／條目／檔號／URL 錨點。</summary>
+    public string Locator { get; set; } = "";
+    /// <summary>引文原文（證據，不是顯示用正文）。</summary>
+    public string Quote { get; set; } = "";
+    /// <summary>引文語言（BCP 47）。</summary>
+    public string? QuoteLang { get; set; }
+    public string? EvidenceNote { get; set; }
+    /// <summary>當天實際打開來源的日期。</summary>
+    public DateOnly AccessedOn { get; set; }
+    /// <summary>來源等級（T1：A｜B）；NULL＝未評等。</summary>
+    public string? Grade { get; set; }
+    /// <summary>這份來源支撐到的日期精度：day | month | year。</summary>
+    public string? DatePrecision { get; set; }
+    /// <summary>選填：支撐的句序號（半開區間）。</summary>
+    public NpgsqlRange<int>? ClaimSpan { get; set; }
+    /// <summary>寫入當時套用的來源政策版本（§16.4.4，T2 未決，預留）。</summary>
+    public string? PolicyVersion { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 生平缺口（leader_bio_gaps；ARCHITECTURE §16.4.2，B1，2026-11-10）：記錄「為什麼空」——來源矛盾、查無、身分推定。
+/// - 不是資料值：candidate_citations 只並列各說法的證據（source／locator／quote），不得據以填欄位。
+/// - 解決時填 resolved_at（與 resolved_by_citation_id），不刪；登錄錯誤走軟撤回。I5 trigger 在 migration 以 SQL 建立。
+/// - 「欄位有 conflict 時該欄必須為 NULL」屬寫入層檢查（DB 不跨表檢查）。
+/// </summary>
+public sealed class LeaderBioGap
+{
+    public Guid Id { get; set; }
+    public Guid BioId { get; set; }
+    /// <summary>field:birthDate、field:deathPlace、position:&lt;id&gt;、paragraph:&lt;topic&gt;、identity。</summary>
+    public string Target { get; set; } = "";
+    /// <summary><see cref="LeaderBioGapKinds"/>。</summary>
+    public string GapKind { get; set; } = "";
+    public string? Note { get; set; }
+    /// <summary>jsonb 陣列：[{source, url, locator, quote, value}]，只是證據並列。</summary>
+    public string? CandidateCitations { get; set; }
+    public DateOnly CheckedOn { get; set; }
+    public DateTimeOffset? ResolvedAt { get; set; }
+    /// <summary>解決此缺口的 citation id（可能在任一生平 citation 表，故不設 FK）。</summary>
+    public Guid? ResolvedByCitationId { get; set; }
+    public DateTimeOffset? RetractedAt { get; set; }
+    public string? RetractionReason { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
+}
+
+/// <summary>
+/// 首都紀錄（capital_records）：某政權在某期間的首都城市與座標，地圖上顯示小圓點＋城市名。
+/// - 城市名以雙語 JSON 儲存（{"zh-Hant": "...", "en": "..."}）；Location 為 WGS84 點。
+/// - 同一政權在同一時間只能有一筆有效紀錄（EXCLUDE 約束）。
+/// - 每筆附 source_ref（出處文字，簡化引用），查不到標「待查證」。
+/// - 修正走軟撤回（I5），不硬刪。2026-11-02 試驗，AI 提案・待拍板。
+/// </summary>
+public sealed class CapitalRecord
+{
+    public Guid Id { get; set; }
+    public Guid RegimeId { get; set; }
+    /// <summary>城市名（jsonb 物件：{"zh-Hant": "...", "en": "..."}）。</summary>
+    public string CityName { get; set; } = "{}";
+    public Point Location { get; set; } = null!;
+    public NpgsqlRange<DateOnly> ValidPeriod { get; set; }
+    /// <summary>出處文字（「待查證」若未找到文獻）。舊欄位；新資料改用 SourceId＋SourceLocator。</summary>
+    public string? SourceRef { get; set; }
+    /// <summary>出處接到來源登記（docs/source-rules.md D6）；NULL＝只有自由文字。</summary>
+    public Guid? SourceId { get; set; }
+    public string? SourceLocator { get; set; }
     public string? Note { get; set; }
     public DateTimeOffset? RetractedAt { get; set; }
     public string? RetractionReason { get; set; }

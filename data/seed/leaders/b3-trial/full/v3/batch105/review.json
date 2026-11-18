@@ -1,0 +1,88 @@
+{
+ "batch": "105",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 1,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 0,
+  "spotRefetched": 0,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ot-ahmed-tevfik",
+   "bioId": "01a1b524-478b-7e52-99cb-f2eba596505b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 10,
+   "changes": [
+    "段2「任期直到1909年2月…為止」：原引文只寫 Kâmil Paşa 辭職與內閣解散，未寫本人去職；補 tdv-kure-tevfik 引文「üzerine o da görevinden ayrıldı」（已核對上下文），職位 tevfik-foreign-minister 同步補引。",
+    "段4「接替辭職的伊澤特帕夏」：原引文無此子句；引文改為「İzzet Paşa ’nın yerine sadârete tayin edildi (11 Kasım 1918)」（同條目原文，verify 通過）。",
+    "段4「將位置讓給安卡拉方面」：原引文只有「Söz asıl millet vekillerine aittir」；補引「yerini Ankara temsilcilerine bıraktı」。",
+    "段4「依姓氏法取姓 Okday」：引文擴為「soyadı kanunun çıkmasından sonra bizzat giderek “Okday” soy ismini almıştır」以支撐「依姓氏法」。",
+    "T14：外交大臣 1895-11-06～1909-03-01 與 1908–1945 窗重疊逾 90 天，四部正職、3 份 B 來源，僅 regimeId 不可證 → R6 roleEligible 合理，維持；駐倫敦大使非 T14 類，維持經歷層。",
+    "來源：KÜRE 為 TDV 具名條目（Beydilli）轉載，記 B 合理；TDV 原站、Britannica 被 Cloudflare 擋已放棄並記入 searchLog。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "se-eden-nils",
+   "bioId": "01a1b51e-628f-7657-bce3-e5adaaed1800",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1「1903年底成為額外教授」：原引文「e. o. professor i historia 18 dec. s. å.」未含年份；引文改為「ht. 1903; e. o. professor i historia 18 dec. s. å.」。",
+    "段2「1916年議會初期」：補引「i början av 1916 års riksdag」。",
+    "段3「1920年…在議會推動加入國聯議案」：引文改為「vid 1920 års riksdag förslag om Sveriges anslutning till Nationernas förbund」，並補引「I riksdagen kämpade han för propositionen」。",
+    "段4「當天即在他主持下集會」：補引「den motsatta riktningens representanter redan samma dag」；「其間仍從事史學著述」引文改為「både sitt sysslande med dithörande problem och sitt historiska författarskap」（原引文未含著述）。",
+    "議會第二院議員 eden-riksdag-second-chamber 由 positions 移入 roleCandidates（de_facto_leader、originalPositionKind=legislator、t14Rule=R1）：Lex 明寫「medlem af Riksdagen for Liberala Samlingspartiet」即以政黨身分取得席位，比照 Tai 12:47 薩拉查裁決；年份出入（Lex 1903 vs SBL 1909）已有 conflict gap，任期採 SBL（A）。",
+    "省長 R5、黨主席 R1 候選、憲法委員會主席留經歷層，核對無誤。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ni-solorzano-carlos",
+   "bioId": "01a1b51e-62d8-7a08-b5a7-6a6378e150fb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 13,
+   "changes": [
+    "段3「查莫羅另使國會逐出十八名議員」原無引文支撐；補引「brought about the expulsion from the Congress of 18 members」（UCSB 原文已核對）。",
+    "段3「美國與中美洲四國拒絕承認」：引文改為「The four Central American countries and the United States refused」以支撐「四國」。",
+    "薄人物最低嘗試：5 種來源類型、13 次查詢（西語 ≥2）、≥3 個實抓頁，達標；唯一 A/B 來源為 UCSB 轉錄的總統咨文（原件 A 記 B）。",
+    "庫值迄日 1926-03-13 與咨文 1926-01-16 辭職的差異已記於 gap，單一來源不當 conflict，正確。"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者多處只引到子句的一半（日期或主詞在引文外），審查改引文或補引，未改正文；引文修改共 6 筆、補引 7 筆，全部為已抓原文內字串，verify 通過。",
+  "本批 prompt 標題寫 5 人，實際名單與 research.json 均為 3 人。",
+  "evidence-pack 無原文上下文，審查以 python 在 raw 內取引文前後約 200 字比對（未整檔讀取）；未做重抓。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

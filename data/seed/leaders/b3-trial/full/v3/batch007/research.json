@@ -1,0 +1,2201 @@
+{
+ "batch": "b3-full-v3-batch007",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦／實際掌權者與黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類因此以 R6（roleGap 含 regime）留在 positions。三人的元首／首腦任期皆已在名單 5442，不重建。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14／15）：轉錄本原件 A 記 B、合格出處優先、無具名作者者只當 gap 候選。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch007/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "gnd-boris": {
+   "title": "Boris III., Bulgarien, Zar (GND 119165538)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org／hbz 提供）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/119165538.json",
+   "archive_url": null,
+   "catalog_id": "GND 119165538",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 官方鏡像取得"
+  },
+  "gnd-horthy": {
+   "title": "Horthy, Miklós (GND 118707191)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org／hbz 提供）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118707191.json",
+   "archive_url": null,
+   "catalog_id": "GND 118707191",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 官方鏡像取得"
+  },
+  "gnd-martinez": {
+   "title": "Hernández Martinez, Maximiliano (GND 118860070)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org／hbz 提供）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/118860070.json",
+   "archive_url": null,
+   "catalog_id": "GND 118860070",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 官方鏡像取得"
+  },
+  "ndb-ferdinand": {
+   "title": "Ferdinand, Prinz von Sachsen-Coburg und Gotha（NDB 5）",
+   "authors": [
+    "Georg Stadtmüller"
+   ],
+   "publisher": "Neue Deutsche Biographie（Historische Kommission bei der Bayerischen Akademie der Wissenschaften）",
+   "published_text": "NDB 5 (1961), S. 88f.，Deutsche Biographie 線上版",
+   "url": "https://www.deutsche-biographie.de/sfz15839.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家級傳記辭典 NDB（具名作者；本條為斐迪南一世條目，提及其子鮑里斯三世繼位）"
+  },
+  "treccani-boris-cataluccio": {
+   "title": "BORIS III re dei Bulgari",
+   "authors": [
+    "Francesco Cataluccio"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana, II Appendice (1948)",
+   "url": "https://www.treccani.it/enciclopedia/boris-iii-re-dei-bulgari_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani 義大利百科全書附錄具名條目（作者 Francesco Cataluccio）"
+  },
+  "universalis-boris": {
+   "title": "BORIS III (1894-1943) roi de Bulgarie (1918-1943)",
+   "authors": [
+    "Jean Bérenger"
+   ],
+   "publisher": "Encyclopædia Universalis",
+   "published_text": "Encyclopædia Universalis 線上版（公開摘要）",
+   "url": "https://www.universalis.fr/encyclopedie/boris-iii/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Encyclopædia Universalis 具名條目（作者 Jean Bérenger），公開摘要段"
+  },
+  "mek-horthy-lexikon": {
+   "title": "Horthy Miklós (Nagybányai, vitéz)",
+   "authors": [],
+   "publisher": "Magyar Életrajzi Lexikon 1000–1990（Akadémiai Kiadó；匈牙利電子圖書館 MEK／國家塞切尼圖書館）",
+   "published_text": "Magyar Életrajzi Lexikon 1000-1990，MEK 線上版",
+   "url": "https://mek.oszk.hu/00300/00355/html/ABC05727/06486.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "匈牙利國家級傳記辭典（Magyar Életrajzi Lexikon），由國家塞切尼圖書館 MEK 發布"
+  },
+  "grieb-martinez": {
+   "title": "Hernández Martínez, Maxi-Miliano (1882–1966)",
+   "authors": [
+    "Kenneth J. Grieb"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Charles Scribner's Sons／Gale），經 encyclopedia.com 取得",
+   "published_text": "Encyclopedia of Latin American History and Culture, 2nd ed.",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/hernandez-martinez-maxi-miliano-1882-1966",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術參考書具名條目（作者 Kenneth J. Grieb，拉美史學者）；第三方轉錄本原件為 A 級出版物，依規則記 B"
+  },
+  "treccani-horthy-ei": {
+   "title": "HORTHY, Miklos",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana (1933)",
+   "url": "https://www.treccani.it/enciclopedia/miklos-horthy_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "Treccani 條目未見具名作者，依 Q9 視為未評等，只放 gap 候選"
+  },
+  "universalis-horthy": {
+   "title": "HORTHY MIKLOS (1868-1957)",
+   "authors": [],
+   "publisher": "Encyclopædia Universalis",
+   "published_text": "Encyclopædia Universalis 線上版（公開摘要）",
+   "url": "https://www.universalis.fr/encyclopedie/miklos-horthy/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "署名為「services rédactionnels」（編輯部），無具名作者，依 Q9 視為未評等，只放 gap 候選"
+  },
+  "locnaf-martinez": {
+   "title": "Hernández Martínez, Maximiliano (LCNAF n88110124)",
+   "authors": [],
+   "publisher": "Library of Congress",
+   "published_text": "LC Name Authority File 搜尋結果頁",
+   "url": "https://id.loc.gov/search/?q=Hern%C3%A1ndez+Mart%C3%ADnez%2C+Maximiliano&q=cs:http://id.loc.gov/authorities/names",
+   "archive_url": null,
+   "catalog_id": "LCNAF n88110124",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國會圖書館人名權威檔；只確認身分與姓名異寫，無生平內容，未用於段落"
+  }
+ },
+ "people": [
+  {
+   "key": "bg-boris-iii",
+   "bioId": "01a1b4af-e4dc-7192-9ac3-e0156fc701ae",
+   "name": "Boris III",
+   "nameZh": "鮑里斯三世",
+   "recordIds": [
+    "01a1aa4a-4de6-787e-8502-1ba545322517"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1918-10-03",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與繼位",
+      "en": "Origins and accession"
+     },
+     "body": {
+      "zh-Hant": "鮑里斯三世是保加利亞斐迪南一世的長子，曾就讀索非亞軍事學院，並在兩次巴爾幹戰爭與第一次世界大戰期間於父親的參謀部服務。1918年10月3日，斐迪南一世遜位，由王儲繼位；德國國家圖書館權威檔也記載他於1918年成為保加利亞國王（沙皇）。",
+      "en": "Boris III was the eldest son of Ferdinand I of Bulgaria; he studied at the Military Academy in Sofia and served on his father's staff during the two Balkan Wars and the First World War. On 3 October 1918, Ferdinand I abdicated in favour of the crown prince, and the German National Library authority record also notes that he became King (Tsar) of Bulgaria in 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "Fils aîné de Ferdinand Ier de Bulgarie",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "élève à l'Académie militaire de Sofia",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "sert dans l'état-major de son père",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "au cours des deux guerres balkaniques et de la Première Guerre mondiale",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-ferdinand",
+       "locator": "Biographie, 末段前",
+       "quote": "dankte F. zugunsten des Kronprinzen ab (3.10.1918)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-boris",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1918 König (Zar) von Bulgarien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1930-10-25",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "婚姻與1934年政變",
+      "en": "Marriage and the 1934 coup"
+     },
+     "body": {
+      "zh-Hant": "1930年10月25日，鮑里斯與薩伏依的喬瓦娜結婚，使他與義大利政府圈接觸更頻繁；他與墨索里尼的會面，使他愈發傾向以威權手段解決國內危機。1934年5月19日，他發動政變、解散國民議會（Sobranje），建立個人統治；德國國家圖書館權威檔則概括為自1934年起成為威權君主，並向德意志帝國靠攏。",
+      "en": "His marriage to Giovanna of Savoy on 25 October 1930 brought him into closer contact with Italian government circles, and his meetings with Mussolini inclined him increasingly towards an authoritarian solution to the domestic crisis. On 19 May 1934 he carried out a coup, dissolving the Sobranje (parliament) and establishing personal rule; the German National Library authority record summarises this as authoritarian monarchy from 1934 and a rapprochement with the German Reich."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "Il matrimonio con Giovanna di Savoia (25 ottobre 1930)",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "entrare in contatti più frequenti con gli ambienti di governo italiani",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "i suoi incontri con Mussolini orientarono sempre più la sua mente",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "una soluzione di autorità della crisi interna del suo paese",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "Il 19 maggio 1934 compì un colpo di stato, sciogliendo il Sobranje",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "instaurando un governo personale",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-boris",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "ab 1934 autoritärer Monarch und Annäherung an das Deutsche Reich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-03-01",
+      "end": "1943-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "二戰與逝世",
+      "en": "The Second World War and death"
+     },
+     "body": {
+      "zh-Hant": "鮑里斯以參加三國同盟換取多布羅加與色雷斯的併入，同時避免與蘇聯斷交。Universalis指出他在1941年3月選定軸心陣營，同年12月讓政府對英國宣戰，卻拒絕對蘇聯作戰；德國國家圖書館權威檔也記有1943年他拒絕讓保加利亞對蘇聯參戰。Treccani載他於1943年8月28日在與希特勒會面後返國時猝死於索非亞。",
+      "en": "Boris secured the annexation of Dobruja and Thrace by adhering to the Tripartite Pact, while avoiding a break with the Soviet Union. Universalis says that in March 1941 he finally chose the Axis, in December 1941 let his government declare war on Britain, but refused to enter the war against the Soviet Union; the German National Library authority record likewise notes his 1943 refusal to take Bulgaria into the war against the USSR. Treccani records that he died suddenly in Sofia on 28 August 1943, on returning from a meeting with Hitler."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "pagando l'annessione alla Bulgaria della Dobrugia e della Tracia",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "con l'adesione al Tripartito",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "Malgrado evitasse la rottura dei rapporti con l'Unione Sovietica",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "En mars 1941, il se décide enfin pour l'Axe",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "En décembre 1941, il laisse son gouvernement déclarer la guerre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "il laisse son gouvernement déclarer la guerre à la Grande-Bretagne",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "se refuse à entrer en guerre contre l'Union soviétique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-boris",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1943 Verweigerung des Kriegsbeitritts Bulgariens gegen die Sowjetunion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "Morì improvvisamente a Sofia, al ritorno da un incontro con Hitler",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "il 28 agosto 1943",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-boris",
+       "locator": "公開摘要首段",
+       "quote": "Il meurt le 28 août 1943 après une entrevue dramatique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:deathDate",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源死亡日不一致：GND（lobid JSON）dateOfDeath 為 1943-08-23；Treccani（Cataluccio）與 Universalis（Bérenger）均為 1943-08-28。正文採 28 日（兩份 B 級具名來源一致），GND 值待核（可能為權威檔登錄誤差）",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "gnd-boris",
+       "locator": "dateOfDeath",
+       "quote": "1943-08-23",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "treccani-boris-cataluccio",
+       "locator": "Enciclopedia Italiana II App., 首段",
+       "quote": "il 28 agosto 1943",
+       "quoteLang": "it"
+      }
+     ]
+    },
+    {
+     "target": "field:orthodoxConversion",
+     "gapKind": "conflict",
+     "note": "兩份已抓 A 級來源不一致：NDB（Stadtmüller）寫王儲鮑里斯改信東正教在 1896 年；GND 權威檔寫 1916 年「Konversion zur Orthodoxie」（以尼古拉二世為教父）。正文不採用此事，待查證",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-ferdinand",
+       "locator": "Biographie, 末段前",
+       "quote": "Der Übertritt des Kronprinzen Boris zum orthodoxen Glauben (1896)",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "gnd-boris",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1916 Konversion zur Orthodoxie",
+       "quoteLang": "de"
+      }
+     ]
+    },
+    {
+     "target": "field:militaryAndOtherPositions",
+     "gapKind": "not_found",
+     "note": "待查證：未取得可說明鮑里斯三世1918年前後軍職（如王儲時期軍職）起訖日的 A／B 原文；Britannica（403）、Deutsche Biographie 僅有索引頁（無 Boris 專條）、1914-1918-online（Anubis）、Treccani 主條（VII 卷）僅附錄片段可抓。元首任期已在名單 5442（1918-10-03～1943-08-28），不重建",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie 搜尋 Boris III",
+     "url": "https://www.deutsche-biographie.de/search?name=Boris+III",
+     "result": "found_A",
+     "note": "索引頁：König von Bulgarien，1894–1943；無專條（僅 NDB 斐迪南條目提及）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Boris III Bulgarien",
+     "url": "https://lobid.org/gnd/search?q=Boris+III+Bulgarien&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 119165538；生平摘要與生卒（死亡日與其他來源不符，見 gap）"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "lobid GND 記錄 119165538",
+     "url": "https://lobid.org/gnd/119165538.json",
+     "result": "found_A",
+     "note": "取為 gnd-boris 原文"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie NDB 斐迪南一世條目（sfz15839）",
+     "url": "https://www.deutsche-biographie.de/sfz15839.html",
+     "result": "found_A",
+     "note": "3.10.1918 斐迪南遜位予王儲；1896 鮑里斯改信東正教"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Boris III",
+     "url": "https://www.britannica.com/biography/Boris-III",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print 版 Boris III",
+     "url": "https://www.britannica.com/print/article/74204",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 搜尋 Boris III re di Bulgaria（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Enciclopedia Italiana II Appendice 條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Boris III re dei Bulgari（Cataluccio）",
+     "url": "https://www.treccani.it/enciclopedia/boris-iii-re-dei-bulgari_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "具名作者 Francesco Cataluccio；1930 婚姻、1934 政變、1943 逝世"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopædia Universalis Boris III（Bérenger）",
+     "url": "https://www.universalis.fr/encyclopedie/boris-iii/",
+     "result": "found_B",
+     "note": "公開摘要；具名作者 Jean Bérenger"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Boris 3.",
+     "url": "https://snl.no/Boris_3",
+     "result": "unrated",
+     "note": "僅署名專業顧問，無具名作者；不用於引文"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Boris III 人名頁",
+     "url": "https://encyclopedia.1914-1918-online.net/histperson/119165538/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "WebSearch：Boris III accession 3 October 1918 encyclopedia（原文：英）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為維基類與私人網站；不用"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "WebSearch：Boris III Bulgaria biography 學術／機構來源（英）",
+     "url": null,
+     "result": "no_result",
+     "note": "未見可抓的 A／B 學術頁"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "WebSearch：Treccani Boris III re di Bulgaria 1918 1943（義）",
+     "url": null,
+     "result": "found_B",
+     "note": "同上 Treccani"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "Deutsche Biographie 搜尋頁（德）Boris III",
+     "url": null,
+     "result": "found_A",
+     "note": "同上"
+    }
+   ]
+  },
+  {
+   "key": "sv-hernandez-martinez",
+   "bioId": "01a1b4af-e4e3-7bde-bfd7-dbad26d4ae2a",
+   "name": "Maximiliano Hernández Martínez",
+   "nameZh": "馬克西米利亞諾·埃爾南德斯·馬丁內斯",
+   "recordIds": [
+    "01a1aa4a-7236-78d3-9358-7b1b335391e7",
+    "01a1aa4a-7236-76e5-85b6-353405f2cbba"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1899-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍旅",
+      "en": "Origins and army career"
+     },
+     "body": {
+      "zh-Hant": "馬丁內斯生於聖薩爾瓦多，就讀危地馬拉的軍事學院，1899年入伍。1906年與危地馬拉的邊境戰爭期間升遷迅速，受任軍官三年後晉升少校，到1919年已是准將。他多半的軍旅生涯在薩爾瓦多軍事學院任教，並在參謀長辦公室任職。德國國家圖書館權威檔將他列為薩爾瓦多的軍官與國家元首。",
+      "en": "Martínez was born in San Salvador and educated at the Guatemalan military academy; he entered the army in 1899. He rose rapidly during the 1906 border war with Guatemala, reaching major three years after receiving his commission, and by 1919 he held the rank of brigadier general. He spent most of his army career as a professor at the Salvadoran Military Academy and in the office of the chief of staff. The German National Library authority record lists him as a Salvadoran officer and head of state."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "Born in San Salvador and educated at the Guatemalan military academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "Martínez entered the army in 1899",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "Rising rapidly during the 1906 border war with Guatemala",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "he reached the rank of major three years after receiving his commission",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "By 1919 he held the rank of brigadier general.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "spent most of his army career as a professor at the Salvadoran Military Academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第二段",
+       "quote": "in the office of the chief of staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-martinez",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "El Salvador, Offizier u. Staatspräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1930-01-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "副總統與1931年政變",
+      "en": "Vice-presidency and the 1931 coup"
+     },
+     "body": {
+      "zh-Hant": "1930年，馬丁內斯以六名總統候選人之一的身分退出，改任阿圖羅·阿拉烏霍的副總統候選人。1931年1月選舉中二人僅得相對多數票，由國民議會選出；他在擔任副總統之外也被任命為戰爭部長。1931年12月2日軍事政變使他掌權，12月5日他依憲法規定就任臨時總統。",
+      "en": "In 1930 Martínez, one of six presidential candidates, withdrew to become the vice-presidential candidate of Arturo Araújo. Receiving only a plurality in the January 1931 election, the pair was elected by the National Assembly, and Martínez was appointed minister of war in addition to his vice presidency. A military coup on 2 December 1931 brought him to power, and he was installed as provisional president on 5 December in accordance with constitutional provisions."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "Martínez's political rise began in 1930.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "One of six candidates for the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "withdrew to become the vice-presidential candidate of Arturo Araújo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "Receiving only a plurality of the votes in the January 1931 election",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "the pair was elected by the National Assembly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "appointed minister of war in addition to his vice presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第四段",
+       "quote": "a military coup on 2 December 1931 brought Martínez to power",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第四段",
+       "quote": "installed as provisional president (5 December)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第四段",
+       "quote": "in accordance with the constitutional provisions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1935-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1932年起義與政權鞏固",
+      "en": "The 1932 uprising and consolidation"
+     },
+     "body": {
+      "zh-Hant": "1932年1月，左派領導的農民起義使馬丁內斯得以鞏固權力；軍隊鎮壓了起義，死亡人數各說不一，從一萬到三萬人不等，史稱「馬坦薩」（屠殺）。美國以1923年華盛頓條約為由拒絕承認其政權，直到1934年1月才予承認。他在1934年違憲安排自己連任，第二任期自1935年3月起算。",
+      "en": "His consolidation of power was helped by a leftist-led peasant uprising in January 1932; the army put the revolt down with casualties variously numbered from 10,000 to 30,000, in what became known as the matanza (massacre). The United States, citing the Washington Treaties of 1923, refused recognition until January 1934. He arranged his own reelection in violation of the constitution in 1934, beginning his second term in March 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第五段",
+       "quote": "consolidation of power was facilitated by a leftist-led peasant uprising",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第五段",
+       "quote": "a leftist-led peasant uprising during January 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第五段",
+       "quote": "The army put down the revolt",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第五段",
+       "quote": "variously numbered from 10,000 to 30,000",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第五段",
+       "quote": "what became known as the matanza (massacre)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第六段",
+       "quote": "Contending that the Washington Treaties of 1923 precluded recognition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第六段",
+       "quote": "the United States recognized the Martínez regime in January 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第六段",
+       "quote": "arranged his own reelection in violation of the Salvadoran constitution",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第六段",
+       "quote": "in 1934, beginning his second term in March 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第六段",
+       "quote": "beginning his second term in March 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1935-03-01",
+      "end": "1944-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "獨裁統治與下台",
+      "en": "Dictatorship and fall"
+     },
+     "body": {
+      "zh-Hant": "馬丁內斯以嚴酷的獨裁統治國家直到1944年。他肅清了貪腐、停止對外借款並穩定了貨幣，政權以公共工程聞名，包括大量築路與興建政府建築。1944年5月8日，他因再度延長任期的企圖引發的總罷工而被迫下台，此後流亡宏都拉斯直到逝世。",
+      "en": "Martínez held the nation in the tight grip of a harsh dictatorship until 1944. He stamped out corruption, ceased foreign borrowing and stabilized the currency, and his regime was best known for its public works, including extensive road building and many government buildings. He was forced from office on 8 May 1944 by a general strike protesting a new effort to extend his tenure, and he remained in exile in Honduras until his death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第七段",
+       "quote": "held the nation in the tight grip of a harsh dictatorship until 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第九段",
+       "quote": "stamp out corruption, cease foreign borrowing, and stabilize the currency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第九段",
+       "quote": "His regime was best known for its public works program",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第九段",
+       "quote": "extensive road building as well as the construction of many government buildings",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第十一段",
+       "quote": "Martínez was forced from office on 8 May 1944 by a general strike",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第十段",
+       "quote": "a general strike protesting a new effort to extend his tenure yet again",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第十一段",
+       "quote": "he remained in exile in Honduras until his death",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:martinez-vice-president-1931",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Grieb（B）只寫1931年1月選舉後由國民議會選出，未載副總統就任日；終點可由1931-12-05就任臨時總統推得，但起日不明，故未建職位。GND、LCNAF 無任期資料；DB~e（dbe.rah.es）頁面為 JS 外殼、無可抓文字；Britannica 403",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "in the January 1931 election",
+       "quoteLang": "en"
+      }
+     ]
+    },
+    {
+     "target": "position:martinez-war-minister-1931",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Grieb（B）寫「appointed minister of war in addition to his vice presidency」，無日期，也無離任日。未取得載明任命與離任日的 A／B 原文（DB~e 無可抓文字、Britannica 403、dodis.ch 為 Anubis 挑戰頁）。四部之一（戰爭／國防）正職，日後補齊日期與政權可進 R3",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第三段",
+       "quote": "appointed minister of war in addition to his vice presidency",
+       "quoteLang": "en"
+      }
+     ]
+    },
+    {
+     "target": "field:presidencyDates",
+     "gapKind": "not_found",
+     "note": "名單 5442 元首／首腦任期為 1931-12-04～1944-05-09；已抓 B 級來源 Grieb 寫就任臨時總統日為 1931-12-05、下台日為 1944-05-08（Grieb 另稱 1931-12-02 政變）。屬庫值與單一來源差異（審查改為 not_found：conflict 只用於兩份已抓來源矛盾），不建候選（任期已在 5442），僅供主管核對",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第四段",
+       "quote": "installed as provisional president (5 December)",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "grieb-martinez",
+       "locator": "第十一段",
+       "quote": "Martínez was forced from office on 8 May 1944 by a general strike",
+       "quoteLang": "en"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Hernández Martínez Maximiliano",
+     "url": "https://lobid.org/gnd/search?q=Hern%C3%A1ndez+Mart%C3%ADnez+Maximiliano&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 118860070；1882–1966；Offizier u. Staatspräsident"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 記錄 118860070",
+     "url": "https://lobid.org/gnd/118860070.json",
+     "result": "found_A",
+     "note": "取為 gnd-martinez 原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Library of Congress Name Authority 搜尋",
+     "url": "https://id.loc.gov/search/?q=Hern%C3%A1ndez+Mart%C3%ADnez%2C+Maximiliano&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "n88110124；僅姓名與異寫，無生平內容"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "VIAF 搜尋 Hernandez Martinez Maximiliano",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Hernandez+Martinez+Maximiliano%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie pnd118860070",
+     "url": "https://www.deutsche-biographie.de/pnd118860070.html",
+     "result": "no_result",
+     "note": "404，無此人頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e（頁面）",
+     "url": "https://dbe.rah.es/biografias/maximiliano-hernandez-martinez",
+     "result": "no_result",
+     "note": "200 但為 JS 外殼，無可抓文字（5.6KB 空殼）"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Hernández Martínez Maximiliano biografía dbe.rah.es（西）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未回傳 dbe.rah.es 條目"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Hernández Martínez Maximiliano 總統府／議會／Treccani 官方傳記（西）",
+     "url": null,
+     "result": "no_result",
+     "note": "無官方頁；多為百科與私人網站"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Maximiliano Hernández Martínez",
+     "url": "https://www.britannica.com/biography/Maximiliano-Hernandez-Martinez",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture（Grieb）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/hernandez-martinez-maxi-miliano-1882-1966",
+     "result": "found_B",
+     "note": "具名作者 Kenneth J. Grieb"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Encyclopedia of World Biography 條目",
+     "url": "https://encyclopedia.com/people/history/salvadoran-history-biographies/maximiliano-hernandez-martinez",
+     "result": "unrated",
+     "note": "Encyclopedia of World Biography 無署名條目（Q9）；未用"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Maximiliano Hernández Martínez",
+     "url": "https://www.treccani.it/enciclopedia/maximiliano-hernandez-martinez/",
+     "result": "no_result",
+     "note": "回傳首頁／無此條"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Biografías y Vidas Maximiliano Hernández Martínez",
+     "url": "https://www.biografiasyvidas.com/biografia/h/hernandez_martinez.htm",
+     "result": "unrated",
+     "note": "私人彙編，X；不用"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "dodis.ch P74070 人物頁",
+     "url": "https://dodis.ch/P74070",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "WebSearch：Maximiliano Hernández Martínez 1931 1944 president（英）",
+     "url": null,
+     "result": "found_B",
+     "note": "Britannica 條目存在但 403"
+    }
+   ]
+  },
+  {
+   "key": "hu-horthy-miklos",
+   "bioId": "01a1b4af-e4eb-720d-9ddd-df710ac38339",
+   "name": "Miklós Horthy",
+   "nameZh": "霍爾蒂·米克洛什",
+   "recordIds": [
+    "01a1aa4a-4a52-763b-bc3c-883fe78080e3"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "奧匈海軍生涯",
+      "en": "Austro-Hungarian naval career"
+     },
+     "body": {
+      "zh-Hant": "霍爾蒂1886年被任命為海軍學員；1908至1909年任「陶魯斯」號艦長，1909至1914年出任皇帝弗蘭茨·約瑟夫的侍從武官。一戰期間他接掌「諾瓦拉」號指揮，德國國家圖書館權威檔另記他於1918年成為艦隊司令並晉升少將。",
+      "en": "Horthy was appointed a naval cadet in 1886; he commanded the Taurus in 1908–1909 and served as Emperor Franz Joseph's wing adjutant from 1909 to 1914. During the First World War he took over command of the Novara, and the German National Library authority record adds that in 1918 he became fleet commander and rear admiral."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1886-ban tengerészhadapróddá nevezték ki",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1908–1909-ben a Taurus parancsnoka volt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (2)",
+       "quote": "1909-1914 Flügeladjutant Kaiser Franz Josephs I.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "Az I. világháború kitörésekor 1914-ben a Habsburg csatahajó parancsnoka",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "a Novara parancsnokságát vette át",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1918 Flottenkommandant und Konteradmiral",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-07-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1919年：戰爭部長與國民軍",
+      "en": "1919: war minister and the National Army"
+     },
+     "body": {
+      "zh-Hant": "1919年霍爾蒂出任卡羅伊·久洛政府的戰爭部長；匈牙利電子圖書館的傳記辭典寫明他於7月在塞格德該政府中接下國防部職務，卡羅伊辭職後成為國民軍總司令，並於11月16日進入布達佩斯。",
+      "en": "In 1919 Horthy became war minister in the counter-revolutionary government of Gyula Károlyi; the Hungarian biographical lexicon (MEK) says he took the war portfolio in the Károlyi government at Szeged in July, became commander-in-chief of the National Army after Károlyi's resignation, and entered Budapest on 16 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "Kriegsminister der konservativen konterrevolutionären Regierung Gyula Károlyis",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "elvállalta a hadügyminiszteri tárcát (1919. júl.)",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "Károlyi lemondása után a nemzeti hadsereg fővezére lett",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "bevonult Bp.-re (1919. nov. 16.)",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1945-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "攝政時期",
+      "en": "The regency"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記載霍爾蒂自1920年至1944年任匈牙利王國攝政（Reichsverweser）。匈牙利傳記辭典稱他在1926年促成兩院制國會的成立，1933年與1937年擴大攝政權限；1942年政府設立攝政代理職，由其子霍爾蒂·伊什特萬獲選。",
+      "en": "The German National Library authority record gives Horthy as regent (Reichsverweser) of the Kingdom of Hungary from 1920 to 1944. The Hungarian biographical lexicon says he established the bicameral parliament in 1926, extended the regent's powers in 1933 and 1937, and in 1942 the post of deputy regent was created, to which his son István Horthy was elected."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1920-1944 Reichsverweser des Königreichs Ungarn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1926-ban magalakította a kétkamarás országgyűlést",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1933-ban és 1937-ben kiterjesztette a kormányzói jogkört",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "fiát H. Istvánt kormányzóhelyettessé választották",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1942 elején a kormány létrehozta a kormányzó helyettesi intézményt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-03-19",
+      "end": "1957-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1944年後與晚年",
+      "en": "1944 and after"
+     },
+     "body": {
+      "zh-Hant": "1944年3月19日德國占領匈牙利，霍爾蒂被迫任命新政府；後來他放棄國家元首權力，讓予薩拉希·費倫茨。權威檔記載他1945年成為美軍戰俘並在紐倫堡審判中受訊，1948年移居葡萄牙；匈牙利傳記辭典載他1957年2月9日在葡萄牙埃什托里爾逝世。",
+      "en": "After the Germans occupied Hungary on 19 March 1944 Horthy was forced to appoint a new government; he later renounced his head-of-state powers in favour of Ferenc Szálasi. The authority record notes that in 1945 he was held by US forces and questioned in the Nuremberg trials, that he emigrated to Portugal in 1948, and the Hungarian lexicon gives his death at Estoril, Portugal, on 9 February 1957."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "A németek 1944. március 19-én megszállták Mo.-ot",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "és kénytelen volt kinevezni az új kormányt",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "államfői hatalmáról lemondott Szálasi Ferenc javára",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1945 amerikanische Kriegsgefangenschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "Vernehmung in den Nürnberger Prozessen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1948 Emigration nach Portugal",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "Estoril, Portugália, 1957. febr. 9.",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "horthy-taurus-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧匈帝國海軍",
+      "en": "Austro-Hungarian Navy"
+     },
+     "title": {
+      "orig": "a Taurus parancsnoka",
+      "zh-Hant": "「陶魯斯」號艦長",
+      "en": "Commander of the Taurus"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "1908–1909-ben a Taurus parancsnoka volt",
+       "quoteLang": "hu",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "艦艇層級指揮，非國家級最高軍職或戰區司令，屬 R5"
+    },
+    {
+     "key": "horthy-wing-adjutant",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧匈帝國皇帝宮廷",
+      "en": "Court of Emperor Franz Joseph I"
+     },
+     "title": {
+      "orig": "Flügeladjutant Kaiser Franz Josephs I.",
+      "zh-Hant": "皇帝弗蘭茨·約瑟夫一世侍從武官",
+      "en": "Wing adjutant to Emperor Franz Joseph I"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1909-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (2)",
+       "quote": "1909-1914 Flügeladjutant Kaiser Franz Josephs I.",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "horthy-fleet-commander-1918",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧匈帝國海軍",
+      "en": "Austro-Hungarian Navy"
+     },
+     "title": {
+      "orig": "Befehlshaber der k. u. k. Kriegsmarine",
+      "zh-Hant": "奧匈帝國海軍（艦隊）司令",
+      "en": "Commander of the Austro-Hungarian fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (2)",
+       "quote": "1918 Befehlshaber der k. u. k. Kriegsmarine",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "權威檔寫明軍種（海軍）最高指揮，但起日只到年、迄日未載，最短任期無法證明；regimeId 亦未查（名單外不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "horthy-war-minister-1919",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "卡羅伊·久洛反革命政府（塞格德）",
+      "en": "Counter-revolutionary government of Gyula Károlyi (Szeged)"
+     },
+     "title": {
+      "orig": "hadügyminiszter",
+      "zh-Hant": "戰爭（國防）部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1919-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "elvállalta a hadügyminiszteri tárcát (1919. júl.)",
+       "quoteLang": "hu",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1919 Kriegsminister der konservativen konterrevolutionären Regierung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "國防（戰爭）部正職屬四部；但迄日未載、起日只到月，最短任期無法證明 ≥90 天；政權（塞格德反革命政府）是否在系統中亦待查，regimeId 為 null",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:horthy-fleet-commander-1918",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；GND 只寫「1918 Befehlshaber der k. u. k. Kriegsmarine, die er an das südslawische Königreich übergab」，MEK 未列艦隊司令任期。已查 GND、MEK、Treccani（未評等）、Universalis（未評等）、Britannica（403）、1914-1918-online（Anubis）；Universalis 稱 1918年10月移交艦隊，但屬未評等來源；加強重跑再查 parlament.hu（CAPTCHA）、Deutsche Biographie（無任期）、Britannica／Hungaricana（403）、ÖBL／RAH／LeMO／encyclopedia.com（無條目），仍無迄日",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (2)",
+       "quote": "1918 Befehlshaber der k. u. k. Kriegsmarine",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "universalis-horthy",
+       "locator": "公開摘要第二段",
+       "quote": "Promu en 1918 commandant en chef de la flotte impériale",
+       "quoteLang": "fr"
+      }
+     ]
+    },
+    {
+     "target": "position:horthy-war-minister-1919",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；MEK 與 GND 皆未載離任日。另：WebSearch 摘要顯示他人記載對霍爾蒂是否實際就任戰爭部長有出入（有稱他拒絕該職、僅任國民軍總司令），但該等來源未抓取原文，不能據以判定；需 A／B 來源（如匈牙利議會／國家檔案）確認；加強重跑再查 parlament.hu（CAPTCHA）、Deutsche Biographie（無任期）、Britannica／Hungaricana（403）、ÖBL／RAH／LeMO／encyclopedia.com（無條目），仍無迄日",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "elvállalta a hadügyminiszteri tárcát (1919. júl.)",
+       "quoteLang": "hu"
+      }
+     ]
+    },
+    {
+     "target": "position:horthy-national-army-commander-1919",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；MEK 只寫卡羅伊辭職後成為國民軍總司令並於1919-11-16進入布達佩斯，無任命日；GND 只寫「Oberbefehl über die Nationalarmee」。未取得載明起迄日的 A／B 原文，故未建職位",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "a nemzeti hadsereg fővezére lett",
+       "quoteLang": "hu"
+      }
+     ]
+    },
+    {
+     "target": "field:regentElectionDate",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源不一致：MEK（A）原文寫「A nemzetgyűlés 1921. márc. 1-én megválasztotta Mo. kormányzójának」（年份顯然與其餘資料不合，疑為原文誤植）；GND（A）寫攝政 1920-1944。Treccani EI（1933，未評等）寫 1920-03-30 當選，Universalis（未評等）寫 3月1日。名單 5442 為 1920-03-01。正文不寫當選日，攝政任期已在 5442 不重建",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "mek-horthy-lexikon",
+       "locator": "Horthy Miklós 條目",
+       "quote": "A nemzetgyűlés 1921. márc. 1-én megválasztotta Mo. kormányzójának",
+       "quoteLang": "hu"
+      },
+      {
+       "sourceKey": "gnd-horthy",
+       "locator": "biographicalOrHistoricalInformation (1)",
+       "quote": "1920-1944 Reichsverweser des Königreichs Ungarn",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "treccani-horthy-ei",
+       "locator": "Enciclopedia Italiana (1933)",
+       "quote": "Il 30 marzo 1920 fu eletto, dall'Assemblea nazionale, reggente",
+       "quoteLang": "it"
+      },
+      {
+       "sourceKey": "universalis-horthy",
+       "locator": "公開摘要第三段",
+       "quote": "Le 1er mars, il offreà Horthy la régence",
+       "quoteLang": "fr"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Horthy Miklos",
+     "url": "https://lobid.org/gnd/search?q=Horthy+Miklos&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 118707191；官職摘要"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 記錄 118707191",
+     "url": "https://lobid.org/gnd/118707191.json",
+     "result": "found_A",
+     "note": "取為 gnd-horthy 原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie pnd118707191",
+     "url": "https://www.deutsche-biographie.de/pnd118707191.html",
+     "result": "found_A",
+     "note": "僅索引頁（Horthy, Nikolaus von），無 NDB 專條"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "MEK Magyar Életrajzi Lexikon 舊 URL 猜測",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC06830/07391.htm",
+     "result": "no_result",
+     "note": "404（URL 猜錯）"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Horthy Miklós Magyar életrajzi lexikon 1920 március 1（匈）",
+     "url": null,
+     "result": "no_result",
+     "note": "首次未回 MEK 條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Horthy Miklós kormányzó Magyar életrajzi lexikon（匈，限 mek 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 MEK 條目網址"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "MEK Magyar Életrajzi Lexikon Horthy Miklós",
+     "url": "https://mek.oszk.hu/00300/00355/html/ABC05727/06486.htm",
+     "result": "found_A",
+     "note": "取為 mek-horthy-lexikon（ISO-8859-2 轉 UTF-8）"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "ÖBL Horthy 條目猜測",
+     "url": "https://www.biographien.ac.at/oebl/oebl_H/Horthy_Miklos_1868_1957.xml",
+     "result": "no_result",
+     "note": "404（ÖBL 不收卒於1950後者）"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Miklós Horthy",
+     "url": "https://www.britannica.com/biography/Miklos-Horthy",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Miklós Nagybányai Horthy",
+     "url": "https://www.britannica.com/biography/Miklos-Nagybanyai-Horthy",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Horthy（Enciclopedia Italiana 1933）",
+     "url": "https://www.treccani.it/enciclopedia/miklos-horthy_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "未見具名作者；只作 gap 候選"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopædia Universalis Horthy",
+     "url": "https://www.universalis.fr/encyclopedie/miklos-horthy/",
+     "result": "unrated",
+     "note": "署名為編輯部；只作 gap 候選"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Horthy Miklós（Catherine Horel）",
+     "url": "https://encyclopedia.1914-1918-online.net/article/horthy-miklos/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "worldhistory.org Horthy Miklós",
+     "url": "https://www.worldhistory.org/trans/hu/1-26445/horthy-miklos/",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "WebSearch：1914-1918-online Horthy（英）",
+     "url": null,
+     "result": "found_B",
+     "note": "條目存在但被 Anubis 擋"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "WebSearch：Károlyi Gyula 塞格德政府 hadügyminiszter Horthy（匈，限 mek）",
+     "url": null,
+     "result": "unrated",
+     "note": "摘要顯示他說不一，未抓原文"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "parlament.hu 歷任攝政頁",
+     "url": "https://www.parlament.hu/orszaggyules/kormanyzo",
+     "result": "challenge_page",
+     "note": "CAPTCHA，放棄"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "mnl.gov.hu 檢索 Horthy Miklós",
+     "url": "https://mnl.gov.hu/kereses?search=Horthy+Mikl%C3%B3s",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Horthy 人物頁",
+     "url": "https://www.deutsche-biographie.de/pnd118707191.html",
+     "result": "not_relevant",
+     "note": "只有索引資料，無任期"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Horthy",
+     "url": "https://www.britannica.com/biography/Miklos-Horthy",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Hungary Horthy regency",
+     "url": "https://www.britannica.com/place/Hungary/Horthy-regency",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Hungaricana 檢索 Horthy hadügyminiszter 1919",
+     "url": "https://library.hungaricana.hu/hu/search/results/?query=Horthy+hadügyminiszter+1919",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "ÖBL Horthy",
+     "url": "https://www.biographien.ac.at/oebl/oebl_H/Horthy_Miklos_1868_1957.xml",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "RAH DB~e 檢索 Horthy",
+     "url": "https://dbe.rah.es/biografias/search?q=Horthy",
+     "result": "no_result",
+     "note": "無相關條目"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Horthy 條目",
+     "url": "https://www.encyclopedia.com/people/history/historians-miscellaneous-biographies/miklos-horthy",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO Horthy",
+     "url": "https://www.dhm.de/lemo/personen/miklos-horthy.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Treccani Dizionario di Storia Horthy",
+     "url": "https://www.treccani.it/enciclopedia/miklos-horthy_(Dizionario-di-Storia)/",
+     "result": "challenge_page",
+     "note": "CAPTCHA，放棄"
+    }
+   ]
+  }
+ ]
+}

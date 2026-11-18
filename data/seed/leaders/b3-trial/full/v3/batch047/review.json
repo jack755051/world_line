@@ -1,0 +1,90 @@
+{
+ "batch": "047",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 38,
+  "editedSentences": 2,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "do-caceres",
+   "bioId": "01a1b4b8-e97b-73a9-9693-22f309cc77bb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 6,
+   "changes": [
+    "P1 補引文：Born in Moca（莫卡）、a landowner（地主）子句",
+    "P4 改引文為含 shifts in economic power 的完整句；補 unsuccessful plots、welcomed the prosperity、resurgence of disorder 三筆引文",
+    "重抓 encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "svinhufvud",
+   "bioId": "01a1b4bb-072b-763e-abc4-50f0d1067d7e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 8,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 12,
+   "changes": [
+    "P1 補父親為船長引文",
+    "P2 補俄國同化、赫爾辛基市民申訴引文；16 名官員引文補「då så inte skedde」；Kagalen 引文補完 motståndet；改寫中英文：他是在卡加爾中從事政治活動，非「參與領導」",
+    "P3 補社民黨視其為反違法者、1909 演說內容、一次大戰背景引文",
+    "P4 補臨時政府任命主語；中英文改為「11月27日所謂獨立參政院選出」（原文『國會選出』處含軟連字號無法逐字引用）；宣布獨立、蘇維埃承認引文改為完整句",
+    "P5 補親赴柏林、德國戰敗、12月17日日期引文；去除無日期引文的 datePrecision=day（Q8）",
+    "position prokurator：迄日引文 datePrecision 改 null，另補含 den 17 december 的引文",
+    "P6 補卸任、退居盧馬基、反共法與改選引文",
+    "P7 補跨黨派、第三輪農民聯盟、曼納海姆、曼采拉、廣播演說效果、1937 年引文",
+    "P8 補爭取對芬蘭支持引文",
+    "重抓 BLF 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-saenz-pena",
+   "bioId": "dece85ed-1168-4d8c-bc1a-1a2f6bf3e65a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 8,
+   "changes": [
+    "P1 補加入鎮壓部隊引文",
+    "P3 補返國、派駐烏拉圭、代表阿根廷引文",
+    "P5 補該法即薩恩斯·佩尼亞法引文",
+    "P6 補不完整名單、第二大黨、激進公民聯盟、伊里戈延引文",
+    "重抓 encyclopedia.com 條目比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者引文常只覆蓋子句的一部分（地點、主語、職業、背景事件未引），本批共補 38 筆引文",
+  "WebSearch 額度用盡，三人 searchLog 均有一步未執行；三人皆達最低標準，非薄人物，不退回",
+  "每人實際只 1–2 個可抓 A/B 來源（Cáceres、Sáenz Peña 僅 encyclopedia.com Gale 具名條目）；1876 年以自治國民黨身分取得的省議員席位在 1908–1945 窗外、無迄日，未建候選，已在 gap 說明"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

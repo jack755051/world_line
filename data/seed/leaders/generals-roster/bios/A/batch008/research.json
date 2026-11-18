@@ -1,0 +1,3083 @@
+{
+ "batch": "b3-full-v3-batch008",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE b0b0e0f 與 b3-trial/ALIGN.md 直接以對齊格式撰寫；5 人均為英國將領，regimeId 一律 null；Britannica／IWM／NPG／ODNB／Westminster Abbey 被 403 擋，來源集中於 AWM、NAM、GOV.UK、Hansard、美國陸軍軍史中心、Paradata、GAC。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch008/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "awm-birdwood": {
+   "title": "Non-Australian military Birdwood connections",
+   "authors": [],
+   "publisher": "Australian War Memorial (澳洲戰爭紀念館)",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/articles/blog/non-australian-military-birdwood-connectoins",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲國家戰爭紀念館官方網站文章（官方機構）"
+  },
+  "awm-messines-blog": {
+   "title": "Battle of Messines",
+   "authors": [],
+   "publisher": "Australian War Memorial",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/articles/blog/battle-of-messines",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲國家戰爭紀念館官方網站文章"
+  },
+  "awm-messines-e": {
+   "title": "Battle of Messines (collection entry E84332)",
+   "authors": [],
+   "publisher": "Australian War Memorial",
+   "published_text": null,
+   "url": "https://www.awm.gov.au/collection/E84332",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "澳洲國家戰爭紀念館官方館藏條目"
+  },
+  "hansard-plumer": {
+   "title": "Mr Herbert Plumer (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": null,
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-herbert-plumer",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國會 Historic Hansard 人物頁（官方）"
+  },
+  "hansard-lords-plumer": {
+   "title": "LORD PLUMER OF MESSINES. (Hansard, 20 July 1921)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": null,
+   "url": "https://api.parliament.uk/historic-hansard/lords/1921/jul/20/lord-plumer-of-messines",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國會 Historic Hansard 上議院紀錄（官方）"
+  },
+  "hansard-rawlinson": {
+   "title": "Mr Henry Rawlinson (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": null,
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-henry-rawlinson",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國國會 Historic Hansard 人物頁（官方）"
+  },
+  "nam-ww1-commanders": {
+   "title": "Influential British Commanders of 1914",
+   "authors": [],
+   "publisher": "National Army Museum (London)",
+   "published_text": null,
+   "url": "https://ww1.nam.ac.uk/969/uncategorized/influential-commanders-1914/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家陸軍博物館官方網站專文，具名館員（Rob Fleming, Curator）撰寫之 Smith-Dorrien 段落；依 T1 列 B"
+  },
+  "nam-1918": {
+   "title": "1918: Year of victory",
+   "authors": [],
+   "publisher": "National Army Museum (London)",
+   "published_text": null,
+   "url": "https://www.nam.ac.uk/explore/1918-victory",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家陸軍博物館官方網站專文；頁面無署名，依 T1 暫列 B（機構傳記），請主管確認"
+  },
+  "govuk-amiens": {
+   "title": "The Centenary of the Battle of Amiens (centenary programme)",
+   "authors": [],
+   "publisher": "UK Government (GOV.UK, Ministry of Defence/DCMS)",
+   "published_text": null,
+   "url": "https://assets.publishing.service.gov.uk/media/5b683d6ae5274a1526a4a9c9/Amiens_English_forweb.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "GOV.UK 官方出版品（亞眠戰役百週年紀念活動手冊）"
+  },
+  "gac-sd": {
+   "title": "Sir Horace Lockwood Smith-Dorrien (Government Art Collection)",
+   "authors": [],
+   "publisher": "Government Art Collection (UK DCMS)",
+   "published_text": null,
+   "url": "https://artcollection.dcms.gov.uk/person/smith-dorrien-sir-horace-lockwood/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "英國政府藝術收藏（DCMS 官方機構）人物頁；依 T1 暫列 B，請主管確認"
+  },
+  "cmh-supcmd3": {
+   "title": "The Supreme Command, Chapter III（HyperWar 轉載）",
+   "authors": [],
+   "publisher": "U.S. Army Center of Military History 官方戰史（經 ibiblio HyperWar 鏡像）",
+   "published_text": null,
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國陸軍軍史中心官方戰史《The Supreme Command》（ETO 系列）；頁面文字未列作者，依 T1 官方戰史列 A；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "hyperwar-supcmd-bio": {
+   "title": "The Supreme Command (ETO) [Biographical Sketches]",
+   "authors": [],
+   "publisher": "U.S. Army Center of Military History 官方戰史（經 ibiblio HyperWar 鏡像）",
+   "published_text": null,
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-Bio.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國陸軍軍史中心官方戰史《The Supreme Command》人物小傳附錄；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "paradata-browning": {
+   "title": "Lieutenant-General Frederick Browning",
+   "authors": [],
+   "publisher": "Airborne Assault Museum (Paradata)",
+   "published_text": null,
+   "url": "https://paradata.org.uk/content/4638958-lieutenant-general-frederick-browning",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "空降突擊博物館（Airborne Assault Museum，英國陸軍空降部隊官方歷史博物館）Paradata 人物頁；頁面無署名，依 T1 暫列 B，請主管確認"
+  },
+  "columbia-rawlinson": {
+   "title": "Rawlinson, Henry Seymour Rawlinson, 1st Baron",
+   "authors": [],
+   "publisher": "Columbia Encyclopedia, 6th ed.（經 encyclopedia.com 轉載）",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/rawlinson-henry-seymour-rawlinson-1st-baron",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構：Columbia Encyclopedia 6th ed.（Columbia University Press）無署名條目 → C（grade-ungraded-2026-11-14，原：無署名條目，依 Q9 未評等，只放 gap 候選）"
+  },
+  "rf-jta-plumer": {
+   "title": "Lord Plumer, Former High Commissioner of Palestine, Dies at Age of Seventy-six",
+   "authors": [],
+   "publisher": "Jewish Telegraphic Agency",
+   "published_text": "1932-07-18",
+   "url": "https://www.jta.org/archive/lord-plumer-former-high-commissioner-of-palestine-dies-at-age-of-seventy-six",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 Jewish Telegraphic Agency（猶太電訊社，1917 年創立的具名通訊社）1932 年 7 月 18 日當日訃告",
+   "addedAt": "2026-11-13T08:15:13+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "kirby-waj-iv": {
+   "title": "The War Against Japan, Volume IV: The Reconquest of Burma (History of the Second World War, UK Military Series)",
+   "authors": [
+    "S. Woodburn Kirby"
+   ],
+   "publisher": "HMSO, London (Google Books scan PDF hosted at generalstaff.org)",
+   "published_text": "1965",
+   "url": "https://www.generalstaff.org/WW2/Hist_UK/WarAgainstJapanVol4.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "英國官方戰史（HMSO 1965，原著 A）；讀到的是第三方網站 generalstaff.org 託管的 Google Books 掃描 PDF（內嵌 OCR），依轉錄本規則記 B",
+   "addedAt": "2026-11-14T00:00:00+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  }
+ },
+ "people": [
+  {
+   "key": "frederickbrowning",
+   "bioId": null,
+   "name": "Frederick Browning",
+   "nameZh": "弗里德里克·布朗寧",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1916-01-01",
+      "end": "1936-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "一戰與戰間期",
+      "en": "First World War and the inter-war years"
+     },
+     "body": {
+      "zh-Hant": "布朗寧在第一次世界大戰中隨擲彈兵衛隊服役，獲頒傑出服務勳章與戰爭十字勳章。他於1920年晉升上尉、1928年晉升少校，並曾任桑德赫斯特皇家軍事學院首任副官；1928年聖莫里茨冬季奧運會，他是英國雪橇隊成員。1935年晉升中校，同年出任擲彈兵衛隊第2營營長。",
+      "en": "Browning began his military career in the First World War with the Grenadier Guards and won the Distinguished Service Order and the Croix de Guerre. He was promoted Captain in 1920 and Major in 1928, and served as the first Adjutant at the Royal Military College, Sandhurst. At the 1928 Winter Olympics in St. Moritz he was a member of the British bobsleigh team. Promoted Lieutenant-Colonel in 1935, he became commanding officer of the 2nd Battalion, Grenadier Guards that year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "began his military career in the First World War, where he served with",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "won the Distinguished Service Order and the Croix de Guerre",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "He was promoted to the rank of Captain in 1920, and to Major in 1928.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "where he was the first Adjutant",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "he was a member of the British bobsleigh team",
+       "quoteLang": "en",
+       "evidenceNote": "同段前句寫 At the 1928 Winter Olympics in St. Moritz, Switzerland",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Promotion to Lieutenant-Colonel followed in 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "he became the Commanding Officer of the 2nd Battalion, Grenadier Guards",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "空降部隊的創建與第1空降師",
+      "en": "Raising British airborne forces and the 1st Airborne Division"
+     },
+     "body": {
+      "zh-Hant": "1940年他受命指揮第24近衛旅；1941年10月，邱吉爾任命他為第1空降師師長並晉升少將。1943年4月他離開該師，改任艾森豪的空降顧問，督導西西里空降突擊的規劃，並於同年5月6日卸下師長職務；同年12月晉升中將。",
+      "en": "In 1940 he was given command of the 24th Guards Brigade, and in October 1941 Churchill appointed him commander of the 1st Airborne Division with promotion to Major-General. In April 1943 he left the division to become Airborne Advisor to Eisenhower, overseeing the planning of the airborne assault on Sicily, and relinquished command of the division on 6 May 1943; he was promoted Lieutenant General in December of that year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "In 1940, he was given command of the 24th Guards Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "in October 1941 Churchill, who had by then had become Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "appointed him as commander of the 1st Airborne Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "he was promoted to the rank of Major-General",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "In April 1943, Browning left the 1st Airborne Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Airborne Advisor to Supreme Commander Eisenhower",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "he oversaw the planning of the airborne assault on Sicily",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Relinquishing command of the Division on the 6 May 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "promoted Lieutenant General in December of that year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-04-16",
+      "end": "1944-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第1空降軍與市場花園行動",
+      "en": "1st Airborne Corps and Operation Market Garden"
+     },
+     "body": {
+      "zh-Hant": "1944年4月16日，布朗寧接任第1空降軍軍長；該軍同年8月成為第1盟軍空降集團軍的一部分，他兼任該集團軍副司令。第1空降軍指揮了市場花園行動（阿納姆戰役）中投入的空降部隊，布朗寧帶著戰術指揮部降落在奈梅亨附近，卻因通訊故障與部隊分散而難以指揮。",
+      "en": "On 16 April 1944 Browning became commander of the 1st Airborne Corps, which that August became part of the First Allied Airborne Army, of which he was also Deputy Commander. The corps commanded the airborne forces committed in Operation Market Garden; Browning landed with a tactical headquarters near Nijmegen but found it difficult to command because of communications failures and the separation of his units."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "On the 16 April 1944, he became commander of the 1st Airborne Corps.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "The corps became part of the First Allied Airborne Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Browning also became Deputy Commander of the Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "commanded the airborne forces committed during Operation Market Garden",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "Operations 區",
+       "quote": "Arnhem (Operation Market Garden)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Browning landed with a Tactical Headquarters near Nijmegen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "found it difficult to command the troops due to communications failures",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1946-01-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後職務",
+      "en": "Post-war posts"
+     },
+     "body": {
+      "zh-Hant": "蒙哥馬利並未將市場花園行動的失敗歸咎於布朗寧，但他此後沒有再獲晉升。他其後出任蒙巴頓東南亞盟軍司令部的參謀長，1946至1948年任陸軍部軍務秘書。",
+      "en": "Montgomery attached no blame to Browning for the failure of Market Garden, but he received no further promotion. He subsequently became Chief of Staff to Lord Mountbatten and was Military Secretary of the War Office in 1946-1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "attached no blame to Browning for the failure of Operation Market Garden",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "he received no further promotion",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "He subsequently became Chief of Staff to Lord Mountbatten",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Military Secretary of the War Office, 1946-1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "browning-1st-airborne-div",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第1空降師",
+      "en": "British Army 1st Airborne Division"
+     },
+     "title": {
+      "orig": "commander of the 1st Airborne Division",
+      "zh-Hant": "第1空降師師長",
+      "en": "Commander, 1st Airborne Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-10-01",
+      "end": "1943-05-06"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "appointed him as commander of the 1st Airborne Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Relinquishing command of the Division on the 6 May 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）"
+    },
+    {
+     "key": "browning-1st-airborne-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍第1空降軍",
+      "en": "British 1st Airborne Corps"
+     },
+     "title": {
+      "orig": "commander of the 1st Airborne Corps",
+      "zh-Hant": "第1空降軍軍長",
+      "en": "Commander, 1st Airborne Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-04-16",
+      "end": "1945-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "On the 16 April 1944, he became commander of the 1st Airborne Corps.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kirby-waj-iv",
+       "locator": "Chapter X, New appointments in S.E.A.C.",
+       "quote": "On the 20th December Lieut.-General Pownall, who had been suffering from bad",
+       "quoteLang": "en",
+       "evidenceNote": "推論：官方戰史記 Pownall 於（1944 年）12 月 20 日卸任東南亞司令部參謀長、由 Browning 接替；據此推得 Browning 交出第1空降軍在 1944 年 12 月，確切日未載；迄點依 Q3 與本檔慣例取下一月起日（1945-01-01）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kirby-waj-iv",
+       "locator": "Chapter X, New appointments in S.E.A.C.",
+       "quote": "was replaced by Lieut.-General F. A. M. Browning.",
+       "quoteLang": "en",
+       "evidenceNote": "同上句續文",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "He subsequently became Chief of Staff to Lord Mountbatten",
+       "quoteLang": "en",
+       "evidenceNote": "來源明寫 Market Garden 後「轉任」蒙巴頓參謀長",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": "轉任東南亞戰區參謀長",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；迄日缺"
+    },
+    {
+     "key": "browning-military-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍部",
+      "en": "British War Office"
+     },
+     "title": {
+      "orig": "Military Secretary of the War Office",
+      "zh-Hant": "陸軍部軍務秘書",
+      "en": "Military Secretary, War Office"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1946-01-01",
+      "end": "1949-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "paradata-browning",
+       "locator": "生平概述",
+       "quote": "Military Secretary of the War Office, 1946-1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "非 T14 重疊類別（軍務秘書，幕僚職），歸 R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：本人僅取得 Paradata 單一 B 級來源可抓原文（IWM／NPG／Britannica／ODNB 皆 403 擋），蒙巴頓參謀長任期、第24近衛旅任期、第1空降軍迄日均無日期；戰役僅 Market Garden 與西西里規劃。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Frederick Browning 1st Airborne Corps Arnhem biography nam.ac.uk OR britannica OR iwm",
+     "url": "https://www.britannica.com/biography/Frederick-Browning",
+     "result": "blocked_403",
+     "note": "Britannica 403 挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Browning Frederick Arthur Montague airborne Arnhem lieutenant-general（限定 IWM／NAM／AWM／encyclopedia.com）",
+     "url": null,
+     "result": "found_B",
+     "note": "僅得 IWM 頁，curl 403"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "IWM Browning collection/object/11905",
+     "url": "https://www.iwm.org.uk/collections/item/object/11905",
+     "result": "blocked_403",
+     "note": "IWM 403"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Browning Boy airborne 1st Airborne Division Arnhem biography（限定 gov.uk／NA／NPG／paradata）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Paradata"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Paradata Lieutenant-General Frederick Browning",
+     "url": "https://paradata.org.uk/content/4638958-lieutenant-general-frederick-browning",
+     "result": "found_B",
+     "note": "curl 成功，已轉純文字，採為出處"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "NPG Boy Browning",
+     "url": "https://www.npg.org.uk/collections/search/person/mp06160/sir-frederick-arthur-montague-boy-browning",
+     "result": "blocked_403",
+     "note": "NPG 403"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Paradata 1st Airborne Division",
+     "url": "https://paradata.org.uk/content/4634435-1st-airborne-division",
+     "result": "not_relevant",
+     "note": "僅作旁證，未引"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "LoC／VIAF 查詢",
+     "url": "https://viaf.org/",
+     "result": "blocked_403",
+     "note": "VIAF 403；LoC 搜尋頁未取得人物條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Browning I Airborne Corps 1944 Chief of Staff SEAC 起日",
+     "url": "https://www.britishmilitaryhistory.co.uk/wp-content/uploads/sites/124/2020/08/South-East-Asia-Command-SEAC.pdf",
+     "result": "found_C",
+     "note": "Palmer SEAC 名簿載 Browning 1944-12-26 起任參謀長，作為軍長迄日（推論）"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Paradata Browning biography page",
+     "url": "https://paradata.org.uk/content/4638958-lieutenant-general-frederick-browning",
+     "result": "not_relevant",
+     "note": "既有 paradata 快取已重用；另抓頁面為 404"
+    }
+   ],
+   "nameZhUnsourced": "弗雷德里克·布朗寧",
+   "nameZhSource": {
+    "method": "zhwiki-interlanguage-link-template",
+    "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+    "zhwikiArticles": [
+     "市場花園行動"
+    ],
+    "occurrences": 1,
+    "variants": {
+     "弗雷德里克·布朗宁": 1
+    },
+    "matchedOriginal": "Frederick Browning",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "resolvedGaps": [
+    {
+     "target": "position:browning-1st-airborne-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 Paradata（只寫 1944 年起任第1空降軍、1945 年轉任印度空降部隊）、搜尋摘要，未見明確卸任日；IWM、NPG 被 403 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "browning-1st-airborne-corps",
+     "basis": "kirby-waj-iv",
+     "diff": "原：迄日 1944-12-26（day），依禁用來源 rf-seac 名簿；改：迄日 1945-01-01（month，依本檔慣例取 1944 年 12 月的下一月起日），依官方戰史 Kirby 卷四（Pownall 12-20 卸任由 Browning 接替）推得；禁用來源不算出處，新來源未載確切日",
+     "changes": {
+      "period.end": {
+       "before": "1944-12-26",
+       "after": "1945-01-01"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "以新來源為準"
+    }
+   ]
+  },
+  {
+   "key": "frederickmorgan",
+   "bioId": null,
+   "name": "Frederick Morgan",
+   "nameZh": "待查證",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰時早期的指揮與規劃任務",
+      "en": "Early wartime commands and planning tasks"
+     },
+     "body": {
+      "zh-Hant": "摩根1940年在法國擔任第1裝甲師下一個戰鬥群的指揮官。1942年5月他受命指揮第1軍區，同年10月出任第1軍軍長並歸艾森豪指揮。他被交付準備在西地中海進行輔助登陸，之後奉命規劃入侵薩丁尼亞，再奉命規劃入侵西西里。",
+      "en": "In 1940 Morgan served in France commanding a group of the 1st Armoured Division. In May 1942 he was appointed to command the 1st Corps District and in October 1942 became commander of 1 Corps under General Eisenhower. He was tasked with preparing a subsidiary landing in the western Mediterranean, was then directed to plan the invasion of Sardinia, and then the invasion of Sicily."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "served in France in 1940 as commander of a group of the 1st Armoured Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "In May 1942 he was appointed to command the 1st Corps District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "In October of that year he was made commander of the 1 Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "placed under General Eisenhower",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "preparing a subsidiary landing in the western Mediterranean",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "he was directed to plan the invasion of Sardinia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "he was directed to plan the invasion of Sicily",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1943-04-01",
+      "end": "1944-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "盟軍最高統帥參謀長（COSSAC）與諾曼第登陸規劃",
+      "en": "COSSAC and planning the Normandy invasion"
+     },
+     "body": {
+      "zh-Hant": "1943年春，摩根成為最高盟軍統帥（候任）的參謀長（COSSAC），該參謀部於1943年4月組成。他奉命擬定牽制敵軍的佯動計畫（COCKADE）、德軍瓦解時重返歐陸的計畫（RANKIN），以及盡早於1944年對歐陸發動全面進攻的計畫（OVERLORD），也就是後來的諾曼第登陸。他在倫敦諾福克大樓設立參謀部，並由美方副手雷·巴克少將協助。",
+      "en": "In spring 1943 Morgan became Chief of Staff to the Supreme Allied Commander (Designate), COSSAC, whose staff was organized in April 1943. He was directed to prepare a diversionary plan (COCKADE), a plan to return to the Continent in the event of German disintegration (RANKIN), and a plan for a full-scale assault on the Continent as early as possible in 1944 (OVERLORD), the later Normandy invasion. He set up his staff at Norfolk House in London with the aid of his U.S. deputy, Maj. Gen. Ray W. Barker."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "In the spring of 1943 he became chief of staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "General Morgan, as Chief of Staff to the Supreme Allied Commander (Designate)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "COSSAC staff which had been organized in April 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "to prepare a diversionary plan with the object of pinning the enemy in the west",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "to plan a return to the Continent in the event of German disintegration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "to plan a full-scale assault on the Continent as early as possible in. 1944",
+       "quoteLang": "en",
+       "evidenceNote": "原文標點為 \"possible in. 1944\"",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "General Morgan set up his staff in London at Norfolk House",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "With the aid of his U.S. deputy, Maj. Gen. Ray W. Barker",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "最高司令部（SHAEF）副參謀長",
+      "en": "Deputy Chief of Staff, SHAEF"
+     },
+     "body": {
+      "zh-Hant": "最高司令部（SHAEF）成立後，艾森豪接受史密斯的建議，由前 COSSAC 主官出任副參謀長，摩根則請求留在最高司令部任職，而不接任英國軍的軍長職務。他在此職位上有時代行參謀長之職，並於1944至1945年擔任最高司令部副參謀長。",
+      "en": "When SHAEF was formed, Eisenhower accepted Smith's recommendation that the former COSSAC head become deputy chief of staff; Morgan had asked to serve in some capacity in SHAEF instead of taking command of a British corps. In this post he acted from time to time as chief of staff, serving as Deputy Chief of Staff, SHAEF in 1944 and 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「The Chief of Staff」",
+       "quote": "General Morgan was made deputy chief of staff of SHAEF",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「The Chief of Staff」",
+       "quote": "accepted General Smith's recommendation that the former COSSAC head",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「The Chief of Staff」",
+       "quote": "arrangements were made to offer him command of a British corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「The Chief of Staff」",
+       "quote": "Instead Morgan asked to serve in some capacity in SHAEF",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「The Chief of Staff」",
+       "quote": "In this post, General Morgan acted from time to time as chief of staff.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "He served in 1944 and 1945 as Deputy Chief of Staff, SHAEF.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "morgan-i-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第1軍",
+      "en": "British 1 Corps"
+     },
+     "title": {
+      "orig": "commander of the 1 Corps",
+      "zh-Hant": "第1軍軍長",
+      "en": "Commander, 1 Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-10-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "In October of that year he was made commander of the 1 Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；迄日缺"
+    },
+    {
+     "key": "morgan-cossac-chief-of-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "最高盟軍統帥（候任）參謀部（COSSAC）",
+      "en": "Staff of the Supreme Allied Commander (Designate) (COSSAC)"
+     },
+     "title": {
+      "orig": "Chief of Staff to the Supreme Allied Commander (Designate)",
+      "zh-Hant": "最高盟軍統帥（候任）參謀長",
+      "en": "Chief of Staff to the Supreme Allied Commander (Designate)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-04-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "cmh-supcmd3",
+       "locator": "「Contributions of COSSAC」",
+       "quote": "COSSAC staff which had been organized in April 1943",
+       "quoteLang": "en",
+       "evidenceNote": "起點依 COSSAC 參謀部 1943 年 4 月組成推定（推論）；小傳只寫「spring of 1943」",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "盟軍計畫參謀長，非國家級最高軍職（職位等級來源未明寫）、非戰區司令（T14 R5）；迄日缺"
+    },
+    {
+     "key": "morgan-shaef-deputy-cos",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟國遠征軍最高司令部（SHAEF）",
+      "en": "Supreme Headquarters Allied Expeditionary Force (SHAEF)"
+     },
+     "title": {
+      "orig": "Deputy Chief of Staff, SHAEF",
+      "zh-Hant": "最高司令部副參謀長",
+      "en": "Deputy Chief of Staff, SHAEF"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hyperwar-supcmd-bio",
+       "locator": "Morgan 小傳",
+       "quote": "He served in 1944 and 1945 as Deputy Chief of Staff, SHAEF.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（副參謀長），非國家級最高軍職（T14 R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:morgan-i-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查美國陸軍軍史中心《Supreme Command》第3章與人物小傳，只寫 1942 年 10 月起任第1軍軍長；Britannica、IWM 皆 403 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:morgan-cossac-chief-of-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查《Supreme Command》第3章，寫 SHAEF 成立後改任副參謀長，但未見 COSSAC 任期明確迄日；Britannica、IWM 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：本人僅取得美國陸軍軍史中心官方戰史（A，同源兩頁）可抓原文；Britannica／IWM／NPG 皆被 403 擋，生卒年、1946 年退役等未取得可引文；戰役面向僅 OVERLORD 規劃。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Frederick Morgan COSSAC Overlord planning biography",
+     "url": "https://www.britannica.com/biography/Frederick-Edgeworth-Morgan",
+     "result": "blocked_403",
+     "note": "Britannica 403"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "IWM Who's Who of D-Day",
+     "url": "https://www.iwm.org.uk/history/second-world-war/d-day/whos-who-of-d-day",
+     "result": "blocked_403",
+     "note": "IWM 403"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Morgan Frederick Edgeworth COSSAC（限定 IWM／AWM／encyclopedia.com）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "IWM 被擋；AWM 僅館藏書目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "AWM Peace and war: a soldier's life",
+     "url": "https://www.awm.gov.au/collection/LIB8169",
+     "result": "not_relevant",
+     "note": "僅書目，未引"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Lieutenant-General Sir Frederick Morgan COSSAC（限定 NA／CMH／ibiblio 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 CMH《Supreme Command》"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "CMH history.army.mil COSSAC",
+     "url": "https://www.history.army.mil/documents/cossac/Cossac.htm",
+     "result": "no_result",
+     "note": "主機無法解析，改用 ibiblio 鏡像"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "ibiblio HyperWar Supreme Command ch.3",
+     "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-3.html",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "ibiblio HyperWar Supreme Command biographical sketches",
+     "url": "https://www.ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-Bio.html",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Morgan I Corps 1943 end；COSSAC 迄日 SHAEF 成立",
+     "url": "https://www.britannica.com/biography/Frederick-Edgeworth-Morgan",
+     "result": "challenge_page",
+     "note": "Britannica 擋機器人頁"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Morgan COSSAC National WWII Museum Words of War",
+     "url": "https://www.nationalww2museum.org/war/articles/words-war-44",
+     "result": "challenge_page",
+     "note": "擋機器人頁（Just a moment）"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Morgan I Corps 迄日（網路搜尋）",
+     "url": "",
+     "result": "no_result",
+     "note": "搜尋結果僅見 Wikipedia 類站與無署名站；未得 A/B/具名 C 原文載 I Corps 迄日或 COSSAC 迄日"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Morgan COSSAC beachesofnormandy／warfarehistorynetwork",
+     "url": "",
+     "result": "unrated",
+     "note": "個人／商業站，依規則不收"
+    }
+   ],
+   "nameZhUnsourced": "弗雷德里克·摩根",
+   "nameZhSource": {
+    "method": "none",
+    "note": "名冊／索引無中文名，維持待查證",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "none",
+    "status": "pending",
+    "verified": false,
+    "isCitation": false
+   },
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "henryrawlinson1stbaronrawlinson",
+   "bioId": null,
+   "name": "Henry Rawlinson, 1st Baron Rawlinson",
+   "nameZh": "亨利·羅林森",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-01-01",
+      "end": "1903-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早年經歷",
+      "en": "Early career"
+     },
+     "body": {
+      "zh-Hant": "羅林森（1864–1925）畢業於伊頓公學與桑赫斯特皇家軍事學院。早年軍旅包括1886年的緬甸起事、1898年隨基奇納將軍的幕僚參與蘇丹的恩圖曼進軍，以及1899至1902年作為野戰指揮官參加布爾戰爭。",
+      "en": "Rawlinson (1864-1925) was a graduate of Eton College and the Royal Military College, Sandhurst. His early service included the Burma uprising in 1886, the advance on Omdurman in the Sudan in 1898 as part of General Kitchener's staff, and field command in the Boer War from 1899 to 1902."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "Sir Henry Rawlinson (1864-1925) was a graduate of Eton College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "the Royal Military College, Sandhurst",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "the Burma uprising in 1886",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "the advance of Omdurman in the Sudan in 1898",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "as part of General Kitchener’s staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "then as a field commander in the Boer War from 1899 to 1902",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第四集團軍與索姆河戰役",
+      "en": "Fourth Army and the Somme"
+     },
+     "body": {
+      "zh-Hant": "一戰爆發時，他獲任駐法國第4師師長；其後指揮第4軍，1916年1月晉升中將，接掌新成立的第四集團軍。他深度參與索姆河戰役，之後晉升上將。",
+      "en": "When war broke out in 1914 he was appointed General Officer Commanding the 4th Division in France. After commanding IV Corps he was promoted Lieutenant General in January 1916 and took command of the new Fourth Army. After strong involvement in the Battle of the Somme he was promoted General."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "When war broke out in 1914, he was appointed General Officer Commanding 4",
+       "quoteLang": "en",
+       "evidenceNote": "原文 4th 因網頁上標排版斷行",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "Division in France.",
+       "quoteLang": "en",
+       "evidenceNote": "原文 \"4\" 與 \"th\" 因上標排版斷行，接續於此句",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "he was promoted to Lieutenant General in January 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "assumed command of the new Forth Army",
+       "quoteLang": "en",
+       "evidenceNote": "原文拼寫 Forth Army（即 Fourth Army）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "After strong involvement in the Battle of the Somme, he was promoted to General.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-08-08",
+      "end": "1918-08-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "亞眠戰役",
+      "en": "Battle of Amiens"
+     },
+     "body": {
+      "zh-Hant": "1918年8月8日，羅林森的第四集團軍在亞眠發動大規模進攻，攻擊德軍春季攻勢造成的脆弱突出部；他動用兩千多門火炮、450輛坦克和1,900架飛機，支援13個師的攻擊。澳洲戰爭紀念館指出，他在亞眠戰役期間再度指揮第四集團軍，並大量依靠澳洲、加拿大與美國部隊。",
+      "en": "On 8 August 1918 Rawlinson's Fourth Army launched a major attack at Amiens against the vulnerable salient created by the German offensive, using over 2,000 guns, 450 tanks and 1,900 aeroplanes to support 13 divisions. The Australian War Memorial notes that he again commanded the Fourth Army during the Battle of Amiens, relying heavily on Australian, Canadian and American troops."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-1918",
+       "locator": "「1918: Year of victory」",
+       "quote": "On 8 August, General Rawlinson’s Fourth Army launched a major attack at Amiens",
+       "quoteLang": "en",
+       "evidenceNote": "日期 8 August 之年份 1918 見該頁標題與 govuk-amiens 引文",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-amiens",
+       "locator": "Battle of Amiens 8 August 1918",
+       "quote": "the Battle of Amiens, 8 August 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-1918",
+       "locator": "「1918: Year of victory」",
+       "quote": "against the vulnerable salient created by the German offensive",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-1918",
+       "locator": "「1918: Year of victory」",
+       "quote": "Rawlinson used over 2,000 guns, 450 tanks and 1,900 aeroplanes",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-1918",
+       "locator": "「1918: Year of victory」",
+       "quote": "to support the attack by 13 divisions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "he again commanded the Forth Army during the Battle of Amiens",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "relying heavily on Australian, Canadian and American troops",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1919-10-06",
+      "end": "1925-03-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晉封男爵與逝世",
+      "en": "Peerage and death"
+     },
+     "body": {
+      "zh-Hant": "英國國會人物頁記載，羅林森生於1864年2月20日、卒於1925年3月27日，並自1919年10月6日起為羅林森男爵（上議院頭銜），直到去世。",
+      "en": "The UK Parliament Hansard people page records that Rawlinson was born on 20 February 1864 and died on 27 March 1925, and held the title Baron Rawlinson in the Lords from 6 October 1919 until his death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hansard-rawlinson",
+       "locator": "人物頁標題行",
+       "quote": "February 20, 1864 - March 27, 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-rawlinson",
+       "locator": "Titles in Lords",
+       "quote": "Baron Rawlinson October 6, 1919 - March 27, 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "rawlinson-fourth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第四集團軍",
+      "en": "British Fourth Army"
+     },
+     "title": {
+      "orig": "command of the new Forth Army",
+      "zh-Hant": "第四集團軍司令",
+      "en": "Commander, Fourth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "he was promoted to Lieutenant General in January 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Sir Henry Seymour Rawlinson」",
+       "quote": "assumed command of the new Forth Army",
+       "quoteLang": "en",
+       "evidenceNote": "原文拼寫 Forth Army",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍司令，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；迄日缺"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:rawlinson-fourth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 AWM 部落格、NAM「1918」專文、GOV.UK 亞眠手冊，只寫 1916 年 1 月接掌、1918 年再度指揮，未見卸任日（間有 1918 年初轉任最高戰爭委員會的說法，未取得 A／B 原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:rawlinson-cinc-india",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Columbia Encyclopedia（無署名，未評等）寫「1920 年起任英軍駐印度司令至去世」，A／B 來源（AWM、Hansard）未寫印度總司令任期；NPG、ODNB 403 擋。",
+     "candidateCitations": [
+      {
+       "sourceKey": "columbia-rawlinson",
+       "locator": "條目正文",
+       "quote": "commanded the British forces in India from 1920 until his death",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:coverage",
+     "gapKind": "not_found",
+     "note": "來源不足：1914–15 年第4軍軍長任期、1919 年北俄撤軍與奧爾德肖特司令部均無 A／B 原文，未寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Henry Rawlinson Fourth Army Somme Amiens 1918 biography",
+     "url": "https://www.britannica.com/biography/Henry-Seymour-Rawlinson-Baron-Rawlinson-of-Trent",
+     "result": "blocked_403",
+     "note": "Britannica 403"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Rawlinson",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/rawlinson-henry-seymour-rawlinson-1st-baron",
+     "result": "unrated",
+     "note": "Columbia Encyclopedia 無署名，未評等，只作 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Rawlinson Henry Seymour Fourth Army（限定 AWM／IWM／NAM／Hansard）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 AWM 部落格、IWM（403）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "AWM Non-Australian military Birdwood connections",
+     "url": "https://www.awm.gov.au/articles/blog/non-australian-military-birdwood-connectoins",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Hansard Mr Henry Rawlinson",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-henry-rawlinson",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Battle of Amiens Rawlinson Fourth Army AWM／NAM／gov.uk",
+     "url": null,
+     "result": "found_B",
+     "note": "NAM「1918」專文與 GOV.UK 亞眠手冊"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "NPG Rawlinson biography tab",
+     "url": "https://www.npg.org.uk/collections/search/personExtended/mp03719/henry-seymour-rawlinson-1st-baron-rawlinson-of-trent?tab=biography",
+     "result": "blocked_403",
+     "note": "NPG 403"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "IWM Rawlinson Orpen portrait",
+     "url": "https://www.iwm.org.uk/collections/item/object/20876",
+     "result": "blocked_403",
+     "note": "IWM 403"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Lord Rawlinson Commander-in-Chief India 1925 Hansard",
+     "url": null,
+     "result": "no_result",
+     "note": "Hansard 1925 上議院僅哀悼語，無起迄日"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Rawlinson Fourth Army 1919 迄日 IWM/NAM",
+     "url": "https://collection.nam.ac.uk/detail.php?acc=1952-01-32-1",
+     "result": "not_relevant",
+     "note": "NAM 畫像說明只寫 1916 任第四集團軍、1918 重組、1919 封男爵與俄國撤軍，無第四集團軍迄日"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "IWM Fourth Army Records of General Lord Rawlinson",
+     "url": "https://www.iwm.org.uk/collections/item/object/1030024565",
+     "result": "blocked_403",
+     "note": "IWM 擋；搜尋摘要稱檔案涵蓋 1916-02 至 1919-02，但無法取得原文"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Gazette 6 April 1920 North Russia despatch",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只載 1919-08-09 任北俄總司令，不能推第四集團軍迄日（兩職間另有其他安排未明）"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Doyle British Campaign 1918 (Gutenberg)",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只敘 Rawlinson 第四集團軍戰事至 1918 年底，未寫卸任日"
+    }
+   ],
+   "nameZhUnsourced": "亨利·羅林森（第一代羅林森男爵）",
+   "nameZhSource": {
+    "method": "zhwiki-interlanguage-link-template",
+    "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+    "zhwikiArticles": [
+     "索姆河戰役首日"
+    ],
+    "occurrences": 1,
+    "variants": {},
+    "matchedOriginal": "Henry Rawlinson, 1st Baron Rawlinson",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "nameZhOrig": "亨利·罗林森",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "herbertplumer1stviscountplumer",
+   "bioId": null,
+   "name": "Herbert Plumer, 1st Viscount Plumer",
+   "nameZh": "赫伯特·普蘭莫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1915-05-01",
+      "end": "1915-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第二軍司令",
+      "en": "Command of the Second Army"
+     },
+     "body": {
+      "zh-Hant": "普蘭莫（1857–1932）是英國陸軍元帥。他在第二次伊珀爾戰役期間指揮第5軍，並於1915年5月接掌第二軍。",
+      "en": "Field Marshal Plumer (1857-1932) commanded V Corps at the Second Battle of Ypres and took command of the Second Army in May 1915."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "Field Marshal Plumer (1857-1932)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "commanded V Corps in at the Second Battle of Ypres",
+       "quoteLang": "en",
+       "evidenceNote": "原文寫 \"in April 1916\" 與 \"May 1915\" 自相矛盾，本段不採第二次伊珀爾戰役日期，僅採第二軍 1915 年 5 月",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "before taking command of the Second Army in May 1915.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-06-07",
+      "end": "1917-06-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "梅西訥戰役",
+      "en": "Battle of Messines"
+     },
+     "body": {
+      "zh-Hant": "1917年6月7日凌晨3時10分，十九枚大型地雷在維特謝特—梅西訥山脊的德軍戰壕下爆炸，由普蘭莫爵士指揮的英軍隨即向前猛攻。澳洲戰爭紀念館記載，這次進攻是普蘭莫第二軍長期準備、詳細規劃與紮實訓練的成果，地雷估計造成一萬名德軍傷亡。",
+      "en": "At 3.10 am on 7 June 1917 nineteen powerful mines exploded under the German trenches along the Wytschaete–Messines ridge and the British troops, commanded by General Sir Herbert Plumer, surged forward. The Australian War Memorial records the offensive as the product of long preparation, detailed planning and sound training by Plumer's Second Army; the mines caused an estimated 10,000 German casualties."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-messines-blog",
+       "locator": "「Battle of Messines」",
+       "quote": "At 3.10 am on 7 June 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-messines-blog",
+       "locator": "「Battle of Messines」",
+       "quote": "nineteen powerful mines exploded under the German trenches",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-messines-blog",
+       "locator": "「Battle of Messines」",
+       "quote": "the British troops, commanded by General Sir Herbert Plumer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-messines-e",
+       "locator": "館藏條目 E84332",
+       "quote": "long preparation, detailed planning and sound training",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-messines-e",
+       "locator": "館藏條目 E84332",
+       "quote": "carried out by General Plumer's Second Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-messines-e",
+       "locator": "館藏條目 E84332",
+       "quote": "caused an estimated 10 000 German casualties",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-10-04",
+      "end": "1932-07-17"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後職務與封爵",
+      "en": "Post-war posts and peerage"
+     },
+     "body": {
+      "zh-Hant": "澳洲戰爭紀念館記載，普蘭莫戰後出任英國萊茵軍團總司令，之後擔任馬爾他總督，1925年起任英國託管巴勒斯坦高級專員，1927年主持梅嫩門紀念碑的落成儀式。英國國會人物頁載明，他自1919年10月4日起為普蘭莫男爵、1929年6月24日起為子爵，1932年7月16日去世；1921年7月20日，他以普蘭莫男爵身分被引介入上議院。",
+      "en": "The Australian War Memorial records that after the war Plumer served as Commander-in-Chief of the British Army of the Rhine, then as Governor of Malta, became High Commissioner of the British Mandate for Palestine in 1925, and conducted the inauguration of the Menin Gate Memorial in 1927. The UK Parliament record shows him as Baron Plumer from 4 October 1919 and Viscount from 24 June 1929 until his death on 16 July 1932; on 20 July 1921 he was introduced in the Lords as Baron Plumer."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "He later served at the Commander-in-Chief of the British Army of the Rhine",
+       "quoteLang": "en",
+       "evidenceNote": "原文 \"at the\" 為 \"as the\" 之誤；本段只寫其曾任萊茵軍團總司令",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "before becoming the Governor of Malta",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "then the High Commissioner of the British Mandate for Palestine in 1925.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "He conducted the inauguration ceremony for the Menin Gate Memorial in 1927.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-plumer",
+       "locator": "Titles in Lords",
+       "quote": "Baron Plumer October 4, 1919 - July 16, 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-plumer",
+       "locator": "Titles in Lords",
+       "quote": "Viscount Plumer June 24, 1929 - July 16, 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lords-plumer",
+       "locator": "HL Deb 20 July 1921 vol 45 c1171",
+       "quote": "HL Deb 20 July 1921 vol 45 c1171",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lords-plumer",
+       "locator": "HL Deb 20 July 1921 vol 45 c1171",
+       "quote": "having been created Baron PLUMER of Messines and of Bilton",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "plumer-second-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第二軍",
+      "en": "British Second Army"
+     },
+     "title": {
+      "orig": "command of the Second Army",
+      "zh-Hant": "第二軍司令",
+      "en": "Commander, Second Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "before taking command of the Second Army in May 1915.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；迄日缺"
+    },
+    {
+     "key": "plumer-palestine-high-commissioner",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國託管巴勒斯坦",
+      "en": "British Mandate for Palestine"
+     },
+     "title": {
+      "orig": "High Commissioner of the British Mandate for Palestine",
+      "zh-Hant": "英國託管巴勒斯坦高級專員",
+      "en": "High Commissioner, British Mandate for Palestine"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1925-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「Field Marshal Herbert Charles Onslow Plumer」",
+       "quote": "then the High Commissioner of the British Mandate for Palestine in 1925.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-jta-plumer",
+       "locator": "訃告首段",
+       "quote": "High Commissioner in Palestine from 1925 to 1928",
+       "quoteLang": "en",
+       "evidenceNote": "到 1928 年止，年精度終點寫下一年起日",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": "1925–1928 任巴勒斯坦高級專員",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "託管地高級專員是否屬 R2「佔領／殖民長官」，T14 文件未涵蓋；且 regimeId 待查證、迄日缺，暫留 positions"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:plumer-second-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 AWM 部落格（只寫 1915 年 5 月接掌）與 AWM Messines 兩頁，未見卸任日；AWM 部落格自相矛盾（V Corps 寫 April 1916、Second Army 寫 May 1915），不採 V Corps 日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:plumer-governor-malta",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；AWM 只寫曾任馬爾他總督，1924 年 6 月《倫敦憲報》增刊僅在授勳名單稱其為「Governor and Commander-in-Chief of the Island of Malta」，無任命起訖日，不能當任期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:plumer-army-of-the-rhine",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；AWM 寫曾任英國萊茵軍團總司令，無日期，已查 Hansard、AWM、NPG（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:coverage",
+     "gapKind": "not_found",
+     "note": "來源不足：1917 年第三次伊珀爾（帕森達勒）戰役、1917 年底赴義大利、1918 年重返第二軍均未取得 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Herbert Plumer Second Army Messines 1917 biography",
+     "url": "https://www.britannica.com/biography/Herbert-Charles-Onslow-Plumer-Viscount-Plumer-of-Messines",
+     "result": "blocked_403",
+     "note": "Britannica 403"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Plumer Herbert Charles Onslow（限定 IWM／AWM／Hansard 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "AWM、Hansard、IWM 多筆"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Westminster Abbey Plumer",
+     "url": "https://www.westminster-abbey.org/abbey-commemorations/commemorations/herbert-plumer/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Hansard Mr Herbert Plumer",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-herbert-plumer",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Hansard Lord Plumer of Messines 1921",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1921/jul/20/lord-plumer-of-messines",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "AWM Battle of Messines",
+     "url": "https://www.awm.gov.au/articles/blog/battle-of-messines",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "AWM Messines collection E84332",
+     "url": "https://www.awm.gov.au/collection/E84332",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "London Gazette 3 June 1924 supplement",
+     "url": "https://www.thegazette.co.uk/London/issue/32941/supplement/4418/data.pdf",
+     "result": "found_A",
+     "note": "只見授勳名單中的稱呼，無任命起訖"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "NPG Plumer",
+     "url": "https://www.npg.org.uk/collections/search/person/mp03587/herbert-plumer-1st-viscount-plumer",
+     "result": "blocked_403",
+     "note": "NPG 403"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Plumer High Commissioner Palestine 1928 JTA obituary",
+     "url": "https://www.jta.org/archive/lord-plumer-former-high-commissioner-of-palestine-dies-at-age-of-seventy-six",
+     "result": "found_C",
+     "note": "JTA 1932 訃告載 1925–1928"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Plumer Second Army 迄日（1917-11 赴義大利／1919 萊茵軍）",
+     "url": "",
+     "result": "no_result",
+     "note": "搜尋僅見 Wikipedia 類與 Long Long Trail 個人站；JTA 只寫 Second Army 之後率義大利遠征軍，無日期；Second Army 迄日仍待查"
+    }
+   ],
+   "nameZhUnsourced": "赫伯特·普盧默（第一代普盧默子爵）",
+   "nameZhSource": {
+    "method": "zhwiki-interlanguage-link-template",
+    "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+    "zhwikiArticles": [
+     "第二次伊普爾戰役"
+    ],
+    "occurrences": 1,
+    "variants": {
+     "第一代普盧默子爵夏拔‧普盧默": 1,
+     "赫伯特‧普盧默": 1,
+     "普盧默": 1
+    },
+    "matchedOriginal": "Herbert Plumer, 1st Viscount Plumer",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "nameZhOrig": "赫伯特·普兰莫",
+   "resolvedGaps": [
+    {
+     "target": "position:plumer-palestine-high-commissioner",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；AWM 只寫 1925 年任高級專員，未寫卸任；NPG、IWM、Westminster Abbey 皆 403 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ],
+   "nameFixLog": [
+    {
+     "on": "2026-11-13",
+     "ord": 1,
+     "field": "body",
+     "rule": "主管 2026-11-12 10:07：段落模型音譯人名換成索引名／殘留簡體字",
+     "by": "patch_para_names.py"
+    },
+    {
+     "on": "2026-11-13",
+     "ord": 2,
+     "field": "body",
+     "rule": "主管 2026-11-12 10:07：段落模型音譯人名換成索引名／殘留簡體字",
+     "by": "patch_para_names.py"
+    },
+    {
+     "on": "2026-11-13",
+     "ord": 3,
+     "field": "body",
+     "rule": "主管 2026-11-12 10:07：段落模型音譯人名換成索引名／殘留簡體字",
+     "by": "patch_para_names.py"
+    }
+   ]
+  },
+  {
+   "key": "horacesmith-dorrien",
+   "bioId": null,
+   "name": "Horace Smith-Dorrien",
+   "nameZh": "赫拉斯·史密斯-多倫",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1899-01-01",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "布爾戰爭與一戰高級指揮",
+      "en": "Boer War and senior commands in the First World War"
+     },
+     "body": {
+      "zh-Hant": "史密斯-多倫（1858–1930）在布爾戰爭期間是年輕軍官，其後在第一次世界大戰中擔任英國遠征軍的高級指揮官。澳洲戰爭紀念館藏有他1916年4月2日的信件，信中提及即將造訪錫利群島，而他的兄弟當時正是該群島的總督。",
+      "en": "Smith-Dorrien (1858-1930) was a young officer during the Boer War and went on to hold senior commands within the British Expeditionary Force in the First World War. The Australian War Memorial holds his letter of 2 April 1916 mentioning an impending visit to the Scilly Islands, whose governor at the time was his brother."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "Sir Smith-Dorrien (1858-1930) was a young officer during the Boer War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "holding senior commands within the British Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "His letter dated 2 April 1916 mentions an impending visit to the Scilly Islands.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "Thomas Algernon Smith-Dorrien-Smith was governor of the islands",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-08-01",
+      "end": "1914-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第2軍與勒卡托戰役",
+      "en": "II Corps and the Battle of Le Cateau"
+     },
+     "body": {
+      "zh-Hant": "1914年8月，詹姆斯·格里森中將猝逝後，他被任命為英國遠征軍第2軍軍長。作戰初期，第1軍與第2軍在德軍重壓下被分隔，他組織起倉促的防禦，並於1914年8月26至27日打了勒卡托戰役。國家陸軍博物館稱此役是以寡擊眾的盟軍成功，使其餘英國遠征軍得以在其後一週不受德軍干擾地撤退。",
+      "en": "In August 1914, after the sudden death of Lieutenant-General Sir James Grierson, he was made commander of II Corps of the British Expeditionary Force. Early in the campaign I Corps and II Corps were separated under heavy German pressure; he organised a hasty defence at Le Cateau, and the Battle of Le Cateau (26-27 August 1914) was, in the National Army Museum's words, an Allied success against superior numbers that let the rest of the BEF retreat without German interference for the next week."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "was made commander of II Corps following the sudden death",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "the sudden death of Lieutenant-General Sir James Grierson in August 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "I Corps and II Corps were separated after coming under heavy pressure",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "General Sir Horace was able to organise a hasty defence at Le Cateau.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "(26-27 August 1914) was an Allied success against superior numbers.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "This allowed the rest of the BEF to retreat without German interference",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-01-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "直布羅陀總督與家庭",
+      "en": "Governor of Gibraltar and family"
+     },
+     "body": {
+      "zh-Hant": "政府藝術收藏的人物頁稱他為「將軍；1918至1923年任直布羅陀總督」。澳洲戰爭紀念館另記載，他與妻子奧利夫育有三子；長子格倫費爾在第二次世界大戰中陣亡，次子彼得死於1946年大衛王酒店爆炸案。",
+      "en": "The Government Art Collection describes him as General and Governor of Gibraltar 1918-23. The Australian War Memorial records that he and his wife Olive had three sons: the eldest, Grenfell, was killed in the Second World War, and the second, Peter, died in the King David Hotel bombing in 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gac-sd",
+       "locator": "人物頁標題",
+       "quote": "Governor of Gibraltar 1918-23",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "With his wife Olive, Smith-Dorrien had three sons.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "The eldest son, Grenfell, was killed during the Second World War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "awm-birdwood",
+       "locator": "「General Sir Horace Lockwood Smith-Dorrien」",
+       "quote": "Peter, the second son, died in the King David Hotel bombing in 1946.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "smithdorrien-ii-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍第2軍",
+      "en": "II Corps, British Expeditionary Force"
+     },
+     "title": {
+      "orig": "commander of II Corps",
+      "zh-Hant": "第2軍軍長",
+      "en": "Commander, II Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-08-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nam-ww1-commanders",
+       "locator": "「Sir Horace Smith-Dorrien」",
+       "quote": "the sudden death of Lieutenant-General Sir James Grierson in August 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、非戰區／方面軍司令（T14 R5）；迄日缺"
+    },
+    {
+     "key": "smithdorrien-governor-gibraltar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "直布羅陀（英國屬地）",
+      "en": "Gibraltar (British colony)"
+     },
+     "title": {
+      "orig": "Governor of Gibraltar",
+      "zh-Hant": "直布羅陀總督",
+      "en": "Governor of Gibraltar"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1918-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gac-sd",
+       "locator": "人物頁標題",
+       "quote": "Governor of Gibraltar 1918-23",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "殖民地總督，轄區最高行政長官且任期可證明逾 30 天（1918–1923 年精度），但直布羅陀政權 regimeId 待查證，R2② 無法證明（T14 R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:smithdorrien-ii-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查 NAM 專文、AWM 部落格，只寫 1914 年 8 月接任第2軍，未見改編或卸任日；IWM、NPG、Britannica、TNA 皆 403／202 擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 3 段；已查 NAM（B）、AWM（A）、GAC（B）三種來源，1915 年第二次伊珀爾戰役去職、1916 年東非指揮、早年祖魯／蘇丹戰爭均無可抓取的 A／B 原文（IWM、NPG、ODNB、Britannica 被擋）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Horace Smith-Dorrien II Corps Le Cateau biography",
+     "url": "https://www.britannica.com/biography/Sir-Horace-Lockwood-Smith-Dorrien",
+     "result": "blocked_403",
+     "note": "Britannica 403"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "NAM Influential British Commanders of 1914",
+     "url": "https://ww1.nam.ac.uk/969/uncategorized/influential-commanders-1914/",
+     "result": "found_B",
+     "note": "curl 成功"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Smith-Dorrien ODNB／DCB／ADB 查詢",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未得辭典條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Smith-Dorrien II Corps（限定 IWM／AWM／NAM）",
+     "url": null,
+     "result": "found_A",
+     "note": "IWM 多筆，curl 403"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "IWM memorial 60394",
+     "url": "https://iwm.org.uk/memorials/item/memorial/60394",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "AWM Non-Australian military Birdwood connections",
+     "url": "https://www.awm.gov.au/articles/blog/non-australian-military-birdwood-connectoins",
+     "result": "found_A",
+     "note": "curl 成功"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Government Art Collection Smith-Dorrien",
+     "url": "https://artcollection.dcms.gov.uk/person/smith-dorrien-sir-horace-lockwood/",
+     "result": "found_B",
+     "note": "curl 成功"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "TNA Discovery F66319",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F66319",
+     "result": "challenge_page",
+     "note": "HTTP 202 挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "NPG Smith-Dorrien",
+     "url": "https://www.npg.org.uk/collections/search/person/mp56551/sir-horace-lockwood-smith-dorrien",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Smith-Dorrien II Corps 迄日 1914-12 Second Army",
+     "url": "https://www.iwm.org.uk/collections/item/object/30087172",
+     "result": "blocked_403",
+     "note": "IWM 擋；搜尋摘要稱 II Corps 1914-08 至 10、Second Army 自 1914-12，無法取得原文"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Gazette 28897／28992 French despatch",
+     "url": "",
+     "result": "not_relevant",
+     "note": "電文只提 Smith-Dorrien 戰時行動，無改編日期"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "Doyle British Campaign 1914 (Gutenberg)",
+     "url": "",
+     "result": "not_relevant",
+     "note": "只寫 II Corps 戰事，無 Second Army 改編日"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "1914-1918-online Smith-Dorrien／French 條目",
+     "url": "https://encyclopedia.1914-1918-online.net/article/french-john-denton-pinkstone-earl-of-ypres/",
+     "result": "challenge_page",
+     "note": "Anubis 機器人挑戰頁"
+    }
+   ],
+   "nameZhUnsourced": "賀拉斯·史密斯-多里恩",
+   "nameZhSource": {
+    "method": "zhwiki-interlanguage-link-template",
+    "role": "index-only（Wikipedia 只當人名索引，非史料來源）",
+    "zhwikiArticles": [
+     "反戰運動",
+     "第二次伊普爾戰役"
+    ],
+    "occurrences": 2,
+    "variants": {
+     "霍勒斯·史密斯-多里恩": 2
+    },
+    "matchedOriginal": "Horace Smith-Dorrien",
+    "retrievedAt": "2026-11-12 10:05:03+08:00",
+    "patch": "patch_name_zh.py",
+    "kind": "wikipedia-index",
+    "status": "candidate",
+    "verified": false,
+    "isCitation": false,
+    "candidateRule": "維基百科只當人名索引，與 Wikidata 同規則：候選值、非出處；A／B／C 來源有中文譯名時以來源為準（附 citation，verified=true）"
+   },
+   "nameZhOrig": "赫拉斯·史密斯-多伦",
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ],
+   "nameFixLog": [
+    {
+     "on": "2026-11-13",
+     "ord": 1,
+     "field": "body",
+     "rule": "主管 2026-11-12 10:07：段落模型音譯人名換成索引名／殘留簡體字",
+     "by": "patch_para_names.py"
+    }
+   ]
+  }
+ ]
+}

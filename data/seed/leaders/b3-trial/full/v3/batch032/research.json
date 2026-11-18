@@ -1,0 +1,1852 @@
+{
+  "batch": "b3-full-v3-batch032",
+  "researchedOn": "2026-11-15",
+  "policyVersion": "bio-2026-11-v0",
+  "alignedTo": "b0b0e0f",
+  "alignNote": "直接寫 b0b0e0f 對齊格式；regimeId 因不連庫一律 null＋organization，R3 類因此以 R6（roleGap 含 regime）留在 positions。",
+  "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+  "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch032/raw",
+  "rawMap": "rawmap.json",
+  "sources": {
+    "hansard-asquith": {
+      "title": "Mr Herbert Asquith (Hansard)",
+      "authors": [],
+      "publisher": "UK Parliament",
+      "published_text": "Historic Hansard 1803–2005, 人物頁",
+      "url": "https://api.parliament.uk/historic-hansard/people/mr-herbert-asquith",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "英國議會官方 Historic Hansard 人物頁，列選區與政府職位起訖"
+    },
+    "govuk-asquith": {
+      "title": "History of Herbert Henry Asquith",
+      "authors": [],
+      "publisher": "GOV.UK",
+      "published_text": "Past Prime Ministers",
+      "url": "https://www.gov.uk/government/history/past-prime-ministers/herbert-henry-asquith",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": "OGL-3.0",
+      "grade": "A",
+      "gradeBasis": "英國政府官方歷任首相頁"
+    },
+    "casarosada-ortiz": {
+      "title": "Roberto Marcelino Ortiz (1939 - 1942)",
+      "authors": [],
+      "publisher": "Presidencia de la Nación Argentina (Casa Rosada)",
+      "published_text": "Galería de Presidentes",
+      "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47104-roberto-marcelino-ortiz-1939-1942",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": "CC-BY-2.5-AR",
+      "grade": "A",
+      "gradeBasis": "阿根廷總統府官方歷任總統頁"
+    },
+    "casarosada-alvear": {
+      "title": "Marcelo Torcuato de Alvear (1922 - 1928)",
+      "authors": [],
+      "publisher": "Presidencia de la Nación Argentina (Casa Rosada)",
+      "published_text": "Galería de Presidentes",
+      "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47107-marcelo-torcuato-de-alvear-1922-1928",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": "CC-BY-2.5-AR",
+      "grade": "A",
+      "gradeBasis": "阿根廷總統府官方歷任總統頁（內閣名單）"
+    },
+    "casarosada-justo": {
+      "title": "Agustín Pedro Justo (1932 - 1938)",
+      "authors": [],
+      "publisher": "Presidencia de la Nación Argentina (Casa Rosada)",
+      "published_text": "Galería de Presidentes",
+      "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47105-agustin-pedro-justo-1932-1938",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": "CC-BY-2.5-AR",
+      "grade": "A",
+      "gradeBasis": "阿根廷總統府官方歷任總統頁（內閣名單）"
+    },
+    "enc-lac-ortiz": {
+      "title": "Ortiz, Roberto Marcelino (1886–1942)",
+      "authors": [
+        "Daniel Lewis"
+      ],
+      "publisher": "Encyclopedia of Latin American History and Culture (Gale), via Encyclopedia.com",
+      "published_text": "Encyclopedia of Latin American History and Culture",
+      "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ortiz-roberto-marcelino-1886-1942",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "具名作者（Daniel Lewis）的學術參考百科條目"
+    }
+  },
+  "people": [
+    {
+      "key": "bo-siles",
+      "bioId": "01a1b4b5-f9e5-791f-8458-f778b7c24d18",
+      "name": "Hernando Siles Reyes",
+      "nameZh": "埃爾南多·西萊斯·雷耶斯",
+      "recordIds": [
+        "c5f37693-e48f-405a-b8f9-d3b84948e029",
+        "41b3ece0-52f4-44c0-8c4a-420a845310d7"
+      ],
+      "thickness": "薄",
+      "paragraphs": [],
+      "positions": [],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "paragraph:length",
+          "gapKind": "not_found",
+          "note": "篇幅不足：目前 0 段／0 字；已查來源類型：權威檔（LoC id.loc.gov 檢索頁 200 但詳細頁 403）、國家傳記辭典（Real Academia de la Historia DB~e 只回 JS 空殼頁）、具名百科（Britannica 403 Cloudflare；encyclopedia.com 多個猜測網址 404）、官方（玻利維亞總統府首頁無歷任總統頁）；本批 WebSearch 額度用盡，未能做原文語言搜尋；加強重跑：WebSearch 額度仍用盡（3 次查詢皆未執行），另直接 curl 玻利維亞政府／議會／國家圖書館／CIDOB／encyclopedia.com 共 10 個候選頁，皆 DNS 失敗、404 或無相關內容；仍 0 段／0 字，未達 15 次查詢與 5 種來源類型的加強量",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:biography",
+          "gapKind": "not_found",
+          "note": "待查證：Hernando Siles Reyes 查無可抓原文的 A／B 來源（玻利維亞 1926-01-10～1930-05-28 元首／首腦任期已在 5442 名單，不重建）；下一輪需：DBE 人物頁、Britannica 或 Encyclopedia of Latin American History 具名條目、玻利維亞議會或總統府歷任總統頁、Biblioteca Nacional de Bolivia 權威檔",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "national_dictionary",
+          "query": "Real Academia de la Historia DB~e hernando-siles-reyes",
+          "url": "https://dbe.rah.es/biografias/hernando-siles-reyes",
+          "result": "no_result",
+          "note": "回傳 5.6KB 空殼頁，無傳記文字"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "DBE hernando-siles-reyes-1",
+          "url": "https://dbe.rah.es/biografias/hernando-siles-reyes-1",
+          "result": "no_result",
+          "note": "同上"
+        },
+        {
+          "step": 3,
+          "sourceType": "national_dictionary",
+          "query": "DBE 站內搜尋 Siles Reyes",
+          "url": "https://dbe.rah.es/biografias/buscar?search=Siles+Reyes",
+          "result": "no_result",
+          "note": "導向首頁（JS 渲染）"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Hernando-Siles-Reyes",
+          "url": "https://www.britannica.com/biography/Hernando-Siles-Reyes",
+          "result": "blocked_403",
+          "note": "Cloudflare 挑戰頁，不繞過"
+        },
+        {
+          "step": 5,
+          "sourceType": "authority",
+          "query": "LoC Name Authority Siles Reyes, Hernando",
+          "url": "https://id.loc.gov/search/?q=Siles+Reyes%2C+Hernando",
+          "result": "found_B",
+          "note": "檢索頁有 1 筆（n85329094）但生平欄不可得"
+        },
+        {
+          "step": 6,
+          "sourceType": "authority",
+          "query": "LoC authority n85329094 詳細頁",
+          "url": "https://id.loc.gov/authorities/names/n85329094.html",
+          "result": "blocked_403",
+          "note": "403 挑戰頁，不繞過"
+        },
+        {
+          "step": 7,
+          "sourceType": "official",
+          "query": "玻利維亞總統府 presidencia.gob.bo 歷任總統頁",
+          "url": "https://presidencia.gob.bo/presidentes-de-bolivia",
+          "result": "no_result",
+          "note": "404；首頁無歷任總統入口"
+        },
+        {
+          "step": 8,
+          "sourceType": "named_encyclopedia",
+          "query": "encyclopedia.com Siles Reyes Hernando（多個網址變體）",
+          "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/siles-reyes-hernando",
+          "result": "no_result",
+          "note": "15 個網址變體全部 404；站內搜尋無結果"
+        },
+        {
+          "step": 9,
+          "sourceType": "other",
+          "query": "CIDOB Hernando Siles Reyes",
+          "url": "https://www.cidob.org/biografias/america_del_sur/bolivia/hernando_siles_reyes",
+          "result": "no_result",
+          "note": "404"
+        },
+        {
+          "step": 10,
+          "sourceType": "named_encyclopedia",
+          "query": "Hernando Siles Reyes presidente de Bolivia 1926 1930 biografía（WebSearch，原文語言）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未執行"
+        },
+        {
+          "step": 11,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "bolivia.gob.bo 政府入口",
+          "url": "https://www.bolivia.gob.bo/",
+          "result": "no_result",
+          "note": "DNS 無法解析"
+        },
+        {
+          "step": 12,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "vicepresidencia.gob.bo",
+          "url": "https://www.vicepresidencia.gob.bo/",
+          "result": "no_result",
+          "note": "DNS 逾時"
+        },
+        {
+          "step": 13,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "diputados.bo 議會官網",
+          "url": "https://www.diputados.bo/",
+          "result": "not_relevant",
+          "note": "200，頁面無 Siles 相關內容"
+        },
+        {
+          "step": 14,
+          "round": "retry",
+          "sourceType": "official",
+          "query": "senado.bo",
+          "url": "https://www.senado.bo/",
+          "result": "no_result",
+          "note": "DNS 無法解析"
+        },
+        {
+          "step": 15,
+          "round": "retry",
+          "sourceType": "authority",
+          "query": "bnb.bo 國家圖書館",
+          "url": "https://www.bnb.bo/",
+          "result": "no_result",
+          "note": "DNS 無法解析"
+        },
+        {
+          "step": 16,
+          "round": "retry",
+          "sourceType": "other",
+          "query": "CIDOB 傳記 hernando_siles_reyes（重試）",
+          "url": "https://www.cidob.org/biografias/america_del_sur/bolivia/hernando_siles_reyes",
+          "result": "no_result",
+          "note": "404"
+        },
+        {
+          "step": 17,
+          "round": "retry",
+          "sourceType": "named_encyclopedia",
+          "query": "encyclopedia.com latin-american-history-biographies hernando-siles-reyes",
+          "url": "https://www.encyclopedia.com/people/history/latin-american-history-biographies/hernando-siles-reyes",
+          "result": "no_result",
+          "note": "404"
+        },
+        {
+          "step": 18,
+          "round": "retry",
+          "sourceType": "named_encyclopedia",
+          "query": "Hernando Siles Reyes presidente de Bolivia 1926-1930 biografía（WebSearch，原文語言）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未執行"
+        },
+        {
+          "step": 19,
+          "round": "retry",
+          "sourceType": "named_encyclopedia",
+          "query": "Siles Reyes, Hernando Encyclopedia of Latin American History and Culture（WebSearch）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未執行"
+        },
+        {
+          "step": 20,
+          "round": "retry",
+          "sourceType": "national_dictionary",
+          "query": "Hernando Siles Reyes dbe.rah.es（WebSearch）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未執行"
+        }
+      ]
+    },
+    {
+      "key": "ar-ortiz",
+      "bioId": "57e5fc1f-0a7e-4d8b-b39f-bbb00a42e06e",
+      "name": "Roberto Marcelino Ortiz",
+      "nameZh": "羅伯托·M·奧爾蒂斯",
+      "recordIds": [
+        "d3c983fd-51a4-4f97-aaeb-54af10191f01",
+        "33ed4b08-bc99-4327-8cac-c797634810a0"
+      ],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1886-09-24",
+            "end": "1910-01-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與律師生涯",
+            "en": "Origins and law career"
+          },
+          "body": {
+            "zh-Hant": "奧爾蒂斯1886年9月24日生於布宜諾斯艾利斯，職業為律師，所屬政黨為激進公民聯盟（Unión Cívica Radical）。他1909年取得布宜諾斯艾利斯大學的法學學位，在首都建立起成功的律師事務所之後，才轉向謀求公職。",
+            "en": "Ortiz was born in Buenos Aires on 24 September 1886, worked as a lawyer, and belonged to the Unión Cívica Radical. He received a law degree from the University of Buenos Aires in 1909 and, after establishing a successful law practice in the capital, sought public office."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Datos personales",
+              "quote": "24 de septiembre de 1886, Buenos Aires.",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Datos personales",
+              "quote": "Abogado.",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Datos personales",
+              "quote": "Unión Cívica Radical.",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "received a law degree from the University of Buenos Aires in 1909",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "After establishing a successful law practice in the Argentine capital",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "he sought public office",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1918-01-01",
+            "end": "1929-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "地方議會、國會與公共工程部",
+            "en": "Council, Congress and Public Works"
+          },
+          "body": {
+            "zh-Hant": "奧爾蒂斯1918至1920年間擔任布宜諾斯艾利斯市議員，之後進入阿根廷眾議院，代表布宜諾斯艾利斯至1924年。1925年阿爾韋亞總統任命他為公共工程部長；總統府的內閣名單載明任期自1925年1月13日至1928年10月12日。他是反個人主義激進派的主要人物之一。",
+            "en": "Ortiz served as a Buenos Aires city councilman between 1918 and 1920, then moved to the Argentine Chamber of Deputies, representing Buenos Aires until 1924. In 1925 President Alvear appointed him minister of public works; the presidency's cabinet list gives the term as 13 January 1925 to 12 October 1928. He was one of the leading Anti-Personalist Radicals."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "as a city councilman in Buenos Aires between 1918 and 1920",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "He then advanced to the Argentine Chamber of Deputies",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "where he represented Buenos Aires until 1924",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "In 1925, President Marcelo T. de Alvear (1922–1928)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "appointed him minister of public works",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-alvear",
+              "locator": "Gabinete, Ministro de Obras Públicas",
+              "quote": "Roberto Marcelino Ortíz (13 de enero de 1925-12 de octubre de 1928).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "Ortiz became one of the leading Anti-Personalist Radicals",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1936-01-04",
+            "end": "1942-06-27"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "財政部長與總統任期",
+            "en": "Finance minister and presidency"
+          },
+          "body": {
+            "zh-Hant": "總統府的賈斯托政府內閣名單載明，奧爾蒂斯自1936年1月4日至1937年6月21日任財政部長。賈斯托挑選他為接班人，1938年他當選總統；總統府記載其任期自1938年2月20日至1942年6月27日。任內他試圖遏止1930年後破壞阿根廷民主的選舉舞弊，但實質改革未及推行，1940年糖尿病迫使他把權力交給卡斯蒂略，1942年6月辭職。",
+            "en": "The presidency's cabinet list for Justo's government shows Ortiz as finance minister from 4 January 1936 to 21 June 1937. Justo chose him as successor and he was elected president in 1938; the presidency records his term as 20 February 1938 to 27 June 1942. In office he tried to curtail the electoral fraud that had undermined Argentine democracy after 1930, but substantive change did not come: in 1940 diabetes forced him to delegate power to Ramón Castillo, and in June 1942 he resigned."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "casarosada-justo",
+              "locator": "Gabinete, Ministro de Hacienda",
+              "quote": "Roberto M. Ortíz (4 de enero de 1936 - 21 de junio de 1937).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "Justo selected him as his successor, and in 1938 he was elected president",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Detalles",
+              "quote": "20 de febrero de 1938 al 27 de junio de 1942",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "Ortiz tried to curtail the fraudulent electoral practices",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "that had undermined Argentine democracy after 1930",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目第二段",
+              "quote": "Before substantive changes were introduced",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "diabetes forced him to delegate power in 1940 to Ramón Castillo",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "and then to resign in June 1942",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1938-02-20",
+            "end": "1942-06-27"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "奧爾蒂斯政府的主要閣員",
+            "en": "Principal ministers in Ortiz's government"
+          },
+          "body": {
+            "zh-Hant": "總統府的內閣名單載明：奧爾蒂斯政府自1938年2月20日起，皮德羅·格羅波任財政部長、卡洛斯·馬爾克斯任戰爭部長、迪奧赫內斯·塔沃阿達任內政部長、何塞·馬里亞·坎蒂洛任外交與宗教部長。馬爾克斯的任期延續到1942年6月27日；格羅波、塔沃阿達與坎蒂洛則任至1940年9月2日。",
+            "en": "The presidency's cabinet list shows that from 20 February 1938 Pedro Groppo was finance minister, Carlos Márquez war minister, Diógenes Taboada interior minister and José María Cantilo foreign minister. Márquez served until 27 June 1942, while Groppo, Taboada and Cantilo served until 2 September 1940."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Gabinete, Ministro de Hacienda",
+              "quote": "Pedro Groppo (20 de febrero de 1938 – 2 de septiembre de 1940).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Gabinete, Ministro de Guerra",
+              "quote": "Carlos Márquez (20 de febrero de 1938 – 27 de junio de 1942)",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Gabinete, Ministro de Interior",
+              "quote": "Diógenes Taboada (20 de febrero de 1938 – 2 de septiembre de 1940).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Gabinete, Ministro de Relaciones Exteriores y Culto",
+              "quote": "José María Cantilo (20 de febrero de 1938 – 2 de septiembre de 1940).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "ortiz-city-councilman",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "布宜諾斯艾利斯市議會",
+            "en": "Buenos Aires city council"
+          },
+          "title": {
+            "orig": "concejal (city councilman) of Buenos Aires",
+            "zh-Hant": "布宜諾斯艾利斯市議員",
+            "en": "City councilman of Buenos Aires"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1918-01-01",
+            "end": "1921-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "as a city councilman in Buenos Aires between 1918 and 1920",
+              "quoteLang": "en",
+              "evidenceNote": "迄日依年精度寫下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "ortiz-public-works",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "阿根廷政府",
+            "en": "Government of Argentina"
+          },
+          "title": {
+            "orig": "Ministro de Obras Públicas",
+            "zh-Hant": "公共工程部長",
+            "en": "Minister of Public Works"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1925-01-13",
+            "end": "1928-10-12"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "casarosada-alvear",
+              "locator": "Gabinete, Ministro de Obras Públicas",
+              "quote": "Roberto Marcelino Ortíz (13 de enero de 1925-12 de octubre de 1928).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "In 1925, President Marcelo T. de Alvear (1922–1928)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "appointed him minister of public works",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R5",
+          "t14Reason": "公共工程部不屬外交、國防、財政、內政四部，歸 R5"
+        },
+        {
+          "key": "ortiz-finance-minister",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "阿根廷政府",
+            "en": "Government of Argentina"
+          },
+          "title": {
+            "orig": "Ministro de Hacienda",
+            "zh-Hant": "財政部長",
+            "en": "Minister of Finance"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1936-01-04",
+            "end": "1937-06-21"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "casarosada-justo",
+              "locator": "Gabinete, Ministro de Hacienda",
+              "quote": "Roberto M. Ortíz (4 de enero de 1936 - 21 de junio de 1937).",
+              "quoteLang": "es",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "財政部屬四部、正職、日精度可證明 ≥90 天，來源 1 筆 A（總統府）；regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:ortiz-deputy",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；Encyclopedia of Latin American History 只寫「He then advanced to the Argentine Chamber of Deputies, where he represented Buenos Aires until 1924」，未載起日（只知迄 1924）；總統府頁面無議員紀錄；Biblioteca／眾議院官網未取得。來源未寫以何黨身分取得，亦不算黨職",
+          "candidateCitations": [
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "where he represented Buenos Aires until 1924",
+              "quoteLang": "en"
+            }
+          ],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "field:deathDate",
+          "gapKind": "conflict",
+          "note": "兩份已抓來源死亡日不同：總統府寫 1942 年 7 月 15 日（15 de julio de 1942），Encyclopedia of Latin American History 寫 25 July 1942；總統府任期欄另寫「27 de junio de 1942 (fallece)」，三者互不一致；正文未寫死亡日",
+          "candidateCitations": [
+            {
+              "sourceKey": "casarosada-ortiz",
+              "locator": "Datos personales",
+              "quote": "15 de julio de 1942, Buenos Aires.",
+              "quoteLang": "es"
+            },
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "條目首段",
+              "quote": "d. 25 July 1942",
+              "quoteLang": "en"
+            }
+          ],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "position:ortiz-finance-minister",
+          "gapKind": "conflict",
+          "note": "兩份已抓來源起年不同：總統府賈斯托政府名單寫 1936-01-04～1937-06-21，Encyclopedia of Latin American History 寫「minister of finance (1935)」；職位採總統府日期，未採 1935",
+          "candidateCitations": [
+            {
+              "sourceKey": "enc-lac-ortiz",
+              "locator": "第二段",
+              "quote": "named him minister of finance (1935)",
+              "quoteLang": "en"
+            }
+          ],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "official",
+          "query": "Casa Rosada 歷任總統 Roberto Marcelino Ortiz 1939-1942",
+          "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47104-roberto-marcelino-ortiz-1939-1942",
+          "result": "found_A",
+          "note": "生卒、政黨、任期與內閣名單"
+        },
+        {
+          "step": 2,
+          "sourceType": "official",
+          "query": "Casa Rosada 歷任總統 Alvear 1922-1928 內閣名單",
+          "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47107-marcelo-torcuato-de-alvear-1922-1928",
+          "result": "found_A",
+          "note": "公共工程部長 Ortiz 1925-01-13～1928-10-12"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "Casa Rosada 歷任總統 Justo 1932-1938 內閣名單",
+          "url": "https://www.casarosada.gob.ar/nuestro-pais/presidentes/47105-agustin-pedro-justo-1932-1938",
+          "result": "found_A",
+          "note": "財政部長 Ortiz 1936-01-04～1937-06-21"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Encyclopedia of Latin American History and Culture Ortiz, Roberto Marcelino（作者 Daniel Lewis）",
+          "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ortiz-roberto-marcelino-1886-1942",
+          "result": "found_B",
+          "note": "具名作者條目"
+        },
+        {
+          "step": 5,
+          "sourceType": "named_encyclopedia",
+          "query": "Roberto Marcelino Ortiz 生平（WebSearch，原文語言）",
+          "url": null,
+          "result": "no_result",
+          "note": "搜尋額度用盡，未執行"
+        },
+        {
+          "step": 6,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica Roberto-Marcelino-Ortiz",
+          "url": "https://www.britannica.com/biography/Roberto-Marcelino-Ortiz",
+          "result": "blocked_403",
+          "note": "Cloudflare 挑戰頁，不繞過"
+        },
+        {
+          "step": 7,
+          "sourceType": "national_dictionary",
+          "query": "Real Academia de la Historia DB~e Roberto Marcelino Ortiz",
+          "url": "https://dbe.rah.es/biografias/roberto-marcelino-ortiz",
+          "result": "no_result",
+          "note": "猜測網址只回空殼頁（JS 渲染），無內容"
+        },
+        {
+          "step": 8,
+          "sourceType": "official",
+          "query": "Casa Rosada 歷史頁（找總統名單）",
+          "url": "https://www.casarosada.gob.ar/la-casa-rosada/historia",
+          "result": "not_relevant",
+          "note": "宮殿歷史，無人物資料"
+        }
+      ]
+    },
+    {
+      "key": "gb-asquith",
+      "bioId": "01a19f15-337e-77b7-a16d-e2ab31902ac5",
+      "name": "Herbert Henry Asquith",
+      "nameZh": "赫伯特·亨利·阿斯奎斯",
+      "recordIds": [
+        "e1ab6b2b-0b8c-4823-a90f-a9c80a2b9b7d"
+      ],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1876-01-01",
+            "end": "1887-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與入下議院",
+            "en": "Origins and entry to the Commons"
+          },
+          "body": {
+            "zh-Hant": "阿斯奎斯是約克郡一名服裝製造商之子，就讀於倫敦城市學校與牛津大學貝利奧爾學院，在牛津聯合會當上主席，1876年取得出庭律師資格。1886年他當選自由黨籍東法夫選區的下議院議員；議會紀錄載明他自1886年7月1日起代表該選區（Fife Eastern）。",
+            "en": "Asquith was the son of a Yorkshire clothing manufacturer. He was educated at the City of London School and Balliol College, Oxford, where he became President of the Union, and was called to the Bar in 1876. In 1886 he was elected Liberal MP for East Fife; the parliamentary record shows him sitting for Fife Eastern from 1 July 1886."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第一段",
+              "quote": "was the son of a Yorkshire clothing manufacturer",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第一段",
+              "quote": "He was educated at City of London School and Balliol College Oxford",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第一段",
+              "quote": "where he became President of the Union",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第一段",
+              "quote": "was called to the Bar in 1876",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第二段",
+              "quote": "In 1886 Asquith was elected as the Liberal MP for East Fife",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Constituencies",
+              "quote": "Fife Eastern July 1, 1886 - December 14, 1918",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1892-01-01",
+            "end": "1909-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "內政大臣與財政大臣",
+            "en": "Home Secretary and Chancellor"
+          },
+          "body": {
+            "zh-Hant": "1892年他在格萊斯頓治下出任內政大臣，其後在羅斯伯里勳爵治下再度任此職；議會紀錄列其內政大臣任期為1892至1895年。1895年下野後他回到律師業，並巡迴各地發表支持自由貿易的演說。1905年新自由黨政府成立，他出任財政大臣，提高非勞動所得稅，用以支付七十歲以上老人年金。",
+            "en": "In 1892 he became Home Secretary under Gladstone and again under Lord Rosebery; the parliamentary record lists his Home Secretaryship as 1892 to 1895. Out of office from 1895, he returned to his barrister's practice and toured the country making speeches for free trade. In 1905 he became Chancellor of the Exchequer in the new Liberal government and introduced higher taxes on unearned income to help pay for pensions for those over 70."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第四段",
+              "quote": "he became Home Secretary under William Ewart Gladstone in 1892",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第四段",
+              "quote": "and then again under Lord Rosebery",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Home Secretary 1892 - 1895",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第四段",
+              "quote": "Out of office for a decade from 1895",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第四段",
+              "quote": "he returned to his barrister’s practice",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第四段",
+              "quote": "toured the country making influential speeches in favour of free trade",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第五段",
+              "quote": "became Chancellor of the Exchequer in the new Liberal government",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Chancellor of the Exchequer 1905 - 1908",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第五段",
+              "quote": "He introduced higher taxes on unearned income",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography",
+              "quote": "which helped pay for another innovation",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第五段",
+              "quote": "pensions for senior citizens over 70 years old",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1908-04-05",
+            "end": "1912-01-01"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "首相任內與議會法案",
+            "en": "Premiership and the Parliament Act"
+          },
+          "body": {
+            "zh-Hant": "1908年坎貝爾-班納曼辭職，阿斯奎斯接任首相；議會紀錄載明他任首相自1908年4月5日起至1916年12月5日止。他對抗常阻擋改革法案的上議院；上議院否決了財政大臣勞合·喬治1909年的預算，1910年12月的大選被稱為上下兩院之爭的公投。剝奪上議院否決權的議會法案於1911年成為法律。",
+            "en": "In 1908 Campbell-Bannerman resigned and Asquith became Prime Minister; the parliamentary record gives his premiership as 5 April 1908 to 5 December 1916. He took on the House of Lords, which often blocked reforming bills; the Lords rejected Chancellor Lloyd George's 1909 budget, and the December 1910 election was billed as a referendum on the Lords versus Commons issue. The Parliament Bill, which stripped the Lords of its veto, became law in 1911."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第六段",
+              "quote": "he became Prime Minister following the resignation of Henry Campbell-Bannerman",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Prime Minister April 5, 1908 - December 5, 1916",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第七段",
+              "quote": "Asquith took on the House of Lords, which often blocked reforming Liberal bills",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第七段",
+              "quote": "unwisely rejected his Chancellor David Lloyd George",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第七段",
+              "quote": "budget of 1909 and the December 1910 election",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第七段",
+              "quote": "was billed as a referendum on this Lords v Commons issue",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography",
+              "quote": "He introduced the Parliament Bill, which stripped the Lords of any veto",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第八段",
+              "quote": "The bill became law in 1911",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1914-01-01",
+            "end": "1917-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "戰爭、聯合政府與辭職",
+            "en": "War, coalition and resignation"
+          },
+          "body": {
+            "zh-Hant": "阿斯奎斯任內英國捲入第一次世界大戰；議會紀錄列其1914年曾任戰爭大臣。為爭取更多支持，他在1915年組成聯合政府，但戰事不利、政府不得人心。與勞合·喬治失和導致他於1916年12月辭職。",
+            "en": "Britain entered the First World War under Asquith, and the parliamentary record lists him as Secretary of State for War in 1914. To maximise support he formed a coalition in 1915, but the war went badly and the government was unpopular. A rift with Lloyd George forced him to resign in December 1916."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第九段",
+              "quote": "He also brought Britain into the First World War.",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Secretary of State for War 1914 - 1914",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十段",
+              "quote": "To maximise government support he formed a coalition in 1915",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十段",
+              "quote": "this government was unsuccessful and unpopular as the war was going badly",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十一段",
+              "quote": "a rift with Lloyd George which forced Asquith to resign in December 1916",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 5,
+          "period": {
+            "start": "1918-01-01",
+            "end": "1929-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "失去議席、再入議會與封爵",
+            "en": "Loss of seat, return and peerage"
+          },
+          "body": {
+            "zh-Hant": "1918年他與許多盟友一同失去議席，卻仍堅持擔任自由黨黨魁；議會紀錄載明東法夫的議席至1918年12月14日止。兩年後他在補選中贏得議席，議會紀錄載明帕斯利選區任期自1920年2月12日至1924年10月29日。1925年他受封牛津伯爵並進入上議院，1928年因中風去世，議會紀錄記載卒於1928年2月15日。",
+            "en": "He lost his seat in 1918 along with many allies yet stubbornly remained Leader of the Liberal Party; the parliamentary record ends his East Fife seat on 14 December 1918. Two years later he won a seat in a by-election, and the record gives Paisley from 12 February 1920 to 29 October 1924. In 1925 he was granted the title of Earl of Oxford and entered the House of Lords, and he died of a stroke in 1928; the record gives 15 February 1928."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十三段",
+              "quote": "the loss of his seat, and those of many of his allies in 1918",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十三段",
+              "quote": "he stubbornly remained Leader of the Liberal Party, despite lacking a seat",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Constituencies",
+              "quote": "Fife Eastern July 1, 1886 - December 14, 1918",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十三段",
+              "quote": "Two years later he won a seat in a by-election",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Constituencies",
+              "quote": "Paisley February 12, 1920 - October 29, 1924",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十四段",
+              "quote": "In 1925 Asquith was granted the title of Earl of Oxford",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography",
+              "quote": "elevated to the House of Lords",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十四段",
+              "quote": "He died of a stroke in 1928.",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "頁首",
+              "quote": "1852 - February 15, 1928",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "asquith-home-secretary",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "英國政府",
+            "en": "Government of the United Kingdom"
+          },
+          "title": {
+            "orig": "Home Secretary",
+            "zh-Hant": "內政大臣",
+            "en": "Home Secretary"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1892-01-01",
+            "end": "1896-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Home Secretary 1892 - 1895",
+              "quoteLang": "en",
+              "evidenceNote": "迄日依年精度寫下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R5",
+          "t14Reason": "內政部屬四部、正職，但任期 1892–1895 在 1908–1945 時間窗外，依共通條件歸 R5"
+        },
+        {
+          "key": "asquith-chancellor",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "英國政府",
+            "en": "Government of the United Kingdom"
+          },
+          "title": {
+            "orig": "Chancellor of the Exchequer",
+            "zh-Hant": "財政大臣",
+            "en": "Chancellor of the Exchequer"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1905-01-01",
+            "end": "1909-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Chancellor of the Exchequer 1905 - 1908",
+              "quoteLang": "en",
+              "evidenceNote": "迄日依年精度寫下一年起日；Hansard 年精度，與首相任期（1908-04-05 起）年內重疊",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第五段",
+              "quote": "became Chancellor of the Exchequer in the new Liberal government",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "財政部屬四部、正職、年精度仍可證明 ≥90 天，來源 1 筆 A（Hansard）加 GOV.UK；regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "regime"
+          ]
+        },
+        {
+          "key": "asquith-war-secretary",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "英國政府",
+            "en": "Government of the United Kingdom"
+          },
+          "title": {
+            "orig": "Secretary of State for War",
+            "zh-Hant": "戰爭大臣",
+            "en": "Secretary of State for War"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1914-01-01",
+            "end": "1915-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Offices",
+              "quote": "Secretary of State for War 1914 - 1914",
+              "quoteLang": "en",
+              "evidenceNote": "Hansard 僅寫 1914 年，起迄同年；迄日依年精度寫下一年起日",
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "戰爭部屬四部、正職，但起迄同為 1914 年（年精度），結束日最早 1914-01-01－開始日最晚 1914-12-31 無法證明 ≥90 天；regimeId 未查",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "dates",
+            "regime"
+          ]
+        },
+        {
+          "key": "asquith-mp-paisley",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "英國下議院（帕斯利選區）",
+            "en": "House of Commons (Paisley)"
+          },
+          "title": {
+            "orig": "Member of Parliament for Paisley",
+            "zh-Hant": "下議院議員（帕斯利選區）",
+            "en": "Member of Parliament for Paisley"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": "1920-02-12",
+            "end": "1924-10-29"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Constituencies",
+              "quote": "Paisley February 12, 1920 - October 29, 1924",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "roleCandidates": [
+        {
+          "key": "asquith-mp-east-fife-liberal",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "英國下議院（東法夫選區）",
+            "en": "House of Commons (Fife Eastern)"
+          },
+          "title": {
+            "orig": "Liberal MP for East Fife",
+            "zh-Hant": "下議院議員（東法夫選區，自由黨）",
+            "en": "Liberal MP for East Fife"
+          },
+          "originalPositionKind": "legislator",
+          "period": {
+            "start": "1886-07-01",
+            "end": "1918-12-14"
+          },
+          "startPrecision": "day",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第二段",
+              "quote": "In 1886 Asquith was elected as the Liberal MP for East Fife",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "hansard-asquith",
+              "locator": "Constituencies",
+              "quote": "Fife Eastern July 1, 1886 - December 14, 1918",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-15",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；GOV.UK 明寫 elected as the Liberal MP for East Fife",
+          "t14Rule": "R1"
+        }
+      ],
+      "gaps": [
+        {
+          "target": "role:asquith-liberal-leader",
+          "gapKind": "not_found",
+          "note": "待查證：缺起日；GOV.UK 只寫他「stubbornly remained Leader of the Liberal Party, despite lacking a seat」（1918 年失議席後），未載起日與迄日；Hansard 人物頁無黨職欄；Britannica／IWM（403 Cloudflare）與 1914-1918-online（Anubis）被擋，未取得。依規則黨魁屬黨職（de_facto_leader），因無起日未建候選",
+          "candidateCitations": [
+            {
+              "sourceKey": "govuk-asquith",
+              "locator": "Biography, 第十三段",
+              "quote": "he stubbornly remained Leader of the Liberal Party, despite lacking a seat",
+              "quoteLang": "en"
+            }
+          ],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "position:asquith-mp-paisley",
+          "gapKind": "not_found",
+          "note": "待查證：GOV.UK 與 Hansard 均未寫 1920 年帕斯利補選是以何黨身分當選；依規則（來源只寫當選、未寫黨籍）不算黨職，留經歷層",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        },
+        {
+          "target": "position:asquith-war-secretary",
+          "gapKind": "not_found",
+          "note": "待查證：Hansard 年精度只寫 1914 年；月日未由 GOV.UK、Hansard 取得，無法證明 ≥90 天",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-15"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "official",
+          "query": "Historic Hansard 人物頁 Mr Herbert Asquith",
+          "url": "https://api.parliament.uk/historic-hansard/people/mr-herbert-asquith",
+          "result": "found_A",
+          "note": "選區（東法夫、帕斯利）與職位起訖、首相 1908-04-05～1916-12-05"
+        },
+        {
+          "step": 2,
+          "sourceType": "official",
+          "query": "GOV.UK Past Prime Ministers H H Asquith（猜測網址）",
+          "url": "https://www.gov.uk/government/history/past-prime-ministers/h-h-asquith",
+          "result": "no_result",
+          "note": "404"
+        },
+        {
+          "step": 3,
+          "sourceType": "official",
+          "query": "GOV.UK Past Prime Ministers Herbert Henry Asquith",
+          "url": "https://www.gov.uk/government/history/past-prime-ministers/herbert-henry-asquith",
+          "result": "found_A",
+          "note": "官方傳記頁"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "Herbert Henry Asquith biography prime minister 1908 Fife East Home Secretary Chancellor（WebSearch）",
+          "url": null,
+          "result": "found_B",
+          "note": "搜尋結果列出 Britannica、Museum of the PM、UK Parliament、IWM、1914-1918-online 等；之後搜尋額度用盡"
+        },
+        {
+          "step": 5,
+          "sourceType": "named_encyclopedia",
+          "query": "Britannica H-H-Asquith",
+          "url": "https://www.britannica.com/biography/H-H-Asquith-1st-earl-of-Oxford-and-Asquith",
+          "result": "blocked_403",
+          "note": "Cloudflare 挑戰頁，不繞過"
+        },
+        {
+          "step": 6,
+          "sourceType": "academic",
+          "query": "1914-1918-online Asquith, Herbert Henry",
+          "url": "https://encyclopedia.1914-1918-online.net/article/asquith-herbert-henry/",
+          "result": "challenge_page",
+          "note": "Anubis 挑戰頁，不繞過"
+        },
+        {
+          "step": 7,
+          "sourceType": "other",
+          "query": "IWM H.H. Asquith",
+          "url": "https://www.iwm.org.uk/history/first-world-war/home-front/h-h-asquith",
+          "result": "blocked_403",
+          "note": "Cloudflare 挑戰頁，不繞過"
+        },
+        {
+          "step": 8,
+          "sourceType": "other",
+          "query": "Museum of the Prime Minister Herbert Henry Asquith",
+          "url": "https://www.museumofpm.org/prime-ministers/herbert-henry-asquith/",
+          "result": "unrated",
+          "note": "已抓，頁面無署名作者，不當出處"
+        },
+        {
+          "step": 9,
+          "sourceType": "named_encyclopedia",
+          "query": "Encyclopedia.com Herbert Henry Asquith（Encyclopedia of World Biography）",
+          "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/herbert-henry-asquith",
+          "result": "unrated",
+          "note": "已抓，無署名條目（Q9），不當出處"
+        },
+        {
+          "step": 10,
+          "sourceType": "authority",
+          "query": "Britannica／Oxford DNB／London Gazette 任命公告",
+          "url": "https://www.thegazette.co.uk/",
+          "result": "no_result",
+          "note": "本批搜尋額度用盡，Gazette 與 ODNB 未能查詢；任期日期以 Hansard 為準"
+        }
+      ]
+    }
+  ]
+}

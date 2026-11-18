@@ -1,0 +1,97 @@
+{
+ "batch": "002",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 2,
+  "deletedParagraphs": 2,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 22,
+  "addedCitations": 6,
+  "editedSentences": 4,
+  "spotRefetched": 3,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "ee-pats-konstantin",
+   "bioId": "01a1b4b2-2f2c-7cc8-a233-c26b6d7df1ea",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 7,
+   "searchLogSteps": 16,
+   "changes": [
+    "段2：『被德國占領當局關押，送進戰俘營』改為『被捕，送進德國的拘留營』（引文只寫 vangistati…Saksa vangilaagrisse，無占領當局主語）",
+    "asutav-kogu-member：加 t14Rule R5、partyPostAmbiguous（官方簡介稱 Päts 領導 Maaliit，但未寫他以該名單當選）",
+    "riigikogu-speaker：加 t14Rule R5",
+    "maavalitsus-chair：加 t14Ambiguous（自治省臨時省政府主席是否算首腦、有無政權對應，文件未涵蓋）",
+    "抽查重抓 riigikogu.ee Asutav Kogu 頁：『Konstantin Pätsi juhitud Maaliit』逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "np-tribhuvan",
+   "bioId": "01a1b4af-e4ae-7ffe-b91b-13f90ca7ea6b",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 14,
+   "changes": [
+    "來源 nr-zeittab、nr-rev1950（nepalresearch.com，個人網站）依 docs/source-rules.md §2 降為不合格（grade=null），刪原段2、原段3與段1的 1911 繼位句，引文移到 gap paragraph:1938-1951 候選",
+    "loc-nepal 由 A 改 B（外國國家研究機構國別簡介，無具名作者，非傳記辭典／權威檔）",
+    "段1 改寫為生卒與在位期，period 改 1906-01-01～1956-01-01（年）",
+    "field:accession_date gap 改寫（Krämer 年表不合格，只作候選）",
+    "加『篇幅不足：』gap",
+    "searchLog 步驟7、8 result 改 unrated",
+    "抽查重抓 lobid GND 1226811078：dateOfBirth 1906 相符"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言（尼泊爾文天城文 त्रिभुवन वीर विक्रम शाह）查詢至少 2 次",
+    "審查後 1 段／142 字，未達最低標準（≥3 段、≥300 字），且 searchLog 無 round:retry 加強搜尋",
+    "建議下一步：尼泊爾國家檔案館（Rastriya Abhilekhalaya）與尼泊爾國家圖書館目錄、nepjol.info 以天城文查 त्रिभुवन／राणा शासन 的期刊論文、LoC 1991 Nepal country study 官方 PDF、Cambridge／Brill 有具名作者的尼泊爾史開放章節"
+   ]
+  },
+  {
+   "key": "dz-sahm-heinrich",
+   "bioId": "01a1b4b2-2f1a-722b-93ed-d2ad6e6f6765",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：補引文『Während des 1. Weltkriegs war er 1915-18 Kommunalreferent』支撐『一次大戰期間』",
+    "段2：補引文『machten ihn zu einem Akteur auf der diplomatischen Bühne』、『Der 3. Senat S.s wurde 1930 von Deutschnationalen』",
+    "段3：補引文『das letzte Berliner Stadtoberhaupt vor der NS-Diktatur gewählt』、『Die Nationalsozialisten stellten ihm Julius Lippert』（主語）",
+    "段4：補引文『Am 21.8.2001 erkannte ihm der Senat von Berlin sein Ehrengrab ab』支撐『柏林市議會 2001 年』",
+    "兩筆 positions 加 t14Rule R5＋t14Reason",
+    "searchLog 步驟4 更正（berlin-boess 頁有 Sahm 條，非 not_relevant）",
+    "gap honorary_grave 說明修正",
+    "抽查重抓 berlin.de artikel.4558：『Am 9. Dezember 1935 trat Heinrich Sahm zurück.』相符；deutsche-biographie.de 重抓逾時"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把個人網站（nepalresearch.com）上具名學者的文章記成 B；依 docs/source-rules.md §2 個人網站屬 X，人物生平只收 A／B",
+  "R5 positions 漏加 t14Rule",
+  "數處子句（主語、時代、機構）缺 quote 支撐，審查以已抓原文補引文",
+  "未發現禁用網域、Wikipedia／wiki 類出處或轉錄本；Päts 議長屆別、國會迄日兩筆 conflict 都在兩個合格來源之間，保留"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

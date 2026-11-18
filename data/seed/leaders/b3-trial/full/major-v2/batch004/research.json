@@ -1,0 +1,2468 @@
+{
+ "batch": "b3-full-major-v2-batch004",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；黨職與元首／首腦／實際掌權者在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；本批無新增角色候選（三人元首任期已在 5442）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；直接寫 b0b0e0f 對齊格式（經歷層 positionKind、角色層 role_kind、T14 R0–R6 兩層互斥）；regimeId 因不連庫無法查證一律 null＋organization，R4 類因此以 R6（roleGap=regime）留在 positions；三人的元首任期已在 5442，不重建。來源規則依 docs/source-rules.md（2026-11-13／14）。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch004/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-wilhelm": {
+   "title": "Wilhelm II. (Friedrich Wilhelm Viktor Albert)",
+   "authors": [
+    "Frank-Lothar Kroll"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften／Deutsche Biographie",
+   "published_text": "Neue Deutsche Biographie 28 (2024), S. 140-144（線上版）",
+   "url": "https://www.deutsche-biographie.de/pnd118632892.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie）具名條目"
+  },
+  "lobid-wilhelm-rec": {
+   "title": "Wilhelm II., Deutsches Reich, Kaiser（GND 118632892）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek／hbz lobid.org",
+   "published_text": "GND 人名權威檔（lobid.org 鏡像）",
+   "url": "https://lobid.org/gnd/118632892.json",
+   "archive_url": null,
+   "catalog_id": "GND 118632892",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（lobid.org 為官方鏡像）"
+  },
+  "lemo-wilhelm": {
+   "title": "Wilhelm II. 1859-1941（LeMO Biografie）",
+   "authors": [
+    "Gabriel Eikenberg"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "LeMO Lebendiges Museum Online，人物傳記（Stand: 11. November 2021）",
+   "url": "https://www.dhm.de/lemo/biografie/wilhelm-ii",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY",
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館（DHM）機構傳記，具名作者"
+  },
+  "ndb-franz": {
+   "title": "Franz Joseph",
+   "authors": [
+    "Hugo Hantsch"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften／Deutsche Biographie",
+   "published_text": "Neue Deutsche Biographie 5 (1961), S. 361-364（線上版）",
+   "url": "https://www.deutsche-biographie.de/sfz56938.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie）具名條目"
+  },
+  "lobid-franz-rec": {
+   "title": "Franz Joseph I., Österreich, Kaiser（GND 118535013）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek／hbz lobid.org",
+   "published_text": "GND 人名權威檔（lobid.org 鏡像）",
+   "url": "https://lobid.org/gnd/118535013.json",
+   "archive_url": null,
+   "catalog_id": "GND 118535013",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（lobid.org 為官方鏡像）"
+  },
+  "lemo-franz": {
+   "title": "Franz Joseph I. 1830-1916（LeMO Biografie）",
+   "authors": [
+    "Gabriel Eikenberg"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "LeMO Lebendiges Museum Online，人物傳記（Stand: 14. September 2014）",
+   "url": "https://www.dhm.de/lemo/biografie/franz-joseph-i",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY NC SA 4.0",
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館（DHM）機構傳記，具名作者"
+  },
+  "lobid-nicholas-rec": {
+   "title": "Nikolaj II., Russland, Zar（GND 11873492X）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek／hbz lobid.org",
+   "published_text": "GND 人名權威檔（lobid.org 鏡像）",
+   "url": "https://lobid.org/gnd/11873492X.json",
+   "archive_url": null,
+   "catalog_id": "GND 11873492X",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（lobid.org 為官方鏡像）"
+  },
+  "lemo-nicholas": {
+   "title": "Nikolaus II. 1868-1918（LeMO Biografie）",
+   "authors": [
+    "Gabriel Eikenberg"
+   ],
+   "publisher": "Deutsches Historisches Museum（LeMO）",
+   "published_text": "LeMO Lebendiges Museum Online，人物傳記（Stand: 14. September 2014）",
+   "url": "https://www.dhm.de/lemo/biografie/nikolaus-ii",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY NC SA 4.0",
+   "grade": "B",
+   "gradeBasis": "德國歷史博物館（DHM）機構傳記，具名作者"
+  },
+  "prlib-pdf": {
+   "title": "155 лет со дня рождения российского императора Николая II（電子展覽）",
+   "authors": [],
+   "publisher": "Президентская библиотека имени Б. Н. Ельцина",
+   "published_text": "總統圖書館電子展覽（依館藏編製）",
+   "url": "https://www.prlib.ru/sites/default/files/u535/155_let_so_dnya_rozhdeniya_nikolaya_ii.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "俄羅斯聯邦總統圖書館官方展覽文件（國家級圖書館官方頁）"
+  },
+  "safonov-pdf": {
+   "title": "«Манифест подписан. Передача задержана снятием дубликата». Документальные свидетельства Первой мировой войны",
+   "authors": [
+    "М. М. Сафонов"
+   ],
+   "publisher": "Вестник архивиста（Российский государственный гуманитарный университет）",
+   "published_text": "Вестник архивиста，2015 № 3（期刊論文，依 GARF 等檔案發表）",
+   "url": "https://spbiiran.ru/wp-content/uploads/2024/03/safonov-m-manifesto-signed.-delivery-detained-2015.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者學術期刊論文（檔案學期刊，引用檔案電報）"
+  },
+  "hoover-palm": {
+   "title": "The Document That Ended an Empire",
+   "authors": [
+    "Charles G. Palm"
+   ],
+   "publisher": "Hoover Institution, Stanford University（Hoover Digest 1999 No. 3）",
+   "published_text": "Hoover Digest 1999 No. 3，1999-07-30",
+   "url": "https://www.hoover.org/research/document-ended-empire",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學研究機構（Hoover 檔案館副館長）具名文章"
+  },
+  "prlib-manifesto": {
+   "title": "Подписан манифест «Об усовершенствовании государственного порядка»",
+   "authors": [],
+   "publisher": "Президентская библиотека имени Б. Н. Ельцина",
+   "published_text": "總統圖書館「история России」條目",
+   "url": "https://www.prlib.ru/node/619674",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "俄羅斯聯邦總統圖書館官方頁（國家級圖書館）"
+  },
+  "pravoby-svod": {
+   "title": "Свод основных государственных законов Российской Империи（23 апреля 1906 г.，извлечения）",
+   "authors": [],
+   "publisher": "Национальный правовой Интернет-портал Республики Беларусь（pravo.by）",
+   "published_text": "官方法律門戶「法律史紀念碑」欄，法典摘錄",
+   "url": "https://pravo.by/pravovaya-informatsiya/pomniki-gistoryi-prava-belarusi/kanstytutsyynae-prava-belarusi/akty-rasiyskay-imperyi/svod-osnovnykh-gosudarstvennykh-zakonov-rossiyskoy-imperii/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "白俄羅斯國家法律門戶轉錄的俄羅斯帝國法典摘錄（第三方轉錄本，原件 A 記 B）"
+  },
+  "snl-nikolaj": {
+   "title": "Nikolaj 2.",
+   "authors": [
+    "Åsmund Egge"
+   ],
+   "publisher": "Store norske leksikon（Universitetet i Oslo 名譽教授撰）",
+   "published_text": "Store norske leksikon 條目",
+   "url": "https://snl.no/Nikolaj_2.",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（大學歷史學教授）的機構百科條目"
+  }
+ },
+ "people": [
+  {
+   "key": "de-wilhelm-ii",
+   "bioId": "01a19f15-3574-776f-a3e9-348733e035e7",
+   "name": "Wilhelm II",
+   "nameZh": "威廉二世",
+   "recordIds": [
+    "e7384417-102a-451f-b837-f23b2c9c5fac"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1859-01-27",
+      "end": "1889-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與即位",
+      "en": "Birth and accession"
+     },
+     "body": {
+      "zh-Hant": "威廉二世生於1859年1月27日，是普魯士王子（後來的腓特烈三世皇帝）的第一個孩子。他的左臂在出生時受損，終身短縮、麻痺且畸形。1877年至1879年間，他在波昂大學修讀法學與國家學。1888年父親腓特烈三世去世後，他繼位為德意志皇帝與普魯士國王。",
+      "en": "Wilhelm II was born on 27 January 1859, the first child of the Prussian prince who later became Emperor Friedrich III. His left arm was damaged at birth and remained permanently shortened, paralysed and misshapen. In 1877-79 he studied law and political science at the University of Bonn. After the death of his father Friedrich III in 1888 he succeeded as German Emperor and King of Prussia."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-wilhelm-rec",
+       "locator": "GND dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1859-01-27\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1859",
+       "quote": "1859 27. Januar: Friedrich Wilhelm wird als erstes Kind",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1859",
+       "quote": "Prinzen Friedrich Wilhelm von Preußen, später Kaiser Friedrich III.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 首段",
+       "quote": "sein linker Arm geschädigt und blieb dauerhaft verkürzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 首段",
+       "quote": "verkürzt, gelähmt und mißgeformt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 首段",
+       "quote": "studierte er 1877–79 u. a. Rechts- und Staatswissenschaften an der Univ. Bonn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 首段",
+       "quote": "Nach dem Tod seines Vaters Ks. Friedrichs III.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 首段",
+       "quote": "folgte ihm W. 1888 als Dt. Kaiser und König von Preußen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1890-01-01",
+      "end": "1906-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "俾斯麥去職與外交風波",
+      "en": "Bismarck, Krüger telegram and Tangier"
+     },
+     "body": {
+      "zh-Hant": "1890年，威廉二世解除了首相俾斯麥的職務。1896年致布爾人領袖克魯格的賀電，使德英關係受到嚴重拖累。1905年他前往摩洛哥丹吉爾的訪問，依NDB說法，是聽從外交部、外交界與首相比洛方面的建議。",
+      "en": "In 1890 Wilhelm II dismissed Chancellor Bismarck. The Kruger telegram of 1896, sent to the Boer leader, strained German-British relations considerably. According to the NDB, his demonstrative visit to Tangier in Morocco in 1905 followed suggestions from circles in the Foreign Office, the diplomatic service and Chancellor Bernhard von Bulow."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "den er 1890 entließ",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "Die „Krüger-Depesche“, jenes 1896",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "das die dt. - engl. Beziehungen erheblich belastete",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "Mit seinem demonstrativ inszenierten Besuch in Tanger (Marokko) 1905",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "folgte W. Anregungen aus Kreisen des Auswärtigen Amts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "des Reichskanzlers Bernhard v. Bülow",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1914-07-08"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "每日電訊報事件到大戰前夕",
+      "en": "From the Daily Telegraph affair to July 1914"
+     },
+     "body": {
+      "zh-Hant": "1908年的《每日電訊報》事件，被NDB稱為他統治期間最嚴重的危機，事涉他接受倫敦《每日電訊報》的訪談。1911年第二次摩洛哥危機中，他派砲艦前往摩洛哥。1914年7月6日至7日，他向奧匈保證在戰爭衝突時給予無保留的同盟忠誠。",
+      "en": "The Daily Telegraph affair of 1908 is called by the NDB the most serious crisis of his reign, and involved an interview he gave to the London newspaper. In the Second Moroccan Crisis of 1911 he sent a gunboat to Morocco. On 6-7 July 1914 he assured Austria-Hungary of unrestricted loyalty to the alliance in case of armed conflict."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "Auch die schwerste Krise in seiner Herrschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "Daily Telegraph-Affäre“ 1908",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 外交段",
+       "quote": "In einem Interview mit der Londoner Tageszeitung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1911",
+       "quote": "1911 Zweite Marokkokrise",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1911",
+       "quote": "schickt Wilhelm II. ein Kanonenboot nach Marokko",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1914",
+       "quote": "1914 6./7. Juli",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1914",
+       "quote": "6./7. Juli: Wilhelm II. versichert Österreich-Ungarn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1914",
+       "quote": "uneingeschränkte Bündnisstreue für den Fall kriegerischer Auseinandersetzung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1941-06-04"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大戰、退位與流亡",
+      "en": "War, abdication and exile"
+     },
+     "body": {
+      "zh-Hant": "NDB稱他是陸海軍的最高統帥，但他在大戰期間隱於軍事將領之後。1916年興登堡與魯登道夫進入第三最高陸軍指揮部後，他對軍事指導的影響日漸下降。1918年11月28日他正式退位，此前他已逃往荷蘭；1920年起住在多倫莊園，於1941年6月4日在多倫去世。",
+      "en": "The NDB calls him supreme commander of army and navy, yet during the war he receded behind the generals. After Hindenburg and Ludendorff entered the Third Supreme Army Command in 1916, his influence on the military conduct of the war steadily fell. He formally abdicated on 28 November 1918, having fled to the Netherlands; from 1920 he lived at Haus Doorn, and died there on 4 June 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 戰爭段",
+       "quote": "Als Oberstem Befehlshaber von Heer und Marine",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 戰爭段",
+       "quote": "Vielmehr trat er hinter den Entscheidungen der Generale zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1916",
+       "quote": "Infolge der Berufung Paul von Hindenburgs und Erich Ludendorffs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1916",
+       "quote": "verliert der Kaiser zunehmend Einfluss auf die militärische Kriegführung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 戰爭段",
+       "quote": "Am 28.11.1918 dankte W. offiziell ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-wilhelm",
+       "locator": "Zeittafel 1918",
+       "quote": "10. November: Wilhelm II. flieht aus dem Hauptquartier in Spa in die Niederlande",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 戰爭段",
+       "quote": "seit 1920 in Haus Doorn bei Utrecht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-wilhelm-rec",
+       "locator": "GND dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1941-06-04\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "條首",
+       "quote": "† 4.6.1941 Doorn bei Utrecht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:birthPlace",
+     "gapKind": "conflict",
+     "note": "NDB 條首寫出生地 Berlin，LeMO 寫 Kronprinzenpalais in Berlin，GND（lobid）placeOfBirth 寫 Potsdam，兩份已抓合格來源互相矛盾；本檔正文不寫出生地，待查證",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "條首",
+       "quote": "* 27.1.1859 Berlin",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:supremeCommand",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDB 稱他為陸海軍最高統帥（Oberster Befehlshaber von Heer und Marine），但只在 1914–18 戰爭脈絡中提及，未載就任日（原 positions 以 1914-01-01 為起日不成立）；迄日原以 1918-11-28 正式退位日推得，屬推論。審查自 positions 移出。已查 NDB、LeMO、GND；Bundesarchiv／Reichsgesetzblatt 未取得條文",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-wilhelm",
+       "locator": "Biographie, 戰爭段",
+       "quote": "Als Oberstem Befehlshaber von Heer und Marine",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:reichsgesetzblatt",
+     "gapKind": "not_found",
+     "note": "待查證：Reichsgesetzblatt／Bundesarchiv 的官方公報條文（皇帝職稱）未能從網站取得可抓原文（需 JavaScript／無人物頁）；已查 reichsgesetzblatt.de、MDZ 搜尋、Bundesarchiv 首頁",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:sourceEncyclopedia1914",
+     "gapKind": "not_found",
+     "note": "待查證：1914-1918-online 條目被 Anubis 驗證擋下，未取得",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wilhelm II Deutsches Reich Kaiser（lobid GND 搜尋）",
+     "url": "https://lobid.org/gnd/search?q=Wilhelm+II+Deutsches+Reich+Kaiser&format=json",
+     "result": "found_A",
+     "note": "得 GND 118632892"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118632892 記錄全文",
+     "url": "https://lobid.org/gnd/118632892.json",
+     "result": "found_A",
+     "note": "生卒日；出生地欄寫 Potsdam，與 NDB／LeMO（Berlin）不同，列 conflict gap"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Guilelmus II Germania Imperator（拉丁異寫）",
+     "url": "https://lobid.org/gnd/search?q=Guilelmus+II+Germania+Imperator",
+     "result": "no_result",
+     "note": "無結果"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 首次嘗試 sfz85420",
+     "url": "https://www.deutsche-biographie.de/sfz85420.html",
+     "result": "not_relevant",
+     "note": "抓到的是另一人（Wieland），改用 GND 路徑"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Wilhelm II. NDB（GND 路徑）",
+     "url": "https://www.deutsche-biographie.de/pnd118632892.html",
+     "result": "found_A",
+     "note": "NDB 28 (2024) Kroll 具名條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 站內搜尋 Wilhelm II. Kaiser",
+     "url": "https://www.deutsche-biographie.de/search?name=Wilhelm+II.+Kaiser",
+     "result": "found_A",
+     "note": "僅索引頁，條目已取得"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Wilhelm II.",
+     "url": "https://www.dhm.de/lemo/biografie/wilhelm-ii",
+     "result": "found_B",
+     "note": "DHM 機構傳記"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO 站內搜尋 Wilhelm II.",
+     "url": "https://www.dhm.de/lemo/bestand?q=Wilhelm%20II.",
+     "result": "unrated",
+     "note": "僅搜尋頁"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Wilhelm II German Emperor",
+     "url": "https://encyclopedia.1914-1918-online.net/article/wilhelm_ii_german_emperor",
+     "result": "challenge_page",
+     "note": "Anubis 驗證頁，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Bundesarchiv 首頁／站內查詢 Wilhelm II Kaiser",
+     "url": "https://www.bundesarchiv.de/",
+     "result": "no_result",
+     "note": "只抓到首頁，無人物頁"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Reichstagsprotokolle（BSB）",
+     "url": "https://www.reichstagsprotokolle.de/",
+     "result": "no_result",
+     "note": "首頁，無人物條目"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "Reichsgesetzblatt 1908（MDZ 搜尋）",
+     "url": "https://www.digitale-sammlungen.de/en/search?query=Reichsgesetzblatt+1908",
+     "result": "no_result",
+     "note": "需 JavaScript，無法取文字"
+    },
+    {
+     "step": 13,
+     "sourceType": "treaty_law",
+     "query": "reichsgesetzblatt.de",
+     "url": "https://www.reichsgesetzblatt.de/",
+     "result": "no_result",
+     "note": "首頁，無 1908-1918 皇帝職稱條文"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Guglielmo II",
+     "url": "https://www.treccani.it/enciclopedia/guglielmo-ii-imperatore-di-germania/",
+     "result": "no_result",
+     "note": "被導回首頁"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "NDL 權威檔 Wilhelm II German Emperor",
+     "url": "https://id.ndl.go.jp/auth/ndla/",
+     "result": "no_result",
+     "note": "查詢語法錯誤，無結果"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "VIAF 查詢（Nicholas 同批嘗試）",
+     "url": "https://viaf.org/viaf/search",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋，不繞過"
+    }
+   ]
+  },
+  {
+   "key": "at-franz-joseph-i",
+   "bioId": "01a1b4b5-f9d8-7310-b964-ed7578856680",
+   "name": "Franz Joseph I",
+   "nameZh": "法蘭茲·約瑟夫一世",
+   "recordIds": [
+    "0b6595fc-e50b-4f6b-af6b-73c9c39636da"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1830-08-18",
+      "end": "1848-12-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與繼位",
+      "en": "Birth and accession"
+     },
+     "body": {
+      "zh-Hant": "弗朗茨·約瑟夫生於1830年8月18日，是大公弗朗茨·卡爾之子。1848年12月2日，伯父斐迪南一世遜位，他繼承皇位，成為奧地利皇帝。NDB寫道，他是在維也納革命被鎮壓之後登基的。",
+      "en": "Franz Joseph was born on 18 August 1830, the eldest son of Archduke Franz Karl. On 2 December 1848 his uncle Ferdinand I abdicated and he became Emperor of Austria. The NDB says he ascended the throne after the Vienna revolution had been put down."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-franz-rec",
+       "locator": "GND dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1830-08-18\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1830",
+       "quote": "1830 18. August: Franz Joseph wird als ältester Sohn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1830",
+       "quote": "Sohn des Erzherzogs Franz Karl von Österreich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1848",
+       "quote": "1848 2. Dezember: Nach der Abdankung seines Onkels Kaiser Ferdinand I.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 首段",
+       "quote": "als dieser am 2.12.1848 zu Olmütz abdiziert hatte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 首段",
+       "quote": "nach Niederwerfung der Wiener Revolution",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1859-01-01",
+      "end": "1880-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰敗與二元君主國",
+      "en": "Defeats and the Dual Monarchy"
+     },
+     "body": {
+      "zh-Hant": "1859年奧地利在索爾費里諾戰敗，被迫讓出倫巴底。1866年7月3日，奧地利在柯尼格雷茨戰敗。1867年與匈牙利達成妥協，並於6月8日加冕為匈牙利國王。NDB說他自1867年起以君主立憲的形式統治。1879年奧地利與德意志帝國締結同盟。",
+      "en": "In 1859 Austria lost at Solferino and had to cede Lombardy. On 3 July 1866 Austria was defeated at Koniggratz. In 1867 came the Compromise with Hungary, and on 8 June he was crowned King of Hungary. The NDB says that from 1867 he ruled as a constitutional monarch. In 1879 Austria concluded the Dual Alliance with the German Empire."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1859",
+       "quote": "1859 Die italienische Einigungsbewegung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1859",
+       "quote": "Nach der verlorenen Schlacht bei Solferino muss Österreich die Lombardei abgeben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1866",
+       "quote": "1866 Krieg zwischen Preußen und Österreich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1866",
+       "quote": "3. Juli: Niederlage in der Schlacht bei Königgrätz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1867",
+       "quote": "1867 Ausgleich mit Ungarn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1867",
+       "quote": "8. Juni: Franz Joseph wird zum König von Ungarn gekrönt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 內政段",
+       "quote": "Von 1867 an regierte F. als konstitutioneller Monarch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1879",
+       "quote": "1879 Österreich schließt einen Zweibund mit dem Deutschen Reich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1907-01-26",
+      "end": "1914-07-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "併吞波赫與世界大戰前夕",
+      "en": "Bosnia annexation and the road to war"
+     },
+     "body": {
+      "zh-Hant": "1907年1月26日，他接受帝國議會採行自由而平等選舉權的決議。1908年，奧地利併吞自1878年起由其管理的波士尼亞與赫塞哥維納，使局勢逼近戰爭邊緣。1914年6月28日王位繼承人斐迪南大公遇刺，7月28日他支持對塞爾維亞宣戰。",
+      "en": "On 26 January 1907 he accepted the Reichsrat decision to introduce free and equal suffrage. In 1908 Austria annexed Bosnia and Herzegovina, which it had administered since 1878, bringing the monarchy to the brink of war. On 28 June 1914 the heir to the throne, Archduke Franz Ferdinand, was assassinated, and on 28 July Franz Joseph supported the declaration of war on Serbia."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1907",
+       "quote": "1907 26. Januar",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1907",
+       "quote": "akzeptiert den Beschluss des Reichstags, das freie und gleiche Wahlrecht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1908",
+       "quote": "1908 Die Annexion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1908",
+       "quote": "Die Annexion der seit 1878 unter österreichischer Verwaltung stehenden Länder",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1914",
+       "quote": "1914 28. Juni",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1914",
+       "quote": "28. Juni: Ermordung des österreichischen Thronfolgers Erzherzogs Franz Ferdinand",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1914",
+       "quote": "28. Juli: Franz Joseph unterstützt die Kriegserklärung gegen Serbien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 外交段",
+       "quote": "zur Unterzeichnung des Ultimatums und der Kriegserklärung an Serbien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-07-28",
+      "end": "1916-11-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年與去世",
+      "en": "Final years and death"
+     },
+     "body": {
+      "zh-Hant": "NDB形容他受無與倫比的責任感驅使，專注於處理繁重的日常公務與朝廷儀典。他於1916年11月21日在維也納近郊的美泉宮去世，LeMO稱此為68年統治的終結。",
+      "en": "The NDB describes him as inspired by an unparalleled sense of duty, concentrating on a huge daily workload of files and court ceremony. He died on 21 November 1916 at Schonbrunn near Vienna, which LeMO describes as the end of a 68-year reign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 性格段",
+       "quote": "Von einem beispiellosen Pflicht- und Verantwortungsbewußtsein beseelt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "Biographie, 性格段",
+       "quote": "Aktenstudiums, auf die Konferenzen mit den Ressortministern",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-franz",
+       "locator": "條首",
+       "quote": "† 21.11.1916 Schönbrunn bei Wien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-franz-rec",
+       "locator": "GND dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1916-11-21\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franz",
+       "locator": "Zeittafel 1916",
+       "quote": "21. November: Franz Joseph stirbt nach 68-jähriger Regentschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:oebl",
+     "gapKind": "not_found",
+     "note": "待查證：ÖBL（biographien.ac.at）Franz Joseph I. 條目網址 404、站內搜尋無回傳；Parlament Österreich 人物庫與 ÖNB 搜尋亦無君主條目。已查 NDB、LeMO、GND 取得 3 個合格來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:supremeCommand",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDB 說統帥權（Oberbefehl über die gemeinsame Armee）是皇室最重要的特權之一，但未載起訖日，故不建 positions／roleCandidates；已查 NDB、LeMO、GND",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:austriaForum",
+     "gapKind": "not_found",
+     "note": "Austria-Forum AEIOU 條目無具名作者，屬未評等來源，僅作候選，未用於段落",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Franz Joseph I Österreich Kaiser（lobid GND 搜尋）",
+     "url": "https://lobid.org/gnd/search?q=Franz+Joseph+I+%C3%96sterreich+Kaiser&format=json",
+     "result": "found_A",
+     "note": "GND 118535013"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118535013 記錄全文",
+     "url": "https://lobid.org/gnd/118535013.json",
+     "result": "found_A",
+     "note": "生卒日"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Franciscus Iosephus I（拉丁異寫）",
+     "url": "https://lobid.org/gnd/search?q=Franciscus+Iosephus+I+Austria+Imperator",
+     "result": "no_result",
+     "note": "無結果"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "DNB Linked Data d-nb.info/gnd/118535013",
+     "url": "https://d-nb.info/gnd/118535013/about/lds",
+     "result": "found_A",
+     "note": "同一 GND 的官方 RDF，未另引"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Franz Joseph NDB（sfz56938）",
+     "url": "https://www.deutsche-biographie.de/sfz56938.html",
+     "result": "found_A",
+     "note": "NDB 5 (1961) Hantsch 具名條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 站內搜尋 Franz Joseph Kaiser",
+     "url": "https://www.deutsche-biographie.de/search?name=Franz+Joseph+Kaiser",
+     "result": "found_A",
+     "note": "索引頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "ÖBL biographien.ac.at Franz-Joseph-I_1830_1916.xml",
+     "url": "https://www.biographien.ac.at/oebl/oebl_F/Franz-Joseph-I_1830_1916.xml",
+     "result": "no_result",
+     "note": "HTTP 404；ÖBL 站內搜尋亦無回傳內容"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "ÖBL 站內搜尋 Franz Joseph I.",
+     "url": "https://www.biographien.ac.at/oebl?frames=yes&suchbegriff=Franz+Joseph+I.",
+     "result": "no_result",
+     "note": "空白頁"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Franz Joseph I.",
+     "url": "https://www.dhm.de/lemo/biografie/franz-joseph-i",
+     "result": "found_B",
+     "note": "DHM 機構傳記"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Franz Joseph I",
+     "url": "https://encyclopedia.1914-1918-online.net/article/franz_joseph_i_emperor_of_austria_king_of_hungary",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Francis Joseph",
+     "url": "https://www.britannica.com/biography/Francis-Joseph",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Austria-Forum AEIOU Franz Joseph I.",
+     "url": "https://austria-forum.org/af/AEIOU/Franz_Joseph_I.",
+     "result": "unrated",
+     "note": "無具名作者百科條目，僅可作 gap 候選"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Parlament Österreich 人物搜尋 Franz Joseph",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/",
+     "result": "no_result",
+     "note": "無君主條目（議會人物庫不收皇帝）"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Österreichische Nationalbibliothek 站內搜尋 Franz Joseph I",
+     "url": "https://www.onb.ac.at/suche?q=Franz+Joseph+I",
+     "result": "no_result",
+     "note": "搜尋頁無人物傳記"
+    },
+    {
+     "step": 15,
+     "sourceType": "treaty_law",
+     "query": "ALEX 歷史法規（奧地利）首頁",
+     "url": "https://alex.onb.ac.at/",
+     "result": "no_result",
+     "note": "首頁，未查到 1908–1916 君主職稱條文"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "BnF data Franz Joseph I",
+     "url": "https://data.bnf.fr/en/search?term=Franz+Joseph+I",
+     "result": "no_result",
+     "note": "搜尋頁無可用內容"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Francesco Giuseppe",
+     "url": "https://www.treccani.it/enciclopedia/francesco-giuseppe-i-imperatore-d-austria/",
+     "result": "no_result",
+     "note": "被導回首頁"
+    }
+   ]
+  },
+  {
+   "key": "ru-nicholas-ii",
+   "bioId": "01a1b4b5-f9bc-7f2f-90ba-f2af428ba89c",
+   "name": "Nicholas II",
+   "nameZh": "尼古拉二世",
+   "recordIds": [
+    "00f7b9cc-fc1f-4dd4-a6bf-bc6010940e72"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1868-05-18",
+      "end": "1897-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、即位與加冕",
+      "en": "Birth, accession and coronation"
+     },
+     "body": {
+      "zh-Hant": "尼古拉二世於1868年5月18日（舊曆5月6日）生於皇村，是亞歷山大三世的長子。1894年11月1日父親去世後他繼位為沙皇，同年11月26日與黑森-達姆施塔特的亞歷山德拉公主成婚。1896年的加冕慶典上，霍登卡廣場發生踩踏，近1400人死亡。",
+      "en": "Nicholas II was born on 18 May 1868 (6 May old style) at Tsarskoye Selo, the eldest son of Alexander III. After his father died on 1 November 1894 he became tsar, and on 26 November he married Princess Alexandra of Hesse-Darmstadt. At the 1896 coronation festivities a crush on Khodynka field killed nearly 1,400 people."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-nicholas-rec",
+       "locator": "GND dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1868-05-18\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽首段",
+       "quote": "родился 6 (18) мая 1868 г. в Царском Селе",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽首段",
+       "quote": "старший сын императора Александра III",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1894",
+       "quote": "1894 1. November: Nach dem Tod des Vaters wird der Kronprinz als Nikolaus II.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1894",
+       "quote": "26. November: Heirat mit der Prinzessin Alexandra von Hessen-Darmstadt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，加冕段",
+       "quote": "Коронация состоялась в 1896 г.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，加冕段",
+       "quote": "В давке погибли почти 1400 человек",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1904-02-09",
+      "end": "1907-06-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "日俄戰爭與1905年革命",
+      "en": "Russo-Japanese War and the 1905 revolution"
+     },
+     "body": {
+      "zh-Hant": "1904年2月9日日俄戰爭爆發。1905年1月9日（舊曆）冬宮前的遊行遭軍隊開火，總統圖書館展覽稱血腥星期日約200人死亡，Store norske leksikon則寫官方死亡數為92人。同年10月17日（舊曆，新曆10月30日），他簽署《關於完善國家秩序》詔書（十月詔書），引入基本權利與杜馬。1906年他在第一屆杜馬召開前頒布國家根本法（LeMO記為4月25日，法典彙編轉錄本記新版為4月23日，兩者不一致）；1907年6月3日解散新選的杜馬，並縮限選舉權。",
+      "en": "The Russo-Japanese War began on 9 February 1904. On 9 (22) January 1905 troops fired on the march to the Winter Palace; the Presidential Library exhibition says Bloody Sunday killed about 200 people, while Store norske leksikon gives an official toll of 92. On 17 October (30 October new style) 1905 he signed the manifesto On the Improvement of the State Order (the October Manifesto), introducing basic rights and the Duma. Before the first Duma convened in 1906 he issued a Fundamental Law (LeMO gives 25 April; a transcription of the code compilation gives the new edition as 23 April, so the two disagree); on 3 June 1907 he dissolved the newly elected Duma and restricted the franchise."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1904",
+       "quote": "1904 9. Februar: Beginn des Russisch-Japanischen Krieges",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，1905 段",
+       "quote": "В 1905 г. воскресным утром 9 (22) января",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，1905 段",
+       "quote": "Жертвами Кровавого воскресенья стали около 200 человек",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1905",
+       "quote": "17. Oktober: Die revolutionären Unruhen veranlassen Nikolaus II.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1905",
+       "quote": "Grundrechte und eine gesetzgebende Volksvertretung (Duma)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1906",
+       "quote": "1906 25. April: Vor dem Zusammentritt der ersten gewählten Duma",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1906",
+       "quote": "verfügt Nikolaus II. ein Staatsgrundgesetz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1907",
+       "quote": "1907 3. Juni: Der Zar löst die neugewählte Duma",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1907",
+       "quote": "schränkt das Wahlrecht zugunsten besitzender Schichten ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-nikolaj",
+       "locator": "Nikolaj 2.，血腥星期日",
+       "quote": "Offisielt ble 92 mennesker drept og flere hundre såret",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-manifesto",
+       "locator": "條目首段",
+       "quote": "17 (30) октября 1905 г. император Николай II подписал Высочайший Манифест",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-manifesto",
+       "locator": "條目首段",
+       "quote": "«Об усовершенствовании государственного порядка»",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pravoby-svod",
+       "locator": "標題",
+       "quote": "В новой редакции от 23 апреля 1906 года",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-07-30",
+      "end": "1915-09-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參戰與親任最高統帥",
+      "en": "Entering the war and taking supreme command"
+     },
+     "body": {
+      "zh-Hant": "1914年7月30日，奧匈對塞爾維亞宣戰後，尼古拉二世下令全面動員。1915年9月5日，他接掌全軍最高指揮權。總統圖書館的展覽文字稱他是被迫接下最高統帥之職，卻未能使局勢穩定。",
+      "en": "On 30 July 1914, after the Austro-Hungarian declaration of war on Serbia, Nicholas II ordered general mobilisation of the armed forces. On 5 September 1915 he took over supreme command of the armed forces. The Presidential Library exhibition says he was compelled to assume the supreme command, but that this did not stabilise the situation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1914",
+       "quote": "1914 30. Juli",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1914",
+       "quote": "gibt Nikolaus II. den Befehl zur Gesamtmobilmachung der Streitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1915",
+       "quote": "1915 5. September: Nikolaus II. übernimmt den Oberbefehl über die Streitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，戰爭段",
+       "quote": "Николай II вынужден был принять верховное главнокомандование армией на себя",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，戰爭段",
+       "quote": "но это не привело к стабилизации положения",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1917-03-15",
+      "end": "1918-07-17"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "退位與被害",
+      "en": "Abdication and death"
+     },
+     "body": {
+      "zh-Hant": "1917年3月15日，尼古拉二世在將領壓力下讓位給弟弟米哈伊爾大公，但米哈伊爾拒絕接受皇位。3月21日他被拘押。Hoover研究所檔案館的文章說，退位詔書由最高統帥部外交辦公廳主任巴西利負責起草，尼古拉於3月2日晚間11時50分簽署，3月4日與米哈伊爾放棄皇位的消息一併公布（該文曆法未註明）。1918年7月16日至17日，他與家人在葉卡捷琳堡被布爾什維克殺害；GND記載他的去世日為1918年7月17日。",
+      "en": "On 15 March 1917, under pressure from the generals, Nicholas II abdicated in favour of his brother Grand Duke Michael, who however refused the crown. On 21 March he was taken into custody. A Hoover Institution Archives article says the abdication manifesto was drafted by Basily, head of the diplomatic chancellery at headquarters; Nicholas signed it at 11:50 p.m. on 2 March, and it was made public on 4 March together with Michael's renunciation (the article does not state the calendar). On 16-17 July 1918 he and his family were murdered by Bolsheviks in Yekaterinburg; the GND records his date of death as 17 July 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1917",
+       "quote": "1917 15. März: Auf Druck der Generalität dankt Nikolaus II. zugunsten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1917",
+       "quote": "Dieser weist jedoch die Krone zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1917",
+       "quote": "21. März: Nikolaus II. wird in Haft genommen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1918",
+       "quote": "16./17. Juli: Nikolaus II. wird zusammen mit seiner Familie in Jekaterinburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1918",
+       "quote": "von Bolschewisten ermordet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-nicholas-rec",
+       "locator": "GND dateOfDeath",
+       "quote": "\"dateOfDeath\" : [ \"1918-07-17\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-palm",
+       "locator": "Hoover Digest 1999 No.3",
+       "quote": "Basily, chief of the diplomatic chancellory",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-palm",
+       "locator": "Hoover Digest 1999 No.3",
+       "quote": "was assigned the task of preparing the document",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-palm",
+       "locator": "Hoover Digest 1999 No.3",
+       "quote": "he signed the document at 11:50 p.m. on March 2",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-palm",
+       "locator": "Hoover Digest 1999 No.3",
+       "quote": "were made public simultaneously on March 4",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "nicholas-supreme-commander-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "俄羅斯帝國軍隊",
+      "en": "Armed Forces of the Russian Empire"
+     },
+     "title": {
+      "orig": "Oberbefehl über die Streitkräfte (верховное главнокомандование)",
+      "zh-Hant": "全軍最高統帥",
+      "en": "Supreme Commander of the Armed Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-09-05",
+      "end": "1917-03-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1915",
+       "quote": "1915 5. September: Nikolaus II. übernimmt den Oberbefehl über die Streitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-pdf",
+       "locator": "展覽，戰爭段",
+       "quote": "Николай II вынужден был принять верховное главнокомандование армией на себя",
+       "quoteLang": "ru",
+       "evidenceNote": "職位等級依引文明寫",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "safonov-pdf",
+       "locator": "電報引文，p.21",
+       "quote": "Данилов в 1.00 3 марта послал официальную телеграмму",
+       "quoteLang": "ru",
+       "evidenceNote": "電報發出時刻（舊曆3月3日凌晨1時）時詔令已簽署，即任命接任者在舊曆3月2日夜；換算新曆為3月15日，與 LeMO 退位日一致（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "safonov-pdf",
+       "locator": "電報引文，p.21",
+       "quote": "Его величеством подписаны указы Правительствующему сенату",
+       "quoteLang": "ru",
+       "evidenceNote": "依下一任（接任者）任命日推得（推論）：來源只寫尼古拉簽署任命大公尼古拉·尼古拉耶維奇為最高統帥的詔令、隨後簽署退位文書，未直寫卸任統帥日；迄日取同夜簽署的退位日（LeMO 15. März，曆法未註明）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "safonov-pdf",
+       "locator": "電報引文，p.21",
+       "quote": "верховным главнокомандующим... великому князю Николаю Николаевичу",
+       "quoteLang": "ru",
+       "evidenceNote": "依下一任（接任者）任命日推得（推論）：來源只寫尼古拉簽署任命接任最高統帥的詔令，未直寫卸任統帥日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "safonov-pdf",
+       "locator": "電報引文，p.21",
+       "quote": "Государь император изволил затем подписать акт отречения от престола",
+       "quoteLang": "ru",
+       "evidenceNote": "任命詔令先於退位文書簽署；退位日見 LeMO",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-nicholas",
+       "locator": "Zeittafel 1917",
+       "quote": "1917 15. März: Auf Druck der Generalität dankt Nikolaus II. zugunsten",
+       "quoteLang": "de",
+       "evidenceNote": "依下一任（接任者）任命與退位同夜簽署推得（推論）；LeMO 此日期曆法未註明",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-palm",
+       "locator": "Hoover Digest 1999 No.3",
+       "quote": "he signed the document at 11:50 p.m. on March 2",
+       "quoteLang": "en",
+       "evidenceNote": "退位文書簽署時刻；與接任者任命詔令同夜",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "R4 類別（引文明寫「Oberbefehl über die Streitkräfte」）但 regimeId 不連庫無法確認政權在系統中，無法證明 R4②，留 positions",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:bigenc",
+     "gapKind": "not_found",
+     "note": "待查證：Большая российская энциклопедия（bigenc.ru）HTTP 401；Президентская библиотека 網頁為驗證頁（改用其公開 PDF 展覽取得原文）；ГАРФ 搜尋 404；1914-1918-online 被 Anubis 擋；加強重跑：prlib.ru 英文頁（node/619674、619096、news/1292269）仍為安全驗證頁，改取俄文版 node/619674 可抓（A）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:ndbEntry",
+     "gapKind": "not_found",
+     "note": "待查證：Deutsche Biographie 的 Nikolaus II. 頁只有 GND 索引，無 NDB 條目文字，不作出處",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:nicholas-supreme-commander-1915",
+     "gapKind": "not_found",
+     "note": "待查證：迄日為推論；已查 LeMO、總統圖書館展覽 PDF、GND、Safonov（Вестник архивиста 2015）、Hoover Digest、1914-1918-online（Anubis 擋）、Britannica（403）。來源只寫尼古拉簽署任命大公尼古拉·尼古拉耶維奇接任最高統帥的詔令與退位文書，皆未直寫卸任最高統帥日；迄日 1917-03-15 取退位日（曆法與 Hoover 的3月2日對照未定），待 Высочайший приказ／Собрание узаконений 原文核對",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:calendar",
+     "gapKind": "not_found",
+     "note": "待查證：十月詔書 1905-10-17 已由總統圖書館條目確認為舊曆（17 (30) октября）；LeMO 年表 1906-04-25、1907-06-03 仍未註曆法，段落 2 的 1907-06-03 照 LeMO 原文寫；Hoover 文章的3月2日／4日亦未註曆法",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:fundamentalLawDate",
+     "gapKind": "conflict",
+     "note": "LeMO 年表寫國家根本法頒布於 1906-04-25；pravo.by 刊載的法典彙編標題為「新版 1906 年 4 月 23 日」（未註曆法；第三方轉錄本，記 B），兩份已抓來源不一致，段落 2 兩者並陳，待以 Собрание узаконений 核對",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Nikolaus II. Russland Zar（lobid GND 搜尋）",
+     "url": "https://lobid.org/gnd/search?q=Nikolaus+II+Russland+Zar&format=json",
+     "result": "found_A",
+     "note": "GND 11873492X"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 11873492X 記錄全文",
+     "url": "https://lobid.org/gnd/11873492X.json",
+     "result": "found_A",
+     "note": "生卒日"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Nikolaj II Zar Russland 1868（異寫）",
+     "url": "https://lobid.org/gnd/search?q=Nikolaj+II+Zar+Russland+1868",
+     "result": "found_A",
+     "note": "同一記錄"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "LoC 名稱權威 Nicholas II Emperor of Russia",
+     "url": "https://id.loc.gov/search/?q=Nicholas+II+Emperor+of+Russia",
+     "result": "found_B",
+     "note": "搜尋頁，未引用"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "VIAF Nicholas II",
+     "url": "https://viaf.org/viaf/search",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Nikolaus II. Deutsche Biographie（sfz72044）",
+     "url": "https://www.deutsche-biographie.de/sfz72044.html",
+     "result": "unrated",
+     "note": "僅 GND 索引頁，無 NDB 條目文字，不作出處"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Nikolaus II.",
+     "url": "https://www.dhm.de/lemo/biografie/nikolaus-ii",
+     "result": "found_B",
+     "note": "DHM 機構傳記"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Nicholas II",
+     "url": "https://encyclopedia.1914-1918-online.net/article/nicholas_ii_emperor_of_russia",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Nicholas II",
+     "url": "https://www.britannica.com/biography/Nicholas-II-tsar-of-Russia",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия Николай II（bigenc.ru 搜尋）",
+     "url": "https://bigenc.ru/search?q=%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9+II",
+     "result": "blocked_403",
+     "note": "HTTP 401，不繞過；條目網址亦 401"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Nicola II",
+     "url": "https://www.treccani.it/enciclopedia/nicola-ii-imperatore-di-russia/",
+     "result": "no_result",
+     "note": "被導回首頁"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Президентская библиотека 條目 node/443143",
+     "url": "https://www.prlib.ru/en/node/443143",
+     "result": "challenge_page",
+     "note": "Security Check 驗證頁，不繞過"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Президентская библиотека 站內搜尋 Николай II",
+     "url": "https://www.prlib.ru/search?search_api_fulltext=%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9+II",
+     "result": "challenge_page",
+     "note": "驗證頁，不繞過"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Президентская библиотека 展覽 PDF 155 лет со дня рождения Николая II",
+     "url": "https://www.prlib.ru/sites/default/files/u535/155_let_so_dnya_rozhdeniya_nikolaya_ii.pdf",
+     "result": "found_A",
+     "note": "直接 PDF 可取得，轉文字後引用"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "ГАРФ（statearchive.ru）搜尋 Николай II",
+     "url": "https://statearchive.ru/search?q=%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B9+II",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "Росархив（rusarchives.ru）搜尋 Николай II",
+     "url": "https://rusarchives.ru/search",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Николай II Ставка Верховный главнокомандующий 1915 по 1917 Высочайший приказ 23 августа 1915",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到 приказ 原文；得 Parshin／Raemsky 等論文線索（WebSearch，ru）"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Nicholas II biography Library of Congress OR Hessian biography OR Europeana abdication 1917 supreme commander",
+     "url": null,
+     "result": "not_relevant",
+     "note": "無 LoC／Hessen／Europeana 條目（WebSearch，en）"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Nikolaus II. Zar Abdankung Oberbefehl 1917 Mogilew Biografie",
+     "url": null,
+     "result": "found_B",
+     "note": "LeMO 已用；另得 Lavrinovich 論文線索（WebSearch，de）"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Николай II прощальный приказ армии 8 марта 1917 Могилёв Ставка оставил пост Верховного главнокомандующего",
+     "url": null,
+     "result": "no_result",
+     "note": "未見卸任最高統帥日；得 Safonov 論文線索（WebSearch，ru）"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Николай II ГАРФ фонд 601 манифест отречение 2 марта 1917 Псков",
+     "url": null,
+     "result": "no_result",
+     "note": "得 SNAC 說明 ф.601、Hoover、Safonov（WebSearch，ru）"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Nicolaus II Zar Russland Treccani OR Historisches Lexikon OR Svenskt biografiskt OR Dansk Biografisk",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Treccani／SBL／DBL 條目（WebSearch，de）"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "treaty_law",
+     "query": "Манифест 17 октября 1905 Николай II текст Собрание узаконений Государственная дума история",
+     "url": null,
+     "result": "found_A",
+     "note": "得 prlib 條目（俄文版可抓）（WebSearch，ru）"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Николай II Александрович император биография Государственный исторический музей OR Эрмитаж OR Президентская библиотека",
+     "url": null,
+     "result": "no_result",
+     "note": "無 ГИМ／Эрмитаж／prlib 傳記（WebSearch，ru）"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "treaty_law",
+     "query": "Основные государственные законы 23 апреля 1906 Николай II Первая Государственная дума 27 апреля",
+     "url": null,
+     "result": "found_A",
+     "note": "得 pravo.by 法典摘錄（WebSearch，ru）"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Nicholas II tsar loc.gov OR Library of Congress Romanov exhibition abdication March 1917 supreme command Stavka",
+     "url": null,
+     "result": "no_result",
+     "note": "無 LoC 展覽頁（WebSearch，en）"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Nicola II imperatore di Russia Treccani Enciclopedia biografia 1915 comando supremo abdicazione",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Treccani 條目（WebSearch，it）"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Nikolai II keisari Suomen suuriruhtinas Kansallisbiografia OR Uppslagsverket Finland",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Kansallisbiografia 條目（WebSearch，fi）"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Nikolaj 2. Russland tsar store norske leksikon OR lex.dk OR nbl.snl.no",
+     "url": null,
+     "result": "found_B",
+     "note": "得 snl.no（Åsmund Egge）、lex.dk（WebSearch，no）"
+    },
+    {
+     "step": 30,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Николай II Верховный главнокомандующий приказ по армии и флоту 1915 текст",
+     "url": null,
+     "result": "no_result",
+     "note": "未見 приказ 原文（WebSearch，ru）"
+    },
+    {
+     "step": 31,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Mikołaj II car Rosji Polski Słownik Biograficzny OR Encyklopedia PWN abdykacja",
+     "url": null,
+     "result": "no_result",
+     "note": "無 PSB／PWN 條目（WebSearch，pl）"
+    },
+    {
+     "step": 32,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "curl 抓取：Safonov 論文 PDF",
+     "url": "https://spbiiran.ru/wp-content/uploads/2024/03/safonov-m-manifesto-signed.-delivery-detained-2015.pdf",
+     "result": "found_B",
+     "note": "pdftotext；採電報引文（任命接任最高統帥的詔令）"
+    },
+    {
+     "step": 33,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "curl 抓取：Hoover Digest, Palm",
+     "url": "https://www.hoover.org/research/document-ended-empire",
+     "result": "found_B",
+     "note": "採退位詔書簽署時刻與公布日"
+    },
+    {
+     "step": 34,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "curl 抓取：prlib 俄文條目 十月詔書",
+     "url": "https://www.prlib.ru/node/619674",
+     "result": "found_A",
+     "note": "採 17 (30) октября 1905 簽署"
+    },
+    {
+     "step": 35,
+     "round": "retry",
+     "sourceType": "treaty_law",
+     "query": "curl 抓取：pravo.by 根本法彙編",
+     "url": "https://pravo.by/pravovaya-informatsiya/pomniki-gistoryi-prava-belarusi/kanstytutsyynae-prava-belarusi/akty-rasiyskay-imperyi/svod-osnovnykh-gosudarstvennykh-zakonov-rossiyskoy-imperii/",
+     "result": "found_A",
+     "note": "採「新版 1906-04-23」標題"
+    },
+    {
+     "step": 36,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "curl 抓取：SNL Nikolaj 2.",
+     "url": "https://snl.no/Nikolaj_2",
+     "result": "found_B",
+     "note": "採血腥星期日官方死亡數"
+    },
+    {
+     "step": 37,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "curl 抓取：1914-1918-online 最高統帥部",
+     "url": "https://encyclopedia.1914-1918-online.net/article/general-headquarters-russian-empire/",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過"
+    },
+    {
+     "step": 38,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "curl 抓取：Britannica 退位條",
+     "url": "https://www.britannica.com/biography/Nicholas-II-tsar-of-Russia/Abdication-and-death",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 39,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "curl 抓取：prlib 英文頁",
+     "url": "https://www.prlib.ru/en/node/619674",
+     "result": "challenge_page",
+     "note": "安全驗證，不繞過"
+    },
+    {
+     "step": 40,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "curl 抓取：habsburger.net Nikolaus II（Judith Fritz）",
+     "url": "https://ww1.habsburger.net/en/node/5306",
+     "result": "found_B",
+     "note": "只寫「被迫退位」，無日期，未引用"
+    },
+    {
+     "step": 41,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "curl 抓取：Parshin 論文 PDF",
+     "url": "https://ptsj.bmstu.ru/articles/440/440.pdf",
+     "result": "not_relevant",
+     "note": "無卸任日，未引用"
+    },
+    {
+     "step": 42,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "curl 抓取：Raemsky 論文 PDF",
+     "url": "https://rep.vsu.by/bitstream/123456789/44005/1/23-27.pdf",
+     "result": "not_relevant",
+     "note": "無卸任日，未引用"
+    },
+    {
+     "step": 43,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "curl 抓取：KulturNav",
+     "url": "https://kulturnav.org/f670f223-9913-4b9f-8dd5-1d3db4155f0e",
+     "result": "blocked_403",
+     "note": "Cloudflare，不繞過"
+    }
+   ]
+  }
+ ]
+}

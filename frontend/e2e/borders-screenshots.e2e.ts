@@ -53,6 +53,7 @@ test('截圖：展開的圖例（主權檢視只留國界說明）', async ({ pa
   const canvas = page.getByTestId('map-canvas');
   await expect(canvas).toHaveAttribute('data-map-ready', 'true');
   await expect.poll(async () => Number((await canvas.getAttribute('data-rendered-sovereignty')) ?? 0)).toBeGreaterThan(5);
+  await page.getByTestId('legend-expand').click(); // §10-3：圖例預設關閉
   await expect(page.getByTestId('legend')).toHaveAttribute('data-state', 'open');
   await page.waitForTimeout(1000);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-legend-1939-10-23.png` });
@@ -137,25 +138,26 @@ for (const [date, focus] of [
   });
 }
 
-// 時間軸 1937 以前淡底的「資料不保證完整」標籤：蓋在戰區軌道上、不被軌道線穿過（Tai 2026-11-01）
-test('時間軸：1937 以前「資料不保證完整」標籤在軌道之上、可讀', async ({ page }) => {
+// 方案 A：1937 以前「資料不保證完整」改為日期旁的 ⓘ（可聚焦、有說明文字），首次造訪顯示一次 toast，地圖上不再有提示框
+test('時間軸：1937 以前日期旁顯示 ⓘ、首次造訪 toast 一次', async ({ page }) => {
+  await page.goto('/?date=1940-07-15');
+  await page.evaluate(() => localStorage.removeItem('wl.incompleteToastSeen'));
   await page.goto('/?date=1913-01-01&axis=sovereignty');
-  const label = page.getByTestId('timeline-incomplete-label');
-  await expect(label).toBeVisible();
-  const topmost = await label.evaluate((el) => {
-    // 標籤本身不吃滑鼠（pointer-events: none），量繪製順序時暫時打開
-    (el as HTMLElement).style.pointerEvents = 'auto';
-    (el.parentElement as HTMLElement).style.pointerEvents = 'auto';
-    const r = el.getBoundingClientRect();
-    const pts = [[0.5, 0.5], [0.15, 0.5], [0.85, 0.5], [0.5, 0.2], [0.5, 0.8]];
-    return pts.every(([fx, fy]) => {
-      const hit = document.elementFromPoint(r.left + r.width * fx, r.top + r.height * fy);
-      return hit === el || el.contains(hit);
-    });
-  });
-  expect(topmost).toBe(true);
-  const bg = await label.evaluate((el) => getComputedStyle(el).backgroundColor);
-  expect(bg).not.toMatch(/rgba\(.*,\s*0\)$|transparent/);
+  const info = page.getByTestId('timeline-incomplete-info');
+  await expect(info).toBeVisible();
+  await expect(info).toHaveAttribute('aria-label', '本時段資料不保證完整');
+  const ib = await info.boundingBox();
+  const db = await page.getByTestId('timeline-date-button').boundingBox();
+  expect(ib!.x).toBeGreaterThanOrEqual(db!.x + db!.width - 1);
+  expect(ib!.x - (db!.x + db!.width)).toBeLessThan(24);
+  await expect(page.getByText('1937 年 7 月以前的資料不保證完整').first()).toBeVisible({ timeout: 30_000 });
+  await expect(page.getByTestId('map-incomplete-period-hint')).toHaveCount(0);
+  await page.goto('/?date=1920-06-15&axis=sovereignty');
+  await expect(page.getByTestId('timeline-incomplete-info')).toBeVisible();
+  await page.waitForTimeout(1500);
+  await expect(page.getByText('1937 年 7 月以前的資料不保證完整')).toHaveCount(0);
+  await page.goto('/?date=1940-07-15&axis=sovereignty');
+  await expect(page.getByTestId('timeline-incomplete-info')).toHaveCount(0);
 });
 
 // WW1 第二批（1914-08～1918-11-11）：宣戰與參戰、佔領區、布列斯特、停戰；點選聚焦政權後才顯示該政權的衝突雙劍

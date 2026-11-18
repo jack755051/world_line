@@ -30,3 +30,31 @@ Thumbs.db
 
 # 本機 seed 寫入的 id 對照（只對應本機資料庫）
 data/seed/**/sent-ids.json
+data/seed/interwar/russia-asia-1908-1937/russia-asia-derived.geojson
+data/seed/interwar/russia-asia-1908-1937/build/done.pkl
+test-results/
+
+# 正式環境設定與資料（.env.prod 含機密；restore/、tiles/ 是正式機的 dump 與圖磚目錄）
+.env.prod
+/restore/
+/tiles/
+*.dump
+
+# 本機工作區（Claude Code 批次輸出、log、快照、pid）；已追蹤的 .dev 檔不受影響。
+# .dev 目錄本身不忽略，才能把交接檔放進來；其餘內容仍忽略。
+.dev/*
+!.dev/b3v3/
+.dev/b3v3/**
+!.dev/b3v3/HANDOFF.md
+__pycache__/
+*.pyc
+# 本機寫庫 id 對照與寫庫過程檔（只對應本機資料庫）
+data/seed/**/sent*.5062.json
+data/seed/**/*.dry.sql
+data/seed/**/*.commit.sql
+data/seed/**/send.log
+data/seed/leaders/b3-trial/fix12/apply.txt
+# B3 v3 單人研究中間檔（合併進 research.json 後不必進版控）
+data/seed/leaders/b3-trial/full/v3/batch*/people/
+# 戰役原始圖檔不進版控，只留 SHA256SUMS.txt
+data/seed/battles/*/maps/*.jpg

@@ -1,0 +1,70 @@
+{
+ "batch": "001",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 4,
+  "editedSentences": 1,
+  "spotRefetched": 2,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "de-hitler",
+   "bioId": "01a19f15-35f4-7d9a-847a-aeccc98305ec",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 17,
+   "changes": [
+    "sources.ndb-hitler.title 作者名 Joseph Fest 更正為 Joachim Fest（原文 Autor/in: Fest, Joachim）",
+    "第3段「總統選舉中對上興登堡」子句原引文未含興登堡／總統選舉，自已抓 NDB 原文補一筆引文「Reichspräsidenten von Hindenburg , im Kampf um die Präsidentschaft anzutreten」",
+    "gap field:obersterGerichtsherr1942 不是職位，note 去掉「缺迄日」字樣以免與任期 gap 混淆",
+    "重抓 NDB（deutsche-biographie.de gnd118551655）比對：Lebenslauf 職位列逐字相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "su-stalin",
+   "bioId": "01a1b492-3efd-7d05-8a70-3f38fdf9d599",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 3,
+   "gaps": 7,
+   "searchLogSteps": 20,
+   "changes": [
+    "民族事務人民委員迄日 1924-01-01 改為 null＋「待查證：缺迄日」gap：LeMO「1917-1923」是條目年代標題，引文只寫 zunächst（起初）任此職",
+    "第2段 period.end 1923-01-01 改 1924-01-01（內容寫到1923年，Q3）",
+    "第2段「參與人事決定」「經營成黨內權力的關鍵」兩子句原無引文支撐，自已抓 LeMO 原文補兩筆引文",
+    "第4段「確立了蘇聯的戰後地位」超出原文，改寫為「他的擴張性權力企圖得以貫徹」並補 LeMO 引文",
+    "重抓 LeMO（dhm.de/lemo/biografie/josef-stalin）比對：檔案與原文快取一致",
+    "check_min 仍未達：5 筆職位／黨職缺迄日已標待查證；搜尋量達加強規格，不退回"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "verify.py gap target 只收 position:，但 check_min.py 對 roleCandidates 找 role:<key>；研究者以 position:<key> 標角色缺迄日，check_min 因而把 3 筆黨職候選算 termsMissing 而非 termsFlagged（不影響判定，兩者皆未達）。需主 session 決定統一格式",
+  "regimeId 不連庫一律 null，R4／R3 類全部 R6（roleGap regime）",
+  "史達林指定 A 級來源（prlib、bigenc、rgaspi、LoC）皆被擋未繞過；A 級僅 GND",
+  "國家國防委員會主席是否算 de_facto_leader 待主管判斷（t14Ambiguous）；其迄日依委員會解散日推得，evidenceNote 已註明"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

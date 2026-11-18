@@ -1,0 +1,89 @@
+{
+  "batch": "032",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {
+    "returned": 1,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 0,
+    "deletedCitations": 0,
+    "addedCitations": 4,
+    "editedSentences": 1,
+    "spotRefetched": 4,
+    "searchLogShort": 1
+  },
+  "people": [
+    {
+      "key": "bo-siles",
+      "bioId": "01a1b4b5-f9e5-791f-8458-f778b7c24d18",
+      "verdict": "returned",
+      "paragraphs": 0,
+      "positions": 0,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 20,
+      "changes": [
+        "未改內容；searchLog step 5 的 LoC 檢索頁結果標 found_B 不當（只取得身分與異寫 Siles, Mariano Hernando，無生平），記入 issues 未改檔",
+        "原文目錄另有 bne-siles.html（BNE Cloudflare 封鎖頁）未寫進 searchLog"
+      ],
+      "returnedReasons": [
+        "最低嘗試未達：缺原文語言（西班牙文）查詢——所有 WebSearch（step 10、18–20）皆因額度用盡未執行，實際只有猜測網址與站首頁抓取；0 段",
+        "建議下一個具體來源：西班牙文 WebSearch「Hernando Siles Reyes presidente de Bolivia」；Vicepresidencia／Biblioteca y Archivo Histórico de la Asamblea Legislativa Plurinacional 的歷任總統頁；Encyclopedia of Latin American History and Culture 條目（以 encyclopedia.com 站內搜尋 \"Siles, Hernando\" 取正確網址）；LoC 權威檔 n85329094 的 MARC／JSON 版（id.loc.gov/authorities/names/n85329094.json）；Archivo y Biblioteca Nacionales de Bolivia"
+      ]
+    },
+    {
+      "key": "ar-ortiz",
+      "bioId": "57e5fc1f-0a7e-4d8b-b39f-bbb00a42e06e",
+      "verdict": "pass_with_changes",
+      "paragraphs": 4,
+      "positions": 3,
+      "roleCandidates": 0,
+      "gaps": 3,
+      "searchLogSteps": 8,
+      "changes": [
+        "第2段刪「在1920年代」子句（原 quote 未含 1920s，僅支撐「反個人主義激進派主要人物之一」）",
+        "第3段補引文 enc-lac-ortiz「Before substantive changes were introduced」支撐「實質改革未及推行」",
+        "第4段 period 迄點 1942-06-28 改 1942-06-27（依段內最後一筆日期，與第3段一致）",
+        "抽查重抓 casarosada-ortiz、casarosada-alvear，內容一致"
+      ],
+      "returnedReasons": []
+    },
+    {
+      "key": "gb-asquith",
+      "bioId": "01a19f15-337e-77b7-a16d-e2ab31902ac5",
+      "verdict": "pass_with_changes",
+      "paragraphs": 5,
+      "positions": 4,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 10,
+      "changes": [
+        "第1段 period 原為 1886-07-01～null，改 1876-01-01（year）～1887-01-01（year），涵蓋段內 1876 取得律師資格至 1886 當選",
+        "第2段補引文「which helped pay for another innovation」支撐「用以支付」；第2段與財政大臣職位的 GOV.UK 引文「became Chancellor…」不含日期，datePrecision 改 null",
+        "第3段「he became Prime Minister…」引文 datePrecision 改 null；「unwisely rejected his Chancellor」延長為「…David Lloyd George」以支撐勞合·喬治；補引文「He introduced the Parliament Bill, which stripped the Lords of any veto」",
+        "第5段補引文「elevated to the House of Lords」支撐「進入上議院」",
+        "帕斯利議員移除 partyPostAmbiguous（來源只寫 by-election 未寫黨籍，依規則直接不算黨職），gap note 同步修正",
+        "抽查重抓 Hansard 人物頁，內容一致"
+      ],
+      "returnedReasons": []
+    }
+  ],
+  "issues": [
+    "研究者 WebSearch 額度用盡，原文語言查詢普遍未執行；Siles 因此 0 段需重跑",
+    "datePrecision 對不含日期的 quote 誤填 year（Asquith 3 處），已修",
+    "GOV.UK 頁連結內人名（Lloyd George、Campbell-Bannerman）抽成純文字時斷行，引文需含人名才能支撐子句",
+    "Ortiz 第4段只列他人閣員任期，與本人生平關聯弱，但有出處、非湊字數，保留",
+    "regimeId 全為 null（不連庫），四部閣員一律 R6 roleGap=regime，待寫庫前對照 5442"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 79
+  }
+}

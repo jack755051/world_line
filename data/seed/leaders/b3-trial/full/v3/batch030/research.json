@@ -1,0 +1,1900 @@
+{
+ "batch": "b3-full-v3-batch030",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；黨職與以政黨身分取得的席位在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；regimeId 因不連庫一律 null＋organization。名簿 5442 內的元首／首腦任期不重建（米克拉斯聯邦總統、薩阿韋德拉兩段、穆罕默德五世蘇丹）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。GND 類來源的原文檔為 lobid.org JSON 轉出的「欄位: 值」純文字。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch030/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-miklas": {
+   "title": "Miklas, Wilhelm",
+   "authors": [
+    "Peter Malina"
+   ],
+   "publisher": "Neue Deutsche Biographie（NDB）／Deutsche Biographie（巴伐利亞科學院、巴伐利亞國立圖書館）",
+   "published_text": "NDB 條目（1994），Deutsche Biographie 頁面標示作者 Malina, Peter",
+   "url": "https://www.deutsche-biographie.de/sfz63315.html",
+   "archive_url": null,
+   "catalog_id": "GND 118783882",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德語區國家級傳記辭典（NDB）具名作者條目，記 A"
+  },
+  "gnd-miklas": {
+   "title": "Miklas, Wilhelm（GND 118783882）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek 共同規範檔（GND），經 lobid.org 提供",
+   "published_text": "GND 規範記錄 JSON",
+   "url": "https://lobid.org/gnd/118783882.json",
+   "archive_url": null,
+   "catalog_id": "GND 118783882",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔，記 A"
+  },
+  "gnd-saav": {
+   "title": "Saavedra, Bautista（GND 105709482X）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek 共同規範檔（GND），經 lobid.org 提供",
+   "published_text": "GND 規範記錄 JSON",
+   "url": "https://lobid.org/gnd/105709482X.json",
+   "archive_url": null,
+   "catalog_id": "GND 105709482X",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔，記 A"
+  },
+  "gnd-m5": {
+   "title": "Mehmed V., Osmanisches Reich, Sultan（GND 124832946）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek 共同規範檔（GND），經 lobid.org 提供",
+   "published_text": "GND 規範記錄 JSON",
+   "url": "https://lobid.org/gnd/124832946.json",
+   "archive_url": null,
+   "catalog_id": "GND 124832946",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔，記 A"
+  },
+  "loc-saav": {
+   "title": "Saavedra, Bautista, 1870-1939（LC/NACO 名稱權威）",
+   "authors": [],
+   "publisher": "Library of Congress Linked Data Service（id.loc.gov）",
+   "published_text": "LC 名稱權威檢索結果頁",
+   "url": "https://id.loc.gov/search/?q=Saavedra+Bautista&q=cs:http://id.loc.gov/authorities/names",
+   "archive_url": null,
+   "catalog_id": "n50057604",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔，記 A"
+  },
+  "tre-saav": {
+   "title": "Saavedra, Bautista",
+   "authors": [],
+   "publisher": "Treccani（Enciclopedia on line）",
+   "published_text": "線上條目，無署名無書目",
+   "url": "https://www.treccani.it/enciclopedia/bautista-saavedra/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "線上條目無署名無書目（未評等），Q9 只可放 gap 候選"
+  },
+  "tre-m5": {
+   "title": "Maométto V",
+   "authors": [],
+   "publisher": "Treccani（Enciclopedia on line）",
+   "published_text": "線上條目，無署名無書目",
+   "url": "https://www.treccani.it/enciclopedia/maometto-v/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "線上條目無署名無書目（未評等），Q9 只可放 gap 候選"
+  }
+ },
+ "people": [
+  {
+   "key": "at-miklas",
+   "bioId": "01a1b4ae-0dc5-7363-96b2-d2d8c5a3b16e",
+   "name": "Wilhelm Miklas",
+   "nameZh": "威廉·米克拉斯",
+   "recordIds": [
+    "01a1aa4a-9546-7b0b-8ce1-c1e6a448138b"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-01-01",
+      "end": "1906-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "求學與教職",
+      "en": "Schooling and teaching career"
+     },
+     "body": {
+      "zh-Hant": "米克拉斯1882至1890年就讀塞滕施泰滕的修道院文理中學，其後在維也納攻讀歷史、日耳曼語文與地理。1895年通過中學與實科中學教師資格考試後進入教職，先後在的里雅斯特、摩拉維亞的普羅斯捷約夫與下奧地利的霍恩任教。他已加入基督教社會黨，主要在瓦爾德菲爾特爾地區從事政治活動；1905年出任霍恩文理中學校長。",
+      "en": "Miklas attended the Stiftsgymnasium in Seitenstetten from 1882 to 1890 and then studied history, German studies and geography in Vienna. In 1895, after passing the teaching examination for Gymnasien and Realschulen, he entered school service, teaching in Trieste, Prossnitz in Moravia and Horn in Lower Austria. By then he had joined the Christian Social Party and was politically active mainly in the Waldviertel; in 1905 he became director of the Gymnasium in Horn."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "absolvierte 1882-90 das Stiftsgymnasium in Seitenstetten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "studierte anschließend Geschichte, Germanistik und Geographie in Wien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "1895 trat er – nach Ablegung der Lehramtsprüfung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "nach Ablegung der Lehramtsprüfung für Gymnasien und Realschulen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "in den Schuldienst ein (Triest, Proßnitz/Mähren und Horn/Niederösterreich)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "der sich inzwischen der Christlichsozialen Partei angeschlossen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "vor allem im Waldviertel politisch betätigt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "1905 wurde M.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Direktor des Gymnasiums in Horn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1907-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "帝國議會與1918年新國家",
+      "en": "Imperial Reichsrat and the new state of 1918"
+     },
+     "body": {
+      "zh-Hant": "1907年帝國議會選舉後，他作為基督教社會黨代表進入眾議院，1908年起並為下奧地利邦議會成員。多瑙君主國瓦解後，1918至1919年他是下奧地利臨時邦議會與（全奧地利）國務委員會的成員。臨時國民議會執行委員會1918年10月31日決定以巴本堡盾徽的紅白紅為新奧地利國色，此議出自他的提案。",
+      "en": "After the Reichsrat elections of 1907 he entered the Abgeordnetenhaus as a representative of the Christian Socials, and from 1908 he also sat in the Lower Austrian Landtag. After the collapse of the Danubian monarchy he was in 1918/19 a member of the Provisional Landesversammlung of Lower Austria and of the all-Austrian Staatsrat. The decision of the executive committee of the Provisional National Assembly of 31 October 1918 to take the red-white-red of the Babenberg shield as the state colours of the new Austria goes back to his motion."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Nach den Reichsratswahlen 1907 zog er",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "als Vertreter der Christlichsozialen in das Abgeordnetenhaus ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "gehörte seit 1908 auch dem Niederösterr. Landtag an",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Nach dem Zusammenbruch der Donaumonarchie",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "war M. 1918/19 Mitglied der Provisorischen Landesversammlung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "von Niederösterreich und des (gesamtösterr.) Staatsrates",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Der Beschluß des Vollzugsausschusses der Provisorischen Nationalversammlung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "vom 31.10.1918",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "als Staatsfarben des entstehenden neuen Österreich",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "die Farben desbabenberg. Bindenschilds",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "(rot-weiß-rot) zu nehmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "geht auf seinen Antrag zurück",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "文化次官與國民議會議長",
+      "en": "Under-secretary and Nationalrat president"
+     },
+     "body": {
+      "zh-Hant": "1919年2月選出制憲國民議會後，他任內政與教育國務廳的文化事務次官，先屬倫納的基督教社會黨與社會民主黨聯合政府，其後至1920年屬邁爾內閣。他是制憲國民議會（1918/19）成員，之後為國民議會議員（1919至1928年），1923至1928年並任國民議會第一議長。",
+      "en": "After the elections to the Constituent National Assembly in February 1919 he served as Under-Secretary for Culture in the State Office for Home Affairs and Education, first in the Christian Social-Social Democratic coalition government of Renner and then, until 1920, in the Mayr cabinet. He was a member of the Constituent National Assembly (1918/19) and then of the Nationalrat (1919-28), where in 1923-28 he was also First President."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Nach den Wahlen in die Konstituierende Nationalversammlung vom Februar 1919",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "als Unterstaatssekretär für Kultus im Staatsamt für Inneres und Unterricht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "der christlichsozial-sozialdemokratischen Koalitionsregierung Renner",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "dann bis 1920 dem Kabinett Mayr an",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Er war Mitglied der Konstituierenden Nationalversammlung (1918/19)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "bzw. des Nationalrats (1919–28)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "in dem er 1923-28 auch die Funktion des Ersten Präsidenten innehatte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1928-01-01",
+      "end": "1936-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "聯邦總統與威權轉向",
+      "en": "Federal president and the authoritarian turn"
+     },
+     "body": {
+      "zh-Hant": "1928年聯邦大會選他為聯邦總統，1931年再度確認他任期四年。1933年3月議會議事規則危機中，他拒絕接受多爾富斯政府的辭職，間接確認了政府的措施，也未運用重啟國民議會的可能。他拒絕加入祖國陣線，未簽署1934年5月的「等級國家」憲法，卻因同意授權法使其形式上可行。1935年之後他仍留任。",
+      "en": "In 1928 the Bundesversammlung elected him Federal President and in 1931 he was confirmed in office again for four years. In the standing-orders crisis of March 1933 he did not accept the resignation of the Dollfuss government and thereby indirectly confirmed its measure, and did not use his means of reactivating the Nationalrat. He refused to join the Fatherland Front and did not sign the 'corporative' constitution of May 1934, but by consenting to the so-called Enabling Act he made it formally possible. He remained in office after 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "1928 wurde M. von der Bundesversammlung zum Bundespräsidenten gewählt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "1931 neuerlich für die Dauer von vier Jahren in seinem Amt bestätigt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Geschäftsordnungskrise des Parlaments vom März 1933",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "durch die Nichtannahme des Rücktritts der Regierung Dollfuß",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "deren Maßnahme indirekt bestätigt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "seine Möglichkeiten zur Aktivierung des Nationalrats nicht ergriffen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "der es z. B. ablehnte, der „Vaterländischen Front“ beizutreten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "die „ständestaatliche“ Verfassung vom Mai 1934 nicht unterschrieben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "durch seine Zustimmung zum sog. Ermächtigungsgesetz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "formal-rechtlich möglich gemacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "blieb er allerdings auch nach 1935 weiterhin im Amt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1938-03-11",
+      "end": "1938-03-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1938年3月",
+      "en": "March 1938"
+     },
+     "body": {
+      "zh-Hant": "1938年3月11日，在德國的強大壓力與舒施尼格被迫辭職之後，他才同意任命國家社會主義者賽斯-英夸特為聯邦總理，卻拒絕簽署《合併法》，理由是他曾宣誓維護「獨立的奧地利國」。3月13日他把聯邦總統的職能移交給賽斯-英夸特，形式上也等於完成辭職。",
+      "en": "On 11 March 1938, only under massive German pressure and after Schuschnigg's forced resignation, he agreed to appoint the National Socialist Seyss-Inquart as Federal Chancellor, but refused to sign the Anschluss law because he had sworn an oath for an independent state of Austria. On 13 March 1938 he transferred the functions of Federal President to Seyss-Inquart, which formally completed his resignation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Am 11.3.1938 zeigte er sich erst unter massivem deutschen Druck",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "nach dem erzwungenen Rücktritt Schuschniggs bereit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "den Nationalsozialisten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Arthur Seyss-Inquart mit der Funktion des Bundeskanzlers zu betrauen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "weigerte sich jedoch, das „Anschlußgesetz“ zu unterzeichnen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "einen Eid für einen „unabhängigen Staat Österreich“ geleistet habe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Am 13.3.1938 übertrug er Seyss-Inquart",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "die Funktionen des Bundespräsidenten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Damit war auch formal sein Rücktritt vollzogen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "miklas-nationalrat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧地利國民議會（Nationalrat）",
+      "en": "Nationalrat of Austria"
+     },
+     "title": {
+      "orig": "Mitglied des Nationalrats",
+      "zh-Hant": "國民議會議員",
+      "en": "Member of the Nationalrat"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "bzw. des Nationalrats (1919–28)",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "miklas-nationalrat-first-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧地利國民議會（Nationalrat）",
+      "en": "Nationalrat of Austria"
+     },
+     "title": {
+      "orig": "Erster Präsident des Nationalrats",
+      "zh-Hant": "國民議會第一議長",
+      "en": "First President of the Nationalrat"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1929-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "in dem er 1923-28 auch die Funktion des Ersten Präsidenten innehatte",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "miklas-under-secretary-culture",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧地利國務廳（內政與教育）",
+      "en": "Austrian State Office for Home Affairs and Education"
+     },
+     "title": {
+      "orig": "Unterstaatssekretär für Kultus",
+      "zh-Hant": "文化事務次官",
+      "en": "Under-Secretary for Culture"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1921-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "als Unterstaatssekretär für Kultus im Staatsamt für Inneres und Unterricht",
+       "quoteLang": "de",
+       "evidenceNote": "職位與機構",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Nach den Wahlen in die Konstituierende Nationalversammlung vom Februar 1919",
+       "quoteLang": "de",
+       "evidenceNote": "來源只寫 1919 年 2 月選舉之後，起日未載；依年精度取 1919",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "dann bis 1920 dem Kabinett Mayr an",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "次官（Unterstaatssekretär，副職）屬 R5，不論部門"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "miklas-reichsrat-christlichsozial",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧地利帝國議會眾議院（Abgeordnetenhaus）",
+      "en": "Abgeordnetenhaus of the Austrian Reichsrat"
+     },
+     "title": {
+      "orig": "Abgeordneter (Christlichsoziale)",
+      "zh-Hant": "眾議院議員（基督教社會黨）",
+      "en": "Member of the Abgeordnetenhaus (Christian Social)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1907-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "Nach den Reichsratswahlen 1907 zog er",
+       "quoteLang": "de",
+       "evidenceNote": "起日依年精度取 1907-01-01",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-miklas",
+       "locator": "Biographie",
+       "quote": "als Vertreter der Christlichsozialen in das Abgeordnetenhaus ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；NDB 明寫「作為基督教社會黨代表」進入眾議院",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:miklas-reichsrat-christlichsozial",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 只寫 1907 年選舉後進入眾議院，未寫議席何時結束（僅寫 1918 年帝國瓦解、1918/19 任臨時邦議會與國務委員會）；GND、Parlament Österreich 站內頁（無議員個人頁可抓）亦無此資料；加強重跑再查 ÖBL、Parlament Österreich 歷史議員／議長頁（404 或無內容）、bundespraesident.at、ONB、lobid，皆無 A／B 迄日；Geschichte Wiki Wien（wiki 類，只作索引）寫 1907 至 1918，不可當出處",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wilhelm Miklas GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Wilhelm+Miklas+1872&format=json",
+     "result": "found_A",
+     "note": "GND 118783882：生卒 1872-10-15／1956-03-20"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Miklas Wilhelm Deutsche Biographie 查詢",
+     "url": "https://www.deutsche-biographie.de/search?name=Miklas+Wilhelm",
+     "result": "found_A",
+     "note": "列出 NDB 條目 sfz63315"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "NDB Miklas, Wilhelm（Malina 1994）",
+     "url": "https://www.deutsche-biographie.de/sfz63315.html",
+     "result": "found_A",
+     "note": "全文可抓，職位與年代豐富"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "ÖBL Miklas Wilhelm 1872–1956",
+     "url": "https://www.biographien.ac.at/oebl/oebl_M/Miklas_Wilhelm_1872_1956.xml",
+     "result": "no_result",
+     "note": "404；ÖBL 只收 1950 年前逝世者"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Parlament Österreich 國民議會議員頁 Miklas",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/nationalrat/?WFW_NR=Miklas",
+     "result": "not_relevant",
+     "note": "只回傳篩選介面，無個人傳記"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Parlament 歷史議員搜尋 Miklas",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/historische-abgeordnete/?SUCH=Miklas",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Bundespräsident 歷任聯邦總統頁",
+     "url": "https://www.bundespraesident.at/die-bundespraesidenten/die-bundespraesidenten-der-ersten-republik",
+     "result": "no_result",
+     "note": "404 頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Haus der Geschichte Österreich Miklas",
+     "url": "https://www.hdgoe.at/wilhelm_miklas",
+     "result": "not_relevant",
+     "note": "首頁／選單，無傳記內容"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Geschichte Wiki Wien Miklas（城市維基，只作索引）",
+     "url": "https://www.geschichtewiki.wien.gv.at/Wilhelm_Miklas",
+     "result": "unrated",
+     "note": "wiki 類只當索引，未採用"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Miklas Wilhelm 原文查詢（WebSearch：Nationalrat Präsident parlament.gv.at Biografie）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "ÖBL Miklas Wilhelm 1872-1956 biographien.ac.at",
+     "url": "https://www.biographien.ac.at/oebl/oebl_M/Miklas_Wilhelm_1872_1956.xml",
+     "result": "no_result",
+     "note": "HTTP 404，無內容"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "ÖBL 站內入口 frames 版",
+     "url": "https://www.biographien.ac.at/oebl?frames=yes",
+     "result": "not_relevant",
+     "note": "僅入口頁，無 Miklas 條目文字"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Parlament Österreich 歷史議員 Miklas",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/historische-abgeordnete/",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Parlament Österreich 國民議會議長名錄",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/nationalratspraesidenten/",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Parlament Österreich 歷史議員搜尋 SUCH=Miklas",
+     "url": "https://www.parlament.gv.at/recherchieren/personen/historische-abgeordnete/?SUCH=Miklas",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundespräsident 第一共和歷任聯邦總統頁（重抓）",
+     "url": "https://www.bundespraesident.at/die-bundespraesidenten/die-bundespraesidenten-der-ersten-republik",
+     "result": "not_relevant",
+     "note": "無眾議院議席迄日"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Geschichte Wiki Wien Wilhelm Miklas（城市維基，只作索引）",
+     "url": "https://www.geschichtewiki.wien.gv.at/Wilhelm_Miklas",
+     "result": "unrated",
+     "note": "wiki 類只當索引，不可當出處；寫 1907-1918 為帝國議會議員，但不能引用"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Österreichische Nationalbibliothek 首頁",
+     "url": "https://www.onb.ac.at/",
+     "result": "not_relevant",
+     "note": "無個人資料"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "lobid GND about 查詢",
+     "url": "https://d-nb.info/gnd/118581252/about/lobid",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Wilhelm Miklas Abgeordnetenhaus Reichsrat 1907 1918 原文查詢（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 搜尋額度用盡，未執行"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Miklas Wilhelm ÖBL Reichsratsabgeordneter 查詢（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "本 session 搜尋額度用盡，未執行"
+    }
+   ]
+  },
+  {
+   "key": "bo-saavedra",
+   "bioId": "01a1b4b5-f9c5-7e2d-8143-9726b212ece7",
+   "name": "Bautista Saavedra Mallea",
+   "nameZh": "包蒂斯塔·薩阿韋德拉",
+   "recordIds": [
+    "9d450a5f-a19d-4c12-aa7d-f1df4005a5ff",
+    "5d13a37b-b61c-4a10-8cc1-d3decdfe7e5a",
+    "54b870eb-bbd8-4503-b0fb-96d4a83f9d74",
+    "9eeb57e4-2d13-4c55-b9d9-aa80b5ddd9d4"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1870-08-30",
+      "end": "1871-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生",
+      "en": "Birth"
+     },
+     "body": {
+      "zh-Hant": "包蒂斯塔·薩阿韋德拉·馬列亞（Bautista Saavedra Mallea）1870年8月30日生於索拉塔（Sorata）。",
+      "en": "Bautista Saavedra Mallea was born on 30 August 1870 in Sorata."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "dateOfBirth: 1870-08-30",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "placeOfBirth: Sorata",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1870-08-30",
+      "end": "1939-05-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "職業與身分",
+      "en": "Occupations"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的規範檔為他登錄的職業有政治人物、律師、作家、社會學家與國家元首（Staatspräsident）。",
+      "en": "The German National Library authority file lists his occupations as politician, lawyer, writer, sociologist and head of state (Staatspräsident)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "professionOrOccupation: Politiker",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "professionOrOccupation: Rechtsanwalt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "professionOrOccupation: Schriftsteller",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "professionOrOccupation: Soziologe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "professionOrOccupation: Staatspräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1926-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "玻利維亞總統",
+      "en": "President of Bolivia"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的規範檔在歷史資訊欄記他1921至1925年任玻利維亞總統。",
+      "en": "The German National Library authority file records in its historical note that he was President of Bolivia in 1921-1925. "
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "biographicalOrHistoricalInformation: 1921-1925 Präsident von Bolivien.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "geographicAreaCode: Bolivien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1939-05-01",
+      "end": "1939-05-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "逝世",
+      "en": "Death"
+     },
+     "body": {
+      "zh-Hant": "規範檔記他1939年5月1日於智利的聖地牙哥逝世。",
+      "en": "The authority file records that he died in Santiago de Chile on 1 May 1939."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "dateOfDeath: 1939-05-01",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-saav",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "placeOfDeath: Santiago de Chile",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查刪除湊字數的權威檔中介句與重複句後為 4 段 181 字，僅依權威檔；已查來源類型：權威檔（GND／lobid、LC）、官方（presidencia.gob.bo、senado.gob.bo、diputados.gob.bo 首頁無傳記）、國家級辭典（Real Academia de la Historia DB~e 轉址無條目）、具名百科／學術（Britannica 403、cervantesvirtual 403、LoC Country Study 404）、Treccani 無署名條目（Q9 不可作出處）；WebSearch 額度用盡，未做加強重跑（無 round=retry）",
+     "candidateCitations": [
+      {
+       "sourceKey": "tre-saav",
+       "locator": "條目首段",
+       "quote": "Come presidente della Repubblica, dal 1921 al 1925",
+       "quoteLang": "it"
+      },
+      {
+       "sourceKey": "tre-saav",
+       "locator": "條目首段",
+       "quote": "Fu poi ambasciatore in Belgio, Paesi Bassi e Svizzera",
+       "quoteLang": "it"
+      },
+      {
+       "sourceKey": "tre-saav",
+       "locator": "條目首段",
+       "quote": "fu ministro della Pubblica Istruzione",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birthplace",
+     "gapKind": "not_found",
+     "note": "出生地：GND 記索拉塔（Sorata），Treccani 無署名條目記 La Paz；兩者不同，但 Treccani 不合格（無署名），不算兩個合格出處互相矛盾，以 GND 為準，待合格傳記辭典核對",
+     "candidateCitations": [
+      {
+       "sourceKey": "tre-saav",
+       "locator": "條目首段",
+       "quote": "Uomo politico boliviano (La Paz 1870 - Santiago del Cile 1939)",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:careerBefore1920",
+     "gapKind": "not_found",
+     "note": "1921 年前後的部長、教授、駐外大使等經歷（Treccani 無署名條目提到教育部長、拉巴斯大學教授、駐比利時／荷蘭／瑞士大使）沒有合格 A／B 來源可寫入職位；待查證：缺起迄日",
+     "candidateCitations": [
+      {
+       "sourceKey": "tre-saav",
+       "locator": "條目首段",
+       "quote": "giurista, prof. nell'univ. di La Paz",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Bautista Saavedra GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Bautista+Saavedra+1870&format=json",
+     "result": "found_A",
+     "note": "GND 105709482X"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Saavedra Bautista GND 記錄全文",
+     "url": "https://lobid.org/gnd/105709482X.json",
+     "result": "found_A",
+     "note": "生卒、職業、1921-1925 總統"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Saavedra, Bautista LC 名稱權威",
+     "url": "https://id.loc.gov/search/?q=Saavedra+Bautista&q=cs:http://id.loc.gov/authorities/names",
+     "result": "found_A",
+     "note": "名稱標目與生卒年"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Saavedra Mallea Bautista",
+     "url": "https://dbe.rah.es/biografias/bautista-saavedra-mallea",
+     "result": "no_result",
+     "note": "轉址到 historia-hispanica.rah.es 首頁（前端應用，無條目文字）"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Bautista Saavedra",
+     "url": "https://www.britannica.com/biography/Bautista-Saavedra",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Saavedra, Bautista",
+     "url": "https://www.treccani.it/enciclopedia/bautista-saavedra/",
+     "result": "unrated",
+     "note": "無署名條目，只放 gap 候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Biblioteca Virtual Miguel de Cervantes Bautista Saavedra",
+     "url": "https://www.cervantesvirtual.com/obra/bautista-saavedra",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Presidencia de Bolivia 官網",
+     "url": "https://presidencia.gob.bo/",
+     "result": "not_relevant",
+     "note": "首頁，無歷任總統傳記"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Senado de Bolivia 官網",
+     "url": "https://www.senado.gob.bo/",
+     "result": "not_relevant",
+     "note": "首頁，無相關頁"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Cámara de Diputados de Bolivia 官網",
+     "url": "https://diputados.gob.bo/",
+     "result": "not_relevant",
+     "note": "首頁，無相關頁"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Library of Congress Country Study Bolivia",
+     "url": "https://lcweb2.loc.gov/frd/cs/bo_01_00.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Chile BCN／Memoria Chilena Saavedra",
+     "url": "https://www.bcn.cl/historiapolitica/resenas_parlamentarias/wiki/Bautista_Saavedra",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Bautista Saavedra Mallea presidente 1921 1925 biografía（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    }
+   ]
+  },
+  {
+   "key": "ot-mehmed-v",
+   "bioId": "01a1b4b5-f9d1-7697-bcaa-ae34054b2b95",
+   "name": "Mehmed V Reşad",
+   "nameZh": "穆罕默德五世",
+   "recordIds": [
+    "01a1aa4a-659d-7feb-881a-74f56243a004"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1844-01-01",
+      "end": "1845-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與兄弟",
+      "en": "Birth and brothers"
+     },
+     "body": {
+      "zh-Hant": "穆罕默德五世（Mehmed V Reşad）1844年生於伊斯坦堡。德國國家圖書館的規範檔把同為奧斯曼帝國蘇丹的阿卜杜勒哈米德二世與穆拉德五世列為他的兄弟。",
+      "en": "Mehmed V Reşad was born in Istanbul in 1844. The German National Library authority file gives Abdulhamid II and Murad V, both Ottoman sultans, as his brothers."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "dateOfBirth: 1844",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "placeOfBirth: Istanbul",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "hasSibling: Abd-al-Hamid II., Osmanisches Reich, Sultan",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "hasSibling: Murad V., Osmanisches Reich, Sultan",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "在位與逝世",
+      "en": "Reign and death"
+     },
+     "body": {
+      "zh-Hant": "規範檔的歷史資訊欄記他1909至1918年為蘇丹；同一份記錄記他1918年逝世於伊斯坦堡。",
+      "en": "The authority file's historical note gives his reign as sultan as 1909-1918; the same record gives his death in Istanbul in 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "biographicalOrHistoricalInformation: 1909-1918 Sultan",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "dateOfDeath: 1918",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "placeOfDeath: Istanbul",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "一戰與外國元帥頭銜",
+      "en": "The First World War and foreign marshal ranks"
+     },
+     "body": {
+      "zh-Hant": "規範檔的歷史資訊欄記有1914年與德意志帝國締結針對俄國的防禦同盟，以及站在同盟國一方參戰。1916年他獲德意志帝國授予名譽陸軍元帥，1918年獲奧匈帝國授予元帥頭銜。",
+      "en": "The authority file's historical note lists for 1914 a defensive alliance with the German Reich against Russia and entry into the war on the side of the Central Powers. In 1916 the German Reich made him an honorary field marshal, and in 1918 Austria-Hungary gave him the rank of field marshal."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "1914 Defensivbündnis mit dem Deutschen Reich gegen Russland",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "Kriegseintritt an Seite der Mittelmächte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "1916 ehrenhalber Generalfeldmarschall des Deutschen Reichs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-m5",
+       "locator": "GND 記錄（lobid.org 轉出欄位）",
+       "quote": "1918 Feldmarschall Österreich-Ungarns",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查刪除湊字數的權威檔中介句與重複句後為 3 段 205 字，僅依權威檔；已查來源類型：權威檔（GND／lobid、Deutsche Biographie 索引、VIAF 403）、具名百科（Britannica 403、TDV İslâm Ansiklopedisi Cloudflare、1914-1918-online Anubis，均放棄）、官方（TBMM、Milli Saraylar、TTK、Cumhurbaşkanlığı 無條目）、Iranica 403、HLS 403、LeMO 無條目、Treccani 無署名條目（Q9 不可作出處）；WebSearch 額度用盡，未做加強重跑（無 round=retry）",
+     "candidateCitations": [
+      {
+       "sourceKey": "tre-m5",
+       "locator": "條目",
+       "quote": "Successe (1909) al fratello",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birthDate",
+     "gapKind": "not_found",
+     "note": "出生年：GND 記 1844；Treccani 無署名條目寫 1884，兩者不同，但 Treccani 不合格，不算合格出處衝突，以 GND 為準；出生月日待合格傳記辭典核對",
+     "candidateCitations": [
+      {
+       "sourceKey": "tre-m5",
+       "locator": "條目",
+       "quote": "Sultano ottomano ( Costantinopoli 1884 - ivi 1918)",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:accession",
+     "gapKind": "not_found",
+     "note": "即位與逝世的月日（名簿記 1909-04-27～1918-07-03）無合格 A／B 來源寫出，GND 只到年精度；待查證",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Mehmed V Reşad GND lobid",
+     "url": "https://lobid.org/gnd/search?q=Mehmed+V&format=json&filter=type:Person",
+     "result": "found_A",
+     "note": "GND 124832946"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Mehmed V GND 記錄全文",
+     "url": "https://lobid.org/gnd/124832946.json",
+     "result": "found_A",
+     "note": "生卒年、在位、1914 同盟、外國元帥頭銜"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie Mehmed V 索引",
+     "url": "https://www.deutsche-biographie.de/pnd124832946.html",
+     "result": "unrated",
+     "note": "只有索引項目，無傳記全文"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "VIAF Mehmed V",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Mehmed+V%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "TDV İslâm Ansiklopedisi Mehmed V Reşad",
+     "url": "https://islamansiklopedisi.org.tr/mehmed-v-resad",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Mehmed V",
+     "url": "https://www.britannica.com/biography/Mehmed-V",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Mehmed V Reşad",
+     "url": "https://encyclopedia.1914-1918-online.net/article/mehmed_v_resad",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，放棄"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Maometto V",
+     "url": "https://www.treccani.it/enciclopedia/maometto-v/",
+     "result": "unrated",
+     "note": "無署名條目，只放 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "TBMM／Milli Saraylar／TTK／Cumhurbaşkanlığı 官網查詢 Mehmed Reşad",
+     "url": "https://www.ttk.gov.tr/?s=Mehmed+Re%C5%9Fad",
+     "result": "not_relevant",
+     "note": "站內搜尋／首頁無條目文字"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Encyclopaedia Iranica Mehmed Resad",
+     "url": "https://www.iranicaonline.org/search/?q=Mehmed+Resad",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 11,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz Mehmed V",
+     "url": "https://hls-dhs-dss.ch/de/search/?text=Mehmed+V",
+     "result": "blocked_403",
+     "note": "403 放棄"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "DHM LeMO 查詢 Mehmed V",
+     "url": "https://www.dhm.de/lemo/suche?term=Mehmed+V",
+     "result": "no_result",
+     "note": "無相關條目"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "V. Mehmed Reşad TDV İslâm Ansiklopedisi（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 額度用盡，未執行"
+    }
+   ]
+  }
+ ]
+}

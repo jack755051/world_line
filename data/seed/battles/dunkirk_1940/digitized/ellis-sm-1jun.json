@@ -1,0 +1,1726 @@
+{
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（以圖上標題核對）",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-11.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "mapKey": "ellis-sm-1jun",
+ "mapDate": "1940-06-01",
+ "method": "用 sips 切 420×330 塊放大 4 倍及整圖放大 1.4 倍目視讀圖，像素座標換算回 1200×642 原圖（原點左上），城鎮取圓點／聚落塊中心、部隊取標字中心，讀圖誤差約 ±3 px；經緯度取自 OSM Nominatim（多為行政區 relation 的 lat/lon，非 place node）。圖幅小（Dunkirk–Nieuport 約 40 km），每 px 約 0.04 km。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）",
+  "loo_p95_km": 1.79,
+  "p95Passes": true,
+  "passes": true,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [],
+  "use": "可用於部隊位置與前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 25,
+  "residual_median_km": 0.34,
+  "loo_median_km": 0.52,
+  "loo_p95_km": 1.79,
+  "loo_max_km": 2.47,
+  "suspect_control_points": [],
+  "frame_km": 2.0
+ },
+ "precision_m": 3800,
+ "precisionNote": "留一法 95 百分位 1.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Nieuport": {
+   "px": [
+    1062,
+    91
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.61
+  },
+  "Furnes": {
+   "px": [
+    887,
+    255
+   ],
+   "lonlat": [
+    2.6621,
+    51.0724
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516302
+   },
+   "nameOsm": "Veurne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.12
+  },
+  "La Panne": {
+   "px": [
+    750,
+    174
+   ],
+   "lonlat": [
+    2.5924,
+    51.0988
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1516156
+   },
+   "nameOsm": "De Panne",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 1.53
+  },
+  "Adinkerke": {
+   "px": [
+    768,
+    239
+   ],
+   "lonlat": [
+    2.6022,
+    51.0755
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148437
+   },
+   "nameOsm": "Adinkerke",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.69
+  },
+  "Coxyde": {
+   "px": [
+    866,
+    159
+   ],
+   "lonlat": [
+    2.6349,
+    51.1188
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1487782
+   },
+   "nameOsm": "Koksijde",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 1.64
+  },
+  "Wulpen": {
+   "px": [
+    957,
+    176
+   ],
+   "lonlat": [
+    2.6993,
+    51.1013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2148467
+   },
+   "nameOsm": "Wulpen",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.16
+  },
+  "Bulscamp": {
+   "px": [
+    847,
+    339
+   ],
+   "lonlat": [
+    2.6501,
+    51.0433
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242979
+   },
+   "nameOsm": "Bulskamp",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.41
+  },
+  "Houthem": {
+   "px": [
+    766,
+    426
+   ],
+   "lonlat": [
+    2.6078,
+    51.0111
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2242982
+   },
+   "nameOsm": "Houtem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.24
+  },
+  "Wulveringhem": {
+   "px": [
+    855,
+    421
+   ],
+   "lonlat": [
+    2.6551,
+    51.0153
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1392648
+   },
+   "nameOsm": "Wulveringem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.21
+  },
+  "Hondschoote": {
+   "px": [
+    710,
+    519
+   ],
+   "lonlat": [
+    2.5863,
+    50.9809
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139236
+   },
+   "nameOsm": "Hondschoote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.66
+  },
+  "Killem": {
+   "px": [
+    668,
+    574
+   ],
+   "lonlat": [
+    2.5626,
+    50.9578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139238
+   },
+   "nameOsm": "Killem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.52
+  },
+  "Loo": {
+   "px": [
+    1026,
+    536
+   ],
+   "lonlat": [
+    2.7492,
+    50.98
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452701
+   },
+   "nameOsm": "Lo",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.47
+  },
+  "Noordschote": {
+   "px": [
+    1136,
+    609
+   ],
+   "lonlat": [
+    2.8099,
+    50.9546
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1452700
+   },
+   "nameOsm": "Noordschote",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 1.04
+  },
+  "Bergues": {
+   "px": [
+    439,
+    524
+   ],
+   "lonlat": [
+    2.4325,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139259
+   },
+   "nameOsm": "Bergues",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.17
+  },
+  "Hoymille": {
+   "px": [
+    474,
+    503
+   ],
+   "lonlat": [
+    2.4485,
+    50.973
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139256
+   },
+   "nameOsm": "Hoymille",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.63
+  },
+  "Warhem": {
+   "px": [
+    555,
+    512
+   ],
+   "lonlat": [
+    2.493,
+    50.9768
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139247
+   },
+   "nameOsm": "Warhem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.12
+  },
+  "Quaedypre": {
+   "px": [
+    476,
+    627
+   ],
+   "lonlat": [
+    2.4556,
+    50.9354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135847
+   },
+   "nameOsm": "Quaëdypre",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.1
+  },
+  "Mardick": {
+   "px": [
+    107,
+    347
+   ],
+   "lonlat": [
+    2.2496,
+    51.0204
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 4656706
+   },
+   "nameOsm": "Mardyck",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 1.83
+  },
+  "Dunkirk": {
+   "px": [
+    353,
+    352
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.65
+  },
+  "Uxem": {
+   "px": [
+    549,
+    385
+   ],
+   "lonlat": [
+    2.485,
+    51.0205
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139641
+   },
+   "nameOsm": "Uxem",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.29
+  },
+  "Soex": {
+   "px": [
+    415,
+    621
+   ],
+   "lonlat": [
+    2.4228,
+    50.936
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135838
+   },
+   "nameOsm": "Socx",
+   "note": "Ellis 舊拼法 Soex＝今 Socx；Nominatim 只有行政區 relation，lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.09
+  },
+  "Spycker": {
+   "px": [
+    250,
+    498
+   ],
+   "lonlat": [
+    2.323,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139278
+   },
+   "nameOsm": "Spycker",
+   "note": "Nominatim 只有行政區 relation，lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.59
+  },
+  "Pitgam": {
+   "px": [
+    246,
+    632
+   ],
+   "lonlat": [
+    2.3305,
+    50.9278
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 135786
+   },
+   "nameOsm": "Pitgam",
+   "note": "Nominatim 只有行政區 relation，lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.92
+  },
+  "Teteghem": {
+   "px": [
+    472,
+    385
+   ],
+   "lonlat": [
+    2.4413,
+    51.0168
+   ],
+   "osm": {
+    "type": "node",
+    "id": 26694960
+   },
+   "nameOsm": "Téteghem",
+   "note": "取 place node",
+   "loo_km": 0.52
+  },
+  "Leffrinckoucke": {
+   "px": [
+    516,
+    338
+   ],
+   "lonlat": [
+    2.4387,
+    51.0509
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139642
+   },
+   "nameOsm": "Leffrinckoucke",
+   "note": "Nominatim 只有行政區 relation，lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 2.47
+  }
+ },
+ "features": [
+  {
+   "label": "256 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    837,
+    165
+   ],
+   "unitKey": "de-256-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "256 DIV",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 256 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.6303,
+    51.1076
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "56 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    745,
+    239
+   ],
+   "unitKey": "de-56-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "56 DIV",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 56 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.5838,
+    51.0796
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "216 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    750,
+    309
+   ],
+   "unitKey": "de-216-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "216 DIV",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 216 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.5904,
+    51.0534
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "68 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    227,
+    426
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "68 DIV",
+    "reason": null,
+    "distPx": 8.1
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "德軍 68 號師：名冊候選 0 個",
+   "lonlat": [
+    2.3114,
+    50.9969
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "14 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    674,
+    502
+   ],
+   "unitKey": "de-14-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "14 DIV",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 14 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.558,
+    50.9841
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "18 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    520,
+    529
+   ],
+   "unitKey": "de-18-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "18 DIV",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 18 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.4754,
+    50.9707
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "61 DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    425,
+    609
+   ],
+   "unitKey": "de-61-id",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "61 DIV",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 61 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.4274,
+    50.9399
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "254",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    594,
+    510
+   ],
+   "unitKey": "de-254-id",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "25?",
+    "reason": "兩次判讀文字不同",
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "德軍 254 號師只靠編號對上（讀圖未判兵種）",
+   "lonlat": [
+    2.5148,
+    50.9795
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "9 ARMD DIV",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    182,
+    554
+   ],
+   "unitKey": "de-9-pzdiv",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "9 ARMD DIV",
+    "reason": null,
+    "distPx": 3.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "德軍 9 號師，兵種依標註（pz）",
+   "lonlat": [
+    2.2941,
+    50.947
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "12 DI",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    670,
+    238
+   ],
+   "unitKey": "fr-12-di",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "12 DI",
+    "reason": null,
+    "distPx": 4.5
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "標註帶 DI（法軍步兵師）",
+   "lonlat": [
+    2.5423,
+    51.0798
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "60 DI",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    550,
+    324
+   ],
+   "unitKey": "fr-60-di",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "60 DI",
+    "reason": null,
+    "distPx": 3.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "標註帶 DI（法軍步兵師）",
+   "lonlat": [
+    2.4814,
+    51.0456
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "46 DIV",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    446,
+    361
+   ],
+   "unitKey": "uk-46-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "46 DIV",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "盟軍 46 號師只靠編號對上（灰階圖無法辨英法比）",
+   "lonlat": [
+    2.4267,
+    51.0293
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "32 DI",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    314,
+    420
+   ],
+   "unitKey": "fr-32-di",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "32 DI",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "標註帶 DI（法軍步兵師）",
+   "lonlat": [
+    2.3582,
+    51.0027
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "151 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    571,
+    244
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4882,
+    51.0768
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "150 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    629,
+    234
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5195,
+    51.0812
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "139 Bde",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    490,
+    444
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4551,
+    50.9998
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "126 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    532,
+    392
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4753,
+    51.0198
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "3 BDE",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    639,
+    422
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5353,
+    51.0112
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 Gds Bde",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    556,
+    360
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4867,
+    51.0322
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "92 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    451,
+    282
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4247,
+    51.0599
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "16 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    471,
+    296
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4365,
+    51.0549
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "14 A/Tk Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    421,
+    307
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4098,
+    51.0495
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 HAA Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    371,
+    300
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.3821,
+    51.0509
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "27 A Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    561,
+    342
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4885,
+    51.039
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "53 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    517,
+    366
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4657,
+    51.0291
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "19 Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    634,
+    386
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5308,
+    51.024
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "88 A Fd Regt",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    680,
+    396
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5564,
+    51.0211
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "9 Foresters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    432,
+    444
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4236,
+    50.998
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "2/5 Foresters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    456,
+    373
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4328,
+    51.025
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "2/5 Leicesters",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    475,
+    452
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4474,
+    50.9964
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 Loyals",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    456,
+    491
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.439,
+    50.9819
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 E Lan R",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    501,
+    397
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4587,
+    51.0172
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "5 Border",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    535,
+    404
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4776,
+    51.0155
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "2 Hamps",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    551,
+    380
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.4851,
+    51.0247
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 DWR",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    662,
+    456
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5494,
+    50.9997
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "King's Own",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    616,
+    436
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5234,
+    51.0058
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1 KSLI",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    621,
+    293
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀範圍未含旅／團／營級（未檢查）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.5186,
+    51.0584
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "IX CORPS",
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    861,
+    274
+   ],
+   "unitKey": null,
+   "note": "法軍第 9 軍（Furnes 一帶），依地理與歷史推估",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "IX CORPS",
+    "reason": null,
+    "distPx": 5.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "法軍 IX 軍不在名冊（讀圖本身亦屬推估）",
+   "lonlat": [
+    2.6498,
+    51.0662
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "X CORPS",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    629,
+    584
+   ],
+   "unitKey": "de-x-ak",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "X CORPS",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：X CORPS",
+   "lonlat": [
+    2.5367,
+    50.9557
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "XIV CORPS (KLEIST GROUP)",
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    271,
+    606
+   ],
+   "unitKey": "de-xiv-ak",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "XIV CORPS",
+    "reason": null,
+    "distPx": 24.0,
+    "note": "一方只抄部分文字",
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 24 px（> 容差 18 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：XIV CORPS (KLEIST GROUP)",
+   "lonlat": [
+    2.3444,
+    50.9334
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "EIGHTEENTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    986,
+    316
+   ],
+   "unitKey": "de-18-armee",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "EIGHTEENTH ARMY",
+    "reason": null,
+    "distPx": 6.1
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：EIGHTEENTH ARMY",
+   "lonlat": [
+    2.7211,
+    51.0502
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    536,
+    607
+   ],
+   "unitKey": "de-6-armee",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SIXTH ARMY",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：SIXTH ARMY",
+   "lonlat": [
+    2.4872,
+    50.945
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FOURTH ARMY",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "此圖原為彩色（藍＝德），灰階掃描無法辨色；依編號慣例（DIV／Army／Corps 屬德軍集團，DI／BDE／英軍團營屬盟軍）與地理位置（外圍進攻方）推估",
+   "px": [
+    150,
+    624
+   ],
+   "unitKey": "de-4-armee",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "FOURTH ARMY",
+    "reason": null,
+    "distPx": 10.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：FOURTH ARMY",
+   "lonlat": [
+    2.2803,
+    50.9202
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SFF",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "灰階無法辨色（原圖英紅法綠）；依 DI／BDE／英軍團營標註與位於 Dunkirk 周界內側推估為盟軍",
+   "px": [
+    382,
+    400
+   ],
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SFF",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "旅／團／支隊等，低於 R1 名冊層級",
+   "lonlat": [
+    2.394,
+    51.0127
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  }
+ ],
+ "lines": [
+  {
+   "lineKey": "ellis-sm-1jun-corps-boundary-furnes",
+   "label": "圖上點劃線：Furnes 運河以南、Ghyvelde 東側縱向軍／師界線（Adinkerke 以南至 Houthem 南）",
+   "lineKind": "boundary",
+   "side": "between",
+   "vertices": [
+    {
+     "px": [
+      692,
+      250
+     ],
+     "lonlat": [
+      2.5552,
+      51.0753
+     ]
+    },
+    {
+     "px": [
+      695,
+      287
+     ],
+     "lonlat": [
+      2.559,
+      51.0613
+     ]
+    },
+    {
+     "px": [
+      698,
+      327
+     ],
+     "lonlat": [
+      2.5628,
+      51.0464
+     ]
+    },
+    {
+     "px": [
+      702,
+      367
+     ],
+     "lonlat": [
+      2.5671,
+      51.0318
+     ]
+    },
+    {
+     "px": [
+      705,
+      410
+     ],
+     "lonlat": [
+      2.5708,
+      51.0165
+     ]
+    },
+    {
+     "px": [
+      700,
+      433
+     ],
+     "lonlat": [
+      2.5691,
+      51.0084
+     ]
+    },
+    {
+     "px": [
+      707,
+      457
+     ],
+     "lonlat": [
+      2.574,
+      51.0001
+     ]
+    },
+    {
+     "px": [
+      727,
+      477
+     ],
+     "lonlat": [
+      2.5858,
+      50.9936
+     ]
+    },
+    {
+     "px": [
+      757,
+      487
+     ],
+     "lonlat": [
+      2.6026,
+      50.9907
+     ]
+    }
+   ],
+   "readNote": "點劃線僅為界線，非前線。圖上沒有畫出前線或周界線：粗黑線（Adinkerke–Furnes–Bulscamp–Houthem–Furnes 運河）為運河／道路而非前線標示，部隊以標字與虛線橢圓表示，故不讀前線頂點；界線只讀 y 250–487 可清楚辨認的一段。",
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  }
+ ],
+ "unresolved": [
+  {
+   "label": "Moëres（兩處：Moëres／Les Moëres）",
+   "px": [
+    759,
+    329
+   ],
+   "reason": "兩個相近地名且 OSM 對應模糊，不當控制點"
+  },
+  {
+   "label": "Loon Plage／Fort Mardick／Coudekerque／Beveren／Les Bes Brouck",
+   "px": [
+    87,
+    424
+   ],
+   "reason": "標字旁無清楚圓點，不當控制點"
+  },
+  {
+   "label": "59 M…／2 Coldm／Ghyvelde 旁小字",
+   "px": [
+    594,
+    263
+   ],
+   "reason": "被裝訂線／摺痕遮住，字不全"
+  },
+  {
+   "label": "部隊色彩",
+   "px": [
+    600,
+    300
+   ],
+   "reason": "灰階掃描，紅／綠／藍無法分辨，sideGuess 皆為推估"
+  }
+ ]
+}

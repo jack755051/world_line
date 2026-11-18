@@ -1,0 +1,88 @@
+{
+ "batch": "025",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 2,
+  "deletedParagraphs": 3,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 34,
+  "addedCitations": 3,
+  "editedSentences": 6,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "su-molotov",
+   "bioId": "01a1b492-3ef5-7772-92ed-e17a239dc5c7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 3,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1『1912年起參與真理報編輯部』改為『1912年參與創辦並主持編輯部』，補引文 Parteiorgans der Kommunistischen Partei \"Prawda\" (Wahrheit)（原引文無報名）",
+    "段2『黨內領導幹部』刪『黨內』（LeMO 只寫 Leitender Funktionär，未明寫黨職）",
+    "段4刪與內文無關的重複引文 Molotow wird sein Stellvertreter",
+    "段4 period 迄點依去世日改為 1986-11-09（day）",
+    "重抓 LeMO，引文仍逐字出現；外交人民委員 R6（roleGap=regime）、三筆黨職 R1 核對無誤"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hu-bethlen",
+   "bioId": "01a1b4ae-0dee-72c3-8f2b-a956a3c39f39",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "段3『統一黨取得245席中144席』補引文 Az Egységes Párt a nyílt szavazásos kerületekben（原引文無主語）",
+    "段4 period 迄點依去世日改為 1946-10-06（day）",
+    "重抓 lobid GND，Ministerpräsident von 1921-1931 仍在；Romsics OCR 引文逐條比對上下文無誤；黨領袖、議員、和平代表團三筆缺日期 gap 處理正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-carol-ii",
+   "bioId": "01a1b4ae-0df7-796e-9736-62a1ffc5cd62",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 9,
+   "changes": [
+    "cme-carol2（casamajestatiisale.ro 王室網站無署名介紹文）由 B 降 C（docs/source-rules.md §2；比照 batch005 kungahuset 降 C），人物生平不收",
+    "刪依該頁寫成的 3 段，段1改寫為只依 GND（A）的生平概略：羅馬尼亞國王、1893-10-15 生、1953-04-04 卒（補 GND 生日引文）",
+    "王儲職位（1914–1925-12-28，唯一出處為 C）刪除，移入 gap position:carol-crown-prince",
+    "新增 gap paragraph:royal-house-narrative 收王室頁候選引文，註明王室頁生日 10-03（舊曆）與 GND 10-15 不同，依合格出處優先以 GND 為準",
+    "新增 gap paragraph:length（篇幅不足）；searchLog 王室網站三筆 found_B 改 unrated",
+    "重抓 lobid GND，生卒與 König von Rumänien 仍在"
+   ],
+   "returnedReasons": [
+    "最低標準未達：審查後 1 段 49 字（需 ≥3 段、≥300 字），且 searchLog 無 round: retry 加強搜尋",
+    "缺 A／B 生平來源：建議下一步查 Biblioteca Națională a României 權威檔、Academia Română 出版之傳記辭典／Enciclopedia României 具名條目、Österreichisches Biographisches Lexikon 以外的 Südosteuropa 傳記辭典（Biographisches Lexikon zur Geschichte Südosteuropas，具名作者）、Monitorul Oficial 1930/1938/1940 公告"
+   ]
+  }
+ ],
+ "issues": [
+  "研究者把無署名的王室機構網站記為 B；依 source-rules §2 機構網站介紹文最高 C、無署名為 X，人物生平不收",
+  "段落 period 迄點遇去世日時應寫去世日次日（day 精度），本批兩人誤寫年精度"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

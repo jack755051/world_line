@@ -22,10 +22,36 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
     public DbSet<RegimeAlignmentCitation> RegimeAlignmentCitations => Set<RegimeAlignmentCitation>();
     public DbSet<EventParticipant> EventParticipants => Set<EventParticipant>();
     public DbSet<EventCitation> EventCitations => Set<EventCitation>();
+    public DbSet<EventCitationGrade> EventCitationGrades => Set<EventCitationGrade>();
+    public DbSet<SovereigntyRecordLink> SovereigntyRecordLinks => Set<SovereigntyRecordLink>();
+    public DbSet<SovereigntyRecordCitation> SovereigntyRecordCitations => Set<SovereigntyRecordCitation>();
+    public DbSet<SovereigntyDispute> SovereigntyDisputes => Set<SovereigntyDispute>();
+    public DbSet<SovereigntyDisputeClaim> SovereigntyDisputeClaims => Set<SovereigntyDisputeClaim>();
     public DbSet<ControlCoverageNote> ControlCoverageNotes => Set<ControlCoverageNote>();
     public DbSet<SovereigntyRecord> SovereigntyRecords => Set<SovereigntyRecord>();
     public DbSet<ConflictRecord> ConflictRecords => Set<ConflictRecord>();
     public DbSet<OccupationAttribution> OccupationAttributions => Set<OccupationAttribution>();
+    public DbSet<CapitalRecord> CapitalRecords => Set<CapitalRecord>();
+    public DbSet<LeaderBio> LeaderBios => Set<LeaderBio>();
+    public DbSet<LeaderRecord> LeaderRecords => Set<LeaderRecord>();
+    public DbSet<LeaderBioFieldCitation> LeaderBioFieldCitations => Set<LeaderBioFieldCitation>();
+    public DbSet<LeaderRecordCitation> LeaderRecordCitations => Set<LeaderRecordCitation>();
+    public DbSet<LeaderBioGap> LeaderBioGaps => Set<LeaderBioGap>();
+    public DbSet<LeaderBioParagraph> LeaderBioParagraphs => Set<LeaderBioParagraph>();
+    public DbSet<LeaderBioParagraphCitation> LeaderBioParagraphCitations => Set<LeaderBioParagraphCitation>();
+    public DbSet<PersonPosition> PersonPositions => Set<PersonPosition>();
+    public DbSet<PersonPositionCitation> PersonPositionCitations => Set<PersonPositionCitation>();
+    public DbSet<PersonRole> PersonRoles => Set<PersonRole>();
+    public DbSet<PersonRoleCitation> PersonRoleCitations => Set<PersonRoleCitation>();
+    // 戰役 C1（ARCHITECTURE §19.1）；設定在 BattleModel.cs。
+    public DbSet<BattleProfile> BattleProfiles => Set<BattleProfile>();
+    public DbSet<BattlePhase> BattlePhases => Set<BattlePhase>();
+    public DbSet<BattleMapFeature> BattleMapFeatures => Set<BattleMapFeature>();
+    public DbSet<BattleUnit> BattleUnits => Set<BattleUnit>();
+    public DbSet<BattleProfileCitation> BattleProfileCitations => Set<BattleProfileCitation>();
+    public DbSet<BattlePhaseCitation> BattlePhaseCitations => Set<BattlePhaseCitation>();
+    public DbSet<BattleMapFeatureCitation> BattleMapFeatureCitations => Set<BattleMapFeatureCitation>();
+    public DbSet<BattleUnitCitation> BattleUnitCitations => Set<BattleUnitCitation>();
 
     private static string InList(string column, IEnumerable<string> values) =>
         $"{column} IN ({string.Join(", ", values.Select(v => $"'{v}'"))})";
@@ -47,7 +73,11 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             {
                 t.HasCheckConstraint("ck_sources_source_kind", InList("source_kind", SourceKinds.All));
                 t.HasCheckConstraint("ck_sources_publisher_not_blank", "btrim(publisher) <> ''");
+                t.HasCheckConstraint("ck_sources_grade", "grade IS NULL OR " + InList("grade", SourceGrades.All));
+                t.HasCheckConstraint("ck_sources_grade_basis", "grade IS NULL OR grade_basis IS NOT NULL");
             });
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.Family).HasMaxLength(64);
             e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
             e.Property(x => x.SourceKind).HasMaxLength(32);
             e.Property(x => x.LicenseCode).HasMaxLength(32);
@@ -64,6 +94,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.Property(x => x.WikidataQid).HasMaxLength(20);
             e.Property(x => x.Version).HasDefaultValue(0).IsConcurrencyToken();
             e.HasMany(x => x.Names).WithOne().HasForeignKey(n => n.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
             Timestamps(e, updated: true);
         });
 
@@ -266,6 +297,92 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
         });
 
+        // 主權紀錄的來歷（docs/source-rules.md D5）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecordLink>(e =>
+        {
+            e.ToTable("sovereignty_record_links", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_record_links_kind", "kind IN ('baseline', 'continuation', 'minor_revision', 'change', 'new', 'beyond_source')");
+                t.HasCheckConstraint("ck_sovereignty_record_links_continuation", "kind <> 'continuation' OR continues_record_id IS NOT NULL");
+                t.HasCheckConstraint("ck_sovereignty_record_links_start_date_precision", "start_date_precision IS NULL OR start_date_precision IN ('day', 'month', 'year')");
+                t.HasCheckConstraint("ck_sovereignty_record_links_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Kind).HasMaxLength(16);
+            e.Property(x => x.StartDatePrecision).HasMaxLength(8);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.ContinuesRecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<HistoricalEvent>().WithMany().HasForeignKey(x => x.StartEventId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RecordId).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_record_links_live");
+        });
+
+        // 主權紀錄本身的引文（docs/source-rules.md D5）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyRecordCitation>(e =>
+        {
+            e.ToTable("sovereignty_record_citations", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_record_citations_grade", "grade IN ('A', 'B', 'C')");
+                t.HasCheckConstraint("ck_sovereignty_record_citations_text", "btrim(locator) <> '' AND btrim(evidence_note) <> '' AND btrim(grade_basis) <> ''");
+                t.HasCheckConstraint("ck_sovereignty_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.RecordId, x.SourceId, x.Locator }).IsUnique().HasFilter("retracted_at IS NULL")
+                .HasDatabaseName("ux_sovereignty_record_citations_live");
+        });
+
+        // 主權爭議（憲法 R6、I3）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<SovereigntyDispute>(e =>
+        {
+            e.ToTable("sovereignty_disputes", t =>
+            {
+                t.HasCheckConstraint("ck_sovereignty_disputes_slug", "slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'");
+                t.HasCheckConstraint("ck_sovereignty_disputes_summary_object", "jsonb_typeof(summary) = 'object'");
+                t.HasCheckConstraint("ck_sovereignty_disputes_kind", "kind IN ('contested', 'layered')");
+                t.HasCheckConstraint("ck_sovereignty_disputes_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Slug).HasMaxLength(80);
+            e.Property(x => x.Kind).HasMaxLength(16).HasDefaultValue("contested");
+            e.Property(x => x.Summary).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasIndex(x => x.Slug).IsUnique().HasFilter("retracted_at IS NULL").HasDatabaseName("ux_sovereignty_disputes_slug_live");
+        });
+        b.Entity<SovereigntyDisputeClaim>(e =>
+        {
+            e.ToTable("sovereignty_dispute_claims", t =>
+                t.HasCheckConstraint("ck_sovereignty_dispute_claims_position_object", "jsonb_typeof(position) = 'object'"));
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Position).HasColumnType("jsonb");
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<SovereigntyDispute>().WithMany().HasForeignKey(x => x.DisputeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.ClaimantRegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<SovereigntyRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            // 同一方可以有多筆（前後相接的幾筆主權紀錄各一列）；同一筆主權紀錄在一筆爭議裡只能出現一次
+            e.HasIndex(x => new { x.DisputeId, x.RecordId }).IsUnique().HasFilter("record_id IS NOT NULL").HasDatabaseName("ux_sovereignty_dispute_claims_record");
+        });
+
+        // 事件引文的等級（docs/source-rules.md §2）。guard trigger 在 migration 以 SQL 建立。
+        b.Entity<EventCitationGrade>(e =>
+        {
+            e.ToTable("event_citation_grades", t =>
+            {
+                t.HasCheckConstraint("ck_event_citation_grades_grade", "grade IN ('A', 'B', 'C')");
+                t.HasCheckConstraint("ck_event_citation_grades_basis", "btrim(grade_basis) <> ''");
+                t.HasCheckConstraint("ck_event_citation_grades_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.CreatedAt).HasDefaultValueSql("now()");
+            e.HasOne<EventCitation>().WithMany().HasForeignKey(x => new { x.EventId, x.SourceId, x.Locator }).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => new { x.EventId, x.SourceId, x.Locator }).IsUnique().HasFilter("retracted_at IS NULL")
+                .HasDatabaseName("ux_event_citation_grades_live");
+        });
+
         // 涵蓋備註（PRD §6.3 control_coverage_notes、§6.4 選項 C）
         b.Entity<ControlCoverageNote>(e =>
         {
@@ -340,6 +457,163 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });
+        // 首都紀錄（capital_records；2026-11-02 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<CapitalRecord>(e =>
+        {
+            e.ToTable("capital_records", t =>
+            {
+                t.HasCheckConstraint("ck_capital_records_city_name_object", "jsonb_typeof(city_name) = 'object'");
+                t.HasCheckConstraint("ck_capital_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_capital_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.CityName).HasColumnType("jsonb");
+            e.Property(x => x.Location).HasColumnType("geometry(Point,4326)");
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
+        // 領導人生平（leader_bios；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBio>(e =>
+        {
+            e.ToTable("leader_bios", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bios_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_leader_bios_birth_date_precision",
+                    "birth_date_precision IS NULL OR birth_date_precision IN ('day', 'month', 'year')");
+                t.HasCheckConstraint("ck_leader_bios_birth_place_object", "birth_place IS NULL OR jsonb_typeof(birth_place) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_death_place_object", "death_place IS NULL OR jsonb_typeof(death_place) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_party_object", "party IS NULL OR jsonb_typeof(party) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_summary_object", "summary IS NULL OR jsonb_typeof(summary) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_field_sources_object", "field_sources IS NULL OR jsonb_typeof(field_sources) = 'object'");
+                t.HasCheckConstraint("ck_leader_bios_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_bios_death_date_precision",
+                    "death_date_precision IS NULL OR death_date_precision IN ('day', 'month', 'year')");
+                t.HasCheckConstraint("ck_leader_bios_wikidata_qid", "wikidata_qid IS NULL OR wikidata_qid ~ '^Q[1-9][0-9]*$'");
+                // 照片：要有出處頁、授權（允許清單）、署名、查證日期才可寫入 URL。
+                t.HasCheckConstraint("ck_leader_bios_portrait_complete",
+                    "portrait_url IS NULL OR (portrait_source_url IS NOT NULL AND portrait_license_code IS NOT NULL " +
+                    "AND portrait_attribution IS NOT NULL AND portrait_retrieved_on IS NOT NULL)");
+                t.HasCheckConstraint("ck_leader_bios_portrait_license",
+                    "portrait_license_code IS NULL OR " + InList("portrait_license_code", CitationPolicy.PrimaryLicenseAllowlist.Order()));
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.BirthDatePrecision).HasMaxLength(8);
+            e.Property(x => x.DeathDatePrecision).HasMaxLength(8);
+            e.Property(x => x.WikidataQid).HasMaxLength(16);
+            e.Property(x => x.PortraitLicenseCode).HasMaxLength(32);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.SupersededBy).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.WikidataQid).HasFilter("wikidata_qid IS NOT NULL AND retracted_at IS NULL");
+            e.Property(x => x.BirthPlace).HasColumnType("jsonb");
+            e.Property(x => x.DeathPlace).HasColumnType("jsonb");
+            e.Property(x => x.Party).HasColumnType("jsonb");
+            e.Property(x => x.Summary).HasColumnType("jsonb");
+            e.Property(x => x.FieldSources).HasColumnType("jsonb");
+            e.Property(x => x.IsTest).HasDefaultValue(false);
+            e.Property(x => x.Version).HasDefaultValue(0);
+            Timestamps(e, updated: false);
+        });
+        // 生平欄位引用（2026-11-07）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBioFieldCitation>(e =>
+        {
+            e.ToTable("leader_bio_field_citations", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bio_field_citations_field", InList("field", LeaderBioFields.All));
+                t.HasCheckConstraint("ck_leader_bio_field_citations_locator_not_blank", "btrim(locator) <> ''");
+                t.HasCheckConstraint("ck_leader_bio_field_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                // §16.4.1 補欄（2026-11-10）：quote 可空（舊列），給了不可空白；80 字上限（Tai 2026-11-10 21:52）只在 BioSourcePolicy 檢查。
+                t.HasCheckConstraint("ck_leader_bio_field_citations_quote_not_blank", "quote IS NULL OR btrim(quote) <> ''");
+                t.HasCheckConstraint("ck_leader_bio_field_citations_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.BioAllowedGrades.Order()));
+                t.HasCheckConstraint("ck_leader_bio_field_citations_date_precision",
+                    "date_precision IS NULL OR " + InList("date_precision", DatePrecisions.All));
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Field).HasMaxLength(16);
+            e.Property(x => x.QuoteLang).HasMaxLength(35);
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.DatePrecision).HasMaxLength(8);
+            e.Property(x => x.PolicyVersion).HasMaxLength(32);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.BioId);
+            Timestamps(e, updated: false);
+        });
+        // 任期引用（ARCHITECTURE §16.3-2、§16.4.1，B1）。I5 trigger 在 migration 以 SQL 建立。
+        // grade CHECK 只收 A／B（Tai 2026-11-10 16:20 核准，migration BioCitationFieldsAndGaps）；policy_version 不檢查（T2 未決）。
+        b.Entity<LeaderRecordCitation>(e =>
+        {
+            e.ToTable("leader_record_citations", t =>
+            {
+                t.HasCheckConstraint("ck_leader_record_citations_locator_not_blank", "btrim(locator) <> ''");
+                t.HasCheckConstraint("ck_leader_record_citations_quote_not_blank", "btrim(quote) <> ''");
+                t.HasCheckConstraint("ck_leader_record_citations_date_precision",
+                    "date_precision IS NULL OR " + InList("date_precision", DatePrecisions.All));
+                t.HasCheckConstraint("ck_leader_record_citations_claim_span",
+                    "claim_span IS NULL OR (NOT isempty(claim_span) AND lower(claim_span) >= 0)");
+                t.HasCheckConstraint("ck_leader_record_citations_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_record_citations_grade", "grade IS NULL OR " + InList("grade", BioSourcePolicy.AllowedGrades.Order()));
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.QuoteLang).HasMaxLength(35);
+            e.Property(x => x.Grade).HasMaxLength(1);
+            e.Property(x => x.DatePrecision).HasMaxLength(8);
+            e.Property(x => x.ClaimSpan).HasColumnType("int4range");
+            e.Property(x => x.PolicyVersion).HasMaxLength(32);
+            e.HasOne<LeaderRecord>().WithMany().HasForeignKey(x => x.RecordId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<Source>().WithMany().HasForeignKey(x => x.SourceId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RecordId);
+            Timestamps(e, updated: false);
+        });
+        // 生平缺口（ARCHITECTURE §16.4.2，B1）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderBioGap>(e =>
+        {
+            e.ToTable("leader_bio_gaps", t =>
+            {
+                t.HasCheckConstraint("ck_leader_bio_gaps_gap_kind", InList("gap_kind", LeaderBioGapKinds.All));
+                t.HasCheckConstraint("ck_leader_bio_gaps_target", $"target ~ '{LeaderBioGapKinds.TargetPattern}'");
+                t.HasCheckConstraint("ck_leader_bio_gaps_field_target",
+                    "target NOT LIKE 'field:%' OR " + InList("substr(target, 7)", LeaderBioFields.All));
+                t.HasCheckConstraint("ck_leader_bio_gaps_candidate_citations_array",
+                    "candidate_citations IS NULL OR jsonb_typeof(candidate_citations) = 'array'");
+                t.HasCheckConstraint("ck_leader_bio_gaps_resolved_by", "resolved_by_citation_id IS NULL OR resolved_at IS NOT NULL");
+                t.HasCheckConstraint("ck_leader_bio_gaps_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Target).HasMaxLength(64);
+            e.Property(x => x.GapKind).HasMaxLength(24);
+            e.Property(x => x.CandidateCitations).HasColumnType("jsonb");
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.BioId).OnDelete(DeleteBehavior.Restrict);
+            // 同人同目標同種類，未解決且未撤回者只能一筆（回填可重跑、不重複）。
+            e.HasIndex(x => new { x.BioId, x.Target, x.GapKind }).IsUnique()
+                .HasFilter("resolved_at IS NULL AND retracted_at IS NULL");
+            Timestamps(e, updated: false);
+        });
+        // 領導人紀錄（leader_records；2026-11-03 試驗，AI 提案・待拍板）。I5 trigger 在 migration 以 SQL 建立。
+        b.Entity<LeaderRecord>(e =>
+        {
+            e.ToTable("leader_records", t =>
+            {
+                t.HasCheckConstraint("ck_leader_records_role", InList("role", LeaderRoles.All));
+                t.HasCheckConstraint("ck_leader_records_name_not_blank", "btrim(name) <> ''");
+                t.HasCheckConstraint("ck_leader_records_source_not_blank", "btrim(source) <> ''");
+                t.HasCheckConstraint("ck_leader_records_start_bounded", "NOT lower_inf(valid_period) AND NOT isempty(valid_period)");
+                t.HasCheckConstraint("ck_leader_records_retraction_reason", "retracted_at IS NULL OR retraction_reason IS NOT NULL");
+            });
+            e.Property(x => x.Id).HasDefaultValueSql("gen_random_uuid()");
+            e.Property(x => x.Role).HasMaxLength(32);
+            e.Property(x => x.ValidPeriod).HasColumnType("daterange");
+            e.Property(x => x.Verified).HasDefaultValue(false);
+            e.Property(x => x.Version).HasDefaultValue(0);
+            e.HasOne<Regime>().WithMany().HasForeignKey(x => x.RegimeId).OnDelete(DeleteBehavior.Restrict);
+            e.HasOne<LeaderBio>().WithMany().HasForeignKey(x => x.PersonId).OnDelete(DeleteBehavior.Restrict);
+            e.HasIndex(x => x.RegimeId);
+            e.HasIndex(x => x.PersonId).HasFilter("person_id IS NOT NULL");
+            e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
+            Timestamps(e, updated: false);
+        });
         // 佔領歸屬（主權圖層依佔領國上色；2026-10-31 試驗，AI 提案・待拍板）。EXCLUDE 與 I5 trigger 在 migration 以 SQL 建立。
         b.Entity<OccupationAttribution>(e =>
         {
@@ -362,5 +636,7 @@ public sealed class WorldLineDbContext(DbContextOptions<WorldLineDbContext> opti
             e.HasIndex(x => x.ValidPeriod).HasMethod("gist");
             Timestamps(e, updated: false);
         });
+        BattleModel.Configure(b);
+        BioDetailModel.Configure(b);
     }
 }

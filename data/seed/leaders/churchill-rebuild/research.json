@@ -1,0 +1,322 @@
+{
+ "batch": "churchill-rebuild",
+ "researchedOn": "2026-11-11",
+ "decidedBy": "Tai 2026-11-11 09:30（Asia/Taipei）：照 gap-830 流程補建，寫庫前回報 Tai",
+ "decisions": {
+  "decidedBy": "Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）：6 項全照史料考證建議",
+  "items": [
+   {
+    "no": 1,
+    "item": "任期拆筆",
+    "decision": "只建一筆 [1940-05-10,1945-07-26)，不拆 1945-05-23 看守內閣；拆點記待查證"
+   },
+   {
+    "no": 2,
+    "item": "職銜",
+    "decision": "Prime Minister（照 Hansard）"
+   },
+   {
+    "no": 3,
+    "item": "黨派",
+    "decision": "Conservative；evidenceNote 註明只代表首相任內黨籍"
+   },
+   {
+    "no": 4,
+    "item": "卒地",
+    "decision": "這次不寫，記在 research.json unverified；不寫任何 death_place SQL（超出計畫）"
+   },
+   {
+    "no": 5,
+    "item": "b3-sample 連結",
+    "decision": "寫庫後另開 commit 補 b3-sample 邱吉爾 bioId／relatedRecordIds；寫入第一、二階段都不改 b3-sample"
+   },
+   {
+    "no": 6,
+    "item": "nameZh／wikidataQid／照片",
+    "decision": "nameZh 無出處保留；wikidataQid 與照片 null"
+   }
+  ]
+ },
+ "sources": {
+  "govuk-churchill": {
+   "grade": "A",
+   "gradeWhy": "政府官方傳記頁",
+   "title": "Sir Winston Churchill — History of Sir Winston Churchill (Past Prime Ministers)",
+   "publisher": "GOV.UK (Prime Minister's Office, 10 Downing Street)",
+   "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+   "sourceKind": "official_history",
+   "licenseCode": null,
+   "accessedOn": "2026-11-11"
+  },
+  "hansard-churchill": {
+   "grade": "A",
+   "gradeWhy": "議會官方紀錄",
+   "title": "Mr Winston Churchill (Hansard 1803–2005, People)",
+   "publisher": "UK Parliament (Historic Hansard)",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/index.html",
+   "sourceKind": "official_record",
+   "licenseCode": null,
+   "accessedOn": "2026-11-11"
+  },
+  "nobel-churchill": {
+   "grade": "B",
+   "gradeWhy": "機構傳記、無具名作者，保守評 B（同 b3-sample）",
+   "title": "Winston Churchill – Biographical (Nobel Prize in Literature 1953)",
+   "publisher": "Nobel Foundation (NobelPrize.org)",
+   "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+   "sourceKind": "official_history",
+   "licenseCode": null,
+   "accessedOn": "2026-11-11"
+  }
+ },
+ "people": [
+  {
+   "key": "gb-winston-churchill",
+   "bioId": null,
+   "groupKeys": [
+    "winston churchill"
+   ],
+   "recordIds": [],
+   "recordNameVariants": [
+    "Winston Churchill"
+   ],
+   "wikidataQid": null,
+   "name": {
+    "value": "Winston Churchill",
+    "sources": [
+     {
+      "sourceKey": "hansard-churchill",
+      "locator": "Page heading",
+      "quote": "Mr Winston Churchill",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "nameZh": {
+    "value": "溫斯頓·邱吉爾",
+    "sources": [],
+    "note": "沿用 5442 已撤回任期 01a19efa-769a-… 與 b3-sample 的中文名；無來源（前端顯示待補來源）；Tai 2026-11-11 10:13 決定無出處保留"
+   },
+   "birthDate": {
+    "value": "1874-11-30",
+    "precision": "day",
+    "sources": [
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Fact box: Born",
+      "quote": "30 November 1874, Blenheim Palace, Oxfordshire",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "deathDate": {
+    "value": "1965-01-24",
+    "precision": "day",
+    "sources": [
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Fact box: Died",
+      "quote": "24 January 1965, London",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "policyVersion": "bio-2026-11-v0"
+     },
+     {
+      "sourceKey": "hansard-churchill",
+      "locator": "Life dates under name",
+      "quote": "1874 - January 24, 1965",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": "day",
+      "policyVersion": "bio-2026-11-v0"
+     },
+     {
+      "sourceKey": "nobel-churchill",
+      "locator": "Closing line of biography",
+      "quote": "Winston Churchill died on January 24, 1965.",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "B",
+      "datePrecision": "day",
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "birthPlace": {
+    "value": {
+     "zh-Hant": "牛津郡布倫亨宮",
+     "en": "Blenheim Palace, Oxfordshire"
+    },
+    "sources": [
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Fact box: Born",
+      "quote": "30 November 1874, Blenheim Palace, Oxfordshire",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "party": {
+    "value": {
+     "zh-Hant": "保守黨",
+     "en": "Conservative Party"
+    },
+    "sources": [
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Subtitle under page heading",
+      "quote": "Conservative 1940 to 1945, 1951 to 1955",
+      "quoteLang": "en",
+      "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     },
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Fact box: Political party",
+      "quote": "Conservative",
+      "quoteLang": "en",
+      "evidenceNote": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）",
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "summary": {
+    "value": {
+     "zh-Hant": "英國保守黨政治人物，1940年至1945年及1951年至1955年兩度出任首相；1965年逝世並獲國葬。",
+     "en": "British Conservative politician who served twice as Prime Minister, 1940–1945 and 1951–1955; he died in 1965 and was given a state funeral."
+    },
+    "sources": [
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Subtitle under page heading",
+      "quote": "Conservative 1940 to 1945, 1951 to 1955",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     },
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Fact box: Dates in office",
+      "quote": "1940 to 1945, 1951 to 1955",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     },
+     {
+      "sourceKey": "govuk-churchill",
+      "locator": "Biography, last paragraph",
+      "quote": "Churchill died in 1965, and was honoured with a state funeral.",
+      "quoteLang": "en",
+      "evidenceNote": null,
+      "accessedOn": "2026-11-11",
+      "grade": "A",
+      "datePrecision": null,
+      "policyVersion": "bio-2026-11-v0"
+     }
+    ]
+   },
+   "portrait": null,
+   "conflicts": [],
+   "unverified": [
+    {
+     "field": "wikidataQid",
+     "clue": "本次未查 Wikidata",
+     "why": "只當線索、非必要；留 null，不憑記憶填（Tai 2026-11-11 10:13 決定 null）"
+    },
+    {
+     "field": "portrait",
+     "clue": "Commons 檔案頁",
+     "why": "本次未查授權模板，依規則留 null（Tai 2026-11-11 10:13 決定 null）"
+    },
+    {
+     "field": "deathPlace",
+     "clue": "GOV.UK Fact box: Died「24 January 1965, London」",
+     "why": "CreateLeaderBioRequest 沒有 deathPlace 欄（DB 有 death_place）；Tai 2026-11-11 10:13 決定這次不寫、不另寫 death_place SQL（超出計畫），待 API 支援再補"
+    },
+    {
+     "field": "record:gb-churchill-pm-1940 split 1945-05-23",
+     "clue": "1945-05-23 聯合內閣結束、組看守內閣；既有資料把麥克唐納 1929–31／1931–35 依內閣拆筆",
+     "why": "手上 A 級來源（Hansard、GOV.UK）只給一段連續任期，無來源支撐拆點；Tai 2026-11-11 10:13 決定只建一筆 [1940-05-10,1945-07-26)，拆點待查證（需 Commons Library 名錄等來源，目前被防機器人擋）"
+    }
+   ],
+   "newRecords": [
+    {
+     "key": "gb-churchill-pm-1940",
+     "regimeId": "01a18e71-cba5-7726-90e3-9b90ab344afd",
+     "regimeSlug": "united-kingdom",
+     "role": "head_of_government",
+     "title": "Prime Minister",
+     "name": "Winston Churchill",
+     "nameZh": "溫斯頓·邱吉爾",
+     "validFrom": "1940-05-10",
+     "validTo": "1945-07-26",
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "originalEndDate": "1945-07-26",
+     "originalEndNote": "原始卸任日 1945-07-26（Hansard 閉區間最後在任日 July 25, 1945 → 半開終點 1945-07-26）；早於地圖範圍終點 1945-10-01，不需截斷",
+     "verified": true,
+     "source": "UK Parliament, Historic Hansard, «Mr Winston Churchill», Offices: Prime Minister, May 10, 1940 - July 25, 1945（另見 GOV.UK Past Prime Ministers：1940 to 1945）",
+     "sourceUrl": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/index.html",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices: Prime Minister (first entry)",
+       "quote": "May 10, 1940 - July 25, 1945",
+       "quoteLang": "en",
+       "evidenceNote": "Hansard 寫閉區間（含 7 月 25 日）；依半開區間存為 [1940-05-10,1945-07-26)",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Fact box: Dates in office",
+       "quote": "1940 to 1945, 1951 to 1955",
+       "quoteLang": "en",
+       "evidenceNote": "只支撐到年；1951–55 屬範圍外任期，依 Q4 不建紀錄",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "staging": []
+}

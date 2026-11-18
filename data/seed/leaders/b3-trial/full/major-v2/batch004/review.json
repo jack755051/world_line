@@ -1,0 +1,89 @@
+{
+ "batch": "004",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 3,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 3,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "de-wilhelm-ii",
+   "bioId": "01a19f15-3574-776f-a3e9-348733e035e7",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 16,
+   "changes": [
+    "positions wilhelm-supreme-commander-ww1 移出改 gap field:supremeCommand（待查證：缺起日）：NDB 只在 1914–18 戰爭脈絡提到 Oberster Befehlshaber，1914-01-01 不是就任日；迄日 1918-11-28 為退位日推論",
+    "刪原 position: gap（隨職位移除）",
+    "段落 2 period 迄點 1908-01-01→1906-01-01（段內最後事件 1905，Q3）",
+    "段落 2 丹吉爾句改為「依NDB說法，是聽從外交部、外交界與首相比洛方面的建議」（貼合原文）",
+    "段落 3 每日電訊報句「起因是他接受訪談」改「事涉他接受…訪談」：NDB 把危機歸於政府處理失當，不是訪談本身",
+    "重抓 LeMO 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "at-franz-joseph-i",
+   "bioId": "01a1b4b5-f9d8-7310-b964-ed7578856680",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 17,
+   "changes": [
+    "段落 2 補 2 筆 LeMO 引文（1859、1866 年份），原 Solferino／Königgrätz 引文不含年份",
+    "段落 1 period 迄點 1849-01-01(year)→1848-12-02(day)（最後事件 2.12.1848）",
+    "重抓 NDB 比對一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ru-nicholas-ii",
+   "bioId": "01a1b4b5-f9bc-7f2f-90ba-f2af428ba89c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 43,
+   "changes": [
+    "position nicholas-supreme-commander-1915 迄日 1917-03-15（退位日推論，不符 Q7）改為留空，刪退位引文，gap 改「待查證：缺迄日；」→ check_min 未達",
+    "新增 gap field:calendar：LeMO 1905-10-17、1906-04-25、1907-06-03 未註曆法，疑為舊曆",
+    "重抓 prlib PDF：HTTP 200 application/pdf、sha256 與原檔一致，非繞過驗證",
+    "重試複審：最高統帥迄日 1917-03-15 改依下一任（接任者大公尼古拉·尼古拉耶維奇）任命日推得（Q7），保留 gap「待查證：迄日為推論」；補 Safonov 引文「Данилов в 1.00 3 марта…」作為任命時點的日期依據；刪 evidenceNote 中 LeMO「新曆」的無據說法",
+    "pravoby-svod 降 A→B（白俄羅斯法律門戶轉錄俄帝法典，第三方轉錄本）；段落 2 與 fundamentalLawDate gap 刪「舊曆」（引文未註曆法），改稱「法典彙編轉錄本」",
+    "searchLog 已達 6 種來源類型（新增 academic、treaty_law），俄文查詢 ≥4、實抓 ≥6，主要領導人規格通過",
+    "重抓 snl.no（301→Nikolaj_2.，200，92 人句一致；source url 改為最終網址）與 hoover.org（200，11:50 p.m. 句一致）",
+    "check_min：4 段／642 字／1 職位起迄齊"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者以退位日推職位迄日（兩人），不符 Q7，審查一律改為留空或移出；尼古拉二世重試後改依接任者任命詔令推得迄日，審查接受",
+  "「5 種來源類型」按 searchLog sourceType 值計；若按搜尋策略 1–5 類計（national_dictionary 與 official 同屬第 2 類），三人都只有 4 類、都沒查 academic，請主 session 裁定",
+  "LeMO 俄國年表新舊曆混用"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

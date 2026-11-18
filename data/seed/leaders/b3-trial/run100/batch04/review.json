@@ -1,0 +1,131 @@
+{
+ "batch": "04",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 0,
+  "editedSentences": 2,
+  "spotRefetched": 5,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "cn-lu-zhengxiang",
+   "bioId": "01a1c38a-2040-74b1-9aa1-ec3df54d0f95",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 4,
+   "changes": [
+    "段 1 period 起點 1892-01-01 → 1906-01-01（year）：段內引文都沒有 1892，第一個有日期的引文是 1906 年駐荷公使",
+    "段 2 中文人名「梁如豪」→「梁如浩」（原文 Liang Ju-hao）",
+    "職位 lu-foreign-minister-1915-16：1915-01 引文只寫返京月，補 evidenceNote 說明起月依返京月推得（推論）",
+    "gap field:positions 補註：段 3 已引的 1917–1920 外交總長任期還沒建職位",
+    "T14 核對：三段外交總長 R3 類別、正職；regimeId NULL 且只有 1 份 B → R6（roleGap regime、source）正確；1912 國務總理 R0 head_of_government 正確；駐外公使為 diplomat，無 t14Overlap，正確",
+    "Boorman 條目無個別署名，但出自哥倫比亞大學出版社、有具名主編的學術人物辭典，維持 B",
+    "重抓 xboorman.enpchina.eu/biographie/lu-zhengxiang 比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（名單預估薄）：只有 4 筆 searchLog（需 ≥8 次查詢），來源類型只有 other、academic（需 ≥4 類），中文原文查詢 1 次（需 ≥2），沒查權威檔與國家級辭典；研究者自己的 gap 也寫明未達",
+    "建議下一步：id.loc.gov／VIAF 查 Lu, Zhengxiang（Lou Tseng-Tsiang）；中研院近史所「近代人物資訊整合系統」站內查「陸徵祥」；國史館「國史館館刊」或總統府文物人名檢索；Britannica 擋 → 改查 Encyclopedia of Modern China 具名條目；用「陸徵祥」「陸子欣」各查一次"
+   ]
+  },
+  {
+   "key": "py-ferreira-benigno",
+   "bioId": "01a1aa4a-e5ee-77ff-8014-2ddfe4c4443a",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 1,
+   "changes": [
+    "gap field:birth：gapKind conflict → not_found（他處日期只見檢索摘要，只有一份已抓來源）",
+    "gap identity：原寫「元首任期落在窗外前段，只寫正文（Q4）」不正確（1906 至 1908 年 7 月與 1908–1945 有交集），改為屬 5442 名單內元首任期、不重建候選",
+    "核對：Whigham 署名條目（Encyclopedia of Latin American History and Culture），B 合理；自由黨副主席是黨職，但沒有日期，留在 gap 正確",
+    "重抓 encyclopedia.com 條目比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 只有 1 步（需 ≥8 次查詢、≥4 類來源、≥3 個實抓頁、西班牙文查詢 ≥2）",
+    "建議下一步：Biblioteca Nacional del Paraguay／VIAF 權威檔查 Ferreira, Benigno；Real Academia de la Historia DB~e（dbe.rah.es）；巴拉圭總統府歷任總統頁（presidencia.gov.py）；用「Benigno Ferreira presidente del Paraguay 1906」「General Benigno Ferreira biografía」等西班牙文查詢；釐清生卒日（1840-02-18 對 1846-01-13）"
+   ]
+  },
+  {
+   "key": "tr-renda-mustafa-abdulhalik",
+   "bioId": "01a1b492-3f3f-7a91-b672-e550a0cdc0eb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 7,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 6,
+   "changes": [
+    "段 1「副省長」→「州長（mutasarrıf）」、英文 sub-provincial governor → sanjak governor (mutasarrıf)（mutasarrıf 是州長，不是副職）",
+    "核對：國會議員引文只寫當選，沒寫以何黨身分，留 positions（legislator）正確，無漏掉的黨籍席位；內政次長 R5 正確；財政、國防部長無日期 → R6（dates、regime、source）正確；省長屬轄區內地方長官，不需 t14Overlap",
+    "Konyapedia 條目具名作者（Yüksel Özgen、Gönül Türkan Demir）並附檔案書目，B 合理",
+    "重抓 konyapedia.com/makale/2235 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "is-tryggvi-thorhallsson",
+   "bioId": "01a1b4c1-cdfe-7578-8135-39b55d3b1d47",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 5,
+   "changes": [
+    "職位 tryggvi-finance-minister-1928：加 t14Ambiguous。用原值 1929-03-07 算是 89 天（R5）；用半開迄日 03-08 算是 90 天（regimeId NULL → R6），T14 沒規定，交 Tai 裁決",
+    "核對：司法部長非四部，R5 正確；總理任期在 5442，未重建，正確",
+    "重抓 stjornarradid.is 內閣頁比對引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（名單預估厚，實得 1 段、只有總理與兼職日期）：5 筆 searchLog 全是 official 一類（需 ≥4 類、≥8 次查詢），沒查權威檔、國家級辭典、具名百科",
+    "建議下一步：VIAF／id.loc.gov 查 Tryggvi Þórhallsson；timarit.is（冰島國家大學圖書館報刊庫）查 1935 年訃聞；lex.dk 或 snl.no 具名條目；althingi.is 被 Cloudflare 擋 → 改查 Alþingi 出版的《Alþingismannatal》PDF；用冰島文「Tryggvi Þórhallsson formaður Framsóknarflokksins」「Bændaflokkurinn Tryggvi」各查一次，補進步黨／農民黨主席（R1 候選）的日期"
+   ]
+  },
+  {
+   "key": "pt-rodrigues-gaspar-alfredo",
+   "bioId": "01a1c39b-820a-7fe8-94c8-7231bbc355a0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "gap position:gaspar-prime-minister-1924：gapKind conflict → not_found（他處日期只見檢索摘要）",
+    "核對：殖民地部長非四部 → R5 正確，起迄日是該屆政府的期間，evidenceNote 已註明；1924 內政部長兼任 R6（regime、source；同作者兩頁不算獨立）正確；「membro do partido democrático」只是黨員身分不是黨職，不進候選，正確",
+    "重抓 maltez.info gasparrodrigues.htm 比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "5 人中有 4 人只有 1 位作者的來源（Gaspar 兩頁同作者），所有四部閣員都因 regimeId NULL 或只有 1 份 B 而落 R6。",
+  "三人最低嘗試未達（Lu 4 步、Ferreira 1 步、Tryggvi 5 步且只有一類）：研究者沒照搜尋策略先查權威檔與國家級辭典，原文語言查詢也不足。",
+  "gapKind conflict 誤用兩次（Ferreira 生卒、Gaspar 首腦任期）：只有檢索摘要不構成 conflict。",
+  "日精度迄日 +1 慣例與「繼任者同日就任」的原文會重疊一天（Tryggvi、Gaspar 1915-11-29），也影響 T14 最短天數在 89／90 天邊界的判斷；建議 Tai 明定日精度迄日寫法。",
+  "原始檔目錄有未列入 rawmap 的挑戰頁／空檔（althingi、infopedia、britannica、sinica 404、parlamento 空檔）與重複檔（lu-xboorman＝boorman-lu 等），不影響引文核對。",
+  "Ferreira、Renda 名單推定為不明：實查分別是巴拉圭總統（1906–1908）、土耳其政治人物（1930 年代任議長、代理總統一天）；兩人元首任期寫庫前要和 leader_records 去重。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 76
+ }
+}

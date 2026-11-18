@@ -1,0 +1,4184 @@
+{
+ "batch": "b3-full-v3-batch006",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 政權對應），國家級／戰區級軍職因政權待查證為 R6，軍／艦隊／師級與非四部閣員為 R5。Jellicoe、Portal 因英國 ODNB／Britannica／IWM／NPG／gg.govt.nz／Te Ara 等皆 403 或 Anubis 擋（不繞過），僅取得議會 Hansard 人物頁（生卒與頭銜），篇幅不足。Montgomery 僅 NAM＋Hansard；NAM 頁面無署名，列 B 待主管確認。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch006，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch006/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "db-kess": {
+   "title": "Deutsche Biographie - Keßelring, Albert",
+   "authors": [
+    "Thilo Vogelsang"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften / Bayerische Staatsbibliothek (Deutsche Biographie, NDB)",
+   "published_text": "Thilo Vogelsang, Neue Deutsche Biographie 11 (1977), S. 542-543",
+   "url": "https://www.deutsche-biographie.de/pnd118722050.html",
+   "archive_url": null,
+   "catalog_id": "GND 118722050",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，T1 A）"
+  },
+  "lemo-kess": {
+   "title": "LeMO Biografie - Albert Kesselring",
+   "authors": [
+    "Alexander Mühle",
+    "Arnulf Scriba"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Alexander Mühle, Arnulf Scriba, LeMO-Biografie (Stand 14.09.2014)",
+   "url": "https://www.dhm.de/lemo/biografie/albert-kesselring",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "nam-monty": {
+   "title": "Bernard Law Montgomery: Unbeatable and unbearable (Great Commanders)",
+   "authors": [],
+   "publisher": "National Army Museum, London",
+   "published_text": "National Army Museum, Explore: Bernard Montgomery",
+   "url": "https://www.nam.ac.uk/explore/bernard-montgomery",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "機構傳記（英國國家陸軍博物館 Great Commanders 專頁；頁面無署名，是否符合 Q9「具名作者」待主管確認，暫列 B）"
+  },
+  "hans-monty": {
+   "title": "Mr Bernard Montgomery (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament (Historic Hansard)",
+   "published_text": "UK Parliament, Historic Hansard 1803–2005, People (M)",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-bernard-montgomery",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方人物頁（UK Parliament，T1 A）"
+  },
+  "hans-portal": {
+   "title": "Charles Portal, 1st Viscount Portal of Hungerford (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament (Historic Hansard)",
+   "published_text": "UK Parliament, Historic Hansard 1803–2005, People (P)",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-charles-portal",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方人物頁（UK Parliament，T1 A）"
+  },
+  "hans-jell": {
+   "title": "John Jellicoe, 1st Earl Jellicoe (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament (Historic Hansard)",
+   "published_text": "UK Parliament, Historic Hansard 1803–2005, People (J)",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-john-jellicoe",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方人物頁（UK Parliament，T1 A）"
+  },
+  "lemo-kitch": {
+   "title": "LeMO Biografie - Horatio Herbert Kitchener",
+   "authors": [
+    "Anja Kettern"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Anja Kettern, LeMO-Biografie (Stand 14.09.2014)",
+   "url": "https://www.dhm.de/lemo/biografie/horatio-herbert-kitchener",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "nam-kitch": {
+   "title": "Field Marshal Horatio Herbert Kitchener (Great Commanders)",
+   "authors": [],
+   "publisher": "National Army Museum, London",
+   "published_text": "National Army Museum, Explore: Herbert Kitchener",
+   "url": "https://www.nam.ac.uk/explore/herbert-kitchener",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "機構傳記（英國國家陸軍博物館 Great Commanders 專頁；頁面無署名，是否符合 Q9「具名作者」待主管確認，暫列 B）"
+  },
+  "hans-kitch": {
+   "title": "Mr Horatio Kitchener (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament (Historic Hansard)",
+   "published_text": "UK Parliament, Historic Hansard 1803–2005, People (K)",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-horatio-kitchener",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方人物頁（UK Parliament，T1 A）"
+  },
+  "barch-rl72": {
+   "title": "Luftflottenkommando 2 (RL 7-2) 檔案說明",
+   "authors": [],
+   "publisher": "Bundesarchiv（德國聯邦檔案館）",
+   "published_text": "Bundesarchiv open-data 檔案說明 DE-1958_RL_7-2",
+   "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RL_7-2.xml",
+   "archive_url": null,
+   "catalog_id": "RL 7-2",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案館官方檔案說明（政府官方頁）"
+  },
+  "cup-unlimited": {
+   "title": "The Strategy of Unlimited Warfare? (Chapter 15), Great War, Total War",
+   "authors": [],
+   "publisher": "Cambridge University Press",
+   "published_text": "Great War, Total War, Chapter 15（摘要頁）",
+   "url": "https://www.cambridge.org/core/books/abs/great-war-total-war/strategy-of-unlimited-warfare/AC4B050169A68BCCCB95D1885AD6D100",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社專書章節摘要頁（作者名未從已抓頁面取得，列 B 待主管確認）"
+  },
+  "hans-late-kitch": {
+   "title": "THE LATE EARL KITCHENER (Hansard, 20 June 1916)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "HL Deb 20 June 1916 vol 22 cc315-22",
+   "url": "https://api.parliament.uk/historic-hansard/lords/1916/jun/20/the-late-earl-kitchener",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方議事紀錄"
+  },
+  "rf-gaz-alexander": {
+   "title": "Supplement to The London Gazette, 12 June 1950 (Alexander despatch, Italy)",
+   "authors": [
+    "Field Marshal Earl Alexander of Tunis"
+   ],
+   "publisher": "The London Gazette (HMSO)",
+   "published_text": null,
+   "url": "https://www.thegazette.co.uk/London/issue/38937/supplement/2907/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報 The London Gazette 第38937號增刊（1950-06-12）刊登之亞歷山大戰區司令官電文"
+  },
+  "rf-pogue-supcmd15": {
+   "title": "The Supreme Command, Chapter XV: Command Reorganization, June-October 1944",
+   "authors": [
+    "Forrest C. Pogue"
+   ],
+   "publisher": "U.S. Army Center of Military History (United States Army in World War II)",
+   "published_text": null,
+   "url": "https://ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-15.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Forrest C. Pogue；美國陸軍軍史中心官方戰史（HyperWar 轉載頁，非 history.army.mil 原站，故評 C）"
+  },
+  "rf-encyc-jellicoe": {
+   "title": "John Rushworth Jellicoe (Encyclopedia of World Biography)",
+   "authors": [],
+   "publisher": "Gale / Encyclopedia.com (Encyclopedia of World Biography)",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/john-rushworth-jellicoe",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 Gale（Encyclopedia of World Biography 條目，Encyclopedia.com 轉載）；頁面未列個別作者"
+  },
+  "rf-encyc-portal": {
+   "title": "Portal, Charles, 1st Viscount Portal (The Oxford Companion to British History)",
+   "authors": [
+    "J. A. Cannon"
+   ],
+   "publisher": "Oxford University Press (via Encyclopedia.com)",
+   "published_text": null,
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/portal-charles-1st-viscount-portal",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 J. A. Cannon；牛津大學出版社 The Oxford Companion to British History 條目"
+  },
+  "rf-richards-air-council": {
+   "title": "Royal Air Force 1939-1945, Volume I: The Fight at Odds, Appendix I: Members of the Air Council, 1934-1941",
+   "authors": [
+    "Denis Richards"
+   ],
+   "publisher": "HMSO (Official History); HyperWar transcription",
+   "published_text": null,
+   "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-RAF-I/UK-RAF-I-I.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Denis Richards；英國官方戰史附錄（HyperWar 轉載頁）"
+  },
+  "rf-ics-milburn": {
+   "title": "Churchill and Portal: A Strategic Relationship (Finest Hour 185)",
+   "authors": [
+    "Rich Milburn"
+   ],
+   "publisher": "International Churchill Society",
+   "published_text": "August 19, 2019",
+   "url": "https://winstonchurchill.org/publications/finest-hour/finest-hour-185/churchill-and-portal-a-strategic-relationship/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Rich Milburn（RAF 軍官、美國空軍戰爭學院講師）；具名機構 International Churchill Society《Finest Hour》"
+  }
+ },
+ "people": [
+  {
+   "key": "albertkesselring",
+   "bioId": null,
+   "name": "Albert Kesselring",
+   "nameZh": "阿爾貝特·凱塞林",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1885-11-30",
+      "end": "1933-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "阿爾貝特·凱塞林1885年11月30日生於下弗蘭肯的馬克特施泰夫特，父親卡爾曾任拜羅伊特的市學務官。他從巴伐利亞步兵砲兵起家，1906年任少尉；一戰期間先在巴伐利亞砲兵指揮官身邊任副官，1917年起以上尉身分在師與軍司令部任參謀軍官。戰後他負責巴伐利亞第3軍的復員並轉入國防軍，1922年調入國防部，在陸軍統帥部參謀部任職，1933年10月1日開始新的職涯階段。",
+      "en": "Albert Kesselring was born on 30 November 1885 in Marktsteft, Lower Franconia; his father Karl was municipal school councillor in Bayreuth. He began with the Bavarian foot artillery (lieutenant in 1906), served in the First World War first as adjutant to Bavarian artillery commanders and from 1917 as a captain and general-staff officer in division and corps staffs. After the armistice he demobilised the Bavarian III Corps and joined the Reichswehr; in 1922 he moved to the Reichswehr ministry, on the staff of the army command, and on 1 October 1933 began a new phase of his career."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "* 30.11.1885 Marktsteft (Unterfranken)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "Lehrer, dann Stadtschulrat in Bayreuth;",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "bei der bayerischen Fußartillerie (1906 Leutnant)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "zunächst in Adjutantenstellungen bei bayerischen Artillerie-Kommandeuren",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "seit 1917 als Hauptmann und Generalstabsoffizier",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "oblag K. die Demobilisierung des bayerischen III. AK in Nürnberg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "ließ er sich in die Reichswehr übernehmen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "wurde er 1922 in das Reichswehrministerium versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "im Stabe des Chefs der Heeresleitung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "am 1.10.1933 in einen neuen Abschnitt seiner Laufbahn ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1933-12-01",
+      "end": "1938-10-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "轉入空軍與空軍參謀長",
+      "en": "Move to the Luftwaffe and chief of its general staff"
+     },
+     "body": {
+      "zh-Hant": "1933年12月凱塞林由陸軍轉入空軍，以民事官銜「准將（Commodore）」出任帝國航空部D局（後稱空軍行政局）局長，並在48歲時補考飛行員資格，對這支新軍種的快速擴張有重要作用。1936年6月5日他出任空軍參謀長，1938年10月1日又出任第1航空艦隊（柏林）司令。",
+      "en": "In December 1933 Kesselring moved from the army to the Luftwaffe with the civil title \"Commodore\" as head of Office D (later the Luftwaffe administration office) in the Reich Air Ministry, and at 48 he earned his pilot's licence, playing a major part in the new service's rapid growth. On 5 June 1936 he became chief of the Luftwaffe general staff, and on 1 October 1938 chief of Air Fleet 1 (Berlin)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kess",
+       "locator": "LeMO Biografie",
+       "quote": "Dezember: Kesselring wird vom Heer in die Luftwaffe versetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "mit der zivilen Dienstbezeichnung „Commodore“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "zum Chef des Amtes D (später: Luftwaffenverwaltungsamt)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "holte im Alter von 48 Jahren die Flugzeugführerprüfung nach",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "maßgebenden Anteil am rasanten Wachstum der neuen Teilstreitkraft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "5.6.1936 Chef des Generalstabes der Luftwaffe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "1.10.1938 Chef der Luftflotte 1 [Berlin]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-09-01",
+      "end": "1941-07-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "波蘭、西線、不列顛空戰與入侵蘇聯",
+      "en": "Poland, the West, the Battle of Britain and the invasion of the USSR"
+     },
+     "body": {
+      "zh-Hant": "1939年9月入侵波蘭時，凱塞林以第1航空艦隊司令身分參戰；1940年1月13日起改任第2航空艦隊司令，參與波蘭與西線戰役，並在1940年7月19日晉升元帥。其後他參與「海獅行動」的準備與不列顛空戰，卻也顯示德國空軍的極限。1941年6月他的航空艦隊調往波蘭，用於對蘇聯的戰事。",
+      "en": "In September 1939 Kesselring took part in the invasion of Poland as chief of Air Fleet 1. From 13 January 1940 he was chief of Air Fleet 2, took part in the campaigns against Poland and in the West, and was made Generalfeldmarschall on 19 July 1940. The preparations for Operation Sea Lion and the Battle of Britain then showed the limits of the Luftwaffe. In June 1941 his air fleet was moved to Poland for the war against the Soviet Union."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kess",
+       "locator": "LeMO Biografie",
+       "quote": "Kesselring ist als Chef der Luftflotte 1 (Berlin) am Überfall auf Polen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "seit 13.1.1940 als Chef der Luftflotte 2",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "an den Feldzügen gegen Polen (1939) und im Westen (1940) beteiligt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "(19.7.1940 Generalfeldmarschall)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "die Vorbereitung zum Unternehmen Seelöwe sowie die Luftschlacht über England",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "Im Juni 1941 wurde seine Luftflotte nach Polen verlegt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "im Feldzug gegen die Sowjetunion eingesetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-12-01",
+      "end": "1945-05-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "義大利、地中海與戰爭末期",
+      "en": "Italy, the Mediterranean and the end of the war"
+     },
+     "body": {
+      "zh-Hant": "1941年12月1日凱塞林隨航空艦隊司令部前往義大利，並取得義大利最高統帥部旁「南線總司令」的名義職位，指揮在北非與地中海作戰的德國空軍，負責海上補給與壓制馬爾他。1942年12月1日他的指揮範圍擴及義大利與突尼西亞的全部空軍部隊；其後他統籌義大利境內的整體作戰。1945年3月11日至4月22日他接替倫德施泰特指揮西線，其後再任南線總司令；他在5月初促成所部降服，並於5月15日被美軍俘虜。",
+      "en": "On 1 December 1941 Kesselring went to Italy with the air fleet staff and was given the post of Commander-in-Chief South at the Italian Comando Supremo, directing the German air units in North Africa and the Mediterranean (securing supply by sea, suppressing Malta). On 1 December 1942 his remit was extended to all Luftwaffe units in Italy and Tunisia, and he later took overall direction of the operations in Italy. From 11 March to 22 April 1945 he led the Western Front as Rundstedt's successor, was then again named Commander-in-Chief South, brought about the surrender of his army groups in early May, and was taken prisoner by the Americans on 15 May 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "Am 1.12.1941 ging K. mit dem Luftflottenstab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "die Stellung eines Oberbefehlshabers (OB) Süd beim italienischen Comando Supremo",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "Nachschubsicherung auf See, Niederhaltung Maltas",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "auf alle Luftwaffenverbände in Italien und Tunesien erweitert (1.12.1942)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "die Gesamtleitung der Operationen in Italien übernahm",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "vom 11.3. bis 22.4.1945 als Nachfolger Rundstedts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "veranlaßte er Anfang Mai die Kapitulation seiner Heeresgruppen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "Am 15.5.1945 geriet K. in amerikanische Kriegsgefangenschaft.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1947-05-06",
+      "end": "1960-07-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後審判與晚年",
+      "en": "Trial and later years"
+     },
+     "body": {
+      "zh-Hant": "1947年5月6日，英國軍事法庭在威尼斯—梅斯特雷以違反國際法槍決人質等罪名判凱塞林有罪並處死刑；兩個月後改判無期徒刑，1952年10月他獲釋。他暫任「鋼盔團」聯邦領導人並從事寫作，1960年7月16日死於巴特瑙海姆。",
+      "en": "On 6 May 1947 a British military court at Venice-Mestre found Kesselring guilty of the unlawful shooting of hostages and sentenced him to death; two months later this was commuted to life imprisonment, and in October 1952 he was released. He briefly led the \"Stahlhelm\" veterans' league and devoted himself to writing; he died in Bad Nauheim on 16 July 1960."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "wurde am 6.5.1947 von einem britischen Militärgericht in Venedig-Mestre",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "zum Tode verurteilt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "in lebenslängliche Haft umgewandelt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "im Oktober 1952 definitiv aus der Haft entlassen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "betätigte er sich vorübergehend als Bundesführer des „Stahlhelm“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kess",
+       "locator": "LeMO Biografie",
+       "quote": "16. Juli: Albert Kesselring stirbt in Bad Nauheim.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kesselring-luftwaffe-generalstab",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍",
+      "en": "Luftwaffe, German armed forces"
+     },
+     "title": {
+      "orig": "Chef des Generalstabes der Luftwaffe",
+      "zh-Hant": "空軍參謀長",
+      "en": "Chief of the Luftwaffe general staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-06-05",
+      "end": "1937-06-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "5.6.1936 Chef des Generalstabes der Luftwaffe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "1.6.1937 Kommissions General im Luftkreis III",
+       "quoteLang": "de",
+       "evidenceNote": "依 NDB 下一任命（Luftkreis III）起日推得迄日（推論）；NDB 未明寫卸任日；LeMO 年份不同（見 conflict gap）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種參謀長；來源未明寫為最高軍職（職位等級未明寫）、政權對應待查證，R4 門檻無法證明（R6）；迄日依下一任命起日推得",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "kesselring-luftflotte-1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍第1航空艦隊（柏林）",
+      "en": "Air Fleet 1 (Berlin), Luftwaffe"
+     },
+     "title": {
+      "orig": "Chef der Luftflotte 1",
+      "zh-Hant": "第1航空艦隊司令",
+      "en": "Chief of Air Fleet 1"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-10-01",
+      "end": "1940-01-13"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "1.10.1938 Chef der Luftflotte 1 [Berlin]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "seit 13.1.1940 als Chef der Luftflotte 2",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依 NDB 所列接任第2航空艦隊起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "航空艦隊級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "kesselring-luftflotte-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍第2航空艦隊",
+      "en": "Air Fleet 2, Luftwaffe"
+     },
+     "title": {
+      "orig": "Chef der Luftflotte 2",
+      "zh-Hant": "第2航空艦隊司令",
+      "en": "Chief of Air Fleet 2"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-13",
+      "end": "1943-07-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "seit 13.1.1940 als Chef der Luftflotte 2",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rl72",
+       "locator": "RL 7-2 檔案說明（Luftflottenchef 名單）",
+       "quote": "GenFeldm Kesselring 1.40 - 6.43",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "航空艦隊級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "kesselring-ob-sued",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍南線（義大利）",
+      "en": "Wehrmacht, southern theatre (Italy)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber Süd (später: Oberbefehlshaber Südwest)/Heeresgruppe C",
+      "zh-Hant": "南線（後稱西南線）總司令／C集團軍群司令",
+      "en": "Commander-in-Chief South (later Southwest) / Army Group C"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-01",
+      "end": "1945-03-11"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "die Stellung eines Oberbefehlshabers (OB) Süd beim italienischen Comando Supremo",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kess",
+       "locator": "LeMO Biografie",
+       "quote": "1. Dezember: Er wird mit seinem Luftflottenstab und einem Teil seiner Verbände",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "vom 11.3. bis 22.4.1945 als Nachfolger Rundstedts",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依 NDB 所列轉任西線起日推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級司令，有日期＋地點＋出處的戰役連結（義大利戰場），但政權對應待查證，R4② 無法證明（R6）；迄日為推論",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "kesselring-westfront-1945",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍西線",
+      "en": "Wehrmacht, Western Front"
+     },
+     "title": {
+      "orig": "Nachfolger Rundstedts (Westfront)",
+      "zh-Hant": "西線指揮官（接替倫德施泰特）",
+      "en": "Commander of the Western Front (successor to Rundstedt)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-03-11",
+      "end": "1945-04-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-kess",
+       "locator": "NDB Biographie",
+       "quote": "vom 11.3. bis 22.4.1945 als Nachfolger Rundstedts",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kess",
+       "locator": "LeMO Biografie",
+       "quote": "11. März - 22. April: In der letzten Phase des Kriegs erhält Kesselring",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級司令，但政權對應待查證，R4② 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:kesselring-ob-sued",
+     "gapKind": "not_found",
+     "note": "待查證：迄日1945-03-11為依 NDB 列出的轉任西線起日推得（推論），來源未明寫南線／西南線總司令的交接日；另 NDB 與 LeMO 對1943年起 OB Südwest／C集團軍群任命日無明確日期。已查：NDB、LeMO。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:conflict-luftkreis-iii",
+     "gapKind": "conflict",
+     "note": "NDB 載「1.6.1937 Kommissions General im Luftkreis III [Dresden]」，LeMO 載「1938 ... Kommandierender General im Luftkreis III (Dresden)」，兩份已抓來源年份互相矛盾；本檔正文與職位均未採用此職。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:kesselring-luftwaffe-generalstab",
+     "gapKind": "conflict",
+     "note": "迄日採 NDB 下一任命起日（1937-06-01，推論）；LeMO 載 1938 年任 Luftkreis III，兩份已抓來源不一致，另 Treccani 稱 1938 為空軍參謀長（來源不足以裁決，保留 NDB）。已查：NDB、LeMO、Treccani、Bundesarchiv。",
+     "candidateCitations": []
+    },
+    {
+     "target": "position:kesselring-ob-sued-note",
+     "gapKind": "not_found",
+     "note": "待查證：Bundesarchiv RL 7-2 載 1.12.41–12.6.43 為 Luftflottenchef 兼 OB Süd，但 OB Süd／C 集團軍群的卸任（西線 1945-03-11 前）仍無 A／B 來源明寫日期；本輪另查 Treccani、Larousse、Munzinger、Avalon、USHMM、BRE（401）。",
+     "candidateCitations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Albert Kesselring GND",
+     "url": "https://lobid.org/gnd/search?q=Albert+Kesselring&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 118722050，1885-11-30／1960-07-16，Generalfeldmarschall"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie NDB Keßelring, Albert",
+     "url": "https://www.deutsche-biographie.de/pnd118722050.html",
+     "result": "found_A",
+     "note": "curl 抓取全文（Thilo Vogelsang, NDB 11, 1977）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Albert Kesselring",
+     "url": "https://www.dhm.de/lemo/biografie/albert-kesselring",
+     "result": "found_B",
+     "note": "curl 抓取全文（Mühle／Scriba）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Kesselring Britannica",
+     "url": "https://www.britannica.com/biography/Albert-Kesselring",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Kesselring Bundesarchiv／Reichstag 資料庫",
+     "url": "null",
+     "result": "no_result",
+     "note": "未另查；NDB 與 LeMO 已足夠覆蓋"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Albert Kesselring Generalfeldmarschall Luftflotte 2 Oberbefehlshaber Süd",
+     "url": "null",
+     "result": "not_relevant",
+     "note": "WebSearch 結果多為維基鏡像，不採"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Kesselring Chef des Generalstabes der Luftwaffe Juni 1937 Nachfolger Luftkreis III",
+     "url": "https://www.deutsche-biographie.de/sfz40677.html",
+     "result": "found_A",
+     "note": "NDB 同頁再核對：1.6.1937 Kommissions General im Luftkreis III",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Kesselring Luftflotte 2 Oberbefehlshaber Süd 1941 1943 Richthofen",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RL_7-2.xml",
+     "result": "found_A",
+     "note": "curl 抓取；Luftflottenchef 名單「GenFeldm Kesselring 1.40 - 6.43」、OB Süd 1.12.41–12.6.43",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Kesselring Albert Treccani enciclopedia feldmaresciallo capo di stato maggiore",
+     "url": "https://www.treccani.it/enciclopedia/albert-kesselring/",
+     "result": "found_B",
+     "note": "curl 抓取；僅年精度，稱 1938 為參謀長，與 NDB 不一致，未採為出處",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Kesselring Luftflotte 2 Commander-in-Chief South CMH army.mil",
+     "url": "https://www.history.army.mil/books/70-7_12.htm",
+     "result": "no_result",
+     "note": "curl 主機無法解析；搜尋摘要無 Luftflotte 2 任期",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Kesselring Oberbefehlshaber Süd Munzinger Bundesarchiv Kabinettsprotokolle",
+     "url": "https://www.munzinger.de/register/portrait/biographien/kesselring%20albert/00/387",
+     "result": "unrated",
+     "note": "curl 抓取；Munzinger 無署名，僅可當線索（1936/37 Generalstabschef）；Kabinettsprotokolle 頁無任期",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Bundesarchiv Bestand RL 7 Luftflotte 2 Kesselring 1943 Richthofen",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RL_7-2.xml",
+     "result": "found_A",
+     "note": "同上，另抓 N 671 Richthofen 檔案說明（apps.bundesarchiv.de）與 Afrikafeldzug 主題頁，無新任期",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "Kesselring Kommissionsgeneral Luftkreis III Dresden 1937 Generalstabschef Rücktritt",
+     "url": "https://www.deutsche-biographie.de/sfz40677.html",
+     "result": "found_A",
+     "note": "確認 NDB 任命序列；無卸任原因",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Kesselring Dictionnaire Larousse Universalis BnF chef d'état-major Luftwaffe",
+     "url": "https://www.larousse.fr/encyclopedie/personnage/Albert_Kesselring/127332",
+     "result": "found_B",
+     "note": "curl 抓取；僅「1936」年精度，無迄日；BnF data 頁僅權威檔",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "ケッセルリンク 元帥 空軍参謀総長 第2航空艦隊",
+     "url": "https://kotobank.jp/word/%E3%81%91%E3%81%A4%E3%81%9B%E3%82%8B%E3%82%8A%E3%82%93%E3%81%8F-59661",
+     "result": "unrated",
+     "note": "curl 抓取；辭典摘要，無具名、無第2航空艦隊任期",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Kesselring Mariscal Luftwaffe jefe de Estado Mayor 1936 (DB~e／BNE)",
+     "url": "https://dbe.rah.es/",
+     "result": "no_result",
+     "note": "搜尋無 Kesselring 條目",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "Kesselring Luftflotte 2 IWM National Archives Nuremberg",
+     "url": "https://www.iwm.org.uk/history/whos-who-in-the-battle-of-britain",
+     "result": "blocked_403",
+     "note": "IWM 403，不繞過；Avalon 紀錄已抓（avalon.law.yale.edu），無任期日",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "academic",
+     "query": "Kesselring Luftwaffe chief of general staff 1936 1937 scholarly article",
+     "url": "https://www.tandfonline.com/doi/full/10.1080/1470243042000344812",
+     "result": "no_result",
+     "note": "搜尋摘要無任期；未抓全文",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "凱塞林 空軍參謀長 1936 1937（中研院近史所／國史館）",
+     "url": "https://www.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "無相關條目",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "Кессельринг Альберт БРЭ начальник Генерального штаба люфтваффе 1936",
+     "url": "https://bigenc.ru/c/kessel-ring-al-bert-ae1664",
+     "result": "challenge_page",
+     "note": "curl 401，不繞過；搜尋摘要稱 1936-06-03 任、1937 轉第3航空區，與 NDB 日期略異，僅線索",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "authority",
+     "query": "Kesselring LoC／LAGIS／DDB／Kalliope／HDBG 權威與館藏頁",
+     "url": "https://id.loc.gov/authorities/names/n85278379.html",
+     "result": "blocked_403",
+     "note": "LoC 403；LAGIS／DDB／Kalliope／HDBG 已抓，無職位日期",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "other",
+     "query": "USHMM／National WWII Museum Kesselring 1941 Commander-in-Chief South",
+     "url": "https://collections.ushmm.org/search/catalog/pa1043477",
+     "result": "unrated",
+     "note": "curl 抓取；無署名館藏說明，僅可當 gap 候選",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "bernardmontgomery1stviscountmontgomeryofalamein",
+   "bioId": null,
+   "name": "Bernard Montgomery, 1st Viscount Montgomery of Alamein",
+   "nameZh": "伯納德·蒙哥馬利",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1887-01-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與第一次世界大戰",
+      "en": "Origins and the First World War"
+     },
+     "body": {
+      "zh-Hant": "伯納德·勞·蒙哥馬利1887年生於倫敦，就讀桑德赫斯特皇家軍事學院後，受任皇家沃里克郡團軍官。1914年第一次伊珀爾戰役初期，他被狙擊手射穿肺部，傷勢嚴重到墓穴都已備好，但後來完全康復；此後他以參謀軍官身分參與1916年的索姆河戰役與1917年的帕森達勒戰役，並對高階將領容忍高傷亡的作風深感不滿。",
+      "en": "Bernard Law Montgomery was born in London in 1887 and, after the Royal Military College at Sandhurst, was commissioned into the Royal Warwickshire Regiment. Early in the First World War he was shot through the lung by a sniper during the First Battle of Ypres (1914), so badly that a grave was prepared, but he recovered fully; he spent the rest of the war as a staff officer in the Battles of the Somme (1916) and Passchendaele (1917), and became critical of generals who accepted heavy casualties."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Bernard Law Montgomery was born in London in 1887.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "commissioned into the Royal Warwickshire Regiment",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "shot through the lung by a sniper during the First Battle of Ypres (1914)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "His wound was so severe that a grave was prepared for him.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "serving in the Battles of the Somme (1916) and Passchendaele (1917)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "became critical of their readiness to accept high casualties",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1943-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "比利時遠征軍、敦克爾克與第八集團軍",
+      "en": "BEF, Dunkirk and the Eighth Army"
+     },
+     "body": {
+      "zh-Hant": "1939年英國對德宣戰後，蒙哥馬利隨英國遠征軍赴法，指揮第3師；他預判戰事將成災難，事先訓練撤退戰術，這在1940年敦克爾克撤退中發揮了關鍵作用。1942年，首相邱吉爾任命他為西部沙漠第八集團軍司令。他重振軍心、補足補給，並在1942年10月的第二次阿拉曼戰役中擊敗德義軍，贏得盟軍在陸地上的第一場大勝，成為北非戰局的轉捩點。",
+      "en": "When Britain declared war in 1939 Montgomery was sent to France with the British Expeditionary Force and commanded the 3rd Division; expecting disaster, he trained for tactical retreat, which proved vital in the 1940 evacuation of Dunkirk. In 1942 Prime Minister Churchill appointed him commander of the Eighth Army in the Western Desert; he restored its morale and supplies and delivered the Allies their first major land victory at the Second Battle of El Alamein in October 1942, the turning point of the North African campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "When Britain declared war on Germany in 1939, Montgomery was sent to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "He commanded the 3rd Division.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "he trained for tactical retreat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "This proved vital during the evacuation of Dunkirk in 1940.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Winston Churchill appointed Montgomery commander of the Eighth Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Second Battle of El Alamein in October 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "This proved to be a turning point in the North African campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1945-05-05"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "西西里、諾曼第與西北歐",
+      "en": "Sicily, Normandy and north-west Europe"
+     },
+     "body": {
+      "zh-Hant": "1943年蒙哥馬利在盟軍入侵西西里與義大利薩萊諾的行動中扮演關鍵角色。1944年6月他指揮參加諾曼第登陸的全部盟軍地面部隊，並在法萊斯口袋包圍德軍；他構想的「市場花園行動」失敗，1944年12月的突出部戰役中則表現出色。1945年3月橫渡萊茵河後，他於5月4日接受丹麥、德國北部與荷蘭德軍的投降。",
+      "en": "In 1943 Montgomery played a crucial role in the Allied invasions of Sicily and then Salerno in Italy. In June 1944 he commanded all the ground forces in the Allied invasion of Normandy and trapped German forces in the Falaise Pocket; his Operation Market Garden plan failed, but he commanded well in the Battle of the Bulge in December 1944. After the Rhine crossings of March 1945 he accepted the surrender of all German forces in Denmark, northern Germany and the Netherlands on 4 May 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Allied invasions of Sicily and then Salerno in Italy during 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "In June 1944, Montgomery commanded all the ground forces taking part in",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "entrapped and defeated the German forces at the Falaise Pocket",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Montgomery’s plan failed, owing to the large number of German armoured units",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "excellent command during the Battle of the Bulge in December 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Rhine crossings of March 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Netherlands on 4 May 1945.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1946-01-31",
+      "end": "1976-03-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後與晚年",
+      "en": "Post-war and later life"
+     },
+     "body": {
+      "zh-Hant": "戰後蒙哥馬利受封阿拉曼子爵，並出任駐西德的萊茵英軍總司令；議會資料顯示他自1946年1月31日起為上議院的阿拉曼子爵。他於1958年出版的回憶錄頗具爭議，1976年3月24日去世。",
+      "en": "After the war Montgomery was made Viscount Montgomery of Alamein and appointed commander-in-chief of the British Army of the Rhine in West Germany; Parliament's records show him as Viscount Montgomery of Alamein in the Lords from 31 January 1946. His 1958 memoir was particularly inflammatory; he died on 24 March 1976."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "After the war, Montgomery was made 1st Viscount of Alamein",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Commander-in-Chief of the British Army of the Rhine (BAOR)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-monty",
+       "locator": "Hansard people page",
+       "quote": "Viscount Montgomery of Alamein January 31, 1946 - March 24, 1976",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "His personal memoir, published in 1958, was particularly inflammatory.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Montgomery died in Isington, Hampshire on 24 March 1976.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "montgomery-3rd-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍第3師",
+      "en": "3rd Division, British Expeditionary Force"
+     },
+     "title": {
+      "orig": "He commanded the 3rd Division",
+      "zh-Hant": "第3師師長",
+      "en": "General officer commanding 3rd Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "When Britain declared war on Germany in 1939, Montgomery was sent to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "He commanded the 3rd Division.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "montgomery-eighth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國第八集團軍（西部沙漠）",
+      "en": "Eighth Army, Western Desert"
+     },
+     "title": {
+      "orig": "commander of the Eighth Army",
+      "zh-Hant": "第八集團軍司令",
+      "en": "Commander, Eighth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "Winston Churchill appointed Montgomery commander of the Eighth Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gaz-alexander",
+       "locator": "London Gazette 38937 suppl. p.2907",
+       "quote": "General Montgomery was succeeded, on ist January, 1944,",
+       "quoteLang": "en",
+       "evidenceNote": "Gazette 原文 OCR 作「ist」，指 1st；明載第八集團軍由 Leese 於 1944-01-01 接任",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "montgomery-normandy-ground-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍諾曼第登陸地面部隊",
+      "en": "Allied ground forces, Normandy invasion"
+     },
+     "title": {
+      "orig": "commanded all the ground forces taking part in the Allied invasion of Normandy",
+      "zh-Hant": "諾曼第登陸盟軍地面部隊總指揮",
+      "en": "Commander of all ground forces in the Normandy invasion"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-06-01",
+      "end": "1944-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "nam-monty",
+       "locator": "NAM Great Commanders",
+       "quote": "In June 1944, Montgomery commanded all the ground forces taking part in",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-pogue-supcmd15",
+       "locator": "Chapter XV",
+       "quote": "the 21 Army Group commander retained over-all control until 1 September.",
+       "quoteLang": "en",
+       "evidenceNote": "Pogue 官方戰史：1944年9月1日艾森豪直接接掌地面作戰指揮，蒙哥馬利不再總攬盟軍地面部隊",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區／方面軍級指揮，有日期＋地點（諾曼第）＋出處的戰役連結；但迄日未載、政權對應待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:montgomery-3rd-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NAM 只寫1939年起指揮第3師，未載交接日。已查：NAM、Hansard 人物頁；ODNB／Britannica／IWM／NPG 皆 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:montgomery-baor",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NAM 只寫「戰後」任萊茵英軍總司令，無年月；未取得 A／B 來源。已查：NAM、Hansard。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:montgomery-cigs",
+     "gapKind": "not_found",
+     "note": "來源不足：帝國總參謀長（CIGS，1946–1948）未在可抓原文的 A／B 來源出現（NAM 無載），不得寫入；待查證：缺起日。已查：NAM、Hansard、ODNB／Britannica／IWM（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:montgomery-sources",
+     "gapKind": "not_found",
+     "note": "待查證：僅有 NAM（B，頁面無署名，待主管確認是否符合 Q9）與 Hansard（A，僅生卒與頭銜）；ODNB、Britannica、IWM、NPG 皆 403，Treccani 為 SPA 無內文，LeMO 無此條目。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Montgomery",
+     "url": "https://www.britannica.com/biography/Bernard-Law-Montgomery-Viscount-Montgomery-of-Alamein",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB Montgomery",
+     "url": "https://www.oxforddnb.com/view/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-35044",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "IWM Montgomery",
+     "url": "https://www.iwm.org.uk/history/who-was-field-marshal-montgomery",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Historic Hansard Montgomery",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-bernard-montgomery",
+     "result": "found_A",
+     "note": "抓取，列生卒與 Viscount 頭銜起日"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "National Army Museum Bernard Montgomery",
+     "url": "https://www.nam.ac.uk/explore/bernard-montgomery",
+     "result": "found_B",
+     "note": "curl 抓取；無署名，待主管確認"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Montgomery",
+     "url": "https://www.dhm.de/lemo/biografie/bernard-montgomery",
+     "result": "no_result",
+     "note": "404 無此條目"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Montgomery",
+     "url": "https://www.treccani.it/enciclopedia/bernard-law-montgomery/",
+     "result": "no_result",
+     "note": "回傳通用頁，無條目內文"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "NPG Montgomery",
+     "url": "https://www.npg.org.uk/collections/search/person/mp03144/bernard-law-montgomery-1st-viscount-montgomery-of-alamein",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 101,
+     "sourceType": "official",
+     "query": "London Gazette 38937 (Alexander despatch) Montgomery succeeded Eighth Army",
+     "url": "https://www.thegazette.co.uk/London/issue/38937/supplement/2907/data.pdf",
+     "result": "found_A",
+     "note": "抓取 PDF；明載 1944-01-01 由 Leese 接第八集團軍 → 補第八集團軍迄日"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "US Army CMH The Supreme Command ch.XV Eisenhower assumes direct control 1 Sept 1944",
+     "url": "https://ibiblio.org/hyperwar/USA/USA-E-Supreme/USA-E-Supreme-15.html",
+     "result": "found_C",
+     "note": "抓取；載 21 Army Group 指揮官保有全盤控制至 9 月 1 日 → 補諾曼第地面部隊迄日"
+    },
+    {
+     "step": 103,
+     "sourceType": "official",
+     "query": "London Gazette 37711 Montgomery despatch N-W Europe; Gazette 35305 Gort despatch",
+     "url": "https://thegazette.co.uk/London/issue/35305/supplement/5909/data.pdf",
+     "result": "not_relevant",
+     "note": "Gazette 35305 只列 1940 年 5 月第3師師長為 Montgomery，未載交卸日；37711 載 1944-01-02 返英，與第3師迄日無關"
+    },
+    {
+     "step": 104,
+     "sourceType": "academic",
+     "query": "Montgomery 3rd Division July 1940 handed over / II Corps 30 May 1940",
+     "url": "https://www.britishmilitaryhistory.co.uk/docs-france-norway-1940-ii-corps/",
+     "result": "not_relevant",
+     "note": "britishmilitaryhistory.co.uk II Corps 頁與 Southern Command 人員 PDF、HyperWar Flanders 附錄、royal-irish.com（404）皆無第3師交卸日；NAM／historylearning 無日期。第3師迄日仍待查證"
+    },
+    {
+     "step": 105,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica / legionmagazine Montgomery 3rd Division 1940",
+     "url": "https://legionmagazine.com/after-dunkirk/",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋；不繞過"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:montgomery-eighth-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NAM 只寫1942年任命，未載任命日（外部摘要稱1942-08，但未取得可抓原文的A／B來源，不採）與卸任日。已查：NAM、Hansard；ODNB／Britannica／IWM 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:montgomery-normandy-ground-forces",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NAM 僅寫1944年6月起指揮諾曼第地面部隊，未載迄日。已查：NAM、Hansard。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "charlesportal1stviscountportalofhungerford",
+   "bioId": null,
+   "name": "Charles Portal, 1st Viscount Portal of Hungerford",
+   "nameZh": "第一代亨格福德的波特爾子爵查爾斯·波特爾",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-05-21",
+      "end": "1971-04-22"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與貴族頭銜",
+      "en": "Lifespan and peerage"
+     },
+     "body": {
+      "zh-Hant": "查爾斯·波特爾1893年5月21日生，1971年4月22日去世。據英國議會資料，他自1945年9月17日起為亨格福德的波特爾男爵，並自1946年1月28日起為亨格福德的波特爾子爵。",
+      "en": "Charles Portal was born on 21 May 1893 and died on 22 April 1971. Parliament's records list him as Baron Portal of Hungerford from 17 September 1945 and as Viscount Portal of Hungerford from 28 January 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-portal",
+       "locator": "Hansard people page",
+       "quote": "May 21, 1893 - April 22, 1971",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-portal",
+       "locator": "Hansard people page",
+       "quote": "Baron Portal of Hungerford September 17, 1945 - April 22, 1971",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-portal",
+       "locator": "Hansard people page",
+       "quote": "Viscount Portal of Hungerford January 28, 1946 - April 22, 1971",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與皇家飛行團",
+      "en": "Background and the Royal Flying Corps"
+     },
+     "body": {
+      "zh-Hant": "查爾斯·波特爾出身伯克郡的鄉紳家庭，祖上為胡格諾派。他先後就讀溫徹斯特公學與牛津基督堂學院，1914年大戰爆發時入伍陸軍，1915年轉入皇家飛行團，到1918年前已執行九百多次出擊。",
+      "en": "Charles Portal came from a Berkshire gentry family of Huguenot ancestry. After Winchester and Christ Church, Oxford, he joined the army at the outbreak of war in 1914 and in 1915 transferred to the Royal Flying Corps, flying more than 900 sorties before 1918."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "Portal came from a Berkshire gentry family of Huguenot ancestry.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "After Winchester and Christ Church, Oxford,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "he joined the army at the outbreak of war in 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "in 1915 transferred to the Royal Flying Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "and flew more than 900 sorties before 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 2
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "轟炸機司令部與對德空戰",
+      "en": "Bomber Command and the air campaign against Germany"
+     },
+     "body": {
+      "zh-Hant": "1939年波特爾晉升空軍中將；據《牛津英國史指南》，他於1940年接掌轟炸機司令部，約六個月後改任空軍參謀長。他關切能以擴編的轟炸機部隊打擊德國（對德空戰），但在英美同盟的考量下，也願意接受轟炸機司令部物資因此被分走的代價。官方戰史附錄則記載，1939年2月1日起他擔任空軍委員會的人事委員，1940年4月3日由戈薩吉接任該職。",
+      "en": "Portal was promoted air marshal in 1939; according to the Oxford Companion to British History he took over Bomber Command in 1940 and, after six months, became Chief of the Air Staff. He was concerned to be able to strike Germany with an enlarged bomber force, yet, valuing the Anglo-American alliance, accepted a significant loss of materiel for Bomber Command. The official history lists him as Air Member for Personnel from 1 February 1939, with Gossage succeeding to that post on 3 April 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "Promoted air marshal in 1939 he took over Bomber Command in 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "but after six months became chief of the air staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "Portal was extremely concerned about being able to strike Germany",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "He was willing to support the American point of view",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-richards-air-council",
+       "locator": "Appendix I",
+       "quote": "Air Marshal C. F. A. Portal, C.B., D.S.O., M.C. 1st February 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-richards-air-council",
+       "locator": "Appendix I",
+       "quote": "Air Marshal E. L. Gossage, C.B., C.V.O., D.S.O., M.C. 3rd April 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 3
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "空軍參謀長與戰後",
+      "en": "Chief of the Air Staff and later career"
+     },
+     "body": {
+      "zh-Hant": "1940年10月25日，波特爾接替紐厄爾出任空軍參謀長，直到大戰結束。他在三軍參謀長委員會中與英美同盟的建立關係密切：他理解美國將按自己的方式參戰，並認為密切的英美關係符合英國的最佳利益。艾森豪威爾認為他是所有戰時領袖中最出色者；戰後他於1946至1951年掌管哈維爾原子能研究機構，1960至1968年任英國飛機公司董事長。",
+      "en": "On 25 October 1940 Portal succeeded Newall as Chief of the Air Staff, a post he retained until the end of the war. He understood that America would fight on its own terms and judged that a close US-UK relationship was in Britain's best interests. Eisenhower thought him the finest of all the war leaders; after the war he served as controller of the atomic energy establishment at Harwell (1946-51) and as chairman of the British Aircraft Corporation (1960-8)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-richards-air-council",
+       "locator": "Appendix I",
+       "quote": "Sir Charles F. A. Portal, K.C.B., D.S.O., M.C. 25th October 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "which he retained until the end of the war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "Portal understood America would fight on its own terms",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "a close US-UK relationship was in Britain’s best interests",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "Eisenhower thought Portal the finest of all the war leaders",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "controller of the atomic energy establishment at Harwell (1946–51)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "chairman of the British Aircraft Corporation (1960–8)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    }
+   ],
+   "positions": [
+    {
+     "key": "portal-bomber-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍轟炸機司令部",
+      "en": "RAF Bomber Command"
+     },
+     "title": {
+      "orig": "took over Bomber Command",
+      "zh-Hant": "轟炸機司令部總司令",
+      "en": "Commander-in-Chief, Bomber Command"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-01",
+      "end": "1940-10-25"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "he took over Bomber Command in 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "but after six months became chief of the air staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "the command of which Portal had just relinquished",
+       "quoteLang": "en",
+       "evidenceNote": "Milburn：波特爾任空軍參謀長之初剛卸下轟炸機司令部",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-richards-air-council",
+       "locator": "Appendix I",
+       "quote": "Sir Charles F. A. Portal, K.C.B., D.S.O., M.C. 25th October 1940",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依此人下一職（空軍參謀長）起日推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種作戰司令部指揮，起日僅年精度、政權待查證、職位等級未明寫、缺戰役連結（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "rank",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "portal-chief-air-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國空軍部（空軍參謀部）",
+      "en": "Air Ministry (Air Staff)"
+     },
+     "title": {
+      "orig": "Chief of the Air Staff",
+      "zh-Hant": "空軍參謀長",
+      "en": "Chief of the Air Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-10-25",
+      "end": "1945-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rf-richards-air-council",
+       "locator": "Appendix I",
+       "quote": "Sir Charles F. A. Portal, K.C.B., D.S.O., M.C. 25th October 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-ics-milburn",
+       "locator": "Finest Hour 185 p.29",
+       "quote": "he replaced Cyril Newall as Chief of Air Staff (CAS) in October 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-portal",
+       "locator": "Oxford Companion to British History",
+       "quote": "which he retained until the end of the war",
+       "quoteLang": "en",
+       "evidenceNote": "the end of the war 即1945年（推論）；繼任者接任日原僅禁用網域支撐，已移除",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "軍種參謀長級職位，政權待查證、缺戰役連結（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前1段／約90字（<3段、<300字）。已查來源類型：議會官方（Historic Hansard，僅生卒與頭銜）、具名百科（Britannica 403）、博物館／檔案（IWM 403、RAF Museum 頁404、NPG 403、Westminster Abbey 403）、國家傳記辭典（ODNB 403）；皆未取得可抓原文的 A／B 傳記。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:portal-bomber-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；轟炸機司令部總司令無可抓原文的 A／B 來源（外部搜尋摘要稱 RAF Museum 時間線載1940-04-03，但該頁 404、未取得原文，不採）。來源不足：將領指揮職無出處。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:portal-chief-air-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；空軍參謀長（外部摘要稱1940-10-25至1945）無可抓原文的 A／B 來源。來源不足：空戰指揮職與行動無出處。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Charles Portal",
+     "url": "https://www.britannica.com/biography/Charles-Frederick-Algernon-Portal",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "IWM Air Chief Marshal Sir Charles Portal",
+     "url": "https://www.iwm.org.uk/collections/item/object/15159",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "RAF Museum 1940 timeline",
+     "url": "https://www.rafmuseum.org.uk/research/research-enquiries/history-of-aviation-timeline/british-military-aviation/1940-2/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Westminster Abbey Viscount Portal",
+     "url": "https://www.westminster-abbey.org/abbey-commemorations/commemorations/charles-viscount-portal",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Historic Hansard Portal",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-charles-portal",
+     "result": "found_A",
+     "note": "抓取，僅生卒與頭銜"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "NPG Portal",
+     "url": "https://www.npg.org.uk/collections/search/person/mp59122/charles-frederick-algernon-portal-1st-viscount-portal-of-hungerford",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB Portal",
+     "url": "null",
+     "result": "no_result",
+     "note": "未取得公開摘要原文"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "Portal Oxford Companion to British History (Encyclopedia.com)",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/portal-charles-1st-viscount-portal",
+     "result": "found_C",
+     "note": "抓取；載生平、1940轉轟炸機司令部、約六個月後任空軍參謀長"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "Richards RAF 1939-1945 Vol I Appendix I Air Council members",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-RAF-I/UK-RAF-I-I.html",
+     "result": "found_C",
+     "note": "抓取；載 CAS 起日 1940-10-25、人事委員 1939-02-01／繼任 1940-04-03；未載轟炸機司令部起日"
+    },
+    {
+     "step": 103,
+     "sourceType": "academic",
+     "query": "Milburn, Churchill and Portal (International Churchill Society)",
+     "url": "https://winstonchurchill.org/publications/finest-hour/finest-hour-185/churchill-and-portal-a-strategic-relationship/",
+     "result": "found_C",
+     "note": "抓取；載 1940-10 任 CAS、剛卸下轟炸機司令部"
+    },
+    {
+     "step": 104,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Portal",
+     "url": "https://www.britannica.com/biography/Charles-Frederick-Algernon-Portal",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過"
+    },
+    {
+     "step": 105,
+     "sourceType": "official",
+     "query": "RAF Museum／raf.mod.uk CAS page",
+     "url": "https://www.raf.mod.uk/our-organisation/chief-of-the-air-staff/",
+     "result": "blocked_403",
+     "note": "403，不繞過；轟炸機司令部確切起日、CAS 迄日仍待查證（既有 gap）"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "portal-chief-air-staff",
+     "basis": "rf-encyc-portal",
+     "diff": "原：迄日1946-01-01（day，依 rafweb 的 Tedder 接任日推得）；改：移除 rafweb 引文，依《牛津英國史指南》『retained until the end of the war』降為1945年（推論）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1940-10-25",
+        "end": "1946-01-01"
+       },
+       "after": {
+        "start": "1940-10-25",
+        "end": "1945-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "以新來源為準"
+    }
+   ]
+  },
+  {
+   "key": "johnjellicoe1stearljellicoe",
+   "bioId": null,
+   "name": "John Jellicoe, 1st Earl Jellicoe",
+   "nameZh": "第一代傑利科伯爵約翰·傑利科",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1859-12-05",
+      "end": "1935-11-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與貴族頭銜",
+      "en": "Lifespan and peerage"
+     },
+     "body": {
+      "zh-Hant": "約翰·傑利科1859年12月5日生，1935年11月20日去世。據英國議會資料，他自1918年1月15日起為傑利科子爵，並自1925年6月29日起為傑利科伯爵（同日另獲布羅卡斯子爵頭銜）。",
+      "en": "John Jellicoe was born on 5 December 1859 and died on 20 November 1935. Parliament's records list him as Viscount Jellicoe from 15 January 1918 and as Earl Jellicoe from 29 June 1925 (when he also became Viscount Brocas)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hans-jell",
+       "locator": "Hansard people page",
+       "quote": "December 5, 1859 - November 20, 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-jell",
+       "locator": "Hansard people page",
+       "quote": "Viscount Jellicoe January 15, 1918 - November 20, 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-jell",
+       "locator": "Hansard people page",
+       "quote": "Earl Jellicoe June 29, 1925 - November 20, 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-jell",
+       "locator": "Hansard people page",
+       "quote": "Viscount Brocas June 29, 1925 - November 20, 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "早年海軍生涯",
+      "en": "Early naval career"
+     },
+     "body": {
+      "zh-Hant": "約翰·傑利科1859年12月5日生於南安普敦，出身海軍世家，13歲前便進入海軍受訓。1898年他赴東亞水域擔任西摩爵士的參謀長；1905年調海軍部主管海軍軍械。1910年以中將銜出任大西洋艦隊司令，得以指揮新式無畏艦；1912年回海軍部任第二海務大臣。",
+      "en": "John Jellicoe was born at Southampton on 5 December 1859 into a long naval tradition and was training for the navy before the age of thirteen. In 1898 he went to East Asian waters as chief of staff to Admiral Seymour; in 1905 he was assigned to the Admiralty in charge of naval ordnance. In 1910, then a vice admiral, he was given command of the Atlantic Fleet, and in 1912 he returned to the Admiralty as Second Sea Lord."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Born on Dec. 5, 1859, at Southampton, John Jellicoe",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Before he was 13 years old, Jellicoe was in the navy training to be an officer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "In 1898 he was sent to East Asian waters as chief of staff to Adm. Seymour.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "He was assigned to the Admiralty in 1905 and given charge of naval ordnance.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Jellicoe, then a vice admiral, was given command of the Atlantic fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "In 1912 he was back at the Admiralty as second sea lord.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 2
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "大艦隊總司令與日德蘭海戰",
+      "en": "Grand Fleet command and the Battle of Jutland"
+     },
+     "body": {
+      "zh-Hant": "1914年8月4日英國參戰之日，傑利科受命為英國大艦隊總司令。1916年5月底，德國公海艦隊向大艦隊挑戰，爆發大戰中唯一的大規模海戰——日德蘭海戰。雙方損失慘重，但德國艦隊趁勢逃回基地；傑利科在戰略上阻止了德艦再度出海，然而政府與輿論以未能徹底殲滅德國艦隊為由要求撤換他。1916年11月，他轉任海軍部第一海務大臣，在該職約一年。",
+      "en": "On 4 August 1914, the day Britain entered the war, Jellicoe was appointed commander-in-chief of the British Grand Fleet. At the end of May 1916 the German High Seas Fleet challenged the Grand Fleet, producing the war's only great naval action, the Battle of Jutland. Both sides lost heavily, but the German fleet escaped destruction by slipping back to its bases; the source judges that Jellicoe had won a strategic victory because the German fleet never again came out to fight, yet the government and public opinion demanded his removal for failing to crush it completely. In November 1916 he was transferred to the Admiralty as First Sea Lord, a post he held for about a year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Jellicoe was assigned on Aug. 4, 1914, when Britain entered the war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "to be commander in chief of the British Grand Fleet.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "At the end of May 1916 the German High Seas Fleet challenged the Grand Fleet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "the war's only great naval action, the Battle of Jutland.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "but the German fleet escaped destruction by slipping back safely to its bases.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "demanded his removal for failure to crush the German fleet completely",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "In November 1916 Jellicoe was transferred to the Admiralty as first sea lord",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "and remained in that post about a year.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 3
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "戰後巡視帝國海防、紐西蘭總督與晚年",
+      "en": "Post-war imperial tour, New Zealand and later life"
+     },
+     "body": {
+      "zh-Hant": "戰後傑利科復出，巡視帝國各地並評估其海防，隨後出任紐西蘭總督（1920至1924年）。他於1918年受封子爵，1925年晉為伯爵。經過約十年的積極退休生活，他於1935年11月20日去世。",
+      "en": "After the war Jellicoe returned to service to tour the empire and assess its naval defences, then served as Governor-General of New Zealand (1920-1924). He was made a viscount in 1918 and an earl in 1925, and after ten years of active retirement he died on 20 November 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "tour the empire and assess its naval defenses",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "as governor general (1920-1924).",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Jellicoe was made a viscount in 1918 and an earl in 1925.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "After 10 years of active retirement he died on Nov. 20, 1935.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    }
+   ],
+   "positions": [
+    {
+     "key": "jellicoe-grand-fleet-cinc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國大艦隊",
+      "en": "British Grand Fleet"
+     },
+     "title": {
+      "orig": "commander in chief of the British Grand Fleet",
+      "zh-Hant": "大艦隊總司令",
+      "en": "Commander-in-Chief, Grand Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-08-04",
+      "end": "1916-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "Jellicoe was assigned on Aug. 4, 1914, when Britain entered the war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "to be commander in chief of the British Grand Fleet.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-encyc-jellicoe",
+       "locator": "Encyclopedia of World Biography",
+       "quote": "In November 1916 Jellicoe was transferred to the Admiralty as first sea lord",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取「1916年11月轉任第一海務大臣」下一月起日（Q3 月精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "艦隊級指揮，與日德蘭海戰（1916年5月底）有連結，但政權對應待查證、職位等級未明寫（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前1段／約80字（<3段、<300字）。已查來源類型：議會官方（Historic Hansard，僅生卒與頭銜）、具名百科（Britannica 403、1914-1918-online Anubis 擋）、國家傳記辭典（ODNB 403、Te Ara DNZB 403）、政府官網（gg.govt.nz 403）、博物館（RMG 館藏圖說無署名、NZHistory 403、ANMM 403）；皆未取得可抓原文的 A／B 傳記。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:jellicoe-grand-fleet-cinc",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Grand Fleet 總司令（1914-08）、日德蘭海戰（1916-05-31）等未在可抓原文的 A／B 來源出現（外部摘要稱1914-08-04，未取得原文，不採）。來源不足：將領戰役與指揮職無出處。已查：Hansard、RMG（無署名圖說）、各站 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:jellicoe-first-sea-lord",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第一海務大臣（外部摘要稱1916-11／12至1917-12）無可抓原文的 A／B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:jellicoe-governor-general-nz",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；紐西蘭總督（外部摘要稱1920-09-27至1924-12-12）原文來源 gg.govt.nz／Te Ara 皆 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Jellicoe",
+     "url": "https://www.britannica.com/biography/John-Rushworth-Jellicoe-1st-Earl-Jellicoe",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Jellicoe",
+     "url": "https://encyclopedia.1914-1918-online.net/article/jellicoe_john_rushworth",
+     "result": "challenge_page",
+     "note": "Anubis，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "gg.govt.nz Viscount Jellicoe",
+     "url": "https://gg.govt.nz/biographies/viscount-jellicoe-gcb-om-gcvo",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Te Ara DNZB Jellicoe",
+     "url": "https://teara.govt.nz/en/biographies/4j4/jellicoe-john-henry-rushworth",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Historic Hansard Jellicoe",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-john-jellicoe",
+     "result": "found_A",
+     "note": "抓取，僅生卒與頭銜"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "RMG Jellicoe 肖像圖說",
+     "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-14277",
+     "result": "unrated",
+     "note": "館藏圖說無署名無書目，Q9 不採"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "ANMM／NZHistory Jellicoe",
+     "url": "https://collections.sea.museum/en/people/15253",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 101,
+     "sourceType": "named_encyclopedia",
+     "query": "Jellicoe Encyclopedia of World Biography (Gale via Encyclopedia.com)",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/john-rushworth-jellicoe",
+     "result": "found_C",
+     "note": "抓取；載生年月日、歷任職務、大艦隊總司令（1914-08-04）、日德蘭、1916-11轉第一海務大臣、紐西蘭總督 1920-1924"
+    },
+    {
+     "step": 102,
+     "sourceType": "official",
+     "query": "gg.govt.nz node/669 Jellicoe Governor-General",
+     "url": "https://gg.govt.nz/node/669",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過"
+    },
+    {
+     "step": 103,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print Jellicoe",
+     "url": "https://www.britannica.com/print/article/302441",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁；不繞過"
+    },
+    {
+     "step": 104,
+     "sourceType": "official",
+     "query": "NZHistory Jellicoe",
+     "url": "https://nzhistory.govt.nz/people/john-jellicoe",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 105,
+     "sourceType": "other",
+     "query": "Spectator 1917-12-29 / Papers Past Jellicoe first sea lord dismissal",
+     "url": "https://archive.spectator.co.uk/article/29th-december-1917/1/news-of-the-week",
+     "result": "no_result",
+     "note": "Spectator 傳回空內容；Papers Past 網址轉址迴圈。第一海務大臣迄日、紐西蘭總督起迄日仍待查證（既有 gap）"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "herbertkitchener1stearlkitchener",
+   "bioId": null,
+   "name": "Herbert Kitchener, 1st Earl Kitchener",
+   "nameZh": "第一代基奇納伯爵赫伯特·基奇納",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1850-06-24",
+      "end": "1898-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與皇家工兵、蘇丹埃及軍",
+      "en": "Origins, Royal Engineers and the Egyptian Army"
+     },
+     "body": {
+      "zh-Hant": "霍雷肖·赫伯特·基奇納1850年6月24日生於愛爾蘭凱里郡，1868至1870年在伍利奇皇家軍事學院受訓。1871年他受任皇家工兵軍官；其後在塞浦路斯與巴勒斯坦等地從事測量工作，並在1884至85年的戈登救援遠征中任副官。1888年1月他在漢杜卜之役負傷，1892年出任埃及軍隊的「西達爾」（總司令）。",
+      "en": "Horatio Herbert Kitchener was born on 24 June 1850 in County Kerry, Ireland, and trained at the Royal Military Academy, Woolwich, in 1868–70. He was commissioned into the Royal Engineers in 1871, worked on survey expeditions in Cyprus and Palestine, and served as an aide de camp on the Gordon Relief Expedition of 1884–85. He was wounded at the Battle of Handub in January 1888 and in 1892 was appointed Sirdar (commander-in-chief) of the Egyptian Army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "24. Juni: Horatio Herbert Kitchener wird als Sohn des pensionierten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "1868-1870",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "commissioned into the Royal Engineers in 1871",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "survey expeditions in Cyprus and Palestine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "aide de camp during the failed Gordon Relief Expedition of 1884-85",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Although wounded at the Battle of Handub in January 1888",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "until 1892, when he was appointed Sirdar (commander-in-chief)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1898-09-02",
+      "end": "1902-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "蘇丹征服與南非戰爭",
+      "en": "Conquest of the Sudan and the Boer War"
+     },
+     "body": {
+      "zh-Hant": "1898年9月2日，基奇納在恩圖曼戰役擊敗馬赫迪軍，同年9月4日攻占喀土穆；1899年12月18日他出任蘇丹總督。1899至1902年的南非戰爭中，他先任參謀長，後任總司令，其中擔任羅伯茲勛爵參謀長的任命在1900年；戰爭的燒毀農場與集中營等黑暗面，批評也多落在他身上。",
+      "en": "On 2 September 1898 Kitchener defeated the Mahdist army at the Battle of Omdurman, and on 4 September Khartoum was taken; on 18 December 1899 he became governor-general of the Sudan. In the Boer War (1899–1902) he went first as chief of staff, later as commander-in-chief, being posted to South Africa as Lord Roberts's chief of staff in 1900; blame for the war's darker aspects, including scorched earth tactics and concentration camps, fell on him."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "On 2 September 1898, he defeated the Mahdist army at the Battle of Omdurman.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "4. September: Einnahme von Khartoum (Sudan)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "18. Dezember: Kitchener wird Generalgouverneur des Sudan.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "zunächst als Generalstabschef, später als Oberbefehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "posted to South Africa as Lord Roberts’s chief of staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "scorched earth tactics and concentration camps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1902-01-01",
+      "end": "1914-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "印度總司令與埃及",
+      "en": "Commander-in-Chief in India and Egypt"
+     },
+     "body": {
+      "zh-Hant": "1902年至1909年基奇納擔任駐印度的英軍總司令，將三個管區軍隊整併為統一的印度軍，並與總督寇松起衝突、導致寇松辭職；1909年晉升元帥。1911年至1914年他在埃及與蘇丹擔任英國的高級專員（英國駐埃及代表）。",
+      "en": "From 1902 to 1909 Kitchener was commander-in-chief of the British forces in India, merged the three Presidency armies into one Indian Army and clashed with the Viceroy, Lord Curzon, who resigned; he was promoted field marshal in 1909. From 1911 to 1914 he served as British high commissioner (British agent) in Egypt and the Sudan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "Als Oberbefehlshaber der britischen Truppen ist Kitchener in Indien stationiert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "1902-1909",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "merging the three Presidency armies into a unified force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Kitchener clashed with the Viceroy, Lord Curzon, who resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Promoted to field marshal in 1909",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "Er ist als britischer Oberkommissar in Ägypten und im Sudan tätig.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "In 1911, he was made British agent in Egypt.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-08-06",
+      "end": "1916-06-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍大臣與死亡",
+      "en": "Secretary of State for War and death"
+     },
+     "body": {
+      "zh-Hant": "1914年8月6日，首相阿斯奎斯任命基奇納為陸軍大臣；他預見戰爭將持續多年，號召志願兵組成「新軍」，並在同年成為伯爵。1915年的炮彈危機與達達尼爾遠征失敗後，他的影響力下降。1916年6月5日，他在前往俄國的外交任務途中，所乘「漢普郡」號巡洋艦在奧克尼群島外觸雷沉沒，基奇納罹難。",
+      "en": "On 6 August 1914 Prime Minister Asquith appointed Kitchener Secretary of State for War; he foresaw a long war, appealed for volunteers for his \"New Armies\", and was made an earl that year. His influence declined after the 1915 shell crisis and the failed Dardanelles expedition. On 5 June 1916, on a mission to Russia, the cruiser Hampshire struck a mine off the Orkneys and Kitchener was killed."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "6. August: Der britische Premierminister Herbert H. Asquith beruft Kitchener",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "zum Kriegsminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "In August 1914, with retirement beckoning, Kitchener was appointed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Kitchener realised it would be long and on an unprecedented scale",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "He appealed for volunteers for his ‘New Armies’",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-kitch",
+       "locator": "Hansard people page",
+       "quote": "Earl Kitchener July 27, 1914 - June 5, 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Kitchener’s influence declined following the 1915 ‘shell crisis’",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "he drowned on 5 June 1916 when his vessel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "kommt auf einer diplomatischen Reise nach Russland ums Leben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kitchener-cinc-india",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英屬印度軍隊",
+      "en": "British Indian Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der britischen Truppen in Indien",
+      "zh-Hant": "駐印度英軍總司令",
+      "en": "Commander-in-Chief, India"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1902-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "1902-1909",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 以年份寫1902–1909；迄點依 Q3 寫1910-01-01",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "Als Oberbefehlshaber der britischen Truppen ist Kitchener in Indien stationiert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "Kitchener was appointed Commander-in-Chief in India in 1902.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "駐印度英軍總司令，職位等級引文已明寫；但英屬印度政權對應待查證、年精度迄日需確認，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "kitchener-egypt-high-commissioner",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國駐埃及及蘇丹機構",
+      "en": "British administration, Egypt and Sudan"
+     },
+     "title": {
+      "orig": "britischer Oberkommissar in Ägypten und im Sudan",
+      "zh-Hant": "英國駐埃及及蘇丹高級專員（英國駐埃及代表）",
+      "en": "British High Commissioner (British agent) in Egypt and the Sudan"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1911-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "1911-1914",
+       "quoteLang": "de",
+       "evidenceNote": "LeMO 以年份寫1911–1914；迄點依 Q3 寫1915-01-01",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "Er ist als britischer Oberkommissar in Ägypten und im Sudan tätig.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "In 1911, he was made British agent in Egypt.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "英國駐埃及高級專員／代表，是否屬 R2 佔領／殖民長官（轄區最高長官）文件未涵蓋，不猜，暫留經歷層"
+    },
+    {
+     "key": "kitchener-war-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍部（戰爭部）",
+      "en": "War Office, United Kingdom"
+     },
+     "title": {
+      "orig": "Kriegsminister (Secretary of State for War)",
+      "zh-Hant": "陸軍大臣（戰爭大臣）",
+      "en": "Secretary of State for War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1914-08-06",
+      "end": "1916-06-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "6. August: Der britische Premierminister Herbert H. Asquith beruft Kitchener",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-kitch",
+       "locator": "LeMO Biografie",
+       "quote": "zum Kriegsminister",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "In August 1914, with retirement beckoning, Kitchener was appointed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cup-unlimited",
+       "locator": "CUP Great War, Total War ch.15",
+       "quote": "secretary of state for war between August 1914 and June 1916",
+       "quoteLang": "en",
+       "evidenceNote": "在職迄 1916 年 6 月（月精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nam-kitch",
+       "locator": "NAM Great Commanders",
+       "quote": "he drowned on 5 June 1916 when his vessel",
+       "quoteLang": "en",
+       "evidenceNote": "在職至死亡日 1916-06-05（推論：來源未明寫「卸任日」，死於任內）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-late-kitch",
+       "locator": "HL Deb 20 June 1916 cc315-22",
+       "quote": "the late Secretary of State for War",
+       "quoteLang": "en",
+       "evidenceNote": "上院 1916-06-20 稱其為「已故陸軍大臣」，印證在職至死亡",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "國防／戰爭部正職，起訖已載（迄日依死亡日推得）；政權對應待查證，R3 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:kitchener-cinc-india",
+     "gapKind": "not_found",
+     "note": "待查證：迄日1910-01-01依 LeMO「1902-1909」年精度依 Q3 推得；無日精度起迄日。已查：LeMO、NAM；Oxford DNB（403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:kitchener-oxford-dnb",
+     "gapKind": "not_found",
+     "note": "待查證：ODNB、Britannica、1914-1918-online、IWM、NPG 皆 403 或 Anubis 擋，未取得第二個 A 級來源；本檔 Kitchener 僅 LeMO＋NAM（B）＋Hansard（A）。；重跑補查：ODNB、Britannica（403）、1914-1918-online（Anubis，不繞過）、IWM（403）、Gazette（404）、DIB（JS 挑戰頁）仍未取得；已新增 A 級 Hansard 1916 上院議事紀錄、B 級 CUP 專書章節摘要。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:kitchener-war-secretary",
+     "gapKind": "conflict",
+     "note": "起日各來源不一：LeMO 1914-08-06；Treccani EI 僅稱「1914」；搜尋摘要有 8/3、8/5 說法（未抓原文，不採）。迄日採死亡日 1916-06-05（推論）。",
+     "candidateCitations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Kitchener 權威檔",
+     "url": "null",
+     "result": "no_result",
+     "note": "未另查 LoC／VIAF"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Kitchener",
+     "url": "https://www.britannica.com/biography/Horatio-Herbert-Kitchener-Earl-Kitchener-of-Khartoum",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Kitchener",
+     "url": "https://encyclopedia.1914-1918-online.net/article/kitchener_horatio_herbert",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Historic Hansard Kitchener",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-horatio-kitchener",
+     "result": "found_A",
+     "note": "抓取，列 Lords 頭銜與至1916-06-05"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Horatio Herbert Kitchener",
+     "url": "https://www.dhm.de/lemo/biografie/horatio-herbert-kitchener",
+     "result": "found_B",
+     "note": "curl 抓取全文（Anja Kettern）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "National Army Museum Herbert Kitchener",
+     "url": "https://www.nam.ac.uk/explore/herbert-kitchener",
+     "result": "found_B",
+     "note": "curl 抓取；頁面無署名，待主管確認"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "The National Archives Discovery Kitchener",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F256977",
+     "result": "no_result",
+     "note": "HTTP 202 空頁，無內容"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "NPG Kitchener",
+     "url": "https://www.npg.org.uk/collections/search/person/mp02564/horatio-herbert-kitchener-1st-earl-kitchener-of-khartoum",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Kitchener appointed Secretary of State for War August 1914 London Gazette",
+     "url": "https://www.thegazette.co.uk/London/issue/28842/page/6169",
+     "result": "no_result",
+     "note": "Gazette 頁 404／非任命公告",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Kitchener Secretary of State for War 1914 Hansard 6 August 1914",
+     "url": "https://hansard.parliament.uk/commons/1914-08-06/debates/293b9b48-9854-40bf-8b4e-afaca98ba8c9/WarInEurope",
+     "result": "blocked_403",
+     "note": "403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Lord Kitchener death 5 June 1916 Hansard tributes",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1916/jun/20/the-late-earl-kitchener",
+     "result": "found_A",
+     "note": "curl 抓取；「the late Secretary of State for War」",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Lord Kitchener Hansard 1916 Secretary of State for War successor",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1916/jun/06/lord-kitchener",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "War Office Kitchener Private Office Papers 1914–1916 (TNA Discovery)",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/C14366",
+     "result": "no_result",
+     "note": "curl 回應 202 空白（JS 載入）；搜尋摘要稱 5 Aug 1914–5 Jun 1916，未取得原文故不採",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "Kitchener Dictionary of Irish Biography",
+     "url": "https://www.dib.ie/biography/kitchener-horatio-herbert-a4596",
+     "result": "challenge_page",
+     "note": "JS 轉址挑戰頁，不繞過；搜尋摘要稱 India 1902–9",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Kitchener Treccani Dizionario di Storia ministro della Guerra",
+     "url": "https://www.treccani.it/enciclopedia/horatio-herbert-lord-kitchener_(Dizionario-di-Storia)/",
+     "result": "found_B",
+     "note": "curl 抓取；「Nel 1902-09 ebbe la direzione suprema dell’esercito angloindiano」；1914 任陸軍大臣、無迄日",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Kitchener Treccani Enciclopedia Italiana",
+     "url": "https://www.treccani.it/enciclopedia/horatio-herbert-kitchener_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "curl 抓取；至 1909 印度；年精度",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "Kitchener maréchal ministre de la Guerre 1914 Larousse Universalis BnF",
+     "url": "https://www.larousse.fr/encyclopedie/personnage/Horatio_Herbert_lord_Kitchener/127595",
+     "result": "found_B",
+     "note": "curl 抓取；僅年份；BnF data 頁僅權威檔",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "national_dictionary",
+     "query": "Kitchener Real Academia de la Historia DB~e",
+     "url": "https://dbe.rah.es/",
+     "result": "no_result",
+     "note": "無條目",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "キッチナー 陸軍大臣 インド総司令官 1902 1909",
+     "url": "https://kotobank.jp/word/%E3%83%8F%E3%83%BC%E3%83%90%E3%83%BC%E3%83%88%E3%83%BB%E3%82%AD%E3%83%83%E3%83%81%E3%83%8A%E3%83%BC",
+     "result": "unrated",
+     "note": "curl 抓取；僅生卒；NDL／NIDS 搜尋無任期原文",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "基欽納 陸軍大臣 印度總司令（國史館／近史所／國圖）",
+     "url": "https://www.ncl.edu.tw/",
+     "result": "no_result",
+     "note": "無可用條目；百度不採",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "authority",
+     "query": "Kitchener Deutsche Biographie NDB／GND",
+     "url": "https://www.deutsche-biographie.de/pnd118723278.html",
+     "result": "found_A",
+     "note": "curl 抓取；僅權威檔（1850-06-24–1916-06-05），無職位",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "academic",
+     "query": "Kitchener war secretary 1914 1916 Cambridge University Press",
+     "url": "https://www.cambridge.org/core/books/abs/great-war-total-war/strategy-of-unlimited-warfare/AC4B050169A68BCCCB95D1885AD6D100",
+     "result": "found_B",
+     "note": "curl 抓取；「secretary of state for war between August 1914 and June 1916」",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "named_encyclopedia",
+     "query": "Китченер БРЭ／Президентская библиотека",
+     "url": "https://bigenc.ru/",
+     "result": "no_result",
+     "note": "無 Kitchener 條目",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "named_encyclopedia",
+     "query": "Kitchener Royal Engineers Museum／NAM／RCT",
+     "url": "https://www.nam.ac.uk/explore/herbert-kitchener-taskmaster",
+     "result": "found_B",
+     "note": "curl 抓取 NAM 另頁；RCT 403；RE Museum 無傳記",
+     "round": "retry"
+    }
+   ],
+   "nameZhOrig": "第一代基奇纳伯爵赫伯特·基奇纳"
+  }
+ ]
+}

@@ -1,0 +1,3529 @@
+{
+ "schema": "dunkirk-data/0.1 r4",
+ "rule": "只取留一 95 百分位 ≤ 2 km 的圖（主管 2026-11-13 12:05）",
+ "fronts": [
+  {
+   "date": "1940-05-26",
+   "dateNote": "圖題 evening of 26th May",
+   "lineKey": "ellis-sm-26may-belgian-dashed-front",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛粗線：比利時軍前沿（Eecloo 運河線—Nevele—Thielt—Roulers—Zonnebeke）",
+   "vertices": [
+    {
+     "lonlat": [
+      3.478,
+      51.2294
+     ],
+     "px": [
+      1130,
+      33
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.5126,
+      51.1759
+     ],
+     "px": [
+      1142,
+      67
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.542,
+      51.1238
+     ],
+     "px": [
+      1152,
+      100
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.5531,
+      51.0806
+     ],
+     "px": [
+      1155,
+      127
+     ],
+     "nearPlace": "Nevele"
+    },
+    {
+     "lonlat": [
+      3.5507,
+      51.0482
+     ],
+     "px": [
+      1153,
+      147
+     ],
+     "nearPlace": "Nevele"
+    },
+    {
+     "lonlat": [
+      3.5108,
+      51.0419
+     ],
+     "px": [
+      1137,
+      150
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4194,
+      51.0174
+     ],
+     "px": [
+      1100,
+      163
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.3526,
+      50.9987
+     ],
+     "px": [
+      1073,
+      173
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.3251,
+      50.9945
+     ],
+     "px": [
+      1062,
+      175
+     ],
+     "nearPlace": "Thielt"
+    },
+    {
+     "lonlat": [
+      3.2723,
+      50.9602
+     ],
+     "px": [
+      1040,
+      195
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2124,
+      50.9207
+     ],
+     "px": [
+      1015,
+      218
+     ],
+     "nearPlace": "Iseghem"
+    },
+    {
+     "lonlat": [
+      3.1994,
+      50.9235
+     ],
+     "px": [
+      1010,
+      216
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1602,
+      50.9365
+     ],
+     "px": [
+      995,
+      207
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1295,
+      50.9385
+     ],
+     "px": [
+      983,
+      205
+     ],
+     "nearPlace": "Roulers"
+    },
+    {
+     "lonlat": [
+      3.098,
+      50.9212
+     ],
+     "px": [
+      970,
+      215
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0615,
+      50.902
+     ],
+     "px": [
+      955,
+      226
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0367,
+      50.8946
+     ],
+     "px": [
+      945,
+      230
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0046,
+      50.8837
+     ],
+     "px": [
+      932,
+      236
+     ],
+     "nearPlace": "Zonnebeke"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-26may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182",
+    "mapDate": "1940-05-26",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-5.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 73,
+    "loo_median_km": 0.4,
+    "loo_p95_km": 0.82
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "沿虛粗線依序讀取；Nevele 以北沿 Canal de Dérivation 讀得較清楚，Thielt–Iseghem 一段與道路重疊略不確定（±5 px）；Roulers 一帶虛線與道路難分，取虛線較連續的走向。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-26",
+   "dateNote": "圖題 evening of 26th May",
+   "lineKey": "ellis-sm-26may-ypres-comines-lys-front",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線＋虛粗線：伊普爾—科米訥運河（Ypres–Comines Canal）至 Warneton、Halluin 的盟軍防線",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8877,
+      50.8517
+     ],
+     "px": [
+      885,
+      253
+     ],
+     "nearPlace": "Ypres"
+    },
+    {
+     "lonlat": [
+      2.9154,
+      50.8286
+     ],
+     "px": [
+      895,
+      268
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9375,
+      50.81
+     ],
+     "px": [
+      903,
+      280
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9649,
+      50.7901
+     ],
+     "px": [
+      913,
+      293
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9896,
+      50.7717
+     ],
+     "px": [
+      922,
+      305
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0357,
+      50.7686
+     ],
+     "px": [
+      940,
+      308
+     ],
+     "nearPlace": "Warneton"
+    },
+    {
+     "lonlat": [
+      3.0865,
+      50.769
+     ],
+     "px": [
+      960,
+      309
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1241,
+      50.7752
+     ],
+     "px": [
+      975,
+      306
+     ],
+     "nearPlace": "Halluin"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-26may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182",
+    "mapDate": "1940-05-26",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-5.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 73,
+    "loo_median_km": 0.4,
+    "loo_p95_km": 0.82
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "Ypres 至 Warneton 為粗雙線（運河），Warneton 至 Halluin 為粗虛線；與運河水道線疊在一起，粗細判讀有 ±4 px 誤差。Halluin 以東被德軍弧形符號遮住，未延伸。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-26",
+   "dateNote": "圖題 evening of 26th May",
+   "lineKey": "ellis-sm-26may-la-bassee-canal-dashed",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛粗線：La Bassée 運河一段（Hinges—La Bassée 之間）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.6998,
+      50.552
+     ],
+     "px": [
+      800,
+      434
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.739,
+      50.5439
+     ],
+     "px": [
+      815,
+      440
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.778,
+      50.5373
+     ],
+     "px": [
+      830,
+      445
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8158,
+      50.542
+     ],
+     "px": [
+      845,
+      443
+     ],
+     "nearPlace": "La Bassée"
+    },
+    {
+     "lonlat": [
+      2.8536,
+      50.5467
+     ],
+     "px": [
+      860,
+      441
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8872,
+      50.5431
+     ],
+     "px": [
+      873,
+      444
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-26may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182",
+    "mapDate": "1940-05-26",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-5.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 73,
+    "loo_median_km": 0.4,
+    "loo_p95_km": 0.82
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛線被德軍弧形符號與標字打斷，僅取可見段；Hinges 以西（Merville–Aire）為粗實線與德軍弧形混雜，無法分辨哪些是前線，不讀。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-26",
+   "dateNote": "圖題 evening of 26th May",
+   "lineKey": "ellis-sm-26may-army-group-boundary-carvin",
+   "lineKind": "boundary",
+   "side": "between",
+   "label": "圖上虛線（Army Group Boy）：集團軍群界線，La Bassée 東南—Carvin—Raches",
+   "vertices": [
+    {
+     "lonlat": [
+      2.9071,
+      50.5228
+     ],
+     "px": [
+      880,
+      457
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9343,
+      50.506
+     ],
+     "px": [
+      890,
+      468
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9616,
+      50.4877
+     ],
+     "px": [
+      900,
+      480
+     ],
+     "nearPlace": "Carvin"
+    },
+    {
+     "lonlat": [
+      2.994,
+      50.4695
+     ],
+     "px": [
+      912,
+      492
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0287,
+      50.453
+     ],
+     "px": [
+      925,
+      503
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0684,
+      50.4382
+     ],
+     "px": [
+      940,
+      513
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-26may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182",
+    "mapDate": "1940-05-26",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-5.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 73,
+    "loo_median_km": 0.4,
+    "loo_p95_km": 0.82
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "圖例的集團軍群界線，不是前線；僅取 La Bassée 至 Carvin 東南可見段，其後被標字遮蔽。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-27",
+   "dateNote": "圖題 evening of 27th May",
+   "lineKey": "ellis-sm-27may-belgian-north-dashed",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛粗線：比利時軍前沿北段（Eecloo 以西—Thielt）",
+   "vertices": [
+    {
+     "lonlat": [
+      3.2946,
+      51.2631
+     ],
+     "px": [
+      1072,
+      20
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.3491,
+      51.2414
+     ],
+     "px": [
+      1093,
+      35
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4248,
+      51.2334
+     ],
+     "px": [
+      1123,
+      42
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4374,
+      51.2004
+     ],
+     "px": [
+      1127,
+      63
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4426,
+      51.1367
+     ],
+     "px": [
+      1127,
+      103
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4411,
+      51.0935
+     ],
+     "px": [
+      1125,
+      130
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.4232,
+      51.0687
+     ],
+     "px": [
+      1117,
+      145
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.3666,
+      51.0296
+     ],
+     "px": [
+      1093,
+      168
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.3194,
+      50.9973
+     ],
+     "px": [
+      1073,
+      187
+     ],
+     "nearPlace": "Thielt"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-27may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200",
+    "mapDate": "1940-05-27",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-6.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 80,
+    "loo_median_km": 0.38,
+    "loo_p95_km": 1.09
+   },
+   "precision_m": 3100,
+   "precisionNote": "留一法 95 百分位 1.1 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "清楚的粗虛線；與頂端運河線相接處約 y=20 以上被圖框截斷。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-27",
+   "dateNote": "圖題 evening of 27th May",
+   "lineKey": "ellis-sm-27may-roulers-zonnebeke-dashed",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛粗線：Roulers—Zonnebeke 段",
+   "vertices": [
+    {
+     "lonlat": [
+      2.9902,
+      50.8748
+     ],
+     "px": [
+      938,
+      255
+     ],
+     "nearPlace": "Zonnebeke"
+    },
+    {
+     "lonlat": [
+      3.0364,
+      50.896
+     ],
+     "px": [
+      957,
+      243
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0846,
+      50.922
+     ],
+     "px": [
+      977,
+      228
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1282,
+      50.943
+     ],
+     "px": [
+      995,
+      216
+     ],
+     "nearPlace": "Roulers"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-27may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200",
+    "mapDate": "1940-05-27",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-6.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 80,
+    "loo_median_km": 0.38,
+    "loo_p95_km": 1.09
+   },
+   "precision_m": 3100,
+   "precisionNote": "留一法 95 百分位 1.1 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "Roulers 與 Thielt 之間（255、30 號德軍弧形一帶）沒有虛線可讀，故斷開成兩條線，不猜著連。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-27",
+   "dateNote": "圖題 evening of 27th May",
+   "lineKey": "ellis-sm-27may-ypres-comines-halluin-front",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線：Ypres—Comines—Halluin—（Roubaix 北）盟軍／接觸線",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8877,
+      50.8578
+     ],
+     "px": [
+      897,
+      263
+     ],
+     "nearPlace": "Ypres"
+    },
+    {
+     "lonlat": [
+      2.9034,
+      50.8264
+     ],
+     "px": [
+      902,
+      283
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9342,
+      50.7956
+     ],
+     "px": [
+      913,
+      303
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9845,
+      50.7736
+     ],
+     "px": [
+      932,
+      318
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0108,
+      50.7635
+     ],
+     "px": [
+      942,
+      325
+     ],
+     "nearPlace": "Comines"
+    },
+    {
+     "lonlat": [
+      3.055,
+      50.7765
+     ],
+     "px": [
+      960,
+      318
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0929,
+      50.7764
+     ],
+     "px": [
+      975,
+      319
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1254,
+      50.7794
+     ],
+     "px": [
+      988,
+      318
+     ],
+     "nearPlace": "Halluin"
+    },
+    {
+     "lonlat": [
+      3.156,
+      50.7742
+     ],
+     "px": [
+      1000,
+      322
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1747,
+      50.7621
+     ],
+     "px": [
+      1007,
+      330
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1923,
+      50.7355
+     ],
+     "px": [
+      1013,
+      347
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2296,
+      50.7112
+     ],
+     "px": [
+      1027,
+      363
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2802,
+      50.7052
+     ],
+     "px": [
+      1047,
+      368
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-27may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200",
+    "mapDate": "1940-05-27",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-6.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 80,
+    "loo_median_km": 0.38,
+    "loo_p95_km": 1.09
+   },
+   "precision_m": 3100,
+   "precisionNote": "留一法 95 百分位 1.1 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "Ypres–Comines 為粗雙線（運河）；Halluin 以東的粗雙弧走向讀取，與德軍弧形符號相鄰，歸屬略不確定（±5 px）。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-27",
+   "dateNote": "圖題 evening of 27th May",
+   "lineKey": "ellis-sm-27may-roubaix-bourghelles-arc",
+   "lineKind": "front",
+   "side": "between",
+   "label": "圖上粗雙弧線：Roubaix 東—Bourghelles（里爾以東接觸線）",
+   "vertices": [
+    {
+     "lonlat": [
+      3.2396,
+      50.6843
+     ],
+     "px": [
+      1030,
+      380
+     ],
+     "nearPlace": "Roubaix"
+    },
+    {
+     "lonlat": [
+      3.2041,
+      50.662
+     ],
+     "px": [
+      1015,
+      393
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1938,
+      50.6374
+     ],
+     "px": [
+      1010,
+      408
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.1914,
+      50.61
+     ],
+     "px": [
+      1008,
+      425
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2044,
+      50.5783
+     ],
+     "px": [
+      1012,
+      445
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2258,
+      50.563
+     ],
+     "px": [
+      1020,
+      455
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.2437,
+      50.5588
+     ],
+     "px": [
+      1027,
+      458
+     ],
+     "nearPlace": "Bourghelles"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-27may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200",
+    "mapDate": "1940-05-27",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-6.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 80,
+    "loo_median_km": 0.38,
+    "loo_p95_km": 1.09
+   },
+   "precision_m": 3100,
+   "precisionNote": "留一法 95 百分位 1.1 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "弧線為粗雙線，無法確定是盟軍前沿或德軍推進弧，故 side=between；僅取可見走向。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-coast-perimeter",
+   "lineKind": "perimeter",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Nieuport—Furnes—Bergues 沿線周界（Adam Force／Usher Force 一帶）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.756,
+      51.1239
+     ],
+     "px": [
+      390,
+      192
+     ],
+     "nearPlace": "Nieuport"
+    },
+    {
+     "lonlat": [
+      2.7143,
+      51.1132
+     ],
+     "px": [
+      350,
+      205
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6832,
+      51.1038
+     ],
+     "px": [
+      320,
+      217
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6687,
+      51.0878
+     ],
+     "px": [
+      305,
+      240
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6648,
+      51.073
+     ],
+     "px": [
+      300,
+      262
+     ],
+     "nearPlace": "Furnes"
+    },
+    {
+     "lonlat": [
+      2.6412,
+      51.0632
+     ],
+     "px": [
+      277,
+      275
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6396,
+      51.0465
+     ],
+     "px": [
+      274,
+      300
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6313,
+      51.0328
+     ],
+     "px": [
+      265,
+      320
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6006,
+      51.0213
+     ],
+     "px": [
+      235,
+      335
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5753,
+      51.0101
+     ],
+     "px": [
+      210,
+      350
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5655,
+      51.0016
+     ],
+     "px": [
+      200,
+      362
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5345,
+      50.9946
+     ],
+     "px": [
+      170,
+      370
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4818,
+      50.9938
+     ],
+     "px": [
+      120,
+      367
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4407,
+      50.983
+     ],
+     "px": [
+      80,
+      380
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4223,
+      50.9773
+     ],
+     "px": [
+      62,
+      387
+     ],
+     "nearPlace": "Bergues"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛粗線清楚；Nieuport 以東（Ostend 方向）無線。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-dunkirk-bergues",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Dunkirk—Bergues 運河線（French sector 旁）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.3768,
+      51.0127
+     ],
+     "px": [
+      22,
+      330
+     ],
+     "nearPlace": "Dunkirk"
+    },
+    {
+     "lonlat": [
+      2.3868,
+      50.9966
+     ],
+     "px": [
+      30,
+      355
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4088,
+      50.9865
+     ],
+     "px": [
+      50,
+      372
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4253,
+      50.9788
+     ],
+     "px": [
+      65,
+      385
+     ],
+     "nearPlace": "Bergues"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛線被 French sector 標字與港口陰影遮蔽，僅取可見段。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-29may-wylder-yser",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線（29 May 5 A.M.）：Wylder—Bambecque—Rexpoede—Yser 沿線",
+   "vertices": [
+    {
+     "lonlat": [
+      2.4869,
+      50.9122
+     ],
+     "px": [
+      117,
+      490
+     ],
+     "nearPlace": "Wylder"
+    },
+    {
+     "lonlat": [
+      2.5062,
+      50.9086
+     ],
+     "px": [
+      135,
+      497
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5386,
+      50.9017
+     ],
+     "px": [
+      165,
+      510
+     ],
+     "nearPlace": "Bambecque"
+    },
+    {
+     "lonlat": [
+      2.5856,
+      50.9075
+     ],
+     "px": [
+      210,
+      505
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6207,
+      50.9259
+     ],
+     "px": [
+      245,
+      480
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6271,
+      50.9362
+     ],
+     "px": [
+      252,
+      465
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6402,
+      50.9422
+     ],
+     "px": [
+      265,
+      457
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6762,
+      50.954
+     ],
+     "px": [
+      300,
+      442
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7234,
+      50.9597
+     ],
+     "px": [
+      345,
+      437
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7329,
+      50.9714
+     ],
+     "px": [
+      355,
+      420
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7349,
+      50.9835
+     ],
+     "px": [
+      358,
+      402
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗實線清楚；北端在 358,402 附近被箭頭與標字遮住，停讀。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-29may-quaedypre-west-cappel",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線（29 May 5 A.M.）：Quaedypre—West Cappel 短段",
+   "vertices": [
+    {
+     "lonlat": [
+      2.4584,
+      50.9327
+     ],
+     "px": [
+      92,
+      457
+     ],
+     "nearPlace": "Quaedypre"
+    },
+    {
+     "lonlat": [
+      2.4696,
+      50.9366
+     ],
+     "px": [
+      103,
+      452
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4857,
+      50.9335
+     ],
+     "px": [
+      118,
+      458
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5042,
+      50.9285
+     ],
+     "px": [
+      135,
+      467
+     ],
+     "nearPlace": "West Cappel"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "短段，與 Wylder 線之間斷開（圖上未相連），不猜著連。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-29may-noordschote-poperinghe",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線（29 May 5 A.M.）：Lizerne 東南—Poperinghe 沿線（3rd／50th Div）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8229,
+      50.9245
+     ],
+     "px": [
+      435,
+      497
+     ],
+     "nearPlace": "Lizerne"
+    },
+    {
+     "lonlat": [
+      2.8186,
+      50.9143
+     ],
+     "px": [
+      430,
+      512
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8034,
+      50.907
+     ],
+     "px": [
+      415,
+      522
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.788,
+      50.9009
+     ],
+     "px": [
+      400,
+      530
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.776,
+      50.8937
+     ],
+     "px": [
+      388,
+      540
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7599,
+      50.8849
+     ],
+     "px": [
+      372,
+      552
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7375,
+      50.8752
+     ],
+     "px": [
+      350,
+      565
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.728,
+      50.8647
+     ],
+     "px": [
+      340,
+      580
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7206,
+      50.8543
+     ],
+     "px": [
+      332,
+      595
+     ],
+     "nearPlace": "Poperinghe"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗實線清楚；Poperinghe 端被圈起的弧形符號遮蔽。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-yser-ypres-comines",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Noordschote—Lizerne—Ypres—Comines（Ypres 運河）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8152,
+      50.9474
+     ],
+     "px": [
+      430,
+      462
+     ],
+     "nearPlace": "Noordschote"
+    },
+    {
+     "lonlat": [
+      2.8196,
+      50.9357
+     ],
+     "px": [
+      433,
+      480
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8231,
+      50.9225
+     ],
+     "px": [
+      435,
+      500
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8348,
+      50.9131
+     ],
+     "px": [
+      445,
+      515
+     ],
+     "nearPlace": "Lizerne"
+    },
+    {
+     "lonlat": [
+      2.8468,
+      50.9003
+     ],
+     "px": [
+      455,
+      535
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8608,
+      50.889
+     ],
+     "px": [
+      467,
+      553
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8737,
+      50.8783
+     ],
+     "px": [
+      478,
+      570
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8847,
+      50.8655
+     ],
+     "px": [
+      487,
+      590
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8925,
+      50.8525
+     ],
+     "px": [
+      493,
+      610
+     ],
+     "nearPlace": "Ypres"
+    },
+    {
+     "lonlat": [
+      2.8957,
+      50.8427
+     ],
+     "px": [
+      495,
+      625
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8922,
+      50.8258
+     ],
+     "px": [
+      490,
+      650
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9005,
+      50.7996
+     ],
+     "px": [
+      495,
+      690
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9175,
+      50.7903
+     ],
+     "px": [
+      510,
+      705
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9396,
+      50.7847
+     ],
+     "px": [
+      530,
+      715
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9621,
+      50.7757
+     ],
+     "px": [
+      550,
+      730
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9899,
+      50.7669
+     ],
+     "px": [
+      575,
+      745
+     ],
+     "nearPlace": "Comines"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗虛線；Ypres 附近與師界標記（點劃線）交錯，取較粗虛線。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-29may-warneton",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線（29 May 5 A.M.）：Warneton—Comines 短段",
+   "vertices": [
+    {
+     "lonlat": [
+      2.9481,
+      50.757
+     ],
+     "px": [
+      535,
+      757
+     ],
+     "nearPlace": "Warneton"
+    },
+    {
+     "lonlat": [
+      2.9659,
+      50.7605
+     ],
+     "px": [
+      552,
+      753
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9851,
+      50.762
+     ],
+     "px": [
+      570,
+      752
+     ],
+     "nearPlace": "Comines"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "短段。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-warneton-armentieres",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Warneton—Armentières 北（42nd Div）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.9375,
+      50.7566
+     ],
+     "px": [
+      525,
+      757
+     ],
+     "nearPlace": "Warneton"
+    },
+    {
+     "lonlat": [
+      2.9335,
+      50.7444
+     ],
+     "px": [
+      520,
+      775
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9265,
+      50.7307
+     ],
+     "px": [
+      512,
+      795
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9207,
+      50.7171
+     ],
+     "px": [
+      505,
+      815
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.906,
+      50.7051
+     ],
+     "px": [
+      490,
+      832
+     ],
+     "nearPlace": "Armentières"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛粗線，42 號圓環處轉折，取外緣。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-deule-canal",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Deûle Canal 沿線（Warneton 東南—Lille 方向）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.9463,
+      50.7269
+     ],
+     "px": [
+      530,
+      802
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9684,
+      50.7206
+     ],
+     "px": [
+      550,
+      813
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9907,
+      50.7136
+     ],
+     "px": [
+      570,
+      825
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0251,
+      50.6951
+     ],
+     "px": [
+      600,
+      855
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0547,
+      50.673
+     ],
+     "px": [
+      625,
+      890
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0518,
+      50.6528
+     ],
+     "px": [
+      620,
+      920
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.0312,
+      50.6452
+     ],
+     "px": [
+      600,
+      930
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛粗線；Lille 端被圖框切斷。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-hazebrouck-merville",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Hazebrouck—Merville",
+   "vertices": [
+    {
+     "lonlat": [
+      2.5435,
+      50.7171
+     ],
+     "px": [
+      150,
+      787
+     ],
+     "nearPlace": "Hazebrouck"
+    },
+    {
+     "lonlat": [
+      2.5659,
+      50.7063
+     ],
+     "px": [
+      170,
+      805
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5788,
+      50.6869
+     ],
+     "px": [
+      180,
+      835
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6059,
+      50.6816
+     ],
+     "px": [
+      205,
+      845
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6052,
+      50.6615
+     ],
+     "px": [
+      202,
+      875
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.631,
+      50.6495
+     ],
+     "px": [
+      225,
+      895
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6389,
+      50.6452
+     ],
+     "px": [
+      232,
+      902
+     ],
+     "nearPlace": "Merville"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛粗線，與道路及師界記號相鄰；Hazebrouck 端被圓環符號遮蔽。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-caestre-strazeele",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Caestre—Strazeele（44th Div）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.5911,
+      50.7611
+     ],
+     "px": [
+      200,
+      725
+     ],
+     "nearPlace": "Caestre"
+    },
+    {
+     "lonlat": [
+      2.6084,
+      50.7486
+     ],
+     "px": [
+      215,
+      745
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6209,
+      50.7325
+     ],
+     "px": [
+      225,
+      770
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6281,
+      50.7162
+     ],
+     "px": [
+      230,
+      795
+     ],
+     "nearPlace": "Strazeele"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "虛粗線；與 Hazebrouck–Merville 一線之間斷開。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 The Withdrawal to the Coast；圖例：英軍 5 A.M. 位置，28 May（虛線）與 29 May（實線）兩日並列，師號為師；mapDate 取圖上最後日期 29 May，28 May 位置為同圖虛線",
+   "lineKey": "ellis-sm-withdrawal-28may-merville-east",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上虛線（28 May 5 A.M.）：Merville 以東（French 1st Army 邊界）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.7052,
+      50.6486
+     ],
+     "px": [
+      295,
+      902
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7266,
+      50.6477
+     ],
+     "px": [
+      315,
+      905
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7447,
+      50.6472
+     ],
+     "px": [
+      332,
+      907
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-withdrawal",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'The Withdrawal to the Coast', facing p. 202",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-7.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 26,
+    "loo_median_km": 0.33,
+    "loo_p95_km": 0.76
+   },
+   "precision_m": 2800,
+   "precisionNote": "留一法 95 百分位 0.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "短段，僅可見虛線。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 evening of 28th May",
+   "lineKey": "ellis-sm-28may-coast-perimeter",
+   "lineKind": "perimeter",
+   "side": "allied",
+   "label": "圖上粗虛線（Adam Force／Usher Force）：Nieuport—Furnes—Bergues 沿岸周界",
+   "vertices": [
+    {
+     "lonlat": [
+      2.7607,
+      51.1252
+     ],
+     "px": [
+      845,
+      81
+     ],
+     "nearPlace": "Nieuport"
+    },
+    {
+     "lonlat": [
+      2.7179,
+      51.1137
+     ],
+     "px": [
+      828,
+      87
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6731,
+      51.0957
+     ],
+     "px": [
+      810,
+      97
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6621,
+      51.0743
+     ],
+     "px": [
+      805,
+      110
+     ],
+     "nearPlace": "Furnes"
+    },
+    {
+     "lonlat": [
+      2.6385,
+      51.0492
+     ],
+     "px": [
+      795,
+      125
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.615,
+      51.0241
+     ],
+     "px": [
+      785,
+      140
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.583,
+      51.0066
+     ],
+     "px": [
+      772,
+      150
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5529,
+      50.9973
+     ],
+     "px": [
+      760,
+      155
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5015,
+      50.9934
+     ],
+     "px": [
+      740,
+      156
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4504,
+      50.9863
+     ],
+     "px": [
+      720,
+      159
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4204,
+      50.9737
+     ],
+     "px": [
+      708,
+      166
+     ],
+     "nearPlace": "Bergues"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-28may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214",
+    "mapDate": "1940-05-28",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-8.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 77,
+    "loo_median_km": 0.35,
+    "loo_p95_km": 0.93
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "雙虛線（Furnes–Bergues 運河兩側各一）取中線；Nieuport 端被 256 號德軍弧形與標字遮蔽。Bergues 以西至 Dunkirk 為實線道路，不讀。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 evening of 28th May",
+   "lineKey": "ellis-sm-28may-yser-canal-line",
+   "lineKind": "front",
+   "side": "between",
+   "label": "圖上粗雙線：Noordschote—Yser／Ypres 運河—Ypres（德軍 56／216／255／30／19／14／254 弧形的西側）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8036,
+      50.9874
+     ],
+     "px": [
+      857,
+      168
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8189,
+      50.9607
+     ],
+     "px": [
+      862,
+      185
+     ],
+     "nearPlace": "Noordschote"
+    },
+    {
+     "lonlat": [
+      2.8422,
+      50.9296
+     ],
+     "px": [
+      870,
+      205
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8656,
+      50.8984
+     ],
+     "px": [
+      878,
+      225
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8781,
+      50.8748
+     ],
+     "px": [
+      882,
+      240
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.8833,
+      50.846
+     ],
+     "px": [
+      883,
+      258
+     ],
+     "nearPlace": "Ypres"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-28may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214",
+    "mapDate": "1940-05-28",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-8.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 77,
+    "loo_median_km": 0.35,
+    "loo_p95_km": 0.93
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗雙線是運河／河道，同時是弧形符號群的西緣；無虛線標示英／比軍，故 side=between，僅取可見走向。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-28",
+   "dateNote": "圖題 evening of 28th May",
+   "lineKey": "ellis-sm-28may-ypres-comines-armentieres",
+   "lineKind": "front",
+   "side": "between",
+   "label": "圖上粗雙線：Ypres—Comines—Warneton—Armentières（Lys／運河一線）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8833,
+      50.846
+     ],
+     "px": [
+      883,
+      258
+     ],
+     "nearPlace": "Ypres"
+    },
+    {
+     "lonlat": [
+      2.8778,
+      50.8233
+     ],
+     "px": [
+      880,
+      272
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9002,
+      50.8033
+     ],
+     "px": [
+      888,
+      285
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9275,
+      50.7851
+     ],
+     "px": [
+      898,
+      297
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9593,
+      50.7735
+     ],
+     "px": [
+      910,
+      305
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      3.001,
+      50.764
+     ],
+     "px": [
+      926,
+      312
+     ],
+     "nearPlace": "Comines"
+    },
+    {
+     "lonlat": [
+      2.967,
+      50.7464
+     ],
+     "px": [
+      912,
+      322
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.9513,
+      50.7248
+     ],
+     "px": [
+      905,
+      335
+     ],
+     "nearPlace": "Warneton"
+    },
+    {
+     "lonlat": [
+      2.9279,
+      50.7045
+     ],
+     "px": [
+      895,
+      347
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.895,
+      50.7015
+     ],
+     "px": [
+      882,
+      348
+     ],
+     "nearPlace": "Armentières"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-28may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214",
+    "mapDate": "1940-05-28",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-8.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 77,
+    "loo_median_km": 0.35,
+    "loo_p95_km": 0.93
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗線與運河／河道重疊且曲折密集（Warneton 一帶多條平行線），歸屬與細節不確定（±6 px）；側別取 between。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 evening of 29th May",
+   "lineKey": "ellis-sm-29may-coast-perimeter",
+   "lineKind": "perimeter",
+   "side": "allied",
+   "label": "圖上粗實線：Nieuport—Furnes—Bergues 沿岸周界（Adam Force／Usher Force）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.7595,
+      51.1293
+     ],
+     "px": [
+      860,
+      76
+     ],
+     "nearPlace": "Nieuport"
+    },
+    {
+     "lonlat": [
+      2.7282,
+      51.1103
+     ],
+     "px": [
+      847,
+      87
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6916,
+      51.0928
+     ],
+     "px": [
+      832,
+      97
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6681,
+      51.0725
+     ],
+     "px": [
+      822,
+      109
+     ],
+     "nearPlace": "Furnes"
+    },
+    {
+     "lonlat": [
+      2.6393,
+      51.0537
+     ],
+     "px": [
+      810,
+      120
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.631,
+      51.0341
+     ],
+     "px": [
+      806,
+      132
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.592,
+      51.0164
+     ],
+     "px": [
+      790,
+      142
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5732,
+      51.0011
+     ],
+     "px": [
+      782,
+      151
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5434,
+      50.9934
+     ],
+     "px": [
+      770,
+      155
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4801,
+      50.9906
+     ],
+     "px": [
+      745,
+      155
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4432,
+      50.9777
+     ],
+     "px": [
+      730,
+      162
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.4312,
+      50.9708
+     ],
+     "px": [
+      725,
+      166
+     ],
+     "nearPlace": "Bergues"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-29may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-9.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 75,
+    "loo_median_km": 0.39,
+    "loo_p95_km": 0.91
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗實線清楚；Nieuport 端與 208／256 號德軍弧形相鄰，起點取符號西側。Bergues 以西為道路，不讀。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 evening of 29th May",
+   "lineKey": "ellis-sm-29may-wylder-bambecque-yser-line",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線：Wylder—Bambecque—Rexpoede—Loo 運河（往 Furnes 方向）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.488,
+      50.9109
+     ],
+     "px": [
+      745,
+      205
+     ],
+     "nearPlace": "Wylder"
+    },
+    {
+     "lonlat": [
+      2.5136,
+      50.9088
+     ],
+     "px": [
+      755,
+      207
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5523,
+      50.9025
+     ],
+     "px": [
+      770,
+      212
+     ],
+     "nearPlace": "Bambecque"
+    },
+    {
+     "lonlat": [
+      2.6021,
+      50.9127
+     ],
+     "px": [
+      790,
+      207
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6308,
+      50.9316
+     ],
+     "px": [
+      802,
+      196
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6749,
+      50.9479
+     ],
+     "px": [
+      820,
+      187
+     ],
+     "nearPlace": "Rexpoede"
+    },
+    {
+     "lonlat": [
+      2.7298,
+      50.9583
+     ],
+     "px": [
+      842,
+      182
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.746,
+      50.975
+     ],
+     "px": [
+      849,
+      172
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7391,
+      50.994
+     ],
+     "px": [
+      847,
+      160
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7176,
+      51.0331
+     ],
+     "px": [
+      840,
+      135
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6787,
+      51.0682
+     ],
+     "px": [
+      826,
+      112
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-29may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-9.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 75,
+    "loo_median_km": 0.39,
+    "loo_p95_km": 0.91
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "粗實線；Rexpoede 附近與運河線、交叉標記疊在一起，取最粗的連續線；北端接近 Furnes 時與周界線交會，停讀於 826,112。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-05-29",
+   "dateNote": "圖題 evening of 29th May",
+   "lineKey": "ellis-sm-29may-lizerne-poperinghe",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "圖上粗實線：Lizerne—Poperinghe 北（3rd／50th Div 一帶）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.8357,
+      50.9148
+     ],
+     "px": [
+      882,
+      212
+     ],
+     "nearPlace": "Lizerne"
+    },
+    {
+     "lonlat": [
+      2.8119,
+      50.8977
+     ],
+     "px": [
+      872,
+      222
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7778,
+      50.8834
+     ],
+     "px": [
+      858,
+      230
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7461,
+      50.8693
+     ],
+     "px": [
+      845,
+      238
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.7095,
+      50.8548
+     ],
+     "px": [
+      830,
+      246
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6974,
+      50.8479
+     ],
+     "px": [
+      825,
+      250
+     ],
+     "nearPlace": "Poperinghe"
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-29may",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224",
+    "mapDate": "1940-05-29",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-9.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 75,
+    "loo_median_km": 0.39,
+    "loo_p95_km": 0.91
+   },
+   "precision_m": 2900,
+   "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "與德軍 14／19／18 號弧形及河道線相鄰，歸屬不確定（±5 px）；Ypres–Comines–Armentières 一段只見細線（河道／道路），沒有粗前線，不讀。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "date": "1940-06-01",
+   "dateNote": "圖題 evening of 1st June 1940",
+   "lineKey": "ellis-sm-1jun-corps-boundary-furnes",
+   "lineKind": "boundary",
+   "side": "between",
+   "label": "圖上點劃線：Furnes 運河以南、Ghyvelde 東側縱向軍／師界線（Adinkerke 以南至 Houthem 南）",
+   "vertices": [
+    {
+     "lonlat": [
+      2.5552,
+      51.0753
+     ],
+     "px": [
+      692,
+      250
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.559,
+      51.0613
+     ],
+     "px": [
+      695,
+      287
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5628,
+      51.0464
+     ],
+     "px": [
+      698,
+      327
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5671,
+      51.0318
+     ],
+     "px": [
+      702,
+      367
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5708,
+      51.0165
+     ],
+     "px": [
+      705,
+      410
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5691,
+      51.0084
+     ],
+     "px": [
+      700,
+      433
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.574,
+      51.0001
+     ],
+     "px": [
+      707,
+      457
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.5858,
+      50.9936
+     ],
+     "px": [
+      727,
+      477
+     ],
+     "nearPlace": null
+    },
+    {
+     "lonlat": [
+      2.6026,
+      50.9907
+     ],
+     "px": [
+      757,
+      487
+     ],
+     "nearPlace": null
+    }
+   ],
+   "basis": "map-digitized",
+   "estimate": "推估",
+   "mapRef": {
+    "mapKey": "ellis-sm-1jun",
+    "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（以圖上標題核對）",
+    "mapDate": "1940-06-01",
+    "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-11.jpg",
+    "grade": "A"
+   },
+   "method": "tools/battles/georef.py 二次多項式",
+   "georef": {
+    "control_points": 25,
+    "loo_median_km": 0.52,
+    "loo_p95_km": 1.79
+   },
+   "precision_m": 3800,
+   "precisionNote": "留一法 95 百分位 1.8 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置；前線頂點為目視讀圖（約 ±3–6 px，約 1.5–3 km），未含線寬",
+   "readNote": "點劃線僅為界線，非前線。圖上沒有畫出前線或周界線：粗黑線（Adinkerke–Furnes–Bulscamp–Houthem–Furnes 運河）為運河／道路而非前線標示，部隊以標字與虛線橢圓表示，故不讀前線頂點；界線只讀 y 250–487 可清楚辨認的一段。",
+   "confidence": {
+    "level": "estimate",
+    "why": "推估（地圖數位化／依文字推定頂點）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [],
+    "effectiveGrade": null,
+    "battleFact": false,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ],
+ "excludedMaps": [
+  {
+   "mapKey": "usma-13-4jun",
+   "loo_p95_km": 3.37,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  }
+ ],
+ "gapsByDate": [
+  {
+   "date": "1940-05-30",
+   "reason": "有通過門檻的圖，但圖上未畫出前線／周界：圖上沒有畫出盟軍／德軍前線或周界線：粗黑線皆為運河與道路（Furnes 運河、Bergues 運河、Loo 運河），虛線橢圓與標字為部隊位置，師／軍界線只見點劃線且不屬前線；依「以圖上實際畫出的線為準」不讀頂點。"
+  },
+  {
+   "date": "1940-05-31",
+   "reason": "Ellis 7 張態勢圖無 31 May 一張"
+  },
+  {
+   "date": "1940-06-01",
+   "reason": "有通過門檻的圖，但圖上未畫出前線／周界：點劃線僅為界線，非前線。圖上沒有畫出前線或周界線：粗黑線（Adinkerke–Furnes–Bulscamp–Houthem–Furnes 運河）為運河／道路而非前線標示，部隊以標字與虛線橢圓表示，故不讀前線頂點；界線只讀 y 250–487 可清楚辨認的一段。"
+  },
+  {
+   "date": "1940-06-02",
+   "reason": "沒有通過門檻的態勢圖（usma-13-4jun 未通過，僅供參考）"
+  },
+  {
+   "date": "1940-06-03",
+   "reason": "沒有通過門檻的態勢圖（usma-13-4jun 未通過，僅供參考）"
+  },
+  {
+   "date": "1940-06-04",
+   "reason": "沒有通過門檻的態勢圖（usma-13-4jun 未通過，僅供參考）"
+  }
+ ]
+}

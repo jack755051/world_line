@@ -1,0 +1,86 @@
+{
+ "batch": "067",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 3,
+  "spotRefetched": 6,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gr-george-i",
+   "bioId": "01a1b4bf-6144-7786-8add-f93e31aade8b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 12,
+   "changes": [
+    "第2段：選舉日「3月30日」補年份為 1863 年（Treccani 引文 assunse il 30 marzo 1863），避免讀成 1862 年",
+    "第2段：補 Treccani 引文「Il gabinetto di Londra favorì l'avvento…」支撐「英國」放棄愛奧尼亞群島的主語",
+    "第4段：補 Treccani 引文「Quando la Turchia dichiarò la guerra alla Bulgaria e alla Serbia alleate」支撐土耳其宣戰子句",
+    "重抓 lex.dk 與 Treccani 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "no-nygaardsvold",
+   "bioId": "01a1b4bf-614b-76c8-8233-f724dd6bf1bd",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 10,
+   "roleCandidates": 4,
+   "gaps": 8,
+   "searchLogSteps": 9,
+   "changes": [
+    "第4段：「霍恩斯魯德工黨政府」刪「工黨」（無引文支撐），補 NBL 引文「I staden tok Christopher Hornsrud på seg oppdraget.」",
+    "第5段：補 NBL 引文「…ved angrepet natt til 9. april」支撐德軍入侵子句",
+    "第6段：調查委員會引文改為含主語與年份的完整片段「Undersøkingskommisjonen av 1945 kunne likevel ikkje frita Nygaardsvold」；補「boka om barndommen og ungdommen sin」引文支撐遺作書名",
+    "農業部長 NBL 引文 quote 不含日期，datePrecision 由 year 改 null",
+    "國會黨團主席維持 partyPostAmbiguous（與他批議會黨團主席處理一致）",
+    "重抓 stortinget.no 與 nbl.snl.no 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "uy-amezaga",
+   "bioId": "62189397-7e91-43b9-89f2-ed8c334507b6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 12,
+   "changes": [
+    "第1、3段：各補引文「Amézaga was the author of numerous legal texts」支撐「著有法學著作」",
+    "第1段 period 迄點依段內最後事件（1908 年著作）由 1906-01-01 改 1909-01-01",
+    "薄人物最低嘗試已達（4 類來源、12 次查詢含西文 3 次、≥3 實抓頁）",
+    "重抓 encyclopedia.com 與國會圖書館目錄頁比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常以截短引文支撐段落，致部分子句主語或背景（英國、土耳其宣戰、德軍入侵、調查委員會）無 quote 對應，審查以同一已抓原文補引文",
+  "阿梅薩加的駐阿根廷大使（1916）、國家保險銀行行長（1918）有起年缺迄日，研究者只寫 gap 未依最低標準照寫 start 進 positions；審查未代補，留待下一輪",
+  "尼高斯沃爾首相任期：來源為單段 1935-03-20～1945-06-25，與 5442 兩段切分不同，已有 gap 待主管判斷；阿梅薩加 5442 迄日 1945-10-01 與百科 1943–1947 不符，已有 gap"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

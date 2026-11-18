@@ -1,0 +1,89 @@
+{
+ "batch": "079",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 7,
+  "editedSentences": 4,
+  "spotRefetched": 3,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "af-nadir-shah",
+   "bioId": "01a1b4c0-c894-7914-94b3-351363a8b802",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 17,
+   "changes": [
+    "重抓 LoC Law Library PDF 比對一致",
+    "段1 含 1883 生年，period 起點改 1883-01-01（year）",
+    "段2 補主語引文 In 1931, Nadir Shah promulgated a new constitution"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言（波斯文／普什圖文）查詢，原文語言查詢 0 次（需 ≥2）；17 步全為英文／德文／克羅埃西亞文站名查詢（薄人物）",
+    "建議下一個具體來源：波斯文查詢「محمد نادر شاه」「نادرخان ۱۳۰۸」；阿富汗國家檔案館／國家圖書館目錄、Encyclopaedia Iranica（若可不經挑戰頁存取）、Encyclopaedia of Islam 公開摘要（Nādir Shāh, Muḥammad）、FRUS 1929–1933 Afghanistan 文件（陸軍部長、駐法公使任期）"
+   ]
+  },
+  {
+   "key": "hr-pavelic",
+   "bioId": "01a1b4c0-c89b-7b01-bb0f-59849184386d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 2,
+   "gaps": 7,
+   "searchLogSteps": 38,
+   "changes": [
+    "重抓 JUSP 頁比對一致",
+    "段1 帕希奇接觸補「on behalf of the HSP」；「札格雷布大學法學院」改「札格雷布法學院」（原文 Faculty of Law in Zagreb）",
+    "段2／職位 國民議會引文補「in the National Assembly」（分成兩筆以守 80 字）；週報引文補「weekly party newspaper of the Croatian Rights Party」；補青年運動合作引文",
+    "段3 「國王頒布」改「公布」（原文 was published）；馬賽暗殺引文補 1934；都靈被捕引文補 After the assassination；period 迄點依 Q3 改 1938-01-01",
+    "段4 段內最後事件為 1959 卒，period 迄點改 1960-01-01",
+    "三筆任期缺迄日已有 gap，篇幅不足 gap＋round: retry 加強搜尋 24 步，符合 6c，不退回"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ir-mohammad-reza",
+   "bioId": "01a1b4c0-c8a2-7224-a415-732770b572ab",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 17,
+   "changes": [
+    "重抓 FRUS d401 比對一致",
+    "段1 刪與段2 重複的「1941 年登上王位」子句及其引文（period 迄點因此維持 1926-01-01）",
+    "段2 「伊朗駐美公使」改「伊朗公使」並補 I called on the Iranian Minister 引文；入侵引文延長至 He immediately faced",
+    "段3 補德黑蘭（III. The Tehran Conference）、Apparently、美國協助意願、羅斯福致函署名引文；「多看看伊朗」引文延長至 shall leave Iran with regret／to have seen more of your"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批兩位西亞人物（納迪爾、巴勒維）皆未用波斯文查詢；巴勒維為中厚人物、已有 5 個 A 來源 4 段，不觸發退回，但下輪可補 Iranica／波斯文官方來源",
+  "JUSP Jasenovac 為克羅埃西亞國家設立之公立紀念機構官方頁、無署名，研究者評 A；本審查維持，但若主管認為應比照無署名機構頁降為 B 或未評等，帕韋利奇全部段落只剩單一來源，需注意",
+  "帕韋利奇 1941 年起「President（至 1943-09）」與外交部長兩職缺起日，已在 gap，未建候選；President 是否即政府首腦待查",
+  "roleCandidates regimeId 一律 null（研究者不連庫），寫庫前需補"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

@@ -302,6 +302,50 @@ public sealed class ConflictTests(PostGisFixture fx)
     }
 
     [Fact]
+    public async Task Arc_endpoint_prefers_capital_coordinate_and_falls_back_to_point_on_surface()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        // fr: territory (0,50)-(1,51)；ST_PointOnSurface ≈ (0.5, 50.5)
+        // enemy: territory (30,50)-(31,51)，兩方不相鄰 → 會畫弧
+        var fr = await k.Regime("fr-cap");
+        var enemy = await k.Regime("foe-cap");
+        await Territory(k, fr, ohm, 0, 50);
+        await Territory(k, enemy, ohm, 30, 50);
+
+        // 為 fr 建立首都記錄，座標 (0.1, 50.1)，有效期 1941-06-01 ~ 1942-06-01
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/capital-records", new
+        {
+            regimeId = fr,
+            cityName = new Dictionary<string, string> { ["zh-Hant"] = "巴黎", ["en"] = "Paris" },
+            location = Point(0.1, 50.1),
+            validStart = "1941-06-01",
+            validEnd = "1942-06-01",
+            sourceRef = "測試用",
+        }), HttpStatusCode.Created);
+
+        var start = await Event(k, "war", "1941-01-01");
+        var id = await k.Id(await Post(k, fr, enemy, start, null));
+
+        // 1941-09-01：首都有效 → fr 端點應在首都座標 (0.1, 50.1)
+        var arcWith = (await FeatureOn(k, "1941-09-01", id))!.Value.GetProperty("properties").GetProperty("arc");
+        Assert.NotEqual(JsonValueKind.Null, arcWith.ValueKind);
+        Assert.Equal(0.1, arcWith.GetProperty("from")[0].GetDouble(), 3);
+        Assert.Equal(50.1, arcWith.GetProperty("from")[1].GetDouble(), 3);
+
+        // 1941-03-01：領土存在但首都尚未生效 → 退回 ST_PointOnSurface，端點在領土範圍 (0~1, 50~51) 內
+        var arcFallback = (await FeatureOn(k, "1941-03-01", id))!.Value.GetProperty("properties").GetProperty("arc");
+        Assert.NotEqual(JsonValueKind.Null, arcFallback.ValueKind);
+        var fbX = arcFallback.GetProperty("from")[0].GetDouble();
+        var fbY = arcFallback.GetProperty("from")[1].GetDouble();
+        Assert.InRange(fbX, 0.0, 1.0);
+        Assert.InRange(fbY, 50.0, 51.0);
+        // 確認確實不是首都座標
+        Assert.False(Math.Abs(fbX - 0.1) < 0.01 && Math.Abs(fbY - 50.1) < 0.01,
+            "fallback 不應與首都座標完全一致");
+    }
+
+    [Fact]
     public async Task Retraction_hides_the_conflict_and_can_happen_only_once()
     {
         var k = new ApiTestKit(fx);

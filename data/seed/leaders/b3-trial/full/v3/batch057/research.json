@@ -1,0 +1,1900 @@
+{
+ "batch": "b3-full-v3-batch057",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦／實際掌權者與黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類以 R6（roleGap 含 regime）留在 positions。名單內元首／首腦任期已在 leader_records，不重建。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch057/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "enc-primo2": {
+   "title": "Primo de Rivera, Miguel (1870–1930)",
+   "authors": [
+    "Shannon E. Fleming"
+   ],
+   "publisher": "Encyclopedia.com (Gale)",
+   "published_text": "Encyclopedia of Modern Europe: Europe Since 1914",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/primo-de-rivera-miguel-1870-1930",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Shannon E. Fleming）的學術參考百科條目"
+  },
+  "snl-primo": {
+   "title": "Miguel Primo de Rivera",
+   "authors": [
+    "Ingebjørg Birkeland",
+    "Alejandro Ayala-Wold"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "Store norske leksikon（挪威各大學共有的百科）",
+   "url": "https://snl.no/Miguel_Primo_de_Rivera",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科（Store norske leksikon；Alejandro Ayala-Wold 為卑爾根大學，Spanias historie 領域負責人）"
+  },
+  "enc-primo3": {
+   "title": "Primo de Rivera y Orbaneja, Miguel (1870–1930)",
+   "authors": [],
+   "publisher": "Encyclopedia.com (Gale)",
+   "published_text": "Encyclopedia of European Social History（署名縮寫 EWB）",
+   "url": "https://encyclopedia.com/international/encyclopedias-almanacs-transcripts-and-maps/primo-de-rivera-y-orbaneja-miguel-1870-1930",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無具名作者的百科條目，未評等（Q9），只作 gap 候選"
+  },
+  "gec-primo": {
+   "title": "Miguel Primo de Rivera y Orbaneja",
+   "authors": [],
+   "publisher": "Gran Enciclopèdia Catalana (enciclopedia.cat)",
+   "published_text": null,
+   "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/miguel-primo-de-rivera-y-orbaneja",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無具名作者，未評等（Q9），只作 gap 候選"
+  },
+  "frus1941-d498": {
+   "title": "Foreign Relations of the United States, 1941, Vol. III, Document 498",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1941, The British Commonwealth; The Near East and Africa, Volume III",
+   "url": "https://history.state.gov/historicaldocuments/frus1941v03/d498",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "frus1941-d499": {
+   "title": "Foreign Relations of the United States, 1941, Vol. III, Document 499",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1941, The British Commonwealth; The Near East and Africa, Volume III",
+   "url": "https://history.state.gov/historicaldocuments/frus1941v03/d499",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "frus1941-d501": {
+   "title": "Foreign Relations of the United States, 1941, Vol. III, Document 501",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1941, The British Commonwealth; The Near East and Africa, Volume III",
+   "url": "https://history.state.gov/historicaldocuments/frus1941v03/d501",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "frus1941-d509": {
+   "title": "Foreign Relations of the United States, 1941, Vol. III, Document 509",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1941, The British Commonwealth; The Near East and Africa, Volume III",
+   "url": "https://history.state.gov/historicaldocuments/frus1941v03/d509",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "frus1941-d532": {
+   "title": "Foreign Relations of the United States, 1941, Vol. III, Document 532",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1941, The British Commonwealth; The Near East and Africa, Volume III",
+   "url": "https://history.state.gov/historicaldocuments/frus1941v03/d532",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "frus1945-ch27": {
+   "title": "Visit of the Regent of Iraq to the United States",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1945, The Near East and Africa, Volume VIII, 編者說明",
+   "url": "https://history.state.gov/historicaldocuments/frus1945v08/ch27",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）編者說明"
+  },
+  "enc-faisal": {
+   "title": "Faisal II",
+   "authors": [],
+   "publisher": "Encyclopedia.com (Gale)",
+   "published_text": "Encyclopedia of World Biography",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/faisal-ii",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "Encyclopedia of World Biography 無署名條目，未評等（Q9），只作 gap 候選"
+  },
+  "enc-williman": {
+   "title": "Williman, Claudio (1863–1934)",
+   "authors": [
+    "José de Torres Wilson"
+   ],
+   "publisher": "Encyclopedia.com (Gale)",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/williman-claudio-1863-1934",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "條末署名 José de Torres Wilson 的機構百科條目（具名作者）"
+  },
+  "frus1907-d447": {
+   "title": "Foreign Relations of the United States, 1907, Part 2, Document 447 (Uruguay)",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1907, Part II（美國駐蒙特維多公使 1907-03-06 公函及附件）",
+   "url": "https://history.state.gov/historicaldocuments/frus1907p2/d447",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史辦公室官方外交文件集（FRUS）"
+  },
+  "hu-williman": {
+   "title": "Williman, Claudio",
+   "authors": [],
+   "publisher": "Historias Universitarias, Universidad de la República (Uruguay)",
+   "published_text": null,
+   "url": "https://historiasuniversitarias.edu.uy/biografia/williman-claudio/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "共和國大學（烏拉圭）機構人物傳記頁；無署名，依 T1 學術機構傳記評 B（與合格來源互證，不單獨支撐爭議事項）"
+  }
+ },
+ "people": [
+  {
+   "key": "es-primo-de-rivera",
+   "bioId": "01a1b4b5-725c-77e3-a275-04c672ff75a7",
+   "name": "Miguel Primo de Rivera y Orbaneja",
+   "nameZh": "米格爾·普里莫·德里維拉",
+   "recordIds": [
+    "01a1aa4a-4a3b-7e10-af28-c7d1dc6ad62c",
+    "01a1aa4a-4a3d-768e-874d-95d3eb6699ed"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-01-01",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "軍旅出身",
+      "en": "Military background"
+     },
+     "body": {
+      "zh-Hant": "據《現代歐洲百科》，普里莫·德里維拉出身於有地產與軍職背景的貴族家庭，1884年追隨父親與叔父從軍，進入將軍軍事學院。1890年代他在西屬北非、古巴與菲律賓作戰，到1908年已升至上校。",
+      "en": "According to the Encyclopedia of Modern Europe, Primo de Rivera came from an aristocratic family with landholding and military antecedents, and in 1884 followed his father and uncle into the military by enrolling in the General Military Academy. In the 1890s he saw combat in Spanish North Africa, Cuba and the Philippines, and by 1908 he had reached the rank of colonel."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "to an aristocratic family with landholding and military antecedents",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "In 1884 he followed his father and uncle into the military",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "enrolling in the General Military Academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "During the 1890s he experienced combat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "he experienced combat in Spanish North Africa, Cuba, and the Philippines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "By 1908 he attained the rank of colonel",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-01-01",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總督、參議員與軍區司令",
+      "en": "Governor, senator and captain general"
+     },
+     "body": {
+      "zh-Hant": "1915年他轉回西班牙本土，被任命為加的斯軍事總督；1919年晉升中將。挪威《大百科》另稱，他在1920年當選加的斯選區的參議員，1922年出任加泰隆尼亞的軍區司令（generalkaptein）。",
+      "en": "In 1915 he transferred back to Spain and was appointed military governor of Cadiz, and in 1919 he was promoted to lieutenant general. Store norske leksikon adds that in 1920 he was elected senator for Cádiz and in 1922 became captain general (generalkaptein) of Catalonia."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "In 1915 he transferred back to Spain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "being appointed military governor of Cadiz",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目首段",
+       "quote": "In 1919 he was promoted to lieutenant general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-primo",
+       "locator": "Biografi",
+       "quote": "I 1920 ble han valgt til senator fra Cádiz",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-primo",
+       "locator": "Biografi",
+       "quote": "i 1922 generalkaptein for Catalonia",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1923-09-13",
+      "end": "1925-12-05"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1923年政變與軍事執政團",
+      "en": "The 1923 coup and the Military Directory"
+     },
+     "body": {
+      "zh-Hant": "1923年9月13日他發表致國家與軍隊的宣言；9月15日，阿方索十三世把政治權力交給他，使他成為西班牙第一位軍事獨裁者。他的軍事執政團（Military Directory）一直統治到1925年12月4日，才由文官內閣取代。挪威《大百科》稱1925年他獲得首相頭銜，所組政府也納入文官成員。",
+      "en": "On 13 September 1923 he issued a manifesto to the country and the army, and on 15 September Alfonso XIII handed him political power as Spain's first military dictator. His Military Directory governed Spain until 4 December 1925, when it was replaced by a civilian ministry. Store norske leksikon adds that in 1925 he received the title of prime minister and appointed a government that also had civilian members."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-4a3b-7e10-af28-c7d1dc6ad62c",
+      "01a1aa4a-4a3d-768e-874d-95d3eb6699ed"
+     ],
+     "citations": [
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第二、三段",
+       "quote": "On 13 September 1923 he issued a manifesto \"to the country and the army\"",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第二段",
+       "quote": "On 15 September 1923 Alfonso XIII handed him political power",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第二段",
+       "quote": "handed him political power as Spain's first military dictator",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第三段",
+       "quote": "Military Directory, which continued to govern Spain until 4 December 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第三段",
+       "quote": "when it was replaced by a civilian ministry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-primo",
+       "locator": "Biografi, Diktaturet",
+       "quote": "I 1925 fikk han tittelen statsminister",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-primo",
+       "locator": "Statsminister",
+       "quote": "utpekte en regjering som også hadde sivile medlemmer",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1927-10-01",
+      "end": "1930-03-17"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "國民議會、辭職與逝世",
+      "en": "National Assembly, resignation and death"
+     },
+     "body": {
+      "zh-Hant": "1927年10月，政權成立一個非選舉產生的國民議會，企圖使體制制度化。1930年1月他向各軍區司令探詢支持，卻發現支持很少；他於1月28日辭職、流亡法國，3月16日在巴黎去世。",
+      "en": "In October 1927 the regime set up a nonelective National Assembly in an attempt to institutionalize itself. In January 1930 he canvassed the captain generals for support and found little backing; he resigned on 28 January 1930, went into exile in France, and died in Paris on 16 March 1930."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-4a3d-768e-874d-95d3eb6699ed"
+     ],
+     "citations": [
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "establishing a nonelective National Assembly in October 1927",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "A failed effort was made to institutionalize the regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "canvassed the captain generals to gauge their support for his regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "he found little backing",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "In January 1930, when Primo de Rivera canvassed the captain generals",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "he resigned on 28 January 1930, exiled himself to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目末段",
+       "quote": "died in Paris on 16 March 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:primo-patriotic-union",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Encyclopedia of Modern Europe 只寫 1924 年支持者組織官方政黨「愛國聯盟」（Unión Patriótica），Store norske leksikon 與未評等條目也未明寫 Primo 擔任該黨何種職稱與起訖日，故不寫入 roleCandidates（黨職）；DBE（dbe.rah.es）為 JS 空殼，未取得",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-primo2",
+       "locator": "條目第三段",
+       "quote": "organized a government party, the Patriotic Union (UP)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:primo-captain-general-catalonia",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Store norske leksikon 只寫 1922 年任加泰隆尼亞軍區司令（generalkaptein），未寫迄日；Encyclopedia of Modern Europe 只寫 1919 年起被選任瓦倫西亞、馬德里、巴塞隆納等駐軍的 captain general，未分年、無迄日；GEC（未評等）亦只寫 1922 年任命。已查 3 個條目，無迄日。研究者未建 position，只留正文（審查不新增）",
+     "candidateCitations": [
+      {
+       "sourceKey": "gec-primo",
+       "locator": "條目第三段",
+       "quote": "El 1922 fou nomenat capità general de Catalunya.",
+       "quoteLang": "ca",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:primo-senator-cadiz",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Store norske leksikon 只寫 1920 年當選加的斯選區參議員，無迄日、無是否以政黨身分當選；Encyclopedia of Modern Europe 只稱曾任參議員、無年份。研究者未建 position，只留正文（審查不新增）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Miguel Primo de Rivera y Orbaneja DBE Real Academia de la Historia",
+     "url": "https://dbe.rah.es/biografias/5405/miguel-primo-de-rivera-y-orbaneja",
+     "result": "no_result",
+     "note": "curl 200 但為 JS 空殼（51 位元組），無條目正文"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Miguel Primo de Rivera Britannica",
+     "url": "https://www.britannica.com/biography/Miguel-Primo-de-Rivera",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Primo de Rivera Miguel id.loc.gov",
+     "url": "https://id.loc.gov/search/?q=Primo+de+Rivera+Miguel&q=cs:http://id.loc.gov/authorities/names",
+     "result": "no_result",
+     "note": "搜尋頁無可用傳記內容（未取得原文引用）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Miguel Primo de Rivera dictador 1923 Directorio Militar biografía dbe.rah.es（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果無 dbe.rah.es 頁；其餘為維基類與私人傳記網站，未採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Primo de Rivera Gran Enciclopèdia Catalana",
+     "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/miguel-primo-de-rivera-y-orbaneja",
+     "result": "unrated",
+     "note": "curl 200；無具名作者，未評等，僅作 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Primo de Rivera encyclopedia.com Jerez（WebSearch）",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/primo-de-rivera-miguel-1870-1930",
+     "result": "found_B",
+     "note": "Shannon E. Fleming 署名，Encyclopedia of Modern Europe"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Primo de Rivera y Orbaneja Encyclopedia of European Social History",
+     "url": "https://encyclopedia.com/international/encyclopedias-almanacs-transcripts-and-maps/primo-de-rivera-y-orbaneja-miguel-1870-1930",
+     "result": "unrated",
+     "note": "無具名作者（署 EWB），未評等；其出生地（加的斯）與 Fleming 條目（赫雷斯）不同，未採用"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Miguel Primo de Rivera Store norske leksikon",
+     "url": "https://snl.no/Miguel_Primo_de_Rivera",
+     "result": "found_B",
+     "note": "署名 Ingebjørg Birkeland、Alejandro Ayala-Wold（卑爾根大學）"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Primo de Rivera biografiasyvidas",
+     "url": "https://www.biografiasyvidas.com/biografia/p/primo_miguel.htm",
+     "result": "unrated",
+     "note": "私人網站無具名作者，未評等，未採用"
+    }
+   ]
+  },
+  {
+   "key": "iq-abd-al-ilah",
+   "bioId": "01a1b4b5-722f-7bbd-96ae-fee62fd13f4b",
+   "name": "ʿAbd al-Ilāh",
+   "nameZh": "阿卜杜勒-伊拉",
+   "recordIds": [
+    "01a1aa4a-c336-724b-91aa-4b0466c39760",
+    "01a1aa96-cf95-7585-a898-2bc41d308bc6"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1941-04-02",
+      "end": "1941-04-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1941年4月出走",
+      "en": "Flight from Baghdad, April 1941"
+     },
+     "body": {
+      "zh-Hant": "1941年4月2日，攝政阿卜杜勒-伊拉前往美國公使館尋求庇護；美國駐伊拉克公使納巴舒（Knabenshue）電報稱，他事前得知四名軍方領袖將迫使首相辭職並讓拉希德·阿里·蓋拉尼復任。公使隨後把他載往英軍的哈巴尼亞空軍基地。4月3日電報又稱，軍方已成立新的「國防政府」，攝政當天被飛送往巴斯拉。",
+      "en": "On 2 April 1941 the Regent, Abd al-Ilah, came to the American legation seeking refuge; the US Minister Resident in Iraq, Knabenshue, cabled that he had been forewarned that four army leaders would force the Prime Minister's resignation and reinstate Rashid Ali Gailani. The Minister then took him to the British air base at Habbaniya. A cable of 3 April added that the military had set up a new 'national defense government' and that the Regent was being flown that day from Habbaniya to Basra."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-c336-724b-91aa-4b0466c39760"
+     ],
+     "citations": [
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54，抬頭",
+       "quote": "The Minister Resident in Iraq ( Knabenshue ) to the Secretary of State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54，抬頭",
+       "quote": "Baghdad , April 2, 1941—7 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54",
+       "quote": "to seek refuge in Legation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54",
+       "quote": "having been forewarned of attempt by the four army leaders to force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54",
+       "quote": "resignation of Prime Minister and reinstatement Rashid Ali Gailani",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54",
+       "quote": "I took Regent, accompanied by my wife as camouflage",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d498",
+       "locator": "電報 54",
+       "quote": "to British air base at Habbaniya in my car",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d499",
+       "locator": "電報 58，抬頭",
+       "quote": "Baghdad , April 3, 1941—6 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d499",
+       "locator": "電報 58",
+       "quote": "Military have established new “national defense government”",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d499",
+       "locator": "電報 58",
+       "quote": "Regent being flown today from Habbaniya to Basra",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-04-06",
+      "end": "1941-04-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "攝政遭議會免職",
+      "en": "Dismissed from the regency by Parliament"
+     },
+     "body": {
+      "zh-Hant": "4月6日的電報稱攝政已在巴斯拉的一艘英國巡洋艦上，他另組憲政政府的嘗試已告失敗。4月10日，伊拉克議會投票免去「阿卜杜拉（Abdullah）〔即 Abdul Ilah〕」的攝政職務，另選謝里夫·沙拉夫（Al-Sharif Sharaf）為攝政；括號內的人名對應為 FRUS 編者所加。",
+      "en": "A cable of 6 April reported the Regent aboard a British cruiser at Basra and his attempt to form a new constitutional government collapsed. On 10 April the Iraqi Parliament voted the dismissal of 'Abdullah [Abdul Ilah]' from the regency and elected Al-Sharif Sharaf as Regent; the bracketed identification was added by the FRUS editors."
+     },
+     "relatedRecordIds": [
+      "01a1aa4a-c336-724b-91aa-4b0466c39760"
+     ],
+     "citations": [
+      {
+       "sourceKey": "frus1941-d501",
+       "locator": "電報 63，抬頭",
+       "quote": "Baghdad , April 6, 1941—6 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d501",
+       "locator": "電報 63",
+       "quote": "Regent now aboard British cruiser at Basra",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d501",
+       "locator": "電報 63",
+       "quote": "attempt of Regent to establish new constitutional government has collapsed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d509",
+       "locator": "電報 73，抬頭",
+       "quote": "Baghdad , April 10, 1941—7 p.m.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d509",
+       "locator": "電報 73",
+       "quote": "Iraqi Parliament today voted dismissal of Abdullah",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d509",
+       "locator": "電報 73",
+       "quote": "from the Regency and elected Al-Sharif Sharaf as Regent",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-06-01",
+      "end": "1941-06-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1941年6月返回巴格達",
+      "en": "Return to Baghdad, June 1941"
+     },
+     "body": {
+      "zh-Hant": "1941年6月1日，美國公使電報稱阿卜杜勒-伊拉當天返抵巴格達並恢復攝政。伊拉克軍政官員與顯要，連同英國大使與美國公使，在城外數英里處迎接他，並陪他乘車回到宮中；電報並說新政府將於當晚組成。",
+      "en": "On 1 June 1941 the US Minister cabled that Abdul Illah returned to Baghdad that day and resumed the regency. Senior Iraqi military and civil officials and notables, together with the British Ambassador and the American Minister, met him several miles outside Baghdad and drove with him to his palace; the cable added that a new government would be formed that night."
+     },
+     "relatedRecordIds": [
+      "01a1aa96-cf95-7585-a898-2bc41d308bc6"
+     ],
+     "citations": [
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130，抬頭",
+       "quote": "Baghdad , June 1, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130",
+       "quote": "Abdul Illah returned Baghdad today and resumed regency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130",
+       "quote": "Senior Iraq military and civil officials and notables",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130",
+       "quote": "and British Ambassador and myself met him several miles outside Baghdad",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130",
+       "quote": "drove with him to his palace",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1941-d532",
+       "locator": "電報 130",
+       "quote": "New government will be formed tonight",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1945-03-01",
+      "end": "1945-07-09"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1945年訪美",
+      "en": "The 1945 visit to the United States"
+     },
+     "body": {
+      "zh-Hant": "FRUS 1945年編者說明稱，1945年3月羅斯福總統邀請攝政阿卜杜勒-伊拉訪美；行程原定4月19日抵達，但羅斯福於4月12日去世，訪問因而中止。杜魯門總統於5月下旬再邀請，攝政接受；攝政與杜魯門並於6月27日與7月8日互致訊息。",
+      "en": "The FRUS 1945 editorial note says that in March 1945 President Roosevelt invited the Regent, Abdul Ilah, to the United States and that arrangements were completed for him to arrive on 19 April, but Roosevelt's death on 12 April suspended the visit. President Truman invited the Regent to visit late in May and the invitation was accepted; the Regent and Truman exchanged messages on 27 June and 8 July."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "In March 1945, President Roosevelt extended an invitation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "arrangements were completed for the Regent to arrive on April 19",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "As a result of the President’s death on April 12, the visit was suspended",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "President Truman invited the Regent to visit the United States late in May",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "late in May, and the invitation was accepted",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1945-ch27",
+       "locator": "編者說明",
+       "quote": "The Regent and President Truman exchanged messages on June 27 and July 8",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:biography",
+     "gapKind": "not_found",
+     "note": "待查證：缺出身、1939年起任攝政的原文來源與其他經歷（如1943年起任王儲）；A／B 級傳記來源（Britannica、Encyclopaedia Iranica、TDV İslâm Ansiklopedisi、Oxford Reference）皆 403 挑戰頁，Encyclopedia.com 無對應條目，Treccani 無條目；正文僅用 FRUS 一手電報與編者說明。未評等的 Encyclopedia of World Biography「Faisal II」條只作候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-faisal",
+       "locator": "條目首段",
+       "quote": "his uncle, Abdul Ilah acted as regent until the new king came of age",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "ʿAbd al-Ilāh Britannica",
+     "url": "https://www.britannica.com/biography/Abd-al-Ilah",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Abd al-Ilah regent of Iraq 1939 1941 1945 biography（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為維基類與私人網站，未採用；Britannica 連結 403"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Abd al-Ilah Encyclopaedia Iranica",
+     "url": "https://www.iranicaonline.org/articles/abd-al-ilah",
+     "result": "blocked_403",
+     "note": "403 挑戰頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "İslâm Ansiklopedisi Abdülilah",
+     "url": "https://islamansiklopedisi.org.tr/abdulilah",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Oxford Reference abd al-ilah",
+     "url": "https://www.oxfordreference.com/search?q=abd+al-ilah",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Abd al-Ilah（多組 URL 試探，含 reference／humanities／international／history）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/abd-al-ilah",
+     "result": "no_result",
+     "note": "全部 404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Faisal II encyclopedia.com",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/faisal-ii",
+     "result": "unrated",
+     "note": "Encyclopedia of World Biography 無署名條目，未評等；僅提攝政、無起訖日期"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Abd al-Ilah Treccani",
+     "url": "https://www.treccani.it/enciclopedia/abd-al-ilah/",
+     "result": "no_result",
+     "note": "回傳首頁，無條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Abd al-Ilah Store norske leksikon",
+     "url": "https://snl.no/Abd_al-Ilah",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Abd al-Ilah id.loc.gov／VIAF",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22abd+al-ilah%22",
+     "result": "blocked_403",
+     "note": "VIAF 403；LoC 搜尋頁無可用傳記內容"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Library of Congress Iraq country study",
+     "url": "https://lcweb2.loc.gov/frd/cs/iqtoc.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "history.state.gov Iraq 國別頁／FRUS 1941 Vol III 第9章目錄",
+     "url": "https://history.state.gov/historicaldocuments/frus1941v03/ch9",
+     "result": "found_A",
+     "note": "第9章（Documents 488–537）；逐篇抓取，採用 d498、d499、d501、d509、d532"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "FRUS 1945 Vol VIII Visit of the Regent of Iraq to the United States",
+     "url": "https://history.state.gov/historicaldocuments/frus1945v08/ch27",
+     "result": "found_A",
+     "note": "編者說明；採用"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "whitehousehistory.org Bess Truman",
+     "url": "https://www.whitehousehistory.org/bess-truman",
+     "result": "blocked_403",
+     "note": "403"
+    }
+   ]
+  },
+  {
+   "key": "uy-williman",
+   "bioId": "0eeebb06-a605-40a8-a091-6b802300b053",
+   "name": "Claudio Williman",
+   "nameZh": "克勞迪奧·威利曼",
+   "recordIds": [
+    "e4d33af7-a75e-41ea-a109-a7bb2da3751b",
+    "57f80358-02e4-4285-b2b7-304a80e9f3b5"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-09-02",
+      "end": "1889-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與教職",
+      "en": "Origins and teaching"
+     },
+     "body": {
+      "zh-Hant": "據《拉丁美洲歷史與文化百科》，克勞迪奧·威利曼生於1863年9月2日；1888年取得法學學位後，他在共和國大學教授數學與物理課程。共和國大學的人物頁也記載他1888年取得法學博士（Doctor en Jurisprudencia），並曾教授物理。",
+      "en": "According to the Encyclopedia of Latin American History and Culture, Claudio Williman was born on 2 September 1863; after graduating in law in 1888 he taught mathematics and physics courses at the University of the Republic. The university's biographical page likewise records that he took his doctorate in jurisprudence in 1888 and taught physics."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "b. 2 September 1863; d. 9 February 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "After graduating with a degree in law in 1888",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "taught courses in mathematics and physics at the University of the Republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hu-williman",
+       "locator": "生平摘要",
+       "quote": "Se graduó de Doctor en Jurisprudencia en 1888",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hu-williman",
+       "locator": "生平摘要",
+       "quote": "fue profesor de Física en varios niveles, incluido el universitario",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1902-01-01",
+      "end": "1908-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "大學校長與部長",
+      "en": "University rector and minister of government"
+     },
+     "body": {
+      "zh-Hant": "威利曼自1902年起擔任共和國大學校長。1904年至1907年間，他在荷西·巴特列·奧多涅斯總統的政府中任政府部長（Ministro de Gobierno）；美國駐蒙特維多公使1907年3月6日的公函也提及他曾任政府部長。",
+      "en": "Williman served as rector of the University of the Republic from 1902. Between 1904 and 1907 he was minister of government (Ministro de Gobierno) in the administration of President José Batlle y Ordóñez; the US minister in Montevideo likewise referred to his time as minister of government in a despatch of 6 March 1907."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "From 1902 to 1924 he served as rector of the university",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hu-williman",
+       "locator": "生平摘要",
+       "quote": "Rector de la Universidad en los perídos 1902-1904 y 1912-1916",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "Between 1904 and 1907, he served as minister of government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "in the administration of President José Batlle y Ordóñez",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "附件 2",
+       "quote": "American Legation , Montevideo , March 6, 1907",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "公函本文",
+       "quote": "as minister of government, I enjoyed very pleasant relations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1907-03-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出任總統",
+      "en": "Presidency"
+     },
+     "body": {
+      "zh-Hant": "科羅拉多黨提名他為總統候選人，他當選後於1907年至1911年任職。美國公使館1907年3月6日的公函附件稱，烏拉圭外交部通知，威利曼已於1907年3月1日在大會面前依憲法宣誓並接掌國家最高指揮權。《百科》稱他的政府以謹慎與嚴控公共開支為特色，與巴特列的政府相比常被視為保守。",
+      "en": "The Colorado Party nominated him as its presidential candidate; he won the election and served from 1907 to 1911. An enclosure to a US legation despatch of 6 March 1907 relays the Uruguayan foreign office's note that Williman took possession of the supreme command of the State on 1 March 1907 after taking the constitutional oath before the General Assembly. The encyclopedia says his administration was characterized by meticulousness and strict control of public spending and is often considered conservative compared with Batlle's."
+     },
+     "relatedRecordIds": [
+      "e4d33af7-a75e-41ea-a109-a7bb2da3751b",
+      "57f80358-02e4-4285-b2b7-304a80e9f3b5"
+     ],
+     "citations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "nominated as a candidate for the presidency by the Colorado Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "He won the election and served from 1907 to 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "No. 246 公函抬頭",
+       "quote": "American Legation , Montevideo , March 6, 1907",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "附件 1，抬頭",
+       "quote": "Foreign Office , Montevideo , March 1, 1907",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "附件 2",
+       "quote": "the citizen Dr. Claudio Williman has just assumed supreme command of the State",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "附件 2",
+       "quote": "having taken before the honorable General Assembly the oath",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1907-d447",
+       "locator": "附件 2",
+       "quote": "the oath prescribed by the constitution of the Republic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "meticulousness and strict control over public spending",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "often considered conservative when compared to that of Batlle y Ordóñez",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1907-01-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "任內大事與交棒",
+      "en": "Events in office and succession"
+     },
+     "body": {
+      "zh-Hant": "共和國大學的人物頁記載，他在1907年向國會提出大學新組織法草案。《百科》稱，威利曼任內巴特列留在歐洲；1910年巴特列返回烏拉圭，接任科羅拉多黨領袖，1911年繼威利曼出任總統。",
+      "en": "The university's biographical page records that in 1907 he submitted to Parliament a new draft organic law for the University. The encyclopedia says that throughout his administration Batlle stayed in Europe, returned to Uruguay in 1910 to take up the leadership of the Colorado Party, and in 1911 succeeded Williman as president."
+     },
+     "relatedRecordIds": [
+      "e4d33af7-a75e-41ea-a109-a7bb2da3751b",
+      "57f80358-02e4-4285-b2b7-304a80e9f3b5"
+     ],
+     "citations": [
+      {
+       "sourceKey": "hu-williman",
+       "locator": "生平摘要",
+       "quote": "un nuevo proyecto de ley orgánica de la Universidad, (1907)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "Throughout the Williman administration, Batlle stayed in Europe",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "but in 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "he returned to Uruguay to take up the role of chief of the Colorado Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目第二段",
+       "quote": "in 1911 he succeeded Williman as president",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1934-02-09",
+      "end": "1934-02-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "逝世",
+      "en": "Death"
+     },
+     "body": {
+      "zh-Hant": "據《拉丁美洲歷史與文化百科》，威利曼於1934年2月9日去世。",
+      "en": "According to the Encyclopedia of Latin American History and Culture, Williman died on 9 February 1934."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "d. 9 February 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "williman-minister-gobierno",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "烏拉圭政府",
+      "en": "Government of Uruguay"
+     },
+     "title": {
+      "orig": "Ministro de Gobierno",
+      "zh-Hant": "政府部長（Ministro de Gobierno）",
+      "en": "Minister of Government"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1904-01-01",
+      "end": "1908-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "Between 1904 and 1907, he served as minister of government",
+       "quoteLang": "en",
+       "evidenceNote": "年精度，迄日取 1907 的下一年起日（Q3）；實際就任總統日為 1907-03-01，但本來源只寫年",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hu-williman",
+       "locator": "著作列表",
+       "quote": "por el Ministro de Gobierno Dr. D. Claudio Williman",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "政府部長（Ministro de Gobierno）屬內政類正職，但來源只寫 1904–1907（年精度迄點 1908-01-01，半開），且 1907-03-01 已就任總統，任期與 1908–1945 時間窗無交集 → R5（審查由 R6 改判）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:rector_tenure",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源對共和國大學校長任期不一致：Encyclopedia of Latin American History and Culture 寫 1902 至 1924 年；Historias Universitarias（共和國大學）寫 1902–1904 與 1912–1916 兩段。兩者只同意 1902 年起任，故正文只寫自1902年起，不寫入 positions",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-williman",
+       "locator": "條目首段",
+       "quote": "From 1902 to 1924 he served as rector of the university",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hu-williman",
+       "locator": "生平摘要",
+       "quote": "Rector de la Universidad en los perídos 1902-1904 y 1912-1916",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Claudio Williman presidente Uruguay 1907-1911 biografía（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為維基類，只作索引；找到 Encyclopedia.com 條目與 gub.uy 頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Williman, Claudio (1863–1934) Encyclopedia.com",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/williman-claudio-1863-1934",
+     "result": "found_B",
+     "note": "署名 José de Torres Wilson，Encyclopedia of Latin American History and Culture"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Claudio Williman Britannica",
+     "url": "https://www.britannica.com/biography/Claudio-Williman",
+     "result": "blocked_403",
+     "note": "403 挑戰頁，未繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "gub.uy presidencia 歷任總統 Williman",
+     "url": "https://www.gub.uy/presidencia/historia/presidentes/claudio-williman",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "archivo.presidencia.gub.uy 歷任總統名單",
+     "url": "https://archivo.presidencia.gub.uy/sci/presidentes/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "José Claudio Williman 學院頁（孫輩）",
+     "url": "https://www.gub.uy/ministerio-educacion-cultura/academia-nacional-letras/jose-claudio-williman",
+     "result": "not_relevant",
+     "note": "為孫輩 José Claudio Williman 的頁面，非本人"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Parlamento 立法權圖書館 biografias/legislador/1820",
+     "url": "https://biblioteca.parlamento.gub.uy:8008/biografias/legislador/1820",
+     "result": "not_relevant",
+     "note": "為他人（巴特列相關）傳記頁，僅提及 Williman 被選為繼任者，未採用"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "FRUS 1907 Part II Uruguay（WebSearch 發現）",
+     "url": "https://history.state.gov/historicaldocuments/frus1907p2/d447",
+     "result": "found_A",
+     "note": "1907-03-06 公使館公函及附件：就任日與「政府部長」"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Williman, Claudio Historias Universitarias",
+     "url": "https://historiasuniversitarias.edu.uy/biografia/williman-claudio/",
+     "result": "found_B",
+     "note": "共和國大學機構傳記頁；校長任期與 Gale 條目不同，見 gap"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Williman Claudio ojs.fhce.edu.uy 期刊文章（WebSearch 發現）",
+     "url": "https://ojs.fhce.edu.uy/index.php/encuru/article/download/1630/1959",
+     "result": "not_relevant",
+     "note": "已下載（2 MB 文字），內容為無關主題的期刊文章，未採用"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Williman ministro de Gobierno parlamento（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果與阿根廷、智利現任官員無關"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Williman Claudio ministro de Gobierno 1904 rector（WebSearch，extended）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果為維基類、EcuRed、globalgalicia 等，未採用"
+    }
+   ]
+  }
+ ]
+}

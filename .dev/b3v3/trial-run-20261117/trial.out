@@ -1,0 +1,40 @@
+Warning: this sign-in ends between 2026-11-22 and 2026-11-25 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+Background tasks still running 10m after the last turn (workflow "B3 v3 trial: spawn the per-person research/retry and review "); stopping them. Set CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS=0 to wait indefinitely.
+第一波已經開始跑（6 個 agent）：
+
+- **batch122：** 3 人研究
+- **batch093：** 重跑 Averescu、Uriburu 兩人
+- **batch105：** 審查
+
+做法和原腳本有一點不同：原腳本用了 `import('node:fs')` 和 `node:child_process`，workflow 環境不允許，所以根本無法啟動。我把它拆成兩部分：
+
+- **python 步驟由我在本機跑：** plan、extract、evidence_pack、merge、verify、check_min。
+- **workflow 只負責啟動 agent：** 提示詞由 `/tmp/b3v3-run/prompts.py` 逐字照原腳本產生。
+
+這一波完成後，我會依原腳本的順序接下去：
+
+1. 合併並檢查 122、093。
+2. 122 如有人未達標，加強重跑一次。
+3. 產生 evidence pack，再審查 093 和 122。
+
+全部完成後一起回報。
+
+第二波已開始跑，共 4 個 agent：batch122 的三人各一個加強重跑，batch093 一個審查。
+
+第一波已完成：
+
+- **batch105：** 審查完成，3 人都達標，結論都是 pass_with_changes，verify ok。
+- **batch093：** Averescu 和 Uriburu 已重跑，但兩人仍篇幅不足。Averescu 的重跑在檔案裡留下 4 個 Wikipedia 網址，所以 verify 現在是 `ok: false`，要靠這次審查清掉。
+- **batch122：** 三人的研究已完成，但都未達標。合併前我手動修了一處格式：兩個研究 agent 把 `rawMap` 寫成字串 `"rawmap.json"`，合併工具要求物件。我只把它換成對應的 sourceKey 項目，沒動內容，原檔備份在 `/tmp/b3v3-run/backup122/`。
+
+等第二波完成，我會合併 122 再審查，然後一起回報。
+
+第二波已完成，現在跑最後一步：審查 batch122。
+
+- **batch093 審查後：** verify ok。Averescu 和 Uriburu 標為「篇幅不足」，依規則不退回。Pena 在審查後的 check_min 從達標變成「未達」：審查者把一個推論出來的迄日改成了 null。
+- **batch122 加強重跑並合併後：** verify 仍然 `ok: false`，共 18 項錯誤，要交給審查處理。check_min 結果：
+  - Schober：未達
+  - 孔祥熙：篇幅不足
+  - Mosquera：未達
+
+batch122 審查完成後，我會給完整報告。

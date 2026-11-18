@@ -1,0 +1,91 @@
+{
+ "batch": "017",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 2,
+  "deletedParagraphs": 2,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 1,
+  "deletedCitations": 10,
+  "addedCitations": 12,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "jp-taisho",
+   "bioId": "01a1b4b0-6f9f-7bc1-b1a2-6951d0cc6fd1",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1補 2 筆 GND 引文（preferredName「Taishō, Japan, Kaiser」支撐「日本天皇大正」；dateOfDeath 1926 支撐卒年）",
+    "段3補 1 筆宮內廳年表引文（裕仁親王踐祚、改元昭和），原只引「大正天皇崩御」",
+    "抽查重抓宮內廳年表：200，引文逐字一致；宮內廳年表與陵墓頁屬當事機關官方紀錄（非介紹文），維持 A",
+    "皇太子職位（other，無 T14 類別）正確；非 major★、達最低標準"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "al-zog",
+   "bioId": "01a1b4ae-0de8-78db-92bc-175befc7448a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "loc-albania-cs（GlobalSecurity 轉載）以 tile.loc.gov 原書 PDF 比對，引文逐字見於原書，確認轉錄本 B，gradeBasis 補註",
+    "段2：「1922年初首都遭攻擊時」無含日期引文支撐（原引文無日期卻填 year），刪該子句；「同年稍後」因此失去參照，改「後來」；兩筆無日期引文 datePrecision 改 null；Ypi 引文換成含「人民黨領袖」的完整片段；補「repulsed the assault」引文",
+    "段3補 2 筆引文（身受重傷後辭職；財務醜聞與暗殺未遂），段4補 1 筆 Origins 含 1925 年的引文",
+    "段1補 GND preferredName 引文；總理候選補辭職引文",
+    "內政部長原只有缺迄日 gap、指向不存在的職位；依規則（缺迄日照寫起日）以原段落已有引文建 positions：minister、t14Overlap=cabinet、R6、roleGap=dates/source/regime；gap 註記更新",
+    "抽查重抓 GlobalSecurity、Origins：200，與原文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "eg-fuad-i",
+   "bioId": "01a1b4b0-6fa7-77d3-b478-e72f161b3319",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "bpb「Hintergrund aktuell」文章署名僅 Redaktion，屬機構網站無署名介紹文，由 A 降 C（比照 batch005 王室網站、本批 Universalis 編輯部）",
+    "刪段2（由蘇丹到國王）、段3（與華夫脫黨的關係），8 筆 bpb 引文移入 paragraph:thickness gap 候選；蘇丹候選刪 2 筆 bpb 引文，只留 GND（A），迄日 1922-02-28 改註依名簿下一任起日推得（推論）",
+    "段1補 GND preferredName 引文；新增「篇幅不足：」gap",
+    "抽查重抓 GND 133467503：與原檔相同"
+   ],
+   "returnedReasons": [
+    "最低標準未達：降級後 1 段／88 字，searchLog 無 round: retry 的加強搜尋",
+    "最低嘗試未達：缺學術出版、國家級傳記辭典類（僅 3 類），且無阿拉伯文原文查詢（需 ≥2）",
+    "建議下一步：阿拉伯文查詢「الملك فؤاد الأول」「أحمد فؤاد الأول」；TDV İslâm Ansiklopedisi（islamansiklopedisi.org.tr，FUÂD I 具名條目 B）；LoC Egypt: A Country Study 原書 PDF（tile.loc.gov frdcstdy，A）；Encyclopaedia of Islam 公開摘要（Brill）；Bibliotheca Alexandrina／埃及國家圖書館權威檔"
+   ]
+  }
+ ],
+ "issues": [
+  "無具名作者的政府機構介紹文（bpb Redaktion）被研究者評 A；與同批 Universalis 編輯部評未評等不一致，審查降 C",
+  "多處子句（日期、職稱、受傷辭職、財務醜聞）缺 quote，或無日期 quote 填 datePrecision；審查從已抓原文補 12 筆引文",
+  "缺迄日職位不應只寫 gap：規則要求照寫起日＋缺迄日 gap；Zog 內政部長已改。check_min 將此計為 termsFlagged（meetsMinimum=false），但符合審查 6c 規定",
+  "GlobalSecurity 轉載頁未標示出自 LoC 國別研究；下一輪可直接改用 tile.loc.gov 原書 PDF（A）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

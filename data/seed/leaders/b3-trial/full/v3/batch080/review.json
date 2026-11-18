@@ -1,0 +1,87 @@
+{
+ "batch": "080",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 3,
+  "addedCitations": 6,
+  "editedSentences": 5,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "hu-gombos",
+   "bioId": "01a1b4c0-c8a8-71ec-bfd2-8f4974de6603",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 2,
+   "gaps": 7,
+   "searchLogSteps": 31,
+   "changes": [
+    "段1：「入維也納君主國最負盛名的軍官學校」補引文 Gömbös was admitted to the most prestigious officer training school（原引文未含 most prestigious／admitted）",
+    "段1：「在新右翼支持者協助下」補引文 Gömbös's new rightist adherents helped him gain the presidency",
+    "段2：Pritz 句「1928年回到貝特倫的黨」改為「請求重返」（visszakéredzkedett）",
+    "段3：「死於任上」改為「去世」（Deák 只寫 died in October 1936）",
+    "searchLog 步驟20–31 標 round: retry（依 2026-11-17 篇幅不足 gap 所列的重試來源）；有「篇幅不足：」gap，documentedShortfall=true",
+    "抽查重抓 lobid GND 123390532，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-arosemena",
+   "bioId": "01a1b4c0-c8ae-7c77-99fc-a69e72619780",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 14,
+   "changes": [
+    "PDBA 總統年表（無署名彙編表）由 B 降為 C：刪段3 PDBA 一句與3筆引文，改放 field:head_of_state_term gap 的 candidateCitations，searchLog 步驟10 改 unrated",
+    "段1：「職業含政治家」補 GND 引文 \"label\" : \"Politiker\"",
+    "段3：門多薩「在奧瓦爾迪亞死後暫時代理總統」補 Encyclopedia.com 引文",
+    "抽查重抓 encyclopedia.com 條目與 PDBA 頁，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ch-schulthess",
+   "bioId": "01a1b4c0-c8b6-7b39-92d0-e5c3634784f9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 15,
+   "changes": [
+    "段1／職位 sch-staenderat：Ständerat 中譯由「州議會」改「聯邦院」",
+    "段3：補引文 Seine Leistung in wirtschaftspolitisch schwierigster Zeit，句子改為「經濟政策最困難時期的表現，於離任後獲各黨派承認」",
+    "職位 sch-bankenkommission：原無日期引文誤標 datePrecision=year，改 null；補 1935 辭職引文並加 evidenceNote（同句接續，推論同年）",
+    "抽查重抓 HLS 003791，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批名單實為 3 人（提示標題寫 5 人）",
+  "無署名的大學資料庫年表（Georgetown PDBA）不應評 B；本批降為 C 只作候選",
+  "多處中文句含引文未涵蓋的修飾語（最負盛名、死於任上），審查補引文或改字",
+  "重試搜尋未標 round: retry，審查依 gap 補標"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

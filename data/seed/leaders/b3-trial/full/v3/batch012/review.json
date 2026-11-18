@@ -1,0 +1,91 @@
+{
+ "batch": "012",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 1,
+  "deletedParagraphs": 1,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 7,
+  "addedCitations": 5,
+  "editedSentences": 9,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "cz-masaryk",
+   "bioId": "01a1b4b2-2f94-7854-ace0-656502c9db1d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 22,
+   "changes": [
+    "段2：刪「奧地利傳記辭典稱其為現實主義者黨」（ÖBL 未把捷克人民黨等同現實主義者黨，該等同只見未評等 NPMK），改寫為以現實主義者黨成員身分重回眾議院",
+    "段3：補引 ÖBL「arbeitete dort an der Vorbereitung einer nationalen Revolution der Tschechen」「die Slowaken für den Gedanken ... zu gewinnen」「Durch Einwirkung auf Präs. Wilson erreichte M. 1918 die Anerkennung」；SNL 引文延長為含「sentralt i opprettelsen」；刪無引文支撐的「協約國承認」改為經由威爾遜取得承認；原「die Anerkennung ...」引文無日期，datePrecision 改 null（Q8）",
+    "段4：刪無出處的說明句「總統任期本身已在名簿，此處只作背景」",
+    "角色候選（1907–1914 現實主義者黨席位，R1，Tai 12:47）與 GND 1900–1914 衝突 gap 核對無誤，保留",
+    "抽查重抓 biographien.ac.at ÖBL 條目（200），引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ni-somoza-garcia",
+   "bioId": "01a1b4b2-2f8a-7c19-bc59-9daf906fcd97",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 46,
+   "changes": [
+    "段1：刪 1956 年去世子句（段 period 迄 1933，死亡已在段4），引文加 evidenceNote",
+    "段2：補引 encyclopedia.com「In 1934, after Sacasa had completed peace negotiations」支撐 1934 年",
+    "段3：「同一份美國國務院的國家頁」改「美國國務院的尼加拉瓜國家頁」（與前句 1952 備忘錄不是同一文件）",
+    "警衛隊總司令 R6（迄日缺）＋「待查證：缺迄日」gap、篇幅不足 gap 與 25 筆 retry 搜尋紀錄核對屬實，記為已標註不足",
+    "抽查重抓 history.state.gov/countries/nicaragua（200），引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bt-ugyen-wangchuck",
+   "bioId": "01a1b4b2-2f83-7042-b0bc-68dbe62bf236",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 18,
+   "changes": [
+    "來源 bbs-ugyen 由 B 改評 C：不丹國家廣播公司記者署名新聞專文（重抓頁面標 RECOMMENDED NEWS、Edited by），非具名學者／學術機構研究；同前批 elperuano-leguia 先例。bbs.bt 例外只免除網域字樣規則，不代表 B",
+    "刪段1（出身、1885 內戰、1890 任命權，全靠 BBS）；段3 刪 BBS 1907-12-17 genja 句，改只用劍橋論文並補引「installed with British approval and local support」；BBS 7 筆引文移入新 gap field:birthEarlyLifeAccession 的 candidateCitations",
+    "段2：刪無引文的「《倫敦憲報》1905年1月3日刊出」，period 迄由 1905-01-02 改 1905-01-03（半開區間）",
+    "段4：刪引文未寫的「英方政治專員」",
+    "段落重新編號 1–3；審查後 3 段／304 字，仍達最低篇幅",
+    "抽查重抓 Cambridge Core 論文與 bbs.bt 頁（200），引文一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言查詢——宗卡／藏文只查 1 次（step 10），規則要求 ≥2",
+    "BBS 降為 C 後出身與早年事蹟（1862 生於旺迪丘林宮、父親、1885–1890）、1907-12-17 擁立細節只剩未評等來源；建議下一個具體來源：Centre for Bhutan Studies《Journal of Bhutan Studies》（bhutanstudies.org.bt）、National Library & Archives of Bhutan（library.gov.bt）、Karma Ura 等學術出版、Royal Office／政府官網歷任國王頁"
+   ]
+  }
+ ],
+ "issues": [
+  "研究者把官方媒體記者署名新聞稿評為 B（bbs.bt）；網域例外只免字樣規則，等級仍應依文件性質評（新聞＝C）",
+  "段落多處以只含名詞片語的引文支撐含動作或年份的子句（如『nasjonalråd i Paris 1916』『Pittsburger Vertrag 1917』），審查補引或改寫",
+  "既有 check_min-report.json 為研究改寫前的舊結果，已重跑覆蓋"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

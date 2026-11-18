@@ -39,12 +39,24 @@ public sealed class ApiTestKit(PostGisFixture fx)
     public async Task<Guid> Id(HttpResponseMessage res, string prop = "id") =>
         (await Expect(res, HttpStatusCode.Created)).GetProperty("data").GetProperty(prop).GetGuid();
 
+    /// <summary>
+    /// grade：來源等級（docs/source-rules.md）。測試預設把資料集以外的來源評為 A，引用它的事件即達「已查證」門檻；
+    /// 傳 "" 表示尚未評等（引用它的事件只會是待查證）。資料集不評等。
+    /// </summary>
     public Task<HttpResponseMessage> PostSource(string kind = "atlas_map", string publisher = "U.S. Military Academy",
-        string? license = "us_federal_pd", string title = "WWII Europe atlas") =>
-        W.PostAsJsonAsync("/api/v1/sources", new { sourceKind = kind, title, publisher, licenseCode = license });
+        string? license = "us_federal_pd", string title = "WWII Europe atlas", string? grade = null, string? family = null)
+    {
+        grade ??= kind == "dataset" ? "" : "A";
+        return W.PostAsJsonAsync("/api/v1/sources", new
+        {
+            sourceKind = kind, title, publisher, licenseCode = license,
+            grade = grade == "" ? null : grade, gradeBasis = grade == "" ? null : "測試資料", family,
+        });
+    }
 
-    public async Task<Guid> Source(string kind = "atlas_map", string? license = "us_federal_pd", string title = "WWII Europe atlas") =>
-        await Id(await PostSource(kind, license: license, title: title));
+    public async Task<Guid> Source(string kind = "atlas_map", string? license = "us_federal_pd", string title = "WWII Europe atlas",
+        string? grade = null, string? family = null) =>
+        await Id(await PostSource(kind, license: license, title: title, grade: grade, family: family));
 
     public async Task<Guid> Regime(string name)
     {

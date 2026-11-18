@@ -1,0 +1,89 @@
+{
+ "batch": "021",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 2,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "mx-cardenas",
+   "bioId": "01a1aa4a-da74-748f-aea8-7d3802bce69c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "第 2 段「1933年被推為候選人」原引文不含日期卻填 datePrecision=year：該筆改 null，另補原文逐字引文「Loyalty paid off, and in 1933 Cárdenas was chosen」（year）",
+    "第 3 段「以村社形式分配」子句缺引文：補 ency-cardenas 逐字引文「distributed it in the form of ejidos」",
+    "第 3 段「1940年他選擇阿維拉·卡馬喬接班」的 1940 無引文支撐：刪去年份（中英同步）",
+    "米卻肯州長、太平洋軍區司令兩筆原以下一年起日代入迄日（推定），依最低標準改 period.end=null，保留「待查證：缺迄日」gap 並更新說明",
+    "內政／戰爭與海軍／國防部長 R6（dates／regime）、PNR 主席 R1 de_facto_leader、軍區司令 R5 經逐條核對保留",
+    "重抓 gob.mx PDF 與 encyclopedia.com 條目比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-alvear",
+   "bioId": "42454655-1aae-44f8-a69b-38e14e5b206f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 8,
+   "changes": [
+    "第 1 段 period.end 1893-01-01 → 1894-01-01（Q3：段內最後事件為 1893 年起事及其後流亡）",
+    "第 3 段「推行選舉棄權政策」改為「支持激進黨的選舉棄權政策」，貼合原文 supporting its policy",
+    "1912 國會議員原以下一年起日代入迄日（推定），改 period.end=null，保留「待查證：缺迄日」gap 並更新說明；未寫以何黨身分當選，維持 legislator positions",
+    "激進黨接掌（黨職）缺起日僅留 gap，判斷合理",
+    "重抓 Casa Rosada 頁比對任期引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "af-zahir",
+   "bioId": "01a1b4b0-700e-7f42-85f7-aa94c6275d85",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 27,
+   "changes": [
+    "內容未改：唯一段落僅引 GND 權威檔，引文核對無誤；無署名 EWB／Treccani 正確只放 gap 候選",
+    "重抓 lobid.org GND 136160301 比對生卒與在位年一致"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺原文語言（波斯文／普什圖文，如「محمد ظاهر شاه」）查詢 ≥2 次；WebSearch 額度用盡，原文語言搜尋未執行（searchLog step 27）",
+    "最低標準未達：1 段／103 字（雖有「篇幅不足：」gap 與 retry 紀錄，但原文語言查詢尚未做）",
+    "建議下一個具體來源：以波斯文／普什圖文姓名查阿富汗政府或國家檔案館官方頁；Encyclopaedia of Islam THREE（Brill）「Ẓāhir Shāh」公開摘要；Cambridge／Oxford 學術出版社書目頁或 JSTOR 公開摘要；Encyclopaedia Iranica 若解除 403 再試"
+   ]
+  }
+ ],
+ "issues": [
+  "研究者把查不到的職位迄日以「起日所在年的下一年起日」代入（3 筆），屬推定日期；依最低標準應照寫起日、迄日 null 並加「待查證：缺迄日」gap，已改。check_min 因此對 Cárdenas、Alvear 計 termsFlagged（未達），但兩人篇幅達標、缺迄日均有 gap，依審查項 6c 不退回",
+  "本批名單實為 3 人（提示標題寫 5 人）",
+  "WebSearch 額度用盡導致 Zahir 原文語言查詢未做，需下一輪補"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 76
+ }
+}

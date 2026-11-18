@@ -1,0 +1,3031 @@
+{
+ "source": {
+  "type": "official_atlas",
+  "grade": "B",
+  "citation": "United States Military Academy, Department of History, Atlas of the Second World War: Europe and the Mediterranean, map 10 'Northwestern Europe, 1940 — Campaign in the West, 1940: Dispositions of Opposing Forces and German and Allied Plans for the Battle of Flanders'",
+  "url": "https://s3.amazonaws.com/usma-media/inline-images/academics/academic_departments/history/WWII%20Europe%20Med/WWIIEurope10.jpg",
+  "license": "美國聯邦政府著作（17 U.S.C. §105），公有領域"
+ },
+ "mapKey": "usma-10-10may",
+ "mapDate": "1940-05-10",
+ "method": "第一次判讀。用 tools/battles/mapgrid.swift 把 5100×3300 原圖切成 30 塊 760×640 px 的小塊（x 起點 740/1400/2060/2720/3380/3760、y 起點 240/800/1360/1920/2480，左右重疊約 100–380 px、上下重疊 80 px），放大 2.5 倍、疊 100 px 格線逐塊目視；師級符號、GEORGES 框、Dover／Folkestone 另切 6–9 倍放大（20 px 格線）。座標皆為原圖像素（原點左上）。城鎮取圓圈中心；部隊取方框中心（疊框取最前面一框）。估計讀圖誤差：城鎮圓圈約 ±2 px，部隊框中心約 ±3 px（依比例尺 1 px ≈ 0.244 km，約 0.5–0.7 km）。重疊區重複讀到的點兩次讀值相差不超過 1 px。經緯度與 OSM id 全部取自 OSM Nominatim（只送地名與國名，User-Agent battle-map-reader；中途遇 429 限流，改為每 3 秒一筆補齊）；優先取 place node 或 city/town/village relation 的 lat/lon，不取 municipality／county。沒有執行 georef.py，沒有看任何殘差。",
+ "threshold": {
+  "rule": "全戰區圖：留一法 95 百分位 ≤ 15 km，只用於集團軍群、集團軍、軍、裝甲師（Tai 2026-11-17）",
+  "loo_p95_km": 10.35,
+  "p95Passes": true,
+  "passes": true,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "Folkestone",
+    "reason": "圓圈符號被 Folkestone 地名字樣遮住，只露出右緣一小段弧（約 px [2067,1339]），中心無法定位",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Nantes",
+    "reason": "圓圈被圖幅下緣黑框切掉大半（約 px [1281,3026]），中心無法定位",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Manston",
+    "reason": "圖上 Manston 圓點（px [1048,1533]）畫在 Dorset 海岸、Portland 正北，位置像 Weymouth；Dorset 內陸另有同名村，Kent 也有 Manston，指哪一處無法確定",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Portland",
+    "reason": "圓點（px [1042,1564]）畫在半島末端，Nominatim 只有 Isle of Portland 島嶼 relation（3834460，中心 50.5476,-2.4348），不是城鎮點，圓點對應島上哪一處（港口或島中心）不明",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Mézières",
+    "reason": "圓點（px [3112,1962]）清楚，但 Mézières 已併入 Charleville-Mézières，Nominatim 只回傳合併市鎮 relation 153838（中心 49.7736,4.7207 在 Charleville 一側，離舊 Mézières 約 1.5 km），對應點不確定",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "(未標名圓點)",
+    "reason": "px [2794,2095] 有一個圓圈，在 Aisne 河與運河交會處、Laon 東南，旁邊沒有地名",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "London",
+    "reason": "大型網格狀市區圖形，沒有圓圈符號；依任務指示不用",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Paris",
+    "reason": "大型網格狀市區圖形，沒有圓圈符號；依任務指示不用",
+    "decidedBeforeResiduals": true
+   }
+  ],
+  "use": "只可用於集團軍群、集團軍、軍、裝甲師的位置；不得用於前線頂點，不得用來推算領地"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 115,
+  "residual_median_km": 2.89,
+  "loo_median_km": 2.96,
+  "loo_p95_km": 10.35,
+  "loo_max_km": 17.97,
+  "suspect_control_points": [
+   [
+    "Bristol",
+    9.13
+   ],
+   [
+    "Montmiral",
+    11.76
+   ],
+   [
+    "Montmédy",
+    17.97
+   ],
+   [
+    "Vitry-le-François",
+    10.03
+   ],
+   [
+    "St. Nazaire",
+    17.78
+   ],
+   [
+    "Chaumont",
+    12.36
+   ],
+   [
+    "Dijon",
+    11.42
+   ],
+   [
+    "Belfort",
+    11.1
+   ],
+   [
+    "Vesoul",
+    9.57
+   ]
+  ],
+  "frame_km": 15.0
+ },
+ "scaleClass": {
+  "class": "theatre",
+  "decidedBeforeFit": true,
+  "basis": "依圖本身：比例尺 1 px ≈ 0.244 km，圖框內約 1000 公里寬（橫跨超過 200 公里）；圖上畫的是集團軍群、集團軍的配置，單位方框是為了看得清楚而擺放。",
+  "decision": "Tai 2026-11-17：全戰區圖另訂門檻（留一 95 百分位 ≤ 15 km），只用於集團軍群、集團軍、軍、裝甲師。"
+ },
+ "coarse": true,
+ "precision_m": 25400,
+ "precisionNote": "留一法 95 百分位 10.4 km ＋ 標註框誤差 15 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Norwich": {
+   "px": [
+    2092,
+    600
+   ],
+   "lonlat": [
+    1.2924,
+    52.6286
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 172506
+   },
+   "nameOsm": "Norwich",
+   "nameOnMap": "Norwich",
+   "note": "Nominatim 查詢「Norwich, United Kingdom」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 6.75
+  },
+  "Bristol": {
+   "px": [
+    1018,
+    1162
+   ],
+   "lonlat": [
+    -2.5973,
+    51.4538
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 5746665
+   },
+   "nameOsm": "Bristol",
+   "nameOnMap": "Bristol",
+   "note": "Nominatim 查詢「Bristol, United Kingdom」；取 place=city relation 的 lat/lon；Nominatim 首筆為 City of Bristol 郡界 relation，改取 place=city 的 relation",
+   "loo_km": 9.13
+  },
+  "Southampton": {
+   "px": [
+    1337,
+    1400
+   ],
+   "lonlat": [
+    -1.4042,
+    50.9025
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 127864
+   },
+   "nameOsm": "Southampton",
+   "nameOnMap": "Southampton",
+   "note": "Nominatim 查詢「Southampton, United Kingdom」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 5.05
+  },
+  "Portsmouth": {
+   "px": [
+    1430,
+    1453
+   ],
+   "lonlat": [
+    -1.0906,
+    50.8
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 127167
+   },
+   "nameOsm": "Portsmouth",
+   "nameOnMap": "Portsmouth",
+   "note": "Nominatim 查詢「Portsmouth, United Kingdom」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.45
+  },
+  "Ramsgate": {
+   "px": [
+    2139,
+    1215
+   ],
+   "lonlat": [
+    1.4196,
+    51.3335
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2568388
+   },
+   "nameOsm": "Ramsgate",
+   "nameOnMap": "Ramsgate",
+   "note": "Nominatim 查詢「Ramsgate, United Kingdom」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.33
+  },
+  "Dover": {
+   "px": [
+    2100,
+    1316
+   ],
+   "lonlat": [
+    1.3134,
+    51.1251
+   ],
+   "osm": {
+    "type": "node",
+    "id": 21421224
+   },
+   "nameOsm": "Dover",
+   "nameOnMap": "Dover",
+   "note": "Nominatim 查詢「Dover, United Kingdom」；取 place node 的 lat/lon；取 place=town node（另一筆 Dover 行政區 relation 中心偏北約 10 km，不用）",
+   "loo_km": 3.64
+  },
+  "Groningen": {
+   "px": [
+    3666,
+    314
+   ],
+   "lonlat": [
+    6.568,
+    53.2191
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 409863
+   },
+   "nameOsm": "Groningen",
+   "nameOnMap": "Groningen",
+   "note": "Nominatim 查詢「Groningen, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點位於德軍虛線箭頭上，圓圈完整可辨",
+   "loo_km": 4.99
+  },
+  "Amsterdam": {
+   "px": [
+    3160,
+    743
+   ],
+   "lonlat": [
+    4.8925,
+    52.3731
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 271110
+   },
+   "nameOsm": "Amsterdam",
+   "nameOnMap": "Amsterdam",
+   "note": "Nominatim 查詢「Amsterdam, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.18
+  },
+  "The Hague": {
+   "px": [
+    3005,
+    869
+   ],
+   "lonlat": [
+    4.3113,
+    52.08
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 192737
+   },
+   "nameOsm": "Den Haag",
+   "nameOnMap": "The Hague",
+   "note": "Nominatim 查詢「Den Haag, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.82
+  },
+  "Utrecht": {
+   "px": [
+    3222,
+    872
+   ],
+   "lonlat": [
+    5.1216,
+    52.0907
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1433619
+   },
+   "nameOsm": "Utrecht",
+   "nameOnMap": "Utrecht",
+   "note": "Nominatim 查詢「Utrecht, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.67
+  },
+  "Rotterdam": {
+   "px": [
+    3036,
+    949
+   ],
+   "lonlat": [
+    4.4778,
+    51.9244
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1411101
+   },
+   "nameOsm": "Rotterdam",
+   "nameOnMap": "Rotterdam",
+   "note": "Nominatim 查詢「Rotterdam, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.94
+  },
+  "Dordrecht": {
+   "px": [
+    3121,
+    1002
+   ],
+   "lonlat": [
+    4.6692,
+    51.8144
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 272914
+   },
+   "nameOsm": "Dordrecht",
+   "nameOnMap": "Dordrecht",
+   "note": "Nominatim 查詢「Dordrecht, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 6.33
+  },
+  "Moerdijk": {
+   "px": [
+    3102,
+    1067
+   ],
+   "lonlat": [
+    4.6257,
+    51.703
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1371690
+   },
+   "nameOsm": "Moerdijk",
+   "nameOnMap": "Moerdijk",
+   "note": "Nominatim 查詢「Moerdijk, Netherlands」；取 行政區 relation（addresstype=village） 的 lat/lon；取 village relation（非同名 municipality）",
+   "loo_km": 5.15
+  },
+  "Breda": {
+   "px": [
+    3131,
+    1134
+   ],
+   "lonlat": [
+    4.776,
+    51.5888
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2712700
+   },
+   "nameOsm": "Breda",
+   "nameOnMap": "Breda",
+   "note": "Nominatim 查詢「Breda, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點旁有藍色箭頭頭部，圓圈完整可辨",
+   "loo_km": 4.78
+  },
+  "Nijmegen": {
+   "px": [
+    3453,
+    1000
+   ],
+   "lonlat": [
+    5.8638,
+    51.8475
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1200994
+   },
+   "nameOsm": "Nijmegen",
+   "nameOnMap": "Nijmegen",
+   "note": "Nominatim 查詢「Nijmegen, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.7
+  },
+  "Arnhem": {
+   "px": [
+    3467,
+    942
+   ],
+   "lonlat": [
+    5.9109,
+    51.9843
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 272939
+   },
+   "nameOsm": "Arnhem",
+   "nameOnMap": "Arnhem",
+   "note": "Nominatim 查詢「Arnhem, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.17
+  },
+  "Gennep": {
+   "px": [
+    3478,
+    1064
+   ],
+   "lonlat": [
+    5.9691,
+    51.7013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1419668
+   },
+   "nameOsm": "Gennep",
+   "nameOnMap": "Gennep",
+   "note": "Nominatim 查詢「Gennep, Netherlands」；取 行政區 relation（addresstype=town） 的 lat/lon；取 town relation（非同名 municipality）",
+   "loo_km": 0.82
+  },
+  "Roermond": {
+   "px": [
+    3481,
+    1313
+   ],
+   "lonlat": [
+    5.9883,
+    51.1934
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1414218
+   },
+   "nameOsm": "Roermond",
+   "nameOnMap": "Roermond",
+   "note": "Nominatim 查詢「Roermond, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.78
+  },
+  "Maastricht": {
+   "px": [
+    3384,
+    1481
+   ],
+   "lonlat": [
+    5.691,
+    50.8512
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2078292
+   },
+   "nameOsm": "Maastricht",
+   "nameOnMap": "Maastricht",
+   "note": "Nominatim 查詢「Maastricht, Netherlands」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.61
+  },
+  "Antwerp": {
+   "px": [
+    3012,
+    1288
+   ],
+   "lonlat": [
+    4.3997,
+    51.2211
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 59518
+   },
+   "nameOsm": "Antwerpen",
+   "nameOnMap": "Antwerp",
+   "note": "Nominatim 查詢「Antwerpen, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.61
+  },
+  "Ghent": {
+   "px": [
+    2812,
+    1366
+   ],
+   "lonlat": [
+    3.725,
+    51.0538
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 897671
+   },
+   "nameOsm": "Gent",
+   "nameOnMap": "Ghent",
+   "note": "Nominatim 查詢「Gent, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.19
+  },
+  "Ostend": {
+   "px": [
+    2574,
+    1286
+   ],
+   "lonlat": [
+    2.9195,
+    51.2259
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292909
+   },
+   "nameOsm": "Oostende",
+   "nameOnMap": "Ostend",
+   "note": "Nominatim 查詢「Oostende, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.64
+  },
+  "Nieuport": {
+   "px": [
+    2519,
+    1320
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "nameOnMap": "Nieuport",
+   "note": "Nominatim 查詢「Nieuwpoort, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon；今拼 Nieuwpoort",
+   "loo_km": 3.27
+  },
+  "Brussels": {
+   "px": [
+    3000,
+    1462
+   ],
+   "lonlat": [
+    4.3525,
+    50.8467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58274
+   },
+   "nameOsm": "Bruxelles - Brussel",
+   "nameOnMap": "Brussels",
+   "note": "Nominatim 查詢「Bruxelles, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.47
+  },
+  "Louvain": {
+   "px": [
+    3101,
+    1446
+   ],
+   "lonlat": [
+    4.7012,
+    50.8792
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 196311
+   },
+   "nameOsm": "Leuven",
+   "nameOnMap": "Louvain",
+   "note": "Nominatim 查詢「Leuven, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.07
+  },
+  "Wavre": {
+   "px": [
+    3061,
+    1523
+   ],
+   "lonlat": [
+    4.6104,
+    50.717
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 224757
+   },
+   "nameOsm": "Wavre",
+   "nameOnMap": "Wavre",
+   "note": "Nominatim 查詢「Wavre, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 3.28
+  },
+  "Gembloux": {
+   "px": [
+    3096,
+    1591
+   ],
+   "lonlat": [
+    4.6943,
+    50.5597
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2313628
+   },
+   "nameOsm": "Gembloux",
+   "nameOnMap": "Gembloux",
+   "note": "Nominatim 查詢「Gembloux, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.11
+  },
+  "Namur": {
+   "px": [
+    3150,
+    1642
+   ],
+   "lonlat": [
+    4.8662,
+    50.4665
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1405439
+   },
+   "nameOsm": "Namur",
+   "nameOnMap": "Namur",
+   "note": "Nominatim 查詢「Namur, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點在要塞線帶交會處，圓圈完整可辨",
+   "loo_km": 0.62
+  },
+  "Liège": {
+   "px": [
+    3356,
+    1567
+   ],
+   "lonlat": [
+    5.5736,
+    50.6451
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1681788
+   },
+   "nameOsm": "Liège",
+   "nameOnMap": "Liège",
+   "note": "Nominatim 查詢「Liège, Belgium」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點壓在要塞線帶邊緣，圓圈完整可辨",
+   "loo_km": 0.64
+  },
+  "Dinant": {
+   "px": [
+    3155,
+    1745
+   ],
+   "lonlat": [
+    4.9131,
+    50.2592
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2268360
+   },
+   "nameOsm": "Dinant",
+   "nameOnMap": "Dinant",
+   "note": "Nominatim 查詢「Dinant, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.92
+  },
+  "La Roche": {
+   "px": [
+    3347,
+    1759
+   ],
+   "lonlat": [
+    5.5759,
+    50.1816
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2566321
+   },
+   "nameOsm": "La Roche-en-Ardenne",
+   "nameOnMap": "La Roche",
+   "note": "Nominatim 查詢「La Roche-en-Ardenne, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon；即 La Roche-en-Ardenne",
+   "loo_km": 5.5
+  },
+  "Bastogne": {
+   "px": [
+    3387,
+    1858
+   ],
+   "lonlat": [
+    5.7173,
+    50.0023
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2426390
+   },
+   "nameOsm": "Bastogne",
+   "nameOnMap": "Bastogne",
+   "note": "Nominatim 查詢「Bastogne, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.67
+  },
+  "St. Vith": {
+   "px": [
+    3506,
+    1738
+   ],
+   "lonlat": [
+    6.1259,
+    50.2804
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2433430
+   },
+   "nameOsm": "Sankt Vith",
+   "nameOnMap": "St. Vith",
+   "note": "Nominatim 查詢「Sankt Vith, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 3.31
+  },
+  "Arlon": {
+   "px": [
+    3417,
+    2016
+   ],
+   "lonlat": [
+    5.8168,
+    49.6835
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2431399
+   },
+   "nameOsm": "Arlon",
+   "nameOnMap": "Arlon",
+   "note": "Nominatim 查詢「Arlon, Belgium」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.56
+  },
+  "Luxembourg": {
+   "px": [
+    3506,
+    2032
+   ],
+   "lonlat": [
+    6.1298,
+    49.6113
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 407489
+   },
+   "nameOsm": "Luxembourg",
+   "nameOnMap": "Luxembourg",
+   "note": "Nominatim 查詢「Luxembourg, Luxembourg」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.84
+  },
+  "Vianden": {
+   "px": [
+    3518,
+    1893
+   ],
+   "lonlat": [
+    6.2067,
+    49.9337
+   ],
+   "osm": {
+    "type": "node",
+    "id": 1614814315
+   },
+   "nameOsm": "Vianden",
+   "nameOnMap": "Vianden",
+   "note": "Nominatim 查詢「Vianden, Luxembourg」；取 place node 的 lat/lon；取 place=town node",
+   "loo_km": 5.88
+  },
+  "Wesel": {
+   "px": [
+    3677,
+    1092
+   ],
+   "lonlat": [
+    6.6171,
+    51.6577
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58590
+   },
+   "nameOsm": "Wesel",
+   "nameOnMap": "Wesel",
+   "note": "Nominatim 查詢「Wesel, Germany」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.83
+  },
+  "Essen": {
+   "px": [
+    3776,
+    1186
+   ],
+   "lonlat": [
+    7.0158,
+    51.4582
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62713
+   },
+   "nameOsm": "Essen",
+   "nameOnMap": "Essen",
+   "note": "Nominatim 查詢「Essen, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.15
+  },
+  "Düsseldorf": {
+   "px": [
+    3730,
+    1309
+   ],
+   "lonlat": [
+    6.7763,
+    51.2254
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62539
+   },
+   "nameOsm": "Düsseldorf",
+   "nameOnMap": "Düsseldorf",
+   "note": "Nominatim 查詢「Düsseldorf, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.0
+  },
+  "Cologne": {
+   "px": [
+    3771,
+    1418
+   ],
+   "lonlat": [
+    6.96,
+    50.9384
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62578
+   },
+   "nameOsm": "Köln",
+   "nameOnMap": "Cologne",
+   "note": "Nominatim 查詢「Köln, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.77
+  },
+  "Aachen": {
+   "px": [
+    3503,
+    1500
+   ],
+   "lonlat": [
+    6.0839,
+    50.7764
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62564
+   },
+   "nameOsm": "Aachen",
+   "nameOnMap": "Aachen",
+   "note": "Nominatim 查詢「Aachen, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點緊貼 West Wall 紅色帶，圓圈完整可辨",
+   "loo_km": 2.31
+  },
+  "Bonn": {
+   "px": [
+    3828,
+    1550
+   ],
+   "lonlat": [
+    7.1025,
+    50.7353
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62508
+   },
+   "nameOsm": "Bonn",
+   "nameOnMap": "Bonn",
+   "note": "Nominatim 查詢「Bonn, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 5.75
+  },
+  "Remagen": {
+   "px": [
+    3859,
+    1622
+   ],
+   "lonlat": [
+    7.2287,
+    50.5792
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 78548
+   },
+   "nameOsm": "Remagen",
+   "nameOnMap": "Remagen",
+   "note": "Nominatim 查詢「Remagen, Germany」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 4.49
+  },
+  "Monschau": {
+   "px": [
+    3562,
+    1624
+   ],
+   "lonlat": [
+    6.2408,
+    50.5545
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 158020
+   },
+   "nameOsm": "Monschau",
+   "nameOnMap": "Monschau",
+   "note": "Nominatim 查詢「Monschau, Germany」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 3.45
+  },
+  "Prüm": {
+   "px": [
+    3583,
+    1765
+   ],
+   "lonlat": [
+    6.4249,
+    50.2069
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1108057
+   },
+   "nameOsm": "Prüm",
+   "nameOnMap": "Prüm",
+   "note": "Nominatim 查詢「Prüm, Germany」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 6.46
+  },
+  "Coblenz": {
+   "px": [
+    3951,
+    1715
+   ],
+   "lonlat": [
+    7.5944,
+    50.3533
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62512
+   },
+   "nameOsm": "Koblenz",
+   "nameOnMap": "Coblenz",
+   "note": "Nominatim 查詢「Koblenz, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon；今拼 Koblenz",
+   "loo_km": 1.45
+  },
+  "Bitburg": {
+   "px": [
+    3620,
+    1865
+   ],
+   "lonlat": [
+    6.5249,
+    49.9733
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 572813
+   },
+   "nameOsm": "Bitburg",
+   "nameOnMap": "Bitburg",
+   "note": "Nominatim 查詢「Bitburg, Germany」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 5.73
+  },
+  "Trier": {
+   "px": [
+    3667,
+    1986
+   ],
+   "lonlat": [
+    6.6442,
+    49.7596
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 172679
+   },
+   "nameOsm": "Trier",
+   "nameOnMap": "Trier",
+   "note": "Nominatim 查詢「Trier, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.74
+  },
+  "Mainz": {
+   "px": [
+    4155,
+    1885
+   ],
+   "lonlat": [
+    8.2736,
+    49.9995
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62630
+   },
+   "nameOsm": "Mainz",
+   "nameOnMap": "Mainz",
+   "note": "Nominatim 查詢「Mainz, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.96
+  },
+  "Saarbrücken": {
+   "px": [
+    3760,
+    2219
+   ],
+   "lonlat": [
+    6.9964,
+    49.2344
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187159
+   },
+   "nameOsm": "Saarbrücken",
+   "nameOnMap": "Saarbrücken",
+   "note": "Nominatim 查詢「Saarbrücken, Germany」；取 行政區 relation（addresstype=city） 的 lat/lon；圓點在 West Wall 紅色帶邊緣，圓圈完整可辨",
+   "loo_km": 2.92
+  },
+  "Dunkirk": {
+   "px": [
+    2403,
+    1370
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "nameOnMap": "Dunkirk",
+   "note": "Nominatim 查詢「Dunkerque, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.92
+  },
+  "Gravelines": {
+   "px": [
+    2352,
+    1379
+   ],
+   "lonlat": [
+    2.1273,
+    50.9871
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139316
+   },
+   "nameOsm": "Gravelines",
+   "nameOnMap": "Gravelines",
+   "note": "Nominatim 查詢「Gravelines, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.13
+  },
+  "Calais": {
+   "px": [
+    2262,
+    1401
+   ],
+   "lonlat": [
+    1.8538,
+    50.9525
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 286380
+   },
+   "nameOsm": "Calais",
+   "nameOnMap": "Calais",
+   "note": "Nominatim 查詢「Calais, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.97
+  },
+  "Boulogne": {
+   "px": [
+    2182,
+    1509
+   ],
+   "lonlat": [
+    1.6119,
+    50.726
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 240377
+   },
+   "nameOsm": "Boulogne-sur-Mer",
+   "nameOnMap": "Boulogne",
+   "note": "Nominatim 查詢「Boulogne-sur-Mer, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.05
+  },
+  "Lille": {
+   "px": [
+    2616,
+    1545
+   ],
+   "lonlat": [
+    3.0635,
+    50.6366
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58404
+   },
+   "nameOsm": "Lille",
+   "nameOnMap": "Lille",
+   "note": "Nominatim 查詢「Lille, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.69
+  },
+  "Maulde": {
+   "px": [
+    2723,
+    1622
+   ],
+   "lonlat": [
+    3.4331,
+    50.5033
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56840
+   },
+   "nameOsm": "Maulde",
+   "nameOnMap": "Maulde",
+   "note": "Nominatim 查詢「Maulde, France」；取 行政區 relation（addresstype=village） 的 lat/lon；Nord 省 Maulde（法比邊境，Scarpe／Escaut 匯流附近），圖上圓點在邊界線上",
+   "loo_km": 1.35
+  },
+  "Arras": {
+   "px": [
+    2529,
+    1712
+   ],
+   "lonlat": [
+    2.7772,
+    50.291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1121015
+   },
+   "nameOsm": "Arras",
+   "nameOnMap": "Arras",
+   "note": "Nominatim 查詢「Arras, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.39
+  },
+  "Cambrai": {
+   "px": [
+    2688,
+    1752
+   ],
+   "lonlat": [
+    3.2346,
+    50.1758
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 55938
+   },
+   "nameOsm": "Cambrai",
+   "nameOnMap": "Cambrai",
+   "note": "Nominatim 查詢「Cambrai, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 6.64
+  },
+  "Abbeville": {
+   "px": [
+    2252,
+    1794
+   ],
+   "lonlat": [
+    1.8337,
+    50.1061
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114349
+   },
+   "nameOsm": "Abbeville",
+   "nameOnMap": "Abbeville",
+   "note": "Nominatim 查詢「Abbeville, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.5
+  },
+  "Amiens": {
+   "px": [
+    2386,
+    1908
+   ],
+   "lonlat": [
+    2.2957,
+    49.8942
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114347
+   },
+   "nameOsm": "Amiens",
+   "nameOnMap": "Amiens",
+   "note": "Nominatim 查詢「Amiens, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.89
+  },
+  "Peronne": {
+   "px": [
+    2570,
+    1885
+   ],
+   "lonlat": [
+    2.9324,
+    49.9291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114338
+   },
+   "nameOsm": "Péronne",
+   "nameOnMap": "Peronne",
+   "note": "Nominatim 查詢「Péronne, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.11
+  },
+  "St Quentin": {
+   "px": [
+    2672,
+    1911
+   ],
+   "lonlat": [
+    3.2877,
+    49.8465
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153656
+   },
+   "nameOsm": "Saint-Quentin",
+   "nameOnMap": "St Quentin",
+   "note": "Nominatim 查詢「Saint-Quentin, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.96
+  },
+  "Dieppe": {
+   "px": [
+    2036,
+    1879
+   ],
+   "lonlat": [
+    1.0791,
+    49.9246
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 110435
+   },
+   "nameOsm": "Dieppe",
+   "nameOnMap": "Dieppe",
+   "note": "Nominatim 查詢「Dieppe, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.2
+  },
+  "St. Valery-en-Caux": {
+   "px": [
+    1927,
+    1908
+   ],
+   "lonlat": [
+    0.7107,
+    49.8597
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 157305
+   },
+   "nameOsm": "Saint-Valery-en-Caux",
+   "nameOnMap": "St. Valery-en-Caux",
+   "note": "Nominatim 查詢「Saint-Valery-en-Caux, France」；取 行政區 relation（addresstype=village） 的 lat/lon",
+   "loo_km": 1.55
+  },
+  "Givet": {
+   "px": [
+    3121,
+    1802
+   ],
+   "lonlat": [
+    4.8249,
+    50.1363
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1336057
+   },
+   "nameOsm": "Givet",
+   "nameOnMap": "Givet",
+   "note": "Nominatim 查詢「Givet, France」；取 行政區 relation（addresstype=village） 的 lat/lon",
+   "loo_km": 3.57
+  },
+  "Monthermé": {
+   "px": [
+    3100,
+    1902
+   ],
+   "lonlat": [
+    4.7392,
+    49.8843
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3258605
+   },
+   "nameOsm": "Monthermé",
+   "nameOnMap": "Monthermé",
+   "note": "Nominatim 查詢「Monthermé, France」；取 行政區 relation（addresstype=village） 的 lat/lon",
+   "loo_km": 2.7
+  },
+  "Sedan": {
+   "px": [
+    3177,
+    1997
+   ],
+   "lonlat": [
+    4.9433,
+    49.7034
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153920
+   },
+   "nameOsm": "Sedan",
+   "nameOnMap": "Sedan",
+   "note": "Nominatim 查詢「Sedan, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.86
+  },
+  "Laon": {
+   "px": [
+    2762,
+    2036
+   ],
+   "lonlat": [
+    3.6207,
+    49.5647
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74127
+   },
+   "nameOsm": "Laon",
+   "nameOnMap": "Laon",
+   "note": "Nominatim 查詢「Laon, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.69
+  },
+  "Rethel": {
+   "px": [
+    2999,
+    2071
+   ],
+   "lonlat": [
+    4.3666,
+    49.5091
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1792603
+   },
+   "nameOsm": "Rethel",
+   "nameOnMap": "Rethel",
+   "note": "Nominatim 查詢「Rethel, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.14
+  },
+  "Reims": {
+   "px": [
+    2889,
+    2173
+   ],
+   "lonlat": [
+    4.0319,
+    49.2578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 36458
+   },
+   "nameOsm": "Reims",
+   "nameOnMap": "Reims",
+   "note": "Nominatim 查詢「Reims, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.21
+  },
+  "Noyon": {
+   "px": [
+    2600,
+    2036
+   ],
+   "lonlat": [
+    3.0,
+    49.5806
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 197563
+   },
+   "nameOsm": "Noyon",
+   "nameOnMap": "Noyon",
+   "note": "Nominatim 查詢「Noyon, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.69
+  },
+  "Soissons": {
+   "px": [
+    2684,
+    2115
+   ],
+   "lonlat": [
+    3.3276,
+    49.3838
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74004
+   },
+   "nameOsm": "Soissons",
+   "nameOnMap": "Soissons",
+   "note": "Nominatim 查詢「Soissons, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 3.6
+  },
+  "Clermont": {
+   "px": [
+    2398,
+    2123
+   ],
+   "lonlat": [
+    2.4142,
+    49.3781
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 165224
+   },
+   "nameOsm": "Clermont",
+   "nameOnMap": "Clermont",
+   "note": "Nominatim 查詢「Clermont, Oise, France」；取 行政區 relation（addresstype=town） 的 lat/lon；Oise 省 Clermont（查詢字串加省名以區別同名地）",
+   "loo_km": 5.85
+  },
+  "Senlis": {
+   "px": [
+    2483,
+    2209
+   ],
+   "lonlat": [
+    2.5847,
+    49.2065
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1804789
+   },
+   "nameOsm": "Senlis",
+   "nameOnMap": "Senlis",
+   "note": "Nominatim 查詢「Senlis, France」；取 行政區 relation（addresstype=town） 的 lat/lon；Nominatim 首筆為 Pas-de-Calais 的同名村，取 Oise 的 Senlis",
+   "loo_km": 3.83
+  },
+  "Pontoise": {
+   "px": [
+    2334,
+    2268
+   ],
+   "lonlat": [
+    2.1008,
+    49.0509
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 120958
+   },
+   "nameOsm": "Pontoise",
+   "nameOnMap": "Pontoise",
+   "note": "Nominatim 查詢「Pontoise, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.24
+  },
+  "Dormans": {
+   "px": [
+    2774,
+    2273
+   ],
+   "lonlat": [
+    3.6384,
+    49.0746
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1773030
+   },
+   "nameOsm": "Dormans",
+   "nameOnMap": "Dormans",
+   "note": "Nominatim 查詢「Dormans, France」；取 行政區 relation（addresstype=village） 的 lat/lon",
+   "loo_km": 1.27
+  },
+  "Épernay": {
+   "px": [
+    2892,
+    2284
+   ],
+   "lonlat": [
+    3.9529,
+    49.0426
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 417327
+   },
+   "nameOsm": "Épernay",
+   "nameOnMap": "Épernay",
+   "note": "Nominatim 查詢「Épernay, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 5.99
+  },
+  "Châlons": {
+   "px": [
+    2992,
+    2316
+   ],
+   "lonlat": [
+    4.3629,
+    48.9566
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 417365
+   },
+   "nameOsm": "Châlons-en-Champagne",
+   "nameOnMap": "Châlons",
+   "note": "Nominatim 查詢「Châlons-en-Champagne, France」；取 行政區 relation（addresstype=city） 的 lat/lon；今名 Châlons-en-Champagne",
+   "loo_km": 2.52
+  },
+  "Montmiral": {
+   "px": [
+    2782,
+    2385
+   ],
+   "lonlat": [
+    3.5382,
+    48.8709
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1769723
+   },
+   "nameOsm": "Montmirail",
+   "nameOnMap": "Montmiral",
+   "note": "Nominatim 查詢「Montmirail, Marne, France」；取 行政區 relation（addresstype=village） 的 lat/lon；圖上拼作 Montmiral，即 Marne 省 Montmirail",
+   "loo_km": 11.76
+  },
+  "Melun": {
+   "px": [
+    2489,
+    2509
+   ],
+   "lonlat": [
+    2.6608,
+    48.5399
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 80071
+   },
+   "nameOsm": "Melun",
+   "nameOnMap": "Melun",
+   "note": "Nominatim 查詢「Melun, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.82
+  },
+  "Chartres": {
+   "px": [
+    2150,
+    2534
+   ],
+   "lonlat": [
+    1.4881,
+    48.4439
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 276905
+   },
+   "nameOsm": "Chartres",
+   "nameOnMap": "Chartres",
+   "note": "Nominatim 查詢「Chartres, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.58
+  },
+  "Montmédy": {
+   "px": [
+    3355,
+    2111
+   ],
+   "lonlat": [
+    5.3673,
+    49.5194
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2971416
+   },
+   "nameOsm": "Montmédy",
+   "nameOnMap": "Montmédy",
+   "note": "Nominatim 查詢「Montmédy, France」；取 行政區 relation（addresstype=village） 的 lat/lon",
+   "loo_km": 17.97
+  },
+  "Verdun": {
+   "px": [
+    3298,
+    2234
+   ],
+   "lonlat": [
+    5.3867,
+    49.1589
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 918574
+   },
+   "nameOsm": "Verdun",
+   "nameOnMap": "Verdun",
+   "note": "Nominatim 查詢「Verdun, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.36
+  },
+  "Vitry-le-François": {
+   "px": [
+    3076,
+    2459
+   ],
+   "lonlat": [
+    4.5852,
+    48.7262
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 417362
+   },
+   "nameOsm": "Vitry-le-François",
+   "nameOnMap": "Vitry-le-François",
+   "note": "Nominatim 查詢「Vitry-le-François, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 10.03
+  },
+  "Thionville": {
+   "px": [
+    3520,
+    2168
+   ],
+   "lonlat": [
+    6.1676,
+    49.3579
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 123302
+   },
+   "nameOsm": "Thionville",
+   "nameOnMap": "Thionville",
+   "note": "Nominatim 查詢「Thionville, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.93
+  },
+  "Metz": {
+   "px": [
+    3520,
+    2272
+   ],
+   "lonlat": [
+    6.1764,
+    49.1197
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 450381
+   },
+   "nameOsm": "Metz",
+   "nameOnMap": "Metz",
+   "note": "Nominatim 查詢「Metz, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.48
+  },
+  "Bitche": {
+   "px": [
+    3884,
+    2288
+   ],
+   "lonlat": [
+    7.4255,
+    49.0509
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 107085
+   },
+   "nameOsm": "Bitche",
+   "nameOnMap": "Bitche",
+   "note": "Nominatim 查詢「Bitche, France」；取 行政區 relation（addresstype=town） 的 lat/lon；圓點在藍色要塞線帶內，圓圈完整可辨",
+   "loo_km": 5.71
+  },
+  "Nancy": {
+   "px": [
+    3514,
+    2452
+   ],
+   "lonlat": [
+    6.1834,
+    48.6937
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 52399
+   },
+   "nameOsm": "Nancy",
+   "nameOnMap": "Nancy",
+   "note": "Nominatim 查詢「Nancy, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.78
+  },
+  "Lunéville": {
+   "px": [
+    3638,
+    2507
+   ],
+   "lonlat": [
+    6.492,
+    48.5916
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 88915
+   },
+   "nameOsm": "Lunéville",
+   "nameOnMap": "Lunéville",
+   "note": "Nominatim 查詢「Lunéville, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 5.93
+  },
+  "Strasbourg": {
+   "px": [
+    4005,
+    2508
+   ],
+   "lonlat": [
+    7.7507,
+    48.5846
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 71033
+   },
+   "nameOsm": "Strasbourg",
+   "nameOnMap": "Strasbourg",
+   "note": "Nominatim 查詢「Strasbourg, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.96
+  },
+  "Cherbourg": {
+   "px": [
+    1255,
+    1987
+   ],
+   "lonlat": [
+    -1.625,
+    49.6425
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 5812062
+   },
+   "nameOsm": "Cherbourg-en-Cotentin",
+   "nameOnMap": "Cherbourg",
+   "note": "Nominatim 查詢「Cherbourg, France」；取 行政區 relation（addresstype=town） 的 lat/lon；現為合併市鎮 Cherbourg-en-Cotentin，取其 relation 中心",
+   "loo_km": 1.99
+  },
+  "St. Lo": {
+   "px": [
+    1418,
+    2238
+   ],
+   "lonlat": [
+    -1.0909,
+    49.1158
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 404816
+   },
+   "nameOsm": "Saint-Lô",
+   "nameOnMap": "St. Lo",
+   "note": "Nominatim 查詢「Saint-Lô, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 4.71
+  },
+  "Coutances": {
+   "px": [
+    1296,
+    2282
+   ],
+   "lonlat": [
+    -1.4455,
+    49.0478
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 409957
+   },
+   "nameOsm": "Coutances",
+   "nameOnMap": "Coutances",
+   "note": "Nominatim 查詢「Coutances, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 5.93
+  },
+  "Avranches": {
+   "px": [
+    1316,
+    2422
+   ],
+   "lonlat": [
+    -1.3579,
+    48.6862
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 9165721
+   },
+   "nameOsm": "Avranches",
+   "nameOnMap": "Avranches",
+   "note": "Nominatim 查詢「Avranches, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 1.2
+  },
+  "Le Havre": {
+   "px": [
+    1751,
+    2060
+   ],
+   "lonlat": [
+    0.108,
+    49.4939
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 104492
+   },
+   "nameOsm": "Le Havre",
+   "nameOnMap": "Le Havre",
+   "note": "Nominatim 查詢「Le Havre, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.48
+  },
+  "Rouen": {
+   "px": [
+    2043,
+    2100
+   ],
+   "lonlat": [
+    1.094,
+    49.4405
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 75628
+   },
+   "nameOsm": "Rouen",
+   "nameOnMap": "Rouen",
+   "note": "Nominatim 查詢「Rouen, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.34
+  },
+  "Bayeux": {
+   "px": [
+    1516,
+    2163
+   ],
+   "lonlat": [
+    -0.7025,
+    49.2765
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 145776
+   },
+   "nameOsm": "Bayeux",
+   "nameOnMap": "Bayeux",
+   "note": "Nominatim 查詢「Bayeux, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 0.63
+  },
+  "Caen": {
+   "px": [
+    1608,
+    2212
+   ],
+   "lonlat": [
+    -0.3636,
+    49.1813
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 149197
+   },
+   "nameOsm": "Caen",
+   "nameOnMap": "Caen",
+   "note": "Nominatim 查詢「Caen, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.35
+  },
+  "Argentan": {
+   "px": [
+    1721,
+    2418
+   ],
+   "lonlat": [
+    -0.0223,
+    48.7429
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 398020
+   },
+   "nameOsm": "Argentan",
+   "nameOnMap": "Argentan",
+   "note": "Nominatim 查詢「Argentan, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 6.46
+  },
+  "Rennes": {
+   "px": [
+    1231,
+    2675
+   ],
+   "lonlat": [
+    -1.68,
+    48.1113
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 54517
+   },
+   "nameOsm": "Rennes",
+   "nameOnMap": "Rennes",
+   "note": "Nominatim 查詢「Rennes, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 3.85
+  },
+  "St. Nazaire": {
+   "px": [
+    1015,
+    3000
+   ],
+   "lonlat": [
+    -2.2139,
+    47.2734
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 182415
+   },
+   "nameOsm": "Saint-Nazaire",
+   "nameOnMap": "St. Nazaire",
+   "note": "Nominatim 查詢「Saint-Nazaire, France」；取 行政區 relation（addresstype=town） 的 lat/lon；圓點緊貼圖幅下緣（距內框約 25 px），符號完整",
+   "loo_km": 17.78
+  },
+  "Le Mans": {
+   "px": [
+    1768,
+    2726
+   ],
+   "lonlat": [
+    0.1968,
+    48.0074
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 107435
+   },
+   "nameOsm": "Le Mans",
+   "nameOnMap": "Le Mans",
+   "note": "Nominatim 查詢「Le Mans, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 2.83
+  },
+  "Tours": {
+   "px": [
+    1894,
+    2986
+   ],
+   "lonlat": [
+    0.6889,
+    47.39
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 76306
+   },
+   "nameOsm": "Tours",
+   "nameOnMap": "Tours",
+   "note": "Nominatim 查詢「Tours, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.26
+  },
+  "Orléans": {
+   "px": [
+    2253,
+    2778
+   ],
+   "lonlat": [
+    1.9086,
+    47.9027
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 147559
+   },
+   "nameOsm": "Orléans",
+   "nameOnMap": "Orléans",
+   "note": "Nominatim 查詢「Orléans, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 1.67
+  },
+  "Auxerre": {
+   "px": [
+    2724,
+    2845
+   ],
+   "lonlat": [
+    3.5706,
+    47.7961
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 282525
+   },
+   "nameOsm": "Auxerre",
+   "nameOnMap": "Auxerre",
+   "note": "Nominatim 查詢「Auxerre, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 6.89
+  },
+  "Troyes": {
+   "px": [
+    2888,
+    2598
+   ],
+   "lonlat": [
+    4.0746,
+    48.2972
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 414972
+   },
+   "nameOsm": "Troyes",
+   "nameOnMap": "Troyes",
+   "note": "Nominatim 查詢「Troyes, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 4.63
+  },
+  "Chaumont": {
+   "px": [
+    3221,
+    2656
+   ],
+   "lonlat": [
+    5.1396,
+    48.1111
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 904595
+   },
+   "nameOsm": "Chaumont",
+   "nameOnMap": "Chaumont",
+   "note": "Nominatim 查詢「Chaumont, Haute-Marne, France」；取 行政區 relation（addresstype=town） 的 lat/lon；Haute-Marne 省 Chaumont（查詢字串加省名以區別同名地）",
+   "loo_km": 12.36
+  },
+  "Dijon": {
+   "px": [
+    3177,
+    3001
+   ],
+   "lonlat": [
+    5.0415,
+    47.3216
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74090
+   },
+   "nameOsm": "Dijon",
+   "nameOnMap": "Dijon",
+   "note": "Nominatim 查詢「Dijon, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 11.42
+  },
+  "Mirecourt": {
+   "px": [
+    3535,
+    2619
+   ],
+   "lonlat": [
+    6.1313,
+    48.3005
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 269925
+   },
+   "nameOsm": "Mirecourt",
+   "nameOnMap": "Mirecourt",
+   "note": "Nominatim 查詢「Mirecourt, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 7.87
+  },
+  "Épinal": {
+   "px": [
+    3628,
+    2668
+   ],
+   "lonlat": [
+    6.4504,
+    48.1748
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 78828
+   },
+   "nameOsm": "Épinal",
+   "nameOnMap": "Épinal",
+   "note": "Nominatim 查詢「Épinal, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 8.56
+  },
+  "Colmar": {
+   "px": [
+    3870,
+    2740
+   ],
+   "lonlat": [
+    7.358,
+    48.0778
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 61423
+   },
+   "nameOsm": "Colmar",
+   "nameOnMap": "Colmar",
+   "note": "Nominatim 查詢「Colmar, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 2.14
+  },
+  "Mulhouse": {
+   "px": [
+    3857,
+    2876
+   ],
+   "lonlat": [
+    7.339,
+    47.7467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 38246
+   },
+   "nameOsm": "Mulhouse",
+   "nameOnMap": "Mulhouse",
+   "note": "Nominatim 查詢「Mulhouse, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 0.88
+  },
+  "Belfort": {
+   "px": [
+    3682,
+    2937
+   ],
+   "lonlat": [
+    6.8629,
+    47.638
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 75618
+   },
+   "nameOsm": "Belfort",
+   "nameOnMap": "Belfort",
+   "note": "Nominatim 查詢「Belfort, France」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 11.1
+  },
+  "Vesoul": {
+   "px": [
+    3504,
+    2954
+   ],
+   "lonlat": [
+    6.1545,
+    47.6197
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 152354
+   },
+   "nameOsm": "Vesoul",
+   "nameOnMap": "Vesoul",
+   "note": "Nominatim 查詢「Vesoul, France」；取 行政區 relation（addresstype=town） 的 lat/lon",
+   "loo_km": 9.57
+  },
+  "Basel": {
+   "px": [
+    3908,
+    2961
+   ],
+   "lonlat": [
+    7.5878,
+    47.5581
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1683619
+   },
+   "nameOsm": "Basel",
+   "nameOnMap": "Basel",
+   "note": "Nominatim 查詢「Basel, Switzerland」；取 行政區 relation（addresstype=city） 的 lat/lon",
+   "loo_km": 7.25
+  }
+ },
+ "features": [
+  {
+   "label": "EIGHTEENTH",
+   "commander": "KUECHLER",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4015,
+    705
+   ],
+   "note": "框上 XXXX；框位於 Ems River 以東",
+   "unitKey": "de-18-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 KUECHLER",
+   "lonlat": [
+    7.7814,
+    52.4698
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "B",
+   "commander": "BOCK",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4175,
+    985
+   ],
+   "note": "框上 XXXXX",
+   "unitKey": "de-hgr-b",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 BOCK",
+   "lonlat": [
+    8.3157,
+    51.9066
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTH",
+   "commander": "REICHENAU",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    3623,
+    1372
+   ],
+   "note": "框上 XXXX；Roermond 以東",
+   "unitKey": "de-6-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 REICHENAU",
+   "lonlat": [
+    6.4639,
+    51.0694
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FOURTH",
+   "commander": "KLUGE",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    3785,
+    1483
+   ],
+   "note": "框上 XXXX；Cologne 以南",
+   "unitKey": "de-4-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 KLUGE",
+   "lonlat": [
+    7.0119,
+    50.8419
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "A",
+   "commander": "RUNDSTEDT",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4146,
+    1486
+   ],
+   "note": "框上 XXXXX",
+   "unitKey": "de-hgr-a",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 RUNDSTEDT",
+   "lonlat": [
+    8.2222,
+    50.8555
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SECOND",
+   "commander": "WEICHS",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4033,
+    1647
+   ],
+   "note": "框上 XXXX；Coblenz 東北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.848,
+    50.5044
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "TWELFTH",
+   "commander": "LIST",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    3814,
+    1702
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.1156,
+    50.3734
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "KLEIST",
+   "commander": "KLEIST",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": true,
+   "px": [
+    3652,
+    1802
+   ],
+   "note": "框上 XXXX；矩形框內只有一個裝甲橢圓、沒有文字，KLEIST 印在框下方（同時作 label 與 commander）；px 取矩形框中心",
+   "unitKey": "de-kleist-gr",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 KLEIST",
+   "lonlat": [
+    6.5748,
+    50.1479
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTEENTH",
+   "commander": "BUSCH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    3833,
+    1833
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.1841,
+    50.0903
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FIRST",
+   "commander": "WITZLEBEN",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    3956,
+    2119
+   ],
+   "note": "框上 XXXX；Saarbrücken 東北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.6086,
+    49.4688
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "C",
+   "commander": "LEEB",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4141,
+    2178
+   ],
+   "note": "框上 XXXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    8.2291,
+    49.3493
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SEVENTH",
+   "commander": "DOLLMAN",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅字（圖上德軍一律紅色）",
+   "armoured": false,
+   "px": [
+    4212,
+    2674
+   ],
+   "note": "框上 XXXX；萊茵河東岸、Colmar 以東；指揮官名照圖拼作 DOLLMAN",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    8.4951,
+    48.2344
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SEVENTH",
+   "commander": "GIRAUD",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2371,
+    1458
+   ],
+   "note": "框上 XXXX；Calais／Gravelines 以南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    2.2045,
+    50.837
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "BELG.",
+   "commander": "LEOPOLD",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3178,
+    1411
+   ],
+   "note": "框上 XXXX；框內印 BELG.",
+   "unitKey": "be-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 LEOPOLD",
+   "lonlat": [
+    4.9592,
+    50.9663
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "BEF",
+   "commander": "GORT",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2535,
+    1619
+   ],
+   "note": "框上 XXXX；Lille 西南",
+   "unitKey": "uk-bef",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 GORT",
+   "lonlat": [
+    2.7747,
+    50.4962
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FIRST",
+   "commander": "BLANCHARD",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2674,
+    1689
+   ],
+   "note": "框上 XXXX（此處 X 字體較細、字距較寬，仍為四個）；Arras 以東",
+   "unitKey": "fr-1-armee",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 BLANCHARD",
+   "lonlat": [
+    3.2537,
+    50.3496
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "NINTH",
+   "commander": "CORAP",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2854,
+    1908
+   ],
+   "note": "框上 XXXX；St Quentin 以東",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    3.8794,
+    49.8787
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1",
+   "commander": "BILLOTTE",
+   "echelon": "army_group",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2331,
+    1995
+   ],
+   "note": "框上 XXXXX；框內只印數字 1",
+   "unitKey": "fr-1-gpe-armees",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖上標字／番號與名冊相同，指揮官 BILLOTTE",
+   "lonlat": [
+    2.0976,
+    49.6675
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SECOND",
+   "commander": "HUNTZIGER",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3178,
+    2101
+   ],
+   "note": "框上 XXXX；Sedan 以南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.9905,
+    49.4668
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "THIRD",
+   "commander": "CONDE",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3461,
+    2247
+   ],
+   "note": "框上 XXXX；Metz 西北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    5.9549,
+    49.1556
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "2",
+   "commander": "PRETELAT",
+   "echelon": "army_group",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3427,
+    2516
+   ],
+   "note": "框上 XXXXX；框內只印數字 2",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    5.8591,
+    48.5468
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FOURTH",
+   "commander": "REQUIN",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3826,
+    2386
+   ],
+   "note": "框上 XXXX；Bitche 以南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.1889,
+    48.8641
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FIFTH",
+   "commander": "BOURRET",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3769,
+    2580
+   ],
+   "note": "框上 XXXX；Lunéville 東南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    7.0114,
+    48.4207
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "EIGHTH",
+   "commander": "GARCHERY",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3758,
+    2811
+   ],
+   "note": "框上 XXXX；Colmar 西南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    6.9927,
+    47.8894
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "3",
+   "commander": "BESSON",
+   "echelon": "army_group",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3426,
+    2872
+   ],
+   "note": "框上 XXXXX；框內只印數字 3",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    5.8854,
+    47.7281
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTH RES.",
+   "commander": "TOUCHON",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3076,
+    2931
+   ],
+   "note": "框上 XXXX；框內印 SIXTH，框右側印 RES.；px 取框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.712,
+    47.5715
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "C. in C.",
+   "commander": "GAMELIN",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2123,
+    2379
+   ],
+   "note": "大型方框，框上無 X 記號（階層記 other）；框內印 C. in C.，框下印 GAMELIN；Paris 以西；px 取框中心（框約 x 1999–2248、y 2339–2420）",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    1.4139,
+    48.8008
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "C. in C. NORHEAST",
+   "commander": "GEORGES",
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2777,
+    2467
+   ],
+   "note": "大型方框，框上無 X 記號（階層記 other）；框內兩行 C. in C.／NORHEAST（照圖拼寫，缺 T）；框下印 GEORGES；px 取框中心（框約 x 2651–2902、y 2396–2538）",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    3.6566,
+    48.6262
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": true,
+   "px": [
+    2637,
+    2064
+   ],
+   "note": "框上 XX；無番號、無指揮官名；框內為交叉線加橢圓（步兵交叉＋裝甲橢圓的複合符號），後方疊 2 個空框，共 3 框；Noyon 與 Soissons 之間，在粗藍線圈起的區域內；「Belgian Group」標字有引線指向此區；px 取最前面一框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    3.1494,
+    49.5256
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "1",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": true,
+   "px": [
+    2761,
+    2135
+   ],
+   "note": "框上 XX；框內裝甲橢圓；數字 1 印在框右側；Soissons 以東；「Belgian Group」標字另有引線指向此框",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    3.577,
+    49.3727
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "2",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": true,
+   "px": [
+    2918,
+    2121
+   ],
+   "note": "框上 XX；框內裝甲橢圓；數字 2 印在框右側；Reims 以北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.1101,
+    49.4105
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "3",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": true,
+   "px": [
+    2981,
+    2202
+   ],
+   "note": "框上 XX；框內裝甲橢圓；數字 3 印在框右側；Reims 以東",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.3294,
+    49.2327
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3114,
+    2212
+   ],
+   "note": "框上 XX；無番號；步兵交叉線框，後方疊 4 個空框，共 5 框；Reims 與 Verdun 之間，在粗藍線圈起的大區域內；px 取最前面一框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.7809,
+    49.2165
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    2728,
+    2313
+   ],
+   "note": "框上 XX；無番號；步兵交叉線框，後方疊 1 個空框，共 2 框；Montmiral 西北，在粗藍線圈起的區域內；「Belgian Group」標字有引線指向此區；px 取最前面一框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    3.4775,
+    48.9726
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3123,
+    2764
+   ],
+   "note": "框上 XX；無番號；步兵交叉線框，後方疊 2 個空框，共 3 框；Troyes 與 Chaumont 之間，在粗藍橢圓圈內；px 取最前面一框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    4.8549,
+    47.9619
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "",
+   "commander": "",
+   "echelon": "division",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍字（圖上盟軍一律藍色；國別未另印）",
+   "armoured": false,
+   "px": [
+    3569,
+    2898
+   ],
+   "note": "框上 XX；無番號；步兵交叉線框，後方疊 4 個空框，共 5 框；Vesoul 東北，在細藍線圈起的區域內；「Swiss Group」標字有箭頭指向此區；px 取最前面一框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位，或圖上沒有番號",
+   "lonlat": [
+    6.3676,
+    47.6761
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  }
+ ],
+ "lines": [],
+ "unresolved": [
+  {
+   "label": "Belgian Group",
+   "px": [
+    2172,
+    2136
+   ],
+   "reason": "藍色標字（Clermont 西南），沒有方框與 X 記號，三條引線分別指向 Noyon–Soissons 的疊框、裝甲框「1」、Montmiral 的疊框；它指哪些單位、是否為正式編組名，圖上沒有說明；未列入 features，px 為標字中心（約略）"
+  },
+  {
+   "label": "Swiss Group",
+   "px": [
+    3562,
+    2792
+   ],
+   "reason": "藍色標字（Épinal 以南），沒有方框與 X 記號，箭頭指向 Vesoul 東北的 5 框疊框區；未列入 features，px 為標字中心（約略）"
+  },
+  {
+   "label": "(無番號師級疊框)",
+   "px": [
+    2637,
+    2064
+   ],
+   "reason": "五組師級符號中有四組疊框沒有印番號；Noyon–Soissons 那組框內是交叉線加橢圓的複合符號，圖例（KEY）只說明要塞線，沒有說明此符號，armoured 暫記 true"
+  },
+  {
+   "label": "邊界線上的 XXXXX",
+   "px": [
+    3897,
+    1330
+   ],
+   "reason": "紅色集團軍群分界線上印有 XXXXX（Cologne 東北約 px [3897,1330]、Coblenz 東南約 px [4040,1800]），藍色分界線上也有（Vitry-le-François 東北約 px [3130,2400]、Épinal 西南約 px [3577,2697]）；這些是分界線標記，不是部隊框，依任務指示略過"
+  }
+ ]
+}

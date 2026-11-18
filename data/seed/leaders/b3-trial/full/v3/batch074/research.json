@@ -1,0 +1,1987 @@
+{
+ "batch": "b3-full-v3-batch074",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）；名單5442已有的元首／首腦任期不重建；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch074/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "encyc-venizelos": {
+   "title": "Venizelos, Eleutherios (1864–1936)（Encyclopedia of Modern Europe, via Encyclopedia.com）",
+   "authors": [
+    "Polymeris Voglis"
+   ],
+   "publisher": "Gale／Charles Scribner's Sons（Encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of Modern Europe: Europe Since 1914",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/venizelos-eleutherios-1864-1936",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Polymeris Voglis）的學術參考書條目"
+  },
+  "snl-venizelos": {
+   "title": "Eleftherios Venizelos（Store norske leksikon）",
+   "authors": [
+    "Birgitta Lim Ersland",
+    "Kirsti des Bouvrie Thorsen"
+   ],
+   "publisher": "Store norske leksikon（OsloMet 作者）",
+   "published_text": "Store norske leksikon，2025-02-21 更新",
+   "url": "https://snl.no/Eleftherios_Venizelos",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（OsloMet）的機構百科條目"
+  },
+  "encyc-pardo": {
+   "title": "Pardo y Barreda, José (1864–1947)（Encyclopedia of Latin American History and Culture, via Encyclopedia.com）",
+   "authors": [
+    "Vincent Peloso"
+   ],
+   "publisher": "Gale／Charles Scribner's Sons（Encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/pardo-y-barreda-jose-1864-1947",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Vincent Peloso）的學術參考書條目"
+  },
+  "elperuano-pardo": {
+   "title": "José Pardo y Barreda（Perfiles，Diario Oficial El Peruano）",
+   "authors": [
+    "Domingo Tamariz"
+   ],
+   "publisher": "Editora Perú（Diario Oficial El Peruano）",
+   "published_text": "Diario Oficial El Peruano「Perfiles」，2018-02-18",
+   "url": "https://elperuano.pe/noticia/64019-jose-pardo-y-barreda",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "審查改評 C（2026-11-17，比照 batch016 elperuano-leguia）：El Peruano「Opinión／Perfiles」版記者（Domingo Tamariz，署名 Periodista）撰寫的人物專欄，屬通俗歷史，非具名學者或學術機構研究、非傳記辭典，也非官方公報的法令或公告本文；只可放 gaps 候選"
+  },
+  "pdba-peru": {
+   "title": "Peru: Chronology of Presidents（Political Database of the Americas）",
+   "authors": [],
+   "publisher": "Georgetown University, Political Database of the Americas",
+   "published_text": "PDBA 歷任總統年表",
+   "url": "https://pdba.georgetown.edu/Executive/Peru/pres.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構（喬治城大學）維護的政治資料庫"
+  },
+  "kunai-nenpyo": {
+   "title": "宮内庁関係年表（慶応3年以後）",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "宮内庁ウェブサイト",
+   "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府機關（宮内庁）官方頁"
+  },
+  "kunai-ryobo122": {
+   "title": "明治天皇　伏見桃山陵（歴代天皇陵のご案内）",
+   "authors": [],
+   "publisher": "宮内庁",
+   "published_text": "宮内庁ウェブサイト",
+   "url": "https://www.kunaicho.go.jp/visit/ryobo/122.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府機關（宮内庁）官方頁"
+  }
+ },
+ "people": [
+  {
+   "key": "jp-meiji",
+   "bioId": "01a1b4c1-ce4a-79cf-bc76-f5cd4aa33622",
+   "name": "Emperor Meiji (Mutsuhito)",
+   "nameZh": "明治天皇（睦仁）",
+   "recordIds": [
+    "a6500b61-984c-45c3-bfaf-14d138902406"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1867-01-01",
+      "end": "1869-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "即位與改元",
+      "en": "Accession and the new era name"
+     },
+     "body": {
+      "zh-Hant": "宮內廳陵墓資料記明治天皇為第122代天皇，父為孝明天皇，母為中山慶子。宮內廳年表載，睦仁親王於慶應3年（1867）1月9日踐祚，同年12月9日下王政復古的御沙汰；明治元年（1868）3月14日頒布五箇條御誓文，8月27日行即位禮，9月8日改慶應4年為明治。年表記日本至明治5年12月3日才改用太陽曆，以該日為明治6年1月1日，上述月日均在改曆之前（舊曆）。",
+      "en": "The Imperial Household Agency lists Emperor Meiji as the 122nd emperor, with Emperor Komei as his father and Nakayama Yoshiko as his mother. Its chronology records that Prince Mutsuhito acceded on the 9th day of the 1st month of Keio 3 (1867) and that the restoration of imperial rule was announced on the 9th day of the 12th month that year; in Meiji 1 (1868) the Charter Oath followed on 3/14, the enthronement ceremony on 8/27, and on 9/8 the era was changed from Keio 4 to Meiji. The chronology notes that Japan adopted the solar calendar only from Meiji 5/12/3, which became 1 January Meiji 6, so these month-day dates are in the old calendar."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-ryobo122",
+       "locator": "代數",
+       "quote": "代数 第122代",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-ryobo122",
+       "locator": "御父",
+       "quote": "御父 孝明天皇（こうめいてんのう）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-ryobo122",
+       "locator": "御母",
+       "quote": "御母 中山慶子",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "慶応3年",
+       "quote": "慶応3年 1867 1 9 睦仁（むつひと）親王（明治天皇）践祚（せんそ）",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "慶応3年",
+       "quote": "12 9 王政復古の御沙汰（さた）",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄；quote 無年份，年份依 locator",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治元年",
+       "quote": "明治元年 1868 3 14 五箇条の御誓文発布",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治元年",
+       "quote": "8 27 即位の礼",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄；quote 無年份，年份依 locator",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治元年",
+       "quote": "9 8 慶応4年を明治と改元",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄；quote 無年份，年份依 locator",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治5年",
+       "quote": "暦制を改正し、太陽暦に改める（明治5年12月3日を明治6年1月1日とする。）。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1871-01-01",
+      "end": "1901-04-30"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "制度建設與皇室家事",
+      "en": "Institution building and the imperial family"
+     },
+     "body": {
+      "zh-Hant": "宮內廳年表記載：明治4年（1871）7月14日（舊曆）廢藩置縣；1889年2月11日頒布大日本帝國憲法，並裁定皇室典範。1900年5月10日皇太子嘉仁親王與九條節子結婚，1901年4月29日裕仁親王（後來的昭和天皇）誕生。",
+      "en": "The Imperial Household Agency chronology records the abolition of the domains and creation of prefectures on the 14th day of the 7th month of Meiji 4 (1871, old calendar) and, on 11 February 1889, the promulgation of the Constitution of the Empire of Japan together with the Imperial House Law. Crown Prince Yoshihito married Kujo Sadako on 10 May 1900, and Prince Hirohito, later the Showa Emperor, was born on 29 April 1901."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治4年",
+       "quote": "明治4年 1871 7 14 廃藩置県",
+       "quoteLang": "ja",
+       "evidenceNote": "月日為舊曆：同年表明治5年條載同年12月3日起改用太陽曆，此前月日未換算西曆；西曆年依年表「西暦」欄",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治22年",
+       "quote": "明治22年 1889 2 11 大日本帝国憲法発布 皇室典範裁定",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治33年",
+       "quote": "明治33年 1900 5 10 皇太子嘉仁（よしひと）親王九條節子（さだこ）とご結婚",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治34年",
+       "quote": "明治34年 1901 4 29 裕仁（ひろひと）親王（昭和天皇）ご誕生",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1908-01-01",
+      "end": "1912-07-31"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年與崩御",
+      "en": "Final years and death"
+     },
+     "body": {
+      "zh-Hant": "宮內廳年表記載：1908年1月1日宮內省官制施行；1909年2月11日制定登極令、攝政令等；1910年8月29日發布韓國併合的詔書。1912年7月30日明治天皇崩御，皇太子嘉仁親王踐祚，改元大正。",
+      "en": "The Imperial Household Agency chronology records the entry into force of the Imperial Household Ministry regulations on 1 January 1908 and, on 11 February 1909, the enactment of the Accession Ordinance and the Regency Ordinance among others. The rescript on the annexation of Korea was issued on 29 August 1910. Emperor Meiji died on 30 July 1912; Crown Prince Yoshihito acceded and the era was renamed Taisho."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治41年",
+       "quote": "明治41年 1908 1 1 宮内省官制（皇室令）施行",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治42年",
+       "quote": "明治42年 1909 2 11 登極令、摂政令、立儲（りっちょ）令、皇室成年式令制定",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治43年",
+       "quote": "8 29 爵位寮を廃止し、宗秩寮を置く。 韓国併合に関する詔書発布、韓国を朝鮮と呼称",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治45年",
+       "quote": "7 30 明治（めいじ）天皇崩御",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-nenpyo",
+       "locator": "明治45年",
+       "quote": "皇太子嘉仁（よしひと）親王践祚（せんそ）、大正と改元",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:head_of_state_term",
+     "gapKind": "not_found",
+     "note": "天皇任期（1908-01-01～1912-07-30）已在名單5442（recordId a6500b61-984c-45c3-bfaf-14d138902406），本檔未重建；宮內廳年表只記崩御日1912-07-30，與名單相符。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "not_found",
+     "note": "待查證：生年月日。宮內廳兩頁（年表、陵墓頁）未載；Britannica 被 Cloudflare 挑戰頁擋下；Encyclopedia.com「Mutsuhito」為 Encyclopedia of World Biography 無署名條目（Q9，不可當出處）。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "1908–1912 窗內除天皇本職外，未見來源明寫的其他職位或黨職，故 positions／roleCandidates 為空。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "明治天皇 睦仁 宮内庁 歴代天皇 明治45年7月30日 崩御",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索摘要為新聞與大學資料庫，未得宮內廳頁面；改查宮內廳站內"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "kunaicho.go.jp 明治天皇 陵墓 伏見桃山陵 第122代",
+     "url": "https://www.kunaicho.go.jp/visit/ryobo/122.html",
+     "result": "found_A",
+     "note": "curl 取得；第122代、父母"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "宮内庁関係年表（慶応3年以後）",
+     "url": "https://www.kunaicho.go.jp/kunaicho/kunaicho/kunaicho-nenpyo.html",
+     "result": "found_A",
+     "note": "curl 取得；1867–1912 年表"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Meiji emperor Mutsuhito Britannica",
+     "url": "https://www.britannica.com/biography/Meiji-emperor-of-Japan",
+     "result": "challenge_page",
+     "note": "403 Cloudflare 挑戰頁，依規則不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "NDL 近代日本人の肖像 明治天皇",
+     "url": "https://www.ndl.go.jp/portrait/datas/1.html",
+     "result": "not_relevant",
+     "note": "取回的是他人頁面（青木周蔵），無明治天皇頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "kunaicho 歴代天皇 明治天皇 e-about 猜測網址",
+     "url": "https://www.kunaicho.go.jp/e-about/genealogy/emperor-meiji.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Meiji emperor Mutsuhito encyclopedia.com",
+     "url": "https://www.encyclopedia.com/people/history/japanese-history-biographies/mutsuhito",
+     "result": "unrated",
+     "note": "Encyclopedia of World Biography 無署名條目，Q9 不可當出處；未引用"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Meiji, Mutsohito World Encyclopedia",
+     "url": "https://www.encyclopedia.com/environment/encyclopedias-almanacs-transcripts-and-maps/meiji-mutsohito",
+     "result": "unrated",
+     "note": "World Encyclopedia 一行摘要，無署名；未引用"
+    }
+   ]
+  },
+  {
+   "key": "gr-venizelos",
+   "bioId": "01a1b4c1-ce54-723d-a25f-167e9fca0d16",
+   "name": "Eleftherios Venizelos",
+   "nameZh": "埃萊夫塞里奧斯·韋尼澤洛斯",
+   "recordIds": [
+    "01a1aa4a-6558-7ad7-bf48-15a6d03c3690",
+    "01a1aa4a-65c4-7e99-a195-74eb46cabb9c",
+    "01a1aa4a-65c6-7b14-8519-fb20d44e38ad",
+    "01a1aa4a-65c6-7d67-9057-970e9e7a1543",
+    "01a1aa4a-65c6-7fb9-9194-348a89fc9c7b",
+    "01a1aa4a-65c7-747b-bbf4-925c10685e5b",
+    "01a1aa4a-65c7-7923-929b-a2e25b240e98"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1864-08-23",
+      "end": "1908-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與克里特時期",
+      "en": "Origins and the Cretan years"
+     },
+     "body": {
+      "zh-Hant": "韋尼澤洛斯1864年8月23日生於奧斯曼統治下的克里特，在雅典大學修法律，是克里特與希臘統一運動的領導人之一。1899至1901年他任克里特司法大臣。1908年10月克里特人宣布與希臘合併，他是希臘政府所派委員會中最突出的人物。",
+      "en": "Venizelos was born on 23 August 1864 in Ottoman-ruled Crete, studied law at the University of Athens, and became one of the leaders of the movement for the union of Crete with Greece. He served as Cretan minister of justice from 1899 to 1901. In October 1908 the Cretans proclaimed union with Greece, and he stood out as the strong man of the committee appointed by the Greek government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "born in Ottoman-ruled Crete on 23 August 1864",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "He studied law at the University of Athens.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "He became one of the leaders of the movement for the union of Crete with Greece.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "justisminister på Kreta fra 1899 til 1901",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "In October 1908 the Cretans proclaimed the union of Crete with Greece",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos stood out as the strong man in the committee",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "the committee that was appointed by the Greek government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1909-08-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出任首相與自由黨",
+      "en": "Premiership and the Liberal Party"
+     },
+     "body": {
+      "zh-Hant": "1909年8月雅典發生軍事政變，軍人聯盟請他來希臘領導改革。他1910年1月抵達雅典，同年10月出任首相，並成立自由黨；1912年大選大勝，希臘打了1912至1913年兩次巴爾幹戰爭。第一次世界大戰爆發時，國王康斯坦丁不讓希臘站到協約國一方，他在1915年去職。",
+      "en": "A military revolt broke out in Athens in August 1909 and the Military League asked Venizelos to come to Greece to lead reform. He arrived in Athens in January 1910, became prime minister in October 1910 and founded the Liberal Party; after a sweeping victory in the 1912 election, Greece fought the two Balkan Wars of 1912 to 1913. When the First World War broke out King Constantine blocked Greece from joining the Entente, and Venizelos had to step down in 1915."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "In August 1909 a military revolt broke out in Athens",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "The Military League asked Venizelos to come to Greece",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos arrived in Athens in January 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos became prime minister in October 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "He established a new party, the Liberal Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "a sweeping victory in the 1912 election",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Greece fought in the two Balkan Wars (1912–1913)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "kong Konstantin hindret dette, og Venizelos måtte gå av i 1915",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "head the struggle for political reform",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "Ved utbruddet av første verdenskrig ville han ha Hellas med på Ententens side",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1916-08-01",
+      "end": "1920-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "薩洛尼卡政府與敗選",
+      "en": "The Salonica government and electoral defeat"
+     },
+     "body": {
+      "zh-Hant": "1916年8月，他因與主張中立的國王康斯坦丁對立，在薩洛尼卡另立對立政府。他再度出任首相，希臘加入協約國作戰。1920年11月選舉失敗，他數日後離開希臘。",
+      "en": "In August 1916, after his dispute with the neutralist King Constantine, he set up a rival government in Salonica. He became prime minister again, and Greece entered the war on the side of the Entente. He lost the election of November 1920 and left the country a few days later."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "advocated the neutrality of Greece",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "in August 1916 he established a rival government in Salonica",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos became again prime minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Greece entered in the war on the side of the Entente",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "to win the election in November 1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "who a few days later left the country",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1923-07-24",
+      "end": "1936-03-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "洛桑、第二段任期與逝世",
+      "en": "Lausanne, the second premiership and death"
+     },
+     "body": {
+      "zh-Hant": "1923年7月24日簽署洛桑條約時，他是希臘代表團團長。他1928年再度出任首相；1930年6月10日與土耳其達成協議，同年10月30日簽友好條約。他1932年選舉落敗，1936年3月18日在巴黎逝世。",
+      "en": "He headed the Greek delegation that signed the Treaty of Lausanne on 24 July 1923. He became prime minister again in 1928; an agreement with Turkey settling outstanding disputes followed on 10 June 1930 and a pact of friendship on 30 October 1930. He lost the 1932 election and died in Paris on 18 March 1936."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "headed the Greek delegation that signed the Treaty of Lausanne (24 July 1923)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos became again prime minister in 1928",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "the agreement with Turkey that settled unresolved disputes (10 June 1930)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "a pact of friendship (30 October 1930)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos lost the election in 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos died in Paris on 18 March 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "venizelos-cretan-justice-1899",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "克里特（奧斯曼治下自治）",
+      "en": "Cretan administration under Ottoman rule"
+     },
+     "title": {
+      "orig": "justisminister på Kreta",
+      "zh-Hant": "克里特司法大臣",
+      "en": "Minister of Justice of Crete"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1899-01-01",
+      "end": "1902-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "justisminister på Kreta fra 1899 til 1901",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "R5：任期1899–1901落在1908–1945時間窗外（且為克里特地方職），不進角色層。"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "venizelos-pm-1910",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "希臘（王國）",
+      "en": "Kingdom of Greece"
+     },
+     "title": {
+      "orig": "Πρωθυπουργός",
+      "zh-Hant": "希臘首相（第一段）",
+      "en": "Prime Minister of Greece (first term)"
+     },
+     "period": {
+      "start": "1910-10-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "encyc-venizelos",
+       "locator": "生平",
+       "quote": "Venizelos became prime minister in October 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "statsminister i periodene 1910–1915, 1915, 1917–1920",
+       "quoteLang": "no",
+       "evidenceNote": "挪威百科只給年份區間，未給月日；期間依年精度推得，實際起迄日待更精確來源",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "名單外但來源明寫、落在1908–1945的政府首腦任期；不在名單5442（名單僅有1920-10-25起的記錄），故寫為候選。年精度端點依 Q3 取下一單位起日。",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "venizelos-pm-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "希臘（王國）",
+      "en": "Kingdom of Greece"
+     },
+     "title": {
+      "orig": "Πρωθυπουργός",
+      "zh-Hant": "希臘首相（1915年短任）",
+      "en": "Prime Minister of Greece (1915 term)"
+     },
+     "period": {
+      "start": "1915-01-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "statsminister i periodene 1910–1915, 1915, 1917–1920",
+       "quoteLang": "no",
+       "evidenceNote": "挪威百科只給年份區間，未給月日；期間依年精度推得，實際起迄日待更精確來源",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "名單外但來源明寫、落在1908–1945的政府首腦任期；不在名單5442（名單僅有1920-10-25起的記錄），故寫為候選。年精度端點依 Q3 取下一單位起日。",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "venizelos-pm-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "希臘（王國）",
+      "en": "Kingdom of Greece"
+     },
+     "title": {
+      "orig": "Πρωθυπουργός",
+      "zh-Hant": "希臘首相（1917–1920）",
+      "en": "Prime Minister of Greece (1917–1920)"
+     },
+     "period": {
+      "start": "1917-01-01",
+      "end": "1921-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-venizelos",
+       "locator": "生平",
+       "quote": "statsminister i periodene 1910–1915, 1915, 1917–1920",
+       "quoteLang": "no",
+       "evidenceNote": "挪威百科只給年份區間，未給月日；期間依年精度推得，實際起迄日待更精確來源",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "head_of_government",
+     "reason": "名單外但來源明寫、落在1908–1945的政府首腦任期；不在名單5442（名單僅有1920-10-25起的記錄），故寫為候選。年精度端點依 Q3 取下一單位起日。",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:head_of_government_terms_in_list",
+     "gapKind": "not_found",
+     "note": "名單5442已有的任期（1920-10-25～28、1924-01-11～02-06、1928-07-04～1933-03-06 各段）不重建。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:venizelos-liberal-party-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；自由黨黨魁職（黨職，應為 de_facto_leader 候選）。Encyclopedia.com（Voglis）只寫「He established a new party, the Liberal Party」接在1910年10月出任首相之後，未給成立日；SNL 未提；Britannica 被 Cloudflare 擋；希臘國會網站 403。未寫入 roleCandidates。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:provisional_government_term",
+     "gapKind": "not_found",
+     "note": "薩洛尼卡臨時政府（1916年8月起，Encyclopedia.com 只給月份）的結束日未見於已抓來源，且是否屬於 head_of_government／de_facto_leader 需來源明寫；未寫入候選。待查證。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:greek_parliament_foundation_pdf",
+     "gapKind": "not_found",
+     "note": "希臘議會基金會 Venizelos 圖錄 PDF（foundation.parliament.gr）已抓，但為影像檔，pdftotext 僅得約4千字元目錄，無可逐字引用內容。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Eleftherios Venizelos Britannica",
+     "url": "https://www.britannica.com/biography/Eleftherios-Venizelos",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Hellenic Parliament Venizelos",
+     "url": "https://www.hellenicparliament.gr/en/Vouli-ton-Ellinon/Poioi-einai-Voulefes/Apo-ti-Metapolitefsi-os-simera/",
+     "result": "blocked_403",
+     "note": "403，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Venizelos",
+     "url": "https://dbe.rah.es/biografias/eleftherios-venizelos",
+     "result": "no_result",
+     "note": "curl 只得 SPA 外殼，無內文"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Ελευθέριος Βενιζέλος βιογραφία Κόμμα Φιλελευθέρων 1910 πρωθυπουργός Προσωρινή Κυβέρνηση Θεσσαλονίκη",
+     "url": null,
+     "result": "unrated",
+     "note": "希臘文檢索；得希臘議會基金會 PDF 與新聞稿"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Venizelos 1905-1914B（Hellenic Parliament Foundation）",
+     "url": "https://foundation.parliament.gr/sites/default/files/2019-04/Venizelos%201905-1914B.pdf",
+     "result": "no_result",
+     "note": "curl 取得 PDF，但為影像檔，無文字層"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Venizelos 1915-1920A（Hellenic Parliament Foundation）",
+     "url": "https://foundation.parliament.gr/sites/default/files/2019-04/Venizelos%201915-1920A.pdf",
+     "result": "no_result",
+     "note": "同上，影像檔"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Eleftherios Venizelos biography Liberal Party Provisional Government Thessaloniki encyclopedia",
+     "url": null,
+     "result": "found_B",
+     "note": "檢索得 Encyclopedia.com、SNL"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Venizelos, Eleutherios (1864–1936) Encyclopedia of Modern Europe",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/venizelos-eleutherios-1864-1936",
+     "result": "found_B",
+     "note": "curl 取得；Polymeris Voglis 署名"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Eleftherios Venizelos Store norske leksikon",
+     "url": "https://snl.no/Eleftherios_Venizelos",
+     "result": "found_B",
+     "note": "curl 取得；Ersland、Thorsen 署名"
+    }
+   ]
+  },
+  {
+   "key": "pe-pardo-y-barreda",
+   "bioId": "164b8938-b957-4966-828b-229edf3bc58b",
+   "name": "José Pardo y Barreda",
+   "nameZh": "何塞·帕爾多",
+   "recordIds": [
+    "343eb1b9-b4f3-44d4-9a1e-7b8d4e6a5558",
+    "2fe90e0f-63a5-4806-b53b-963848362e17"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1864-01-01",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與接掌文人黨",
+      "en": "Origins and leadership of the Civilista Party"
+     },
+     "body": {
+      "zh-Hant": "帕爾多生於1864年，父親曼努埃爾·帕爾多是秘魯第一位任滿的文人總統。1904年卡內多在任內猝逝，帕爾多繼承了文人黨的領導地位。",
+      "en": "Pardo was born in 1864, the son of Manuel Pardo y Lavalle, Peru's first full-term civilian president. When Manuel Candamo died suddenly in office in 1904, Pardo inherited the leadership of the Civilista Party."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "José Pardo y Barreda (b. 1864; d. 3 August 1947)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "The son of Peru's first full-term civilian president, Manuel Pardo y Lavalle",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "José Pardo inherited the mantle of leadership of the Civilista Party in 1904",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "when Manuel Candamo died suddenly in office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1904-01-01",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第一任期",
+      "en": "First term"
+     },
+     "body": {
+      "zh-Hant": "帕爾多第一次出任秘魯總統是1904至1908年。這四年間，他把學校經費提高250%，並延伸主要鐵路。",
+      "en": "Pardo's first term as president of Peru ran from 1904 to 1908. Over those four years he raised school spending by 250 percent and extended the main railway lines."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "president of Peru (1904–1908; 1915–1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pdba-peru",
+       "locator": "年表",
+       "quote": "1904-1908",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "For the next four years he increased school expenditures by 250 percent",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "extended major rail lines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1915-01-01",
+      "end": "1919-01-02"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第二任期與大罷工",
+      "en": "The second term and the general strike"
+     },
+     "body": {
+      "zh-Hant": "1915至1919年他第二度出任總統；當時在軍方促請下，文人黨、自由黨與憲政黨支持同一位候選人。1919年1月1日秘魯發生史上第一次總罷工，工人與大學生聯合要求普遍實行八小時工作制。",
+      "en": "He served a second term as president from 1915 to 1919, when, at military urging, the Civilista, Liberal and Constitutionalist parties backed a common candidate. On 1 January 1919 Peru saw its first general strike, in which workers and university students together demanded a universal eight-hour working day."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "served a second term as president (1915–1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "at military urging, the Civilista, Liberal, and Constitutionalist parties",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "Liberal, and Constitutionalist parties supported a common candidate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "the first general strike ever carried out in Peru (1 January 1919)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "uniting workers and university students",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "a universal eight-hour workday",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1947-08-03",
+      "end": "1947-08-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "逝世",
+      "en": "Death"
+     },
+     "body": {
+      "zh-Hant": "帕爾多於1947年8月3日逝世。",
+      "en": "Pardo died on 3 August 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "José Pardo y Barreda (b. 1864; d. 3 August 1947)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "pardo-civilista-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "文人黨（Partido Civil／Civilista Party）",
+      "en": "Civilista Party"
+     },
+     "title": {
+      "orig": "leadership of the Civilista Party",
+      "zh-Hant": "文人黨領導人",
+      "en": "Leader of the Civilista Party"
+     },
+     "period": {
+      "start": "1904-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "encyc-pardo",
+       "locator": "生平",
+       "quote": "José Pardo inherited the mantle of leadership of the Civilista Party in 1904",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:pardo-civilista-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；文人黨領導人。Encyclopedia.com（Peloso）只寫1904年接下領導地位，未寫何時卸任；El Peruano（C）、PDBA 未載。Britannica 被 Cloudflare 擋；DB~e 為 SPA 無內文；國會網站取不到相關頁。（加強重跑 2026-11-17：再查 Britannica 重試 403、PUCP 期刊 PDF 403／無全文、國會網站 404、通用搜尋，仍無 A/B 來源載明卸任日；缺迄日維持。）",
+     "checkedOn": "2026-11-17"
+    },
+    {
+     "target": "position:pardo-foreign-minister-1903",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；外交部長（卡內多政府）。El Peruano（審查改評 C）只寫「上任之初任命」，未給日期，亦未寫迄日；國會1904年總統咨文 PDF 取不到（404）。故未寫入 positions；任職本身亦只有 C 級來源，需 A／B 查證。外交部屬 T14 R3 四部之一，日期無法證明則為 R6，待補。",
+     "checkedOn": "2026-11-17"
+    },
+    {
+     "target": "field:head_of_state_terms_in_list",
+     "gapKind": "not_found",
+     "note": "兩段總統任期（1908-01-01～09-24、1915-09-24～1919-07-04）已在名單5442，不重建。第一任期 1908-01-01 之前的部分落在 1908–1945 時間窗外（Q4），只寫正文、不建候選（審查更正原註「在窗內」之說）；就任日 1904-09-24 只見於 El Peruano（C），正文改用 Encyclopedia（Peloso）與 PDBA 的年份。",
+     "checkedOn": "2026-11-17"
+    },
+    {
+     "target": "field:unverified_claims",
+     "gapKind": "not_found",
+     "note": "審查（2026-11-17）把 El Peruano 署名記者專欄改評 C，原據此寫入正文的事項改列待查證，需 A／B 來源：生日 1864-02-24 與米拉弗洛雷斯出生地、聖馬科斯大學學位與 1896 年取得律師資格、卡內多政府外交部長、卡爾德隆召集選舉、1904-09-24 就任、初等教育改由中央負責並義務免費、男子師範學校、與厄瓜多邊界條約、格勞號與玻利尼亞號巡洋艦、卸任後旅歐六年、獲選聖馬科斯校長後推辭、1919 年萊吉亞政變與全景監獄八天後驅逐、流亡比亞里茨 25 年、1944 年返國、逝於米拉弗洛雷斯。",
+     "candidateCitations": [
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "生平",
+       "quote": "nació el 24 de febrero de 1864 en el distrito de Miraflores",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "家世",
+       "quote": "Hijo de Manuel Pardo y Lavalle, primer presidente civil del Perú",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "學歷",
+       "quote": "doctor en Ciencias Políticas y Administrativas y se graduó de abogado (1896)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "Manuel Candamo ganó las elecciones de 1903",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "lo nombró ministro de Relaciones Exteriores",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "Candamo falleció al poco tiempo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "Serapio Calderón, el segundo vicepresidente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "quien enseguida convocó a elecciones",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "仕途",
+       "quote": "representando al Partido Civil, ganó la confrontación electoral",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "就任",
+       "quote": "Al ceñirse la banda presidencial, el 24 de setiembre de 1904",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "就任",
+       "quote": "Pardo tenía 40 años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "第一任期",
+       "quote": "la educación primaria devino en obligatoria y gratuita en toda la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "第一任期",
+       "quote": "se fundó la Escuela Nacional de Varones para la formación de docentes",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "第一任期",
+       "quote": "logró solucionar los conflictos fronterizos con Ecuador",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "第一任期",
+       "quote": "mediante la firma de un tratado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "第一任期",
+       "quote": "potenció la Marina con los cruceros Grau y Bolognesi",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "卸任後",
+       "quote": "viajó a Europa, donde residió seis años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "卸任後",
+       "quote": "fue elegido rector de la Universidad de San Marcos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "卸任後",
+       "quote": "cargo que declinó al verse ungido nuevamente presidente de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "政變",
+       "quote": "promovió un golpe de Estado antes de que finalizara el gobierno de Pardo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "政變",
+       "quote": "Este fue encerrado en el Panóptico y, luego de ocho días, deportado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "流亡",
+       "quote": "Su exilio lo pasó en Biarritz, Francia, donde permaneció 25 años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "歸國",
+       "quote": "En 1944, reclamado por un importante movimiento de opinión, regresó al país",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elperuano-pardo",
+       "locator": "逝世",
+       "quote": "el 3 de agosto de 1947, falleció en el distrito de Miraflores",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-17"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查把 El Peruano 改評 C 後，只剩 Encyclopedia of Latin American History and Culture（Peloso，B）與 PDBA（B）支撐，現 4 段、約 221 字。研究者已查來源類型：具名百科（Britannica 403）、國家級辭典（DB~e SPA 無內文）、官方（國會網站首頁／404、國會咨文 PDF 404）、學術（PUCP 典藏 403／無全文）；retry 搜尋只針對文人黨職迄日，未針對擴充篇幅。",
+     "checkedOn": "2026-11-17"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "José Pardo y Barreda Britannica",
+     "url": "https://www.britannica.com/biography/Jose-Pardo-y-Barreda",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Real Academia de la Historia DB~e Pardo y Barreda",
+     "url": "https://dbe.rah.es/biografias/jose-pardo-y-barreda",
+     "result": "no_result",
+     "note": "SPA 外殼，無內文"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Congreso de la República Pardo y Barreda",
+     "url": "https://www.congreso.gob.pe/",
+     "result": "no_result",
+     "note": "首頁，無人物頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "José Pardo y Barreda presidente del Perú 1904 1908 1915 1919 biografía Partido Civil",
+     "url": null,
+     "result": "found_B",
+     "note": "檢索得 Encyclopedia.com、El Peruano、PDBA"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Pardo y Barreda, José (1864–1947) Encyclopedia of Latin American History and Culture",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/pardo-y-barreda-jose-1864-1947",
+     "result": "found_B",
+     "note": "curl 取得；Vincent Peloso 署名"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Diario Oficial El Peruano Perfiles José Pardo y Barreda",
+     "url": "https://elperuano.pe/noticia/64019-jose-pardo-y-barreda",
+     "result": "found_B",
+     "note": "curl 取得；Domingo Tamariz 署名"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Peru Chronology of Presidents PDBA",
+     "url": "https://pdba.georgetown.edu/Executive/Peru/pres.html",
+     "result": "found_B",
+     "note": "curl 取得；1904-1908、1915-1919"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Cancillería Perú ministros de Relaciones Exteriores Pardo 1903 Candamo",
+     "url": null,
+     "result": "no_result",
+     "note": "未得官方外交部長名單"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Congreso mensaje 1904 abril PDF",
+     "url": "https://www.congreso.gob.pe:443/Docs/participacion/museo/congreso/files/mensajes/1901-1920/files/mensaje-1904-abril.pdf",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "José Pardo y Barreda dbe.rah.es biografía presidente del Consejo de Ministros 1904",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索未回 DB~e 頁"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Pardo y Barreda jefe del Partido Civil hasta 1919 dejó la jefatura",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果無任何 A/B 來源載明卸任日；僅有索引性網頁"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Pardo y Barreda Partido Civil presidente del partido 1920 1921",
+     "url": null,
+     "result": "no_result",
+     "note": "同上；結果僅 Wikipedia 類索引與已用來源"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "PUCP 期刊文章 PDF",
+     "url": "https://repositorio.pucp.edu.pe/index/bitstream/handle/123456789/114264/11146-Texto%20del%20art%C3%ADculo-44273-1-10-20141210.pdf?sequence=2",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "PUCP 期刊文章 PDF 2",
+     "url": "https://repositorio.pucp.edu.pe/index/bitstream/handle/123456789/114469/9556-Texto%20del%20art%C3%ADculo-37791-1-10-20140721.pdf?sequence=2",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "PUCP bitstream 下載",
+     "url": "https://repositorio.pucp.edu.pe/bitstreams/7645a78f-3036-499e-9c6d-10e068a65f5e/download",
+     "result": "no_result",
+     "note": "回傳 7KB 網頁殼，無全文"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "PUCP bitstream 下載 2",
+     "url": "https://repositorio.pucp.edu.pe/bitstreams/8ac14c9e-1964-4f43-baeb-01725d32806d/download",
+     "result": "no_result",
+     "note": "回傳 7KB 網頁殼，無全文"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Congreso museo 文件",
+     "url": "https://www.congreso.gob.pe/Docs/participacion/museo/congreso/files/files/juan_pardo_b.pdf",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica 重試",
+     "url": "https://www.britannica.com/biography/Jose-Pardo-y-Barreda",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "buscabiografias",
+     "url": "https://www.buscabiografias.com/biografia/verDetalle/10569/Jose%20Pardo%20y%20Barreda",
+     "result": "unrated",
+     "note": "無署名私人網站，不可當出處"
+    }
+   ]
+  }
+ ]
+}

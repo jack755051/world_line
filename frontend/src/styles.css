@@ -54,6 +54,23 @@
 @keyframes wl-toast-in-top { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 @keyframes wl-toast-in-bottom { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
+/* 全畫面載入蒙版（Tai 2026-11-02）：半透明遮罩＋置中「載入中」，擋住操作（pointer-events: auto）；
+   淡入出現、資料就緒後淡出，減少動態時直接出現／消失 */
+@keyframes wl-scrim-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes wl-scrim-out { from { opacity: 1; } to { opacity: 0; } }
+.wl-map-scrim {
+  background: color-mix(in srgb, var(--wl-color-on-surface) 24%, transparent);
+  animation: wl-scrim-in 180ms ease-out;
+}
+.wl-map-scrim.wl-scrim-hiding {
+  animation: wl-scrim-out 200ms ease-in forwards;
+  pointer-events: none; /* 淡出期間不再擋住操作 */
+}
+@media (prefers-reduced-motion: reduce) {
+  .wl-map-scrim          { animation: none; }
+  .wl-map-scrim.wl-scrim-hiding { animation: none; }
+}
+
 html,
 body {
   height: 100%;
@@ -74,3 +91,17 @@ body {
 
 /* MapLibre 版權標示改用紙色 */
 .maplibregl-ctrl-attrib { background: rgba(250, 247, 240, 0.85) !important; font-size: 10px; }
+/* 出處文字讓開左下 ⓘ 圖例按鈕（§10-3：距左 12px、寬 40px，再留 12px） */
+.maplibregl-ctrl-bottom-right { left: 64px; }
+
+/* §13 K1：衝突小卡用 MapLibre Popup 錨定；卡片自己有紙色底與陰影 */
+.wl-conflict-popup .maplibregl-popup-content { padding: 0; background: transparent; box-shadow: none; }
+.wl-conflict-popup .maplibregl-popup-tip { border-top-color: var(--wl-surface, #fffaf0); border-bottom-color: var(--wl-surface, #fffaf0); }
+
+/* §13 比例尺：公里、2px 線、#5a5146、11px serif、半透明紙色底 */
+.maplibregl-ctrl-scale.wl-scale {
+  position: absolute; z-index: 20; margin: 0; pointer-events: none;
+  border: 2px solid #5a5146; border-top: none; color: #5a5146;
+  font: 11px/1.2 var(--wl-font-serif, serif); background: rgba(255, 250, 240, .8);
+  border-radius: 0 0 4px 4px; padding: 2px 6px; box-sizing: content-box;
+}

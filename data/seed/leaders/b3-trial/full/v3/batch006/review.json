@@ -1,0 +1,92 @@
+{
+ "batch": "006",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 4,
+  "addedCitations": 18,
+  "editedSentences": 7,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "no-haakon-vii",
+   "bioId": "01a1b4af-e4c4-7b77-902a-f3ab6333bdeb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 0,
+   "searchLogSteps": 7,
+   "changes": [
+    "第1段補引文1筆（1905 年解除與瑞典聯盟，lex）",
+    "第2段：銅供應引文原截在介系詞 om，改為完整片段並另補「om kobberleverancer」；補「etter valgseieren høsten 1927」（選舉獲勝）與「skabt et tillidsforhold」（信任發揮作用）",
+    "第3段：Bräuer 引文改為含日期「Næste dag 10.4.」並另補「udnævnes til regeringschef」；補哈馬爾、尼貝格松轟炸引文；特羅姆瑟引文擴為含 Tromsø 的完整片段",
+    "第4段補引文3筆（議長團受德方施壓、放棄憲法職權、奧斯陸熱烈歡迎）",
+    "候選角色 exile-head-of-state 起日 evidenceNote 改寫為「依名簿前一段任期迄日接續（推論）」；迄日依名簿下一任起日（Q7）保留",
+    "抽查重抓 lex-haakon 原文，引文相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "br-vargas",
+   "bioId": "1b13259b-f739-4d2e-b0a7-693a20e1412f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 32,
+   "changes": [
+    "第1段：刪研究者自加的因果「因此」（GND／百科作 1883 並非因改年）；補「fato somente descoberto…centenário」；年少時、Borges de Medeiros 引文改為完整片段",
+    "第2段：補議員團為共和黨籍（bancada republicana gaúcha）、主要推動貨幣改革、匯率穩定基金、1927 年 11 月當選州長 4 筆引文；「因當選州長而卸任」的因果改為時間先後敘述",
+    "第3段：刪無引文子句「也與反對派建立了較緩和的關係」（原文該事屬聯邦議員時期）",
+    "rs-assembly-1909-prr：evidenceNote 刪未抓原文的參議院頁說法",
+    "舊 check-min 報告為過期檔，重跑後達標",
+    "抽查重抓 mprs-vargas 與 CPDOC PDF，引文相符"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "hn-carias",
+   "bioId": "01a1b4af-e4d3-7ad2-9ffc-12ef64db0a69",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 12,
+   "changes": [
+    "unah-carias 由 B 降為 C：系網文章據 1985 年學士學位論文改寫，非具名學者研究或學術出版；其 4 筆引文移入新 gap paragraph:cariato 的 candidateCitations",
+    "第3段刪據 UNAH 寫的子句（1933-02-01 掌權起日、1936 年反對勢力幾被消滅與「囚禁、流放、掩埋」、1944-07-04 抗議集會遭鎮壓），period 改為 1932-01-01（year）～1948-12-31（day）",
+    "第3段 Gálvez 引文改為含全名 Gálvez Durón 的片段",
+    "第1段「開夜校」改為「授夜間課程」（原文為 taught night classes）",
+    "第2段補引文3筆（國會無法解決僵局、美國調停下的選舉、支持者要求起事）",
+    "抽查重抓 ec-carias 原文，引文相符"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引一句的前半，句中其餘子句（地點、因果、受詞）沒有引文；本批補 18 筆，均取自已抓原文並逐字核對",
+  "研究者在段落中自加因果連接詞（因此、因當選），審查改為原文的時間敘述",
+  "snl-haakon 網址為 nbl.snl.no（Norsk biografisk leksikon），題名寫 Store norske leksikon，評 B 屬保守，未改",
+  "Vargas 正文提及 1917 年起任州議會 PRR 領袖、1924 年起任聯邦眾議院共和黨籍南大河州議員團領袖（屬黨職），但研究檔未建候選、原文也沒有起迄日；審查不新增，留待下一輪查任期後補 R1 候選",
+  "finance-minister 為 R6（roleGap=regime），因本輪不連庫、regimeId 未查"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

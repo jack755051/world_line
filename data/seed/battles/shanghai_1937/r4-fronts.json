@@ -1,0 +1,495 @@
+{
+ "schema": "battle-data/0.1 r4",
+ "rule": "地圖頂點只取留一 95 百分位 ≤ 門檻的圖；文字頂點一律推估",
+ "fronts": [
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "precision_m": null,
+   "date": "1937-09-14",
+   "dateNote": "mnd2017：中央軍與左翼軍「於9月14日前退守」",
+   "lineKey": "cn-front-1937-09-14",
+   "lineKind": "front",
+   "side": "allied",
+   "label": "國軍守勢線（瀏河鎮－羅店－蘊藻濱－江灣－北站）",
+   "vertices": [
+    {
+     "lonlat": [
+      121.27216,
+      31.51654
+     ],
+     "px": null,
+     "nearPlace": "瀏河鎮",
+     "osm": {
+      "type": "node",
+      "id": 244083523
+     },
+     "vertexNote": "取 OSM 鎮 place 節點"
+    },
+    {
+     "lonlat": [
+      121.35117,
+      31.39689
+     ],
+     "px": null,
+     "nearPlace": "羅店",
+     "osm": {
+      "type": "node",
+      "id": 2684932953
+     },
+     "vertexNote": "取 OSM 鎮 place 節點"
+    },
+    {
+     "lonlat": [
+      121.47503,
+      31.30159
+     ],
+     "px": null,
+     "nearPlace": "江灣",
+     "osm": {
+      "type": "node",
+      "id": 5262125930
+     },
+     "vertexNote": "取 OSM quarter 節點（江灣舊鎮）"
+    }
+   ],
+   "method": "文字頂點：只取原文點名之城鎮；蘊藻濱（河）與北站（車站，1937 站址與今不同）未作頂點",
+   "precisionNote": "城鎮中心代替線位，誤差可達數公里；蘊藻濱段與北站端未數位化",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "團軍(左翼軍)於9月14日前退守瀏河鎮－羅",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "店－蘊藻濱－江灣－北站之線。日軍自14日",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "frus1937v03-d590",
+     "locator": "FRUS 1937, The Far East, Vol. III, Doc. 590（Gauss 致國務卿電 No. 708，1937-09-14）",
+     "quote": "orderly Chinese withdrawal to a line running from Lotien southeast",
+     "quoteLang": "en",
+     "url": "https://history.state.gov/historicaldocuments/frus1937v03/d590",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "frus1937v03-d590",
+     "locator": "FRUS 1937, The Far East, Vol. III, Doc. 590（Gauss 致國務卿電 No. 708，1937-09-14）",
+     "quote": "in a fairly straight line to the North Station in Chapei",
+     "quoteLang": "en",
+     "url": "https://history.state.gov/historicaldocuments/frus1937v03/d590",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "mnd2017 雙欄 PDF，兩行屬同一欄相鄰行；FRUS 9/14 電只載羅店—北站段（未提瀏河），與 mnd2017 同線之南段一致",
+   "confidence": {
+    "level": "needs-check",
+    "why": "2 個獨立 A/B 來源家族（tw-roc、us-frus）；位置／線形為推估",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc",
+     "us-frus"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "precision_m": null,
+   "date": "1937-11-05",
+   "dateNote": "mnd2017：「至11月5日雙方對峙於」",
+   "lineKey": "cn-jp-front-1937-11-05",
+   "lineKind": "front",
+   "side": "allied|axis",
+   "label": "雙方對峙線（瀏河鎮－羅店西方－蘇州河左岸至南站）",
+   "vertices": [
+    {
+     "lonlat": [
+      121.27216,
+      31.51654
+     ],
+     "px": null,
+     "nearPlace": "瀏河鎮",
+     "osm": {
+      "type": "node",
+      "id": 244083523
+     },
+     "vertexNote": "取 OSM 鎮 place 節點"
+    },
+    {
+     "lonlat": [
+      121.35117,
+      31.39689
+     ],
+     "px": null,
+     "nearPlace": "羅店西方",
+     "osm": {
+      "type": "node",
+      "id": 2684932953
+     },
+     "vertexNote": "原文羅店「西方」；取羅店鎮節點，實際線位在其西"
+    }
+   ],
+   "method": "文字頂點：只取原文點名之城鎮；蘇州河左岸（河）與南站（車站）未作頂點",
+   "precisionNote": "只覆蓋北端一小段；羅店西方偏移未量化",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "11月5日雙方對峙於瀏河鎮－羅店西方－蘇",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "州河左岸至南站之線",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "瀏河鎮－羅店北方－蘇州河左岸至南站轉移",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "同文前句：10/22 反擊失利後中央與左翼軍向「瀏河鎮－羅店北方－蘇州河左岸至南站」轉移（日期未明），與 11/5 線幾同",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "precision_m": null,
+   "date": "1937-11-19",
+   "dateNote": "JM-179：on 19 November；mnd2017：19日",
+   "lineKey": "jp-advance-1937-11-19",
+   "lineKind": "front",
+   "side": "axis",
+   "label": "日軍追擊抵達線（常熟－蘇州－嘉興）",
+   "vertices": [
+    {
+     "lonlat": [
+      120.74808,
+      31.6573
+     ],
+     "px": null,
+     "nearPlace": "Changshu／常熟",
+     "osm": {
+      "type": "node",
+      "id": 244084671
+     },
+     "vertexNote": "取 OSM 城市 admin_centre 節點"
+    },
+    {
+     "lonlat": [
+      120.62129,
+      31.31112
+     ],
+     "px": null,
+     "nearPlace": "Suchou／吳縣",
+     "osm": {
+      "type": "node",
+      "id": 244084673
+     },
+     "vertexNote": "取 OSM 城市 admin_centre 節點"
+    },
+    {
+     "lonlat": [
+      120.7511,
+      30.74744
+     ],
+     "px": null,
+     "nearPlace": "Chiahsing／嘉興",
+     "osm": {
+      "type": "node",
+      "id": 6442736456
+     },
+     "vertexNote": "取 OSM 城市 admin_centre 節點"
+    }
+   ],
+   "method": "文字頂點：原文點名三城（OSM 城市中心）",
+   "precisionNote": "城市中心代替線位；抵達線為先頭部隊位置，非連續戰線",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "advanced to the line connecting Cba~ahu, Suchou and ClUAhai!lg",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "on 19 ~ovEmber",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "常熟、吳興、嘉興之線(達日軍大本營原定",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 18 頁",
+     "quote": "追擊，先頭已進抵至常熟-吳縣-嘉興之線，",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "mnd2017 兩處中段一作吳興、一作吳縣；採吳縣（＝蘇州，與 JM 一致）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）；位置／線形為推估",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "precision_m": null,
+   "date": "1937-11-24",
+   "dateNote": "JM-179：on the 24th",
+   "lineKey": "jp-pursuit-boundary-1937-11-24",
+   "lineKind": "boundary",
+   "side": "axis",
+   "label": "日軍追擊界線延伸（青陽鎮－無錫－吳興）",
+   "vertices": [
+    {
+     "lonlat": [
+      120.27093,
+      31.76523
+     ],
+     "px": null,
+     "nearPlace": "Chingyangchen／青陽鎮",
+     "osm": {
+      "type": "node",
+      "id": 244084581
+     },
+     "vertexNote": "取 OSM 鎮 admin_centre 節點（江陰青陽）"
+    },
+    {
+     "lonlat": [
+      120.29528,
+      31.57766
+     ],
+     "px": null,
+     "nearPlace": "Wuhsi／無錫",
+     "osm": {
+      "type": "node",
+      "id": 3073512713
+     },
+     "vertexNote": "取 OSM 城市 label 節點"
+    },
+    {
+     "lonlat": [
+      120.08511,
+      30.8943
+     ],
+     "px": null,
+     "nearPlace": "Wuhsing／吳興",
+     "osm": {
+      "type": "node",
+      "id": 3822785671
+     },
+     "vertexNote": "取 OSM 湖州 admin_centre 節點"
+    }
+   ],
+   "method": "文字頂點：原文點名三地（OSM 中心）",
+   "precisionNote": "作戰界線（大本營追擊限制線），非戰線",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "Hence, on the 24th, the pursuit boundary was · extended to",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 19 頁",
+     "quote": "the line connect:ing Chingyangchen, Wubsi and Wuhsing.",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（jp-monographs）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ],
+ "excludedMaps": [
+  {
+   "mapKey": "jm179-map1",
+   "loo_p95_km": 17.95,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "mnd2017-fig4",
+   "loo_p95_km": 2.36,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "mnd2017-fig5",
+   "loo_p95_km": 3.12,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  }
+ ],
+ "gapsByDate": [
+  {
+   "date": "1937-08-13",
+   "reason": "開戰日：國軍圍攻虹口、楊樹浦日軍據點（市區），出處只有據點名（八字橋、持志大學等設施），無可作頂點之城鎮"
+  },
+  {
+   "date": "1937-08-23",
+   "reason": "日軍吳淞、川沙口登陸日：只有登陸點，無連續戰線文字"
+  },
+  {
+   "date": "1937-10-01",
+   "reason": "mnd2017：左翼退守「楊涇河西岸－陳家行－蘊藻濱之線」，三者為河流與村宅級地名，依規則不作頂點"
+  },
+  {
+   "date": "1937-11-13",
+   "reason": "白茆口登陸日：只有登陸點"
+  },
+  {
+   "date": "1937-11-24",
+   "reason": "當日只有日軍追擊界線（boundary，已收文字頂點），無戰線"
+  },
+  {
+   "date": "1937-11-26",
+   "reason": "主期止日（吳興失陷）：出處無當日戰線"
+  }
+ ]
+}

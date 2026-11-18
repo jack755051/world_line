@@ -1,0 +1,86 @@
+{
+ "batch": "003",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-major-v2",
+ "round": "retry-review",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 0,
+  "editedSentences": 2,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "jp-tojo-hideki",
+   "bioId": "62241525-b2f1-4931-bfb3-30ecf9dd3094",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 10,
+   "roleCandidates": 0,
+   "gaps": 8,
+   "searchLogSteps": 39,
+   "changes": [
+    "新增來源 nids-siryo36、kantei-041、da-shosho-s16 引文逐字核對原文一致；重抓 NIDS siryo_36 頁比對一致",
+    "陸相、軍需相迄日 1944-07-22 依小磯內閣名簿下一任（杉山元、藤原銀次郎）起日推論，evidenceNote 標推論，符合 Q7，保留",
+    "5 筆只有起日的 positions（關東憲兵隊、關東軍參謀長、陸軍次官、航空總監、對滿事務局）皆有「待查證：缺迄日」gap；刪去 gap 內與現況矛盾的「故未建職位」字句",
+    "tojo-aviation-inspector 加 t14Ambiguous：航空總監是否屬 R4 軍種總司令存疑，暫留 R6",
+    "加強規格：sourceType 5 類（含 treaty_law）、39 筆 searchLog、實抓頁 ≥6、A／B ≥3，指定來源均已查"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-chiang-kai-shek",
+   "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
+   "verdict": "pass",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 10,
+   "searchLogSteps": 35,
+   "changes": [
+    "行政院歷任院長表 5 段任期引文逐筆核對原文一致，與 5442 相同；只寫入段落、不重建（庫已有）；重抓 ey.gov.tw 比對一致",
+    "總裁 roleCandidate（R1、de_facto_leader、Tai 12:12）起日 1938-04-01 由王良卿論文兩段引文＋附注支撐，B 評等合理；缺迄日有 gap",
+    "加強規格：sourceType 5 類（treaty_law 一筆查無）、35 筆、A／B 3 個（國史館、行政院 A；王良卿 B）",
+    "未修改；黃埔校長、國民革命軍總司令、軍委會委員長仍只在 gaps（未建 start-only position），與東條作法不一致，請主 session 裁定是否補建"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ru-lenin",
+   "bioId": "01a1b492-3ee1-75ee-8fc7-306c07a85a65",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 36,
+   "changes": [
+    "化名年份 LeMO 1900 vs HLS 1901 為兩合格來源衝突：自第2段刪「並從此使用列寧為化名」子句（中英）及 LeMO 引文，移入 conflict gap 候選",
+    "兩筆 field:lenin_ussr_sovnarkom_dates gap 合併為一筆",
+    "HLS（A）、SNL（B）引文核對一致；重抓 HLS 條目比對一致；MSU、Hrvatska enciklopedija 為 C 只在 gap 候選，正確",
+    "加強規格：sourceType 5 類、36 筆、A／B 4 個；БРЭ、prlib node、1914-1918-online 被擋未繞過，有記錄"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "東條、蔣 check_min 未達僅因職位缺迄日（已標待查證）；非篇幅問題",
+  "缺迄日職位：東條建 start-only position，蔣仍只寫 gap，批內不一致，請主 session 裁定",
+  "庫值差異仍待主 session：列寧 СНК 起日（A 來源 11-07 vs 5442 11-08，支持 11-08 者僅 C）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

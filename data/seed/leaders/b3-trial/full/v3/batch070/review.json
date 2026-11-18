@@ -1,0 +1,17 @@
+{
+ "batch": "070", "reviewedOn": "2026-11-17", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 9, "editedSentences": 4, "spotRefetched": 3, "searchLogShort": 0},
+ "people": [
+  {"key": "nl-cort-van-der-linden", "bioId": "01a1b4c0-2f69-7df2-983c-0d454a7e2c71", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 7, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 6,
+   "changes": ["段1：「在海牙」無引文支撐，從中英文刪除；「始終不是政黨人物」改為「始終與政黨政治保持一段距離」（照 BWN terzijde 原意）；萊頓學位引文擴為含 Leiden 的完整片段；補 BWN『staathuishoudkunde in Groningen』引文支撐學科", "段2：刪無引文支撐的子句「出任內閣職務為止」", "段4：補 Parlement.com『over de vastgelopen formatie』引文（原引文截在受詞前）", "position linden-interior-minister：補 BWN 明寫任內政大臣的引文；t14Reason 原寫 BWN 引文支撐內政部屬誤，改寫（仍 R6，roleGap=regime）", "抽查重抓 Parlement.com：職位表日期一致"],
+   "returnedReasons": []},
+  {"key": "at-seipel", "bioId": "01a1b4c0-2f6f-790c-bf2d-a2848d1295b8", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 3, "roleCandidates": 4, "gaps": 4, "searchLogSteps": 6,
+   "changes": ["段3：國聯貸款引文 datePrecision=year 但引文無日期（違 Q8），改為含『den Haushalt zu sanieren』片段且 datePrecision=null；補 NDB『1922, während seiner ersten Kanzlerschaft』支撐『同年』", "段4：補 NDB『Bürgerblock … unter seiner Führung』引文；總統候選引文原截掉謂語 unterstützt，改用 ÖBL『weigerte sich die Parteileitung im Herbst 1931 …』", "社會福利部長 organization 原寫『奧地利共和國政府』，與引文『letzten ksl. Ministerium』不符，改為帝國政府", "制憲國民議會席位 organization 改為 Constituent National Assembly", "生日 conflict gap：NDB 已抓頁未寫 19.7，改為只列議會頁", "抽查重抓議會頁：日期一致"],
+   "returnedReasons": []},
+  {"key": "ch-motta", "bioId": "01a1b4c0-2f7a-7550-9122-c9dbf6f853f9", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 4, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 8,
+   "changes": ["段2：Comtesse 引文 datePrecision=day 但無日期，改 null；補 HLS『La prima guerra mondiale …』支撐一戰子句", "段3：補 HLS『Eletto pres. della Conf. per il 1920』支撐當選聯邦主席", "段4：『納粹報刊』『全面中立』原只有 NDB『deutsche Presse』，補 HLS『stampa nazista』『neutralità totalitaria』兩筆引文", "motta-finance-dept 迄點 1920-01-01 改 1921-01-01（年精度依 Q3），evidenceNote 註明推論", "抽查重抓 HLS 義大利文版：引文一致"],
+   "returnedReasons": []}
+ ],
+ "issues": ["研究者多處引文截在受詞／謂語前、或子句（地點、政黨評語）無引文支撐；datePrecision 填在無日期引文上（Q8）", "Motta 大議會（以天主教保守派身分）與國民院席位缺迄日，研究者只寫 gap 未照『照寫 start＋gap』建檔；審查不新增事實，維持 gap", "Seipel 1928 年代理司法部（議會頁有列）未收，屬非四部短期代理，未補"],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

@@ -1,0 +1,83 @@
+{
+ "batch": "027",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 0,
+  "editedSentences": 1,
+  "spotRefetched": 3,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "bg-ferdinand-i",
+   "bioId": "01a1b4af-e512-7119-99f3-fa7b30658534",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "第 3 段中文「第一次巴爾幹戰爭中同盟國取得大勝」改為「各盟國」：NDB 原文為 die Verbündeten（巴爾幹同盟），避免與第 4 段「中央同盟國」混淆。",
+    "重抓 NDB（deutsche-biographie.de）與 GND（lobid.org）比對：8.10.1908、† 14.8.1948、dateOfDeath 1948-09-10 均與存檔一致；卒日 conflict gap（兩份 A 來源）成立。",
+    "名單推定「薄」，實查 NDB 全文（A）屬「中」；searchLog 10 步，達薄人物最低嘗試。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "py-ayala-eligio",
+   "bioId": "01a1aa4a-e5f0-7059-8a6c-3f793eb06588",
+   "verdict": "pass",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 22,
+   "changes": [
+    "逐句核對 Whigham 條目（B）引文與子句，無須修改；重抓 encyclopedia.com 條目比對一致。",
+    "兩筆財政部長任期 R6（cabinet_minister；dates、regime）判定正確，皆有「待查證：缺迄日」gap；議員、自由黨職務缺起日已記 gap，未建候選（來源未寫職稱與年份）。",
+    "check_min：任期 0+2 待查，有「篇幅不足：」gap 且 searchLog 有 round=retry（12 步），依 6c 不退回。searchLog 步 21–22 標 no_result 但實為未執行（WebSearch 額度用盡），記入 issues。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ec-baquerizo-moreno",
+   "bioId": "01a1b4b5-fa12-71b6-ac1b-4793f524ee01",
+   "verdict": "returned",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 8,
+   "changes": [
+    "內容逐句核對 Pineo 條目（B）無誤，未改；重抓 encyclopedia.com 條目比對一致。",
+    "瓜亞基爾市長、外交部長、參議員、參議院議長、副總統皆缺起日，已在 gaps；1931 臨時總統月份與名單 5442 不同記 field:term_1931（not_found，正確）。"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（研究者自評 thickness=薄）：實際執行查詢 7 次（step 7「Britannica／其他」註明未再嘗試），未達 ≥8 次；無 round=retry 加強搜尋。",
+    "建議下一個具體來源：Presidencia de la República del Ecuador／Asamblea Nacional 歷任總統頁（西文）、Biblioteca Nacional del Ecuador Eugenio Espejo 權威檔、Real Academia de la Historia DB~e 單筆頁 dbe.rah.es/biografias/…baquerizo-moreno、Britannica（Cloudflare 則記錄放棄）、Registro Oficial 1912／1916／1931 任命公告；外交部長、副總統、參議院議長任期起訖需官方或學術來源。"
+   ]
+  }
+ ],
+ "issues": [
+  "Encyclopedia.com 轉載的 Encyclopedia of Latin American History and Culture 具名條目為 Ayala、Baquerizo 唯一 B 來源，任期多只到年或無年份，R3／R6 門檻與起迄日普遍待查。",
+  "WebSearch 額度用盡導致部分 searchLog 步驟記為 no_result／not_relevant 但實際未執行；未執行的步驟不應計入最低嘗試。",
+  "research.json 在本審查開始前已有前一輪審查留下的修改（Ferdinand 卒日 conflict gap 與第 5 段迄點 1949-01-01＋year），本輪已核對成立並沿用。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

@@ -16,7 +16,21 @@ public static partial class RegimesEndpoints
     public static void Map(RouteGroupBuilder read, RouteGroupBuilder write)
     {
         read.MapGet("/regimes/{id:guid}", Get).WithTags("Regimes").WithName("GetRegime").Ok<RegimeDto>().Errors(404);
+        // 批次：前端換日期一次拉多個政權（避免 N 個逐一請求；ids 最多 200）。
+        read.MapGet("/regimes", GetBatch).WithTags("Regimes").WithName("GetRegimesBatch").Ok<RegimeDto[]>().Errors(400);
         write.MapPost("/regimes", Create).WithTags("Regimes").WithName("CreateRegime").RequiresApiKey().Created<RegimeDto>().Errors(400, 401, 409);
+    }
+
+    /// <summary>批次取政權（GET /regimes?ids=id1&amp;ids=id2…）：最多 200 筆；找不到的 id 靜默略過。</summary>
+    public static async Task<IResult> GetBatch([AsParameters] BatchIds q, WorldLineDbContext db, CancellationToken ct)
+    {
+        if (q.Ids is not { Length: > 0 } ids)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "ids 為必填。", "ids");
+        if (ids.Length > 200)
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "ids 最多 200 筆。", "ids");
+        var list = await db.Regimes.AsNoTracking().Include(x => x.Names)
+            .Where(x => ids.Contains(x.Id) && x.RetractedAt == null).ToListAsync(ct);
+        return ApiResults.Ok(list.Select(ToDto).ToArray());
     }
 
     public static async Task<IResult> Get(Guid id, WorldLineDbContext db, CancellationToken ct)
@@ -86,4 +100,11 @@ public static partial class RegimesEndpoints
             .Select(n => new RegimeNameDto(n.Id, n.NameKind, n.OriginalText, n.OriginalLang, Mapping.ReadLocalized(n.Display),
                 n.ObserverRegimeId, Mapping.ToDto(n.ValidPeriod), n.IsPrimary))
             .ToList());
+}
+
+/// <summary>GET /regimes?ids=… 的 query string 繫結。</summary>
+public sealed class BatchIds
+{
+    [Microsoft.AspNetCore.Mvc.FromQuery(Name = "ids")]
+    public Guid[]? Ids { get; set; }
 }

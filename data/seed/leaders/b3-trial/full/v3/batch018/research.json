@@ -1,0 +1,2441 @@
+{
+ "batch": "b3-full-v3-batch018",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）。regimeId 因不連庫無法查證一律 null＋organization，R3 類因此以 R6（roleGap=regime）留在 positions，依 batch001 先例。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch018/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "elysee-poincare": {
+   "title": "Raymond Poincaré（Les anciens présidents de la République）",
+   "authors": [],
+   "publisher": "Présidence de la République française（Élysée）",
+   "published_text": "Les anciens présidents de la République，年表；出處：Service des archives et de l'information documentaire de la Présidence de la République",
+   "url": "https://www.elysee.fr/la-presidence/raymond-poincare",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國總統府官方網站歷任總統頁，列任職起訖（官方頁）"
+  },
+  "af-poincare": {
+   "title": "Raymond POINCARÉ（Académie française，fauteuil 34）",
+   "authors": [],
+   "publisher": "Académie française",
+   "published_text": "Les immortels，傳記",
+   "url": "https://www.academie-francaise.fr/les-immortels/raymond-poincare",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法蘭西學術院官方網站院士傳記頁（官方頁）"
+  },
+  "emb-vincent": {
+   "title": "Chefs d'Etat haïtiens：Sténio Vincent (1930-1941)",
+   "authors": [],
+   "publisher": "Ambassade d'Haïti en France（海地駐法國大使館）",
+   "published_text": "Chefs d'Etat haïtiens 系列；參考書目：Oriol, Vilaire, Wieser, Chef d'Etat en Haïti, Gloire et misères, 1804-1986（FRID 與 Archives Nationales d'Haïti）",
+   "url": "https://ambassadehaiti-france.org/wp-content/uploads/2021/07/25.-Ste%CC%81nio-Vincent-1930-1941.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "海地政府駐外使館官方網站發布的歷任國家元首資料頁（官方頁），並列有書目出處"
+  },
+  "encyc-vincent": {
+   "title": "Vincent, Sténio Joseph (1874–1959)",
+   "authors": [
+    "Douglas R. Keberlein"
+   ],
+   "publisher": "Gale（經 Encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/vincent-stenio-joseph-1874-1959",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Douglas R. Keberlein）的學術參考百科條目；讀到的是 Encyclopedia.com 轉錄本，記 B（同 batch008 encla-ricardo）"
+  },
+  "defgouv-poincare": {
+   "title": "Raymond Poincaré（Président de la République française）",
+   "authors": [],
+   "publisher": "Ministère des Armées et des Anciens combattants（Chemins de mémoire）",
+   "published_text": "Personnalités，傳記",
+   "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-n-lettre-w/raymond-poincare",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國國防部（軍隊與退伍軍人部）官方網站人物傳記頁（官方頁）"
+  },
+  "lnb-ps251": {
+   "title": "Socialdemokratų santykis su Lietuvos (Valstybės) Taryba 1918 m.: nuo Vasario 16-osios Akto priėmimo iki Pirmojo pasaulinio karo pabaigos",
+   "authors": [
+    "Gintaras Mitrulevičius"
+   ],
+   "publisher": "Parlamento studijos 14 (2013)（Lietuvos nacionalinė Martyno Mažvydo biblioteka 期刊平台；作者任職 Mykolo Romerio universitetas）",
+   "published_text": "Parlamento studijos 14 | 2013, 學術論文",
+   "url": "https://journals.lnb.lt/parliamentary-studies/article/download/251/212/410",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者、大學政治學者的同行評審期刊論文（國會研究期刊），記 B"
+  },
+  "lnb-ps205": {
+   "title": "„Kova eina, ji eis iki Seimas bus sušauktas“: Mykolo Sleževičiaus požiūris į Lietuvos autoritarinį valdymą 1926–1940 m.",
+   "authors": [
+    "Mindaugas Tamošaitis"
+   ],
+   "publisher": "Parlamento studijos 17 (2014)（Lietuvos nacionalinė Martyno Mažvydo biblioteka 期刊平台；作者任職 Lietuvos edukologijos universitetas）",
+   "published_text": "Parlamento studijos 17 | 2014, 學術論文",
+   "url": "https://journals.lnb.lt/parliamentary-studies/article/download/205/170/329",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者、大學歷史學者的期刊論文（國會研究期刊），記 B"
+  },
+  "lituanus-eidintas": {
+   "title": "Book Review: Antanas Smetona and His Lithuania (Eidintas, Brill Rodopi 2015)",
+   "authors": [
+    "Robert A. Vitas"
+   ],
+   "publisher": "Lituanus: Lithuanian Quarterly Journal of Arts and Sciences（Lituanus Foundation）",
+   "published_text": "Vol. 63, No. 1, Spring 2017",
+   "url": "https://old.lituanus.org/2017/17_1_06BR2.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名評者（Robert A. Vitas）於學術期刊對 Eidintas 專書（Brill 出版）的書評，記 B"
+  },
+  "vle-smetona": {
+   "title": "Antanas Smetona",
+   "authors": [],
+   "publisher": "Visuotinė lietuvių enciklopedija（Mokslo ir enciklopedijų leidybos centras）",
+   "published_text": "VLE 線上條目",
+   "url": "https://www.vle.lt/straipsnis/antanas-smetona/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：條目頁未顯示作者（Autorius 欄空白），依 Q9 無具名作者條目只放 gap 候選"
+  }
+ },
+ "people": [
+  {
+   "key": "lt-smetona",
+   "bioId": "01a1b4b0-6fb0-74de-9782-9ddf646af24a",
+   "name": "Antanas Smetona",
+   "nameZh": "安塔納斯·斯梅托納",
+   "recordIds": [
+    "01a1aa4a-659b-73f3-95a6-f8eaefb595c3",
+    "01a1aa4a-659b-7e9f-856d-164312053281"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與教育",
+      "en": "Background"
+     },
+     "body": {
+      "zh-Hant": "據 Robert A. Vitas 為 Alfonsas Eidintas 傳記專書所寫的書評，斯梅托納出身寒微，卻憑教育機會投身民族主義與政治活動；他的信念在學生時期成形，並因此一度入沙皇的監獄，日後在總統任內才見成果，例如維陶塔斯大公五百週年紀念活動。",
+      "en": "According to Robert A. Vitas's review of Alfonsas Eidintas's biography, Smetona was born into modest means yet used his education to enter nationalist and political activism. His beliefs crystallized in his student years, which in time led to czarist prisons, and reached fruition while he was president, for example in the 500th anniversary commemorations of Vytautas the Great."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文首段",
+       "quote": "Smetona was born into modest means",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文首段",
+       "quote": "was able to parlay the opportunity for education into nationalist and political",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文首段",
+       "quote": "crystallized while a student (resulting in time in czarist prisons)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文首段",
+       "quote": "reached fruition while president",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文首段",
+       "quote": "500th anniversary commemorations of Vytautas the Great",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-07-11",
+      "end": "1918-07-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "立陶宛國家委員會主席與君主制提案",
+      "en": "Chairman of the Council and the monarchy proposal"
+     },
+     "body": {
+      "zh-Hant": "在立陶宛（國家）委員會中，斯梅托納任主席。1918年7月11日下午的會議上，他代表主席團提議立陶宛採立憲君主制，並選符騰堡公爵烏拉赫為立陶宛國王明道加斯二世；他與多數右派委員認為選王不必等制憲議會，委員會自己即可進行。他堅持會議延長，務必當日解決此案，並獲多數支持。",
+      "en": "On the Council of Lithuania, Smetona was chairman. At the afternoon sitting of 11 July 1918 he proposed, in the name of the presidium, a constitutional monarchy and the election of the Duke of Urach of Württemberg as King Mindaugas II. He and most right-wing members held that the Council itself could elect a king without waiting for a constituent assembly. He insisted that the sitting be prolonged to settle the question that same day, and a majority backed him."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "Mitrulevičius, IX sesija 1918-07-11 段",
+       "quote": "LT pirmininkas A. Smetona prezidiumo vardu pasiūlė",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同段",
+       "quote": "1918 m. liepos 11 d. popietiniame posėdyje",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同段",
+       "quote": "konstitucinės monarchijos valdymo formą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同段",
+       "quote": "Viurtembergo hercogą W. von Urachą išrinkti Lietuvos karaliumi Mindaugu II",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同論文，君主制論辯段",
+       "quote": "A. Smetona ir dauguma kitų dešiniųjų LT narių laikėsi nuomonės",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同論文，君主制論辯段",
+       "quote": "tai gali daryti ir LT",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps251",
+       "locator": "同論文，7月11日夜間表決段",
+       "quote": "A. Smetonai pareikalavus ir daugumai jį palaikius",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-12-17",
+      "end": "1940-06-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1926年政變與威權統治",
+      "en": "The 1926 coup and authoritarian rule"
+     },
+     "body": {
+      "zh-Hant": "1926年12月17日政變之後，立陶宛建立起威權統治：農民民粹黨與社會民主黨被逐出權力，總統斯梅托納掌權。塔莫沙伊蒂斯稱他為民族主義者領袖，說他是威權統治的主要建築師，而民族主義者聯盟（Lietuvių tautininkų sąjunga）受他節制。1929年秋他免去瓦爾德馬拉斯的職務；1940年6月15日蘇聯占領立陶宛，他被迫離開權力。",
+      "en": "After the coup of 17 December 1926 authoritarian rule took hold in Lithuania: the Peasant Populists and Social Democrats were pushed out of power and President Smetona took over. Tamošaitis calls him the leader of the nationalists and the chief architect of the authoritarian regime, and the Lithuanian Nationalist Union was subordinate to him. In autumn 1929 he removed Voldemaras from his posts; on 15 June 1940 the Soviet occupation of Lithuania forced him out of power."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "Tamošaitis, 摘要",
+       "quote": "po 1926 m. gruodžio 17 d. valstybės perversmo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "導論",
+       "quote": "iš valdžios buvo išstumti valstiečiai liaudininkai, socialdemokratai",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "導論",
+       "quote": "į valdžią atėjo Prezidentas Antanas Smetona",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "導論，1926年政變段",
+       "quote": "tautininkų lyderis Antanas Smetona",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "結論段",
+       "quote": "kuris ir buvo pagrindinis autoritarinės valdžios architektas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "摘要",
+       "quote": "Prezidentui Antanui Smetonai pavaldi Lietuvių tautininkų sąjunga",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "威權時期段",
+       "quote": "Prezidentas A. Smetona 1929 m. rudenį A. Voldemarą pašalino",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "導論",
+       "quote": "A. Smetona buvo priverstas pasitraukti iš valdžios",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lnb-ps205",
+       "locator": "導論",
+       "quote": "1940 m. birželio 15 d. Sovietų Sąjungos įvykdyta Lietuvos okupacija",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "信仰與評價",
+      "en": "Faith and assessment"
+     },
+     "body": {
+      "zh-Hant": "Vitas 的書評說，斯梅托納自認是虔誠忠實的天主教徒，也被描寫成一位重視秩序的人文主義者，一位拒絕法西斯主義的威權者；書評同時提到他與瓦爾德馬拉斯及其鐵狼準軍事組織的關係，以及1926年政變的後續。",
+      "en": "Vitas's review says Smetona considered himself a devout and faithful Catholic and describes him as a humanist who believed in order, an authoritarian who rejected fascism. It also treats his relationship with Voldemaras and the latter's Iron Wolf paramilitary organization, and the 1926 coup and its aftermath."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文",
+       "quote": "He considered himself a devout and faithful Catholic",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評結語",
+       "quote": "a humanist who also believed in order",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評結語",
+       "quote": "an authoritarian who rejected fascism",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文",
+       "quote": "the 1926 coup and its aftermath",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lituanus-eidintas",
+       "locator": "書評正文",
+       "quote": "Voldemaras, his arrogant personality and Iron Wolf paramilitary organization",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:smetona-tautininku-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Smetona 為立陶宛民族主義者聯盟（Lietuvių tautininkų sąjunga）領袖（黨職，應入 roleCandidates，de_facto_leader）。A／B 來源 Tamošaitis（Parlamento studijos 17）只稱「tautininkų lyderis」，無起迄日；唯一寫明「nuo 1924」的是 VLE 條目，但該條頁面無署名作者（Q9 未評等）。已查 lrp.lt（403）、Britannica（403）、LoC／VIAF（Cloudflare）、1914-1918-online（Anubis）、istorineprezidentura.lt（503）。迄日亦未見來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-smetona",
+       "locator": "Politinė veikla 段",
+       "quote": "nuo 1924 Lietuvių tautininkų sąjungos lyderis",
+       "quoteLang": "lt"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:smetona-seimas-1926",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；「1926–27 III Seimo atstovas」（第三屆議會議員）只見於 VLE 條目（無署名作者，Q9 未評等），B 級來源無起迄日；且來源未寫以何黨身分取得席位，不算黨職。",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-smetona",
+       "locator": "Politinė veikla 段",
+       "quote": "1926–27 III Seimo atstovas",
+       "quoteLang": "lt"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:smetona-klaipeda-1923",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；「1923 01–04 Lietuvos Respublikos Vyriausybės atstovas Klaipėdos kraštui」（1923年克萊佩達地區政府代表）只見於 VLE 條目（無署名作者，Q9），B 級來源未載。",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-smetona",
+       "locator": "Politinė veikla 段",
+       "quote": "1923 01–04 Lietuvos Respublikos Vyriausybės atstovas Klaipėdos kraštui",
+       "quoteLang": "lt"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Antanas Smetona VLE",
+     "url": "https://www.vle.lt/straipsnis/antanas-smetona/",
+     "result": "unrated",
+     "note": "已抓；頁面未顯示作者（WebFetch 也確認 Autorius 欄空白），依 Q9 只放 gap 候選"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "lrp.lt 總統府 Antanas Smetona",
+     "url": "https://www.lrp.lt/en/presidents-of-the-republic/antanas-smetona/",
+     "result": "blocked_403",
+     "note": "總統府頁 403，放棄"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "lrp.lt presidents of Lithuania Smetona",
+     "url": "https://lrp.lt/en/presidents-of-lithuania/antanas-smetona/",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Antanas Smetona",
+     "url": "https://www.britannica.com/biography/Antanas-Smetona",
+     "result": "blocked_403",
+     "note": "403，換同類來源"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Smetona, Antanas, 1874-1944",
+     "url": "https://id.loc.gov/authorities/names/label/Smetona,%20Antanas,%201874-1944",
+     "result": "challenge_page",
+     "note": "Cloudflare 驗證頁，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "VIAF Smetona, Antanas",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Smetona%2C%20Antanas%22",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Smetona Antanas",
+     "url": "https://encyclopedia.1914-1918-online.net/article/smetona-antanas/",
+     "result": "challenge_page",
+     "note": "Anubis 驗證頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "istorineprezidentura.lt 總統職位 1919–1940",
+     "url": "https://istorineprezidentura.lt/?p=8286",
+     "result": "no_result",
+     "note": "503，兩次皆同"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Lietuvos Taryba VLE 條目",
+     "url": "https://www.vle.lt/straipsnis/lietuvos-taryba/",
+     "result": "unrated",
+     "note": "已抓；同為 VLE，無署名；未採用"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "lrs.lt Seimas 議員頁（搜尋結果）",
+     "url": "https://www.lrs.lt/sip/portal.show?p_r=35299&p_k=2&p_t=270691",
+     "result": "not_relevant",
+     "note": "只是現屆議員頁，無歷史資料"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Lietuvos švietimo muziejus Smetona 150 周年",
+     "url": "https://www.lsim.lt/en/naujiena/siemet-minime-antano-smetonos-vasario-16-osios-akto-signataro-ir-pirmojo-lietuvos-respublikos-prezidento-150-asias-gimimo-metines/",
+     "result": "unrated",
+     "note": "博物館新聞稿，無署名，內容與 VLE 重疊；未採用"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Tamošaitis Parlamento studijos 17 Sleževičius autoritarinis valdymas 1926–1940",
+     "url": "https://journals.lnb.lt/parliamentary-studies/article/download/205/170/329",
+     "result": "found_B",
+     "note": "具名大學學者，期刊論文；用於 1926–1940 威權統治"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "Mitrulevičius Parlamento studijos 14 Lietuvos Taryba 1918",
+     "url": "https://journals.lnb.lt/parliamentary-studies/article/download/251/212/410",
+     "result": "found_B",
+     "note": "具名大學學者，期刊論文；用於 1918 年委員會主席與君主制提案"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "Vaišnys Parlamento studijos (Laisvės kovos sąjūdžio)",
+     "url": "https://journals.lnb.lt/parliamentary-studies/article/download/410/365/705",
+     "result": "not_relevant",
+     "note": "與 Smetona 無關（只出現 3 次）"
+    },
+    {
+     "step": 15,
+     "sourceType": "academic",
+     "query": "Vitas review Eidintas Antanas Smetona and His Lithuania (Lituanus)",
+     "url": "https://old.lituanus.org/2017/17_1_06BR2.html",
+     "result": "found_B",
+     "note": "具名評者，期刊書評"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "WebSearch：Antanas Smetona first president 1919 1926 coup biography",
+     "url": null,
+     "result": "no_result",
+     "note": "結果只有 Wikipedia 類、Britannica、1914-1918-online（擋）及 AI 仿站，未採"
+    },
+    {
+     "step": 17,
+     "sourceType": "other",
+     "query": "WebSearch：Antanas Smetona Lietuvos Respublikos Prezidentas biografija Valstybės Tarybos pirmininkas 1918",
+     "url": null,
+     "result": "no_result",
+     "note": "同上；找到 VLE 與 Parlamento studijos"
+    },
+    {
+     "step": 18,
+     "sourceType": "other",
+     "query": "WebSearch：Vasario 16-osios Akto signataras Antanas Smetona Lietuvos Tarybos pirmininkas",
+     "url": null,
+     "result": "no_result",
+     "note": "找到 VLE 與期刊，無 lrs.lt 官方頁"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "WebSearch：Lietuvos Respublikos prezidentas Antanas Smetona 1926 gruodžio 19 išrinktas",
+     "url": null,
+     "result": "no_result",
+     "note": "同上"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "WebSearch：Smetona Antanas Visuotinė lietuvių enciklopedija autorius",
+     "url": null,
+     "result": "no_result",
+     "note": "查不出 VLE 條目作者"
+    }
+   ]
+  },
+  {
+   "key": "ht-vincent",
+   "bioId": "01a1b488-14ab-7c0d-ac90-6de4edf3f6a2",
+   "name": "Sténio Joseph Vincent",
+   "nameZh": "斯泰尼奧·文森",
+   "recordIds": [
+    "f07b3b6b-d332-47b2-8bc8-11067f8c3bb9",
+    "e89e24e8-7242-4a26-aff0-89d0f211235c"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1904-01-01",
+      "end": "1930-02-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與早年經歷",
+      "en": "Early life and career"
+     },
+     "body": {
+      "zh-Hant": "文森出生於太子港，畢業於太子港法學院，並取得巴黎法學與政治學博士。他曾任巴黎、柏林的公使館秘書，1912至1916年間擔任多項外交職務；也曾任太子港市議員、後任市長，期間在1904至1908年之間。1917年他出任被解散的參議院議長，其後重操律師業，並與薩農、托比共創愛國聯盟。1930年1月他創辦《海地日報》，作為競選的利器。",
+      "en": "Vincent was born in Port-au-Prince, graduated from the Port-au-Prince law school and took a doctorate in law and political science in Paris. He was legation secretary in Paris and Berlin and held various diplomatic posts between 1912 and 1916. He served as councillor and then mayor of Port-au-Prince between 1904 and 1908. In 1917 he was president of the dispersed Senate, then returned to the bar and, with Sannon and Thoby, founded the Patriotic Union. In January 1930 he founded Haïti Journal as the vehicle of his campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Né à Port-au-Prince, Sténio Vincent est lauréat de l’Ecole de droit",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "docteur en droit et sciences politiques de Paris",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Secrétaire de légation à Paris puis à Berlin",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "il occupe divers postes diplomatiques entre 1912 et 1916",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "conseiller puis maire de Port-au-Prince entre 1904 et 1908",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Il est président du Sénat dispersé en 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Il reprend sa carrière d’avocat",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "crée, avec Horace Pauléus Sannon et Perceval Thoby, l’Union Patriotique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "En janvier 1930, il fonde Haïti Journal, fer de lance de la campagne électorale",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1930-11-01",
+      "end": "1935-06-03"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1930年當選總統",
+      "en": "Election as president in 1930"
+     },
+     "body": {
+      "zh-Hant": "1930年11月，文森由國民議會選為總統；使館資料說他在第四輪投票以30票對19票勝過最接近的對手西穆爾·普拉德爾，任期五年。Gale 的拉丁美洲百科條目也說他靠反對美國占領取得總統職位。1935年6月2日他再度當選，這次以普選方式，一部交付公民投票的憲法使總統任期自動延長五年。",
+      "en": "In November 1930 Vincent was elected president by the National Assembly; the embassy profile says he won on the fourth ballot, 30 votes to 19 over his nearest rival Seymour Pradel, for a five-year term. The Gale encyclopedia entry adds that he won the presidency on the strength of his opposition to the U.S. occupation. He was re-elected on 2 June 1935 by universal suffrage, and a constitution submitted to plebiscite automatically extended the presidential term by five years."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 首段",
+       "quote": "Vincent was elected president by the National Assembly in November 1930.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "Sténio Vincent est élu président d’Haïti pour cinq ans",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "au quatrième tour de scrutin",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "par 30 voix contre 19 à son compétiteur le plus proche, Seymour Pradel",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 首段",
+       "quote": "gained the presidency on the basis of his opposition to the U.S. occupation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "Il sera réélu le 2 juin 1935 au suffrage universel",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "une constitution soumise à plébiscite",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "prolonge automatiquement le mandat présidentiel de cinq ans",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1934-01-01",
+      "end": "1941-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "總統任內與去職",
+      "en": "Presidency and departure"
+     },
+     "body": {
+      "zh-Hant": "使館資料說他推動公共機構的海地化，1934年最後一批美軍離開海地；Gale 條目說他1934年訪美，說服羅斯福撤出海軍陸戰隊。1935年的再次變更被使館資料形容為毫不遮掩地建立獨裁；1937年多明尼加屠殺海地人時，他的反應被評為軟弱。1941年他不再謀求延長任期、平和退休，由其屬意的繼任者埃利·萊斯科當選，權力交接友好。",
+      "en": "The embassy profile says he orchestrated the Haitianisation of public institutions and that the last American contingent left in 1934; the Gale entry says that in 1934 he visited the United States and convinced Roosevelt to withdraw the Marines. The 1935 change is described by the embassy as installing dictatorship without complex, and his reaction to the 1937 Dominican massacre of Haitians is called weak. In 1941 he decided against another extension, retired peaceably, and his dauphin Élie Lescot was elected; the handover was cordial."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le mandat",
+       "quote": "il orchestre l’haïtianisation des institutions publiques",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Présentation",
+       "quote": "Départ du dernier contingent américain (1934)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 第二段",
+       "quote": "In 1934 Vincent visited the United States",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 第二段",
+       "quote": "convinced President Franklin D. Roosevelt to withdraw the U.S. Marines",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le mandat",
+       "quote": "Nouveau changement en 1935 pour instaurer sans complexe la dictature",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 末段",
+       "quote": "his weak reaction to the Dominican massacre of Haitians in 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 末段",
+       "quote": "In 1941 Vincent decided against having his term in office extended again",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 末段",
+       "quote": "instead retired peaceably",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le mandat",
+       "quote": "C’est son dauphin, Elie Lescot, qui est élu président.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le mandat",
+       "quote": "La transmission de pouvoir est cordiale.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Présentation",
+       "quote": "Novembre 1930 - mai 1941",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "vincent-mayor-port-au-prince",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "太子港市政府",
+      "en": "Municipality of Port-au-Prince"
+     },
+     "title": {
+      "orig": "conseiller puis maire de Port-au-Prince",
+      "zh-Hant": "太子港市議員、後任市長",
+      "en": "Councillor, then Mayor of Port-au-Prince"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1904-01-01",
+      "end": "1909-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "L’accession au pouvoir",
+       "quote": "conseiller puis maire de Port-au-Prince entre 1904 et 1908",
+       "quoteLang": "fr",
+       "evidenceNote": "來源只給「1904–1908 之間」；起迄依年精度取 1904-01-01 與 1909-01-01，涵蓋議員與市長兩階段",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "vincent-diplomat-1912-1916",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "海地外交部門",
+      "en": "Haitian diplomatic service"
+     },
+     "title": {
+      "orig": "divers postes diplomatiques",
+      "zh-Hant": "多項外交職務",
+      "en": "Various diplomatic posts"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1912-01-01",
+      "end": "1917-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "il occupe divers postes diplomatiques entre 1912 et 1916",
+       "quoteLang": "fr",
+       "evidenceNote": "年精度，迄日取下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "vincent-senate-president-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "海地參議院",
+      "en": "Senate of Haiti"
+     },
+     "title": {
+      "orig": "président du Sénat dispersé",
+      "zh-Hant": "被解散參議院的議長",
+      "en": "President of the dispersed Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1918-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Il est président du Sénat dispersé en 1917",
+       "quoteLang": "fr",
+       "evidenceNote": "年精度",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:vincent-interior-secretary",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；使館資料稱他曾任達爾蒂格納瓦（Dartiguenave）政府的內政國務秘書（Secrétaire d'Etat de l'Intérieur），後因抗議延長美海協定辭職，但未給任何日期。Gale 條目未提。已查：Britannica（403）、LoC 權威檔（Cloudflare）。（內政為 R3 四部之一，日期查得後可進 roleCandidates／R6 判斷。）",
+     "candidateCitations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Secrétaire d’Etat de l’Intérieur de Dartiguenave",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:vincent-nationalist-party",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Gale 條目稱他領導反干預的民族黨（Nationalist Party），黨職應入 roleCandidates（de_facto_leader），但來源未給任何起迄日。",
+     "candidateCitations": [
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 首段",
+       "quote": "Vincent headed both the anti-interventionist Nationalist Party",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:vincent-union-patriotique",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；使館資料稱他與薩農、托比創立愛國聯盟（Union Patriotique）並任其赴美代表，且當總統數月後即解散該聯盟，但均無起迄日；Gale 稱他領導該聯盟。是否算「政黨」亦待確認。",
+     "candidateCitations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Le profil personnel",
+       "quote": "Union Patriotique dont il sera le délégué aux Etats-Unis",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:head_of_state_term",
+     "gapKind": "not_found",
+     "note": "兩份已抓來源（使館資料、Gale 條目）皆寫他自1930年11月起任總統（使館：Novembre 1930 - mai 1941）；名單 5442 任期始於1934-08-01，與來源的1930年起日不同。非兩份來源互相矛盾，記為待查證：1930-11～1934-08 是否另有未入庫的任期紀錄，供審查。",
+     "candidateCitations": [
+      {
+       "sourceKey": "emb-vincent",
+       "locator": "Présentation",
+       "quote": "Novembre 1930 - mai 1941",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "encyc-vincent",
+       "locator": "Encyc. 首段",
+       "quote": "Vincent was elected president by the National Assembly in November 1930.",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "WebSearch：Sténio Vincent president of Haiti 1930-1941 biography Library of Congress country study",
+     "url": null,
+     "result": "no_result",
+     "note": "結果多為 Wikipedia 類與仿站；找到 Encyclopedia.com、使館 PDF、GlobalSecurity"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Vincent, Sténio Joseph (1874–1959) Encyclopedia of Latin American History and Culture",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/vincent-stenio-joseph-1874-1959",
+     "result": "found_B",
+     "note": "具名作者 Douglas R. Keberlein"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Chefs d'Etat haïtiens：Sténio Vincent 1930-1941（海地駐法大使館）",
+     "url": "https://ambassadehaiti-france.org/wp-content/uploads/2021/07/25.-Ste%CC%81nio-Vincent-1930-1941.pdf",
+     "result": "found_A",
+     "note": "官方（使館）頁，pdftotext 轉文字"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "GlobalSecurity 1934-1941 Sténio Vincent",
+     "url": "https://www.globalsecurity.org/military/world/haiti/history-12.htm",
+     "result": "unrated",
+     "note": "私人彙編網站，未採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Stenio Joseph Vincent",
+     "url": "https://www.britannica.com/place/Haiti/The-U-S-occupation-and-after",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "LoC Country Study Haiti（tile.loc.gov PDF）",
+     "url": "https://tile.loc.gov/storage-services/master/frd/frdcstdy/ha/haitidominicanr00hanr/haitidominicanr00hanr.pdf",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Vincent, Sténio, 1874-1959",
+     "url": "https://id.loc.gov/authorities/names/label/Vincent,%20St%C3%A9nio,%201874-1959",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "data.bnf.fr Vincent（誤取他人頁，不採）",
+     "url": "https://data.bnf.fr/fr/11923340/raymond_poincare/",
+     "result": "not_relevant",
+     "note": "BnF 試抓 Poincaré 頁而非 Vincent；未採"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "WebSearch：Sténio Vincent Haiti 原文姓名 Vincent Sténio Port-au-Prince président 1930",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果與第一次相同，未另得 A／B 來源"
+    }
+   ]
+  },
+  {
+   "key": "fr-poincare",
+   "bioId": "fd700a99-a8ac-4166-8fa5-43411fd03113",
+   "name": "Raymond Poincaré",
+   "nameZh": "雷蒙·普恩加萊",
+   "recordIds": [
+    "01a19eb7-afca-7b57-a23e-f7d714e2a6c5",
+    "01a19eb7-af17-7cce-8cc7-c8d727efe22f",
+    "01a1a20c-b910-787b-a522-e072721b388e",
+    "01a1a20c-b916-7b50-8d50-34b0a5dd82f6",
+    "01a1a20c-b9bb-7c13-8ac7-f8c3a44edb3b",
+    "01a1a20c-b9bf-745a-9ccf-37693f70eb32"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1860-08-20",
+      "end": "1903-02-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與早期政壇",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "普恩加萊1860年8月20日生於默茲省的巴勒迪克，1880年12月宣誓成為律師，1883年取得法學博士。1887年7月31日他當選默茲省科梅爾西的共和自由派眾議員，後來擔任公共教育部長與財政部長。他在國會專攻財政問題，巴拿馬醜聞時任財政委員會報告員；1903年2月22日當選默茲省參議員。",
+      "en": "Raymond Poincaré was born on 20 August 1860 at Bar-le-Duc (Meuse), swore the lawyer's oath in December 1880 and took his doctorate in law in 1883. On 31 July 1887 he was elected republican-liberal deputy for Commercy (Meuse) and later served as minister of public instruction and minister of finance. In Parliament he specialised in financial questions and was rapporteur of the finance committee during the Panama scandal; on 22 February 1903 he was elected senator for the Meuse."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "20 août 1860",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Naissance de Raymond, Nicolas, Landry Poincaré à Bar-le-Duc (Meuse)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "il prête le serment d'avocat en décembre 1880",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "obtint en 1883 le titre de docteur en droit",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "31 juillet 1887",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est élu député républicain libéral de Commercy (Meuse)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Ministre de l'Instruction publique, des Beaux-Arts et des Cultes",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Ministre des Finances",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "il se spécialisa au Parlement dans les questions financières",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "Rapporteur de la commission des finances au moment du scandale de Panama",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "22 février 1903",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est élu sénateur de la Meuse.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1909-03-18",
+      "end": "1920-02-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "學術院士、總理與總統",
+      "en": "Académie, premier and president"
+     },
+     "body": {
+      "zh-Hant": "1909年3月18日普恩加萊當選法蘭西學術院院士。1912年1月，他受法利埃之命組閣，自兼外交部長；到1913年1月20日為止同時任總理與外長。他隨後競選總統，1913年2月18日起任共和國總統至1920年2月18日。1914年8月4日他的咨文呼籲「神聖聯盟」，1916年10月13日他前往凡爾登頒授榮譽軍團十字勳章。",
+      "en": "Poincaré was elected to the Académie française on 18 March 1909. In January 1912 Armand Fallières called on him to form a government and he took the foreign affairs portfolio himself, serving as premier and foreign minister until 20 January 1913. He then ran for the presidency and was President of the Republic from 18 February 1913 to 18 February 1920. On 4 August 1914 his message called for the sacred union, and on 13 October 1916 he went to Verdun and presented the cross of the Légion d'honneur."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "Raymond Poincaré avait été élu à l’Académie française le 18 mars 1909",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "il posa sa candidature à la présidence de la République",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "il fut appelé par Armand Fallières à former le nouveau gouvernement",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "il prit pour lui-même le portefeuille des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "14 janvier 1912-20 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est président du conseil, ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "18 février 1913- 18 février 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Président de la République.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "4 août 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "message de Raymond Poincaré qui lance la formule de \"l'Union sacrée\"",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "dont rien ne brisera devant l'ennemi l'union sacrée",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "13 octobre 1916",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Poincaré se rend à Verdun et remet la croix de la Légion d'honneur",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1934-10-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "再度出任總理與法郎穩定",
+      "en": "Second premierships and the franc"
+     },
+     "body": {
+      "zh-Hant": "1922年1月至1924年6月，普恩加萊再度任總理兼外交部長，並下令法軍占領魯爾區以索取德國拒付的賠款。1924年6月左翼聯盟獲勝，導致他與總統米勒蘭辭職。1926年7月至1928年11月他又任總理兼財政部長，1928年6月25日國會通過確定「普恩加萊法郎」法定價值的法律。1929年7月27日他因健康辭職，1934年10月15日在巴黎去世。",
+      "en": "From January 1922 to June 1924 Poincaré was again premier and foreign minister, and ordered French troops to occupy the Ruhr to obtain the reparations Germany refused to pay. The victory of the Cartel des gauches in June 1924 brought the resignation of Poincaré and President Millerand. From July 1926 to November 1928 he was premier and finance minister, and on 25 June 1928 Parliament adopted the law fixing the legal value of the Poincaré franc. He resigned for health reasons on 27 July 1929 and died in Paris on 15 October 1934."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Janvier 1922- juin 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Président du conseil et ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Poincaré donne l'ordre aux troupes françaises d'occuper la Ruhr",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "pour obtenir de l'Allemagne les réparations de guerre qu’elle refuse de payer",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Juin 1924",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "La victoire du Cartel des gauches entraîne la démission de Poincaré",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "démission de Poincaré et du président Millerand",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Juillet 1926- novembre 1928",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Président du conseil, ministre des Finances",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "25 juin 1928",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Le Parlement adopte la loi qui fixe la valeur légale du franc Poincaré.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "27 juillet 1929",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il démissionne pour des raisons de santé",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "15 octobre 1934",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Raymond Poincaré s'éteint à Paris.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "poincare-senator-meuse",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院（默茲省）",
+      "en": "Senate of France (Meuse)"
+     },
+     "title": {
+      "orig": "sénateur de la Meuse",
+      "zh-Hant": "默茲省參議員（第一任）",
+      "en": "Senator for the Meuse (first term)"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1903-02-22",
+      "end": "1914-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "22 février 1903",
+       "quoteLang": "fr",
+       "evidenceNote": "當選日當作任期起日（年表只寫當選，推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est élu sénateur de la Meuse.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "defgouv-poincare",
+       "locator": "傳記第4段",
+       "quote": "Sénateur de la Meuse de 1903 à 1913",
+       "quoteLang": "fr",
+       "evidenceNote": "迄日年精度，取下一年起日；實際1913-02任總統後離任（推論，未寫入）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "poincare-reparations-commission-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "賠款委員會",
+      "en": "Reparations Commission"
+     },
+     "title": {
+      "orig": "président de la commission des réparations",
+      "zh-Hant": "賠款委員會主席",
+      "en": "Chairman of the Reparations Commission"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1920-02-01",
+      "end": "1920-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "defgouv-poincare",
+       "locator": "傳記第7段",
+       "quote": "président de la commission des réparations de février à mai 1920",
+       "quoteLang": "fr",
+       "evidenceNote": "月精度，迄日取下一個月起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "poincare-academie-francaise",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法蘭西學術院",
+      "en": "Académie française"
+     },
+     "title": {
+      "orig": "élu à l’Académie française（fauteuil 34）",
+      "zh-Hant": "法蘭西學術院院士（第34席）",
+      "en": "Member of the Académie française (seat 34)"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1909-03-18",
+      "end": "1934-10-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "Raymond Poincaré avait été élu à l’Académie française le 18 mars 1909",
+       "quoteLang": "fr",
+       "evidenceNote": "起日取當選日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "Mort le 15 octobre 1934.",
+       "quoteLang": "fr",
+       "evidenceNote": "院士為終身席位，迄日取卒日（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "poincare-foreign-minister-1912",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "ministre des Affaires étrangères（兼 président du conseil）",
+      "zh-Hant": "外交部長（兼總理）",
+      "en": "Minister of Foreign Affairs (concurrently Premier)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1912-01-14",
+      "end": "1913-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "14 janvier 1912-20 janvier 1913",
+       "quoteLang": "fr",
+       "evidenceNote": "日精度，照原值",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est président du conseil, ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "il prit pour lui-même le portefeuille des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部長＝R3 四部之一、正職、可證明≥90天；regimeId 不連庫無法查證，R3④「政權在系統中」無法證明，依 batch001 先例歸 R6（roleGap=regime）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "poincare-foreign-minister-1922",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "ministre des Affaires étrangères（兼 président du conseil）",
+      "zh-Hant": "外交部長（兼總理）",
+      "en": "Minister of Foreign Affairs (concurrently Premier)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-01-01",
+      "end": "1924-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Janvier 1922- juin 1924",
+       "quoteLang": "fr",
+       "evidenceNote": "月精度，迄日取下一個月起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Président du conseil et ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部長＝R3 四部之一、正職、可證明≥90天；regimeId 無法查證，歸 R6（roleGap=regime）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "poincare-finance-minister-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "title": {
+      "orig": "ministre des Finances（兼 président du conseil）",
+      "zh-Hant": "財政部長（兼總理）",
+      "en": "Minister of Finance (concurrently Premier)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-07-01",
+      "end": "1928-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Juillet 1926- novembre 1928",
+       "quoteLang": "fr",
+       "evidenceNote": "月精度，迄日取下一個月起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Président du conseil, ministre des Finances",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部長＝R3 四部之一、正職、可證明≥90天；regimeId 無法查證，歸 R6（roleGap=regime）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:senate_second_term",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；龐加萊總統任滿後再任默茲省參議員（Élysée：1920-01-13 當選，1924-01-06 再度當選；國防部頁：Redevenu sénateur de la Meuse après l'achèvement de son septennat），但三份已抓 A 級來源均未寫此任期的終止日，故未建職位。已查 Sénat 官網（站內傳記頁404，只取得勳章頁）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "defgouv-poincare",
+       "locator": "傳記第7段",
+       "quote": "Redevenu sénateur de la Meuse après l'achèvement de son septennat",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Il est réélu sénateur de la Meuse",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "conflict",
+     "note": "兩份已抓 A 級來源互相矛盾：Élysée 與 Académie française 寫生於1860年8月20日（20 août 1860／Né à Bar-le-Duc, le 20 août 1860），國防部 Chemins de mémoire 寫「est né le 20 avril 1860」。以 Élysée／學術院為準，正文採8月20日；請審查是否需更正庫值。",
+     "candidateCitations": [
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "20 août 1860",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "defgouv-poincare",
+       "locator": "傳記第1段",
+       "quote": "est né le 20 avril 1860",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:education_minister_start",
+     "gapKind": "conflict",
+     "note": "已抓 A 級來源說法不同：Académie française 傳記寫「en 1892, ministre de l’Instruction publique」；Élysée 年表（Avril-décembre 1893）與國防部頁（en 1893 … le portefeuille de l'Instruction publique）寫1893年。段落正文因此未寫公共教育部長的年份。",
+     "candidateCitations": [
+      {
+       "sourceKey": "af-poincare",
+       "locator": "Biographie",
+       "quote": "en 1892, ministre de l’Instruction publique",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "elysee-poincare",
+       "locator": "年表",
+       "quote": "Avril-décembre 1893",
+       "quoteLang": "fr"
+      },
+      {
+       "sourceKey": "defgouv-poincare",
+       "locator": "傳記第2段",
+       "quote": "accepte, en 1893, le portefeuille de l'Instruction publique",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Raymond Poincaré Élysée 歷任總統頁",
+     "url": "https://www.elysee.fr/la-presidence/raymond-poincare",
+     "result": "found_A",
+     "note": "年表含任職起訖"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Raymond POINCARÉ Académie française",
+     "url": "https://www.academie-francaise.fr/les-immortels/raymond-poincare",
+     "result": "found_A",
+     "note": "院士傳記"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Académie française raymond-poincare（舊網址）",
+     "url": "https://www.academie-francaise.fr/raymond-poincare",
+     "result": "no_result",
+     "note": "404，改用 les-immortels 路徑"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Sénat 前參議員 Poincaré Raymond（第三共和）",
+     "url": "https://www.senat.fr/senateur-3eme-republique/poincare_raymond0392r3.html",
+     "result": "no_result",
+     "note": "站內頁 404（兩種網址）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Assemblée nationale Sycomore Poincaré",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/(num_dept)/6924",
+     "result": "not_relevant",
+     "note": "取得頁面是別人（Surmont），未採；Sycomore 其他網址未知"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Raymond Poincaré",
+     "url": "https://www.britannica.com/biography/Raymond-Poincare",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie pnd118595180（Poincaré）",
+     "url": "https://www.deutsche-biographie.de/pnd118595180.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "vie-publique.fr Raymond Poincaré",
+     "url": "https://www.vie-publique.fr/eclairage/19601-raymond-poincare-1860-1934",
+     "result": "no_result",
+     "note": "503"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "LoC Name Authority Poincaré, Raymond, 1860-1934",
+     "url": "https://id.loc.gov/authorities/names/label/Poincar%C3%A9,%20Raymond,%201860-1934",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "data.bnf.fr Poincaré",
+     "url": "https://data.bnf.fr/fr/11923340/raymond_poincare/",
+     "result": "not_relevant",
+     "note": "取得頁面是別人（Eugène de Saint-Denis）；ID 猜錯，未採"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "WebSearch：senat.fr Raymond Poincaré ancien sénateur de la Meuse",
+     "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-n-lettre-w/raymond-poincare",
+     "result": "found_A",
+     "note": "國防部 Chemins de mémoire 傳記頁：參議員任期1903–1913、賠款委員會主席1920"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Sénat 勳章頁 Médaille de Raymond Poincaré",
+     "url": "https://www.senat.fr/evenement/archives/D43/poincare.html",
+     "result": "not_relevant",
+     "note": "已抓；為勳章介紹，無任期日期，未採"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "WebSearch：Raymond Poincaré base de données des députés français Assemblée nationale sycomore",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無 Sycomore 個人頁"
+    }
+   ]
+  }
+ ]
+}

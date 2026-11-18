@@ -1,5 +1,6 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
-import { LucideBookOpen, LucideChevronDown, LucideChevronUp } from '@lucide/angular';
+import { LucideInfo } from '@lucide/angular';
 import { SkeletonDirective } from '../../components/ui/skeleton';
 import type { Axis } from '../../core/atlas-state';
 import type { LoadStatus } from '../../core/atlas-data';
@@ -24,36 +25,61 @@ export interface LegendRegime {
  * 圖例（PRD §8.4，`shared/legend`，左下浮動、可收合）。
  * 樣式說明固定顯示；實際控制檢視的「目前畫面中的政權」來自 API 載入的控制區。
  * 主權檢視只留「國界（主權圖層）」的說明，不列政權清單（全球都顯示時會太擠；Tai 2026-10-31），政權看資訊卡。
- * 收合／展開用 motion 做高度與透明度過場；prefers-reduced-motion 時直接切換。
+ * 收合／展開經 MotionService（GSAP）只做透明度＋位移（§17.5 不 tween 高度；高度立即切換）；prefers-reduced-motion 時直接切換。
  */
 @Component({
   selector: 'wl-legend',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [LucideChevronDown, LucideChevronUp, LucideBookOpen, SkeletonDirective],
-  host: { class: 'block' },
+  imports: [LucideInfo, SkeletonDirective, NgTemplateOutlet],
+  host: { class: 'block', '(document:keydown.escape)': 'onEscape()' },
   styles: `
     .sw { width: 22px; height: 14px; flex: none; border-radius: 2px; }
     .sw-wide { width: 32px; }
     .row { display: flex; align-items: center; gap: 8px; }
+    /* §12 L1 手機：獨立 bottom sheet，兩欄 grid、色票 20px、說明 13px */
+    .sheet-body, .sheet-body li, .sheet-body p { font-size: 13px; line-height: 18px; }
+    .sheet-body ul { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .sheet-body .sw { width: 20px; height: 20px; }
+    .sheet-body .sw-wide { width: 20px; }
   `,
   template: `
-    @if (!open() && !closing()) {
-      <!-- 收合：左下小按鈕「圖例」（Stitch W2／W3／W7-6） -->
-      <section data-testid="legend" data-state="collapsed" [attr.aria-label]="tr('legend.title')">
-        <button type="button" data-testid="legend-expand" class="wl-paper flex h-8 items-center gap-1.5 px-3 wl-text2 text-wl-on-surface hover:bg-wl-surface-container-high"
-          (click)="toggle.emit()" [attr.aria-expanded]="false" aria-controls="wl-legend-body">
-          <svg lucideBookOpen class="size-3.5"></svg>{{ tr('legend.title') }}<svg lucideChevronUp class="size-3.5 text-wl-on-surface-variant"></svg>
-        </button>
-      </section>
+    <!-- 圖例（ARCHITECTURE.md §10-3）：左下 40×40 ⓘ 按鈕，點了在按鈕上方展開 240px 寬浮動面板（最高 50vh，可捲動）；
+         Esc、再點一次按鈕、點地圖空白處收起；開關狀態記在 localStorage（AtlasState）。 -->
+    @if (mode() === 'sheet') {
+      <!-- §12 L1：手機版圖例＝從頂列 ⋯ 選單打開的獨立 bottom sheet（最高 60vh；往下滑或點地圖關閉） -->
+      @if (open()) {
+        <section data-testid="legend-sheet" role="dialog" aria-modal="false" [attr.aria-label]="tr('legend.title')" [attr.data-axis]="axis()"
+          class="wl-paper flex max-h-[60vh] flex-col overflow-hidden rounded-b-none shadow-[var(--wl-shadow-panel)]"
+          [style.transform]="dragY() ? 'translateY(' + dragY() + 'px)' : null">
+          <div data-testid="legend-sheet-handle" class="flex h-11 flex-none cursor-grab touch-none items-center justify-center" (pointerdown)="startSheetDrag($event)">
+            <span class="h-1 w-8 rounded-full bg-wl-outline-variant"></span></div>
+          <div class="flex flex-none items-center justify-between px-4 pb-2">
+            <span class="wl-title2">{{ tr('legend.title') }}</span>
+            <button type="button" data-testid="legend-sheet-close" class="wl-icon-btn size-11" [attr.aria-label]="lang() === 'en' ? 'Close' : '關閉'" (click)="toggle.emit()">✕</button>
+          </div>
+          <div class="sheet-body flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-4">
+            <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: true }" />
+          </div>
+        </section>
+      }
     } @else {
-    <section #panel data-testid="legend" [attr.data-state]="closing() ? 'closing' : 'open'" [attr.data-axis]="axis()" class="wl-paper w-[280px] overflow-hidden" [attr.aria-label]="tr('legend.title')">
-      <button type="button" class="flex w-full items-center justify-between px-4 py-3 text-left" (click)="toggle.emit()"
-        [attr.aria-expanded]="open()" aria-controls="wl-legend-body">
+    <section data-testid="legend" [attr.data-state]="(!open() && !closing()) ? 'collapsed' : closing() ? 'closing' : 'open'" [attr.data-axis]="axis()"
+      class="flex flex-col items-start gap-2" [attr.aria-label]="tr('legend.title')">
+    @if (open() || closing()) {
+    <div #panel data-testid="legend-panel" id="wl-legend-panel" class="wl-paper flex max-h-[50vh] w-[240px] flex-col overflow-hidden">
+      <div class="flex flex-none items-center justify-between px-4 py-3">
         <span class="wl-title2">{{ tr('legend.title') }}</span>
-        <svg lucideChevronDown class="size-4 text-wl-on-surface-variant"></svg>
-      </button>
-      @if (open() || closing()) {
-        <div id="wl-legend-body" class="flex max-h-[calc(100vh-56px-112px-120px)] flex-col gap-4 overflow-y-auto border-t border-wl-outline-variant px-4 py-3 wl-text2">
+      </div>
+      <ng-container [ngTemplateOutlet]="bodyTpl" [ngTemplateOutletContext]="{ embedded: false }" />
+    </div>
+    }
+      <button type="button" data-testid="legend-expand" class="wl-paper flex size-10 items-center justify-center text-wl-on-surface hover:bg-wl-surface-container-high"
+        [attr.aria-label]="tr('legend.title')" [attr.title]="tr('legend.title')" [attr.aria-expanded]="open()" aria-controls="wl-legend-panel" (click)="toggle.emit()">
+        <svg lucideInfo class="size-5"></svg></button>
+    </section>
+    }
+    <ng-template #bodyTpl let-embedded="embedded">
+        <div id="wl-legend-body" class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto wl-text2" [class.border-t]="!embedded" [class.border-wl-outline-variant]="!embedded" [class.px-4]="!embedded" [class.py-3]="!embedded" [class.pt-2]="embedded">
           <!-- 主權圖層（國界試驗 1938–1940） -->
           <div data-testid="legend-sovereignty">
             <h3 class="wl-label mb-2">{{ lang() === 'en' ? 'Borders (sovereignty layer)' : '國界（主權圖層）' }}
@@ -65,7 +91,8 @@ export interface LegendRegime {
               @for (k of occKinds; track k.kind) {
                 <li class="row" [attr.data-testid]="'legend-sov-occupation-' + k.kind"><span class="sw" [style.background]="k.bg" style="border:1px dashed #3a2f28"></span>{{ lang() === 'en' ? k.en : k.zh }}</li>
               }
-              <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = no qualified source yet (pending)' : '空白＝尚無合格出處（待查證）' }}</li>
+              <li class="row" data-testid="legend-sov-dispute"><span class="sw" [style.background]="sovDispute" style="border:1.25px dotted #b3261e"></span>{{ lang() === 'en' ? 'Red hatch, dotted edge = disputed (claims overlap)' : '朱紅斜線＋點線邊＝主權爭議（各方主張重疊）' }}</li>
+              <li class="row" data-testid="legend-sov-blank"><span class="sw border border-wl-outline-variant" style="background:#ece4d2"></span>{{ lang() === 'en' ? 'Blank = sovereignty data gap (no qualified source found)' : '空白＝主權資料缺（查無合格出處）' }}</li>
             </ul>
             <p class="mt-1 text-wl-on-surface-variant">{{ lang() === 'en' ? 'Borders as drawn by OpenHistoricalMap (de facto). Camp is a supplement only.' : '國界依 OpenHistoricalMap 所畫的事實國界；陣營只作補充。' }}</p>
           </div>
@@ -132,13 +159,13 @@ export interface LegendRegime {
           </div>
           }
         </div>
-      }
-    </section>
-    }
+    </ng-template>
   `,
 })
 export class Legend {
-  readonly open = input(true);
+  readonly open = input(false);
+  /** floating＝左下按鈕＋浮動面板；button＝只有按鈕（小於 768px，圖例在底部面板分頁）；embedded＝放在底部面板分頁裡。 */
+  readonly mode = input<'floating' | 'sheet'>('floating');
   readonly lang = input<Lang>('zh-Hant');
   readonly regimes = input<LegendRegime[]>([]);
   readonly regimesStatus = input<LoadStatus>('idle');
@@ -155,6 +182,7 @@ export class Legend {
 
   protected readonly sovSample = 'linear-gradient(90deg, #a99dc4 0 33%, #c9a87c 33% 66%, #8fb39a 66% 100%)';
   protected readonly sovHatch = 'repeating-linear-gradient(-45deg, #a99dc4 0 1.5px, #ece4d2 1.5px 5px)';
+  protected readonly sovDispute = 'repeating-linear-gradient(45deg, #b3261e 0 1.5px, #c9a87c 1.5px 5px)';
   /** 佔領區三種深淺（德國色示範）：併入最深、民政中等、軍事管理最淺；都疊佔領國色加深的斜線 */
   protected readonly occKinds = (
     [
@@ -177,7 +205,7 @@ export class Legend {
     });
   }
 
-  /** 展開：等新面板畫出來後，高度從收合按鈕（32px）長到內容高度、淡入。 */
+  /** 展開：等新面板畫出來後淡入、由下往上 8px（高度立即到位，不動 layout 屬性）。 */
   private animateOpen(): void {
     const run = ++this.run;
     this.closing.set(false);
@@ -185,16 +213,13 @@ export class Legend {
       () => {
         const el = this.panel()?.nativeElement;
         if (!el || run !== this.run || this.motion.reduced()) return;
-        const h = el.scrollHeight;
-        void this.motion
-          .animate(el, { height: ['32px', `${h}px`], opacity: [0.4, 1] }, { duration: MOTION_DURATION.base })
-          .then(() => run === this.run && (el.style.height = ''));
+        void this.motion.animate(el, { opacity: [0, 1], y: [8, 0] }, { duration: MOTION_DURATION.base, ease: 'power2.out', clear: true });
       },
       { injector: this.injector },
     );
   }
 
-  /** 收合：面板留在 DOM 播放高度縮回 32px＋淡出，結束後才換成收合按鈕。 */
+  /** 收合：面板留在 DOM 播放淡出＋往下 8px，結束後才換成收合按鈕。 */
   private animateClose(): void {
     const run = ++this.run;
     const el = this.panel()?.nativeElement;
@@ -204,13 +229,31 @@ export class Legend {
     }
     this.closing.set(true);
     void this.motion
-      .animate(el, { height: [`${el.offsetHeight}px`, '32px'], opacity: [1, 0] }, { duration: MOTION_DURATION.fast })
+      .animate(el, { opacity: [1, 0], y: [0, 8] }, { duration: MOTION_DURATION.fast, ease: 'power2.in' })
       .then(() => {
         if (run !== this.run) return;
-        el.style.height = '';
-        el.style.opacity = '';
         this.closing.set(false);
       });
+  }
+
+  /** §12 L1：往下滑關閉（拖超過 60px）。 */
+  protected readonly dragY = signal(0);
+  protected startSheetDrag(e: PointerEvent): void {
+    const y0 = e.clientY;
+    const move = (ev: PointerEvent) => this.dragY.set(Math.max(0, ev.clientY - y0));
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+      this.dragY.set(0);
+      if (ev.clientY - y0 > 60) this.toggle.emit();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+  }
+  protected onEscape(): void {
+    if (this.open()) this.toggle.emit();
   }
 
   protected readonly controlTypes = CONTROL_TYPES;

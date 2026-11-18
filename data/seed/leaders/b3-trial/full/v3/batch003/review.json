@@ -1,0 +1,82 @@
+{
+ "batch": "003",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 8,
+  "editedSentences": 10,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "dk-christian-x",
+   "bioId": "01a1b4af-e4b4-74f8-b14c-c959999beea2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1：『5月15日在阿馬林堡被宣布』原引文只有新聞抵達日期，改引同段原文『udråbt som konge fra balkonen på Amalienborg Slot den 15. maj 1912』；period 迄改 1912-05-16（半開）",
+    "段2：『第一次世界大戰初期…海峽…國務會議』無引文支撐，刪不支撐的引文『Christian var imidlertid ikke i tvivl』，補引 DBL『Tysklands krav 5.8.1914 om minespærring af de danske bælter』『tog til statsråd på Amalienborg』並改寫為1914年8月5日；『薩勒政府』補引 Lex『Under Påskekrisen afskedigede Christian 10. den radikale Zahle』；period 改 1914-08-05（day）～1920-07-11",
+    "段3：原文把致電祝福綁在1944-06-17，DBL 只說公投通過共和時致電，拆句；period 迄改 1944-06-18",
+    "段4：『電報危機』無引文，改為72歲生日賀電與簡短回電；『索爾恩弗里宮』不在引文內，改為『他所在的宮殿』；『5月5日廣播』原引文只有『dagen efter』，補引『Om aftenen 4. maj 1945 kom befrielsesbudskabet over BBC』改寫；『坐輪椅』延長引文至『…bundet til en kørestol』；period 迄改 1945-05-10；英文刪 'to the Danish people' 以符 800 字元"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "it-vittorio-emanuele-iii",
+   "bioId": "2e92f31f-cda7-4be2-bdb3-953fac108b0d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "段2：period 起 1922-10-27 無含日引文，改 1922-01-01（year）；迄改 1926-02-01（month，依1926年1月）；『首相』『戒嚴令』不在引文，改為『法克塔前來請國王在法令上簽字』；『自由派領袖缺乏替代人選』改為引文所寫『缺乏墨索里尼以外的替代人選』",
+    "段3：『同時授予領袖與國王』補引『lo conferì tanto al duce quanto al re』；period 迄改 1939-05-01（month，依1939年4月）",
+    "段4：段內最後事件為1947-12-28去世，period 迄由 1946-05-09 改 1947-12-29"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ve-gomez",
+   "bioId": "01a1b488-1462-7bec-aa9e-7bccbbd15bc2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1：『隨卡斯特羅流亡哥倫比亞』『5月23日隨卡斯特羅起兵』超出引文（引文只寫流亡起訖與第二指揮），改寫並補引『Durante sus 7 años de exilio en Colombia』；period 迄改 1908-11-24",
+    "段2：『1910至1914年任期』『宣布公共秩序受擾』不在引文，刪子句；period 迄改 1914-01-02（半開）",
+    "段3：補引『designar al general Juan Vicente Gómez presidente provisional de la República』『presidente constitucional de la República para el Septenio 1915-1921』；period 迄 1922-06-24 無引文（取自名簿），改 1922-01-01（month，依1921年12月最後含日事件）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "三人皆無 positions／roleCandidates；元首任期在 leader_records。Gómez 1914-04-19 起任陸軍總司令（Polar 明寫）至1922年修憲撤銷，與名簿元首任期重疊，研究者未建 R4 候選也未列 gap，留待下一輪判斷（審查不新增事實）",
+  "研究者常把段落 period 迄點寫成最後事件當日（違反半開區間），或沿用名簿日期而無引文；已逐段修正",
+  "多處子句（地名、職稱、事件名稱）取自引文前後文而非 quote 本身，已以原文補引或刪子句"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

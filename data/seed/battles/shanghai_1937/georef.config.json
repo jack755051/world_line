@@ -1,0 +1,24 @@
+{
+ "battle": "shanghai_1937",
+ "tool": "tools/battles/georef.py",
+ "thresholdP95Km": 2.0,
+ "thresholdRule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
+ "defaultFrameKm": 1.0,
+ "controlPointRule": {
+  "decidedOn": "2026-11-13 執行者，於任何一張圖讀像素與配準之前寫定（主管 15:33 規則）",
+  "include": "圖上有城鎮符號（圓圈／實心點／城郭符號）且地名可辨、OSM 有對應城鎮級物件（鎮、縣城、市區）者",
+  "excludeBeforeResiduals": [
+   "火車站（北站、南站、南翔站等）：1937 站址與今日 OSM 物件不同",
+   "只畫成面狀（斜線色塊、城市輪廓）而無點符號者：中心無法定義（例如 JM-179 圖上 SHANGHAI、SUCHOU）",
+   "村宅級地名（某家宅、某家橋、某家行、某宅）：OSM 常無或有多個同名物件，無法唯一對應",
+   "砲台、碼頭、公墓、學校、公園等設施",
+   "地名雖可辨但 OSM 查無城鎮級物件、或查得多個同名候選距離 > 5 km 者",
+   "符號被部隊標註、箭頭或文字遮住而無法定中心者（讀像素時判定，記入 controlPointExclusions，decidedBeforeResiduals=true，且必須在第一次跑 georef.py 前寫入）",
+   "OSM 只查得行政區（鎮／街道 boundary relation）而無 place 點物件者：行政區形心不等於舊市鎮中心（寫於讀像素後、查 OSM 前，尚未跑任何配準）"
+  ],
+  "afterResiduals": "看過殘差後不得刪點；只能重讀像素（controlPointRereads，保留原讀值與理由）。任何看殘差後的排除 → 整張僅參考（georef.py 強制）",
+  "lonlatRule": "經緯度取 OSM place 點物件（node，place=town/village/suburb/neighbourhood/hamlet/quarter）；同名多筆時取距地圖範圍內者，範圍內仍多筆且相距 > 5 km 則排除",
+  "lonlatRuleAmendment": "2026-11-13 執行者補充（仍在任何配準、任何殘差之前）：Nominatim 只回行政區 relation 時，若該 relation 有 admin_centre（優先）或 label 成員且為 place 節點，取該節點（tools/battles/osm_admin_centre.py）；無此成員者依原規則排除"
+ },
+ "maps": {}
+}

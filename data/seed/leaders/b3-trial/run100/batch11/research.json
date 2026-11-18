@@ -1,0 +1,2354 @@
+{
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 對齊格式直接產出（Tai 2026-11-11 10:03 T11／T12；12:12 黨職與 role_kind；12:47 黨籍席位與 T14 R0–R6）；未建角色資料、未寫庫。",
+ "batch": "b3-run100-batch11",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "b0b0e0f 對齊格式（人物／角色／經歷三層）；positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職規則照 Tai 2026-11-11 12:12／12:47 套用（兩層互斥）。recordIds 未提供於名單（留空）。",
+ "rawDir": "/tmp/b3run100/batch11/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "snl-hundseid": {
+   "title": "Jens Hundseid",
+   "authors": [
+    "May-Brith Ohman Nielsen（Universitetet i Agder）",
+    "Harald Kjølås"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "Store norske leksikon 條目「Jens Hundseid」",
+   "url": "https://snl.no/Jens_Hundseid",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（May-Brith Ohman Nielsen、Harald Kjølås）的機構百科條目"
+  },
+  "enc-chiari": {
+   "title": "Chiari, Rodolfo E. (1870–1937)",
+   "authors": [
+    "Juan Manuel Pérez"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "條目末署名 Juan Manuel Pérez",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/chiari-rodolfo-e-1870-1937",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目（條目末署名）"
+  },
+  "enc-acosta": {
+   "title": "Acosta García, Julio (1872–1954)",
+   "authors": [
+    "Karen Racine"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "條目末署名 Karen Racine",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/acosta-garcia-julio-1872-1954",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的機構百科條目（條目末署名）"
+  },
+  "syco-leygues": {
+   "title": "Jean, Claude, Georges Leygues — Base de données des députés français depuis 1789",
+   "authors": [],
+   "publisher": "Assemblée nationale（Sycomore）",
+   "published_text": "含 Jean Jolly《Dictionnaire des parlementaires français 1889–1940》摘錄",
+   "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/7840",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "議會官方人物資料庫"
+  },
+  "gov-ro-pm": {
+   "title": "Prim-miniștri în istorie",
+   "authors": [],
+   "publisher": "Guvernul României（gov.ro）",
+   "published_text": "政府官網歷任總理名單",
+   "url": "https://gov.ro/ro/fosti-ministri",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官網歷任名單"
+  },
+  "dnb-leygues": {
+   "title": "Deutsche Biographie — Leygues, Georges",
+   "authors": [],
+   "publisher": "Deutsche Biographie（GND 索引）",
+   "published_text": "GND 128890177",
+   "url": "https://www.deutsche-biographie.de/pnd128890177.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔索引（只用於身分確認，未引用段落）"
+  },
+  "bnf-leygues": {
+   "title": "Georges Leygues (1857-1933)",
+   "authors": [],
+   "publisher": "data.bnf.fr",
+   "published_text": "BnF 權威記錄",
+   "url": "https://data.bnf.fr/en/ark:/12148/cb12459443q",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔；生年與 Sycomore 不同，記為 conflict gap"
+  },
+  "enc-ro-stirbey": {
+   "title": "Barbu Ştirbey",
+   "authors": [],
+   "publisher": "Enciclopedia României（線上）",
+   "published_text": "無署名條目",
+   "url": "https://enciclopediaromaniei.ro/wiki/Barbu_%C5%9Etirbey",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無署名條目，未評等（Q9），僅作 gap 候選"
+  },
+  "rador-stirbey": {
+   "title": "PORTRET: Barbu Ştirbey, „adevăratul suveran al României”, „Prinţul alb”",
+   "authors": [],
+   "publisher": "Rador（Radio România）",
+   "published_text": "2021-03-24 網頁",
+   "url": "https://www.rador.ro/2021/03/24/portret-barbu-stirbey-adevaratul-suveran-al-romaniei-printul-alb-75-de-ani-de-la-plecarea-in-eternitate/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Rador（Radio România） → C（grade-ungraded-b3-2026-11-14，原：無具名作者、無書目的網頁，未評等（Q9），僅作 gap 候選）"
+  },
+  "enc-marie": {
+   "title": "Marie of Rumania (1875–1938)",
+   "authors": [],
+   "publisher": "Women in World History: A Biographical Encyclopedia（Gale，經 Encyclopedia.com）",
+   "published_text": "未見署名",
+   "url": "https://www.encyclopedia.com/women/encyclopedias-almanacs-transcripts-and-maps/marie-rumania-1875-1938",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Women in World History: A Biographical Encyclopedia（Gale，經 Encyclopedia.com） → C（grade-ungraded-b3-2026-11-14，原：抓取頁未見具名作者，未評等（Q9），僅作 gap 候選）"
+  }
+ },
+ "people": [
+  {
+   "key": "pa-chiari",
+   "bioId": "01a1b4b7-28ff-7336-8b15-66836757dd6b",
+   "name": "Rodolfo E. Chiari",
+   "nameZh": "羅道夫·基亞里",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1870-11-15",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與任總統前的官職",
+      "en": "Origins and offices before the presidency"
+     },
+     "body": {
+      "zh-Hant": "據百科條目，基亞里1870年11月15日生，出生於阿瓜杜爾塞。他擔任過多項公職：1904年任國民公會代表，1905至1906年任巴拿馬城財務官，1908年任國家財政部副部長，1909至1914年任國家銀行經理；1910年當選第三順位總統代理人，1912年曾短暫接掌行政權；1914年任政府與司法部長，1922年被任命為電報局總局長。",
+      "en": "According to the encyclopedia entry, Chiari was born on 15 November 1870 in Aguadulce. He held many government posts: deputy to the National Convention in 1904, treasurer of Panama City in 1905–1906, deputy secretary of the treasury in 1908 and manager of the national bank in 1909–1914. In 1910 he was elected third designate to the presidency and in 1912 briefly took charge of the executive office; in 1914 he became secretary of government and justice, and in 1922 he was appointed director general of the telegraph service."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "Rodolfo E. Chiari ( b. 15 November 1870; d. 16 August 1937)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "Born in Aguadulce, he held many government posts",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "He was a deputy to the National Convention in 1904",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "treasurer of Panama City (1905–1906)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "deputy secretary of the treasury in the national government (1908)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "manager of the national bank (1909–1914)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "In 1910 he was elected third designate to the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "and in 1912 he briefly took charge of the executive office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "In 1914 he became the secretary of government and justice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "in 1922 he was appointed director general of the telegraph service",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1924–1928年的總統任期",
+      "en": "Presidency, 1924–1928"
+     },
+     "body": {
+      "zh-Hant": "條目稱基亞里是自由黨的重要成員，1924年當選後以偏重商業的施政取代波拉斯（Porras）的民粹作風，導致黨內爭執並終致分裂。1925年他面臨兩場危機，其一是聖布拉斯群島庫納人的叛亂，他成功平息；1926年他與美國談判新條約，但國民議會未予批准。",
+      "en": "The entry says Chiari was a prominent Liberal Party member and, after his 1924 election, replaced Porras's populist style with a more business-oriented administration, leading to a quarrel and a split in the party. In 1925 he faced two serious crises, one of them a rebellion by the Cuna Indians on the San Blas Islands, which he quelled. In 1926 he negotiated a new treaty with the United States, but the National Assembly never ratified it."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "Panamanian politician, president (1924–1928), and businessman",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第2段",
+       "quote": "Chiari was a prominent member of the Liberal Party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第2段",
+       "quote": "Following his election in 1924, Chiari substituted Porras's populist style",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第2段",
+       "quote": "with a more business-oriented administration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第2段",
+       "quote": "which led to a quarrel and ultimately to a split in the party",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第3段",
+       "quote": "In 1925 Chiari faced two serious crises.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第3段",
+       "quote": "a rebellion by the Cuna Indians on the San Blas Islands",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第3段",
+       "quote": "which he quelled successfully",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第4段",
+       "quote": "Chiari negotiated a new treaty with the United States in 1926",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第4段",
+       "quote": "but it was never ratified by the National Assembly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "treasury-deputy-secretary-1908",
+     "title": {
+      "orig": "deputy secretary of the treasury",
+      "zh-Hant": "財政部副部長（國家政府）",
+      "en": "Deputy Secretary of the Treasury"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬政府",
+      "en": "Government of Panama"
+     },
+     "period": {
+      "start": "1908-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "deputy secretary of the treasury in the national government (1908)",
+       "quoteLang": "en",
+       "evidenceNote": "只寫 1908，迄日未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：副職（deputy），非正職閣員"
+    },
+    {
+     "key": "national-bank-manager-1909",
+     "title": {
+      "orig": "manager of the national bank",
+      "zh-Hant": "國家銀行經理",
+      "en": "Manager of the National Bank"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬國家銀行",
+      "en": "National Bank of Panama"
+     },
+     "period": {
+      "start": "1909-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "manager of the national bank (1909–1914)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "Q3：迄於 1914 年，終點寫 1915-01-01"
+    },
+    {
+     "key": "third-designate-1910",
+     "title": {
+      "orig": "third designate to the presidency",
+      "zh-Hant": "第三順位總統代理人（designado）",
+      "en": "Third Designate to the Presidency"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬政府",
+      "en": "Government of Panama"
+     },
+     "period": {
+      "start": "1910-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "In 1910 he was elected third designate to the presidency",
+       "quoteLang": "en",
+       "evidenceNote": "迄日未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "1912 年短暫接掌行政權另見 roleCandidates"
+    },
+    {
+     "key": "secretary-government-justice-1914",
+     "title": {
+      "orig": "secretary of government and justice",
+      "zh-Hant": "政府與司法部長（secretary of government and justice）",
+      "en": "Secretary of Government and Justice"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬政府",
+      "en": "Government of Panama"
+     },
+     "period": {
+      "start": "1914-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "In 1914 he became the secretary of government and justice",
+       "quoteLang": "en",
+       "evidenceNote": "只寫 1914 年任職，迄日未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "部名含 government（內政性質），是否等同 T14 四部之內政部待查",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：部門可能屬內政類，但結束日 NULL、來源僅 1 筆 B、巴拿馬政權 regimeId 未取得，三項門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "telegraph-director-1922",
+     "title": {
+      "orig": "director general of the telegraph service",
+      "zh-Hant": "電報局總局長",
+      "en": "Director General of the Telegraph Service"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬電報局",
+      "en": "Panamanian Telegraph Service"
+     },
+     "period": {
+      "start": "1922-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "in 1922 he was appointed director general of the telegraph service",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "acting-president-1912",
+     "title": {
+      "orig": "took charge of the executive office",
+      "zh-Hant": "代行總統職權（1912）",
+      "en": "Briefly took charge of the executive office (1912)"
+     },
+     "role_kind": "head_of_state",
+     "reason": "來源明寫 1912 年他短暫接掌行政權，屬 R0 代理元首；是否已在名單 5442 任期內待比對",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴拿馬政府",
+      "en": "Government of Panama"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": "1913-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-chiari",
+       "locator": "條目第1段",
+       "quote": "and in 1912 he briefly took charge of the executive office",
+       "quoteLang": "en",
+       "evidenceNote": "起訖日期只到年，且未寫確切期間",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R0",
+     "acting": true
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:presidency-1924-1928",
+     "gapKind": "not_found",
+     "note": "1924–1928 總統任期依規則視為已在名單 5442 任期內，不建候選；條目只寫 president (1924–1928)，確切起訖日未見於 A/B 已抓來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:secretary-government-justice-1914",
+     "gapKind": "not_found",
+     "note": "結束日與是否屬 T14 四部之一，B 來源只寫「1914 年任」；需政府公報或巴拿馬國家檔案館歷任部長名單（A）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "Britannica 回傳 Cloudflare 挑戰頁（未繞過）；A 級權威檔（LoC、VIAF、巴拿馬國家圖書館）未取得；死亡地點等未寫。死亡日期 1937-08-16 只見單一 B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Rodolfo Chiari presidente de Panamá 1924-1928 biografía（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "結果多為百科鏡像站；採用 Gale 條目 enc-chiari"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Rodolfo Chiari",
+     "url": "https://www.britannica.com/biography/Rodolfo-Chiari",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "enc-chiari 條目（curl 存檔）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/chiari-rodolfo-e-1870-1937",
+     "result": "found_B",
+     "note": "條目末署名 Juan Manuel Pérez"
+    }
+   ]
+  },
+  {
+   "key": "no-hundseid",
+   "bioId": "01a1b543-5a87-7f67-b2c2-9c2a4f97c528",
+   "name": "Jens Hundseid",
+   "nameZh": "延斯·洪塞德",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1883-05-06",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年教職",
+      "en": "Birth and early career as a teacher"
+     },
+     "body": {
+      "zh-Hant": "洪塞德1883年5月6日生於羅加蘭的維達爾（Vikedal）。1905年在奧斯（Ås）完成學業後，他多年擔任青年學校與農業學校教師；1915至1918年任《Eidsvoll Blad》編輯，其後出任泰勒馬克農業學校（位於 Søve）校長。",
+      "en": "Jens Hundseid was born on 6 May 1883 in Vikedal, Rogaland. After finishing his studies at Ås in 1905 he spent several years as a teacher at folk and agricultural schools; from 1915 to 1918 he edited Eidsvoll Blad, and afterwards he became head of the Telemark agricultural school at Søve."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "條目事實框",
+       "quote": "6. mai 1883, Vikedal, Rogaland",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Bakgrunn」段",
+       "quote": "Etter eksamen på Ås i 1905 var Hundseid i fleire år lærar",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Bakgrunn」段",
+       "quote": "lærar ved ungdomsskular og landbruksskular",
+       "quoteLang": "no",
+       "evidenceNote": "審查補引文（Opus 2026-11-11），取自已抓原文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Bakgrunn」段",
+       "quote": "Frå 1915 til 1918 var han redaktør av «Eidsvoll Blad»",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Bakgrunn」段",
+       "quote": "Deretter vart han styrar av Telemark landbruksskole på Søve",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1933-03-03"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "農民黨與首相任期",
+      "en": "Farmers' Party and premiership"
+     },
+     "body": {
+      "zh-Hant": "洪塞德自1920年農民黨成立起即為黨員；1926年當選該黨副主席，1929年當選黨主席，1931年當選議會黨團領袖。1932年3月14日被任命為首相，1933年3月3日辭職。",
+      "en": "Hundseid was a member of the Farmers' Party (Bondepartiet) from its founding in 1920; he was elected its deputy chairman in 1926, chairman in 1929 and parliamentary leader in 1931. He was appointed prime minister on 14 March 1932 and resigned on 3 March 1933."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Politikar i Bondepartiet」段",
+       "quote": "Hundseid var medlem av Bondepartiet frå stiftinga 1920",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "I 1926 blei han valt til nestformann i Bondepartiet",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "i 1929 blei han valt til partiformann",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "og i 1931 til parlamentarisk førar",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Statsminister」段",
+       "quote": "Jens Hundseid vart utnemnd til statsminister 14. mars 1932",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Mistillit til regjeringa」段",
+       "quote": "3. mars 1933 gjekk Jens Hundseid av",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1965-04-02"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "加入國家統一黨與晚年",
+      "en": "Joining Nasjonal Samling and later life"
+     },
+     "body": {
+      "zh-Hant": "1940年洪塞德加入國家統一黨（Nasjonal Samling）；1945年他被判十年徒刑，刑罰於1949年獲免除。他卒於1965年4月2日的奧斯陸。",
+      "en": "In 1940 Hundseid joined Nasjonal Samling (NS); in 1945 he was sentenced to ten years' imprisonment, and the sentence was remitted in 1949. He died in Oslo on 2 April 1965."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Nasjonal Samling」段",
+       "quote": "melde Hundseid seg inn i Nasjonal Samling (NS) i 1940",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "導言段",
+       "quote": "I 1945 vart han dømd til ti års fengsel",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "導言段",
+       "quote": "Straffa vart ettergitt i 1949",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "條目事實框",
+       "quote": "2. april 1965, Oslo",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "agriculture-minister-1932",
+     "title": {
+      "orig": "landbruksminister",
+      "zh-Hant": "農業部長",
+      "en": "Minister of Agriculture"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威政府",
+      "en": "Government of Norway"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "導言段",
+       "quote": "vart Hundseid statsminister og landbruksminister",
+       "quoteLang": "no",
+       "evidenceNote": "只寫 1932 年春接任時兼任，起訖日未寫，期間留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "與首相任期同時兼任（來源導言）",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：農業部不屬外交、國防、財政、內政四部"
+    },
+    {
+     "key": "fylkesmann-buskerud-1935",
+     "title": {
+      "orig": "fylkesmann",
+      "zh-Hant": "布斯克呂郡郡長（fylkesmann）",
+      "en": "County Governor of Buskerud"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "布斯克呂郡",
+      "en": "Buskerud County"
+     },
+     "period": {
+      "start": "1935-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "der han var fylkesmann frå 1935 til 1945",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "Q3：迄於 1945 年，終點寫 1946-01-01",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：轄區內地方長官"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "bondeparti-deputy-chair-1926",
+     "title": {
+      "orig": "nestformann i Bondepartiet",
+      "zh-Hant": "農民黨副主席",
+      "en": "Deputy Chairman of the Farmers' Party"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "農民黨",
+      "en": "Bondepartiet"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "I 1926 blei han valt til nestformann i Bondepartiet",
+       "quoteLang": "no",
+       "evidenceNote": "迄日來源未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "bondeparti-chair-1929",
+     "title": {
+      "orig": "partiformann i Bondepartiet",
+      "zh-Hant": "農民黨主席",
+      "en": "Chairman of the Farmers' Party"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "農民黨",
+      "en": "Bondepartiet"
+     },
+     "period": {
+      "start": "1929-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "i 1929 blei han valt til partiformann",
+       "quoteLang": "no",
+       "evidenceNote": "來源另寫 1933 年他辭去再選但再獲選（僅 1 票反對），迄日未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "originalPositionKind": "party"
+    },
+    {
+     "key": "storting-telemark-bondeparti-1924",
+     "title": {
+      "orig": "stortingsrepresentant for Telemark Bondeparti",
+      "zh-Hant": "國會議員（泰勒馬克農民黨）",
+      "en": "Member of the Storting for Telemark Farmers' Party"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威國會（農民黨）",
+      "en": "Storting (Farmers' Party)"
+     },
+     "period": {
+      "start": "1924-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "blei vald inn på Stortinget for Telemark Bondeparti i 1924",
+       "quoteLang": "no",
+       "evidenceNote": "來源明寫以 Telemark Bondeparti 身分當選；迄日內文寫到 1940、導言寫到 1945，來源內部不一致，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "originalPositionKind": "legislator"
+    },
+    {
+     "key": "parliamentary-leader-1931",
+     "title": {
+      "orig": "parlamentarisk førar for Bondepartiet",
+      "zh-Hant": "農民黨議會領袖",
+      "en": "Parliamentary leader of the Farmers' Party"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "挪威國會（農民黨團）",
+      "en": "Storting (Farmers' Party group)"
+     },
+     "period": {
+      "start": "1931-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "og i 1931 til parlamentarisk førar",
+       "quoteLang": "no",
+       "evidenceNote": "迄日未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-hundseid",
+       "locator": "「Verv og stillingar」段",
+       "quote": "parlamentarisk førar for Bondepartiet i 1930-åra",
+       "quoteLang": "no",
+       "evidenceNote": "審查補引文（Opus 2026-11-11），取自已抓原文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "party",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（審查：來源明寫為農民黨的議會領袖，屬黨職，由 positions 移入）"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:prime-minister-1932-1933",
+     "gapKind": "not_found",
+     "note": "1932-03-14～1933-03-03 首相任期依規則視為已在名單 5442 任期內，不建候選；僅寫入段落。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:agriculture-minister-1932",
+     "gapKind": "not_found",
+     "note": "農業部長的確切起訖日 A/B 來源未寫；農業部本屬 R5，不影響角色層。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:storting-term",
+     "gapKind": "not_found",
+     "note": "同一來源（SNL）導言稱 1924–1936 泰勒馬克、1936–1945 布斯克呂，內文稱 1924–1940（後四年為布斯克呂）；僅單一來源內部不一致，非兩份已抓來源衝突，議員任期迄日留空。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "挪威傳記辭典（NBL）、國會官網、GND 未取得可核對頁面（見 searchLog）；生卒只見 SNL 單一 B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Jens Hundseid（SNL 條目，curl 存檔）",
+     "url": "https://snl.no/Jens_Hundseid",
+     "result": "found_B",
+     "note": "具名作者 May-Brith Ohman Nielsen、Harald Kjølås"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid.org GND 搜尋 Hundseid",
+     "url": "https://lobid.org/gnd/search?q=Hundseid&format=json",
+     "result": "no_result",
+     "note": "回應僅 335 位元組，未採用"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Stortinget 議員傳記頁（perid=JEHU 猜測網址）",
+     "url": "https://www.stortinget.no/no/Representanter-og-komiteer/Representantene/Biografi/?perid=JEHU",
+     "result": "not_relevant",
+     "note": "回傳頁面無人物內容，未採用"
+    }
+   ]
+  },
+  {
+   "key": "cr-acosta-garcia",
+   "bioId": "01a1b4b7-28f7-7b89-9d70-39b1e10322ed",
+   "name": "Julio Acosta García",
+   "nameZh": "胡里奧·阿科斯塔·加西亞",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1872-05-23",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與任總統前的公職",
+      "en": "Origins and offices before the presidency"
+     },
+     "body": {
+      "zh-Hant": "阿科斯塔1872年5月23日生。據條目，他是布勞利奧·卡里略（Braulio Carrillo）的外甥。總統任期前，他曾任1902至1906年制憲會議代表、1907年家鄉阿拉胡埃拉省省長，以及1912至1915年駐薩爾瓦多領事。",
+      "en": "Julio Acosta García was born on 23 May 1872. The entry says he was a nephew of Braulio Carrillo. Before winning the presidency he served as delegate to the Constitutional Congress of 1902–1906, governor of his home province of Alajuela in 1907, and consul to El Salvador in 1912–1915."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "Julio Acosta García ( b. 23 May 1872; d. 6 July 1954)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "As a nephew of Braulio Carrillo (president 1834–1841)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "delegate to the Constitutional Congress of 1902–1906",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "governor of his home province of Alajuela (1907)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "consul to El Salvador (1912–1915)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "before winning the presidency in 1920",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11），取自已抓原文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總統任期與其後",
+      "en": "Presidency and later years"
+     },
+     "body": {
+      "zh-Hant": "阿科斯塔是1920至1924年的哥斯大黎加總統，屬自由黨；他曾出兵處理與巴拿馬的邊界衝突。任期結束後獲頒多項國內外榮譽，1945年擔任哥斯大黎加出席舊金山聯合國組織會議代表團的團長。",
+      "en": "Acosta was president of Costa Rica in 1920–1924 and a Liberal; he committed troops in a border conflict with Panama. After his term he received many national and international awards, and in 1945 he was chief of Costa Rica's delegation to the United Nations organizational meetings in San Francisco."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "president of Costa Rica (1920–1924)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "Acosta, a Liberal",
+       "quoteLang": "en",
+       "evidenceNote": "（審查：原引文截掉謂語受詞，改為完整同位語片段）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "He engaged troops in a border conflict with Panama.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "he received many national and international awards",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "was the chief of Costa Rica's delegation to the United Nations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "organizational meetings in San Francisco in 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "consul-el-salvador-1912",
+     "title": {
+      "orig": "consul to El Salvador",
+      "zh-Hant": "駐薩爾瓦多領事",
+      "en": "Consul to El Salvador"
+     },
+     "positionKind": "diplomat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥斯大黎加政府",
+      "en": "Government of Costa Rica"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "consul to El Salvador (1912–1915)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "Q3：迄於 1915 年，終點寫 1916-01-01"
+    },
+    {
+     "key": "un-delegation-chief-1945",
+     "title": {
+      "orig": "chief of Costa Rica's delegation to the UN organizational meetings",
+      "zh-Hant": "聯合國組織會議哥斯大黎加代表團團長",
+      "en": "Chief of Costa Rica's delegation to the UN organizational meetings, San Francisco"
+     },
+     "positionKind": "diplomat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "哥斯大黎加政府",
+      "en": "Government of Costa Rica"
+     },
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "organizational meetings in San Francisco in 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "Q3：1945 年，終點寫 1946-01-01"
+    },
+    {
+     "key": "unionist-party-delegate",
+     "title": {
+      "orig": "delegate to the Central American Unionist Party",
+      "zh-Hant": "中美洲統一黨哥斯大黎加代表",
+      "en": "Costa Rica's delegate to the Central American Unionist Party"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中美洲統一黨",
+      "en": "Central American Unionist Party"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-acosta",
+       "locator": "條目第1段",
+       "quote": "Costa Rica 's delegate to the Central American Unionist Party",
+       "quoteLang": "en",
+       "evidenceNote": "期間未寫，留空",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫為該黨的哥斯大黎加代表，未明寫是否黨職，不猜",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "職稱為政黨的「代表（delegate）」，是否屬黨職來源未明寫",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：非 R0–R4 類別"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:presidency-1920-1924",
+     "gapKind": "not_found",
+     "note": "1920–1924 總統任期依規則視為已在名單 5442 任期內，不建候選；B 來源只寫 president (1920–1924)。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:foreign-minister-1915",
+     "gapKind": "not_found",
+     "note": "外交部長（若有）起訖：已評等 A/B 來源均未寫；需哥斯大黎加國家檔案館（Archivo Nacional）或外交部官方歷任名單（A）。若屬 R3 因日期與正職性無法證明將為 R6。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "哥斯大黎加國家檔案館 Julio Acosta 全宗說明（docx）與傳記辭典未取得；死亡日期 1954-07-06 只見單一 B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Julio Acosta García presidente Costa Rica 1920-1924 biografía（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "結果多為百科鏡像與維基類站；採用 Gale 條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "enc-acosta 條目（curl 存檔）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/acosta-garcia-julio-1872-1954",
+     "result": "found_B",
+     "note": "條目末署名 Karen Racine"
+    }
+   ]
+  },
+  {
+   "key": "fr-leygues",
+   "bioId": "cbb09808-0930-40ae-b03a-51d7d1d3c8a6",
+   "name": "Georges Leygues",
+   "nameZh": "喬治·萊格",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1856-10-29",
+      "end": "1933-09-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生平概略",
+      "en": "Life in outline"
+     },
+     "body": {
+      "zh-Hant": "據法國國民議會資料庫，萊格1856年10月29日生於洛特-加龍省的維勒訥夫（Villeneuve-sur-Lot），1933年9月2日卒於聖克盧。他修完法律後在家鄉律師公會登記，1885至1933年任洛特-加龍省眾議員。",
+      "en": "According to the Assemblée nationale database, Georges Leygues was born on 29 October 1856 in Villeneuve-sur-Lot (Lot-et-Garonne) and died on 2 September 1933 at Saint-Cloud. After completing his law studies he registered with the bar of his home town, and he was deputy for Lot-et-Garonne from 1885 to 1933."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Né le 29 octobre 1856 à Villeneuve-sur-Lot (Lot-et-Garonne)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "mort le 2 septembre 1933 à Saint-Cloud (Seine-et-Oise)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "il se fit inscrire, ses études de droit achevées, au barreau de sa ville natale",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Député du Lot-et-Garonne de 1885 à 1933.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-11-16",
+      "end": "1933-09-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1917年後的內閣職務",
+      "en": "Ministerial offices from 1917"
+     },
+     "body": {
+      "zh-Hant": "1917年11月16日至1920年1月20日，萊格任海軍部長；1920年9月24日至1921年1月16日任部長會議主席（總理）兼外交部長；1925年11月28日至1926年7月19日及1926年7月23日至1930年2月21日再任海軍部長；1930年12月13日至1931年1月27日任內政部長；1932年6月3日至1933年9月2日又任海軍部長。",
+      "en": "From 16 November 1917 to 20 January 1920 Leygues was Minister of the Navy; from 24 September 1920 to 16 January 1921 he was President of the Council and Minister of Foreign Affairs; he was Navy Minister again from 28 November 1925 to 19 July 1926 and from 23 July 1926 to 21 February 1930, Minister of the Interior from 13 December 1930 to 27 January 1931, and Navy Minister from 3 June 1932 to 2 September 1933."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine et membre du Comité de Guerre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "du 16 novembre 1917 au 20 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Président du Conseil et Ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "du 24 septembre 1920 au 16 janvier 1921",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 28 novembre 1925 au 19 juillet 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "du 23 juillet 1926 au 21 février 1930",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de l'Intérieur du 13 décembre 1930 au 27 janvier 1931",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 3 juin 1932 au 2 septembre 1933",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "marine-1917",
+     "title": {
+      "orig": "Ministre de la Marine",
+      "zh-Hant": "海軍部長",
+      "en": "Minister of the Navy"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "period": {
+      "start": "1917-11-16",
+      "end": "1920-01-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine et membre du Comité de Guerre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "du 16 novembre 1917 au 20 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：單獨海軍部不算四部"
+    },
+    {
+     "key": "marine-1925",
+     "title": {
+      "orig": "Ministre de la Marine",
+      "zh-Hant": "海軍部長",
+      "en": "Minister of the Navy"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "period": {
+      "start": "1925-11-28",
+      "end": "1926-07-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 28 novembre 1925 au 19 juillet 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 28 novembre 1925 au 19 juillet 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：單獨海軍部不算四部"
+    },
+    {
+     "key": "marine-1926",
+     "title": {
+      "orig": "Ministre de la Marine",
+      "zh-Hant": "海軍部長",
+      "en": "Minister of the Navy"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "period": {
+      "start": "1926-07-23",
+      "end": "1930-02-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 28 novembre 1925 au 19 juillet 1926",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "du 23 juillet 1926 au 21 février 1930",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：單獨海軍部不算四部"
+    },
+    {
+     "key": "interior-1930",
+     "title": {
+      "orig": "Ministre de l'Intérieur",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "period": {
+      "start": "1930-12-13",
+      "end": "1931-01-27"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de l'Intérieur du 13 décembre 1930 au 27 janvier 1931",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R3③：內政屬四部，但任期 1930-12-13～1931-01-27 僅 45 天，可證明 <90 天，不進角色層（R5）"
+    },
+    {
+     "key": "marine-1932",
+     "title": {
+      "orig": "Ministre de la Marine",
+      "zh-Hant": "海軍部長",
+      "en": "Minister of the Navy"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府",
+      "en": "Government of France"
+     },
+     "period": {
+      "start": "1932-06-03",
+      "end": "1933-09-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 3 juin 1932 au 2 septembre 1933",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Ministre de la Marine du 3 juin 1932 au 2 septembre 1933",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null,
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：單獨海軍部不算四部"
+    },
+    {
+     "key": "deputy-lot-et-garonne",
+     "title": {
+      "orig": "Député du Lot-et-Garonne",
+      "zh-Hant": "洛特-加龍省眾議員",
+      "en": "Deputy for Lot-et-Garonne"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國眾議院",
+      "en": "Chamber of Deputies (France)"
+     },
+     "period": {
+      "start": "1885-01-01",
+      "end": "1934-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "syco-leygues",
+       "locator": "Jolly 辭典摘錄",
+       "quote": "Député du Lot-et-Garonne de 1885 à 1933.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫議員；Sycomore 列出的議會團體（Républicains de gauche 等）非以政黨身分取得席位的明文，不算黨職"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:president-of-council-1920-1921",
+     "gapKind": "not_found",
+     "note": "1920-09-24～1921-01-16（兼外交部長）部長會議主席任期依規則視為已在名單 5442 任期內，不建候選；Sycomore 的「Gouvernement」欄寫終於 1921-01-12，與 Jolly 摘錄的 1921-01-16 不同（同一頁內不一致，非兩份來源衝突）；本人物地區／政權推定為「不明」，是否確在名單內待比對。（審查補註：同頁 Jolly 摘錄另寫「du 23 septembre 1920 au 12 janvier 1921」。同期兼任外交部長（Sycomore 寫 1920-09-24～1921-01-16）未建職位或候選：若首相任期確在名單內，外交部長任期須另依 T14 R3 判斷，regimeId 待比對。）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "conflict",
+     "note": "兩份已抓權威檔生年不同：Sycomore（議會官方）1856-10-29；BnF 權威記錄標題為 (1857-1933)。段落採 Sycomore 的 1856。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bnf-leygues",
+       "locator": "權威記錄標題",
+       "quote": "Georges Leygues (1857-1933)",
+       "quoteLang": "fr",
+       "grade": "A"
+      },
+      {
+       "sourceKey": "dnb-leygues",
+       "locator": "Lebensdaten",
+       "quote": "Lebensdaten 1856 – 1933",
+       "quoteLang": "de",
+       "grade": "A"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pre-1908-offices",
+     "gapKind": "not_found",
+     "note": "1894–1906 的教育、內政、殖民部長任期在 1908–1945 範圍外，未建職位（Q6）；Britannica 擋挑戰頁，A/B 傳記辭典（如 Dictionnaire de biographie française）未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Sycomore 猜測編號 fiche/(num_dept)/5222",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/(num_dept)/5222",
+     "result": "not_relevant",
+     "note": "取到另一位議員（非本人），未採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Georges Leygues",
+     "url": "https://www.britannica.com/biography/Georges-Leygues",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Georges Leygues député Lot-et-Garonne ministre président du Conseil 1920 biographie Assemblée nationale（WebSearch）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為百科鏡像站，未採用"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Leygues Georges 1856 1933 Sycomore（WebSearch，限官方／BnF 網域）",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/7840",
+     "result": "found_A",
+     "note": "取得 Sycomore 正確編號 7840"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Sycomore fiche 7840（curl 存檔 syco-leygues）",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche/7840",
+     "result": "found_A",
+     "note": "含 Jolly 辭典摘錄與任期日期"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "GND／Deutsche Biographie pnd128890177（curl 存檔 dnb-leygues）",
+     "url": "https://www.deutsche-biographie.de/pnd128890177.html",
+     "result": "found_A",
+     "note": "只有索引：Lebensdaten 1856–1933"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "data.bnf.fr Georges Leygues（curl 存檔 bnf-leygues）",
+     "url": "https://data.bnf.fr/en/ark:/12148/cb12459443q",
+     "result": "found_A",
+     "note": "標題生年 1857，與 Sycomore 不同，記 conflict gap"
+    }
+   ]
+  },
+  {
+   "key": "ro-stirbei",
+   "bioId": "01a1c41f-dcd0-7409-b0f6-a5c57e79562f",
+   "name": "Barbu Știrbei",
+   "nameZh": "巴爾布·什蒂爾貝",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1927-06-04",
+      "end": "1927-06-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1927年的政府任期",
+      "en": "Government of June 1927"
+     },
+     "body": {
+      "zh-Hant": "羅馬尼亞政府官網的歷任總理名單列出巴爾布·什蒂爾貝，政府任期為1927年6月4日至6月20日。",
+      "en": "The Romanian government's official list of prime ministers gives Barbu Știrbei's period of government as 4 June 1927 to 20 June 1927."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "歷任總理名單",
+       "quote": "Barbu Știrbei 4 iunie 1927 – 20 iunie 1927",
+       "quoteLang": "ro",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:prime-minister-1927",
+     "gapKind": "not_found",
+     "note": "1927-06-04～1927-06-20 總理任期依規則視為已在名單 5442 任期內，不建候選；僅寫入段落。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:crown-domains-administrator",
+     "gapKind": "not_found",
+     "note": "王室領地總管（1913 起）：只見未評等來源。需 A/B 來源（羅馬尼亞科學院、國家圖書館、學術專書）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rador-stirbey",
+       "locator": "「Barbu Știrbey」段",
+       "quote": "administratorul general al domeniilor Coroanei",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:interim-portfolios-1927",
+     "gapKind": "not_found",
+     "note": "總理任期內兼署（interimar）的部會：Rador 寫外交與財政，Enciclopedia României 另含內政；兩者皆未評等，不能算兩份已評等來源衝突，故不建職位。需政府公報（Monitorul Oficial）或 A/B 專書。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rador-stirbey",
+       "locator": "「Barbu Știrbey」段",
+       "quote": "şi de portofoliile Externelor şi Finanţelor",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:exile-and-1944",
+     "gapKind": "not_found",
+     "note": "1931 年自我流放、1940 年代的對盟國交涉任務：只見未評等來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rador-stirbey",
+       "locator": "「Barbu Știrbey」段",
+       "quote": "în februarie 1931, Barbu Ştirbey se autoexilează",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "生卒年（1872–1946）與家族背景：Britannica 回傳挑戰頁、gov.ro 僅提供總理任期；需國家級傳記辭典或權威檔（LoC／VIAF／羅馬尼亞國家圖書館）；Encyclopedia.com 的 Marie 條目（無署名）只涉及相關事件，列為候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "enc-marie",
+       "locator": "Marie 條目",
+       "quote": "Carol made him superintendent of the crown's estates",
+       "quoteLang": "en",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Barbu Știrbei prim-ministru 1927 regent biografie（WebSearch）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為維基類站，未採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Barbu Stirbey",
+     "url": "https://www.britannica.com/biography/Barbu-Stirbey",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Barbu Știrbey Romanian statesman biography（WebSearch，排除維基類）",
+     "url": null,
+     "result": "unrated",
+     "note": "僅得無署名或個人網站"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "Enciclopedia României Barbu Ştirbey（curl 存檔 enc-ro-stirbey）",
+     "url": "https://enciclopediaromaniei.ro/wiki/Barbu_%C5%9Etirbey",
+     "result": "unrated",
+     "note": "無署名條目，只作 gap 候選"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Rador 人物特寫（curl 存檔 rador-stirbey）",
+     "url": "https://www.rador.ro/2021/03/24/portret-barbu-stirbey-adevaratul-suveran-al-romaniei-printul-alb-75-de-ani-de-la-plecarea-in-eternitate/",
+     "result": "unrated",
+     "note": "無具名作者，只作 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Barbu Stirbey Prince Romania prime minister 1927（WebSearch，限學術與百科網域）",
+     "url": "https://www.encyclopedia.com/women/encyclopedias-almanacs-transcripts-and-maps/marie-rumania-1875-1938",
+     "result": "unrated",
+     "note": "取得 Marie 條目（curl 存檔 enc-marie），未見署名，只作 gap 候選"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "arhiva.gov.ro 歷任總理（舊網址）",
+     "url": "http://arhiva.gov.ro/istoric-prim-mini-and-351-tri__c36l1p1.html",
+     "result": "no_result",
+     "note": "伺服器維護頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "gov.ro 歷任總理名單（curl 存檔 gov-ro-pm）",
+     "url": "https://gov.ro/ro/fosti-ministri",
+     "result": "found_A",
+     "note": "列出 Barbu Știrbei 4 iunie 1927 – 20 iunie 1927"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "mfinante.gov.ro 財政部長名冊",
+     "url": "https://mfinante.gov.ro/en/album-ministri-de-finante",
+     "result": "no_result",
+     "note": "連線被重設（curl 56）"
+    }
+   ]
+  }
+ ]
+}

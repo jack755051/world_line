@@ -1,0 +1,139 @@
+{
+ "batch": "11",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 4,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 1,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 3,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 4
+ },
+ "people": [
+  {
+   "key": "pa-chiari",
+   "bioId": "01a1b4b7-28ff-7336-8b15-66836757dd6b",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 3,
+   "changes": [
+    "段落1「巴拿馬脫離哥倫比亞前後」無引文支撐（引文只到 he held many government posts，完整片段超過 80 字元）→ 刪子句",
+    "候選 acting-president-1912：title.orig 由「—」改為原文「took charge of the executive office」；reason 刪除來源未寫的推論「由第三順位代理人身分代理」（R0、acting、year 精度 1912-01-01～1913-01-01 正確）",
+    "職位 secretary-government-justice-1914：title.orig 原寫來源未見的西班牙文「secretario de gobierno y justicia」→ 改為原文英文；R6（dates／source／regime）維持",
+    "gap presidency-1924-1928 note 含已抓來源未見的日期（1924-10-01～1928-10-01）→ 刪除",
+    "重抓 enc-chiari，全部 20 筆引文仍逐字出現；財政部副部長 R5 正確"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 僅 3 筆，來源類型只有 named_encyclopedia 1 類（需 ≥4 類）、查詢 <8 次、西班牙文查詢僅 1 次、可用實抓頁只有 1 個",
+    "實查厚薄應為薄（僅一篇約 300 字的 B 條目），名單預估「薄」正確，研究者寫「中」",
+    "建議下一步：LoC Name Authority／VIAF「Chiari, Rodolfo E., 1870-1937」；Presidencia de la República de Panamá 歷任總統頁；Asamblea Nacional de Panamá；條目書目所列 Jorge Conte Porras《Diccionario biográfico ilustrado de Panamá》出版社書目頁；Gaceta Oficial（1912 代理、1914 任部長的政令）"
+   ]
+  },
+  {
+   "key": "no-hundseid",
+   "bioId": "01a1b543-5a87-7f67-b2c2-9c2a4f97c528",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 4,
+   "gaps": 4,
+   "searchLogSteps": 3,
+   "changes": [
+    "段落1引文「…Hundseid i fleire år lærar」截掉受詞，句子「青年學校與農業學校教師」缺支撐 → 補原文引文「lærar ved ungdomsskular og landbruksskular」",
+    "段落2「政府垮台」無引文（該段引文只寫 gjekk av）→ 刪子句",
+    "職位 parliamentary-leader-1931（partyPostAmbiguous）移入 roleCandidates：來源導言明寫「parlamentarisk førar for Bondepartiet」，屬政黨的議會領袖，為明確黨職 → de_facto_leader、t14Rule=R1、originalPositionKind=party，補同頁原文引文",
+    "黨副主席／主席 R1、Telemark Bondeparti 議員席位 R1（Tai 12:47 比照黨職）正確；農業部長 R5、fylkesmann R5 正確",
+    "重抓 snl-hundseid，17 筆引文仍逐字出現"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 僅 3 筆（需 ≥8 次查詢，含挪威文 ≥2）；有效抓取只有 SNL 1 頁（GND no_result、Stortinget 猜測網址無內容）",
+    "identity gap 寫「挪威傳記辭典（NBL）…未取得（見 searchLog）」，但 searchLog 沒有任何 NBL 嘗試",
+    "建議下一步：Norsk biografisk leksikon nbl.snl.no/Jens_Hundseid（A）；regjeringen.no 歷任首相／政府頁（A，可補首相與農業部長起訖）；Stortinget 議員傳記正確檢索；lobid.org GND 以「Hundseid, Jens」精確查詢"
+   ]
+  },
+  {
+   "key": "cr-acosta-garcia",
+   "bioId": "01a1b4b7-28f7-7b89-9d70-39b1e10322ed",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 2,
+   "changes": [
+    "段落1「總統任期前」無引文 → 補原文引文「before winning the presidency in 1920」",
+    "段落2引文「Acosta, a Liberal, served as」截掉謂語受詞 → 改為完整同位語片段「Acosta, a Liberal」",
+    "Central American Unionist Party 代表維持 partyPostAmbiguous（來源只寫 Costa Rica's delegate to the party，未寫黨內職稱）",
+    "gap foreign-minister-1915 是研究者未經已抓來源支持的線索（「若有」），保留為待查證，不得視為事實",
+    "重抓 enc-acosta，引文仍逐字出現"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 僅 2 筆，來源類型只有 named_encyclopedia 1 類、查詢 <8 次、西班牙文查詢 1 次、實抓頁 1 個",
+    "實查厚薄應為薄（單一短 B 條目）",
+    "建議下一步：VIAF／Biblioteca Nacional de Costa Rica 權威檔；Asamblea Legislativa de Costa Rica 歷任總統／制憲代表名錄；Archivo Nacional de Costa Rica 的 Julio Acosta 全宗說明；DB~e（dbe.rah.es）；條目書目所列 Oconitrillo García《Julio Acosta: el hombre de la providencia》（Editorial Costa Rica）書目頁"
+   ]
+  },
+  {
+   "key": "fr-leygues",
+   "bioId": "cbb09808-0930-40ae-b03a-51d7d1d3c8a6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 7,
+   "changes": [
+    "段落1「直到逝世為止」無引文（引文只寫 de 1885 à 1933）→ 改為「1885至1933年任…眾議員」（英文同步）",
+    "gap president-of-council-1920-1921 補註：同頁另有「du 23 septembre 1920 au 12 janvier 1921」；同期兼任外交部長（114 天，Sycomore A）未建職位或候選，若首相任期在名單內須另依 T14 R3 判斷",
+    "T14：海軍部長四段 R5（單獨海軍部）、內政部長 1930-12-13～1931-01-27 可證明 45 天 <90 → R5，均正確",
+    "identity conflict gap（Sycomore 1856 vs BnF 1857）為兩份已抓來源矛盾，gapKind=conflict 正確",
+    "重抓 syco-leygues，12 筆引文仍逐字出現",
+    "名單推定「不明」→ 實查為歐洲·西歐／法國第三共和（共和制）、在職 1917–1933（研究者已於 gap 註明）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-stirbei",
+   "bioId": "01a1c41f-dcd0-7409-b0f6-a5c57e79562f",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 9,
+   "changes": [
+    "唯一段落依 gov.ro（A）歷任總理名單，引文核對無誤；王室領地總管、兼署部會、流亡等全在 gaps（只有未評等候選），處理正確",
+    "重抓 gov-ro-pm，引文仍逐字出現"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：來源類型只有 official、named_encyclopedia 兩類（other 不屬 1–5 類），缺 authority、treaty_law、academic",
+    "名單預估「厚」，實查僅得 1 筆 A 引文；厚人物資料不足應繼續查，而非以 1 句收尾",
+    "建議下一步：LoC／VIAF「Știrbey, Barbu, 1872-1946」；Biblioteca Națională a României 權威檔；Monitorul Oficial 1927 年 6 月任命政令（兼署部會）；Academia Română／CEEOL 具名學術論文；Britannica 擋時改 Encyclopaedia of Romania 具名條目或大學出版社專書"
+   ]
+  }
+ ],
+ "issues": [
+  "searchLog 普遍過短：5 人中 4 人未達最低嘗試（2–3 筆或缺權威檔類），多數只靠單一 encyclopedia.com 條目即停止；研究者把單一短條目人物標為「中」以避開最低嘗試",
+  "引文截斷受詞／謂語（Hundseid「…lærar」、Acosta「…served as」）及段落子句無引文支撐（Chiari 脫離哥倫比亞、Hundseid 政府垮台、Leygues 直到逝世）仍有發生",
+  "title.orig 寫入來源未見的外語譯名（Chiari 西班牙文部名）、gap note 寫入未經來源支持的日期（Chiari 總統起訖）",
+  "政黨議會領袖（parlamentarisk førar for 某黨）屬明確黨職，應入 roleCandidates，不應標 partyPostAmbiguous",
+  "首相兼任四部閣員（Leygues 1920 兼外交）未單獨判 T14，只寫段落；名單是否含該首相任期不明時應在 gap 註明"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

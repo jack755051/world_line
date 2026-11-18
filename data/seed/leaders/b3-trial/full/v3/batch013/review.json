@@ -1,0 +1,84 @@
+{
+ "batch": "013",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 2,
+  "addedCitations": 3,
+  "editedSentences": 0,
+  "spotRefetched": 6,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cu-machado-gerardo",
+   "bioId": "01a1b488-13d8-7337-a49a-f44a35ca1e6d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 17,
+   "changes": [
+    "第2段 Warren Brothers 句提到「塞斯佩德斯」但無引文支撐：把第一章引文 'President Gerardo Machado and his minister of public works' 換成同書第七章原文 'Machado and his minister of public works, Carlos Miguel de Céspedes'（已核對原文）",
+    "自由黨領袖屬黨職但無任期日期，留在 gaps（待查證：缺起日）處理正確，未移入 roleCandidates",
+    "抽查重抓 lobid GND 13194200X，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ve-marquez-bustillos-victorino",
+   "bioId": "65946b65-9aa4-4dea-8ea1-116090e84eea",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 8,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 11,
+   "changes": [
+    "第3段刪除不支撐任何句子的引文 'El 19 de junio de 1920, el Congreso Nacional sancionó la primera ley'",
+    "第3段 'durante 7 años…primer ministro' 引文不含日期，datePrecision 由 year 改 null",
+    "陸海軍部長 R6（年精度只能證明約 1 天、regime 未確認）判斷正確，保留",
+    "抽查重抓 DHV 兩條目（Márquez Bustillos、Gómez gobierno），引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ir-ahmad-shah-qajar",
+   "bioId": "01a1b4b2-2f9b-7ff4-bedb-510eaef26a75",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 13,
+   "changes": [
+    "sources.encyc-qajar-hooglund 作者補上原文署名 John Foran（Eric Hooglund 為更新者），gradeBasis 同步修正",
+    "第3段「第五屆議會多數黨」子句缺引文：新增同段原文引文 'among the majority parties in the Fifth Majles'",
+    "第3段「合法」王權轉移子句缺引文：新增原文引文 '\"legal\" transfer of royal authority'",
+    "'Two months later…' 引文無日期，datePrecision 由 month 改 null",
+    "抽查重抓 lobid GND 1267849312、Treccani QĀGIĀRI、encyclopedia.com Qajar Dynasty，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者對無日期引文仍填 datePrecision（相對時間如 'two months later'、'7 años'）",
+  "正文子句偶有引文未覆蓋的細節（人名、議會多數黨、合法轉移），審查以原文既有字句補引文",
+  "本批任務檔標「5 人」實際名單僅 3 人"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

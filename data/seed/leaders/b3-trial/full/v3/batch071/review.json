@@ -1,0 +1,89 @@
+{
+ "batch": "071",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 11,
+  "editedSentences": 9,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pe-solf-y-muro",
+   "bioId": "01a1b4c0-2f89-7d1d-9d62-bb8cf52a9a74",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 12,
+   "changes": [
+    "段1：刪無引文支撐的「從民法物權中分出來」，改為「特別權利的代表人物」；德國移民引文擴為含『había llegado al norte del país』以支撐「來到秘魯北部」；補 PCM『…y en la Universidad Mayor de San Marcos』引文支撐進聖馬科斯",
+    "段2：補 PCM『La recomposición del Gabinete fue total』引文支撐「內閣全面改組」",
+    "段4：補 PCM『Su primer Gabinete lo integraron…』與『Manuel Prado Ugarteche lo designó ministro de Relaciones Exteriores』引文（原引文截在『transferida』，未含普拉多之名）",
+    "position solf-foreign-minister-1939：引文『(Consejo de Ministros y titular…)』無日期卻標 datePrecision=year，改 null（Q8）",
+    "財政部長引文『Al año siguiente fue nombrado titular de』因 PDF 斷字（Hacien-da）無法取完整受詞，保留並註記；R6（dates、regime）判斷正確",
+    "抽查重抓 vLex（Ramos Núñez）：出生句一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "danzig-ziehm",
+   "bioId": "01a1b4c1-cdc3-7a47-9627-d2a41b653e5c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 14,
+   "changes": [
+    "段1：「西普魯士」無引文支撐，刪；「今波蘭」改為「波蘭文」；補 Gedanopedia『studiował prawo i nauki polityczne』引文支撐學科",
+    "段2：引文截在『Prusy Zachodnie』，未含但澤，刪「但澤」",
+    "段3：DNVP 引文原只有黨名名詞，改為『Należał do … Niemiecko Narodowej Partii Ludowej』支撐「屬該黨」",
+    "段5：補『gdański gauleiter (szef okręgu NSDAP) Albert Forster』支撐「但澤納粹黨領袖」；原引文未含『最後通牒』與『交給納粹黨人』，換成兩筆完整片段",
+    "Volkstag 席位 partyPostAmbiguous 與 conflict gap（兩份 Gedanopedia 條目）合規",
+    "抽查重抓 Gedanopedia 個人條目：卸任日句一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "us-harding",
+   "bioId": "01a1b48b-c853-76f5-b162-534338a0eb08",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 14,
+   "changes": [
+    "段2：Miller 引文寫 party convention，「共和黨大會」改「黨代表大會」",
+    "段3：刪無引文支撐的「表現平庸」；英文「popular vote」超出引文，刪",
+    "段4：補『Republicans in Congress easily got the President's signature…』與『established a Federal budget system』引文；移民、友人謀私兩筆引文原截掉受詞，擴為完整片段；刪無引文的「1923年」聽說；死亡引文改為含『In August of 1923』（datePrecision=month）",
+    "段4 period 迄點依半開區間改 1923-08-03（死亡日 08-02）",
+    "抽查重抓 White House 存檔頁：引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批實為 3 人（提示標題寫 5 人）",
+  "共通問題：引文截掉受詞或地名，段落子句超出引文（地名、黨名、年份），已逐筆擴引文或刪子句",
+  "無 major★；無黨職候選；regimeId 因不連庫一律 null，四部閣員一律 R6（regime）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

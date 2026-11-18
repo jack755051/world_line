@@ -1,0 +1,667 @@
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { NgTemplateOutlet } from '@angular/common';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, ElementRef, inject, Injector, input, output, signal, untracked, viewChild } from '@angular/core';
+import { LucideChevronDown, LucideBriefcase, LucideLandmark, LucideLibrary, LucideScrollText, LucideUserRound, LucideX } from '@lucide/angular';
+import type { BioPosition, BioRole, LeaderBio } from '../../core/api/world-line-api';
+import type { Lang } from '../../core/i18n';
+import { formatPartialDate, formatTerm, inclusiveEnd, pickLocalized, portraitDisplayable } from '../../core/person-format';
+import { detailCitationItems, fieldSourceItems, portraitSourceItems, termSourceItems } from '../../core/person-sources';
+import { MOTION_SPEC, MotionService, type MotionContext, type MotionTimeline } from '../../core/motion';
+import { SourceDisclosure, type SourceItem } from '../source-disclosure/source-disclosure';
+import { numberSources } from '../../core/footnotes';
+import { lifeText } from './life-format';
+
+/** 根元素 data-motion-state（§17.3）；關閉卸載後元素不存在。 */
+export type PersonDialogMotionState = 'opening' | 'open' | 'closing';
+
+export type PersonDialogState =
+  | { status: 'loading' }
+  | { status: 'error' }
+  | { status: 'ok'; data: LeaderBio };
+
+const TXT = {
+  'zh-Hant': {
+    close: '關閉', loading: '載入中…', error: '人物資料載入失敗', basics: '基本資料', birth: '出生', death: '逝世',
+    birthPlace: '出生地', party: '黨派', summary: '生平', terms: '職位與任期', positions: '經歷', roles: '角色', acting: '代理', organization: '機構', note: '備註', ongoing: '迄今不明', positionsHint: '經歷全集，不等同於地圖上的任期；地圖任期見「職位與任期」。', rolesHint: '角色資料；不影響地圖出卡與版頭角色標籤。', noValue: '尚無資料', notApplicable: '不適用',
+    photo: '照片', noPhoto: '無授權照片', test: '測試資料', name: '姓名', dossier: '人物詳情', sections: '詳情區塊',
+    termNote: '任期迄日不含當天，畫面顯示最後在任日。', dialog: '人物詳情', portraitOf: '的肖像',
+    sources: '資料來源', pending: '待補來源', usedFor: '用於', missing: '以下欄位待補來源', sourceRef: '來源',
+    mainRole: '主要職位', regime: '所屬政權', bornAt: '生於 ', diedAt: '卒於 ', bornIn: '生於 ', placeSep: '·', lifeGap: '\u3000',
+    role: { head_of_state: '國家元首', head_of_government: '政府首腦' } as Record<string, string>,
+    roleKind: { head_of_state: '國家元首', head_of_government: '政府首腦', de_facto_leader: '實際掌權者', cabinet_minister: '閣員' } as Record<string, string>,
+    positionKind: { minister: '部長', legislator: '議員', diplomat: '外交官', military_command: '軍事指揮', military_education: '軍事教育', judicial: '司法', police: '警察', other: '其他' } as Record<string, string>,
+  },
+  en: {
+    close: 'Close', loading: 'Loading…', error: 'Could not load this person', basics: 'Basic facts', birth: 'Born', death: 'Died',
+    birthPlace: 'Birthplace', party: 'Party', summary: 'Biography', terms: 'Offices and terms', positions: 'Career', roles: 'Roles', acting: 'Acting', organization: 'Organization', note: 'Note', ongoing: 'end unknown', positionsHint: 'Full career list; not the map terms (see “Offices and terms”).', rolesHint: 'Role data; does not affect map cards or the header role chips.', noValue: 'No data', notApplicable: 'Not applicable',
+    photo: 'Photo', noPhoto: 'No licensed photo', test: 'Test data', name: 'Name', dossier: 'Person details', sections: 'Sections',
+    termNote: 'Term end dates are exclusive; the last day in office is shown.', dialog: 'Person details', portraitOf: ' — portrait',
+    sources: 'Sources', pending: 'Source needed', usedFor: 'Used for', missing: 'Fields without a source', sourceRef: 'Source',
+    mainRole: 'Main office', regime: 'Regime', bornAt: 'Born ', diedAt: 'Died ', bornIn: 'Born in ', placeSep: ', ', lifeGap: '\u2003',
+    role: { head_of_state: 'Head of State', head_of_government: 'Head of Gov\'t' } as Record<string, string>,
+    roleKind: { head_of_state: 'Head of State', head_of_government: 'Head of Government', de_facto_leader: 'De facto leader', cabinet_minister: 'Cabinet minister' } as Record<string, string>,
+    positionKind: { minister: 'Minister', legislator: 'Legislator', diplomat: 'Diplomat', military_command: 'Military command', military_education: 'Military education', judicial: 'Judicial', police: 'Police', other: 'Other' } as Record<string, string>,
+  },
+} as const;
+
+type SectionKey = 'basics' | 'bio' | 'terms' | 'positions' | 'roles' | 'sources';
+
+/** 一筆去重後的來源（底部註腳）：編號、內容、用在哪些欄位。 */
+
+let seq = 0;
+const roleRank = (r: string): number => ({ head_of_state: 0, head_of_government: 1 } as Record<string, number>)[r] ?? 2;
+
+/**
+ * 人物詳情對話框（ARCHITECTURE §14.8；版面參考 Stitch 人物檔案稿，配色沿用羊皮紙 --wl-* 變數）。
+ * 桌機置中大視窗、手機全螢幕；role="dialog" aria-modal="true"、焦點鎖定、Esc 由頁面統一關閉。
+ * 區塊：版頭（照片 3:4、中文名、原文名、角色、傳記式生卒；桌機右側第三欄＝摘要：出生地／黨派／主要職位與任期／所屬政權，手機排在下方）
+ * → 區塊分頁籤（吸頂；「基本資料」捲回版頭）→ 生平 → 職位與任期時間軸 → 資料來源（底部統一收合）。
+ * 欄位值旁只放上標來源編號；完整出處集中在底部「資料來源 (N)」。沒有來源的欄位明示「待補來源」；舊格式出處只當備註，不標已查證。
+ * 戰役／事件：目前沒有人物↔事件資料（§14.0 戰役先不做），不顯示該區塊，也不放假資料。
+ * 開關動效（ARCHITECTURE §17 P1）：`open` 輸入由頁面依 `?person=` 給；關閉時先 `closing`（inert、不可點）播完才送 `hidden` 讓頁面卸載。
+ * 焦點、Esc、history 都在狀態改變當下處理，不等動畫。只動 transform／opacity；一個彈窗只持有一條 timeline。
+ */
+@Component({
+  selector: 'wl-person-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CdkTrapFocus, NgTemplateOutlet, LucideX, LucideUserRound, LucideScrollText, LucideBriefcase, LucideLandmark, LucideLibrary, LucideChevronDown, SourceDisclosure],
+  template: `
+    <div class="fixed inset-0 z-[70]" data-testid="person-dialog-root" [attr.data-motion-state]="motionState()"
+      [attr.inert]="motionState() === 'closing' ? '' : null" [class.pointer-events-none]="motionState() === 'closing'">
+      <div #backdrop class="absolute inset-0 bg-black/45" aria-hidden="true" data-testid="person-dialog-backdrop" (click)="closed.emit()"></div>
+      <section #panel data-testid="person-dialog" role="dialog" aria-modal="true" [attr.aria-labelledby]="titleId" tabindex="-1"
+        cdkTrapFocus [cdkTrapFocusAutoCapture]="false"
+        class="absolute inset-0 flex flex-col overflow-hidden bg-wl-surface shadow-[var(--wl-shadow-panel)] outline-none md:m-auto md:h-[min(90vh,860px)] md:w-[min(920px,94vw)] md:rounded-xl md:border md:border-wl-outline-variant">
+        <!-- 頂列：檔案標記（政權）＋關閉；不隨內容捲動 -->
+        <header class="flex flex-none items-center gap-2 border-b border-wl-outline-variant bg-wl-surface-container px-4 md:px-6">
+          <span aria-hidden="true" class="size-2 flex-none bg-wl-primary"></span>
+          <p data-testid="person-dialog-eyebrow" class="min-w-0 flex-1 truncate font-mono text-[11px] uppercase tracking-[0.12em] text-wl-on-surface-variant">
+            {{ t().dossier }}@if (regimeLabel()) { <span> // {{ regimeLabel() }}</span> }</p>
+          <button #closeBtn type="button" data-testid="person-dialog-close" [attr.aria-label]="t().close"
+            class="inline-flex size-11 flex-none items-center justify-center rounded-full hover:bg-wl-surface-container-high focus-visible:outline-2 focus-visible:outline-wl-secondary"
+            (click)="closed.emit()"><svg lucideX class="size-5" aria-hidden="true"></svg></button>
+        </header>
+        <div #body data-testid="person-dialog-body" class="relative min-h-0 flex-1 overflow-y-auto overscroll-contain" (scroll)="onScroll()" (wheel)="unlockSpy()" (touchmove)="unlockSpy()" (keydown)="unlockSpy()" (pointerdown)="onBodyPointer($event)">
+          @switch (state().status) {
+            @case ('loading') { <p class="px-4 py-4 wl-text2 text-wl-on-surface-variant md:px-8" role="status">{{ t().loading }}</p> }
+            @case ('error') { <p class="px-4 py-4 wl-text2 text-wl-error md:px-8" role="alert">{{ t().error }}</p> }
+          }
+          @if (bio(); as b) {
+            <!-- 標頭：照片 3:4（無授權＝中性佔位）＋姓名、原文名、角色、生卒 -->
+            <!-- 手機：照片｜姓名欄，摘要排在下方整寬；桌機（md）：照片｜姓名＋生卒｜摘要第三欄 -->
+            <div data-testid="person-dialog-hero" [id]="sectionId('basics')" data-section="basics"
+              class="grid grid-cols-[6rem_minmax(0,1fr)] items-start gap-x-4 gap-y-4 border-b border-wl-outline-variant px-4 py-4 md:grid-cols-[10rem_minmax(0,1fr)_minmax(0,17rem)] md:gap-x-6 md:px-8 md:py-6">
+              <figure class="w-24 flex-none md:w-40" data-testid="person-dialog-figure">
+                <div class="aspect-[3/4] w-full overflow-hidden rounded-sm border border-wl-outline-variant bg-wl-surface-container-high">
+                  @if (portrait() && !imgFailed()) {
+                    <img data-testid="person-dialog-photo" [src]="portrait()!.url" [alt]="title() + t().portraitOf" referrerpolicy="no-referrer"
+                      class="size-full object-cover object-top" (error)="imgFailed.set(true)" />
+                  } @else {
+                    <div data-testid="person-dialog-placeholder" class="flex size-full flex-col items-center justify-center gap-1 text-wl-outline" role="img" [attr.aria-label]="t().noPhoto">
+                      <svg lucideUserRound class="size-10 md:size-14" aria-hidden="true"></svg>
+                      <span class="px-1 text-center text-[11px] text-wl-on-surface-variant" aria-hidden="true">{{ t().noPhoto }}</span>
+                    </div>
+                  }
+                </div>
+                @if (portrait(); as p) {
+                  <figcaption data-testid="person-dialog-photo-credit" class="mt-1 break-words text-[11px] leading-snug text-wl-on-surface-variant">
+                    {{ p.attribution }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('portrait') }" /></figcaption>
+                }
+              </figure>
+              <div class="min-w-0 flex-1">
+                @if (b.isTest) { <span class="mb-1 inline-block rounded-sm bg-wl-surface-container-high px-1 text-[11px]">{{ t().test }}</span> }
+                <h2 [id]="titleId" data-testid="person-dialog-title" class="font-wl-serif text-[24px] font-semibold leading-tight text-wl-on-surface md:text-[32px]">{{ title() }}</h2>
+                @if (originalName(); as on) {
+                  <p data-testid="person-dialog-original-name" class="mt-0.5 font-wl-serif text-[15px] italic text-wl-primary md:text-[18px]" lang="und">{{ on }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('name') }" /></p>
+                }
+                @if (roleChips().length) {
+                  <ul data-testid="person-dialog-roles" class="mt-2 flex flex-wrap gap-1.5">
+                    @for (c of roleChips(); track c.key; let i = $index) {
+                      <li data-testid="person-dialog-role" class="rounded-sm border px-1.5 py-0.5 text-[12px]"
+                        [class.border-wl-primary]="i === 0" [class.bg-wl-primary-container]="i === 0" [class.text-wl-on-surface]="i === 0"
+                        [class.border-wl-outline-variant]="i !== 0" [class.bg-wl-surface-container]="i !== 0" [class.text-wl-on-surface-variant]="i !== 0">{{ c.text }}</li>
+                    }
+                  </ul>
+                }
+                @if (life(); as l) {
+                  <!-- 生卒：一行「出生日 – 逝世日」（數字式、依精度），下面只列出生地；不再另列大字年份與享年（Tai 2026-11-14：重複）。值旁上標對應各自欄位 -->
+                  <div data-testid="person-dialog-life" class="mt-3">
+                    <p data-testid="person-dialog-life-years" class="font-wl-serif text-[22px] leading-tight tabular-nums text-wl-on-surface md:text-[26px]">@if (l.bornNum) {<span data-testid="person-field-birthDate"><span class="sr-only">{{ t().bornAt }}</span>{{ l.bornNum }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthDate') }" /></span>} – @if (l.diedNum) {<span data-testid="person-field-deathDate"><span class="sr-only">{{ t().diedAt }}</span>{{ l.diedNum }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('deathDate') }" /></span>}</p>
+                    @if (l.place) {
+                      <p data-testid="person-dialog-life-detail" class="mt-1 text-[13px] leading-relaxed text-wl-on-surface-variant md:text-[14px]"><span data-testid="person-life-birthPlace">{{ t().bornIn }}{{ l.place }}<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('birthPlace') }" /></span></p>
+                    }
+                  </div>
+                }
+              </div>
+
+              <!-- 版頭摘要（原「基本資料」）：出生地、黨派、主要職位、任期、所屬政權；值旁只放上標來源編號 -->
+              <dl data-testid="person-dialog-basics" [attr.aria-label]="t().basics"
+                class="col-span-2 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-6 self-start md:gap-y-2.5 border-t border-wl-outline-variant pt-3 text-[14px] md:col-span-1 md:border-l md:border-t-0 md:pl-5 md:pt-1">
+                @for (row of summaryRows(); track row.key) {
+                  <div [attr.data-testid]="'person-field-' + row.key" class="col-span-2 grid grid-cols-subgrid items-baseline">
+                    <dt class="whitespace-nowrap text-[12px] text-wl-on-surface-variant">{{ row.label }}</dt>
+                    <dd class="min-w-0 break-words leading-snug text-wl-on-surface">
+                      @if (row.value) { <span>{{ row.value }}</span> }
+                      @else { <span data-testid="person-field-empty" class="text-wl-on-surface-variant">{{ row.empty }}</span> }
+                      <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor(row.noteKey) }" />
+                      @if (row.sub) { <span class="block font-mono text-[12px] tabular-nums text-wl-on-surface-variant">{{ row.sub }}</span> }
+                    </dd>
+                  </div>
+                }
+              </dl>
+            </div>
+
+            <!-- 區塊分頁籤：捲動時吸頂；點了捲到該區塊 -->
+            <nav data-testid="person-dialog-tabs" [attr.aria-label]="t().sections"
+              class="sticky top-0 z-[2] flex gap-1 overflow-x-auto border-b border-wl-outline-variant bg-wl-surface/95 px-2 backdrop-blur-sm md:px-6">
+              @for (s of sections(); track s.key) {
+                <button type="button" [attr.data-testid]="'person-dialog-tab-' + s.key" [attr.aria-current]="activeSection() === s.key ? 'true' : null"
+                  class="relative inline-flex min-h-11 flex-none items-center gap-1 whitespace-nowrap px-3 text-[13px] focus-visible:outline-2 focus-visible:outline-wl-secondary"
+                  [class.font-semibold]="activeSection() === s.key" [class.text-wl-primary]="activeSection() === s.key" [class.text-wl-on-surface-variant]="activeSection() !== s.key"
+                  (click)="goTo(s.key)">{{ s.label }}
+                  @if (s.count !== null) { <span class="rounded-sm bg-wl-surface-container-high px-1 text-[11px] tabular-nums text-wl-on-surface-variant">{{ s.count }}</span> }
+                  @if (activeSection() === s.key) { <span aria-hidden="true" class="absolute inset-x-2 bottom-0 h-[2px] bg-wl-primary"></span> }
+                </button>
+              }
+            </nav>
+
+            <div class="space-y-8 px-4 py-6 md:px-8">
+              <!-- 生平：舒適閱讀寬度與行高 -->
+              <section [id]="sectionId('bio')" data-section="bio" data-testid="person-dialog-section-bio" [attr.aria-labelledby]="sectionId('bio') + '-h'">
+                <h3 [id]="sectionId('bio') + '-h'" class="mb-3 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                  <svg lucideScrollText class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().summary }}</h3>
+                @if (segments().length) {
+                  <!-- B3 分段生平：每段 heading／period／正文；引文只以上標指向底部「資料來源」 -->
+                  <div data-testid="person-dialog-section-paragraphs" class="max-w-[68ch] space-y-5">
+                    @for (g of segments(); track g.id) {
+                      <article data-testid="person-segment" [attr.data-ord]="g.ord">
+                        @if (g.heading) { <h4 data-testid="person-segment-heading" class="font-wl-serif text-[16px] font-semibold text-wl-on-surface">{{ g.heading }}</h4> }
+                        @if (g.period) { <div data-testid="person-segment-period" class="mb-1 font-mono text-[12px] tabular-nums text-wl-primary">{{ g.period }}</div> }
+                        @for (para of g.paras; track $index; let last = $last) {
+                          <p data-testid="person-segment-body" class="mb-3 text-[15px] leading-[1.9] text-wl-on-surface last:mb-0 md:text-[16px]">{{ para }}@if (last) {<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('para:' + g.id) }" />}</p>
+                        }
+                      </article>
+                    }
+                  </div>
+                } @else {
+                <div class="max-w-[68ch]">
+                  @for (p of paragraphs(); track $index; let last = $last) {
+                    <p data-testid="person-paragraph" class="mb-3 text-[15px] leading-[1.9] text-wl-on-surface md:text-[16px]">{{ p }}@if (last) {<ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('summary') }" />}</p>
+                  } @empty {
+                    <p data-testid="person-paragraph-empty" class="wl-text2 text-wl-on-surface-variant">{{ t().noValue }}</p>
+                  }
+                </div>
+                }
+              </section>
+
+              <!-- 職位與任期時間軸 -->
+              <section [id]="sectionId('terms')" data-section="terms" data-testid="person-dialog-section-terms" [attr.aria-labelledby]="sectionId('terms') + '-h'">
+                <h3 [id]="sectionId('terms') + '-h'" class="mb-1 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                  <svg lucideLandmark class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().terms }}</h3>
+                <p class="mb-3 text-[11px] text-wl-on-surface-variant">{{ t().termNote }}</p>
+                <ol data-testid="person-terms" class="relative ml-2 border-l-2 border-wl-outline-variant">
+                  @for (term of terms(); track term.recordId) {
+                    <li data-testid="person-term" [attr.data-record-id]="term.recordId" [attr.data-role]="term.role" class="relative mb-4 pl-5 last:mb-0">
+                      <span aria-hidden="true" class="absolute -left-[7px] top-1.5 size-3 rounded-full border-2 border-wl-primary bg-wl-surface"></span>
+                      <div data-testid="person-term-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ term.period }}</div>
+                      <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
+                        <span class="font-semibold text-wl-on-surface">{{ term.roleText }}</span>
+                        @if (term.title) { <span class="text-wl-on-surface-variant">{{ term.title }}</span> }
+                        <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('term:' + term.recordId) }" />
+                      </div>
+                      <div class="text-[13px] text-wl-on-surface-variant">{{ term.regime }}</div>
+                    </li>
+                  } @empty {
+                    <li class="pl-5 wl-text2 text-wl-on-surface-variant">{{ t().noValue }}</li>
+                  }
+                </ol>
+              </section>
+
+              <!-- 經歷（B3 positions）：經歷全集，不是地圖出卡資料；沒有資料就不顯示此區 -->
+              @if (positionRows().length) {
+                <section [id]="sectionId('positions')" data-section="positions" data-testid="person-dialog-section-positions" [attr.aria-labelledby]="sectionId('positions') + '-h'">
+                  <h3 [id]="sectionId('positions') + '-h'" class="mb-1 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                    <svg lucideBriefcase class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().positions }}</h3>
+                  <p class="mb-3 text-[11px] text-wl-on-surface-variant">{{ t().positionsHint }}</p>
+                  <ol class="relative ml-2 border-l-2 border-wl-outline-variant">
+                    @for (x of positionRows(); track x.id) {
+                      <li data-testid="person-position" [attr.data-kind]="x.kind" class="relative mb-4 pl-5 last:mb-0">
+                        <span aria-hidden="true" class="absolute -left-[7px] top-1.5 size-3 rounded-full border-2 border-wl-secondary bg-wl-surface"></span>
+                        <div data-testid="person-position-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
+                        <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
+                          <span data-testid="person-position-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
+                          <span data-testid="person-position-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kindText }}</span>
+                          <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('position:' + x.id) }" />
+                        </div>
+                        @if (x.organization) { <div data-testid="person-position-org" class="text-[13px] text-wl-on-surface-variant">{{ x.organization }}</div> }
+                        @if (x.note) { <div data-testid="person-position-note" class="text-[13px] text-wl-on-surface-variant">{{ x.note }}</div> }
+                      </li>
+                    }
+                  </ol>
+                </section>
+              }
+
+              <!-- 角色（B3 roles）：非地圖出卡資料；版頭角色標籤仍來自任期 -->
+              @if (roleRows().length) {
+                <section [id]="sectionId('roles')" data-section="roles" data-testid="person-dialog-section-roles" [attr.aria-labelledby]="sectionId('roles') + '-h'">
+                  <h3 [id]="sectionId('roles') + '-h'" class="mb-1 flex items-center gap-2 border-b border-wl-outline-variant pb-2 font-wl-serif text-[18px] font-semibold text-wl-on-surface">
+                    <svg lucideLandmark class="size-5 text-wl-primary" aria-hidden="true"></svg>{{ t().roles }}</h3>
+                  <p class="mb-3 text-[11px] text-wl-on-surface-variant">{{ t().rolesHint }}</p>
+                  <ul class="space-y-3">
+                    @for (x of roleRows(); track x.id) {
+                      <li data-testid="person-role-item" [attr.data-kind]="x.kind">
+                        <div data-testid="person-role-period" class="font-mono text-[13px] tabular-nums text-wl-primary">{{ x.period }}</div>
+                        <div class="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[15px]">
+                          <span data-testid="person-role-title" class="font-semibold text-wl-on-surface">{{ x.title }}</span>
+                          <span data-testid="person-role-kind" class="rounded-sm border border-wl-outline-variant bg-wl-surface-container px-1 text-[11px] text-wl-on-surface-variant">{{ x.kindText }}</span>
+                          @if (x.acting) { <span data-testid="person-role-acting" class="rounded-sm border border-wl-primary px-1 text-[11px] text-wl-primary">{{ t().acting }}</span> }
+                          <ng-container *ngTemplateOutlet="sup; context: { $implicit: notesFor('role:' + x.id) }" />
+                        </div>
+                        @if (x.organization) { <div class="text-[13px] text-wl-on-surface-variant">{{ x.organization }}</div> }
+                        @if (x.note) { <div class="text-[13px] text-wl-on-surface-variant">{{ x.note }}</div> }
+                      </li>
+                    }
+                  </ul>
+                </section>
+              }
+
+              <!-- 資料來源：底部統一收合；N＝去重後的來源數；缺來源明示「待補來源」 -->
+              <section [id]="sectionId('sources')" data-section="sources" data-testid="person-dialog-sources" class="rounded-md border border-wl-outline-variant bg-wl-surface-container">
+                <h3 class="m-0">
+                  <button type="button" data-testid="person-sources-toggle" [attr.aria-expanded]="sourcesOpen() ? 'true' : 'false'" [attr.aria-controls]="sectionId('sources') + '-panel'"
+                    class="flex min-h-11 w-full items-center gap-2 px-3 text-left font-wl-serif text-[16px] font-semibold text-wl-on-surface focus-visible:outline-2 focus-visible:outline-wl-secondary"
+                    (click)="sourcesOpen.set(!sourcesOpen())">
+                    <svg lucideLibrary class="size-5 text-wl-primary" aria-hidden="true"></svg>
+                    <span data-testid="person-sources-label" class="flex-1">{{ t().sources }} ({{ footnotes().length }})</span>
+                    @if (missing().length) { <span data-testid="source-pending" class="rounded-sm border border-dashed border-wl-outline px-1.5 font-wl-sans text-[11px] font-normal text-wl-on-surface-variant">{{ t().pending }}</span> }
+                    <svg lucideChevronDown class="size-4 transition-transform" [class.rotate-180]="sourcesOpen()" aria-hidden="true"></svg>
+                  </button>
+                </h3>
+                <div [id]="sectionId('sources') + '-panel'" data-testid="person-sources-panel" [hidden]="!sourcesOpen()" class="border-t border-wl-outline-variant px-3 py-3">
+                  @if (footnotes().length) {
+                    <ol class="space-y-3">
+                      @for (f of footnotes(); track f.n) {
+                        <li data-testid="person-source-note" [id]="sectionId('src-' + f.n)" [attr.data-n]="f.n" tabindex="-1" class="flex gap-2 rounded-sm outline-none focus-visible:outline-2 focus-visible:outline-wl-secondary">
+                          <span class="w-6 flex-none pt-1 text-right font-mono text-[12px] text-wl-primary">[{{ f.n }}]</span>
+                          <div class="min-w-0 flex-1">
+                            <div data-testid="person-source-used-for" class="mb-0.5 text-[11px] text-wl-on-surface-variant">{{ t().usedFor }}：{{ f.usedFor.join('、') }}</div>
+                            <wl-source-disclosure [items]="[f.item]" [lang]="lang()" [inline]="true" />
+                          </div>
+                        </li>
+                      }
+                    </ol>
+                  }
+                  @if (missing().length) {
+                    <p data-testid="person-sources-missing" class="wl-text2 text-wl-on-surface-variant" [class.mt-3]="footnotes().length">
+                      <span class="rounded-sm border border-dashed border-wl-outline px-1.5 text-[11px]">{{ t().pending }}</span>
+                      {{ t().missing }}：{{ missing().join('、') }}</p>
+                  }
+                </div>
+              </section>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+    <!-- 上標來源編號：點了展開底部來源並捲到該筆；沒有來源時不放（底部列出待補欄位）。
+         手機：點擊區高 44px；每個編號實寬 ≥32px，同組第一個往左、最後一個往右再延伸，單一編號 44×44、相鄰編號不重疊 -->
+    <ng-template #sup let-ns>
+      @for (n of ns; track n) {
+        <button type="button" data-testid="person-field-sup" [attr.data-n]="n" [attr.aria-label]="t().sourceRef + ' ' + n"
+          class="relative ml-0.5 inline-block align-super font-mono px-px text-center after:absolute after:-inset-y-2.5 after:inset-x-0 after:content-[''] text-[10px] leading-none text-wl-primary hover:underline focus-visible:outline-2 focus-visible:outline-wl-secondary max-md:ml-0 max-md:min-w-8 max-md:after:bottom-auto max-md:after:top-1/2 max-md:after:h-11 max-md:after:-translate-y-1/2 max-md:first-of-type:after:-left-1.5 max-md:last-of-type:after:-right-1.5"
+          (click)="showNote(n)">{{ n }}</button>
+      }
+    </ng-template>
+  `,
+})
+export class PersonDialog {
+  readonly state = input.required<PersonDialogState>();
+  readonly lang = input<Lang>('zh-Hant');
+  readonly closed = output<void>();
+  /** 頁面狀態：true＝開啟；false＝播關閉動畫，播完（或逾時 300ms）送 hidden。 */
+  readonly open = input(true);
+  /** 關閉動畫結束，頁面可以卸載。 */
+  readonly hidden = output<void>();
+  protected readonly motionState = signal<PersonDialogMotionState>('opening');
+
+  protected readonly titleId = 'wl-person-dialog-title';
+  private readonly uid = `wl-pd-${++seq}`;
+  protected readonly imgFailed = signal(false);
+  protected readonly sourcesOpen = signal(false);
+  protected readonly activeSection = signal<SectionKey>('basics');
+  private readonly panel = viewChild<ElementRef<HTMLElement>>('panel');
+  private readonly closeBtn = viewChild<ElementRef<HTMLButtonElement>>('closeBtn');
+  private readonly body = viewChild<ElementRef<HTMLElement>>('body');
+  private readonly injector = inject(Injector);
+  private readonly backdrop = viewChild<ElementRef<HTMLElement>>('backdrop');
+  private readonly motion = inject(MotionService);
+  private readonly destroyRef = inject(DestroyRef);
+  private ctx: MotionContext | null = null;
+  private tl: MotionTimeline | null = null;
+  /** 目前 timeline 裝的是開啟序列或關閉序列。 */
+  private tlKind: 'open' | 'close' | null = null;
+  private desktop = true;
+  private rendered = false;
+  private done = false;
+  private forceTimer: ReturnType<typeof setTimeout> | undefined;
+
+  protected readonly t = computed(() => TXT[this.lang() === 'en' ? 'en' : 'zh-Hant']);
+  protected readonly bio = computed(() => { const s = this.state(); return s.status === 'ok' ? s.data : null; });
+  protected readonly title = computed(() => {
+    const b = this.bio();
+    if (!b) return this.t().dialog;
+    return (this.lang() === 'en' ? b.name : b.nameZh || b.name) || b.name;
+  });
+  /** 原文名（另一種寫法；與標題相同就不重複）。 */
+  protected readonly originalName = computed(() => {
+    const b = this.bio();
+    if (!b) return '';
+    const other = this.lang() === 'en' ? b.nameZh : b.name;
+    return other && other !== this.title() ? other : '';
+  });
+  protected readonly portrait = computed(() => { const p = this.bio()?.portrait; return portraitDisplayable(p) ? p : null; });
+  protected sectionId(k: string): string { return `${this.uid}-${k}`; }
+
+  private readonly sortedTerms = computed(() => [...(this.bio()?.terms ?? [])].sort((a, b) => (a.validPeriod.start ?? '').localeCompare(b.validPeriod.start ?? '')));
+  /** 頂列檔案標記：第一個任期的政權顯示名（來自資料）。 */
+  protected readonly regimeLabel = computed(() => {
+    const x = this.sortedTerms()[0];
+    return x ? pickLocalized(x.regimeName, this.lang()) || x.regimeSlug : '';
+  });
+  /** 角色標籤：每個角色一個（含任期年份），國家元首在前（與人物卡一致），同角色依任期開始。 */
+  protected readonly roleChips = computed(() => [...this.sortedTerms()].sort((a, b) => roleRank(a.role) - roleRank(b.role)).map((x) => {
+    const end = inclusiveEnd(x.validPeriod.end);
+    const years = `${(x.validPeriod.start ?? '').slice(0, 4)}–${end ? end.slice(0, 4) : ''}`;
+    return { key: x.recordId, text: `${this.t().role[x.role] ?? x.role} ${years}` };
+  }));
+  /** 傳記式生卒（life-format.ts）；生卒都沒有＝null（不顯示區塊）。出生地只在有出生日時接在後面。 */
+  protected readonly life = computed(() => {
+    const b = this.bio();
+    if (!b) return null;
+    const l = lifeText(b.birthDate, b.birthDatePrecision, b.deathDate, b.deathDatePrecision, this.lang());
+    return l.years ? { ...l, place: l.born ? pickLocalized(b.birthPlace, this.lang()) : '' } : null;
+  });
+
+  protected readonly rows = computed(() => {
+    const b = this.bio();
+    if (!b) return [];
+    const t = this.t();
+    const lang = this.lang();
+    const partyStatus = b.fieldSources?.['party']?.status;
+    return [
+      { key: 'birthDate', label: t.birth, value: formatPartialDate(b.birthDate, b.birthDatePrecision), empty: t.noValue },
+      { key: 'deathDate', label: t.death, value: formatPartialDate(b.deathDate, b.deathDatePrecision), empty: t.noValue },
+      { key: 'birthPlace', label: t.birthPlace, value: pickLocalized(b.birthPlace, lang), empty: t.noValue },
+      { key: 'party', label: t.party, value: pickLocalized(b.party, lang), empty: partyStatus === '不適用' ? t.notApplicable : t.noValue },
+    ];
+  });
+  /** 版頭摘要列：出生地、黨派（沒有值寫「尚無資料／不適用」）；主要職位、任期、所屬政權（沒有任期就省略）。 */
+  protected readonly summaryRows = computed(() => {
+    const t = this.t();
+    const byKey = new Map(this.rows().map((r) => [r.key, r]));
+    const out: { key: string; label: string; value: string; empty: string; sub: string; noteKey: string }[] = ['birthPlace', 'party'].map((k) => {
+      const r = byKey.get(k)!;
+      return { key: k, label: r.label, value: r.value, empty: r.empty, sub: '', noteKey: k };
+    });
+    const terms = this.terms();
+    // 主要職位：角色最高（國家元首在前，與角色標籤一致），同角色取任期最長（沒有迄日視為最長）
+    const span = (x: { start: string | null; end: string | null }) => (x.end ? Date.parse(x.end) : Infinity) - Date.parse(x.start ?? '');
+    const byId = new Map(this.sortedTerms().map((x) => [x.recordId, x.validPeriod]));
+    const main = [...terms].sort((a, b) => roleRank(a.role) - roleRank(b.role) || span(byId.get(b.recordId)!) - span(byId.get(a.recordId)!))[0];
+    if (main) {
+      out.push({ key: 'mainRole', label: t.mainRole, value: main.title ? `${main.roleText}·${main.title}` : main.roleText, empty: t.noValue, sub: main.period, noteKey: `term:${main.recordId}` });
+      const regimes = [...new Set(terms.map((x) => x.regime).filter(Boolean))];
+      out.push({ key: 'regime', label: t.regime, value: regimes.join('、'), empty: t.noValue, sub: '', noteKey: '' });
+    }
+    return out;
+  });
+  protected readonly paragraphs = computed(() => {
+    const b = this.bio();
+    const s = b ? pickLocalized(b.summary, this.lang()) : '';
+    return s ? s.split(/\n{2,}/).map((x) => x.trim()).filter(Boolean) : [];
+  });
+  /** B3 有效段落（依 ord）：該語言（含另一語言後備）正文非空才算；全部無效＝空陣列，退回一句話摘要。 */
+  protected readonly segments = computed(() => {
+    const lang = this.lang();
+    return [...(this.bio()?.paragraphs ?? [])]
+      .sort((a, b) => Number(a.ord) - Number(b.ord))
+      .map((g) => ({
+        id: g.id, ord: Number(g.ord), heading: pickLocalized(g.heading, lang),
+        period: g.period ? this.periodText(g.period, g.periodStartPrecision, g.periodEndPrecision) : '',
+        paras: pickLocalized(g.body, lang).split(/\n{2,}/).map((x) => x.trim()).filter(Boolean),
+      }))
+      .filter((g) => g.paras.length > 0);
+  });
+  /** 區間顯示：依精度寫年／月／日；迄日僅日精度才不含當天；沒有迄日＝迄今不明；沒有起日寫「…」。 */
+  private periodText(p: { start: string | null; end: string | null }, sp: string | null | undefined, ep: string | null | undefined): string {
+    const prec = (x: string | null | undefined) => (x === 'year' || x === 'month' || x === 'day' ? x : null);
+    const a = formatPartialDate(p.start, prec(sp)) || '…';
+    // 只有日精度才是半開區間（扣一天）；年／月精度與缺省照原樣顯示
+    const b = formatPartialDate(ep === 'day' ? inclusiveEnd(p.end) : p.end, prec(ep)) || this.t().ongoing;
+    return `${a} – ${b}`;
+  }
+  private readonly sortedPositions = computed((): BioPosition[] => [...(this.bio()?.positions ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
+  protected readonly positionRows = computed(() => this.sortedPositions().map((x) => ({
+    id: x.id, kind: x.positionKind, kindText: this.t().positionKind[x.positionKind] ?? x.positionKind, title: pickLocalized(x.title, this.lang()) || x.seedKey,
+    organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
+  })));
+  private readonly sortedRoles = computed((): BioRole[] => [...(this.bio()?.roles ?? [])].sort((a, b) => (a.period.start ?? '').localeCompare(b.period.start ?? '')));
+  protected readonly roleRows = computed(() => this.sortedRoles().map((x) => ({
+    id: x.id, kind: x.roleKind, kindText: this.t().roleKind[x.roleKind] ?? x.roleKind, title: pickLocalized(x.title, this.lang()) || x.seedKey, acting: x.acting,
+    organization: pickLocalized(x.organization, this.lang()), note: x.note ?? '', period: this.periodText(x.period, x.startPrecision, x.endPrecision),
+  })));
+  protected readonly terms = computed(() => {
+    const t = this.t();
+    return this.sortedTerms().map((x) => ({
+      recordId: x.recordId, role: x.role, roleText: t.role[x.role] ?? x.role, title: x.title,
+      regime: pickLocalized(x.regimeName, this.lang()) || x.regimeSlug,
+      period: formatTerm(x.validPeriod, this.lang()),
+    }));
+  });
+
+  /** 每個欄位（含照片、各任期）各自的來源；不互相借用。 */
+  private readonly fieldItems = computed((): { key: string; label: string; items: SourceItem[] }[] => {
+    const b = this.bio();
+    if (!b) return [];
+    const t = this.t();
+    const out = [
+      { key: 'name', label: t.name, items: [...fieldSourceItems(b, 'name'), ...fieldSourceItems(b, 'nameZh')] },
+      ...this.rows().map((r) => ({ key: r.key, label: r.label, items: fieldSourceItems(b, r.key) })),
+      // 有分段時一句話摘要不顯示，也不列它的來源；退回摘要時才列
+      { key: 'summary', label: t.summary, items: this.segments().length ? [] : fieldSourceItems(b, 'summary') },
+      ...this.segments().map((g) => ({ key: `para:${g.id}`, label: g.heading ? `${t.summary}·${g.heading}` : `${t.summary} #${g.ord}`, items: detailCitationItems(b.paragraphs?.find((x) => x.id === g.id)?.citations) })),
+      ...this.positionRows().map((x) => ({ key: `position:${x.id}`, label: `${t.positions}·${x.title}`, items: detailCitationItems(b.positions?.find((y) => y.id === x.id)?.citations) })),
+      ...this.roleRows().map((x) => ({ key: `role:${x.id}`, label: `${t.roles}·${x.title}`, items: detailCitationItems(b.roles?.find((y) => y.id === x.id)?.citations) })),
+      ...this.terms().map((x) => ({ key: `term:${x.recordId}`, label: `${t.terms}·${x.roleText}`, items: termSourceItems(this.sortedTerms().find((y) => y.recordId === x.recordId)!) })),
+    ];
+    const p = this.portrait();
+    if (p) out.push({ key: 'portrait', label: t.photo, items: portraitSourceItems(p) });
+    return out;
+  });
+  /** 去重後的註腳（同一出處用在多個欄位只列一次）＋每個欄位對應的編號。 */
+  private readonly notes = computed(() => numberSources(this.fieldItems()));
+  protected readonly footnotes = computed(() => this.notes().list);
+  protected notesFor(key: string): number[] { return this.notes().fieldNotes.get(key) ?? []; }
+  /** 缺來源的欄位（只列有值或有段落的；沒有值的欄位本來就顯示「尚無資料」）。 */
+  protected readonly missing = computed(() => {
+    const b = this.bio();
+    if (!b) return [];
+    const hasValue = new Set<string>(['name', ...this.rows().filter((r) => r.value).map((r) => r.key), ...this.terms().map((x) => `term:${x.recordId}`)]);
+    if (this.paragraphs().length && !this.segments().length) hasValue.add('summary');
+    for (const g of this.segments()) hasValue.add(`para:${g.id}`);
+    for (const x of this.positionRows()) hasValue.add(`position:${x.id}`);
+    for (const x of this.roleRows()) hasValue.add(`role:${x.id}`);
+    return this.fieldItems().filter((f) => hasValue.has(f.key) && f.items.length === 0).map((f) => f.label);
+  });
+
+  protected readonly sections = computed((): { key: SectionKey; label: string; count: number | null }[] => {
+    const t = this.t();
+    return [
+      { key: 'basics', label: t.basics, count: null },
+      { key: 'bio', label: t.summary, count: null },
+      { key: 'terms', label: t.terms, count: this.terms().length || null },
+      ...(this.positionRows().length ? [{ key: 'positions' as const, label: t.positions, count: this.positionRows().length }] : []),
+      ...(this.roleRows().length ? [{ key: 'roles' as const, label: t.roles, count: this.roleRows().length }] : []),
+      { key: 'sources', label: t.sources, count: this.footnotes().length },
+    ];
+  });
+
+  /** 分頁籤：捲到區塊（只捲對話框內容區，不用 scrollIntoView 以免動到底層）。 */
+  protected goTo(k: SectionKey): void {
+    this.activeSection.set(k);
+    this.spyLocked = true; // 程式捲動期間不讓 scroll-spy 覆寫；使用者手動操作才解鎖
+    if (k === 'sources') this.sourcesOpen.set(true);
+    afterNextRender(() => this.scrollToEl(document.getElementById(this.sectionId(k))), { injector: this.injector });
+  }
+  /** 上標編號：展開底部來源、捲到該筆並聚焦。 */
+  protected showNote(n: number): void {
+    this.sourcesOpen.set(true);
+    afterNextRender(() => {
+      const el = document.getElementById(this.sectionId('src-' + n));
+      this.scrollToEl(el);
+      el?.focus({ preventScroll: true });
+    }, { injector: this.injector });
+  }
+  private scrollToEl(el: HTMLElement | null): void {
+    const box = this.body()?.nativeElement;
+    if (!el || !box) return;
+    const nav = box.querySelector<HTMLElement>('[data-testid="person-dialog-tabs"]');
+    const delta = el.getBoundingClientRect().top - box.getBoundingClientRect().top - (nav?.offsetHeight ?? 0) - 8;
+    box.scrollTo({ top: box.scrollTop + delta, behavior: 'auto' });
+  }
+  /** 捲動時更新目前區塊（最後一個頂端已過分頁籤的區塊）。 */
+  private spyLocked = false;
+  /** 使用者自己捲動（滾輪、觸控、鍵盤、拖捲軸）：解除鎖定，高亮重新跟隨捲動位置。 */
+  protected unlockSpy(): void { this.spyLocked = false; }
+  /** 點分頁籤本身不解鎖；其餘區域（含捲軸拖曳）解鎖。 */
+  protected onBodyPointer(e: Event): void {
+    if (!(e.target as HTMLElement).closest?.('[data-testid="person-dialog-tabs"]')) this.spyLocked = false;
+  }
+  protected onScroll(): void {
+    // 分頁籤點擊造成的捲動：保留使用者點的分頁（區塊太短時捲不到頂，不要被改成下一個）
+    if (this.spyLocked) return;
+    const box = this.body()?.nativeElement;
+    if (!box) return;
+    const nav = box.querySelector<HTMLElement>('[data-testid="person-dialog-tabs"]');
+    const line = box.getBoundingClientRect().top + (nav?.offsetHeight ?? 0) + 24;
+    let cur: SectionKey = 'basics';
+    for (const s of box.querySelectorAll<HTMLElement>('[data-section]')) if (s.getBoundingClientRect().top <= line) cur = s.dataset['section'] as SectionKey;
+    if (box.scrollTop + box.clientHeight >= box.scrollHeight - 2) cur = 'sources';
+    if (cur !== this.activeSection()) this.activeSection.set(cur);
+  }
+
+  constructor() {
+    // 開啟時焦點移到關閉鈕（標題可被讀到：aria-labelledby）；不等動畫
+    afterNextRender(() => {
+      (this.closeBtn()?.nativeElement ?? this.panel()?.nativeElement)?.focus({ preventScroll: true });
+      this.rendered = true;
+      this.sync(this.open());
+    }, { injector: this.injector });
+    effect(() => {
+      const open = this.open();
+      untracked(() => this.rendered && this.sync(open));
+    });
+    this.destroyRef.onDestroy(() => clearTimeout(this.forceTimer));
+  }
+
+  private sync(open: boolean): void {
+    if (open) {
+      this.done = false;
+      this.playOpen();
+    } else if (!this.done) this.playClose();
+  }
+
+  private timeline(): MotionTimeline | null {
+    const root = this.panel()?.nativeElement.parentElement;
+    if (!root) return null;
+    this.ctx ??= this.motion.context(root, this.destroyRef);
+    return (this.tl ??= this.ctx.timeline());
+  }
+
+  /** 讓 timeline 往某方向播，結束時呼叫 cb；同一條 timeline，不疊加。 */
+  private run(tl: MotionTimeline, dir: 'play' | 'reverse', ratio: number, cb: () => void): void {
+    this.motion.outside(() => {
+      tl.eventCallback('onComplete', dir === 'play' ? cb : null);
+      tl.eventCallback('onReverseComplete', dir === 'reverse' ? cb : null);
+      tl.timeScale((this.motion.timeScale || 1) * ratio);
+      if (dir === 'play') tl.play();
+      else tl.reverse();
+    });
+  }
+
+  private playOpen(): void {
+    clearTimeout(this.forceTimer);
+    if (this.motionState() === 'open') return;
+    const wasClosing = this.motionState() === 'closing';
+    this.motionState.set('opening');
+    const panel = this.panel()?.nativeElement;
+    const bd = this.backdrop()?.nativeElement;
+    const reduced = this.motion.reduced();
+    const tl = panel && bd && this.motion.canAnimate() ? this.timeline() : null;
+    if (!tl || !panel || !bd) return this.settleOpen();
+    const opened = () => this.motion.inside(() => this.settleOpen());
+    if (wasClosing && this.tlKind) {
+      // 關到一半又開同一人：同一條 timeline 反向回開啟狀態
+      const spec = this.desktop ? MOTION_SPEC.dialog : MOTION_SPEC.dialogMobile;
+      if (this.tlKind === 'open') this.run(tl, 'play', 1, opened);
+      else this.run(tl, 'reverse', spec.close.duration / spec.open.duration, opened);
+      return;
+    }
+    this.desktop = this.motion.isDesktop();
+    this.motion.outside(() => {
+      tl.clear().progress(0);
+      if (reduced) {
+        tl.fromTo(panel, { opacity: 0 }, { opacity: 1, ...MOTION_SPEC.reducedFade }, 0);
+      } else {
+        tl.fromTo(bd, { opacity: 0 }, { opacity: 1, ...MOTION_SPEC.backdrop.open }, 0);
+        if (this.desktop) tl.fromTo(panel, { opacity: 0, scale: 0.96, y: 8 }, { opacity: 1, scale: 1, y: 0, ...MOTION_SPEC.dialog.open }, 0);
+        else tl.fromTo(panel, { yPercent: 100 }, { yPercent: 0, ...MOTION_SPEC.dialogMobile.open }, 0);
+      }
+      tl.pause(0);
+    });
+    this.tlKind = 'open';
+    this.run(tl, 'play', 1, opened);
+  }
+
+  private settleOpen(): void {
+    this.motionState.set('open');
+  }
+
+  private playClose(): void {
+    if (this.motionState() === 'closing') return;
+    this.motionState.set('closing');
+    const panel = this.panel()?.nativeElement;
+    const bd = this.backdrop()?.nativeElement;
+    const tl = this.tl;
+    if (!panel || !bd || !tl || this.motion.reduced() || !this.motion.canAnimate()) return this.finishClose();
+    clearTimeout(this.forceTimer);
+    this.forceTimer = setTimeout(() => this.motion.inside(() => this.finishClose()), MOTION_SPEC.closeTimeoutMs);
+    const closed = () => this.motion.inside(() => this.finishClose());
+    const spec = this.desktop ? MOTION_SPEC.dialog : MOTION_SPEC.dialogMobile;
+    if (this.tlKind === 'open' && tl.progress() < 1) {
+      // 未開完就關：同一條 timeline 反向，依開／關時長比例加速
+      this.run(tl, 'reverse', spec.open.duration / spec.close.duration, closed);
+      return;
+    }
+    this.motion.outside(() => {
+      tl.clear().progress(0);
+      tl.to(bd, { opacity: 0, ...MOTION_SPEC.backdrop.close }, 0);
+      if (this.desktop) tl.to(panel, { opacity: 0, scale: 0.98, ...MOTION_SPEC.dialog.close }, 0);
+      else tl.to(panel, { yPercent: 100, ...MOTION_SPEC.dialogMobile.close }, 0);
+      tl.pause(0);
+    });
+    this.tlKind = 'close';
+    this.run(tl, 'play', 1, closed);
+  }
+
+  /** 關閉結束（播完、逾時、reduced-motion）：停掉 timeline，通知頁面卸載。 */
+  private finishClose(): void {
+    if (this.done || this.motionState() !== 'closing') return;
+    this.done = true;
+    clearTimeout(this.forceTimer);
+    this.tl?.kill();
+    this.tl = null;
+    this.tlKind = null;
+    this.hidden.emit();
+  }
+}

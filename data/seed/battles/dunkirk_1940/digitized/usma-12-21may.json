@@ -1,0 +1,2687 @@
+{
+ "source": {
+  "type": "official_atlas",
+  "grade": "B",
+  "citation": "United States Military Academy, Department of History, Atlas of the Second World War: Europe and the Mediterranean, Map 12 \"Northwestern Europe, 1940 — Campaign in the West, 1940: Situation 21 May and Operations Since 16 May\"",
+  "url": "https://s3.amazonaws.com/usma-media/inline-images/academics/academic_departments/history/WWII%20Europe%20Med/WWIIEurope12.jpg",
+  "license": "美國聯邦政府著作（17 U.S.C. §105），公有領域"
+ },
+ "mapKey": "usma-12-21may",
+ "mapDate": "1940-05-21",
+ "method": "第一次判讀。用 tools/battles/mapgrid.swift 把 5100×3300 原圖的圖幅範圍（x 740–4490、y 250–3100）切成 36 塊 700×600 px 的重疊小塊（左右重疊 90 px、上下重疊 80 px），放大 2.5 倍、疊 50 px 座標格線逐塊目視讀圖；被線條或框壓到的地方（Arras、Douai、Beaumont、Marle、Bourg、Montmédy、Sedan、KLEIST、HOTH、SIXTEENTH 右側、比例尺兩端）另切 300×240 px、放大 5 倍、20 px 格線複看。座標為原圖像素（原點左上）；城鎮取圓圈中心，部隊取框（或符號）中心、不是框下的指揮官名，圖說框取框中心。估計讀圖誤差：城鎮圓圈 ±2 px、部隊框中心 ±3 px（依比例尺 1 px ≈ 0.129 km，約 0.3–0.4 km）；被部分蓋住的圓圈 ±3 px（各點 note 有註明）。經緯度與 OSM id 來自 OSM Nominatim（只送地名與國名）；查詢中途多次被 429 限流，等候後重試，108 個城鎮全數由本次查詢取得；多數城鎮 Nominatim 只回行政區 relation，取其 lat/lon，有 place node 或聚落層級（city/town/village）物件時優先於 municipality。同名地點以圖上位置概略換算的經緯度（由 Calais、Saarbrücken 兩點線性概估，只用來挑選同名候選，不是配準）取 40 km 內最近者。未執行 georef.py、未看任何殘差。",
+ "threshold": {
+  "rule": "全戰區圖：留一法 95 百分位 ≤ 15 km，只用於集團軍群、集團軍、軍、裝甲師（Tai 2026-11-17）",
+  "loo_p95_km": 4.09,
+  "p95Passes": true,
+  "passes": true,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "Paris",
+    "reason": "大型網格狀市區圖形（約 px [1420,2960]），不是圓圈符號，且貼圖框下緣；依指示不用",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Douai",
+    "px": [
+     1825,
+     1628
+    ],
+    "reason": "圓圈大半被藍色 21 May 戰線蓋住，地名只露出「…ai」",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Carvin",
+    "reason": "地名只露出「Carv」，後半與城鎮符號被 BR.／MAC. 符號蓋住，看不到圓圈",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Florennes",
+    "reason": "地名後半與圓圈被 FOURTH 框蓋住",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Philippeville",
+    "reason": "地名後半與圓圈被 FOURTH 框蓋住",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "B…rg（Aisne 河畔）",
+    "px": [
+     2144,
+     2523
+    ],
+    "reason": "圓圈可見，但地名中段被藍色大箭頭蓋住，只讀到「B」與「rg」，無法確定是哪個城鎮",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Montmédy",
+    "px": [
+     3168,
+     2438
+    ],
+    "reason": "圓圈被藍色斜線段（戰線接馬其諾防線圖樣處）蓋住大半",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "（無名圓圈，SIXTEENTH 框右側）",
+    "px": [
+     3418,
+     2257
+    ],
+    "reason": "圓圈完整但旁邊沒有可讀的地名（可能被 SIXTEENTH 框蓋住），無法確認是哪個城鎮",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "EBEN EMAEL",
+    "px": [
+     3305,
+     1224
+    ],
+    "reason": "要塞符號（方形帶四角），不是城鎮圓圈",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "WALCHEREN ISLAND／ZEELAND",
+    "reason": "地區名，沒有城鎮符號",
+    "decidedBeforeResiduals": true
+   }
+  ],
+  "use": "只可用於集團軍群、集團軍、軍、裝甲師的位置；不得用於前線頂點，不得用來推算領地"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 108,
+  "residual_median_km": 1.59,
+  "loo_median_km": 1.7,
+  "loo_p95_km": 4.09,
+  "loo_max_km": 5.6,
+  "suspect_control_points": [
+   [
+    "Watten",
+    5.6
+   ],
+   [
+    "Wavre",
+    5.16
+   ],
+   [
+    "Rochefort",
+    5.39
+   ]
+  ],
+  "frame_km": 15.0
+ },
+ "scaleClass": {
+  "class": "theatre",
+  "decidedBeforeFit": true,
+  "basis": "依圖本身：比例尺 1 px ≈ 0.129 km，圖框內約 542 公里寬（橫跨超過 200 公里）；圖上畫的是集團軍群、集團軍、軍的配置，單位方框是為了看得清楚而擺放，不是司令部位置。",
+  "decision": "Tai 2026-11-17：全戰區圖另訂門檻（留一 95 百分位 ≤ 15 km），只用於集團軍群、集團軍、軍、裝甲師。"
+ },
+ "coarse": true,
+ "precision_m": 19100,
+ "precisionNote": "留一法 95 百分位 4.1 km ＋ 標註框誤差 15 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Dordrecht": {
+   "px": [
+    2712,
+    304
+   ],
+   "lonlat": [
+    4.6692,
+    51.8144
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 272914
+   },
+   "nameOsm": "Dordrecht",
+   "nameOnMap": "Dordrecht",
+   "note": "圓圈在橋樑符號旁；Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.43
+  },
+  "Moerdijk": {
+   "px": [
+    2697,
+    397
+   ],
+   "lonlat": [
+    4.6257,
+    51.703
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1371690
+   },
+   "nameOsm": "Moerdijk",
+   "nameOnMap": "Moerdijk",
+   "note": "圓圈在橋樑符號南端；Nominatim（本次查詢；boundary/village）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.26
+  },
+  "Breda": {
+   "px": [
+    2785,
+    492
+   ],
+   "lonlat": [
+    4.776,
+    51.5888
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2712700
+   },
+   "nameOsm": "Breda",
+   "nameOnMap": "Breda",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.03
+  },
+  "Gennep": {
+   "px": [
+    3457,
+    369
+   ],
+   "lonlat": [
+    5.9691,
+    51.7013
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1419668
+   },
+   "nameOsm": "Gennep",
+   "nameOnMap": "Gennep",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.43
+  },
+  "Goch": {
+   "px": [
+    3547,
+    390
+   ],
+   "lonlat": [
+    6.1593,
+    51.6756
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 167969
+   },
+   "nameOsm": "Goch",
+   "nameOnMap": "Goch",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.9
+  },
+  "Wesel": {
+   "px": [
+    3839,
+    416
+   ],
+   "lonlat": [
+    6.6171,
+    51.6577
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58590
+   },
+   "nameOsm": "Wesel",
+   "nameOnMap": "Wesel",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 3.5
+  },
+  "Essen": {
+   "px": [
+    4064,
+    568
+   ],
+   "lonlat": [
+    7.0158,
+    51.4582
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62713
+   },
+   "nameOsm": "Essen",
+   "nameOnMap": "Essen",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 0.37
+  },
+  "Dusseldorf": {
+   "px": [
+    3954,
+    812
+   ],
+   "lonlat": [
+    6.7763,
+    51.2254
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62539
+   },
+   "nameOsm": "Düsseldorf",
+   "nameOnMap": "Dusseldorf",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 3.79
+  },
+  "Roermond": {
+   "px": [
+    3472,
+    832
+   ],
+   "lonlat": [
+    5.9883,
+    51.1934
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1414218
+   },
+   "nameOsm": "Roermond",
+   "nameOnMap": "Roermond",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.51
+  },
+  "Terneuzen": {
+   "px": [
+    2264,
+    738
+   ],
+   "lonlat": [
+    3.8403,
+    51.3255
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 149821
+   },
+   "nameOsm": "Terneuzen",
+   "nameOnMap": "Terneuzen",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.32
+  },
+  "Antwerp": {
+   "px": [
+    2572,
+    842
+   ],
+   "lonlat": [
+    4.3997,
+    51.2211
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 59518
+   },
+   "nameOsm": "Antwerpen",
+   "nameOnMap": "Antwerp",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 0.36
+  },
+  "Ostend": {
+   "px": [
+    1750,
+    857
+   ],
+   "lonlat": [
+    2.9195,
+    51.2259
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292909
+   },
+   "nameOsm": "Oostende",
+   "nameOnMap": "Ostend",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.17
+  },
+  "Nieuport": {
+   "px": [
+    1643,
+    939
+   ],
+   "lonlat": [
+    2.7517,
+    51.1294
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1292926
+   },
+   "nameOsm": "Nieuwpoort",
+   "nameOnMap": "Nieuport",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.35
+  },
+  "Dunkirk": {
+   "px": [
+    1465,
+    1029
+   ],
+   "lonlat": [
+    2.3773,
+    51.0348
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139610
+   },
+   "nameOsm": "Dunkerque",
+   "nameOnMap": "Dunkirk",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.0
+  },
+  "Bergues": {
+   "px": [
+    1496,
+    1088
+   ],
+   "lonlat": [
+    2.4325,
+    50.9684
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139259
+   },
+   "nameOsm": "Bergues",
+   "nameOnMap": "Bergues",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 2.11
+  },
+  "Gravelines": {
+   "px": [
+    1318,
+    1056
+   ],
+   "lonlat": [
+    2.1273,
+    50.9871
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 139316
+   },
+   "nameOsm": "Gravelines",
+   "nameOnMap": "Gravelines",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 0.54
+  },
+  "Calais": {
+   "px": [
+    1172,
+    1094
+   ],
+   "lonlat": [
+    1.8538,
+    50.9525
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 286380
+   },
+   "nameOsm": "Calais",
+   "nameOnMap": "Calais",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.84
+  },
+  "Boulogne": {
+   "px": [
+    1033,
+    1294
+   ],
+   "lonlat": [
+    1.6119,
+    50.726
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 240377
+   },
+   "nameOsm": "Boulogne-sur-Mer",
+   "nameOnMap": "Boulogne",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.7
+  },
+  "Watten": {
+   "px": [
+    1385,
+    1234
+   ],
+   "lonlat": [
+    2.2121,
+    50.8324
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 132416
+   },
+   "nameOsm": "Watten",
+   "nameOnMap": "Watten",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 5.6
+  },
+  "Ypres": {
+   "px": [
+    1715,
+    1186
+   ],
+   "lonlat": [
+    2.8846,
+    50.8522
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1169202
+   },
+   "nameOsm": "Ieper",
+   "nameOnMap": "Ypres",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.95
+  },
+  "Menin": {
+   "px": [
+    1850,
+    1224
+   ],
+   "lonlat": [
+    3.1209,
+    50.796
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1335276
+   },
+   "nameOsm": "Menen",
+   "nameOnMap": "Menin",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.11
+  },
+  "Courtrai": {
+   "px": [
+    1923,
+    1210
+   ],
+   "lonlat": [
+    3.266,
+    50.8276
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 961284
+   },
+   "nameOsm": "Kortrijk",
+   "nameOnMap": "Courtrai",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 2.29
+  },
+  "Ghent": {
+   "px": [
+    2188,
+    1002
+   ],
+   "lonlat": [
+    3.725,
+    51.0538
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 897671
+   },
+   "nameOsm": "Gent",
+   "nameOnMap": "Ghent",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.09
+  },
+  "Audenarde": {
+   "px": [
+    2115,
+    1186
+   ],
+   "lonlat": [
+    3.6041,
+    50.8434
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 416207
+   },
+   "nameOsm": "Oudenaarde",
+   "nameOnMap": "Audenarde",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 2.06
+  },
+  "Brussels": {
+   "px": [
+    2548,
+    1181
+   ],
+   "lonlat": [
+    4.3525,
+    50.8467
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58274
+   },
+   "nameOsm": "Bruxelles - Brussel",
+   "nameOnMap": "Brussels",
+   "note": "圖上 Brussels 為較大字，但符號仍是小圓圈；Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.8
+  },
+  "Louvain": {
+   "px": [
+    2745,
+    1151
+   ],
+   "lonlat": [
+    4.7012,
+    50.8792
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 196311
+   },
+   "nameOsm": "Leuven",
+   "nameOnMap": "Louvain",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 0.5
+  },
+  "Wavre": {
+   "px": [
+    2715,
+    1266
+   ],
+   "lonlat": [
+    4.6104,
+    50.717
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 224757
+   },
+   "nameOsm": "Wavre",
+   "nameOnMap": "Wavre",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 5.16
+  },
+  "Hannut": {
+   "px": [
+    2960,
+    1338
+   ],
+   "lonlat": [
+    5.078,
+    50.6725
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2362038
+   },
+   "nameOsm": "Hannut",
+   "nameOnMap": "Hannut",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.94
+  },
+  "Liège": {
+   "px": [
+    3261,
+    1363
+   ],
+   "lonlat": [
+    5.5736,
+    50.6451
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1681788
+   },
+   "nameOsm": "Liège",
+   "nameOnMap": "Liège",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 0.96
+  },
+  "Maastricht": {
+   "px": [
+    3311,
+    1159
+   ],
+   "lonlat": [
+    5.691,
+    50.8512
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2078292
+   },
+   "nameOsm": "Maastricht",
+   "nameOnMap": "Maastricht",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.07
+  },
+  "Aachen": {
+   "px": [
+    3542,
+    1238
+   ],
+   "lonlat": [
+    6.0839,
+    50.7764
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62564
+   },
+   "nameOsm": "Aachen",
+   "nameOnMap": "Aachen",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.84
+  },
+  "Cologne": {
+   "px": [
+    4049,
+    1064
+   ],
+   "lonlat": [
+    6.96,
+    50.9384
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62578
+   },
+   "nameOsm": "Köln",
+   "nameOnMap": "Cologne",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 2.34
+  },
+  "Bonn": {
+   "px": [
+    4152,
+    1240
+   ],
+   "lonlat": [
+    7.1025,
+    50.7353
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 62508
+   },
+   "nameOsm": "Bonn",
+   "nameOnMap": "Bonn",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 0.77
+  },
+  "Lille": {
+   "px": [
+    1818,
+    1378
+   ],
+   "lonlat": [
+    3.0635,
+    50.6366
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58404
+   },
+   "nameOsm": "Lille",
+   "nameOnMap": "Lille",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.22
+  },
+  "Bethune": {
+   "px": [
+    1588,
+    1493
+   ],
+   "lonlat": [
+    2.6389,
+    50.5309
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1016146
+   },
+   "nameOsm": "Béthune",
+   "nameOnMap": "Bethune",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.16
+  },
+  "Arras": {
+   "px": [
+    1657,
+    1694
+   ],
+   "lonlat": [
+    2.7772,
+    50.291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1121015
+   },
+   "nameOsm": "Arras",
+   "nameOnMap": "Arras",
+   "note": "圓圈左半被藍色箭頭（Frankforce）與 21 May 戰線蓋住，僅右半可見，中心為推估（±3 px）；Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.8
+  },
+  "Doullens": {
+   "px": [
+    1435,
+    1819
+   ],
+   "lonlat": [
+    2.3411,
+    50.1572
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1346218
+   },
+   "nameOsm": "Doullens",
+   "nameOnMap": "Doullens",
+   "note": "圖上字樣只見「…lens」，前半被 KLEIST 部隊框蓋住；圓圈完整。依位置（Abbeville 與 Arras 之間）判為 Doullens；Nominatim（本次查詢；boundary/village）",
+   "loo_km": 2.42
+  },
+  "Abbeville": {
+   "px": [
+    1158,
+    1845
+   ],
+   "lonlat": [
+    1.8337,
+    50.1061
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114349
+   },
+   "nameOsm": "Abbeville",
+   "nameOnMap": "Abbeville",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 3.26
+  },
+  "Cambrai": {
+   "px": [
+    1911,
+    1792
+   ],
+   "lonlat": [
+    3.2346,
+    50.1758
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 55938
+   },
+   "nameOsm": "Cambrai",
+   "nameOnMap": "Cambrai",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.81
+  },
+  "Bapaume": {
+   "px": [
+    1701,
+    1860
+   ],
+   "lonlat": [
+    2.8494,
+    50.1036
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1135472
+   },
+   "nameOsm": "Bapaume",
+   "nameOnMap": "Bapaume",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.04
+  },
+  "Maulde": {
+   "px": [
+    2025,
+    1506
+   ],
+   "lonlat": [
+    3.4331,
+    50.5033
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 56840
+   },
+   "nameOsm": "Maulde",
+   "nameOnMap": "Maulde",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 0.91
+  },
+  "Mons": {
+   "px": [
+    2325,
+    1547
+   ],
+   "lonlat": [
+    3.952,
+    50.455
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1949374
+   },
+   "nameOsm": "Mons",
+   "nameOnMap": "Mons",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.27
+  },
+  "Charleroi": {
+   "px": [
+    2587,
+    1583
+   ],
+   "lonlat": [
+    4.4445,
+    50.4116
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2113725
+   },
+   "nameOsm": "Charleroi",
+   "nameOnMap": "Charleroi",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 2.5
+  },
+  "Beaumont": {
+   "px": [
+    2500,
+    1741
+   ],
+   "lonlat": [
+    4.2383,
+    50.2355
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1877567
+   },
+   "nameOsm": "Beaumont",
+   "nameOnMap": "Beaumont",
+   "note": "圓圈與紅、藍虛線重疊但圓環可見；Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.89
+  },
+  "Gembloux": {
+   "px": [
+    2753,
+    1460
+   ],
+   "lonlat": [
+    4.6943,
+    50.5597
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2313628
+   },
+   "nameOsm": "Gembloux",
+   "nameOnMap": "Gembloux",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.55
+  },
+  "Namur": {
+   "px": [
+    2856,
+    1545
+   ],
+   "lonlat": [
+    4.8662,
+    50.4665
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1405439
+   },
+   "nameOsm": "Namur",
+   "nameOnMap": "Namur",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.73
+  },
+  "Huy": {
+   "px": [
+    3079,
+    1483
+   ],
+   "lonlat": [
+    5.2408,
+    50.5181
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 20105394
+   },
+   "nameOsm": "Huy",
+   "nameOnMap": "Huy",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.81
+  },
+  "Houx": {
+   "px": [
+    2877,
+    1674
+   ],
+   "lonlat": [
+    4.8979,
+    50.3032
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 18215489
+   },
+   "nameOsm": "Houx",
+   "nameOnMap": "Houx",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.63
+  },
+  "Dinant": {
+   "px": [
+    2894,
+    1707
+   ],
+   "lonlat": [
+    4.9131,
+    50.2592
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2268360
+   },
+   "nameOsm": "Dinant",
+   "nameOnMap": "Dinant",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 2.97
+  },
+  "Marche": {
+   "px": [
+    3142,
+    1742
+   ],
+   "lonlat": [
+    5.342,
+    50.2271
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2437396
+   },
+   "nameOsm": "Marche-en-Famenne",
+   "nameOnMap": "Marche",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.86
+  },
+  "La Roche": {
+   "px": [
+    3266,
+    1797
+   ],
+   "lonlat": [
+    5.5759,
+    50.1816
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2566321
+   },
+   "nameOsm": "La Roche-en-Ardenne",
+   "nameOnMap": "La Roche",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.84
+  },
+  "Givet": {
+   "px": [
+    2824,
+    1848
+   ],
+   "lonlat": [
+    4.8249,
+    50.1363
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1336057
+   },
+   "nameOsm": "Givet",
+   "nameOnMap": "Givet",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.07
+  },
+  "Rochefort": {
+   "px": [
+    3042,
+    1856
+   ],
+   "lonlat": [
+    5.2233,
+    50.1589
+   ],
+   "osm": {
+    "type": "node",
+    "id": 79432598
+   },
+   "nameOsm": "Rochefort",
+   "nameOnMap": "Rochefort",
+   "note": "Nominatim（本次查詢；place/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 5.39
+  },
+  "Monschau": {
+   "px": [
+    3642,
+    1434
+   ],
+   "lonlat": [
+    6.2408,
+    50.5545
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 158020
+   },
+   "nameOsm": "Monschau",
+   "nameOnMap": "Monschau",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.21
+  },
+  "Prüm": {
+   "px": [
+    3762,
+    1722
+   ],
+   "lonlat": [
+    6.4249,
+    50.2069
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1108057
+   },
+   "nameOsm": "Prüm",
+   "nameOnMap": "Prüm",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 3.86
+  },
+  "Houffalize": {
+   "px": [
+    3399,
+    1838
+   ],
+   "lonlat": [
+    5.7887,
+    50.1324
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2453836
+   },
+   "nameOsm": "Houffalize",
+   "nameOnMap": "Houffalize",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.62
+  },
+  "Amiens": {
+   "px": [
+    1378,
+    2046
+   ],
+   "lonlat": [
+    2.2957,
+    49.8942
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114347
+   },
+   "nameOsm": "Amiens",
+   "nameOnMap": "Amiens",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.57
+  },
+  "Peronne": {
+   "px": [
+    1745,
+    2031
+   ],
+   "lonlat": [
+    2.9324,
+    49.9291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114338
+   },
+   "nameOsm": "Péronne",
+   "nameOnMap": "Peronne",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.17
+  },
+  "St. Quentin": {
+   "px": [
+    1925,
+    2105
+   ],
+   "lonlat": [
+    3.2877,
+    49.8465
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153656
+   },
+   "nameOsm": "Saint-Quentin",
+   "nameOnMap": "St. Quentin",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.57
+  },
+  "Ham": {
+   "px": [
+    1808,
+    2195
+   ],
+   "lonlat": [
+    3.0733,
+    49.7463
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114363
+   },
+   "nameOsm": "Ham",
+   "nameOnMap": "Ham",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.85
+  },
+  "La Fère": {
+   "px": [
+    1981,
+    2277
+   ],
+   "lonlat": [
+    3.3662,
+    49.6633
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153024
+   },
+   "nameOsm": "La Fère",
+   "nameOnMap": "La Fère",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 0.9
+  },
+  "Noyon": {
+   "px": [
+    1766,
+    2339
+   ],
+   "lonlat": [
+    3.0,
+    49.5806
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 197563
+   },
+   "nameOsm": "Noyon",
+   "nameOnMap": "Noyon",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 2.3
+  },
+  "Hirson": {
+   "px": [
+    2386,
+    2052
+   ],
+   "lonlat": [
+    4.0837,
+    49.9203
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 150399
+   },
+   "nameOsm": "Hirson",
+   "nameOnMap": "Hirson",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 2.09
+  },
+  "Marle": {
+   "px": [
+    2222,
+    2209
+   ],
+   "lonlat": [
+    3.7714,
+    49.74
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153338
+   },
+   "nameOsm": "Marle",
+   "nameOnMap": "Marle",
+   "note": "圓圈與藍色虛線重疊但圓環可見；Nominatim（本次查詢；boundary/village）",
+   "loo_km": 0.41
+  },
+  "Montcornet": {
+   "px": [
+    2376,
+    2258
+   ],
+   "lonlat": [
+    4.0181,
+    49.6964
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153431
+   },
+   "nameOsm": "Montcornet",
+   "nameOnMap": "Montcornet",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.74
+  },
+  "Signy L'Abbaye": {
+   "px": [
+    2583,
+    2255
+   ],
+   "lonlat": [
+    4.4195,
+    49.6981
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3257415
+   },
+   "nameOsm": "Signy-l'Abbaye",
+   "nameOnMap": "Signy L'Abbaye",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.73
+  },
+  "Laon": {
+   "px": [
+    2140,
+    2372
+   ],
+   "lonlat": [
+    3.6207,
+    49.5647
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74127
+   },
+   "nameOsm": "Laon",
+   "nameOnMap": "Laon",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.03
+  },
+  "St. Hubert": {
+   "px": [
+    3157,
+    1936
+   ],
+   "lonlat": [
+    5.3739,
+    50.0251
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2455110
+   },
+   "nameOsm": "Saint-Hubert",
+   "nameOnMap": "St. Hubert",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.71
+  },
+  "Libramont": {
+   "px": [
+    3176,
+    2028
+   ],
+   "lonlat": [
+    5.3762,
+    49.9156
+   ],
+   "osm": {
+    "type": "node",
+    "id": 207429027
+   },
+   "nameOsm": "Libramont-Chevigny",
+   "nameOnMap": "Libramont",
+   "note": "Nominatim（本次查詢；place/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 3.02
+  },
+  "Neufchâteau": {
+   "px": [
+    3184,
+    2118
+   ],
+   "lonlat": [
+    5.4355,
+    49.8405
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 12728587
+   },
+   "nameOsm": "Neufchâteau",
+   "nameOnMap": "Neufchâteau",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.3
+  },
+  "Revin": {
+   "px": [
+    2740,
+    2040
+   ],
+   "lonlat": [
+    4.6375,
+    49.9421
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2816700
+   },
+   "nameOsm": "Revin",
+   "nameOnMap": "Revin",
+   "note": "字樣「Rev…」後半被 WEICHS 蓋住；圓圈完整，位於 Meuse 河灣；Nominatim（本次查詢；boundary/village）",
+   "loo_km": 2.98
+  },
+  "Monthermé": {
+   "px": [
+    2785,
+    2068
+   ],
+   "lonlat": [
+    4.7392,
+    49.8843
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3258605
+   },
+   "nameOsm": "Monthermé",
+   "nameOnMap": "Monthermé",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.2
+  },
+  "Mézières": {
+   "px": [
+    2765,
+    2201
+   ],
+   "lonlat": [
+    4.718,
+    49.7611
+   ],
+   "osm": {
+    "type": "node",
+    "id": 5321820353
+   },
+   "nameOsm": "Mézières",
+   "nameOnMap": "Mézières",
+   "note": "圖上為舊市鎮 Mézières（1966 年併入 Charleville-Mézières）；Nominatim（本次查詢；place/quarter）；同名候選 4 筆，取最接近圖上位置者",
+   "loo_km": 1.19
+  },
+  "Bouillon": {
+   "px": [
+    2998,
+    2187
+   ],
+   "lonlat": [
+    5.0673,
+    49.795
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2440951
+   },
+   "nameOsm": "Bouillon",
+   "nameOnMap": "Bouillon",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 4.22
+  },
+  "Donchery": {
+   "px": [
+    2867,
+    2264
+   ],
+   "lonlat": [
+    4.8736,
+    49.6972
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153844
+   },
+   "nameOsm": "Donchery",
+   "nameOnMap": "Donchery",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 1.39
+  },
+  "Sedan": {
+   "px": [
+    2922,
+    2256
+   ],
+   "lonlat": [
+    4.9433,
+    49.7034
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 153920
+   },
+   "nameOsm": "Sedan",
+   "nameOnMap": "Sedan",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.45
+  },
+  "Bazeilles": {
+   "px": [
+    2933,
+    2278
+   ],
+   "lonlat": [
+    4.978,
+    49.676
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 16915440
+   },
+   "nameOsm": "Bazeilles",
+   "nameOnMap": "Bazeilles",
+   "note": "圓圈上緣被紅色界線壓到，圓環大致可見；Nominatim（本次查詢；boundary/village）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.16
+  },
+  "Flize": {
+   "px": [
+    2825,
+    2277
+   ],
+   "lonlat": [
+    4.7761,
+    49.6979
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 9164837
+   },
+   "nameOsm": "Flize",
+   "nameOnMap": "Flize",
+   "note": "Nominatim（本次查詢；boundary/village）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 3.76
+  },
+  "Carignan": {
+   "px": [
+    3065,
+    2344
+   ],
+   "lonlat": [
+    5.1682,
+    49.632
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3263485
+   },
+   "nameOsm": "Carignan",
+   "nameOnMap": "Carignan",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 4.89
+  },
+  "Stonne": {
+   "px": [
+    2906,
+    2379
+   ],
+   "lonlat": [
+    4.9257,
+    49.5494
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 3284723
+   },
+   "nameOsm": "Stonne",
+   "nameOnMap": "Stonne",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 2.07
+  },
+  "Virton": {
+   "px": [
+    3262,
+    2364
+   ],
+   "lonlat": [
+    5.533,
+    49.5677
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2422739
+   },
+   "nameOsm": "Virton",
+   "nameOnMap": "Virton",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.04
+  },
+  "Bastogne": {
+   "px": [
+    3359,
+    1946
+   ],
+   "lonlat": [
+    5.7173,
+    50.0023
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2426390
+   },
+   "nameOsm": "Bastogne",
+   "nameOnMap": "Bastogne",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.4
+  },
+  "Vianden": {
+   "px": [
+    3642,
+    2005
+   ],
+   "lonlat": [
+    6.2067,
+    49.9337
+   ],
+   "osm": {
+    "type": "node",
+    "id": 1614814315
+   },
+   "nameOsm": "Vianden",
+   "nameOnMap": "Vianden",
+   "note": "Nominatim（本次查詢；place/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.72
+  },
+  "Diekirch": {
+   "px": [
+    3620,
+    2070
+   ],
+   "lonlat": [
+    6.1601,
+    49.8691
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1113658
+   },
+   "nameOsm": "Diekirch",
+   "nameOnMap": "Diekirch",
+   "note": "圓圈緊貼字樣 h 的右上；Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.14
+  },
+  "Echternach": {
+   "px": [
+    3784,
+    2130
+   ],
+   "lonlat": [
+    6.4215,
+    49.8121
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 569741
+   },
+   "nameOsm": "Echternach",
+   "nameOnMap": "Echternach",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 0.6
+  },
+  "Bitburg": {
+   "px": [
+    3836,
+    1959
+   ],
+   "lonlat": [
+    6.5249,
+    49.9733
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 572813
+   },
+   "nameOsm": "Bitburg",
+   "nameOnMap": "Bitburg",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.65
+  },
+  "Luxembourg": {
+   "px": [
+    3616,
+    2308
+   ],
+   "lonlat": [
+    6.1298,
+    49.6113
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 407489
+   },
+   "nameOsm": "Luxembourg",
+   "nameOnMap": "Luxembourg",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 1.78
+  },
+  "Saarburg": {
+   "px": [
+    3868,
+    2307
+   ],
+   "lonlat": [
+    6.5487,
+    49.6083
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1256034
+   },
+   "nameOsm": "Saarburg",
+   "nameOnMap": "Saarburg",
+   "note": "字樣中段被紅色 XXXXX 界線記號蓋住（Saarb…g）；圓圈完整；Nominatim（本次查詢；boundary/town）；同名候選 3 筆，取最接近圖上位置者",
+   "loo_km": 1.5
+  },
+  "Trier": {
+   "px": [
+    3933,
+    2167
+   ],
+   "lonlat": [
+    6.6442,
+    49.7596
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 172679
+   },
+   "nameOsm": "Trier",
+   "nameOnMap": "Trier",
+   "note": "圓圈緊貼字樣 r 的右下；Nominatim（本次查詢；boundary/city）",
+   "loo_km": 1.19
+  },
+  "Merzig": {
+   "px": [
+    3932,
+    2461
+   ],
+   "lonlat": [
+    6.6375,
+    49.4427
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187154
+   },
+   "nameOsm": "Merzig",
+   "nameOnMap": "Merzig",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.85
+  },
+  "Saarlautern": {
+   "px": [
+    3997,
+    2590
+   ],
+   "lonlat": [
+    6.7498,
+    49.3165
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1184570
+   },
+   "nameOsm": "Saarlouis",
+   "nameOnMap": "Saarlautern",
+   "note": "圖上印 Saarlautern（1936–45 年名稱），今 Saarlouis；Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.68
+  },
+  "Saarbrücken": {
+   "px": [
+    4148,
+    2675
+   ],
+   "lonlat": [
+    6.9964,
+    49.2344
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187159
+   },
+   "nameOsm": "Saarbrücken",
+   "nameOnMap": "Saarbrücken",
+   "note": "Nominatim（本次查詢；boundary/city）",
+   "loo_km": 2.57
+  },
+  "Sarreguemines": {
+   "px": [
+    4228,
+    2801
+   ],
+   "lonlat": [
+    7.0709,
+    49.1095
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 90243
+   },
+   "nameOsm": "Sarreguemines",
+   "nameOnMap": "Sarreguemines",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.98
+  },
+  "Longwy": {
+   "px": [
+    3391,
+    2423
+   ],
+   "lonlat": [
+    5.7679,
+    49.5146
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 113134
+   },
+   "nameOsm": "Longwy",
+   "nameOnMap": "Longwy",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.25
+  },
+  "Longuyon": {
+   "px": [
+    3298,
+    2499
+   ],
+   "lonlat": [
+    5.6007,
+    49.4461
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2373401
+   },
+   "nameOsm": "Longuyon",
+   "nameOnMap": "Longuyon",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 1.51
+  },
+  "Metz": {
+   "px": [
+    3666,
+    2785
+   ],
+   "lonlat": [
+    6.1764,
+    49.1197
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 450381
+   },
+   "nameOsm": "Metz",
+   "nameOnMap": "Metz",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.36
+  },
+  "Pont-à-Mousson": {
+   "px": [
+    3602,
+    2990
+   ],
+   "lonlat": [
+    6.0548,
+    48.9026
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 113038
+   },
+   "nameOsm": "Pont-à-Mousson",
+   "nameOnMap": "Pont-à-Mousson",
+   "note": "Nominatim（本次查詢；boundary/town）",
+   "loo_km": 2.53
+  },
+  "Verdun": {
+   "px": [
+    3180,
+    2774
+   ],
+   "lonlat": [
+    5.3867,
+    49.1589
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 918574
+   },
+   "nameOsm": "Verdun",
+   "nameOnMap": "Verdun",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.34
+  },
+  "Rethel": {
+   "px": [
+    2575,
+    2425
+   ],
+   "lonlat": [
+    4.3666,
+    49.5091
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1792603
+   },
+   "nameOsm": "Rethel",
+   "nameOnMap": "Rethel",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.31
+  },
+  "Reims": {
+   "px": [
+    2356,
+    2675
+   ],
+   "lonlat": [
+    4.0319,
+    49.2578
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 36458
+   },
+   "nameOsm": "Reims",
+   "nameOnMap": "Reims",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.09
+  },
+  "Soissons": {
+   "px": [
+    1950,
+    2560
+   ],
+   "lonlat": [
+    3.3276,
+    49.3838
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74004
+   },
+   "nameOsm": "Soissons",
+   "nameOnMap": "Soissons",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.79
+  },
+  "Senlis": {
+   "px": [
+    1547,
+    2701
+   ],
+   "lonlat": [
+    2.5847,
+    49.2065
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1804789
+   },
+   "nameOsm": "Senlis",
+   "nameOnMap": "Senlis",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.19
+  },
+  "Clermont": {
+   "px": [
+    1438,
+    2511
+   ],
+   "lonlat": [
+    2.4142,
+    49.3781
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 165224
+   },
+   "nameOsm": "Clermont",
+   "nameOnMap": "Clermont",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.82
+  },
+  "Pontoise": {
+   "px": [
+    1268,
+    2805
+   ],
+   "lonlat": [
+    2.1008,
+    49.0509
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 120958
+   },
+   "nameOsm": "Pontoise",
+   "nameOnMap": "Pontoise",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 4.35
+  },
+  "Chateau Thierry": {
+   "px": [
+    1983,
+    2861
+   ],
+   "lonlat": [
+    3.4027,
+    49.0457
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 74171
+   },
+   "nameOsm": "Château-Thierry",
+   "nameOnMap": "Chateau Thierry",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 2.41
+  },
+  "Dormans": {
+   "px": [
+    2120,
+    2855
+   ],
+   "lonlat": [
+    3.6384,
+    49.0746
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1773030
+   },
+   "nameOsm": "Dormans",
+   "nameOnMap": "Dormans",
+   "note": "Nominatim（本次查詢；boundary/village）",
+   "loo_km": 3.49
+  },
+  "Épernay": {
+   "px": [
+    2314,
+    2876
+   ],
+   "lonlat": [
+    3.9529,
+    49.0426
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 417327
+   },
+   "nameOsm": "Épernay",
+   "nameOnMap": "Épernay",
+   "note": "Nominatim（本次查詢；boundary/town）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 1.39
+  },
+  "Châlons": {
+   "px": [
+    2572,
+    2954
+   ],
+   "lonlat": [
+    4.3629,
+    48.9566
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 417365
+   },
+   "nameOsm": "Châlons-en-Champagne",
+   "nameOnMap": "Châlons",
+   "note": "Nominatim（本次查詢；boundary/city）；同名候選 2 筆，取最接近圖上位置者",
+   "loo_km": 0.97
+  }
+ },
+ "features": [
+  {
+   "label": "B",
+   "commander": "BOCK",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    3380,
+    721
+   ],
+   "note": "框上 XXXXX；大框（約 155×63 px）",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-hgr-b",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    5.8243,
+    51.3289
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "A",
+   "commander": "RUNDSTEDT",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    3481,
+    1644
+   ],
+   "note": "框上 XXXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-hgr-a",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    5.942,
+    50.3315
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "C",
+   "commander": "LEEB",
+   "echelon": "army_group",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    4127,
+    2372
+   ],
+   "note": "框上 XXXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    6.9572,
+    49.5435
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "EIGHTEENTH",
+   "commander": "KUECHLER",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    2746,
+    648
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-18-armee",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    4.7133,
+    51.4329
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTH",
+   "commander": "REICHENAU",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    2780,
+    1319
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-6-armee",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    4.7532,
+    50.6992
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "NINTH",
+   "commander": "BLASKOWITZ",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    3141,
+    1637
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    5.3654,
+    50.3488
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FOURTH",
+   "commander": "KLUGE",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    2690,
+    1771
+   ],
+   "note": "框上 XXXX；框蓋住 Florennes、Philippeville 兩地名的後半",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-4-armee",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    4.5867,
+    50.2129
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SECOND",
+   "commander": "WEICHS",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    2858,
+    1998
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    4.8705,
+    49.9683
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "TWELVE",
+   "commander": "LIST",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    2639,
+    2316
+   ],
+   "note": "框上 XXXX；框內印作 TWELVE（不是 TWELFTH），照圖抄錄",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    4.4914,
+    49.6312
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTEENTH",
+   "commander": "BUSCH",
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": false,
+   "px": [
+    3302,
+    2259
+   ],
+   "note": "框上 XXXX",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    5.611,
+    49.6853
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "KLEIST",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": true,
+   "px": [
+    1321,
+    1809
+   ],
+   "note": "框上 XXXX；框內只有裝甲橢圓、沒有番號，框下方印 KLEIST（px 取框中心，不是字樣）。層級依 X 記號記為 army，圖上未印番號或「Group」字樣",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-kleist-gr",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    2.1658,
+    50.1597
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "HOTH",
+   "commander": null,
+   "echelon": "corps",
+   "sideGuess": "german",
+   "sideNote": "紅色框與紅色字（圖上德軍用紅色）",
+   "armoured": true,
+   "px": [
+    1873,
+    1743
+   ],
+   "note": "框上 XXX；框內只有裝甲橢圓、沒有番號，HOTH 印在框右側（字樣中心約 [1967,1745]）；px 取框中心",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "de-hoth-gr",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    3.1539,
+    50.2426
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FR. XVI",
+   "commander": null,
+   "echelon": "corps",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    2057,
+    696
+   ],
+   "note": "框上 XXX；框內 XVI，框左印 FR.；位於 Zeeland 南岸（Terneuzen 以西）",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "兩次判讀的標註文字不同（「FR. XVI」與「XVI」，同一個符號）；依規則列待確認，不取位置",
+   "lonlat": [
+    3.4735,
+    51.3938
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "BELG.",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    2077,
+    933
+   ],
+   "note": "框上 XXXX；Ghent 西北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "be-armee",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    3.5102,
+    51.1311
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "BEF",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1828,
+    1318
+   ],
+   "note": "框上 XXXX；Lille 正北",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "uk-bef",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    3.0651,
+    50.707
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FIRST",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1928,
+    1577
+   ],
+   "note": "框上 XXXX；框下沒有印指揮官名；Lille 東南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyCandidate": "fr-1-armee",
+   "unitKeyNote": "方框是標籤位置，不取（見 boxesNotPositions）",
+   "lonlat": [
+    3.2488,
+    50.424
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "NINTH",
+   "commander": "GIRAUD",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    2211,
+    1960
+   ],
+   "note": "框上 XXXX；畫在德軍已佔領的紅色區內（Oise 河北側）",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    3.753,
+    50.0106
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "TENTH",
+   "commander": "ALTMAYER",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1378,
+    2141
+   ],
+   "note": "框上 XXXX；Amiens 正南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    2.2844,
+    49.7992
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SEVENTH",
+   "commander": "FRERE",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1773,
+    2433
+   ],
+   "note": "框上 XXXX；框右側印「(-)」；Noyon 南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    2.9957,
+    49.4951
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SIXTH",
+   "commander": "TOUCHON",
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    2506,
+    2564
+   ],
+   "note": "框上 XXXX；Rethel 西南、Aisne 河南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    4.2634,
+    49.3678
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SECOND",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    2906,
+    2506
+   ],
+   "note": "框上 XXXX；框下沒有印指揮官名；Stonne 南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    4.9403,
+    49.4298
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "THIRD",
+   "commander": null,
+   "echelon": "army_group",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    3480,
+    2641
+   ],
+   "note": "框上數得 5 個 X（XXXXX），框也是集團軍群的大框尺寸，照圖記為 army_group；框下沒有印指揮官名。番號與層級是否相符見 unresolved",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    5.8882,
+    49.2825
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "FOURTH",
+   "commander": null,
+   "echelon": "army",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    3983,
+    2914
+   ],
+   "note": "框上 XXXX；框下沒有印指揮官名；Sarreguemines 西南",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "名冊沒有這個單位",
+   "lonlat": [
+    6.6858,
+    48.9897
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "BR.",
+   "commander": null,
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1465,
+    1264
+   ],
+   "note": "小型步兵符號（方框內對角交叉），上方沒有 X 記號；BR. 印在符號左側；Watten 東南、運河線上。圖說框「British began organizing Canal line 19 May」的指線指向這裡",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "圖上沒有層級符號，不取",
+   "lonlat": [
+    2.405,
+    50.7629
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "Br.",
+   "commander": null,
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1618,
+    1431
+   ],
+   "note": "小型步兵符號，上方沒有 X 記號；圖上印作「Br.」（小寫 r）；Bethune 北方、運河線上",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "圖上沒有層級符號，不取",
+   "lonlat": [
+    2.6886,
+    50.5808
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "BR. MAC.",
+   "commander": null,
+   "echelon": "other",
+   "sideGuess": "allied",
+   "sideNote": "藍色框與藍色字（圖上盟軍用藍色）",
+   "armoured": false,
+   "px": [
+    1812,
+    1511
+   ],
+   "note": "小型步兵符號，上方沒有 X 記號；符號左印 BR.、右印 MAC.（兩段字樣屬同一符號，照圖抄錄，未展開縮寫）；符號蓋住 Carvin 地名後半。其右下方的 XXXX 屬於 FIRST 框",
+   "unitKeyStatus": "unmatched",
+   "unitKeyNote": "圖上沒有層級符號，不取",
+   "lonlat": [
+    3.0401,
+    50.4952
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  }
+ ],
+ "lines": [],
+ "unresolved": [
+  {
+   "label": "THIRD（XXXXX）",
+   "px": [
+    3480,
+    2641
+   ],
+   "reason": "框上讀到 5 個 X、框為集團軍群尺寸，但標籤是序數 THIRD（其他集團軍群以字母 A/B/C 標示，盟軍其餘序數框皆為 XXXX）。照圖記為 army_group，未推測實際番號"
+  },
+  {
+   "label": "BR. MAC.",
+   "px": [
+    1812,
+    1511
+   ],
+   "reason": "MAC. 縮寫圖上未說明；是否與 BR. 同屬一個符號係依排版判斷（兩段字樣緊貼同一符號兩側）"
+  },
+  {
+   "label": "KLEIST／HOTH 框",
+   "reason": "兩個裝甲框內都沒有番號，只有指揮官名；層級只依 X 記號（XXXX、XXX）記錄"
+  },
+  {
+   "label": "藍色粗虛線箭頭（Marle 西側往南到 Aisne 河）",
+   "px": [
+    2068,
+    2566
+   ],
+   "reason": "由 Marle 西側繞向南、箭頭尖約在 [2068,2566]（蓋住 B…rg 地名）的藍色粗虛線箭頭沒有文字標註，未判讀其意義；px 為箭頭尖"
+  }
+ ]
+}

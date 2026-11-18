@@ -1,4 +1,4 @@
-# World Line 二戰畫面設計（Google Stitch）
+# World Line 第一階段（1908–1945）畫面設計（Google Stitch）
 
 2026-10-28。設計稿只當版面參考，實作顏色、字型、圓角一律用 `--wl-*` token。設計系統是 `design/stitch/DESIGN.md`；頁面與四態的規格是 PRD §8（`.claude/prds/world-line-ww2.md`）。
 
@@ -29,7 +29,7 @@ World Line 只有一個頁面（`/`），所有功能都是疊在地圖上的面
 
 ### 共用條件（已包含在下面每一段裡，這裡只是列出來方便看）
 
-1. 產品：二戰歷史地圖集，單一使用者拖動時間軸看全球政權的控制與主權，每筆資料可追到史料。
+1. 產品：1908–1945（一戰、戰間期、二戰）歷史地圖集，單一使用者拖動時間軸看全球政權的控制與主權，每筆資料可追到史料。
 2. 照 DESIGN.md。
 3. 介面文字繁體中文，引號內的中文照抄。
 4. 1440px 桌機，單頁，地圖滿版，面板浮在地圖上。
@@ -42,7 +42,7 @@ World Line 只有一個頁面（`/`），所有功能都是疊在地圖上的面
 ### 校正卡
 
 ```text
-Design a single calibration card for "World Line", a historical atlas web app of the Second World War. Follow the attached DESIGN.md design system exactly. Light theme only: paper background #f4efe4, card #faf7f0, ink text #2a2620, 1px hairline borders #d9d0bd, almost no shadow. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
+Design a single calibration card for "World Line", a historical atlas web app covering 1908–1945 (the First World War, the interwar years and the Second World War). Follow the attached DESIGN.md design system exactly. Light theme only: paper background #f4efe4, card #faf7f0, ink text #2a2620, 1px hairline borders #d9d0bd, almost no shadow. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 
 Show on one 1440px canvas, in rows:
 1. Typography: 「1940年7月15日」 in 30px Noto Serif TC 600; 「法蘭西國」 22px serif; 「傳承關係」 17px serif; 「持續關係」 15px Noto Sans TC 600; body text 「1940年7月10日國民議會授權貝當，第三共和改制為法蘭西國。」 14px; caption 「昭和15年・民國29年」 12px in #6b6355.
@@ -57,7 +57,7 @@ Do not add anything else. No dark mode.
 ### W1. 主地圖・實際控制
 
 ```text
-Design the main screen of "World Line", a historical GIS atlas of the Second World War where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
+Design the main screen of "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900, one page, full-bleed map with floating paper panels.
 Light theme only: page #f4efe4, panels #faf7f0 with 1px #d9d0bd border and a barely visible shadow, ink text #2a2620, secondary text #6b6355.
@@ -93,7 +93,7 @@ Legend (floating bottom-left, 280px, expanded), title 「圖例」 17px serif:
 
 Timeline (bottom, 112px, full width, panel color, top hairline):
 - Left controls: 「上一個快照」 icon button, 「播放」 icon button, 「下一個快照」 icon button, speed text button 「1 週/秒」, a date input showing 「1940-07-15」.
-- Scale 1937 … 1945 with year ticks in 12px serif and month hairlines.
+- Scale 1908 … 1945 with year ticks in 12px serif and month hairlines.
 - Five thin tracks labeled at left in 12px: 「西歐」「東線」「北非」「太平洋」「中國」. Small ink pills mark snapshots, denser in 「西歐」 around 1940-05 to 1940-07, sparse in 「中國」. The 「中國」 track has long stretches with the fine-dot no-data pattern.
 - Vermilion handle line at 1940-07-15 crossing all tracks, with a small vermilion knob.
 
@@ -106,7 +106,7 @@ States to also show as separate frames:
 ### W2. 推估過渡與資料缺
 
 ```text
-Design a screen of "World Line", a historical GIS atlas of the Second World War where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
+Design a screen of "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900, one page, full-bleed map with floating paper panels.
 Light theme only: page #f4efe4, panels #faf7f0 with 1px #d9d0bd border and a barely visible shadow, ink text #2a2620, secondary text #6b6355.
@@ -143,7 +143,7 @@ States to also show as separate frames:
 ### W3. 主權檢視＋地區主權詳情
 
 ```text
-Design a screen of "World Line", a historical GIS atlas of the Second World War where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
+Design a screen of "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900, one page, full-bleed map with floating paper panels.
 Light theme only: page #f4efe4, panels #faf7f0 with 1px #d9d0bd border and a barely visible shadow, ink text #2a2620, secondary text #6b6355.
@@ -173,7 +173,7 @@ States to also show as separate frames:
 ### W4. 政權聚焦面板
 
 ```text
-Design a screen of "World Line", a historical GIS atlas of the Second World War where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
+Design a screen of "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900, one page, full-bleed map with floating paper panels.
 Light theme only: page #f4efe4, panels #faf7f0 with 1px #d9d0bd border and a barely visible shadow, ink text #2a2620, secondary text #6b6355.
@@ -189,7 +189,7 @@ Right panel (400px, scrollable), top row: a filter input with placeholder 「篩
 Sections, each with a 17px serif heading and a hairline above:
 1. Names: 「法蘭西國」 22px serif, below in 12px 「État français」. Collapsible 「其他名稱（2）」 showing 「維琪法國・後世史學視角」「Vichy France・英語通稱」.
 2. Status: badge 「存續」 and caption 「1940-07-10 起」.
-3. 「狀態時間條」: a thin horizontal bar 1937–1945; the regime exists only from 1940-07 to 1944-08; one marker at the start labeled 「政體更替」.
+3. 「狀態時間條」: a thin horizontal bar 1908–1945; the regime exists only from 1940-07 to 1944-08; one marker at the start labeled 「政體更替」.
 4. 「傳承關係」: 「前身：法蘭西第三共和（政體更替，1940-07-10）」 as a link.
 5. 「當日控制」: row 「直接統治：法國南部（非佔領區）」 with a 「來源」 button.
 6. 「主權主張」: 「法國本土・實際生效・美國等承認」 and 「並存主張：自由法國」.
@@ -208,7 +208,7 @@ States to also show as separate frames:
 ### W5. 事件詳情＋爭議點
 
 ```text
-Design a screen of "World Line", a historical GIS atlas of the Second World War where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
+Design a screen of "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where a single user drags a timeline to any day and sees every regime's actual control and sovereignty on one world map, each record traceable to a cited historical map. It must feel like a scholarly printed atlas, not a game or a dashboard.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900, one page, full-bleed map with floating paper panels.
 Light theme only: page #f4efe4, panels #faf7f0 with 1px #d9d0bd border and a barely visible shadow, ink text #2a2620, secondary text #6b6355.
@@ -241,7 +241,7 @@ States to also show as separate frames:
 ### W6. 來源 popover
 
 ```text
-Design a popover component for "World Line", a historical GIS atlas of the Second World War where every territory record must cite a historical map. It must feel like an archive catalog card.
+Design a popover component for "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War) where every territory record must cite a historical map. It must feel like an archive catalog card.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Show it over the main map screen at 1440px, anchored to a small 「來源」 button in a right panel row 「軍事佔領：法國北部」.
 Light theme only: popover #faf7f0, 1px #d9d0bd border, 6px radius, ink text #2a2620, secondary text #6b6355. Archival metadata (catalog numbers, plate numbers) in brass #8a6d2f. Links in slate #34506b.
@@ -260,7 +260,7 @@ Also show two variants:
 ### W7. 全域與錯誤狀態
 
 ```text
-Design five full-screen states for "World Line", a historical GIS atlas of the Second World War. It must feel like a scholarly printed atlas.
+Design five full-screen states for "World Line", a historical GIS atlas of 1908–1945 (the First World War, the interwar years and the Second World War). It must feel like a scholarly printed atlas.
 Follow the attached DESIGN.md design system exactly. All UI text is Traditional Chinese (zh-Hant); use the exact Chinese labels given in quotes.
 Desktop 1440×900. Light theme only: page #f4efe4, panels #faf7f0, ink text #2a2620. Vermilion #b23a26 only for the primary button. Errors crimson #8c1d40 with icon. Headings Noto Serif TC, body Noto Sans TC; sizes only 30/22/17/15/14/12px. Radius 4px.
 Do not add anything not described.
@@ -270,7 +270,7 @@ Frames:
 2. API offline: centered card, crimson icon, 「無法連線到 World Line API」 22px serif, caption 「服務狀態：無回應」, primary button 「重試」.
 3. Not found: centered 「找不到頁面」 22px serif, secondary button 「回主地圖」.
 4. Invalid date in URL: the main map at the default date with a toast at bottom-center above the timeline: 「網址中的日期格式無效，已回到預設日期」.
-5. Early period hint: map on 1935-05-01 with a small corner note 「本時段資料不保證完整」 and the timeline's pre-1937 segment shaded slightly darker.
+5. Incomplete-period hint (待定 / TBD whether kept in the 1908–1945 scope): map on a date whose global country data is not yet complete, with a small corner note 「本時段資料不保證完整」 and that timeline segment shaded slightly darker.
 ```
 
 ### 修正已產生的畫面

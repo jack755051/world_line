@@ -1,0 +1,86 @@
+{
+ "batch": "073",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 14,
+  "editedSentences": 6,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ec-velasco-ibarra",
+   "bioId": "01a1b4c1-ce1f-7f07-b90c-33a723d30412",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 12,
+   "changes": [
+    "段1：卒年移到段4（段1 period 迄 1932，不應含 1979 卒）；「到巴黎進修」改為「到巴黎索邦就讀」以貼合 Sosa 引文",
+    "段2：「開啟他長達近半世紀的政治生涯」與引文『dominated national politics for nearly five decades』語意不符，改為「此後主導國家政治近半世紀」",
+    "段4：「去職後他流亡」無引文支撐時序，補 Martz『Velasco's fifth and final term, after a narrow victory in 1968』『ultimately the military intervened. Velasco went into exile』，改寫為第五任以軍方介入告終後流亡；補生卒引文支撐 1979-03-30 卒；period 起點改 1968-01-01",
+    "抽查重抓 encyclopedia.com（Martz）：『forcibly removed on four occasions』一致；五任總統均在 5442，不重建，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-bratianu-ion-ic",
+   "bioId": "01a1b4c1-ce17-78b8-8093-2367a30aa542",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 6,
+   "gaps": 6,
+   "searchLogSteps": 22,
+   "changes": [
+    "段1：「弗洛里卡（今 Ștefănești）」「聖薩瓦學院」「巴克烏—皮亞特拉尼亞姆茨鐵路」原無引文，補 diacronia 三筆逐字引文",
+    "段2：原引文只到『chief of the Romanian delegation』，未含和會與發言；補三筆引文，句子改為「在巴黎和會上陳述羅馬尼亞參戰的理由」",
+    "段3：「戰後」與「對國家自由黨是沉重打擊」無引文；補『after the WWI』與『his death representing a serious problem for the National Liberal Party』，改寫為「造成嚴重問題」",
+    "刪 gap field:birth_place：同一地點新舊名，不是兩份來源矛盾，誤用 conflict",
+    "新增 conflict gap role:bratianu-pm-1914（gov.ro 1914-01-04 vs diacronia 17 January 1914）、role:bratianu-pm-1916（1916-12-11 vs 24 December 1916）；與研究者已記的 1918 衝突同類，暫採政府名單",
+    "五屆名單外首相任期 R0 head_of_government、黨主席 R1 de_facto_leader 判定正確；黨主席缺迄日有『待查證：缺迄日』gap、篇幅不足 gap 與 retry 搜尋（10 筆）",
+    "抽查重抓 gov.ro 與 lobid GND：任期字串、GND 職業描述一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-tatarescu",
+   "bioId": "01a1b4c1-ce32-709a-95b9-d23e5c5ba093",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 10,
+   "changes": [
+    "段3：「被強制居住」原無引文，補 ceeol『he was removed from the Government of Romania and imposed forced domicile』",
+    "T14：副總理 R5（副職）、外交部長 R6（source、regime；可證明天數 ≥90）判定正確；兩筆都有起迄日與含日期引文",
+    "1931 黨總書記只見未評等來源，留 gap 候選，未建 roleCandidate，正確",
+    "抽查重抓 CEEOL 條目摘要：引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "羅馬尼亞政府首相名單（gov.ro）的 1914、1916、1918 起日與 diacronia 論文相差約 13 天，疑為舊曆／新曆差異（推論），一律記 conflict 待查證，未改日期",
+  "研究者段落多處子句（地名、學校、評語）缺引文，審查已從已抓原文補齊"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

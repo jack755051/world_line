@@ -1,0 +1,4638 @@
+{
+ "batch": "b3-full-major-v2-batch006",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式：經歷層 positionKind；元首／首腦／實際掌權者與黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類以 R6（roleGap 含 regime）留在 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json（2026-11-13／14）。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch006/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "senat-clemenceau": {
+   "title": "CLEMENCEAU Georges（Ancien sénateur du Var, IIIe République）",
+   "authors": [],
+   "publisher": "Sénat（法國參議院）",
+   "published_text": "Dictionnaire des Parlementaires 轉載",
+   "url": "https://www.senat.fr/senateur-3eme-republique/clemenceau_georges1741r3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國參議院「第三共和國前參議員」官方人物頁，列選舉日、任期與職位起訖（轉載 Robert et Cougny、Jean Jolly《議員辭典》）"
+  },
+  "sycomore-clemenceau": {
+   "title": "Georges, Eugène, Benjamin Clemenceau（Base de données des députés français depuis 1789）",
+   "authors": [],
+   "publisher": "Assemblée nationale（法國國民議會）",
+   "published_text": "Sycomore 議員資料庫",
+   "url": "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=1844",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國國民議會 Sycomore 議員資料庫官方頁，列各屆任期、參議員任期與政府首腦期間"
+  },
+  "an-clemenceau-pdf": {
+   "title": "Georges Clemenceau（kakemono 展板）",
+   "authors": [],
+   "publisher": "Assemblée nationale（法國國民議會）",
+   "published_text": "2010 遺產日展板",
+   "url": "https://www.assemblee-nationale.fr/13/evenements/images/patrimoine-2010/kakemonos/clemenceau.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國國民議會官方展板 PDF，列議員與參議員任期"
+  },
+  "af-clemenceau": {
+   "title": "Georges CLEMENCEAU（Élu en 1918 au fauteuil 3）",
+   "authors": [],
+   "publisher": "Académie française（法蘭西學術院）",
+   "published_text": "院士頁",
+   "url": "https://www.academie-francaise.fr/les-immortels/georges-clemenceau",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法蘭西學術院官方院士頁（機構官方頁）"
+  },
+  "enccat-franco": {
+   "title": "Francisco Franco Bahamonde（Gran Enciclopèdia Catalana）",
+   "authors": [],
+   "publisher": "Enciclopèdia Catalana",
+   "published_text": "GEC 條目",
+   "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/francisco-franco-bahamonde",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "審查（opus 2026-11-15）降級：Gran Enciclopèdia Catalana 條目無具名作者（頁面唯一人名 Jaime de Andrade 是佛朗哥本人筆名），依 Q9／source-rules 屬具名出版機構但不到 B 的 C 級，只能放 gap 候選，不作段落／職位／角色出處"
+  },
+  "boe-1936-032": {
+   "title": "Boletín Oficial de la Junta de Defensa Nacional de España, núm. 32（Burgos, 30 septiembre 1936）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE）",
+   "published_text": "官報",
+   "url": "https://www.boe.es/datos/pdfs/BOE/1936/032/J00125-00126.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 數位化館藏，國防委員會 1936-09-29 法令全文"
+  },
+  "boe-1938-467": {
+   "title": "Boletín Oficial del Estado, núm. 467（Burgos, 31 enero 1938）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE）",
+   "published_text": "官報",
+   "url": "https://www.boe.es/gazeta/dias/1938/01/31/pdfs/BOE-1938-467.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 數位化館藏，1938-01-30 中央行政組織法"
+  },
+  "gmd-1936-54": {
+   "title": "Gaceta de Madrid, núm. 54（23 febrero 1936）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE，Gaceta 數位館藏）",
+   "published_text": "官報",
+   "url": "https://www.boe.es/gazeta/dias/1936/02/23/pdfs/GMD-1936-54.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 之 Gaceta de Madrid 數位館藏，刊載任命佛朗哥為加那利軍事司令之法令"
+  },
+  "agm-historial": {
+   "title": "Historia de la Academia General Militar. 1ª época",
+   "authors": [],
+   "publisher": "Ejército de Tierra（西班牙陸軍／國防部）",
+   "published_text": "陸軍官方文件",
+   "url": "https://ejercito.defensa.gob.es/Galerias/Descarga_pdf/EjercitoTierra/desfiles_actos/dfn-2017/2_historial_agm.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙陸軍官方檔案（defensa.gob.es）之軍官學院沿革"
+  },
+  "lobid-franco": {
+   "title": "GND：Franco, Francisco（11853470X）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/search?q=Francisco+Franco+Bahamonde+1892&format=json&size=2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方鏡像）"
+  },
+  "tccb-ataturk": {
+   "title": "M. Kemal ATATÜRK（Görev Süresi: 29 Ekim 1923 - 10 Kasım 1938）",
+   "authors": [],
+   "publisher": "T.C. Cumhurbaşkanlığı（土耳其總統府）",
+   "published_text": "歷任總統頁",
+   "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/kemal_ataturk/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其總統府官網歷任總統頁（官方頁）"
+  },
+  "tccb-inonu": {
+   "title": "İsmet İNÖNÜ（Cumhurbaşkanlarımız）",
+   "authors": [],
+   "publisher": "T.C. Cumhurbaşkanlığı（土耳其總統府）",
+   "published_text": "歷任總統頁",
+   "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/ismet_inonu/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其總統府官網歷任總統頁（官方頁）"
+  },
+  "tbmm-baskanlar": {
+   "title": "TBMM Başkanları",
+   "authors": [],
+   "publisher": "Türkiye Büyük Millet Meclisi（土耳其大國民議會）",
+   "published_text": "議長名單",
+   "url": "https://tbmm.gov.tr/baskan/meclis-baskanlari",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其大國民議會官網歷任議長名單（官方頁）"
+  },
+  "tbmm-basin-29585": {
+   "title": "TBMM'NİN, BÜYÜK ÖNDER MUSTAFA KEMAL ATATÜRK'E 'MAREŞAL' RÜTBESİ ile 'GAZİ' UNVANI VERİŞİNİN 84. YILDÖNÜMÜ",
+   "authors": [],
+   "publisher": "Türkiye Büyük Millet Meclisi（土耳其大國民議會）",
+   "published_text": "TBMM 新聞稿 2005-09-19",
+   "url": "https://www5.tbmm.gov.tr/develop/owa/web_basin_aciklamalari.aciklama?p1=29585",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其大國民議會官方新聞稿（2005-09-19）"
+  },
+  "tbmm-partiler-pdf": {
+   "title": "Cumhuriyet Dönemi Partiler, Seçimler, Beyannameler (1923-1980)",
+   "authors": [],
+   "publisher": "Türkiye Büyük Millet Meclisi（土耳其大國民議會）",
+   "published_text": "TBMM 出版品",
+   "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Yayinlar/Dosya/ed1d2982-f225-4467-a4ab-707f4cc471dc.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其大國民議會官方出版品，記共和人民黨（Halk Fırkası）創立"
+  },
+  "atam-tek-parti": {
+   "title": "Türk Siyasi Hayatında Tek Partiden Çok Partiye Geçiş: Değişim ve Sonuçları (1946–1954)",
+   "authors": [
+    "Ülkühan Özdemir"
+   ],
+   "publisher": "Atatürk Araştırma Merkezi（ATAM，土耳其國家機構）",
+   "published_text": "ATAM 2024",
+   "url": "https://atam.gov.tr/wp-content/uploads/2024/02/z.4-Ulk.Ozd_.4.pdf.son_.basila.23.02.2024.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "ATAM 官方出版之學術專書，具名作者 Ülkühan Özdemir（具名學術專書記 B）"
+  },
+  "lobid-ataturk": {
+   "title": "GND：Atatürk, Mustafa Kemal（118650793）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（經 lobid.org）",
+   "published_text": "GND 權威檔",
+   "url": "https://lobid.org/gnd/search?q=Mustafa+Kemal+Atat%C3%BCrk+1881&format=json&size=2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館 GND 人名權威檔（lobid.org 官方鏡像）"
+  },
+  "lemo-franco": {
+   "title": "Francisco Franco 1892-1975（LeMO Biografie）",
+   "authors": [],
+   "publisher": "Deutsches Historisches Museum／Stiftung Haus der Geschichte der Bundesrepublik Deutschland（LeMO）",
+   "published_text": "DHM LeMO 人物年表（Stand 2023-02-16）",
+   "url": "https://www.dhm.de/lemo/biografie/francisco-franco",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國國家歷史博物館 LeMO 機構傳記頁（指定來源清單列 DHM LeMO 為 B）"
+  },
+  "lexdk-franco": {
+   "title": "Francisco Franco（Lex，Den Store Danske）",
+   "authors": [],
+   "publisher": "Lex（丹麥國家百科）",
+   "published_text": "百科條目，具名作者 Kay Lundgreen-Nielsen（南丹麥大學名譽講師）",
+   "url": "https://lex.dk/Francisco_Franco",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "丹麥 Lex 百科具名作者條目（Kay Lundgreen-Nielsen, Syddansk Universitet）"
+  },
+  "snl-franco": {
+   "title": "Francisco Franco（Store norske leksikon）",
+   "authors": [
+    "Alejandro Ayala-Wold",
+    "Gunn Aarli",
+    "Ann Elisabeth Laksfoss Cardozo"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "百科條目，具名作者 Alejandro Ayala-Wold（卑爾根大學）、Gunn Aarli、Ann Elisabeth Laksfoss Cardozo（斯塔萬格大學）",
+   "url": "https://snl.no/Francisco_Franco",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "挪威 Store norske leksikon 具名作者條目（大學學者）"
+  },
+  "boe-1938-018": {
+   "title": "Boletín Oficial del Estado, núm. 18（Burgos, 18 julio 1938）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE）",
+   "published_text": "官報",
+   "url": "https://boe.es/gazeta/dias/1938/07/18/pdfs/BOE-1938-18.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 數位化館藏，1938-07-18 恢復大元帥（Capitán General）等級之法令"
+  },
+  "boe-1939-221": {
+   "title": "Boletín Oficial del Estado, núm. 221（9 agosto 1939）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE）",
+   "published_text": "官報",
+   "url": "https://www.boe.es/gazeta/dias/1939/08/09/pdfs/BOE-1939-221.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 數位化館藏，1939-08-08 中央行政組織修訂法"
+  },
+  "congreso-cortesp": {
+   "title": "Dictadura del General Franco. Las Cortes Españolas (1943-1977)",
+   "authors": [],
+   "publisher": "Congreso de los Diputados（Cortes Generales 官方歷史網頁）",
+   "published_text": "議會官方歷史專頁",
+   "url": "https://www.congreso.es/es/cem/cortesp",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙眾議院官方網站歷史專頁"
+  },
+  "gmd-1936-201": {
+   "title": "Gaceta de Madrid, núm. 201（19 julio 1936）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE，Gaceta 數位館藏）",
+   "published_text": "官報",
+   "url": "https://boe.es/gazeta/dias/1936/07/19/pdfs/GMD-1936-201.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "西班牙國家官報 BOE 之 Gaceta de Madrid 數位館藏，1936-07-18 令佛朗哥卸加那利軍事司令"
+  },
+  "gmd-1936-54-raw": {
+   "title": "Gaceta de Madrid, núm. 54（23 febrero 1936；pdftotext -raw 版本）",
+   "authors": [],
+   "publisher": "Boletín Oficial del Estado（BOE，Gaceta 數位館藏）",
+   "published_text": "官報",
+   "url": "https://boe.es/gazeta/dias/1936/02/23/pdfs/GMD-1936-54.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "同 gmd-1936-54（同一 PDF，改用 pdftotext -raw 取得依欄位順序的文字）"
+  }
+ },
+ "people": [
+  {
+   "key": "fr-clemenceau",
+   "bioId": "ef990cdf-5286-44c4-8e0a-1e8aaa1c629b",
+   "name": "Georges Clemenceau",
+   "nameZh": "喬治·克里蒙梭",
+   "recordIds": [
+    "68a3908d-8296-48b4-ab90-ec482a382135",
+    "01a1a20c-b8e3-751a-93e2-b667df79d9b1"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1841-09-28",
+      "end": "1894-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與眾議員生涯",
+      "en": "Origins and years as a deputy"
+     },
+     "body": {
+      "zh-Hant": "克里蒙梭1841年9月28日生於旺代的穆耶龍－昂－帕雷，1867年取得醫學博士學位，在巴黎第18區開業行醫；帝國末年他回到巴黎，9月4日之後以蒙馬特區長的身分進入公共生活。1871年2月8日他當選塞納省代表，之後長期擔任下議院議員，先代表塞納（1876至1885年），1885年起代表瓦爾省。1893年巴拿馬醜聞的風波中，他在瓦爾省以8610票對9503票敗給對手，眾議員生涯就此中斷。",
+      "en": "Clemenceau was born on 28 September 1841 at Mouilleron-en-Pareds in the Vendée, took his doctorate in 1867 and practised medicine in the 18th arrondissement. He returned to Paris towards the end of the Empire and, after 4 September, entered public life as mayor of Montmartre; on 8 February 1871 he was elected a representative of the Seine. He then sat as a deputy, first for the Seine (1876-1885) and from 1885 for the Var. In 1893, in the climate of the Panama scandal, he lost his Var seat by 8,610 votes to 9,503."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記（Robert et Cougny）",
+       "quote": "né à Mouilleron-en-Pareds (Vendée), le 28 septembre 1841",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記",
+       "quote": "Reçu docteur (1867)",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記（Robert et Cougny）",
+       "quote": "M. Clemenceau s'était établi médecin dans le 18 e arrondissement",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記（Robert et Cougny）",
+       "quote": "Il revint à Paris vers la fin de l'Empire, et, au lendemain du 4 septembre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記",
+       "quote": "entra dans la vie publique comme maire de Montmartre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889 年前傳記",
+       "quote": "il fut élu, le 8 février 1871, le 27e sur 43, représentant de la Seine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Député de la Seine de 1876 à 1885.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Député du Var de 1885 à 1893.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Il est battu de peu : 9.503 voix contre 8.610.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "L'affaire de Panama sera l'occasion de l'abattre.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1893-10-03",
+      "end": "1902-04-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "報人、德雷福斯事件與當選參議員",
+      "en": "Journalism, the Dreyfus Affair and the Senate"
+     },
+     "body": {
+      "zh-Hant": "落選後克里蒙梭轉為記者，1893年10月3日在《正義報》發表第一篇文章；1897年10月起任《曙光報》社論作者。德雷福斯事件中，左拉1898年1月12日的文章標題「我控訴」即由他選定。1902年4月6日，他在瓦爾省參議員補選的第一輪投票中當選，得344票對122票，此後任參議員至1920年。",
+      "en": "After his defeat Clemenceau turned to journalism, publishing his first article in La Justice on 3 October 1893 and becoming the leading editorialist of L'Aurore in October 1897. During the Dreyfus Affair he chose the title \"J'accuse\" for Zola's article of 12 January 1898. On 6 April 1902 he was elected senator for the Var on the first ballot, by 344 votes to 122, and he sat in the Senate until 1920."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Le 3 octobre 1893, il publie son premier article dans La Justice",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "En octobre 1897",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Clemenceau devient l'éditorialiste du nouveau journal d'Ernest Vaughan, l'Aurore",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "choisit le titre sous lequel ces pages entreront dans l'histoire : « J'accuse »",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Lorsque Zola, dans la soirée du 12 janvier 1898",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Il est élu le 6 avril, au premier tour de scrutin, par 344 voix contre 122",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "an-clemenceau-pdf",
+       "locator": "展板",
+       "quote": "sénateur du Var de 1902 à 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1906-03-14",
+      "end": "1909-07-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內政部長與第一次組閣",
+      "en": "Interior minister and first premiership"
+     },
+     "body": {
+      "zh-Hant": "1906年3月14日克里蒙梭出任內政部長，至10月19日；10月25日起以內閣總理兼任內政部長，直到1909年7月20日。任內他創設勞動部；1907年起對外局勢惡化，卡薩布蘭卡發生歐洲工人遭殺害事件後，他隨即下令利奧泰占領該城。1909年1月3日他在參議員改選中連任；同年7月20日德爾卡塞就海軍重整一事在眾議院質詢他，最終202名議員投票反對，內閣倒台。",
+      "en": "On 14 March 1906 Clemenceau became Minister of the Interior, a post he held until 19 October; from 25 October 1906 until 20 July 1909 he was head of government while remaining Interior Minister. His government created a Ministry of Labour, and when, amid the external difficulties that began in 1907, European workers were killed at Casablanca, he at once ordered Lyautey to occupy the city. Re-elected senator on 3 January 1909, he was challenged in the Chamber on 20 July 1909 by Delcassé over the reorganisation of the navy, and 202 deputies voted against his ministry."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de l'Intérieur du 14 mars au 19 octobre 1906.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de l'Intérieur du 25 octobre 1906 au 20 juillet 1909.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "Gouvernement 欄",
+       "quote": "Chef du Gouvernement du 25 octobre 1906 au 20 juillet 1909",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Il décide alors de créer un Ministère du Travail",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "à partir de 1907, de graves difficultés extérieures",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "des ouvriers européens, dont cinq français, sont massacrés à Casablanca",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Clemenceau donne aussitôt à Lyautey l'ordre d'occuper la ville",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "réélu sénateur du Var au renouvellement du 3 janvier 1909",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Le 20 juillet 1909, mis en cause devant la Chambre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Delcassé, à propos de la réorganisation de la marine",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "dans le vote final, 202 députés se- prononcent contre le Ministère",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1914-08-03",
+      "end": "1918-11-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "一戰、參議院軍事委員會與戰時內閣",
+      "en": "The Great War, the Senate army commission and the wartime cabinet"
+     },
+     "body": {
+      "zh-Hant": "1914年8月3日戰爭爆發。克里蒙梭嚴厲批評最高統帥部的作戰方法，報紙因此被查禁，他便把《自由人報》改名為《被縛的人》；在參議院他擔任陸軍委員會主席。1917年11月他第二度組閣，總理兼任陸軍部長，11月19日向眾議院提出只有「作戰」一詞的施政綱領。1918年3月26日在杜朗，兩國軍方負責人同意把全部部隊交由福煦指揮；11月11日簽訂停戰。",
+      "en": "The war broke out on 3 August 1914. Clemenceau judged the methods of the high command so severely that his paper was banned, and he renamed L'Homme libre as L'Homme enchaîné; in the Senate he chaired the army commission. In November 1917 he formed his second ministry, as head of government and Minister of War, presenting it to the Chamber on 19 November with a programme summed up as \"to wage war\". At Doullens on 26 March 1918 the military leaders of the two countries agreed to place all troops under Foch, and the armistice was signed on 11 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "la guerre éclate le 3 août 1914",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "la Commission de l'armée, dont il est le président",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "porte des jugements si sévères sur les méthodes du haut commandement",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "que son journal est interdit",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "il transforme l' Homme libre en Homme enchaîné",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Le second Ministère Clemenceau, dont le chef est aussi Ministre de la Guerre",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "se présente devant la Chambre le 19 novembre 1917",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Son programme tient en un mot : « faire la guerre»",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "le 26 mars 1918, à Doullens",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "les responsables militaires des deux pays se mettent d'accord",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "l'ensemble des troupes sous les ordres de Foch",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "L'armistice est signé le 11.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1918-11-21",
+      "end": "1929-11-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "和會、退出內閣與晚年",
+      "en": "Peace conference, resignation and later years"
+     },
+     "body": {
+      "zh-Hant": "1918年11月21日，法蘭西學術院在座院士一致選克里蒙梭為院士，福煦也同樣獲選，但他始終未正式入院。1919年1月18日巴黎和會開幕，他被推為會議主席；6月28日和約在凡爾賽鏡廳簽字。1920年1月16日總統預備會議中他以389票對408票輸給德沙內爾，隨即撤回參選；他的總理與陸軍部長任期至1920年1月18日結束，參議員任期則已於1920年1月10日屆滿，他未再競選。1929年11月24日他去世。",
+      "en": "On 21 November 1918 the sitting members of the Académie française elected Clemenceau unanimously, as they had just done for Foch, though he was never received into it. The Peace Conference opened on 18 January 1919 with Clemenceau elected its president, and on 28 June the treaty was signed in the Hall of Mirrors at Versailles. At the preparatory meeting of 16 January 1920 he lost the presidential vote to Deschanel, 389 to 408, and withdrew; his term as head of government and Minister of War ended on 18 January 1920, his Senate mandate having ended on 10 January 1920 when he did not stand again. He died on 24 November 1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "af-clemenceau",
+       "locator": "院士頁",
+       "quote": "le 21 novembre 1918, les 23 académiciens siégeant l’élurent à l’unanimité",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "af-clemenceau",
+       "locator": "院士頁傳記",
+       "quote": "comme ils venaient de le faire pour le maréchal Foch",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "finalement, n'y sera jamais reçu",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Le 18 janvier 1919, s'ouvre la conférence de la Paix",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Clemenceau est élu président",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Le 28 juin, après d'ultimes discussions avec le Gouvernement allemand",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "le traité est signé à Versailles dans la galerie des Glaces",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記（Jean Jolly）",
+       "quote": "Le 16 janvier, au cours de la réunion préparatoire",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Deschanel obtient 408 voix contre 389 à son rival",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Clemenceau retire aussitôt sa candidature",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "Gouvernement 欄",
+       "quote": "Chef du Gouvernement du 16 novembre 1917 au 18 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de la Guerre du 16 novembre 1917 au 18 janvier 1920.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "首段",
+       "quote": "Fin de mandat le 10 janvier 1920 ( Ne se représente pas )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "Le 24 novembre 1929, une crise cardiaque le terrasse.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "clemenceau-interior-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府（桑里安內閣）",
+      "en": "Government of France (Sarrien cabinet)"
+     },
+     "title": {
+      "orig": "Ministre de l'Intérieur",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1906-03-14",
+      "end": "1906-10-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de l'Intérieur du 14 mars au 19 octobre 1906.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "傳記",
+       "quote": "Ministre de l'Intérieur du 14 mars au 19 octobre 1906.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "任期 1906-03-14～1906-10-19 全在 1908–1945 時間窗外，歸 R5"
+    },
+    {
+     "key": "clemenceau-interior-premier-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府（克里蒙梭內閣）",
+      "en": "Government of France (Clemenceau ministry)"
+     },
+     "title": {
+      "orig": "Président du Conseil Ministre de l'Intérieur",
+      "zh-Hant": "內閣總理兼內政部長（內政部長部分）",
+      "en": "President of the Council and Minister of the Interior (interior portfolio)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1906-10-25",
+      "end": "1909-07-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de l'Intérieur du 25 octobre 1906 au 20 juillet 1909.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "傳記",
+       "quote": "Ministre de l'Intérieur du 25 octobre 1906 au 20 juillet 1909.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R3（內政部、正職、與窗內交集逾 90 天），但 regimeId 無法在不連庫下查證（第三共和政權待查證），門檻無法證明，暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "clemenceau-war-1917",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國政府（克里蒙梭第二內閣）",
+      "en": "Government of France (second Clemenceau ministry)"
+     },
+     "title": {
+      "orig": "Président du Conseil Ministre de la Guerre",
+      "zh-Hant": "內閣總理兼陸軍（戰爭）部長（陸軍部長部分）",
+      "en": "President of the Council and Minister of War (war portfolio)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1917-11-16",
+      "end": "1920-01-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記首段",
+       "quote": "Ministre de la Guerre du 16 novembre 1917 au 18 janvier 1920.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "傳記",
+       "quote": "Ministre de la Guerre du 16 novembre 1917 au 18 janvier 1920.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R3（國防／戰爭部、正職、任期逾 90 天），但 regimeId 無法在不連庫下查證，門檻無法證明，暫留經歷層",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "clemenceau-senator-var",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "法國參議院（瓦爾省）",
+      "en": "Senate of France (Var)"
+     },
+     "title": {
+      "orig": "Sénateur du Var",
+      "zh-Hant": "瓦爾省參議員",
+      "en": "Senator for the Var"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1902-04-06",
+      "end": "1920-01-10"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "參議員任期",
+       "quote": "du 6 avril 1902 au 2 janvier 1909",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "參議員任期",
+       "quote": "du 3 janvier 1909 au 10 janvier 1920",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "首段",
+       "quote": "Fin de mandat le 10 janvier 1920 ( Ne se représente pas )",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:clemenceau-army-commission",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；參議院軍事（陸軍）委員會主席職，來源只寫「Au Sénat, la Commission de l'armée, dont il est le président, lui vote le 8 mars 1915 des félicitations」（1915-03-08 時已任主席），未載就任與卸任日；Sénat 傳記頁、Sycomore、Assemblée 專題頁均無日期；Gallica Journal officiel 被 Cloudflare 擋",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "1889-1940 傳記",
+       "quote": "la Commission de l'armée, dont il est le président",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:head_of_government_dates",
+     "gapKind": "not_found",
+     "note": "待查證：Sénat 頁與 Sycomore（兩份 A）都寫首腦任期為 1906-10-25～1909-07-20、1917-11-16～1920-01-18；名單 5442 記 1908-01-01～1909-07-24 與 1917-11-16～1920-01-20，迄日與來源不同（庫值 vs 單一來源類型，兩份來源彼此一致），請主管核對庫值；本檔未改動",
+     "candidateCitations": [
+      {
+       "sourceKey": "senat-clemenceau",
+       "locator": "首段",
+       "quote": "Ministre de la Guerre du 16 novembre 1917 au 18 janvier 1920.",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:party_post",
+     "gapKind": "not_found",
+     "note": "待查證：未找到 1908–1945 窗內明寫黨職（如急進黨職務）或以政黨身分取得席位的 A／B 來源；Sycomore 僅列 1881–1893 眾議員屆別所屬「Union républicaine」群組（窗外），故無 roleCandidates",
+     "candidateCitations": [
+      {
+       "sourceKey": "sycomore-clemenceau",
+       "locator": "眾議員屆別",
+       "quote": "Union républicaine",
+       "quoteLang": "fr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:britannica",
+     "gapKind": "not_found",
+     "note": "待查證：Britannica 傳記頁被 Cloudflare 挑戰頁擋（403 Just a moment），不繞過；未取得原文，未引用",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Clemenceau Georges sénateur IIIe République senat.fr Var 1902 1920",
+     "url": null,
+     "result": "unrated",
+     "note": "綜合檢索；結果多為維基類與一般網站，不收；Britannica 被擋"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "senat.fr 前參議員頁（猜測網址）",
+     "url": "https://www.senat.fr/senateur-3eme-republique/clemenceau_georges0455r3.html",
+     "result": "no_result",
+     "note": "404，網址猜錯"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "data.bnf.fr Georges Clemenceau",
+     "url": "https://data.bnf.fr/fr/11904660/georges_clemenceau/",
+     "result": "not_relevant",
+     "note": "重導向到無關作者（Robert Georgin），ark 猜錯，未取用"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Clemenceau Georges ancien sénateur IIIe République Var（限 senat.fr）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到正確前參議員頁與專題頁網址"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Sénat 前參議員頁 CLEMENCEAU Georges",
+     "url": "https://www.senat.fr/senateur-3eme-republique/clemenceau_georges1741r3.html",
+     "result": "found_A",
+     "note": "選舉日、任期、首腦與部長期間、傳記全文（Robert et Cougny／Jean Jolly）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Sénat 專題：Le 24 novembre 1929, mourait Georges Clemenceau",
+     "url": "https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/le-24-novembre-1929-mourait-georges-clemenceau.html",
+     "result": "found_A",
+     "note": "已抓；無逐年起訖，內容與傳記頁重疊，未引用"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Sénat 專題：Parlementaire pendant 35 ans",
+     "url": "https://www.senat.fr/connaitre-le-senat/lhistoire-du-senat/dossiers-dhistoire/le-24-novembre-1929-mourait-georges-clemenceau/parlementaire-pendant-35-ans.html",
+     "result": "found_A",
+     "note": "已抓；僅「élu sénateur du Var en 1902 ... dix-huit ans」，未引用"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Georges Clemenceau base de données des députés français depuis 1789 Sycomore（限 assemblee-nationale.fr 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Sycomore fiche num_dept=1844"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Sycomore 議員資料庫 Clemenceau",
+     "url": "https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=1844",
+     "result": "found_A",
+     "note": "各屆任期、參議員任期、首腦期間"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Assemblée nationale 展板 PDF",
+     "url": "https://www.assemblee-nationale.fr/13/evenements/images/patrimoine-2010/kakemonos/clemenceau.pdf",
+     "result": "found_A",
+     "note": "議員／參議員年份"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Assemblée nationale：Clemenceau, un « Tigre » au palais Bourbon",
+     "url": "https://www.assemblee-nationale.fr/dyn/histoire-et-patrimoine/decouvertes-thematiques/clemenceau-un-tigre-au-palais-bourbon",
+     "result": "found_A",
+     "note": "已抓；提到擔任參議院外交與軍事委員會主席但無日期，未引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Georges Clemenceau",
+     "url": "https://www.britannica.com/biography/Georges-Clemenceau",
+     "result": "challenge_page",
+     "note": "Cloudflare「Just a moment」，不繞過"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Chemins de mémoire Georges Clemenceau",
+     "url": "https://www.cheminsdememoire.gouv.fr/en/georges-clemenceau",
+     "result": "no_result",
+     "note": "主機名稱無法解析"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "LoC Name Authority suggest：Clemenceau, Georges, 1841-1929",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Clemenceau,%20Georges,%201841-1929",
+     "result": "found_A",
+     "note": "已抓；僅確認姓名寫法，未引用"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "GND/lobid.org：Georges Clemenceau 1841",
+     "url": "https://lobid.org/gnd/search?q=Georges+Clemenceau+1841&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 118676407；生卒日 1841-09-28／1929-11-24，職業含 Regierungschef；未寫入段落"
+    },
+    {
+     "step": 16,
+     "sourceType": "treaty_law",
+     "query": "Journal officiel décret nomination Clemenceau président du Conseil ministre de la Guerre 1917 gallica（限 gallica／legifrance）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Gallica texteBrut 網址（OCR 檔）"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "Gallica Journal officiel 1917 texteBrut",
+     "url": "https://gallica.bnf.fr/ark:/12148/bpt6k6355759w/texteBrut",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋，不繞過；改用 Sénat／Sycomore 官方列載之日期"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "Georges Clemenceau élu à l'Académie française 1918（限 academie-francaise.fr）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到院士頁"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "Académie française 院士頁",
+     "url": "https://www.academie-francaise.fr/les-immortels/georges-clemenceau",
+     "result": "found_A",
+     "note": "1918-11-21 當選"
+    }
+   ]
+  },
+  {
+   "key": "es-franco",
+   "bioId": "01a1b48b-c890-7320-84f4-1442207f5f03",
+   "name": "Francisco Franco Bahamonde",
+   "nameZh": "法蘭西斯科·佛朗哥",
+   "recordIds": [
+    "01a1aa4a-4a50-77ba-b268-b2c6d6aaa2d8",
+    "01a1aa4a-4a4f-793a-9272-bca7804219c8",
+    "01a1aa4a-4a50-713e-ac38-d344f3ef9f7c",
+    "01a1aa4a-4a50-7dcf-b63b-7a87b3422d1a"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1892-12-04",
+      "end": "1927-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與早年",
+      "en": "Birth and early career"
+     },
+     "body": {
+      "zh-Hant": "佛朗哥1892年12月4日生於加利西亞的費羅爾。德國國家圖書館人名權威檔與歷史博物館年表都記載這個生日。他後來進入托雷多步兵學院，1912年依自己的請求調往西屬摩洛哥。1926年他晉升准將，時年34歲，成為西班牙最年輕的將軍。",
+      "en": "Francisco Franco was born on 4 December 1892 in Ferrol, Galicia; both the German National Library authority file and the German Historical Museum chronology record the date. He later entered the infantry academy at Toledo and, at his own request, was transferred to Spanish Morocco in 1912. In 1926 he was promoted to brigadier general at the age of 34, which made him the youngest general in Spain."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-franco",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1892-12-04\" ]",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1892",
+       "quote": "4. Dezember: Francisco Franco Bahamonde wird in Ferrol (Galizien/Spanien)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1907",
+       "quote": "Daher tritt er in die Infanterieakademie in Toledo ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1912",
+       "quote": "1912 Franco wird auf eigenen Wunsch nach Spanisch-Marokko versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Bakgrunn og militærkarriere",
+       "quote": "I 1926 ble Franco forfremmet til general",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Bakgrunn og militærkarriere",
+       "quote": "34 år gammel.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Bakgrunn og militærkarriere",
+       "quote": "Utnevnelsen gjorde ham til Spanias yngste general",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1926",
+       "quote": "Februar: Beförderung zum Brigadegeneral, jüngster General Europas.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1928-01-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總軍官學院院長",
+      "en": "Director of the General Military Academy"
+     },
+     "body": {
+      "zh-Hant": "1928年佛朗哥出任薩拉戈薩新設軍事學院（總軍官學院）的院長。丹麥Lex百科與德國歷史博物館年表都把起點定在1928年，西班牙陸軍官方的學院沿革則記載他任職到1931年學院第二度解散為止。",
+      "en": "In 1928 Franco became director of the newly created military academy at Zaragoza, the General Military Academy. The Danish Lex encyclopedia and the German Historical Museum chronology both place the start in 1928, while the Spanish Army's official history of the academy records that he held the post until the academy was dissolved for the second time in 1931."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "i årene 1928-1931 direktør for det nyoprettede militærakademi i Zaragoza",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1928",
+       "quote": "1928 Franco wird Leiter der Militärakademie in Saragossa.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "agm-historial",
+       "locator": "1ª época",
+       "quote": "Como director del centro se elige al General D. Francisco Franco y Bahamonde",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "agm-historial",
+       "locator": "1ª época",
+       "quote": "que ostentó el cargo hasta la disolución de la Academia por segunda vez en 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1934-01-01",
+      "end": "1936-02-24"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1934至1936年初的軍職",
+      "en": "Military posts from 1934 to early 1936"
+     },
+     "body": {
+      "zh-Hant": "1934年佛朗哥在右翼政府任內領導鎮壓阿斯圖里亞斯工人起義，並動用摩洛哥部隊。1935年右翼政府任命他為總參謀長，5月他回到馬德里就任。1936年2月，剛上台的人民陣線政府撤換他的參謀長職務，改派他任加那利群島軍事司令；2月23日出版的《馬德里公報》刊載2月21日簽署的任命法令，文中稱他是當時的陸軍中央參謀長。",
+      "en": "In 1934 Franco led the suppression of the Asturian workers' uprising under the right-wing government, using Moroccan troops. In 1935 that government made him chief of the general staff, and in May he returned to Madrid. In February 1936 the newly elected Popular Front government removed him as chief of staff and gave him the military command of the Canary Islands. The Madrid Gazette of 23 February 1936 published the appointment decree signed on 21 February, which calls him the then chief of the Army's Central General Staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "I 1934 ledede han højreregeringens brutale nedkæmpelse af arbejderopstanden",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "arbejderopstanden i Asturien",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "bl.a. med brug af marokkanske tropper",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "Højreregeringen gjorde ham i 1935 til generalstabschef",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1935",
+       "quote": "Im Mai kehrt er nach Madrid zurück, wird zum Generalstabschef ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "Die neugewählte linke Volksfrontregierung setzt Franco als Generalstabschef ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "überträgt ihm den Posten des Militärkommandeurs auf den Kanarischen Inseln.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54",
+       "locator": "首頁日期",
+       "quote": "DOMINGO 23 FEBRERO 1936",
+       "quoteLang": "es",
+       "evidenceNote": "單日事件；period 迄日寫次日以符半開區間",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54",
+       "locator": "法令正文",
+       "quote": "actual Jefe del Estado Mayor Central",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54-raw",
+       "locator": "Decreto, Ministerio de la Guerra",
+       "quote": "Vengo en nombrar Comandante Mi­ litar de Canarias al General de divi­",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54-raw",
+       "locator": "Decreto, Ministerio de la Guerra",
+       "quote": "Dado en Madrid a veintiuno de Fe­ brero de mil novecientos treinta y seis.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 換行與連字符號照原文保留",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1936-07-17",
+      "end": "1936-07-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1936年7月起義",
+      "en": "The July 1936 uprising"
+     },
+     "body": {
+      "zh-Hant": "1936年7月17日，原定計畫提前一天暴露，非洲軍隨即起事。佛朗哥7月18日搭包機飛往非洲，統率三萬人。7月18日簽署、19日見報的共和國政府法令，免去他加那利軍事司令的職務。",
+      "en": "On 17 July 1936 the planned coup was uncovered a day earlier than intended and the Army of Africa rose. Franco flew to Africa by chartered plane on 18 July and took command of 30,000 men. A Republican government decree signed on 18 July and published on 19 July relieved him of the military command of the Canary Islands."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "Den 17. juli, én dag tidligere enn planlagt, ble planene om militærkupp avdekket",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "og Afrika-armeen gjorde opprør",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "og fløyet dit den 18. juli med chartret fly",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "for så å fly til Afrika der han tok kommandoen over 30 000 menn",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "Decreto, Ministerio de la Guerra（p.724）",
+       "quote": "Vengo en disponer que el General de División D. Francisco Franco Ba-",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 換行保留",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "Decreto, Ministerio de la Guerra（p.724）",
+       "quote": "hamonde cese en el mando de la Co­ mandancia militar de Canarias.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 換行與連字符號照原文保留",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "Decreto, Ministerio de la Guerra（p.724）",
+       "quote": "Dado en Madrid a dieciocho de Ju­ lio de mil novecientos treinta y seis.",
+       "quoteLang": "es",
+       "evidenceNote": "此句在同號公報中多次出現；與 Franco 卸職令同頁（p.724）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "cabecera p.721",
+       "quote": "DOMINGO 19 JULIO 1936",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1936-09-29",
+      "end": "1936-10-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內戰中的最高權力",
+      "en": "Supreme power in the Civil War"
+     },
+     "body": {
+      "zh-Hant": "1936年9月29日在布爾戈斯簽署的國防委員會法令，任命師級將軍佛朗哥為「西班牙國家政府首長」，由他承擔新國家的全部權力；同一法令也任命他為陸海空國民軍總司令（Generalísimo），並授予作戰各軍總司令一職。10月1日在布爾戈斯，他被選為總司令與西班牙國家首長，唯一的反對票來自卡瓦內利亞斯（Cabanellas）。",
+      "en": "A decree of the Defence Junta signed at Burgos on 29 September 1936 named Major General Franco Head of the Government of the Spanish State, with him assuming all the powers of the new State; the same decree named him Generalísimo of the national land, sea and air forces and gave him the post of General Commander of the Armies of operations. On 1 October at Burgos he was chosen generalísimo and head of the Spanish state, with Cabanellas the only vote against."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "第 1 條",
+       "quote": "se nombra Jefe del Gobierno del Estado Español",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第一條（OCR）",
+       "quote": "al Exe mo. Sr. General de División D. Francisco Fr an c o Bahamonde",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第一條（OCR）",
+       "quote": "quien a su m ir á lodos los poderes del nuevo Estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第二條（OCR）",
+       "quote": "Generalísimo de las fuerzas nacionales de tierra, mar v aire",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第二條（OCR）",
+       "quote": "y se le confiere el cargo de General Jefe de los Ejércitos de operaciones",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "簽署地日期",
+       "quote": "Dado en Burgos a veintinueve de septiembre",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "I Burgos den 1. oktober 1936 ble Franco valgt til overgeneral (generalísimo)",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "og sjef for den spanske stat med Cabanellas som eneste motstemme",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1937-04-01",
+      "end": "1938-07-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "長槍黨領袖與元首身分",
+      "en": "Party leader and head of state"
+     },
+     "body": {
+      "zh-Hant": "1937年4月，佛朗哥成為長槍黨（Falange）的領袖，並把它與天主教與保守團體合併，成為唯一被允許的政黨。1938年1月31日的官報刊載中央行政組織法，規定政府主席職務歸屬國家元首。1938年7月18日的官報法令稱他為國家元首、陸海空軍總司令與全國長槍黨領袖（Jefe Nacional de FET y de las JONS）。",
+      "en": "In April 1937 Franco became leader of the Falange, which he merged with Catholic and conservative groups into the only permitted party. A law on the central administration, published in the Official State Gazette of 31 January 1938, made the presidency of the government attached to the head of state. A decree published in the Official State Gazette of 18 July 1938 calls him head of state, Generalísimo of the armies of land, sea and air, and National Chief of the FET y de las JONS."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "Han blev endvidere i april 1937 leder af fascistpartiet, Falangen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "som han slog sammen med katolske og konservative grupper",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "gjorde til det eneste tilladte parti",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-467",
+       "locator": "Artículo 16",
+       "quote": "La Presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-467",
+       "locator": "第 16 條",
+       "quote": "da vinculada al Jefe del Estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-467",
+       "locator": "首頁日期",
+       "quote": "Burg os 31 de enero de 1938",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-018",
+       "locator": "Artículo segundo",
+       "quote": "Jefe del Estado, Generalísimo de los Ejércitos de Tierra, Mar y Aire y",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-018",
+       "locator": "Artículo segundo",
+       "quote": "Jefe Nacional de Falange Española Tradicionalista y de las J. O. N. S.",
+       "quoteLang": "es",
+       "evidenceNote": "title 記載於 1938-07-18 法令；本句只證明該日已具此職稱，不證起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-018",
+       "locator": "簽署地日期",
+       "quote": "Dado en Burgos a dieciocho de julio de mil novecientos treinta y ocho",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 7,
+     "period": {
+      "start": "1939-04-01",
+      "end": "1939-08-09"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內戰勝利與政府改組",
+      "en": "Victory and the 1939 government reorganisation"
+     },
+     "body": {
+      "zh-Hant": "挪威Store norske leksikon寫道，佛朗哥在1939年4月1日領導起義軍贏得內戰。1939年8月8日的法律修改中央行政組織，前言稱需要國家元首「更直接、更個人化」地參與政府；法律廢除副主席職位，並在總司令主持下設立國防委員會（Junta de Defensa Nacional）。",
+      "en": "Store norske leksikon states that Franco led the rebels to victory in the Civil War on 1 April 1939. The law of 8 August 1939 modified the central administration; its preamble calls for a more direct and personal action of the head of state in the government. The law abolished the vice-presidency of the government and created a National Defence Junta under the presidency of the Generalísimo."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "Franco ledet til slutt opprørerne til seier",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "i den spanske borgerkrigen 1. april 1939",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1939-221",
+       "locator": "Ley de 8 de agosto de 1939",
+       "quote": "LEY de 8 de agosto de 1939",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1939-221",
+       "locator": "Preámbulo",
+       "quote": "una acción más directa y personal del Jefe del Estado en el Gobierno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1939-221",
+       "locator": "Artículo tercero",
+       "quote": "Se suprime la Vicepresidencia del Gobierno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1939-221",
+       "locator": "Artículo quinto",
+       "quote": "Se crea la Junta de Defe nsa Nacional, bajo la presidencia del Generalí­",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 8,
+     "period": {
+      "start": "1939-04-01",
+      "end": "1976-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "西班牙議會與統治的延續",
+      "en": "The Cortes and continuity of rule"
+     },
+     "body": {
+      "zh-Hant": "西班牙眾議院官方網站說明，西班牙議會（Cortes Españolas）的首次會議在1943年3月16日舉行。同一頁指出，佛朗哥從1939年4月建立的政權起，一直到1975年去世都是國家元首，並到1973年為止同時領導政府。",
+      "en": "The official website of the Spanish Congress of Deputies states that the first session of the Cortes Españolas was held on 16 March 1943. The same page notes that, from the regime established in April 1939, Franco remained head of state until his death in 1975 and, until 1973, also headed the government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Las Cortes Españolas (1943-1977)",
+       "quote": "Entre el 16 de marzo de 1943 y el 30 de junio de 1977",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Las Cortes Españolas (1943-1977)",
+       "quote": "primera y última sesión de las Cortes Españolas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Dictadura del General Franco",
+       "quote": "El régimen que se instaura en abril de 1939",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Introducción",
+       "quote": "La continuidad de Franco hasta su muerte en 1975",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Introducción",
+       "quote": "al frente de la jefatura de Estado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "congreso-cortesp",
+       "locator": "Introducción",
+       "quote": "hasta 1973, también al frente del Gobierno",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "franco-agm-director",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "總軍官學院（薩拉戈薩）",
+      "en": "General Military Academy, Zaragoza"
+     },
+     "title": {
+      "orig": "Director de la Academia General Militar",
+      "zh-Hant": "總軍官學院院長",
+      "en": "Director of the General Military Academy"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1928-01-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "i årene 1928-1931 direktør for det nyoprettede militærakademi i Zaragoza",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1928",
+       "quote": "1928 Franco wird Leiter der Militärakademie in Saragossa.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "agm-historial",
+       "locator": "1ª época",
+       "quote": "que ostentó el cargo hasta la disolución de la Academia por segunda vez en 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長（military_education）屬 R5，不進角色層"
+    },
+    {
+     "key": "franco-jefe-emc",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙陸軍中央參謀部（共和國）",
+      "en": "Central General Staff of the Spanish Army (Republic)"
+     },
+     "title": {
+      "orig": "Jefe del Estado Mayor Central del Ejército",
+      "zh-Hant": "陸軍中央參謀長",
+      "en": "Chief of the Central General Staff of the Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-05-01",
+      "end": "1936-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1935",
+       "quote": "Im Mai kehrt er nach Madrid zurück, wird zum Generalstabschef ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "Højreregeringen gjorde ham i 1935 til generalstabschef",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "Februar: Die neugewählte linke Volksfrontregierung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "Die neugewählte linke Volksfrontregierung setzt Franco als Generalstabschef ab",
+       "quoteLang": "de",
+       "evidenceNote": "同行以「Februar:」起首（1936-02）；迄點依月精度寫 1936-03-01",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54",
+       "locator": "法令正文",
+       "quote": "actual Jefe del Estado Mayor Central",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（參謀長），但「國家級最高軍職」等級未由引文明寫、regimeId 不連庫無法查證，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "franco-canarias-command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "加那利軍事司令部（共和國）",
+      "en": "Military Command of the Canary Islands (Republic)"
+     },
+     "title": {
+      "orig": "Comandante Militar de Canarias",
+      "zh-Hant": "加那利群島軍事司令",
+      "en": "Military Commander of the Canary Islands"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-02-21",
+      "end": "1936-07-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gmd-1936-54-raw",
+       "locator": "Decreto, Ministerio de la Guerra",
+       "quote": "Vengo en nombrar Comandante Mi­ litar de Canarias al General de divi­",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 換行與連字符號照原文保留",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-54-raw",
+       "locator": "Decreto, Ministerio de la Guerra",
+       "quote": "Dado en Madrid a veintiuno de Fe­ brero de mil novecientos treinta y seis.",
+       "quoteLang": "es",
+       "evidenceNote": "起日取任命法令簽署日（依 Q3 日精度）；實際到任日未見於已抓原文",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "Decreto, Ministerio de la Guerra（p.724）",
+       "quote": "hamonde cese en el mando de la Co­ mandancia militar de Canarias.",
+       "quoteLang": "es",
+       "evidenceNote": "OCR 換行與連字符號照原文保留",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gmd-1936-201",
+       "locator": "Decreto, Ministerio de la Guerra（p.724）",
+       "quote": "Dado en Madrid a dieciocho de Ju­ lio de mil novecientos treinta y seis.",
+       "quoteLang": "es",
+       "evidenceNote": "卸職法令簽署日 1936-07-18；迄點依日精度寫次日 1936-07-19（半開區間）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區軍事司令（加那利群島），非國家級最高軍職、非戰區／方面軍司令，R4 不命中；屬 R5"
+    },
+    {
+     "key": "franco-generalisimo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民軍（叛軍）",
+      "en": "Nationalist forces"
+     },
+     "title": {
+      "orig": "Generalísimo de las fuerzas nacionales de tierra, mar y aire",
+      "zh-Hant": "陸海空國民軍總司令（Generalísimo）",
+      "en": "Generalísimo of the national land, sea and air forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-09-29",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第一條（OCR）",
+       "quote": "al Exe mo. Sr. General de División D. Francisco Fr an c o Bahamonde",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第二條（OCR）",
+       "quote": "Generalísimo de las fuerzas nacionales de tierra, mar v aire",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "簽署地日期",
+       "quote": "Dado en Burgos a veintinueve de septiembre",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（全軍總司令，引文明寫），但缺迄日且 regimeId 無法在不連庫下查證，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "franco-head-of-government-nationalist",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙國家（國民軍陣營，布爾戈斯）",
+      "en": "Spanish State (Nationalist zone, Burgos)"
+     },
+     "title": {
+      "orig": "Jefe del Gobierno del Estado Español",
+      "zh-Hant": "西班牙國家政府首長",
+      "en": "Head of the Government of the Spanish State"
+     },
+     "role_kind": "head_of_government",
+     "period": {
+      "start": "1936-09-29",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "第 1 條",
+       "quote": "se nombra Jefe del Gobierno del Estado Español",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "Decreto número 138 第一條（OCR）",
+       "quote": "al Exe mo. Sr. General de División D. Francisco Fr an c o Bahamonde",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "簽署地日期",
+       "quote": "Dado en Burgos a veintinueve de septiembre",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "R0：政府首腦；BOE 1936-09-29 法令明寫任命為 Jefe del Gobierno del Estado Español，期間在名單 5442 spanish-state 紀錄（1939-04-01 起）之前，落在 1908–1945 窗內",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "franco-head-of-state-nationalist",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西班牙國家（國民軍陣營，布爾戈斯）",
+      "en": "Spanish State (Nationalist zone, Burgos)"
+     },
+     "title": {
+      "orig": "Jefe del Estado",
+      "zh-Hant": "國家元首",
+      "en": "Head of State"
+     },
+     "role_kind": "head_of_state",
+     "period": {
+      "start": "1936-10-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "og 1. oktober til statschef for det nationalistiske Spanien",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Francos roller",
+       "quote": "I Burgos den 1. oktober 1936 ble Franco valgt til overgeneral (generalísimo)",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "1. Oktober: Die Aufständischen proklamieren eine Gegenregierung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1936",
+       "quote": "und ernennen Franco zum Staatschef.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-018",
+       "locator": "Artículo segundo",
+       "quote": "Jefe del Estado, Generalísimo de los Ejércitos de Tierra, Mar y Aire y",
+       "quoteLang": "es",
+       "evidenceNote": "1938-07-18 官報以此職稱稱呼佛朗哥，佐證任期仍在持續",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "R0：國家元首；三筆 B 級來源（Lex、Store norske leksikon、LeMO）皆載 1936-10-01 起任國民軍陣營國家首長，官報 1938-07-18 以「Jefe del Estado」稱之；名單 5442 spanish-state 元首紀錄自 1939-04-01 起，本筆為其之前的名單外任期，落在 1908–1945 窗內",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "franco-fet-jons-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "傳統主義者西班牙長槍黨與國家工團主義進攻委員會（FET y de las JONS）",
+      "en": "Falange Española Tradicionalista y de las JONS"
+     },
+     "title": {
+      "orig": "Jefe Nacional de Falange Española Tradicionalista y de las J. O. N. S.",
+      "zh-Hant": "全國領袖（長槍黨 FET y de las JONS）",
+      "en": "National Chief of FET y de las JONS"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1937-04-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lexdk-franco",
+       "locator": "Francos militære karriere",
+       "quote": "Han blev endvidere i april 1937 leder af fascistpartiet, Falangen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "boe-1938-018",
+       "locator": "Artículo segundo",
+       "quote": "Jefe Nacional de Falange Española Tradicionalista y de las J. O. N. S.",
+       "quoteLang": "es",
+       "evidenceNote": "1938-07-18 官報以此職稱稱呼佛朗哥；證明當日已任職，不證起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:franco-generalisimo",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；BOE 1936-09-30 法令只載任命，1938-01-31 法則仍稱「el Generalísimo conservará el Mando supremo」，未見卸任日；已查 BOE（1936、1937、1938）、加泰隆尼亞大百科",
+     "candidateCitations": [
+      {
+       "sourceKey": "boe-1936-032",
+       "locator": "第 2 條",
+       "quote": "Se le nombra asimismo Generalísimo de las fuerzas nacionales",
+       "quoteLang": "es"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:dbe_rah",
+     "gapKind": "not_found",
+     "note": "待查證：Real Academia de la Historia DB~e（dbe.rah.es → historia-hispanica.rah.es/biografias/17068）為前端 JavaScript 單頁應用，curl 取得的 HTML 無正文；未猜測後端介面，未引用；需瀏覽器渲染後的原文；加強重跑（2026-11-15）：檢視公開前端程式碼可見其資料來自該站後端 /api/ 路徑，但依規則不猜測／呼叫未公開之後端介面，仍未取得正文；DB~e 正文需瀏覽器渲染後的原文",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:bne_authority",
+     "gapKind": "not_found",
+     "note": "待查證：BNE datos.bne.es 權威檔回應「SE HA BLOQUEADO EL ACCESO」（403 封鎖頁），不繞過；身分由 GND（lobid.org）確認；加強重跑再次以搜尋確認 datos.bne.es 無可抓取頁面，另 archivos.patrimonionacional.es 權威檔回應 JavaScript 挑戰頁（不繞過）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:names_5442",
+     "gapKind": "not_found",
+     "note": "待查證：名單 5442 另有 spanish-republic head_of_government（1939-03-06～1939-04-01）與 head_of_state（1939-03-27～1939-04-01）兩筆佛朗哥任期，本批已查之 BOE、GEC 均未見佛朗哥在這段期間擔任共和國首長，疑似庫內歸屬有誤，請主管核對；本檔未改動",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:baleares_command",
+     "gapKind": "not_found",
+     "note": "待查證：GEC 只寫共和國期間任「la Corunya i de les Balears」軍事長官，無日期；公報 1936-02-23 亦無 Baleares 佛朗哥紀錄，未建職位；審查：此句出處 GEC 已降為 C 級",
+     "candidateCitations": [
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目次段",
+       "quote": "la governació militar de la Corunya i de les Balears",
+       "quoteLang": "ca"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:franco-head-of-government-nationalist",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；審查刪除原迄日 1939-04-01：其引文來自 GEC（無具名作者，C 級），且 5442 下一筆是佛朗哥本人 spanish-state 任期而非繼任者，不符 Q7；1938-01-31 中央行政組織法後此職稱是否改變亦未查明。已查 BOE 1936／1937／1938",
+     "candidateCitations": [
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "Acabada la Guerra Civil (primer d’abril de 1939)",
+       "quoteLang": "ca"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:gec_unrated",
+     "gapKind": "not_found",
+     "note": "待查證：審查把 Gran Enciclopèdia Catalana（無具名作者）降為 C 級，原依它寫成的生平（費羅爾出身、父親海軍文官、1907 托雷多步兵學院、1912–1917 摩洛哥、1923 外籍軍團、34 歲准將、1935 中央參謀長、1936-07-18 接掌摩洛哥部隊、1937-04 Caudillo 與 FET y de las JONS 首領、1939-04-01 內戰結束、1939–1945 中立、1942 Cortes 法、1945 Fuero de los españoles）全部移出正文，需 A／B 來源（DB~e 渲染後原文、Congreso 歷史資料、BOE 清晰版）",
+     "candidateCitations": [
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目首段",
+       "quote": "(Ferrol, 4 de desembre de 1892 — Madrid, 20 de novembre de 1975)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目首段",
+       "quote": "Fill d’un funcionari naval",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目首段",
+       "quote": "ho feu a l’acadèmia d’infanteria de Toledo (1907)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目首段",
+       "quote": "del 1912 al 1917 es distingí al Marroc",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目首段",
+       "quote": "assumí el comandament de la Legió Estrangera (1923)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目次段",
+       "quote": "General de brigada a 34 anys —el més jove d’Europa—",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目次段",
+       "quote": "dirigí l’acadèmia militar de Saragossa (1928-31)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目次段",
+       "quote": "fins a l’adveniment de la República, que el relegà a missions secundàries",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目次段",
+       "quote": "fou nomenat cap de l’estat major central (1935)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目三段",
+       "quote": "El 18 de juliol de 1936 es feu càrrec del comandament de les tropes marroquines",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目三段",
+       "quote": "esdevingué cap de l’estat i del govern alhora pel gener del 1938",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目三段",
+       "quote": "l’abril del 1937 adoptà el títol de Caudillo",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目三段",
+       "quote": "com a cap del partit únic, FET y de las JONS",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "Acabada la Guerra Civil (primer d’abril de 1939)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "creà un estat alhora catòlic, autoritari i corporatiu",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "mantingué la neutralitat durant la Segona Guerra Mundial (1939-45)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "Malgrat les estretes relacions amb les potències de l’Eix",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "la llei de creació de les Corts (1942)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "el Fuero de los españoles (1945)",
+       "quoteLang": "ca"
+      },
+      {
+       "sourceKey": "enccat-franco",
+       "locator": "條目四段",
+       "quote": "cap únic, indiscutible i vitalici del règim",
+       "quoteLang": "ca"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:franco-head-of-state-nationalist",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國民軍陣營國家元首任期的迄日無來源明寫（名單 5442 spanish-state 元首紀錄自 1939-04-01 起，不可依其推算）；已查 BOE 1936／1938／1939、西班牙眾議院 Cortes 專頁、Lex、Store norske leksikon、LeMO",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:franco-fet-jons-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；黨職迄日無來源明寫；起日依 Lex「1937年4月」月精度，BOE 1937-04-20 統一法令 OCR 殘缺無法逐字引用；已查 BOE 1937／1938、Lex、LeMO、Store norske leksikon",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:franco-fet-jons-leader",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源矛盾：LeMO 年表寫 1942 年「übernimmt den Vorsitz der Staatspartei Falange」，Lex 寫 1937 年 4 月成為長槍黨領袖；本檔採 Lex（1937-04）並有 BOE 1938-07-18 官報稱「Jefe Nacional」佐證 1938 年已任職，LeMO 1942 句未引用",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-franco",
+       "locator": "1942",
+       "quote": "Franco übernimmt den Vorsitz der Staatspartei Falange",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:franco-agm-director",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源矛盾：Store norske leksikon 寫 1926 年後「一年後」（即 1927 年）任薩拉戈薩軍事教育總部首長，Lex 與 LeMO 寫 1928 年；本檔採 1928（兩筆 B 級＋陸軍官方沿革載設校 1928–1929 年間），起日精度為年",
+     "candidateCitations": [
+      {
+       "sourceKey": "snl-franco",
+       "locator": "Bakgrunn og militærkarriere",
+       "quote": "Ett år senere ble han sjef for Spanias hovedkvarter for militærutdanning",
+       "quoteLang": "no"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:franco-canarias-command",
+     "gapKind": "not_found",
+     "note": "待查證：起日為任命法令簽署日（1936-02-21），實際到任日未見於已抓原文；Gaceta 1936-07-19 卸職令僅載法令日期。已查 Gaceta 1936-02-23／1936-07-19、LeMO、Store norske leksikon",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Francisco Franco Bahamonde dbe.rah.es biografía",
+     "url": null,
+     "result": "unrated",
+     "note": "綜合檢索；dbe.rah.es 條目在結果中但為 SPA"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "dbe.rah.es/biografias/9435（猜測）",
+     "url": "https://dbe.rah.es/biografias/9435/francisco-franco-bahamonde",
+     "result": "no_result",
+     "note": "重導向到 historia-hispanica.rah.es 首頁，非 Franco"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Franco Bahamonde, Francisco Diccionario Biográfico electrónico（限 dbe.rah.es）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到正確條目網址 biografias/9565；不再猜後端"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "RAH DB~e 條目 9565",
+     "url": "https://dbe.rah.es/biografias/9565/francisco-franco-bahamonde",
+     "result": "no_result",
+     "note": "單頁應用，curl 只得外殼，無正文（不猜後端介面）"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Francisco Franco",
+     "url": "https://www.britannica.com/biography/Francisco-Franco",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Gran Enciclopèdia Catalana：Francisco Franco Bahamonde",
+     "url": "https://www.enciclopedia.cat/gran-enciclopedia-catalana/francisco-franco-bahamonde",
+     "result": "found_B",
+     "note": "生平、1936–1975 要點"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Universalis Francisco Franco",
+     "url": "https://www.universalis.fr/encyclopedie/francisco-franco/",
+     "result": "unrated",
+     "note": "已抓但回傳亂碼／需訂閱，未引用"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Herodote.net Franco",
+     "url": "https://www.herodote.net/_Caudillo_sans_etat_d_ame_de_l_Espagne_reactionnaire-synthese-3628-67.php",
+     "result": "unrated",
+     "note": "已抓；與其他來源明顯矛盾（誤載出生），未評等，不採用"
+    },
+    {
+     "step": 9,
+     "sourceType": "treaty_law",
+     "query": "BOE Decreto nombrando Jefe del Gobierno del Estado Español Franco 1936（限 boe.es）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 BOE JDN 第 32 號"
+    },
+    {
+     "step": 10,
+     "sourceType": "treaty_law",
+     "query": "Boletín Oficial de la Junta de Defensa Nacional núm. 32",
+     "url": "https://www.boe.es/datos/pdfs/BOE/1936/032/J00125-00126.pdf",
+     "result": "found_A",
+     "note": "1936-09-29 法令"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "BOE 第 32 號第 126 頁",
+     "url": "https://www.boe.es/datos/pdfs/BOE/1936/032/J00126-00126.pdf",
+     "result": "found_A",
+     "note": "同法令清晰頁"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 1 (2 oct 1936)",
+     "url": "https://www.boe.es/datos/pdfs/BOE/1936/001/A00001-00001.pdf",
+     "result": "found_A",
+     "note": "已抓；技術委員會法，未直接寫佛朗哥職稱，未引用"
+    },
+    {
+     "step": 13,
+     "sourceType": "treaty_law",
+     "query": "Franco Presidente del Gobierno Jefe del Estado 1938 ley Administración Central BOE（限 boe.es 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 BOE 467 號"
+    },
+    {
+     "step": 14,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 467 (31 ene 1938)",
+     "url": "https://www.boe.es/gazeta/dias/1938/01/31/pdfs/BOE-1938-467.pdf",
+     "result": "found_A",
+     "note": "第 16 條：Presidencia vinculada al Jefe del Estado"
+    },
+    {
+     "step": 15,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 467 局部 PDF",
+     "url": "https://www.boe.es/datos/pdfs/BOE//1938/467/A05514-05515.pdf",
+     "result": "found_A",
+     "note": "同法令，OCR 較差，未引用"
+    },
+    {
+     "step": 16,
+     "sourceType": "treaty_law",
+     "query": "Francisco Franco Capitán General Canarias 1936 Jefe Estado Mayor Central 1935 Director Academia General Militar（限 BNE/BOE/defensa 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Gaceta 1936-02-23 與陸軍學院史"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid núm. 54 (23 feb 1936)",
+     "url": "https://www.boe.es/gazeta/dias/1936/02/23/pdfs/GMD-1936-54.pdf",
+     "result": "found_A",
+     "note": "任命加那利軍事司令；稱其為中央參謀長"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "Ejército de Tierra：Historia de la Academia General Militar",
+     "url": "https://ejercito.defensa.gob.es/Galerias/Descarga_pdf/EjercitoTierra/desfiles_actos/dfn-2017/2_historial_agm.pdf",
+     "result": "found_A",
+     "note": "佛朗哥任院長至 1931"
+    },
+    {
+     "step": 19,
+     "sourceType": "authority",
+     "query": "BNE datos.bne.es Franco",
+     "url": "https://datos.bne.es/entidad/XX247673.html",
+     "result": "blocked_403",
+     "note": "封鎖頁，不繞過"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "LoC suggest：Franco, Francisco, 1892-1975",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Franco,%20Francisco,%201892-1975",
+     "result": "found_A",
+     "note": "已抓；姓名確認，未引用"
+    },
+    {
+     "step": 21,
+     "sourceType": "authority",
+     "query": "GND/lobid.org Francisco Franco Bahamonde 1892",
+     "url": "https://lobid.org/gnd/search?q=Francisco+Franco+Bahamonde+1892&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 11853470X；生日 1892-12-04"
+    },
+    {
+     "step": 22,
+     "sourceType": "treaty_law",
+     "query": "Decreto de Unificación 19 abril 1937 Jefe Nacional FET y de las JONS BOE（限 boe.es）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 BOE 182 號與 291 號"
+    },
+    {
+     "step": 23,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 182 (20 abr 1937)",
+     "url": "https://www.boe.es/gazeta/dias/1937/04/20/pdfs/BOE-1937-182.pdf",
+     "result": "unrated",
+     "note": "統一法令 OCR 殘缺，找不到可逐字引用的 Franco 職稱句，未引用"
+    },
+    {
+     "step": 24,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 291 (7 ago 1937) 黨章",
+     "url": "https://boe.es/datos/pdfs/BOE/1937/291/A02738-02742.pdf",
+     "result": "unrated",
+     "note": "有 Jefe Nacional 字樣但 OCR 殘缺且未明寫 Franco 與日期，未引用"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "Moncloa 歷任總理頁",
+     "url": "https://www.lamoncloa.gob.es/presidente/historia/Paginas/index.aspx",
+     "result": "no_result",
+     "note": "連線逾時 60 秒"
+    },
+    {
+     "step": 26,
+     "sourceType": "treaty_law",
+     "query": "Franco Bahamonde Francisco boe.es decreto nombrando Jefe del Estado Presidente del Gobierno 1938 1939",
+     "url": null,
+     "result": "found_A",
+     "note": "線索指向 BOE 1938-18（18 julio 1938）與 1938-01-31 法令",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "Francisco Franco Bahamonde Congreso de los Diputados Cortes Españolas Jefe del Estado 1943 Ley constitutiva de las Cortes",
+     "url": null,
+     "result": "found_A",
+     "note": "線索：congreso.es/cem/cortesp",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "authority",
+     "query": "Franco Bahamonde Francisco deutsche-biographie.de NDB Staatschef Spanien",
+     "url": null,
+     "result": "found_A",
+     "note": "Deutsche Biographie 只有權威資料（無 NDB 正文）",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "named_encyclopedia",
+     "query": "Franco Bahamonde, Francisco treccani.it enciclopedia generale spagnolo Ferrol 1892",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Treccani 條目",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "other",
+     "query": "Francisco Franco Bahamonde biografía Capitán General de Canarias 1936 Jefe del Estado Mayor Central 1935 Ministerio de Defensa",
+     "url": null,
+     "result": "unrated",
+     "note": "結果多為未評等來源",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "academic",
+     "query": "Francisco Franco Spanish dictator biography Cambridge University Press chapter 1936 Generalísimo October 1 Burgos",
+     "url": null,
+     "result": "no_result",
+     "note": "無出版社頁面",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "treaty_law",
+     "query": "Decreto de Unificación 19 abril 1937 Falange Española Tradicionalista y de las JONS Jefe Nacional Franco boe.es",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無 BOE 清晰文字；BOE 1937-182 PDF 的 OCR 殘缺（前一輪已抓）",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "national_dictionary",
+     "query": "dbe.rah.es Francisco Franco Bahamonde Ferrol 1892 Madrid 1975 militar jefe del Estado Real Academia de la Historia",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋不回 DB~e 頁面",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid 1936 decreto Franco cese Jefe del Estado Mayor Central Comandante militar de Canarias toma de posesión",
+     "url": null,
+     "result": "found_A",
+     "note": "取得 Gaceta 1936-07-19（GMD-1936-201）卸職令",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "official",
+     "query": "lamoncloa.gob.es presidentes del Gobierno historia Francisco Franco Bahamonde 1938 1973",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋摘要顯示 Moncloa 名錄；實際抓取見後",
+     "round": "retry"
+    },
+    {
+     "step": 36,
+     "sourceType": "authority",
+     "query": "Franco Bahamonde Francisco Biblioteca Nacional de España datos.bne.es autoridad 1892-1975",
+     "url": null,
+     "result": "no_result",
+     "note": "無 datos.bne.es 頁面",
+     "round": "retry"
+    },
+    {
+     "step": 37,
+     "sourceType": "official",
+     "query": "Francisco Franco Jefe Nacional FET JONS cargo desde abril 1937 Boletín Oficial del Estado nombramiento Consejo Nacional",
+     "url": null,
+     "result": "no_result",
+     "note": "無 BOE 清晰文字",
+     "round": "retry"
+    },
+    {
+     "step": 38,
+     "sourceType": "other",
+     "query": "Franco Generalísimo 1 octubre 1936 Burgos proclamación Jefe del Estado Junta de Defensa Nacional Cabanellas biografía Diccionario Biográfico",
+     "url": null,
+     "result": "unrated",
+     "note": "結果為未評等或維基類",
+     "round": "retry"
+    },
+    {
+     "step": 39,
+     "sourceType": "official",
+     "query": "Franco Bahamonde Ministerio de Defensa Ejército de Tierra historia Academia General Militar director 1928 1931 Zaragoza",
+     "url": null,
+     "result": "found_A",
+     "note": "線索：ejercito.defensa.gob.es 學院沿革（前一輪已抓）",
+     "round": "retry"
+    },
+    {
+     "step": 40,
+     "sourceType": "national_dictionary",
+     "query": "Franco Francisco Hrvatski biografski leksikon OR Svenskt biografiskt lexikon OR Biografisch Portaal 1892 1975 caudillo",
+     "url": null,
+     "result": "no_result",
+     "note": "無對應條目",
+     "round": "retry"
+    },
+    {
+     "step": 41,
+     "sourceType": "official",
+     "query": "congreso.es 歷史專頁 Las Cortes Españolas 1943-1977",
+     "url": "https://www.congreso.es/es/cem/cortesp",
+     "result": "found_A",
+     "note": "已抓；用於 1943 年首次會議與佛朗哥任期延續",
+     "round": "retry"
+    },
+    {
+     "step": 42,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 18（18 julio 1938）",
+     "url": "https://boe.es/gazeta/dias/1938/07/18/pdfs/BOE-1938-18.pdf",
+     "result": "found_A",
+     "note": "已抓；法令稱佛朗哥為 Jefe del Estado、Generalísimo、Jefe Nacional de FET y de las JONS",
+     "round": "retry"
+    },
+    {
+     "step": 43,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 221（9 agosto 1939）",
+     "url": "https://www.boe.es/gazeta/dias/1939/08/09/pdfs/BOE-1939-221.pdf",
+     "result": "found_A",
+     "note": "已抓；1939-08-08 法律",
+     "round": "retry"
+    },
+    {
+     "step": 44,
+     "sourceType": "treaty_law",
+     "query": "BOE núm. 92（2 abril 1939）",
+     "url": "https://www.boe.es/gazeta/dias/1939/04/02/pdfs/BOE-1939-92.pdf",
+     "result": "found_A",
+     "note": "已抓；署名 FRANCISCO FRANCO 的 1939-04-01 法令，無職稱句可引，未用",
+     "round": "retry"
+    },
+    {
+     "step": 45,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid núm. 201（19 julio 1936）",
+     "url": "https://boe.es/gazeta/dias/1936/07/19/pdfs/GMD-1936-201.pdf",
+     "result": "found_A",
+     "note": "已抓；卸加那利軍事司令令（p.724）",
+     "round": "retry"
+    },
+    {
+     "step": 46,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid núm. 54（23 feb 1936）pdftotext -raw 版",
+     "url": "https://boe.es/gazeta/dias/1936/02/23/pdfs/GMD-1936-54.pdf",
+     "result": "found_A",
+     "note": "重抓並以 -raw 取得欄位順序正確文字（取得加那利任命令全文）",
+     "round": "retry"
+    },
+    {
+     "step": 47,
+     "sourceType": "treaty_law",
+     "query": "Gaceta de Madrid núm. 137（17 mayo 1935）",
+     "url": "https://www.boe.es/gazeta/dias/1935/05/17/pdfs/GMD-1935-137.pdf",
+     "result": "no_result",
+     "note": "已抓；文中無 Franco／Estado Mayor Central 句，未用（日期為推測之公報日）",
+     "round": "retry"
+    },
+    {
+     "step": 48,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO 人物年表",
+     "url": "https://www.dhm.de/lemo/biografie/francisco-franco",
+     "result": "found_B",
+     "note": "已抓；機構傳記（B）",
+     "round": "retry"
+    },
+    {
+     "step": 49,
+     "sourceType": "named_encyclopedia",
+     "query": "Lex（Den Store Danske）Francisco Franco",
+     "url": "https://lex.dk/Francisco_Franco",
+     "result": "found_B",
+     "note": "已抓；具名作者 Kay Lundgreen-Nielsen（B）",
+     "round": "retry"
+    },
+    {
+     "step": 50,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Francisco Franco",
+     "url": "https://snl.no/Francisco_Franco",
+     "result": "found_B",
+     "note": "已抓；具名作者（B）",
+     "round": "retry"
+    },
+    {
+     "step": 51,
+     "sourceType": "authority",
+     "query": "Deutsche Biographie Franco, Francisco（GND 11853470X）",
+     "url": "https://www.deutsche-biographie.de/pnd11853470X.html",
+     "result": "found_A",
+     "note": "已抓；僅權威資料（生卒、異寫），未引用",
+     "round": "retry"
+    },
+    {
+     "step": 52,
+     "sourceType": "official",
+     "query": "Moncloa 歷任總理名錄",
+     "url": "https://www.lamoncloa.gob.es/presidente/presidentes-desde-1823/paginas/index.aspx",
+     "result": "no_result",
+     "note": "curl 連線逾時（port 443 無回應），未取得",
+     "round": "retry"
+    },
+    {
+     "step": 53,
+     "sourceType": "authority",
+     "query": "Patrimonio Nacional 權威檔 Franco, Francisco",
+     "url": "https://archivos.patrimonionacional.es/index.php/autoridad-4238166",
+     "result": "challenge_page",
+     "note": "回應「Please enable JavaScript」挑戰頁，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 54,
+     "sourceType": "academic",
+     "query": "Universidad de La Laguna 加那利內戰專文",
+     "url": "https://www.ull.es/eventos/luces-sobre-un-tiempo-en-gris/2020/01/15/la-guerra-civil-en-canarias-retaguardia-y-resistencia/",
+     "result": "blocked_403",
+     "note": "403 限校內 IP，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 55,
+     "sourceType": "academic",
+     "query": "Fundación Juan March 數位館藏 R-39330（Jefe del Estado Mayor Central 1935）",
+     "url": "https://cdndigital.march.es/fedora/objects/linz:R-39330/datastreams/OBJ/content",
+     "result": "unrated",
+     "note": "已抓；無作者書目資訊，未評等，不引用",
+     "round": "retry"
+    },
+    {
+     "step": 56,
+     "sourceType": "national_dictionary",
+     "query": "historia-hispanica.rah.es 後端條目",
+     "url": "https://historia-hispanica.rah.es/",
+     "result": "no_result",
+     "note": "已讀公開前端 JS 確認為單頁應用；依規則不呼叫猜測的後端介面",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "tr-ataturk",
+   "bioId": "01a1b492-3f04-7906-a59b-b9bfcc8f374d",
+   "name": "Mustafa Kemal Atatürk",
+   "nameZh": "穆斯塔法·凱末爾·阿塔圖克",
+   "recordIds": [
+    "01a1aa4a-65c4-79e5-9301-c3815e46c913",
+    "01a1aa4a-659e-775a-90c5-25c2e49229ff",
+    "01a1aa4a-659e-79c0-9d3f-4ea74fa128d5"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1881-01-01",
+      "end": "1909-04-19"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與軍校軍旅",
+      "en": "Origins and early military career"
+     },
+     "body": {
+      "zh-Hant": "穆斯塔法·凱末爾1881年生於當時屬奧斯曼帝國的薩洛尼卡。1899年3月13日他進入伊斯坦堡陸軍士官學校，1902年2月10日以少尉畢業，1905年1月11日自陸軍大學畢業，授參謀上尉；1905至1907年在大馬士革第五軍服役。1909年4月19日開進伊斯坦堡的行動軍中，他擔任參謀長。",
+      "en": "Mustafa Kemal was born in 1881 in Salonica, then a province of the Ottoman Empire. He entered the War College in Istanbul on 13 March 1899, graduated as a second lieutenant on 10 February 1902, and finished the War Academy as a staff captain on 11 January 1905. From 1905 to 1907 he served in Damascus with the Fifth Army, and on 19 April 1909 he was chief of staff of the Action Army that entered Istanbul."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-ataturk",
+       "locator": "dateOfBirth",
+       "quote": "\"dateOfBirth\" : [ \"1881-05-19\" ]",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記首段",
+       "quote": "1881 yılında, Osmanlı İmparatorluğu’nun bir ili olan Selanik’te doğdu.",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記二段",
+       "quote": "13 Mart 1899’da İstanbul’da Harp Okulu’nda öğrenime başladı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記二段",
+       "quote": "10 Şubat 1902 tarihinde teğmen rütbesiyle mezun oldu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記二段",
+       "quote": "11 Ocak 1905’te Kurmay Yüzbaşı rütbesiyle akademiyi tamamladı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記二段",
+       "quote": "1905-1907 yılları arasında Şam’da 5. Ordu emrinde görev yaptı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記",
+       "quote": "19 Nisan 1909’da İstanbul’a giren Hareket Ordusu’nda",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記二段",
+       "quote": "İstanbul’a giren Hareket Ordusu’nda Kurmay Başkanı olarak görev aldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-01-01",
+      "end": "1920-04-24"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大戰、民族運動與大國民議會",
+      "en": "The Great War, the national movement and the Assembly"
+     },
+     "body": {
+      "zh-Hant": "第一次世界大戰中，他1915年以第19師師長身分參加加里波利戰役；1918年9月1日回到阿勒波任第7軍團司令，10月31日改任雷霆軍團集團司令。1919年5月19日他在薩姆松登陸，同年7月8至9日夜間在電報通話中被告知官職已被免除，他則致電辭去官職與軍職。他主持了7月23日在埃爾祖魯姆、9月4日在錫瓦斯召開的代表大會。1920年4月23日大國民議會在安卡拉開始運作，他被選為議會與政府首長。",
+      "en": "In the First World War he took part in the Gallipoli campaign in 1915 as commander of the 19th Division. On 1 September 1918 he returned to Aleppo as commander of the Seventh Army and on 31 October 1918 was given the Yıldırım Army Group. He landed at Samsun on 19 May 1919; on the night of 8-9 July 1919 he was told his official post had ended, and he resigned from his post and from the army. He presided over the congresses at Erzurum (23 July) and Sivas (4 September). The Grand National Assembly opened at Ankara on 23 April 1920, and he was elected head of the Assembly and of the Government."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "1915’te 19. Tümen Komutanı olarak Çanakkale Savaşı’na katıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "1 Eylül 1918’de Halep’e 7. Ordu Komutanı olarak döndü",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "31 Ekim 1918’de Yıldırım Orduları Grubu Komutanlığına getirildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記四段",
+       "quote": "19 Mayıs 1919’da Samsun’a çıkan Mustafa Kemal",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿",
+       "quote": "8-9 Temmuz 1919 gecesi yaptığı telgraf görüşmesinde",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿正文",
+       "quote": "resmi memuriyetine son verildiği bildirildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記",
+       "quote": "Osmanlı Hükûmeti’nin verdiği görevden ve askerlikten istifa ederek",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記四段",
+       "quote": "23 Temmuz 1919’da Erzurum’da, 4 Eylül 1919’da Sivas’ta",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記",
+       "quote": "Sivas’ta toplanan kongrelerinin başkanlığını yaptı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "23 Nisan 1920’de Ankara’da tarihî görevine başladı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "Mustafa Kemal, Meclis ve Hükûmet Başkanı seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-08-05",
+      "end": "1922-11-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總司令與獨立戰爭勝利",
+      "en": "Commander-in-chief and victory in the War of Independence"
+     },
+     "body": {
+      "zh-Hant": "薩卡里亞會戰之前，大國民議會在1921年8月5日授予他總司令（Başkomutanlık）職權；會戰獲勝後，議會於9月19日依法授予他元帥（Mareşal）軍階與「加齊」稱號。1922年8月26日土軍開始反攻，在8月30日由他指揮的總司令會戰中消滅希臘軍大部，9月9日進入伊茲密爾；10月11日簽訂穆達尼亞停戰協定。",
+      "en": "Before the Battle of Sakarya, on 5 August 1921, the Grand National Assembly gave Mustafa Kemal the supreme command (Başkomutanlık). After the victory the Assembly, by law on 19 September 1921, gave him the rank of Marshal and the title of Gazi. The Turkish army began its counter-offensive on 26 August 1922, destroyed most of the Greek army in the Commander-in-Chief Battle he directed on 30 August, entered Izmir on 9 September, and the Mudanya Armistice was signed on 11 October 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿正文",
+       "quote": "Sakarya Meydan Savaşı öncesinde Mustafa Kemal'e, Millet Meclisi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿",
+       "quote": "5 Ağustos 1921'de ''Başkomutanlık'' verdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿正文",
+       "quote": "Sakarya Meydan Savaşı'nın kazanılmasından sonra",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿",
+       "quote": "19 Eylül 1921'de kanunla ''Müşir'' (Mareşal) rütbesi ile ''Gazi'' unvanı verdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "kurtarmak için 26 Ağustos 1922’de karşı saldırıya başladı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "Başkomutan Meydan Savaşı’nda (30 Ağustos 1922)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記",
+       "quote": "Türk Ordusu Yunan Ordusu’nun büyük kısmını yok etti",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "9 Eylül 1922’de İzmir’e girdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "11 Ekim 1922’de Mudanya Ateşkes Antlaşması imzalandı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1923-09-09",
+      "end": "1938-11-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "共和國、人民黨與總統任期",
+      "en": "The Republic, the People's Party and the presidency"
+     },
+     "body": {
+      "zh-Hant": "1923年9月9日，加齊穆斯塔法·凱末爾把護權協會（Müdafaa-i Hukuk Cemiyeti）改名為人民黨（Halk Fırkası）；大國民議會官方出版品稱此日為他宣布創黨之日。1923年10月29日大國民議會宣布共和國，並一致選他為首任總統，他此後連續四次當選，在任至1938年11月10日。1934年11月24日議會以第2587號法律授予他「阿塔圖克」姓氏。任內推行1933年五年工業計畫，並簽署1936年蒙特勒海峽公約。1938年11月10日他在伊斯坦堡多爾馬巴赫切宮逝世。",
+      "en": "On 9 September 1923 Gazi Mustafa Kemal renamed the Defence of Rights association (Müdafaa-i Hukuk Cemiyeti) the People's Party (Halk Fırkası), the date an official TBMM publication treats as the day its founding by Mustafa Kemal was announced. On 29 October 1923 the Assembly proclaimed the Republic and unanimously elected him its first president; he was elected four times in a row and held the office until his death on 10 November 1938. Law no. 2587 of 24 November 1934 gave him the surname Atatürk. His presidency saw the 1933 Five-Year Industrial Plan and the 1936 Montreux Convention. He died at Dolmabahçe Palace on 10 November 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "atam-tek-parti",
+       "locator": "專書導論",
+       "quote": "Gazi Mustafa Kemal, Türkiye’de cumhuriyet rejimini kurmak",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "atam-tek-parti",
+       "locator": "專書導論",
+       "quote": "Müdafaa-i Hukuk Cemi- yetinin adını 9 Eylül 1923’te Halk Fırkası olarak",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "atam-tek-parti",
+       "locator": "章節引言",
+       "quote": "adını 9 Eylül 1923’te Halk Fırkası olarak değiştirmek suretiyle",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-partiler-pdf",
+       "locator": "註 64",
+       "quote": "Mustafa Kemal Atatürk tarafından kurulduğunun açıklandığı 9 Eylül",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記六段",
+       "quote": "TBMM tarafından 29 Ekim 1923 günü Cumhuriyet ilan edilirken",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記六段",
+       "quote": "Mustafa Kemal de oybirliğiyle ilk Cumhurbaşkanı seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記六段",
+       "quote": "arka arkaya dört kez cumhurbaşkanı seçilen Atatürk",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "首段",
+       "quote": "Görev Süresi: 29 Ekim 1923 - 10 Kasım 1938",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記六段",
+       "quote": "24.11.1934 günlü, 2587 sayılı kanunla Atatürk soyadı verildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記七段",
+       "quote": "1933’te Beş Yıllık Sanayi Planı’nı başlattı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記七段",
+       "quote": "Montrö Boğazlar Sözleşmesi (1936)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記九段",
+       "quote": "10 Kasım 1938’de İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yumdu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "ataturk-yildirim-army-group",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "奧斯曼軍隊（雷霆軍團集團）",
+      "en": "Ottoman Army (Yıldırım Army Group)"
+     },
+     "title": {
+      "orig": "Yıldırım Orduları Grubu Komutanı",
+      "zh-Hant": "雷霆軍團集團司令",
+      "en": "Commander of the Yıldırım Army Group"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-10-31",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "31 Ekim 1918’de Yıldırım Orduları Grubu Komutanlığına getirildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／集團軍司令），但缺迄日、缺戰役連結、職位等級未明寫為國家級最高軍職、奧斯曼政權 regimeId 無法在不連庫下查證，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "battle_link",
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "ataturk-commander-in-chief",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "大國民議會政府軍隊",
+      "en": "Armed forces of the Government of the Grand National Assembly"
+     },
+     "title": {
+      "orig": "Başkomutan",
+      "zh-Hant": "總司令（Başkomutan）",
+      "en": "Commander-in-Chief (Başkomutan)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-08-05",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿",
+       "quote": "5 Ağustos 1921'de ''Başkomutanlık'' verdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（全軍總司令，來源寫 Başkomutan），但缺迄日且 regimeId 無法在不連庫下查證，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "ataturk-assembly-government-head-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "土耳其大國民議會政府（安卡拉）",
+      "en": "Government of the Grand National Assembly (Ankara)"
+     },
+     "title": {
+      "orig": "Meclis ve Hükûmet Başkanı（TBMM Başkanı）",
+      "zh-Hant": "議會與政府首長（大國民議會議長）",
+      "en": "Head of the Assembly and of the Government (Speaker of the TBMM)"
+     },
+     "role_kind": "head_of_government",
+     "period": {
+      "start": "1920-04-24",
+      "end": "1922-11-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記五段",
+       "quote": "Mustafa Kemal, Meclis ve Hükûmet Başkanı seçildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tbmm-baskanlar",
+       "locator": "議長名單",
+       "quote": "24 NISAN 1920 - 29 EKIM 1923",
+       "quoteLang": "tr",
+       "evidenceNote": "議長任期 1920-04-24～1923-10-29；本筆迄日依名簿下一任起日（名單內 government-of-the-grand-national-assembly 紀錄 1922-11-04）推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "R0：政府首腦；來源寫「Meclis ve Hükûmet Başkanı」，期間在名單 5442 起日（1922-11-04）之前、落在 1908–1945 窗內",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:ataturk-commander-in-chief",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TBMM 新聞稿只載 1921-08-05 授權，TBMM 新聞稿與 tccb.gov.tr 傳記頁無延長與卸任日；ata.msb.gov.tr 重導向迴圈、ata.tsk.tr 無法解析、İslâm Ansiklopedisi 被 Cloudflare 擋",
+     "candidateCitations": [
+      {
+       "sourceKey": "tbmm-basin-29585",
+       "locator": "新聞稿",
+       "quote": "5 Ağustos 1921'de ''Başkomutanlık'' verdi",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:islam_ansiklopedisi",
+     "gapKind": "not_found",
+     "note": "待查證：TDV İslâm Ansiklopedisi（islamansiklopedisi.org.tr）被 Cloudflare 擋（403 Attention Required），不繞過；未引用",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:britannica",
+     "gapKind": "not_found",
+     "note": "待查證：Britannica Atatürk 條目被 Cloudflare 挑戰頁擋，不繞過；未引用",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:ataturk_army_7th",
+     "gapKind": "not_found",
+     "note": "待查證：第七軍團司令（1918-09-01 起）卸任日來源未寫，只寫其後 1918-10-31 改任雷霆軍團集團司令；未建職位",
+     "candidateCitations": [
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "1 Eylül 1918’de Halep’e 7. Ordu Komutanı olarak döndü",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:names_5442_ataturk",
+     "gapKind": "not_found",
+     "note": "待查證：名單 5442 的 government-of-the-grand-national-assembly 紀錄 1922-11-04～1923-08-11 與 1923-08-13～1923-10-29 標題為「[1]」「Mustafa Kemal」；TBMM 議長名單寫他 1920-04-24～1923-10-29 連續擔任議長，1923-08-13 的重選（197 號會議）本批未取得原文，故未解釋 08-11～08-13 的空檔",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:ataturk_halk_firkasi_leader",
+     "gapKind": "not_found",
+     "note": "待查證：人民黨（Halk Fırkası／CHP）黨主席（Genel Başkan）任期，黨職依 Tai 12:12 屬 de_facto_leader。審查自 roleCandidates 移出：已抓 A／B 來源只寫他創黨（9 Eylül 1923），無逐字寫出他的黨職頭銜；原以 İnönü「Genel Başkan Vekilliği」反推其為主席、以逝世日推迄日，均屬推論。TBMM 圖書館黨史頁重導向首頁；需 CHP 或 TBMM 黨主席名冊",
+     "candidateCitations": [
+      {
+       "sourceKey": "atam-tek-parti",
+       "locator": "章節引言",
+       "quote": "adını 9 Eylül 1923’te Halk Fırkası olarak değiştirmek suretiyle",
+       "quoteLang": "tr"
+      },
+      {
+       "sourceKey": "tbmm-partiler-pdf",
+       "locator": "註 64",
+       "quote": "Mustafa Kemal Atatürk tarafından kurulduğunun açıklandığı 9 Eylül",
+       "quoteLang": "tr"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "傳記",
+       "quote": "Halk Fırkası Genel Başkan Vekilliği’ni üstlendi",
+       "quoteLang": "tr"
+      },
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記九段",
+       "quote": "10 Kasım 1938’de İstanbul’da Dolmabahçe Sarayı’nda hayata gözlerini yumdu",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:ataturk-yildirim-army-group",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；審查刪除原迄日 1918-11-13：tccb.gov.tr 只寫軍團集團撤銷後他於 13 Kasım 1918 抵伊斯坦堡報到，撤銷日未寫，以抵達日當迄日屬推論（比照 batch004 審查不收推論迄日）",
+     "candidateCitations": [
+      {
+       "sourceKey": "tccb-ataturk",
+       "locator": "傳記三段",
+       "quote": "13 Kasım 1918’de İstanbul’a gelip Harbiye Nezâreti’nde",
+       "quoteLang": "tr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Mustafa Kemal Atatürk tbmm.gov.tr Cumhurbaşkanı seçildi 29 Ekim 1923 biyografi",
+     "url": null,
+     "result": "unrated",
+     "note": "土耳其語；結果多為新聞與教育網站，不收"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "TDV İslâm Ansiklopedisi Atatürk Mustafa Kemal",
+     "url": "https://islamansiklopedisi.org.tr/ataturk-mustafa-kemal",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "TBMM Atatürk 頁（猜測）",
+     "url": "https://www.tbmm.gov.tr/Kuruluslar/Ataturk",
+     "result": "no_result",
+     "note": "404，內容為圖檔"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Atatürk",
+     "url": "https://www.britannica.com/biography/Ataturk",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "tccb.gov.tr cumhurbaskanlari/ataturk（猜測）",
+     "url": "https://www.tccb.gov.tr/cumhurbaskanlari/ataturk/",
+     "result": "no_result",
+     "note": "重導向首頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Mustafa Kemal Atatürk Cumhurbaşkanlığı 1. Cumhurbaşkanı（限 tccb/tbmm/atam）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 tccb 歷任總統頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Cumhurbaşkanlığı：M. Kemal ATATÜRK",
+     "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/kemal_ataturk/",
+     "result": "found_A",
+     "note": "完整傳記、任期 1923-10-29～1938-11-10"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Cumhurbaşkanlığı 英文頁",
+     "url": "https://www.tccb.gov.tr/en/m-kemal-ataturk",
+     "result": "no_result",
+     "note": "重導向超過 50 次，放棄"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Cumhurbaşkanlığı：Türkiye’nin İlk Seçilmiş Cumhurbaşkanı",
+     "url": "https://www.tccb.gov.tr/haberler/410/1311/turkiyenin-ilk-secilmis-cumhurbaskani",
+     "result": "not_relevant",
+     "note": "已抓；是另一位總統，未引用"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "ATAM 書目頁 Mustafa Kemal Atatürk 1881-1981",
+     "url": "https://atam.gov.tr/kitaplar/mustafa-kemal-ataturk-1881-1981/",
+     "result": "unrated",
+     "note": "只有書目資料，未引用"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "TBMM Başkanları Mustafa Kemal Atatürk Meclis Başkanı 24 Nisan 1920 13 Ağustos 1923（限 tbmm/atam）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到議長名單網址"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "TBMM Başkanları 名單",
+     "url": "https://tbmm.gov.tr/baskan/meclis-baskanlari",
+     "result": "found_A",
+     "note": "Atatürk 1920-04-24～1923-10-29"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "TBMM Meclis Başkanlarımız（舊網址）",
+     "url": "https://www5.tbmm.gov.tr/biyog/tbmmbsk.htm",
+     "result": "no_result",
+     "note": "重導向首頁"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Cumhuriyet Halk Fırkası Genel Başkanı Mustafa Kemal 9 Eylül 1923（限 tbmm/atam/tccb/kultur）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 TBMM 黨史出版品與 ATAM 書"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "TBMM 圖書館 siyasi_partiler.html",
+     "url": "https://www5.tbmm.gov.tr/kutuphane/siyasi_partiler.html",
+     "result": "no_result",
+     "note": "重導向首頁，未取得黨主席名冊"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "TBMM：Cumhuriyet Dönemi Partiler, Seçimler, Beyannameler (1923-1980)",
+     "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Yayinlar/Dosya/ed1d2982-f225-4467-a4ab-707f4cc471dc.pdf",
+     "result": "found_A",
+     "note": "註 64：Halk Fırkası 創立宣布日 9 Eylül"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "ATAM：Türk Siyasi Hayatında Tek Partiden Çok Partiye Geçiş",
+     "url": "https://atam.gov.tr/wp-content/uploads/2024/02/z.4-Ulk.Ozd_.4.pdf.son_.basila.23.02.2024.pdf",
+     "result": "found_B",
+     "note": "具名作者專書，記 9 Eylül 1923 改名 Halk Fırkası"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "tccb.gov.tr İsmet İNÖNÜ 頁",
+     "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/ismet_inonu/",
+     "result": "found_A",
+     "note": "Halk Fırkası Genel Başkan Vekilliği、1938 年後任黨主席"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "Atatürk Başkomutan Kanunu 5 Ağustos 1921（限 tbmm/atam/tccb/msb/tsk）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 TBMM 新聞稿與其他頁"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "TBMM 新聞稿：Mareşal rütbesi ile Gazi unvanı（2005）",
+     "url": "https://www5.tbmm.gov.tr/develop/owa/web_basin_aciklamalari.aciklama?p1=29585",
+     "result": "found_A",
+     "note": "1921-08-05 Başkomutanlık；1921-09-19 Mareşal／Gazi；1919-07-08/09 辭官"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "TBMM Haber：Gazi unvanı",
+     "url": "https://www.tbmm.gov.tr/Haber/Detay?Id=d1b9ce91-792f-4f2c-99c3-a61b1ff3caed",
+     "result": "unrated",
+     "note": "已抓；與新聞稿重疊，未引用"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "ata.msb.gov.tr Milli Mücadele Dönemi",
+     "url": "https://ata.msb.gov.tr/Sayfa/SayfaGoster/milli-mucadele-donemi",
+     "result": "no_result",
+     "note": "重導向迴圈／404"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "ata.tsk.tr Atatürk Kronolojisi",
+     "url": "http://www.ata.tsk.tr/02_kronoloji/kronoloji.html",
+     "result": "no_result",
+     "note": "主機名稱無法解析"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "TBMM Tarihe Düşülen Notlar–3 Meclis Başkanları",
+     "url": "https://cdn.tbmm.gov.tr/TbmmWeb/Yayinlar/Dosya/b1a3094c-e9cb-4ff4-a4b0-553efe7b0118.pdf",
+     "result": "found_A",
+     "note": "已抓；無可引用的 Başkomutan 迄日，未引用"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "TBMM genel başkanlar 頁",
+     "url": "https://www5.tbmm.gov.tr/develop/owa/tutanak_erisim.genel_baskanlar",
+     "result": "unrated",
+     "note": "已抓；與黨主席無關（議員、部會首長清單），未引用"
+    },
+    {
+     "step": 26,
+     "sourceType": "authority",
+     "query": "LoC suggest：Atatürk, Kemal, 1881-1938",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Atat%C3%BCrk,%20Kemal,%201881-1938",
+     "result": "found_A",
+     "note": "已抓；姓名確認，未引用"
+    },
+    {
+     "step": 27,
+     "sourceType": "authority",
+     "query": "GND/lobid.org Mustafa Kemal Atatürk 1881",
+     "url": "https://lobid.org/gnd/search?q=Mustafa+Kemal+Atat%C3%BCrk+1881&format=json&size=2",
+     "result": "found_A",
+     "note": "GND 118650793；生日 1881-05-19、卒 1938-11-10"
+    }
+   ]
+  }
+ ]
+}

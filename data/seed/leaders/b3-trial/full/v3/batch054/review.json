@@ -1,0 +1,86 @@
+{
+ "batch": "054",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 27,
+  "editedSentences": 4,
+  "spotRefetched": 5,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "mx-diaz",
+   "bioId": "01a1aa4a-da3c-785a-9054-1780b3382cc8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 5,
+   "changes": [
+    "P1 刪「畢業後」子句（引文未涵蓋）",
+    "P2 補「成名／關鍵角色」與「The following year」引文；副省長引文 datePrecision 改 null",
+    "P3 補 1867 連任與「舉行選舉」引文；period 起點改 1867-01-01",
+    "P4 刪無引文的「日益明目張膽的鎮壓」；period 迄點依段內 1910 改 1911-01-01",
+    "P5 補競爭性選舉、游擊戰、馬德羅、GND 卒日引文；period 迄點依段內最後一事（巴黎去世）改 1915-07-03",
+    "重抓 lobid GND 118678167 比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gr-george-ii",
+   "bioId": "01a1b4b5-7216-70a3-ad27-4993e4b5fa3a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 8,
+   "changes": [
+    "P1 補蘇菲亞引文；P2 補「君主派上台」「迎回國王」引文，period 起點依 1932 改",
+    "P3 1936年3月引文改含月份；補「同意建立獨裁」「合法性遭質疑」引文",
+    "P4 補措德羅斯、「解放後」引文；P5 補雅典交戰（1944年12月）、英國壓力、「支持國王回國」引文，攝政引文 datePrecision 改 null",
+    "treccani-george 標題由 Vocabolario 改為 Enciclopedia on line（仍 C，只當 gap 候選）",
+    "重抓 lobid GND 124327214 與 Encyclopedia.com 條目比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "br-pessoa",
+   "bioId": "ea20eb40-c42f-442b-a499-0befd0553516",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 8,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "P1 補共和成立、第一屆國會引文；P2 補里約與法典草案引文；P3 補國聯、凡爾賽推選、米納斯與聖保羅引文，「巴黎期間」改「凡爾賽期間」；P4 補乾旱救濟／高等教育、1922、百年博覽會引文並修正無日期引文的 datePrecision；P5 補卸任後、1932、瓦加斯引文；海牙職位 GND 引文去掉句尾截斷的「in」",
+    "重抓 lobid GND 1011397285 與 Museu da República PDF 比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批名單實為 3 人（提示標題寫 5 人）",
+  "研究者多處子句（地點、人名、因果、月份）未被引文涵蓋，審查補 27 筆已抓原文引文、刪 1 處無引文子句",
+  "數筆無日期引文誤填 datePrecision，已改 null",
+  "1908–1945 窗內無名單外元首／首腦、四部閣員、黨職或軍職任期可建候選；喬治二世 1941-05～1945 流亡在位期留 gap（缺起日）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

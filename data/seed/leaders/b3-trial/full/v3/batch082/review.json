@@ -1,0 +1,40 @@
+{
+ "batch": "082",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 1, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 5, "editedSentences": 3, "spotRefetched": 3, "searchLogShort": 0},
+ "people": [
+  {"key": "cn-wang-jingwei", "bioId": "01a1b490-dd02-726e-b636-ad84f8ead946", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 5, "searchLogSteps": 11,
+   "changes": [
+    "段2：木山引文只寫「左派を代表する指導者」，未寫國民黨，「代表國民黨左派」改為「仍是代表左派的領袖」（英文同步）",
+    "段2：張皓引文擴為『国民党内响起了改变对日妥协政策、汪精卫辞去行政院长兼外长职的呼声』以支撐「黨內出現呼聲」",
+    "外交部長、黨副總裁、南京政權首腦缺起日已在 gaps；行政院院長任期在名單 5442 不重建，合規",
+    "抽查重抓 lobid GND 118806149：生卒日一致"
+   ], "returnedReasons": []},
+  {"key": "ukssr-petrovsky", "bioId": "01a1b4c2-3ee0-71f5-b14c-2ac68d9da6c3", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 4, "roleCandidates": 3, "gaps": 6, "searchLogSteps": 8,
+   "changes": [
+    "段1：引文未含『Харківської губ.』，刪「哈爾科夫省的」",
+    "段2 period 迄點 1919-03-01（month）依 Q3 改 1919-04-01；段3 迄點 1939-01-01 改 1940-01-01（段內最後為 1921—39 中央委員）",
+    "段4：原引文截在『«ворогом народу»』未含科西奧爾，補引文『з «ворогом народу» С. Косіором』；英文 Stanislav 改 S.（來源只寫縮寫）",
+    "內務人民委員 R6：只有 1 筆 B（ESU），roleGap 補 source，t14Reason 同步",
+    "1913 年增補 РСДРП 中央委員等黨職研究者未建檔且缺迄年，記入 gaps（role:petrovsky-rsdrp-cc-member），不補建",
+    "抽查重抓 ESU PDF：內務人民委員、科西奧爾、最高蘇維埃代表句一致"
+   ], "returnedReasons": []},
+  {"key": "cu-mendieta", "bioId": "01a1b4c2-3ef1-78d8-aad1-e61568ac805c", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 8,
+   "changes": [
+    "段2：引文擴為『for a long time he was held by many to be the \"hope of the Republic,\"』以支撐「長期被許多人看成」",
+    "段2：『Three years later…』引文無日期卻標 datePrecision=year，改 null（Q8），evidenceNote 註明 1919 由 1916 後三年推得（推論）",
+    "段3：補引文『army chief Fulgencio Batista』『During his brief term in office』『and the Platt Amendment (1901)』與 FRUS『under whose direction』，分別支撐陸軍首長、任內、普拉特修正案、主持談判",
+    "辭職日 1935-12-10 與名單迄日 1935-12-11 不同，單一來源不列 conflict，合規",
+    "抽查重抓 FRUS 1934 v5 d170：與原抓檔逐位元相同"
+   ], "returnedReasons": []}
+ ],
+ "issues": [
+  "研究者常把引文截在關鍵名詞之前（科西奧爾、普拉特修正案、陸軍首長、國民黨），正文子句缺支撐，本批以補同源短引文處理",
+  "缺迄日的職位（杜馬議員、蘇聯中執委副主席、博物館副館長、古巴先驅報主編）研究者只寫 gap 未照「照寫 start＋gap」建檔；審查不補建",
+  "paragraph:length gap 以「篇幅補充：」開頭，三人均已達最低標準，屬多餘但無害"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 79}
+}

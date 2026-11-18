@@ -1,0 +1,3603 @@
+{
+ "batch": "b3-full-major-v2-batch003",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14）與 data/source-policy.json。主要領導人 v2 batch003（東條英機、蔣中正、列寧）。",
+ "alignNote": "直接寫 b0b0e0f 對齊格式：經歷層 positionKind；元首／首腦任期在 5442 不重建；黨職本應入 roleCandidates，但三人黨職均缺迄日，依 v3 慣例寫 gap 而不建（roleCandidates 為空）；T14 R0–R6 兩層互斥；regimeId 因不連庫一律 null＋organization，R3／R4 類以 R6（roleGap 含 regime）留在 positions。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch003/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndl-portrait-tojo": {
+   "title": "東条英機｜近代日本人の肖像",
+   "authors": [],
+   "publisher": "国立国会図書館",
+   "published_text": "近代日本人の肖像（電子展示会）",
+   "url": "https://www.ndl.go.jp/portrait/datas/142.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館（NDL）官方電子展示會人物頁"
+  },
+  "ndl-kensei-tojo": {
+   "title": "東條英機関係文書",
+   "authors": [],
+   "publisher": "国立国会図書館 憲政資料室",
+   "published_text": "リサーチ・ナビ 憲政資料",
+   "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/toujouhideki",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家圖書館（NDL）憲政資料室官方文書群說明（旧蔵者履歴）"
+  },
+  "kantei-040": {
+   "title": "第40代 東條 英機｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": "歴代内閣",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/040.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府（首相官邸）官方歷代內閣頁"
+  },
+  "jacar-ninriku": {
+   "title": "任陸軍大臣 陸軍中将 東条英機",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（所蔵：国立公文書館）",
+   "published_text": "公文別録・親任官任免・明治二十二年～昭和二十二年・第八巻・昭和十三年～昭和十五年",
+   "url": "https://www.jacar.archives.go.jp/das/meta/A03023514100",
+   "archive_url": null,
+   "catalog_id": "A03023514100",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案（國立公文書館）目錄，JACAR 官方"
+  },
+  "nids-toube": {
+   "title": "戦争指導者としての東條英機",
+   "authors": [
+    "戸部良一"
+   ],
+   "publisher": "防衛研究所",
+   "published_text": "戦争史研究国際フォーラム報告書（2002）",
+   "url": "https://www.nids.mod.go.jp/event/proceedings/forum/pdf/2002/forum_j2002_5.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "防衛研究所（官方研究機構）出版，具名作者論文"
+  },
+  "drnh-zong": {
+   "title": "蔣中正總統文物 壹、小傳",
+   "authors": [],
+   "publisher": "國史館",
+   "published_text": "國史館現藏重要檔案文物史料概述",
+   "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國史館（政府史料機關）官方檔案說明小傳"
+  },
+  "kmt-zongcai": {
+   "title": "總裁（蔣中正先生傳略）",
+   "authors": [],
+   "publisher": "中國國民黨",
+   "published_text": "中國國民黨全球資訊網",
+   "url": "https://www1.kmt.org.tw/page.aspx?mid=17",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "審查改 C（opus 2026-11-15）：政黨網站的人物傳略，無具名作者、非政府／國家級機構，屬 docs/source-rules.md §2「機構網站的介紹文」；人物生平只收 A／B，只能當 gap 候選"
+  },
+  "prlib-hist": {
+   "title": "Родился основатель Советского социалистического государства Владимир Ильич Ленин",
+   "authors": [],
+   "publisher": "Президентская библиотека имени Б.Н. Ельцина",
+   "published_text": "День в истории",
+   "url": "https://www.prlib.ru/history/619187",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "俄羅斯國家級圖書館（總統圖書館）官方頁，附參考書目"
+  },
+  "lemo-lenin": {
+   "title": "LeMO Biografie - Wladimir I. Lenin",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum (DHM)",
+   "published_text": "LeMO Lebendiges Museum Online",
+   "url": "https://www.dhm.de/lemo/biografie/wladimir-lenin",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "德國國家級歷史博物館（DHM）機構傳記"
+  },
+  "treccani-tojo": {
+   "title": "Tōjō, Hideki",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line",
+   "url": "https://www.treccani.it/enciclopedia/hideki-tojo/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "無具名作者的百科條目，依 Q9 不評等，只放 gap 候選"
+  },
+  "nids-siryo36": {
+   "title": "陸軍大将　東條英機　明治17年～昭和23年〔岩手〕",
+   "authors": [],
+   "publisher": "防衛省防衛研究所 史料室",
+   "published_text": "史料のなかの軍人たち ―知られざる素顔―",
+   "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_36.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（政府機關）史料室人物略歷頁"
+  },
+  "kantei-041": {
+   "title": "第41代 小磯 國昭｜歴代内閣",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": "歴代内閣",
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/041.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "日本政府（首相官邸）官方歷代內閣頁（閣僚名簿）"
+  },
+  "da-shosho-s16": {
+   "title": "第七十七回帝国議会開会ノ件・御署名原本・昭和十六年・詔書一一月一五日",
+   "authors": [],
+   "publisher": "国立公文書館",
+   "published_text": "デジタルアーカイブ（御署名原本）",
+   "url": "https://www.digital.archives.go.jp/file/en/150894",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案館（國立公文書館）所藏詔書原本"
+  },
+  "ey-chiefs": {
+   "title": "行政院全球資訊網－歷任院長",
+   "authors": [],
+   "publisher": "行政院",
+   "published_text": "歷任院長（行憲前民國17年至37年）",
+   "url": "https://www.ey.gov.tw/Page/EA7B405A4B5CCEEA",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "中華民國政府（行政院）官方歷任院長表"
+  },
+  "ncnu-wang-zongcai": {
+   "title": "中國國民黨總裁制度的戰前醞釀與戰時建立",
+   "authors": [
+    "王良卿"
+   ],
+   "publisher": "國立暨南國際大學",
+   "published_text": "學術論文（PDF）",
+   "url": "https://cnhis.ncnu.edu.tw/var/file/29/1029/img/592/277308870.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學歷史學系具名作者學術論文（引用國民黨會議紀錄）"
+  },
+  "snl-lenin": {
+   "title": "Vladimir Lenin",
+   "authors": [
+    "Ådne Goplen",
+    "Kåre Johan Mjør"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "百科條目",
+   "url": "https://snl.no/Vladimir_Lenin",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者機構百科條目"
+  },
+  "hls-lenin": {
+   "title": "Lenin",
+   "authors": [
+    "Bernard Degen"
+   ],
+   "publisher": "Historisches Lexikon der Schweiz",
+   "published_text": "HLS 條目（2008）",
+   "url": "https://hls-dhs-dss.ch/de/articles/028375/2008-11-20/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "瑞士國家歷史辭典具名條目"
+  },
+  "hrenc-lenin": {
+   "title": "Lenjin, Vladimir Iljič",
+   "authors": [],
+   "publisher": "Hrvatska enciklopedija（Leksikografski zavod Miroslav Krleža）",
+   "published_text": "百科條目",
+   "url": "https://www.enciklopedija.hr/clanak/lenjin-vladimir-iljic",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "條目未見署名，只作候選"
+  },
+  "msu-sovnarkom": {
+   "title": "Soviet of People's Commissars (Sovnarkom)（Second All-Russian Congress of Soviets, On the Formation of a Worker and Peasant Government, November 8, 1917）",
+   "authors": [],
+   "publisher": "Seventeen Moments in Soviet History（Michigan State University／University of Wisconsin 合作計畫）",
+   "published_text": "原始文獻英譯",
+   "url": "https://soviethistory.msu.edu/1917/first-bolshevik-decrees/first-bolshevik-decrees-texts/soviet-of-peoples-commissars-sovnarkom/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "大學計畫轉載的原始文獻英譯，頁面無具名譯者；只作候選"
+  }
+ },
+ "people": [
+  {
+   "key": "jp-tojo-hideki",
+   "bioId": "62241525-b2f1-4931-bfb3-30ecf9dd3094",
+   "name": "Tōjō Hideki",
+   "nameZh": "東條英機",
+   "recordIds": [
+    "01a19eb7-b28e-7773-b2b6-8b52f9096440"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-12-30",
+      "end": "1935-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與早期軍旅",
+      "en": "Birth and early army career"
+     },
+     "body": {
+      "zh-Hant": "東條英機1884年12月30日生於東京，父親是陸軍軍人東條英教。他1905年3月從陸軍士官學校（第17期）畢業，1919年8月起駐在瑞士，1921年7月起駐在德國。1935年9月，他出任關東憲兵隊司令官兼關東局警務部長。",
+      "en": "Tojo Hideki was born in Tokyo on 30 December 1884, the son of the army officer Tojo Hidenori. He graduated from the Army Academy (17th class) in March 1905, was stationed in Switzerland from August 1919 and in Germany from July 1921, and in September 1935 became commander of the Kwantung Gendarmerie and head of the Kwantung Bureau police affairs department."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1884.12.30東京生まれ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "父は陸軍軍人 東条英教 。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1905.3陸軍士官学校卒（17期）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1919.8スイス駐在、1920.8少佐、1921.7ドイツ駐在",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1935.9関東憲兵隊司令官兼関東局警務部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1937-03-01",
+      "end": "1940-08-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "關東軍參謀長到陸軍大臣",
+      "en": "From Kwantung Army chief of staff to army minister"
+     },
+     "body": {
+      "zh-Hant": "1937年3月，東條出任關東軍參謀長，1938年5月任陸軍次官，因辦事幹練被稱為「剃刀東條」。1938年12月起兼任航空總監與航空本部長。1940年7月起，他在第2次、第3次近衛內閣擔任陸軍大臣，同月兼任對滿事務局總裁。",
+      "en": "In March 1937 Tojo became chief of staff of the Kwantung Army and in May 1938 vice-minister of the army, where his efficiency earned him the nickname \"Razor Tojo\". From December 1938 he was inspector general of aviation and head of the Aviation Headquarters. From July 1940 he served as army minister in the second and third Konoe cabinets and, in the same month, as head of the Manchurian Affairs Bureau."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1937.3関東軍参謀長、1938.5陸軍次官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "翌年陸軍次官となり、能吏ぶりを発揮して「かみそり東条」といわれる",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1938.12航空総監兼航空本部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1940.7～1941.10第2次近衞内閣・第3次近衞内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1940.7兼対満事務局総裁",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-ninriku",
+       "locator": "内容",
+       "quote": "陸軍中将正四位勲一等 東條英機 任陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-10-18",
+      "end": "1944-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "首相兼陸相與戰時體制",
+      "en": "Prime minister and army minister in wartime"
+     },
+     "body": {
+      "zh-Hant": "1941年10月18日東條內閣成立，東條以首相兼任陸軍大臣與內務大臣，內相兼任到1942年2月。戶部良一指出，現役軍人兼任首相與陸相，是1885年內閣制度開始以來的首例。1942年9月1日起他短暫兼任外務大臣，同月17日由谷正之接任。1942年舉行翼贊選舉，議會趨於形骸化；1943年11月兼任軍需大臣，1944年2月又兼任參謀總長。",
+      "en": "Tojo's cabinet was formed on 18 October 1941, with Tojo serving as prime minister while also army minister and, until February 1942, home minister. Tobe Ryōichi notes that an officer on active duty serving as both prime minister and army minister was unprecedented since the cabinet system began in 1885. From 1 September 1942 he briefly doubled as foreign minister until Tani Masayuki took over on 17 September. A Diet election was held in 1942 under a candidate-recommendation system, hollowing out the Diet; in November 1943 he also became munitions minister and in February 1944 chief of the army general staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿",
+       "quote": "東條内閣 昭和16年10月18日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1941.10～1942.2兼内務大臣、1941.10～1944.7兼陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-toube",
+       "locator": "「制度の拘束」節",
+       "quote": "軍人が現役のままで首相となり陸相を兼ねたのは、1885年に内閣制度が始まって以来のことである",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿（外務大臣）",
+       "quote": "昭和17年9月1日～ 東條 英機 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿（外務大臣）",
+       "quote": "昭和17年9月17日～ 谷 正之",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "17年立候補者推薦制度による翼賛選挙を行う",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "それにより議会は形骸化し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1943.11～1944.7兼軍需大臣、1944.2～1944.7参謀総長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "18年11月～19年7月兼軍需大臣、19年2月～7月参謀総長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-07-01",
+      "end": "1948-12-24"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "下台與戰後審判",
+      "en": "Resignation and postwar trial"
+     },
+     "body": {
+      "zh-Hant": "1944年7月，東條內閣總辭，同月他轉入預備役。日本戰敗後，他企圖自殺但失敗，之後在遠東國際軍事審判中被以甲級戰犯判處絞刑，1948年12月23日去世。",
+      "en": "In July 1944 the Tojo cabinet resigned and Tojo was placed on the reserve list the same month. After Japan's defeat he attempted suicide but failed, was tried by the International Military Tribunal for the Far East as a Class A war criminal and sentenced to hang, and died on 23 December 1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "7月には内閣総辞職となった",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1944.7予備役",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "敗戦後、自殺を図ったが失敗",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-portrait-tojo",
+       "locator": "解説",
+       "quote": "極東国際軍事裁判でA級戦犯として絞首刑となった",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1948.12.23死去",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tojo-army-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本政府（陸軍省）",
+      "en": "Government of Japan (Ministry of the Army)"
+     },
+     "title": {
+      "orig": "陸軍大臣",
+      "zh-Hant": "陸軍大臣",
+      "en": "Army Minister"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1940-07-01",
+      "end": "1944-07-22"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1940.7～1941.10第2次近衞内閣・第3次近衞内閣陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": "近衛內閣期；1941.10 起改兼任，見下一筆引文",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1941.10～1944.7兼陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": "東條內閣期兼任至 1944.7，同職連續任期",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-ninriku",
+       "locator": "内容",
+       "quote": "陸軍中将正四位勲一等 東條英機 任陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "16年10月～19年7月兼陸軍大臣",
+       "quoteLang": "ja",
+       "evidenceNote": "月精度；迄日為推論，採小磯內閣名簿下一任起日（Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-041",
+       "locator": "閣僚名簿",
+       "quote": "小磯内閣 昭和19年7月22日成立",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日依名簿下一任（杉山元，小磯內閣）起日（推論，Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-041",
+       "locator": "閣僚名簿（陸軍大臣）",
+       "quote": "陸軍大臣 杉山 元",
+       "quoteLang": "ja",
+       "evidenceNote": "後任為小磯內閣陸軍大臣杉山元（迄日推論，Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍大臣屬國防／戰爭部，正職且任期 >90 天可證明；但 regimeId 因不連庫無法查證一律 null（沿用 v3 慣例），R3④『政權在系統中』無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "tojo-home-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本政府（內務省）",
+      "en": "Government of Japan (Home Ministry)"
+     },
+     "title": {
+      "orig": "内務大臣（兼）",
+      "zh-Hant": "內務大臣（兼任）",
+      "en": "Home Minister (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1941-10-18",
+      "end": "1942-02-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿",
+       "quote": "東條内閣 昭和16年10月18日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1941.10～1942.2兼内務大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿（内務大臣）",
+       "quote": "昭和17年2月17日～ 湯澤 三千男",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "16年10月～17年2月兼内相",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "da-shosho-s16",
+       "locator": "詔書署名欄",
+       "quote": "内閣総理大臣兼内務大臣陸軍大臣 東条英機",
+       "quoteLang": "ja",
+       "evidenceNote": "昭和16年11月15日詔書の副署：首相が內相・陸相を兼任していた",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部正職、任期 122 天（>90）可證明；但 regimeId 因不連庫無法查證一律 null（沿用 v3 慣例），R3④無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "tojo-foreign-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本政府（外務省）",
+      "en": "Government of Japan (Foreign Ministry)"
+     },
+     "title": {
+      "orig": "外務大臣（兼）",
+      "zh-Hant": "外務大臣（兼任）",
+      "en": "Foreign Minister (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1942-09-01",
+      "end": "1942-09-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿（外務大臣）",
+       "quote": "昭和17年9月1日～ 東條 英機 (兼)",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-040",
+       "locator": "閣僚名簿（外務大臣）",
+       "quote": "昭和17年9月17日～ 谷 正之",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日依名簿下一任起日推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "任期僅 16 天，不足 90 天（R3③不符），留 positions"
+    },
+    {
+     "key": "tojo-munitions-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本政府（軍需省）",
+      "en": "Government of Japan (Ministry of Munitions)"
+     },
+     "title": {
+      "orig": "軍需大臣（兼）",
+      "zh-Hant": "軍需大臣（兼任）",
+      "en": "Minister of Munitions (concurrent)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1943-11-01",
+      "end": "1944-07-22"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1943.11～1944.7兼軍需大臣",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "18年11月～19年7月兼軍需大臣",
+       "quoteLang": "ja",
+       "evidenceNote": "月精度；迄日為推論，採小磯內閣名簿下一任起日（Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-041",
+       "locator": "閣僚名簿",
+       "quote": "小磯内閣 昭和19年7月22日成立",
+       "quoteLang": "ja",
+       "evidenceNote": "迄日依名簿下一任（藤原銀次郎，小磯內閣）起日（推論，Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei-041",
+       "locator": "閣僚名簿（軍需大臣）",
+       "quote": "軍需大臣 藤原 銀次郎",
+       "quoteLang": "ja",
+       "evidenceNote": "後任為小磯內閣軍需大臣藤原銀次郎（迄日推論，Q7）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "軍需省非外交、國防／陸軍、財政、內政四部之一（R3①不符），留 positions"
+    },
+    {
+     "key": "tojo-chief-general-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "陸軍參謀本部",
+      "en": "Army General Staff"
+     },
+     "title": {
+      "orig": "参謀総長",
+      "zh-Hant": "參謀總長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-02-01",
+      "end": "1944-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1944.2～1944.7参謀総長、1944.7予備役",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-toube",
+       "locator": "「はじめに」",
+       "quote": "さらに参謀総長をも兼ねた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "19年2月～7月参謀総長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "參謀總長屬國家級軍職、任期可證明；但 regimeId 因不連庫無法查證一律 null（沿用 v3 慣例），且引文未明寫職位等級，R4①②無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "tojo-kwantung-cos",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "關東軍",
+      "en": "Kwantung Army"
+     },
+     "title": {
+      "orig": "関東軍参謀長",
+      "zh-Hant": "關東軍參謀長",
+      "en": "Chief of Staff, Kwantung Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-03-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "12年3月関東軍参謀長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "一個軍（關東軍）的參謀長，不是國家級最高軍職，R4① 不成立 → R5；迄日待查證（見 gap）"
+    },
+    {
+     "key": "tojo-vice-army-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本政府（陸軍省）",
+      "en": "Government of Japan (Ministry of the Army)"
+     },
+     "title": {
+      "orig": "陸軍次官",
+      "zh-Hant": "陸軍次官",
+      "en": "Vice-Minister of the Army"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1938-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "13年5月陸軍次官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "副職（次官）不是正職閣員，R3② 不成立 → R5；迄日待查證（見 gap）"
+    },
+    {
+     "key": "tojo-aviation-inspector",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "陸軍航空本部",
+      "en": "Army Aviation Headquarters"
+     },
+     "title": {
+      "orig": "航空総監兼航空本部長",
+      "zh-Hant": "航空總監兼航空本部長",
+      "en": "Inspector General of Aviation and Chief of the Aviation Headquarters"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-12-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "13年12月航空総監兼航空本部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "航空總監屬軍種級軍職，但來源未寫職位等級、任期缺迄日、regimeId 不連庫為 null，R4 無法證明 → R6",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "rank"
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "航空總監兼航空本部長是否屬 R4「軍種總司令」存疑（日本陸軍航空非獨立軍種，總監職掌教育），審查不硬判，暫留 R6，請主 session 裁定是否改 R5"
+    },
+    {
+     "key": "tojo-manchurian-bureau",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "對滿事務局",
+      "en": "Manchurian Affairs Bureau"
+     },
+     "title": {
+      "orig": "対満事務局総裁",
+      "zh-Hant": "對滿事務局總裁",
+      "en": "Director-General, Manchurian Affairs Bureau"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1940-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "15年7月陸軍大臣兼対満事務局総裁",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": null,
+     "t14Reason": "對滿事務局總裁非四部閣員／國家級軍職，R5 其他"
+    },
+    {
+     "key": "tojo-kwantung-gendarmerie",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "關東憲兵隊／關東局",
+      "en": "Kwantung Gendarmerie / Kwantung Bureau"
+     },
+     "title": {
+      "orig": "関東憲兵隊司令官兼関東局警務部長",
+      "zh-Hant": "關東憲兵隊司令官兼關東局警務部長",
+      "en": "Commander of the Kwantung Gendarmerie and head of the Kwantung Bureau police affairs department"
+     },
+     "positionKind": "police",
+     "period": {
+      "start": "1935-09-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "10年9月関東憲兵隊司令官兼関東局警務部長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": null,
+     "t14Reason": "警察／憲兵邊界個案（police），R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:tojo-aviation-inspector",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDL 憲政資料室履歷只列「1938.12航空総監兼航空本部長」，下一列為「1940.2兼臨時軍事参議官」，未明寫卸任航空總監的時點；已查 NDL 近代日本人の肖像、首相官邸歷代內閣、JACAR（公文別録・親任官任免 A03023514100 為陸相任命，無航空總監條目）。｜加強搜尋（retry）：已再查防衛研究所人物略歷（NIDS，A）、首相官邸第39／41代閣僚名簿、国立公文書館御署名原本、JACAR 用語解説、防衛研究所論文；均只有起日（月）無迄日；官報（NDL デジタルコレクション）原文未取得（需館內／登入）。已按規則以起日建 position（月精度），迄日不推算（審查 2026-11-15 確認：position 保留起日、迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1938.12航空総監兼航空本部長",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tojo-manchurian-bureau",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDL 履歷只寫「1940.7兼対満事務局総裁」，未寫迄日；已查 NDL、首相官邸、JACAR 目錄頁，均無迄日。｜加強搜尋（retry）：已再查防衛研究所人物略歷（NIDS，A）、首相官邸第39／41代閣僚名簿、国立公文書館御署名原本、JACAR 用語解説、防衛研究所論文；均只有起日（月）無迄日；官報（NDL デジタルコレクション）原文未取得（需館內／登入）。已按規則以起日建 position（月精度），迄日不推算（審查 2026-11-15 確認：position 保留起日、迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1940.7兼対満事務局総裁",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tojo-kwantung-gendarmerie",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDL 履歷「1935.9関東憲兵隊司令官兼関東局警務部長」之後為「1936.12中将」「1937.3関東軍参謀長」，未明寫卸任時點，且職位性質（憲兵／警務）是否屬 police 邊界待判；｜加強搜尋（retry）：已再查防衛研究所人物略歷（NIDS，A）、首相官邸第39／41代閣僚名簿、国立公文書館御署名原本、JACAR 用語解説、防衛研究所論文；均只有起日（月）無迄日；官報（NDL デジタルコレクション）原文未取得（需館內／登入）。已按規則以起日建 position（月精度），迄日不推算（審查 2026-11-15 確認：position 保留起日、迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1935.9関東憲兵隊司令官兼関東局警務部長",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:tojo_head_of_government_dates",
+     "gapKind": "not_found",
+     "note": "內閣總理大臣任期（1941-10-18～1944-07-22）已在 leader_records（5442），依規則不重建；首相官邸頁寫「昭和16年10月18日 ～昭和19年7月22日」，與名單一致，未發現矛盾。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kantei-040",
+       "locator": "プロフィール",
+       "quote": "昭和16年10月18日 ～昭和19年7月22日",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:tojo_treccani",
+     "gapKind": "not_found",
+     "note": "Treccani Enciclopedia on line「Tōjō, Hideki」為無具名作者條目，依 Q9 不評等；只可當候選，未用於段落。",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-tojo",
+       "locator": "條目首段",
+       "quote": "Presidente del Consiglio (1941) scatenò, con l'attacco a Pearl Harbour",
+       "quoteLang": "it"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tojo-kwantung-cos",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；関東軍参謀長起日 1937-03（NDL 憲政資料室履歷），研究者以履歷中本人下一職起日當迄日，不符 Q7（只可用名簿下一任起日）；前次審查曾移出 positions；｜加強搜尋（retry）：已再查防衛研究所人物略歷（NIDS，A）、首相官邸第39／41代閣僚名簿、国立公文書館御署名原本、JACAR 用語解説、防衛研究所論文；均只有起日（月）無迄日；官報（NDL デジタルコレクション）原文未取得（需館內／登入）。已按規則以起日建 position（月精度），迄日不推算（審查 2026-11-15 確認：position 保留起日、迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1937.3関東軍参謀長、1938.5陸軍次官",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tojo-vice-army-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；陸軍次官起日 1938-05（NDL 憲政資料室履歷），研究者以履歷中本人下一職起日當迄日，不符 Q7（只可用名簿下一任起日）；前次審查曾移出 positions；｜加強搜尋（retry）：已再查防衛研究所人物略歷（NIDS，A）、首相官邸第39／41代閣僚名簿、国立公文書館御署名原本、JACAR 用語解説、防衛研究所論文；均只有起日（月）無迄日；官報（NDL デジタルコレクション）原文未取得（需館內／登入）。已按規則以起日建 position（月精度），迄日不推算（審查 2026-11-15 確認：position 保留起日、迄日待查證）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndl-kensei-tojo",
+       "locator": "旧蔵者履歴",
+       "quote": "1938.5陸軍次官、1938.6兼航空本部長、1938.12航空総監兼航空本部長",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:tojo-chief-general-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺日精度；NIDS 人物略歷寫「19年2月～7月参謀総長」，NDL 同為月精度；2月21日（就任）、7月18日（卸任，後任梅津美治郎）日期只見於未取得原文的二手資料與 WebSearch 摘要（防衛研究所和田朋幸章節只寫梅津「留任」，與併任事實不合，不採）；官報原文未取得，故維持月精度。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nids-siryo36",
+       "locator": "主要略歴",
+       "quote": "19年2月～7月参謀総長",
+       "quoteLang": "ja"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Tōjō Hideki lobid GND search",
+     "url": "https://lobid.org/gnd/search?q=Tojo+Hideki&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 權威檔，確認姓名寫法（lobid 為 GND 官方鏡像）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Tōjō, Hideki id.loc.gov names",
+     "url": "https://id.loc.gov/search/?q=T%C5%8Dj%C5%8D%2C+Hideki",
+     "result": "found_A",
+     "note": "LoC 權威檔（僅確認身分，未用於段落）"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Tojo Hideki VIAF",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Tojo+Hideki%22",
+     "result": "challenge_page",
+     "note": "Cloudflare 擋，放棄（未繞過）"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 東條英機",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/040.html",
+     "result": "found_A",
+     "note": "在職期間、閣僚名簿（外務／内務兼任日）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 近衞文麿（第38代）",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/038.html",
+     "result": "found_A",
+     "note": "第2次近衛內閣閣僚名簿載東條為陸軍大臣"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "首相官邸 rekidai/jinbutsu/40.html",
+     "url": "https://www.kantei.go.jp/jp/rekidai/jinbutsu/40.html",
+     "result": "not_relevant",
+     "note": "轉址至「過去の首相官邸HP」索引頁，內容無東條頁，改用 rekidainaikaku"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "近代日本人の肖像 東条英機",
+     "url": "https://www.ndl.go.jp/portrait/datas/142.html",
+     "result": "found_A",
+     "note": "逐 ID 掃描標題後取得 142 號；解説含關東軍参謀長至絞首刑"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "東條英機関係文書 憲政資料室",
+     "url": "https://ndlsearch.ndl.go.jp/rnavi/kensei/toujouhideki",
+     "result": "found_A",
+     "note": "旧蔵者履歴：逐年職歷（本批主要出處）"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "東條英機 近代日本人の肖像 国立国会図書館（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "取得 NDL 相關頁線索"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "東條英機 陸軍大臣 第2次近衛内閣 内務大臣 参謀総長（WebSearch，限 jacar／archives／kantei／ndl／mod）",
+     "url": null,
+     "result": "found_A",
+     "note": "取得 JACAR A03023514100、NIDS 戶部論文、首相官邸 040 線索"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "任陸軍大臣 陸軍中将 東条英機 JACAR",
+     "url": "https://www.jacar.archives.go.jp/das/meta/A03023514100",
+     "result": "found_A",
+     "note": "國立公文書館 公文別録 目錄；無具體發令日"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "JACAR 陸軍大臣 用語解説",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/term/00002346",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "JACAR glossary／search 東條英機",
+     "url": "https://www.jacar.archives.go.jp/aj/meiji/glossary/index.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "防衛研究所 戸部良一 戦争指導者としての東條英機",
+     "url": "https://www.nids.mod.go.jp/event/proceedings/forum/pdf/2002/forum_j2002_5.pdf",
+     "result": "found_B",
+     "note": "具名作者論文；用於兼任陸相／首相的說明"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Tojo Hideki",
+     "url": "https://www.britannica.com/biography/Tojo-Hideki",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，放棄"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Tōjō, Hideki",
+     "url": "https://www.treccani.it/enciclopedia/hideki-tojo/",
+     "result": "unrated",
+     "note": "無具名作者，Q9 只放 gap 候選"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "日本国憲法の誕生 詳細年表 1939–1945（NDL）",
+     "url": "https://www.ndl.go.jp/constitution/etc/history01.html",
+     "result": "found_A",
+     "note": "「10月18日 東条英機内閣成立」；僅年表，未引用"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "国立公文書館 アジア歴史資料センター 検索（東條英機）",
+     "url": "https://www.jacar.archives.go.jp/aj/meiji/search/?q=東條英機",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "防衛研究所 トップページ",
+     "url": "https://www.nids.mod.go.jp/",
+     "result": "not_relevant",
+     "note": "首頁，無人物頁"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "首相官邸 第39代 近衞文麿 閣僚名簿（陸軍大臣 東條）",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/039.html",
+     "result": "found_A",
+     "note": "陸軍大臣 東條 英機（日期欄無）；起日仍以 NDL／NIDS 月精度",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "首相官邸 第41代 小磯國昭 閣僚名簿（陸軍大臣・軍需大臣の後任）",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/041.html",
+     "result": "found_A",
+     "note": "小磯內閣 昭和19年7月22日成立；陸軍大臣 杉山元、軍需大臣 藤原銀次郎→ 東條兩職迄日",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "防衛研究所 戦史研究年報（NIDS 刊行物頁）",
+     "url": "https://www.nids.mod.go.jp/publication/senshi/",
+     "result": "not_relevant",
+     "note": "刊行物目錄頁，無人物任期",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "防衛研究所 史料のなかの軍人たち 陸軍大将 東條英機",
+     "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_36.html",
+     "result": "found_A",
+     "note": "主要略歴列出 10年9月憲兵隊司令官～19年7月予備役，月精度",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 一覧",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/index.html",
+     "result": "not_relevant",
+     "note": "一覧頁",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "NDL Search 一九四四年の東條英機（書誌）",
+     "url": "https://ndlsearch.ndl.go.jp/en/books/R100000002-I030637861",
+     "result": "not_relevant",
+     "note": "書誌，無任期資料",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "academic",
+     "query": "中央大学 論文 東條 参謀総長併任問題（chuo-u.repo.nii.ac.jp）",
+     "url": "https://chuo-u.repo.nii.ac.jp/record/2000518/files/0009-6296_128_7-8_379-405.pdf",
+     "result": "no_result",
+     "note": "HTTP 503：JAIRO Cloud 系統維護中，未取得原文",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "academic",
+     "query": "防衛研究所 和田朋幸「小磯国昭内閣と決戦」（近代東アジアの軍事史）",
+     "url": "https://www.nids.mod.go.jp/publication/militaryhistory_research/mh_tokushu/eastasia_military_history/pdf/emh01_14.pdf",
+     "result": "found_B",
+     "note": "具名論文，確認小磯內閣 1944-07-22 發足；「参謀総長には梅津…（留任）」與併任事實不合，不採",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "official",
+     "query": "JACAR 用語解説 対満事務局（総務局）",
+     "url": "https://jacar.go.jp/english/exhibition/glossary_en/term1/0090-0010-0080-0050-0030.html",
+     "result": "not_relevant",
+     "note": "與東條任期無關",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "official",
+     "query": "NDL 近代日本人の肖像 TOJO Hideki（英文）",
+     "url": "https://www.ndl.go.jp/portrait/e/datas/142.html",
+     "result": "found_A",
+     "note": "與日文頁一致，未新增事實",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "treaty_law",
+     "query": "国立公文書館 御署名原本 詔書 昭和16年11月15日（第77回帝国議会開会）",
+     "url": "https://www.digital.archives.go.jp/file/en/150894",
+     "result": "found_A",
+     "note": "副署欄「内閣総理大臣兼内務大臣陸軍大臣 東条英機」",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "treaty_law",
+     "query": "国立公文書館 御署名原本 勅令 昭和17年第45号",
+     "url": "https://www.digital.archives.go.jp/file/en/148732",
+     "result": "not_relevant",
+     "note": "副署欄與東條新職務無關",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "academic",
+     "query": "山口大学 論文（東條評価）",
+     "url": "https://petit.lib.yamaguchi-u.ac.jp/16872/files/150742",
+     "result": "no_result",
+     "note": "PDF 文字為直排異體碼，且作者未確認，未使用",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "official",
+     "query": "東條英機 関東軍参謀長 退任 陸軍次官 昭和13年5月 親補 アジア歴史資料センター（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "JACAR 原件未出現；只得二手",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "official",
+     "query": "東條英機 航空総監 昭和15年 退任 後任 山下奉文 防衛研究所（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無航空總監迄日",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "official",
+     "query": "対満事務局総裁 昭和15年7月 東條英機 就任 退任 国立公文書館（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "得 NIDS 略歷（起日）；無迄日",
+     "round": "retry"
+    },
+    {
+     "step": 36,
+     "sourceType": "official",
+     "query": "参謀総長 東條英機 後任 梅津美治郎 昭和19年7月18日 歴代参謀総長 防衛研究所（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "得 NIDS 和田論文；無官方歷代參謀總長表",
+     "round": "retry"
+    },
+    {
+     "step": 37,
+     "sourceType": "authority",
+     "query": "Hideki Tojo biography prime minister army minister chief of staff 1944 national archives OR library authority（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "NDL 近代日本人の肖像（英）；Britannica 仍為挑戰頁未用",
+     "round": "retry"
+    },
+    {
+     "step": 38,
+     "sourceType": "treaty_law",
+     "query": "東條英機 官報 昭和16年10月18日 内閣総理大臣 親任式 国立国会図書館デジタルコレクション（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "官報原文未出現（館內／登入限定）",
+     "round": "retry"
+    },
+    {
+     "step": 39,
+     "sourceType": "treaty_law",
+     "query": "東條英機 参謀総長 昭和19年2月21日 親補 官報 国立公文書館（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無親補記錄；得 NIDS 略歷",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "cn-chiang-kai-shek",
+   "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
+   "name": "Jiǎng Zhōngzhèng",
+   "nameZh": "蔣中正",
+   "recordIds": [
+    "01a1a20c-bc74-71c1-9ab8-d41ef3e2e7b2",
+    "01a19eb7-b2c6-70d8-915a-c4a4f0606d51",
+    "01a19eb7-b2d5-7e0a-8dfc-40700d3d2bd5",
+    "01a19eb7-b2f0-7869-801e-f818f9a47dc0",
+    "01a19eb7-b302-7be7-b0fe-4f55120a56a0",
+    "01a1a20c-bc99-7026-b601-132b6c3d647d",
+    "01a1aa96-cf92-7e52-a628-f240b3513fe2",
+    "01a19eb7-b309-71d1-a8ad-2c622bdea979"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1887-01-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年革命",
+      "en": "Birth and early revolutionary years"
+     },
+     "body": {
+      "zh-Hant": "蔣中正1887年生於浙江奉化。他在青年時期赴日本學習軍事，畢業於振武學校。1911年辛亥革命爆發後，他沒有請假便返回國內，之後協助陳其美從事革命。",
+      "en": "Chiang Chung-cheng was born in Fenghua, Zhejiang, in 1887. As a young man he went to Japan to study military affairs and graduated from the Shinbu Gakko. When the 1911 revolution broke out he returned to China without taking leave and then assisted Chen Qimei in the revolution."
+     },
+     "citations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1887年生於浙江奉化",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "青年赴日本學習軍事，畢業於振武學校",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1911年辛亥革命起，不假返國",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "辛亥革命時助陳其美革命",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "relatedRecordIds": []
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "黃埔、北伐與國民政府主席",
+      "en": "Whampoa, the Northern Expedition and the chairmanship"
+     },
+     "body": {
+      "zh-Hant": "國史館小傳記載，蔣中正1924年擔任黃埔陸軍軍官學校校長。1926年7月，他就任國民革命軍總司令，發動北伐。1928年中國完成統一，同年年底他就任國民政府主席。",
+      "en": "According to the Academia Historica biography, Chiang became commandant of the Whampoa Military Academy in 1924. In July 1926 he took office as commander-in-chief of the National Revolutionary Army and launched the Northern Expedition. China was unified in 1928, and at the end of that year he became chairman of the National Government."
+     },
+     "citations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1924年擔任黃埔陸軍軍官學校校長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1926年 7月，蔣就任國民革命軍總司令，發動北伐",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1928年一統中國，年底就任國民政府主席",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "relatedRecordIds": []
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1930-11-24",
+      "end": "1945-06-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "行政院院長與國民黨總裁",
+      "en": "Premier of the Executive Yuan and Kuomintang Director-General"
+     },
+     "body": {
+      "zh-Hant": "據行政院歷任院長表，蔣中正多次出任行政院院長：民國19年11月24日至20年6月16日、20年6月16日至12月16日、24年12月16日至27年1月1日、28年12月11日至32年9月13日，以及32年9月13日至34年6月4日（即1930年至1945年間的五段任期）。1938年4月1日，中國國民黨臨時全國代表大會恢復領袖制度，推舉他擔任總裁。",
+      "en": "According to the Executive Yuan's list of past premiers, Chiang served several times as Premier of the Executive Yuan: from 24 November 1930 (ROC 19) to 16 June 1931, from 16 June to 16 December 1931, from 16 December 1935 to 1 January 1938, from 11 December 1939 to 13 September 1943, and from 13 September 1943 to 4 June 1945. On 1 April 1938 the Kuomintang's Provisional National Congress restored the leader system and elected him Director-General (zongcai)."
+     },
+     "relatedRecordIds": [
+      "01a19eb7-b2c6-70d8-915a-c4a4f0606d51",
+      "01a19eb7-b2d5-7e0a-8dfc-40700d3d2bd5",
+      "01a19eb7-b2f0-7869-801e-f818f9a47dc0",
+      "01a19eb7-b302-7be7-b0fe-4f55120a56a0",
+      "01a19eb7-b309-71d1-a8ad-2c622bdea979"
+     ],
+     "citations": [
+      {
+       "sourceKey": "ey-chiefs",
+       "locator": "行憲前（民國17年至37年）歷任院長表",
+       "quote": "蔣中正 19.11.24 - 20.06.16",
+       "quoteLang": "zh",
+       "evidenceNote": "民國紀年換算（民國年＋1911）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ey-chiefs",
+       "locator": "行憲前（民國17年至37年）歷任院長表",
+       "quote": "蔣中正 20.06.16 - 20.12.16",
+       "quoteLang": "zh",
+       "evidenceNote": "民國紀年換算（民國年＋1911）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ey-chiefs",
+       "locator": "行憲前（民國17年至37年）歷任院長表",
+       "quote": "蔣中正 24.12.16 - 27.01.01",
+       "quoteLang": "zh",
+       "evidenceNote": "民國紀年換算（民國年＋1911）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ey-chiefs",
+       "locator": "行憲前（民國17年至37年）歷任院長表",
+       "quote": "蔣中正 28.12.11 - 32.09.13",
+       "quoteLang": "zh",
+       "evidenceNote": "民國紀年換算（民國年＋1911）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ey-chiefs",
+       "locator": "行憲前（民國17年至37年）歷任院長表",
+       "quote": "蔣中正 32.09.13 - 34.06.04",
+       "quoteLang": "zh",
+       "evidenceNote": "民國紀年換算（民國年＋1911）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ncnu-wang-zongcai",
+       "locator": "前言",
+       "quote": "1938 年，中國國民黨臨時全國代表大會重新建立領袖制度， 推舉蔣介石擔任總裁",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ncnu-wang-zongcai",
+       "locator": "四、再造黨首的法理化嘗試（附注 82–83）",
+       "quote": "4 月 1 日，臨全大會決議修改總章，恢復孫中山逝世後已經懸 置多年的領袖制度，推舉蔣介石擔任總裁",
+       "quoteLang": "zh",
+       "evidenceNote": "月日見本引文；年份（1938）依同頁附注「第四次會議」（1938 年 4 月 1 日）與前言",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "軍事委員會與抗戰",
+      "en": "The Military Affairs Commission and the war against Japan"
+     },
+     "body": {
+      "zh-Hant": "1932年一二八事變中日軍侵襲上海，蔣中正復出擔任軍事委員會委員長。1937年7月7日盧溝橋事變發生，中日全面戰爭爆發；他在戰時爭取外交援助，中國於1945年獲得最後勝利。",
+      "en": "When Japanese forces attacked Shanghai in the January 28 Incident of 1932, Chiang returned to office as chairman of the Military Affairs Commission. The Marco Polo Bridge Incident of 7 July 1937 began full-scale war between China and Japan; he sought foreign aid during the war, and China won final victory in 1945."
+     },
+     "citations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1932年一二八事變，日軍侵襲上海，蔣復出擔任軍事委員會委員長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1937 年 7月 7日盧溝橋事變，中日全面戰爭爆發",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "並爭取外交援助，於 1945年獲得最後勝利",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "relatedRecordIds": []
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1948-04-01",
+      "end": "1975-04-06"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "行憲後總統與晚年",
+      "en": "President under the constitution and final years"
+     },
+     "body": {
+      "zh-Hant": "1948年4月，第一屆國民大會選舉蔣中正為行憲後首任總統，他5月20日就職；1949年初下野。政府遷臺後，他於1950年3月復行視事。1975年4月5日，他病逝於臺北，享壽89歲。（此段已超出1908–1945範圍，只作敘述。）",
+      "en": "In April 1948 the first National Assembly elected Chiang the first president under the constitution and he took office on 20 May; he stepped down in early 1949. After the government moved to Taiwan he resumed his duties on 1 March 1950. He died in Taipei on 5 April 1975 at the age of 89. (This paragraph lies outside 1908-1945 and is narrative only.)"
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1948年 4月，第一屆國民大會選舉蔣為行憲後首任總統",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "月 20日就職；旋國共戰局逆轉，1949年初下野",
+       "quoteLang": "zh",
+       "evidenceNote": "月份依前句『1948年 4月…其於 5』（PDF 換頁，5 月在前一頁末）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1949年初下野",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1950年 3月復行視事",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1975年 4月 5日清明節，病逝臺北，享壽 89歲",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "chiang-tsung-tsai",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "title": {
+      "orig": "總裁",
+      "zh-Hant": "總裁",
+      "en": "Director-General (Zongcai)"
+     },
+     "role_kind": "de_facto_leader",
+     "period": {
+      "start": "1938-04-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ncnu-wang-zongcai",
+       "locator": "四、再造黨首的法理化嘗試（附注 82–83）",
+       "quote": "4 月 1 日，臨全大會決議修改總章，恢復孫中山逝世後已經懸 置多年的領袖制度，推舉蔣介石擔任總裁",
+       "quoteLang": "zh",
+       "evidenceNote": "月日見本引文；年份依同頁附注「第四次會議」（1938 年 4 月 1 日）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ncnu-wang-zongcai",
+       "locator": "前言",
+       "quote": "1938 年，中國國民黨臨時全國代表大會重新建立領袖制度， 推舉蔣介石擔任總裁",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:chiang_whampoa_commandant",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館小傳寫「1924年擔任黃埔陸軍軍官學校校長」，KMT 傳略寫 1924 年 1 月受命創辦、6 月 16 日開學，兩者均無卸任日；已查國史館小傳、KMT 傳略、中正紀念堂首頁（人物頁被 WAF 拒絕）、近史所人名權威系統（DNS 無法解析）。故未建職位；性質屬 military_education（R5）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1924年擔任黃埔陸軍軍官學校校長",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:chiang_eastern_expedition",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；KMT 傳略「九月二十八日，國民政府軍事委員會任先生為東征總指揮」（民國十四年），後文只寫「不匝月又盡掃叛逆」，無明確迄日。故未建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十四年）",
+       "quote": "九月二十八日，國民政府軍事委員會任先生為東征總指揮",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:chiang_military_commission_chairman",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；KMT 傳略「三月六日，中央推舉先生為軍事委員會委員長」（民國二十一年），國史館小傳寫「復出擔任軍事委員會委員長」，兩者均無迄日（常識上為 1946 年軍委會改組國防部，但未取得 A／B 原文）；另國史館館刊論文（王正華）提及 1933 年前後軍委會委員長與國防委員會的關係，未載任期。已查國史館小傳、KMT 傳略、國史館館刊兩篇 PDF。故未建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十一年）",
+       "quote": "三月六日，中央推舉先生為軍事委員會委員長",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:chiang-tsung-tsai",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；起日 1938-04-01 已由王良卿論文（B）取得並建 roleCandidate；任期迄日（或終身至 1975-04-05 逝世）未見 A／B 明寫；已查國史館小傳、行政院、暨南大學論文（兩篇）、NDL 書目；國民黨網站傳略為 C 只作線索。另：該傳略寫 1938-03-29 當選，與論文 4 月 1 日不同，以 B 論文為準並請審查。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十七年）",
+       "quote": "大會又通過中國國民黨行總裁制，選舉先生為總裁",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:chiang_cec_standing",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；KMT 傳略「大會並選舉先生為中央執行委員，又被推為常務委員」（1926-01，國民黨二大），無迄日。黨職依規則本應入 roleCandidates（R1），因缺迄日未建。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十五年）",
+       "quote": "大會並選舉先生為中央執行委員，又被推為常務委員",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:chiang-china-theatre-supreme-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；KMT 傳略「就任聯合國中國戰區最高統帥」（1942-01-02），未載迄日。故未建職位。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十一年）",
+       "quote": "就任聯合國中國戰區最高統帥，指揮中、泰、越各地區同盟國軍隊作戰",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:chiang_national_government_chairman_dates",
+     "gapKind": "not_found",
+     "note": "國民政府主席任期在 5442 為 1943-09-13～1945-10-01（代理 1943-08-01～09-13）；KMT 傳略寫「於十月十日就主席職」。5442 屬庫值，與單一來源不構成 conflict 條件，僅提示審查者確認；未建候選。（審查：單一來源 vs 庫值不是 conflict，gapKind 改 not_found；該來源已改 C。）",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十二年）",
+       "quote": "中央推舉先生繼任，於十月十日就主席職",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:chiang-nra-commander-1",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館小傳（A）只寫「1926年 7月，蔣就任國民革命軍總司令」，無卸任日；原起日 1926-07-09、迄日 1927-08-12 只出自中國國民黨網站傳略（審查改 C，不能當出處），且迄日由未明寫所辭職位的辭職句推得。審查移出 positions。",
+     "candidateCitations": [
+      {
+       "sourceKey": "drnh-zong",
+       "locator": "壹、小傳",
+       "quote": "1926年 7月，蔣就任國民革命軍總司令，發動北伐",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十五年）",
+       "quote": "七月九日先生就職誓師",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十六年）",
+       "quote": "於八月十二日宣布辭職，離京返鄉",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:chiang_kmt_only_facts",
+     "gapKind": "not_found",
+     "note": "待查證：以下事實只有中國國民黨網站傳略（C）支撐，審查自段落移除，需 A／B 來源（國史館年譜、近史所、總統府、中正紀念堂）重查：生日 1887-10-31、1906／1908 赴日、加入同盟會、1911-11-05 光復杭州、滬軍第五團團長、黃埔 1924-01 受命與 06-16 開學、1926-07-09 誓師、1927-08-12 辭職、1928-01 復任總司令、1928-10 國慶日就主席、1932-03-06 任軍委會委員長、1938-03-29 當選總裁、1942-01-02 任中國戰區最高統帥、1943-08-01 林森逝世與 10-10 就主席、1943-11 開羅會議、1945-09 受降、1945-10 收復臺灣。",
+     "candidateCitations": [
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略首段",
+       "quote": "一八八七年十月三十一日",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略首段",
+       "quote": "生於浙江省奉化縣之溪口鎮",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "遂於翌年（一九○六）四月東渡",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "遂於三十四年（一九○八）春再赴日本，入振武學校",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "旋以陳其美之介，加盟同盟會",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "辛亥（一九一一）十月，武昌革命軍興",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "於十一月五日攻克浙江撫署，光復杭州",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "任先生為滬軍第五團團長",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "民國十三年（一九二四）一月，先生受命創辦陸軍軍官學校於黃埔",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "六月十六日軍校開學",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十五年）",
+       "quote": "七月九日先生就職誓師",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十六年）",
+       "quote": "於八月十二日宣布辭職，離京返鄉",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十七年）",
+       "quote": "既抵京，復任國民革命軍總司令",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國十七年）",
+       "quote": "中央執行委員會推任先生為國民政府主席，於國慶日就職",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "民國二十一年（一九三二）一月二十八日，日軍復進攻上海",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十一年）",
+       "quote": "三月六日，中央推舉先生為軍事委員會委員長",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十六年）",
+       "quote": "七月七日，盧溝橋事變發生",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十七年）",
+       "quote": "三月二十九日，中國國民黨舉行臨時全國代表大會於武昌",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國二十七年）",
+       "quote": "大會又通過中國國民黨行總裁制，選舉先生為總裁",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十一年）",
+       "quote": "二日，先生同意美、英、澳、荷、紐諸國之推舉，就任聯合國中國戰區最高統帥",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十二年）",
+       "quote": "國民政府主席林森於八月一日逝世，中央推舉先生繼任，於十月十日就主席職",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十二年）",
+       "quote": "先生偕夫人啟程前往埃及開羅，與美國羅斯福總統、英國邱吉爾首相，舉行三國領袖會議",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略",
+       "quote": "民國三十四年（一九四五）抗戰勝利",
+       "quoteLang": "zh"
+      },
+      {
+       "sourceKey": "kmt-zongcai",
+       "locator": "傳略（民國三十四年）",
+       "quote": "是年九月，各戰區次第受降；十月，正式收復臺灣",
+       "quoteLang": "zh"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:chiang-national-defense-supreme-committee",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；暨南大學論文寫「中國國民黨總裁兼國防最高委員會委員長」，但無起迄日；已查國民政府公報（WebSearch 無原文）、國史館、行政院；未建職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Jiang Jieshi lobid GND search",
+     "url": "https://lobid.org/gnd/search?q=Jiang+Jieshi&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 權威檔（確認姓名異寫）"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Chiang Kai-shek id.loc.gov names",
+     "url": "https://id.loc.gov/search/?q=Chiang+Kai-shek",
+     "result": "found_A",
+     "note": "LoC 權威檔（僅確認身分）"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "近史所人名權威檢索系統 蔣中正",
+     "url": "https://archdtsu.mh.sinica.edu.tw/imhkmc/imhkm",
+     "result": "no_result",
+     "note": "DNS 無法解析（curl: could not resolve host），改用其他來源"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "蔣中正 國史館 國民政府主席 行政院院長 生平 年表（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "取得國史館小傳 PDF 線索"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "國史館 蔣中正總統文物 壹、小傳",
+     "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+     "result": "found_A",
+     "note": "官方小傳（本批主要 A 出處）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "國史館 首頁",
+     "url": "https://www.drnh.gov.tw/",
+     "result": "not_relevant",
+     "note": "首頁，無人物頁"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "總統府 president.gov.tw 歷任總統",
+     "url": "https://www.president.gov.tw/Page/89",
+     "result": "not_relevant",
+     "note": "取得建築沿革頁，非人物頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "中央研究院近代史研究所 首頁",
+     "url": "https://www.mh.sinica.edu.tw/",
+     "result": "not_relevant",
+     "note": "首頁，無人物頁"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "中正紀念堂 首頁 與 人物頁",
+     "url": "https://www.cksmh.gov.tw/",
+     "result": "not_relevant",
+     "note": "首頁可取，人物頁被 WAF（Request Rejected）拒絕，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "蔣中正 國民政府軍事委員會委員長 中國國民黨總裁 1938（WebSearch，限台灣官方網域）",
+     "url": null,
+     "result": "found_B",
+     "note": "取得 KMT 總裁頁線索"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "蔣中正 軍事委員會委員長 1932 1946 任期 國防部 改組（WebSearch，限官方／學術網域）",
+     "url": null,
+     "result": "found_B",
+     "note": "取得國史館館刊 PDF、近史所集刊 PDF 線索；未載任期"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "中國國民黨 總裁（蔣中正先生傳略）",
+     "url": "https://www1.kmt.org.tw/page.aspx?mid=17",
+     "result": "found_B",
+     "note": "政黨官方網站傳略；逐年任職記載（本批主要 B 出處）"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "國史館館刊 蔣中正與戰時軍法體制的執行",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/106551048.pdf",
+     "result": "not_relevant",
+     "note": "檢視是否載軍委會委員長任期，未見"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "國史館 國防委員會的成立與運作（1933-1937）王正華",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/101752655.pdf",
+     "result": "not_relevant",
+     "note": "提及軍委會委員長但無任期起迄"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Chiang Kai-shek",
+     "url": "https://www.britannica.com/biography/Chiang-Kai-shek",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，放棄"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Chiang Kai-shek（enciclopedia／Dizionario di Storia）",
+     "url": "https://www.treccani.it/enciclopedia/chiang-kai-shek/",
+     "result": "no_result",
+     "note": "兩個網址均回傳通用頁（無條目內文）"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "蔣中正 國家圖書館 權威檔",
+     "url": "https://mdava.ncl.edu.tw/",
+     "result": "no_result",
+     "note": "僅取得 WebSearch 結果，未抓取頁面（影音網非權威檔）"
+    },
+    {
+     "step": 18,
+     "sourceType": "other",
+     "query": "Archontology 國民政府元首列表（僅線索）",
+     "url": null,
+     "result": "unrated",
+     "note": "私人彙編，Q9 不用；僅對照 5442 任期"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "總統府 Page/89（建築沿革頁；歷任總統頁未取得）",
+     "url": "https://www.president.gov.tw/Page/89",
+     "result": "not_relevant",
+     "note": "建築沿革頁，無蔣任期",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "行政院全球資訊網 歷任院長（D47F0A5E0C93C0BB）",
+     "url": "https://www.ey.gov.tw/Page/D47F0A5E0C93C0BB",
+     "result": "no_result",
+     "note": "HTTP 302 無法顯示",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "行政院全球資訊網 歷任院長（EA7B405A4B5CCEEA）",
+     "url": "https://www.ey.gov.tw/Page/EA7B405A4B5CCEEA",
+     "result": "found_A",
+     "note": "行憲前院長表：蔣中正 5 段任期，與名單 5442 一致",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "行政院全球資訊網 歷任院長（D4A3B8D669A4B277，同表）",
+     "url": "https://www.ey.gov.tw/Page/D4A3B8D669A4B277",
+     "result": "found_A",
+     "note": "與上筆同一表",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "academic",
+     "query": "暨南國際大學 王良卿 中國國民黨總裁制度的戰前醞釀與戰時建立",
+     "url": "https://cnhis.ncnu.edu.tw/var/file/29/1029/img/592/277308870.pdf",
+     "result": "found_B",
+     "note": "1938-04-01 推舉蔣為總裁",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "academic",
+     "query": "暨南國際大學 王良卿 通往「總裁」之路（蔣介石日記 1926–1938）",
+     "url": "https://cnhis.ncnu.edu.tw/var/file/29/1029/img/592/378823181.pdf",
+     "result": "found_B",
+     "note": "背景相同，未另引",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "NDL Search 蔣中正日記 1938（書誌）",
+     "url": "https://ndlsearch.ndl.go.jp/en/books/R100000002-I034266937",
+     "result": "not_relevant",
+     "note": "書誌",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "named_encyclopedia",
+     "query": "臺灣大百科全書（nhi.taiwanpedia.culture.tw）蔣中正",
+     "url": "https://nhi.taiwanpedia.culture.tw/",
+     "result": "no_result",
+     "note": "網域無法解析",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "蔣中正 國民政府主席 軍事委員會委員長 任期 國史館 年譜長編 任命（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只出 Wikipedia 系；無國史館頁",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "official",
+     "query": "蔣中正 行政院院長 歷任院長 行政院 全球資訊網（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "得 ey.gov.tw 歷任院長表",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "academic",
+     "query": "蔣中正 1938年 國民黨 臨時全國代表大會 總裁 國史館 蔣中正總統文物 大事長編（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "得暨南大學兩篇論文",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "official",
+     "query": "國民政府主席 蔣中正 民國32年9月13日 就職 國民政府公報 林森逝世 國史館（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無 A／B；32-09-13／10-10 差異仍待查",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "official",
+     "query": "蔣中正 國民革命軍總司令 北伐 就職 1926年7月9日 國史館（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只出維基文庫與新聞（不收）",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "academic",
+     "query": "蔣介石 黃埔軍校校長 任期 1924 1930 中研院近史所 人物資料（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無卸任日",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "official",
+     "query": "總統府 歷任總統 蔣中正 國民政府主席 簡介 president.gov.tw（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無人物頁",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "treaty_law",
+     "query": "國防最高委員會 委員長 蔣中正 民國28年 成立 國民政府公報 任命（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無任命令原文",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "academic",
+     "query": "Chiang Kai-shek chairman National Government Military Affairs Commission 1932 1946 academic article（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只出 Wikipedia 系",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "ru-lenin",
+   "bioId": "01a1b492-3ee1-75ee-8fc7-306c07a85a65",
+   "name": "Vladimir Ilyich Lenin (Ulyanov)",
+   "nameZh": "弗拉基米爾·列寧",
+   "recordIds": [
+    "01a19ebb-177e-7751-8e12-e38297df6f52",
+    "01a19eb7-b10e-7798-9262-2e2785a96ff0"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1870-04-22",
+      "end": "1892-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Birth and early years"
+     },
+     "body": {
+      "zh-Hant": "列寧原姓烏里揚諾夫，1870年4月22日（舊曆10日）生於辛比爾斯克，出身視學官家庭。1887年他以金質獎章從辛比爾斯克中學畢業，進入喀山大學，三個月後因參與學潮被開除；同年其兄亞歷山大因籌劃刺殺沙皇亞歷山大三世被處絞，對他影響很大。1891年他以外部生身分修畢彼得堡大學法學系。",
+      "en": "Lenin, born Vladimir Ulyanov, was born in Simbirsk on 22 April (10 April old style) 1870 into the family of a schools inspector. In 1887 he finished the Simbirsk gymnasium with a gold medal and entered Kazan University, but was expelled after three months for taking part in student disturbances; that year his elder brother Alexander was hanged for plotting to kill Tsar Alexander III, which greatly influenced him. In 1891 he completed the law faculty of St Petersburg University as an external student."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "首段",
+       "quote": "10 (22) апреля 1870 г. в Симбирске родился",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "首段",
+       "quote": "Он происходил из семьи инспектора народных училищ",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "окончив в 1887 г. Симбирскую гимназию с золотой медалью",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "был принят в Казанский университет",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "через три месяца после поступления был исключён",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "был исключён за участие в студенческих беспорядках",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "за подготовку покушения на жизнь императора Александра III",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "был повешен его старший брат Александр",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第2段",
+       "quote": "Это событие во многом повлияло на мировоззрение младшего брата",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第3段",
+       "quote": "В 1891 г. В. Ленин экстерном окончил юридический факультет",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1895-01-01",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "組黨、流亡與布爾什維克",
+      "en": "Party building, exile and the Bolsheviks"
+     },
+     "body": {
+      "zh-Hant": "1895年，列寧與後來的孟什維克領袖馬爾托夫創立「工人階級解放鬥爭協會」；因政治鼓動入獄兩年，又被流放西伯利亞三年。1900年他在西歐流亡中參與創辦《火星報》。1903年俄國社會民主工黨在倫敦召開第二次代表大會，他貫徹了自己的建黨構想，黨隨之分裂為他領導的布爾什維克與孟什維克。1912年他使布爾什維克作為獨立政黨與社會民主黨最終分離。",
+      "en": "In 1895 Lenin and Julius Martov, later the Menshevik leader, founded the League of Struggle for the Emancipation of the Working Class; for political agitation he spent two years in prison and three years in Siberian exile. In 1900, in exile in western Europe, he helped found the newspaper Iskra. At the second congress of the Russian Social Democratic Labour Party in London in 1903 he pushed through his party concept, and the party split into the Bolsheviks he led and the Mensheviks. In 1912 he finally separated the Bolsheviks as an independent party from social democracy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1895 條",
+       "quote": "gründet Lenin den \"Kampfbund zur Befreiung der Arbeiterklasse\"",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1895 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1895 條",
+       "quote": "dem späteren Menschewikenführer",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1895 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1895-1900 條",
+       "quote": "Wegen politischer Agitation verbringt er zwei Jahre im Gefängnis",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1895-1900 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1895-1900 條",
+       "quote": "drei Jahre in sibirischer Verbannung",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1895-1900 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1900 條",
+       "quote": "Im Exil in Westeuropa beteiligt er sich an der Gründung",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1900 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1900 條",
+       "quote": "beteiligt er sich an der Gründung der für Russland bestimmten Zeitung \"Iskra\"",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1900 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1903 條",
+       "quote": "Auf dem zweiten Parteikongress der SDAPR in London",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1903 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1903 條",
+       "quote": "kann Lenin seine Parteikonzeption durchsetzen",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1903 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1903 條",
+       "quote": "in die von ihm geführten Bolschewiken und die Menschewiken unter Martow",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1903 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1912 條",
+       "quote": "die Bolschewiken als eigenständige Partei endgültig von der Sozialdemokratie ab",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1912 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1917-04-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "十月革命與人民委員會議主席",
+      "en": "The October Revolution and the chairmanship of Sovnarkom"
+     },
+     "body": {
+      "zh-Hant": "1917年春列寧回到俄國，4月提出《四月提綱》，主張立即媾和、土地改革與蘇維埃政府。10月25日（新曆11月7日）彼得格勒發生起義，布爾什維克奪取政權；當晚第二屆全俄蘇維埃代表大會宣布成立蘇維埃政府人民委員會議，列寧任主席。1918年，在他倡議下與德國簽訂了布列斯特和約。",
+      "en": "Lenin returned to Russia in spring 1917 and in April set out the April Theses, demanding immediate peace, a sweeping land reform and a soviet government. On 25 October (7 November) 1917 an uprising in Petrograd brought the Bolsheviks to power; at the evening session the Second All-Russian Congress of Soviets proclaimed the Soviet government, the Council of People's Commissars, with Lenin as its chairman. In 1918, on his initiative, the Treaty of Brest-Litovsk was concluded with Germany."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第5段",
+       "quote": "Весной 1917 г. Ленин вернулся в Россию",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1917 條",
+       "quote": "In den \"Aprilthesen\" formuliert Lenin sein radikalrevolutionäres Programm",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1917 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1917 條",
+       "quote": "den sofortigen Frieden, eine einschneidende Landreform und eine Räteregierung",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1917 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第5段",
+       "quote": "25 октября (7 ноября) 1917 г. в Петрограде произошло восстание",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第5段",
+       "quote": "На открывшемся вечером заседании второго Всероссийского съезда Советов",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第5段",
+       "quote": "Совет Народных Комиссаров (СНК), председателем которого стал В. И. Ленин",
+       "quoteLang": "ru",
+       "evidenceNote": "5442 記起日 1917-11-08，與來源 11-07（新曆）不同，見 gaps",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第6段",
+       "quote": "По инициативе Ленина в 1918 г. был заключён Брестский мир с Германией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-lenin",
+       "locator": "Veien til makten",
+       "quote": "valgt til sovjetstatens første regjeringssjef, formann i Folkekommissærenes råd",
+       "quoteLang": "no",
+       "evidenceNote": "未載日期，只支持「第二屆全俄蘇維埃代表大會選為首任政府首腦」",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1924-01-22"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "新經濟政策、病重與逝世",
+      "en": "The New Economic Policy, illness and death"
+     },
+     "body": {
+      "zh-Hant": "1921年起列寧推行新經濟政策，准許私人自由貿易。1922年5月與12月他兩度中風，仍繼續領導國家；1923年3月第三次中風，使他幾乎喪失工作能力。1924年1月21日他在莫斯科近郊的哥爾基逝世。",
+      "en": "From 1921 Lenin introduced the New Economic Policy, which allowed free private trade. He suffered two strokes, in May and December 1922, but continued to lead the state; a third stroke in March 1923 left him practically incapacitated. He died at Gorki near Moscow on 21 January 1924."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1921 條",
+       "quote": "ruft Lenin eine neue Wirtschaftspolitik zur Verbesserung der Versorgungslage",
+       "quoteLang": "de",
+       "evidenceNote": "年份依 LeMO 年表條目標題（1921 條）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第6段",
+       "quote": "Ленин ввёл так называемую новую экономическую политику (НЭП)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第6段",
+       "quote": "разрешившую частную свободную торговлю",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第7段",
+       "quote": "В мае и декабре 1922 г. из-за больших нагрузок В. И. Ленин перенёс два инсульта",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第6段",
+       "quote": "однако продолжал руководить государством",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第7段",
+       "quote": "Третий инсульт, последовавший в марте 1923 г., сделал его",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第7段",
+       "quote": "сделал его практически недееспособным",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第7段",
+       "quote": "Он скончался 21 января 1924 г. в подмосковном посёлке Горки",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:lenin_bolshevik_leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；LeMO 寫 1903「die von ihm geführten Bolschewiken」、1912 年使布爾什維克成為獨立政黨並「beruft Stalin in das Zentralkomitee」，均無黨領導職務的明確起訖日與正式職稱（總書記制度為 1922 年史達林任內）。黨職依規則本應入 roleCandidates（R1），因無正式職稱與迄日未建。已查 LeMO、總統圖書館日期頁、NDB 索引頁。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1903 條",
+       "quote": "in die von ihm geführten Bolschewiken und die Menschewiken unter Martow",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:lenin_labour_defence_council",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；勞動國防委員會（СТО）主席任期未取得 A／B 原文：РГАСПИ（rgaspi.org，憑證錯誤無法連線）、Большая российская энциклопедия（old.bigenc.ru 連線逾時／bigenc.ru 回傳 401）均未取得；Росархив 展覽頁逾時。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:lenin_sovnarkom_start_date",
+     "gapKind": "not_found",
+     "note": "任職日差異提示：5442 起日 1917-11-08；總統圖書館頁寫「25 октября (7 ноября) 1917」晚間大會宣布政府、列寧任主席；LeMO 寫「7. November」。5442 屬庫值，與單一來源不構成 conflict；人民委員會議主席（RSFSR 1917-11-08～1922-12-30、蘇聯 1923-07-06～1924-01-21）已在 leader_records，不重建。｜加強搜尋：Seventeen Moments（大學計畫轉載、無署名譯者，C）頁面標題「On the Formation of a Worker and Peasant Government. November 8, 1917」；Hrvatska enciklopedija（無署名，C）寫「u noći između 8. i 9. XI. … privremenu vladu na čelu s Lenjinom」，與 5442 的 1917-11-08 方向一致但兩者不是 A／B，不改庫值，只作候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "prlib-hist",
+       "locator": "第5段",
+       "quote": "Совет Народных Комиссаров (СНК), председателем которого стал В. И. Ленин",
+       "quoteLang": "ru"
+      },
+      {
+       "sourceKey": "msu-sovnarkom",
+       "locator": "頁面標題",
+       "quote": "On the Formation of a Worker and Peasant Government. November 8, 1917",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "hrenc-lenin",
+       "locator": "條目正文",
+       "quote": "Drugi sveruski kongres sovjeta sastavio je privremenu vladu na čelu s Lenjinom",
+       "quoteLang": "hr"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:lenin_ussr_sovnarkom_dates",
+     "gapKind": "not_found",
+     "note": "蘇聯人民委員會議主席（1923-07-06～1924-01-21）的起訖日，本批已取得的 A／B 原文（總統圖書館日期頁、LeMO）均未載；留待 5442 為準。總統圖書館另一頁（WebSearch 摘要）有「6 июля 1923 – 21 января 1924」，但未用 curl 抓取原文，不引用。｜加強搜尋（retry）：WebSearch 結果摘要提到 1923-07-06 為 СНК СССР 第一屆組成經 ЦИК СССР 第2屆會議批准，但相關頁面（archontology、ruwiki 轉載等）屬 C／未取得 A／B 原文；總統圖書館、БРЭ 被 Anubis／401 擋住，未繞過。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:lenin_pseudonym_year",
+     "gapKind": "conflict",
+     "note": "化名「列寧」起用年份：LeMO（B）寫1900年；HLS（瑞士歷史辭典，Bernard Degen，A）寫「Ab 1901 benutzte er den Decknamen Lenin」。兩個合格來源不一致（conflict）。審查 2026-11-15：自第2段刪除「並從此使用列寧為化名」子句及其 LeMO 引文，年份待裁定。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lemo-lenin",
+       "locator": "1900 條",
+       "quote": "Er benutzt von nun an den Decknamen Lenin",
+       "quoteLang": "de"
+      },
+      {
+       "sourceKey": "hls-lenin",
+       "locator": "條目正文",
+       "quote": "Ab 1901 benutzte er den Decknamen Lenin",
+       "quoteLang": "de"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Lenin Wladimir GND lobid search",
+     "url": "https://lobid.org/gnd/search?q=Lenin+Wladimir&format=json&size=3",
+     "result": "found_A",
+     "note": "GND 權威檔；確認 GND 118640402"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Lenin, Vladimir Il'ich id.loc.gov",
+     "url": "https://id.loc.gov/search/?q=Lenin%2C+Vladimir+Il%27ich",
+     "result": "found_A",
+     "note": "LoC 權威檔（僅確認身分）"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 檢索 Lenin",
+     "url": "https://www.deutsche-biographie.de/search?name=Lenin",
+     "result": "found_A",
+     "note": "取得索引頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Lenin, Wladimir I.（GND 118640402）",
+     "url": "https://www.deutsche-biographie.de/gnd118640402.html",
+     "result": "not_relevant",
+     "note": "索引／交叉引用頁，無 NDB 條目內文，未用"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Ленин Владимир Ильич Президентская библиотека биография（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "取得 prlib.ru 頁線索"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Ленин биография председатель Совнаркома 8 ноября 1917（WebSearch，限 prlib／bigenc／rusarchives 等）",
+     "url": null,
+     "result": "found_A",
+     "note": "取得 prlib 日期頁、Росархив 展覽頁線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Президентская библиотека 首頁",
+     "url": "https://www.prlib.ru/",
+     "result": "not_relevant",
+     "note": "首頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Родился основатель Советского социалистического государства Владимир Ильич Ленин",
+     "url": "https://www.prlib.ru/history/619187",
+     "result": "found_A",
+     "note": "官方日期頁，含生平與 СНК 主席（本批主要 A 出處）"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "В. И. Ленин (1870–1924) 數位典藏",
+     "url": "http://www.prlib.ru/collections/1293885",
+     "result": "not_relevant",
+     "note": "典藏導覽頁，無額外任期資料"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "В. И. Ленин (Ульянов). Председатель Совета народных комиссаров（明信片條目）",
+     "url": "https://www.prlib.ru/item/694622",
+     "result": "not_relevant",
+     "note": "圖片館藏書目，無生平任期，未用"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "РГАСПИ 說明頁 rgaspi.org",
+     "url": "https://www.rgaspi.org/",
+     "result": "blocked_403",
+     "note": "SSL 憑證名稱不符，無法連線；不使用 -k"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Росархив 展覽 Ленин",
+     "url": "https://rusarchives.ru/vystavki/vystavochnyy-zal-federalnyh-arhivov-g-moskva/istoriko-dokumentalnaya-vystavka-lenin",
+     "result": "no_result",
+     "note": "連線逾時（60 秒）"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия 條目",
+     "url": "https://bigenc.ru/c/lenin-vladimir-il-ich-9b9d9d",
+     "result": "blocked_403",
+     "note": "回傳 401，放棄"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "БРЭ Совет труда и обороны（old.bigenc.ru）",
+     "url": "https://old.bigenc.ru/domestic_history/text/4563536",
+     "result": "no_result",
+     "note": "連線逾時"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO Biografie Wladimir I. Lenin",
+     "url": "https://www.dhm.de/lemo/biografie/wladimir-lenin",
+     "result": "found_B",
+     "note": "德國歷史博物館傳記（本批主要 B 出處）；先試 /lemo/biografie/wladimir-iljitsch-lenin 為 404"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Jahreschronik 1917",
+     "url": "https://www.dhm.de/lemo/jahreschronik/1917",
+     "result": "not_relevant",
+     "note": "年表，已取得但未引用"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Lenin",
+     "url": "https://www.treccani.it/enciclopedia/lenin/",
+     "result": "no_result",
+     "note": "回傳通用頁（無條目內文）"
+    },
+    {
+     "step": 18,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Vladimir Lenin",
+     "url": "https://www.britannica.com/biography/Vladimir-Lenin",
+     "result": "challenge_page",
+     "note": "403 Cloudflare，放棄"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "hrono.ru Ленин（僅線索）",
+     "url": null,
+     "result": "unrated",
+     "note": "私人彙編，Q9 不用"
+    },
+    {
+     "step": 20,
+     "sourceType": "national_dictionary",
+     "query": "HLS Lenin（articles/030449，誤中 Etter 條目）",
+     "url": "https://hls-dhs-dss.ch/de/articles/030449/",
+     "result": "not_relevant",
+     "note": "抓到別的人物條目",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon der Schweiz Lenin（WebSearch）→ articles/028375",
+     "url": "https://hls-dhs-dss.ch/de/articles/028375/2008-11-20/",
+     "result": "found_A",
+     "note": "Bernard Degen 條目；1901 起用化名 Lenin（與 LeMO 1900 不一致）",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Lenin, Vladimir Ilich",
+     "url": "https://encyclopedia.1914-1918-online.net/article/lenin_vladimir_ilich",
+     "result": "challenge_page",
+     "note": "Anubis 機器人驗證，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Vladimir Lenin",
+     "url": "https://snl.no/Vladimir_Lenin",
+     "result": "found_B",
+     "note": "Goplen／Mjør 具名；第二屆蘇維埃大會選為首任政府首腦",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "named_encyclopedia",
+     "query": "Den Store Danske lex.dk Lenin",
+     "url": "https://lex.dk/Lenin",
+     "result": "no_result",
+     "note": "HTTP 404",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "Den Store Danske lex.dk Vladimir Lenin",
+     "url": "https://lex.dk/Vladimir_Lenin",
+     "result": "unrated",
+     "note": "頁面未見具名作者，未使用",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "named_encyclopedia",
+     "query": "Hrvatska enciklopedija Lenjin, Vladimir Iljič",
+     "url": "https://www.enciklopedija.hr/clanak/lenjin-vladimir-iljic",
+     "result": "unrated",
+     "note": "未見署名＝C，只作候選（8–9 XI 夜組政府）",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Lenin, Wladimir I.（118640402）",
+     "url": "https://www.deutsche-biographie.de/118640402.html",
+     "result": "not_relevant",
+     "note": "索引／連結頁，無生平正文",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "treaty_law",
+     "query": "Seventeen Moments in Soviet History: Sovnarkom 成立決議（1917-11-08）",
+     "url": "https://soviethistory.msu.edu/1917/first-bolshevik-decrees/first-bolshevik-decrees-texts/soviet-of-peoples-commissars-sovnarkom/",
+     "result": "unrated",
+     "note": "原始文獻英譯，頁面無具名；列寧為 Sovnarkom 主席，標題日期 November 8, 1917；只作候選",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "official",
+     "query": "prlib.ru/en/node/690197",
+     "url": "https://www.prlib.ru/en/node/690197",
+     "result": "challenge_page",
+     "note": "安全檢查頁，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "named_encyclopedia",
+     "query": "БРЭ Ленин Владимир Ильич（bigenc.ru）",
+     "url": "https://bigenc.ru/c/lenin-vladimir-ilich-3e1c0e",
+     "result": "blocked_403",
+     "note": "HTTP 401，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "named_encyclopedia",
+     "query": "БРЭ Декрет о мире（bigenc.ru）",
+     "url": "https://bigenc.ru/c/dekret-o-mire-e6e46a",
+     "result": "blocked_403",
+     "note": "HTTP 401，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "national_dictionary",
+     "query": "Lenin Wladimir Iljitsch Historisches Lexikon der Schweiz（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "得 HLS 028375",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "official",
+     "query": "Председатель Совета Народных Комиссаров Ленин 8 ноября 1917 декрет о создании правительства prlib.ru（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無 prlib 原文；得 MSU 譯本（C）",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "treaty_law",
+     "query": "Ленин избран председателем Совнаркома СССР 6 июля 1923 II сессия ЦИК СССР（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只得 C 級／二手",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "named_encyclopedia",
+     "query": "Ленин Владимир Ильич председатель Совнаркома биография БРЭ 1917 1924（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "無 БРЭ 頁",
+     "round": "retry"
+    },
+    {
+     "step": 36,
+     "sourceType": "treaty_law",
+     "query": "Ленин председатель Совета труда и обороны 1918 1920 постановление ВЦИК СТО（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "СТО 主席任期仍無 A／B 原文",
+     "round": "retry"
+    }
+   ]
+  }
+ ]
+}

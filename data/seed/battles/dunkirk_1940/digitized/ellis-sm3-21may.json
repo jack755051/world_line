@@ -1,0 +1,1047 @@
+{
+ "source": {
+  "type": "official_history",
+  "grade": "A",
+  "citation": "L. F. Ellis, The War in France and Flanders 1939–1940 (HMSO), map 'Counter-attack at Arras, 21st May 1940', facing p. 102",
+  "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/maps/UK-NWE-Flanders-3.jpg",
+  "license": "UK 皇家版權，出版逾 50 年（HMSO 出版品），公有領域依據待主管確認"
+ },
+ "mapKey": "ellis-sm3-21may",
+ "mapDate": "1940-05-21",
+ "method": "用 tools/battles/mapgrid.swift 將 800×571 原圖切成 280×220 重疊小塊（放大約 4.3 倍、20 px 座標格線），Arras 周邊與 Bailleul–Savy、Avesnes–Gaudiempré、Montreuil 再切 120–150 px 寬的小塊（放大 8–10 倍、10 px 格線）逐塊目視讀圖，換算回原圖像素（原點左上）。城鎮取圓點中心，部隊取圓圈中心或數字／標字中心，無數字的弧線取弧線中點。讀圖誤差約 ±2 px（原圖約 0.5 km/px，即約 1 km）。經緯度取自 OSM Nominatim（除 Hesdin 為 place node 外，其餘為行政區 relation 的 lat/lon）。箭頭為移動軌跡，未列為 feature。圖例說法軍以綠色表示，但灰階掃描分不出顏色，圖上也找不到法軍部隊標字，故沒有法軍 feature。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05）",
+  "loo_p95_km": 0.94,
+  "p95Passes": true,
+  "passes": true,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "Duisans",
+    "reason": "字右側的黑點夾在多條反擊箭頭之間，分不出是城鎮圓點還是箭頭",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Wagnonlieu",
+    "reason": "字周圍只有箭頭與道路，找不到可確定的圓點",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Dainville",
+    "reason": "字與多條箭頭線重疊，圓點無法確定",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Warlus",
+    "reason": "字旁黑點疑為箭頭，圓點無法確定",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Berneville",
+    "reason": "字上方黑塊為粗箭頭線，圓點無法確定",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Ecurie",
+    "reason": "字下方是旗形／箭頭狀記號而非圓點",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Anzin",
+    "reason": "位置是道路交叉處，看不出獨立圓點",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "Agny",
+    "reason": "字上方有兩個相鄰黑塊（約 [671,362] 與 [674,362]）且與箭頭重疊，無法確定哪個是圓點",
+    "decidedBeforeResiduals": true
+   },
+   {
+    "name": "La Bellevue",
+    "reason": "公路上的黑點可能是箭頭；且 La Bellevue 為小地名，無法確定對應的現代地點",
+    "decidedBeforeResiduals": true
+   }
+  ],
+  "use": "可用於部隊位置與前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 30,
+  "residual_median_km": 0.26,
+  "loo_median_km": 0.43,
+  "loo_p95_km": 0.94,
+  "loo_max_km": 0.99,
+  "suspect_control_points": [],
+  "frame_km": 2.0
+ },
+ "precision_m": 2900,
+ "precisionNote": "留一法 95 百分位 0.9 km ＋ 標註框誤差 2 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "Etaples": {
+   "px": [
+    82,
+    105
+   ],
+   "lonlat": [
+    1.6386,
+    50.514
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 157543
+   },
+   "nameOsm": "Étaples",
+   "nameOnMap": "Etaples",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.74
+  },
+  "Montreuil": {
+   "px": [
+    146,
+    151
+   ],
+   "lonlat": [
+    1.7631,
+    50.4639
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2622231
+   },
+   "nameOsm": "Montreuil-sur-Mer",
+   "nameOnMap": "MONTREUIL",
+   "note": "圖上為道路交會處的實心城鎮符號，取其中心；Nominatim 另有同名 relation 2196583（位置在東邊約 9 km，應為區級行政區），取市鎮本身；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.29
+  },
+  "Hesdin": {
+   "px": [
+    290,
+    243
+   ],
+   "lonlat": [
+    2.0366,
+    50.373
+   ],
+   "osm": {
+    "type": "node",
+    "id": 26694571
+   },
+   "nameOsm": "Hesdin",
+   "nameOnMap": "HESDIN",
+   "note": "place node；圓點在「8」雙圈內",
+   "loo_km": 0.29
+  },
+  "Le Boisle": {
+   "px": [
+    252,
+    327
+   ],
+   "lonlat": [
+    1.9853,
+    50.2718
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1804152
+   },
+   "nameOsm": "Le Boisle",
+   "nameOnMap": "LE BOISLE",
+   "note": "圓點在「6」雙圈內左側；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.17
+  },
+  "Abbeville": {
+   "px": [
+    158,
+    459
+   ],
+   "lonlat": [
+    1.8337,
+    50.1061
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 114349
+   },
+   "nameOsm": "Abbeville",
+   "nameOnMap": "ABBEVILLE",
+   "note": "圓點在「2」雙圈內；另一筆同名 relation 2859189 為區級行政區，未用；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.83
+  },
+  "Anvin": {
+   "px": [
+    413,
+    187
+   ],
+   "lonlat": [
+    2.2522,
+    50.4464
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2915660
+   },
+   "nameOsm": "Anvin",
+   "nameOnMap": "Anvin",
+   "note": "圓點緊貼「8」弧線右上端，±2 px；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.5
+  },
+  "Aire": {
+   "px": [
+    498,
+    28
+   ],
+   "lonlat": [
+    2.3956,
+    50.6384
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 138297
+   },
+   "nameOsm": "Aire-sur-la-Lys",
+   "nameOnMap": "Aire",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.76
+  },
+  "Lillers": {
+   "px": [
+    539,
+    95
+   ],
+   "lonlat": [
+    2.476,
+    50.5606
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1170074
+   },
+   "nameOsm": "Lillers",
+   "nameOnMap": "Lillers",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.63
+  },
+  "Bethune": {
+   "px": [
+    622,
+    130
+   ],
+   "lonlat": [
+    2.6389,
+    50.5309
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1016146
+   },
+   "nameOsm": "Béthune",
+   "nameOnMap": "BÉTHUNE",
+   "note": "圓點在道路上，字在右下；另一筆同名 relation 1648454 為區級行政區，未用；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.18
+  },
+  "La Bassee": {
+   "px": [
+    710,
+    138
+   ],
+   "lonlat": [
+    2.8047,
+    50.5316
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 58055
+   },
+   "nameOsm": "La Bassée",
+   "nameOnMap": "La Bassée",
+   "note": "圓點在道路與運河交會處；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.93
+  },
+  "Lens": {
+   "px": [
+    716,
+    219
+   ],
+   "lonlat": [
+    2.832,
+    50.4292
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1175586
+   },
+   "nameOsm": "Lens",
+   "nameOnMap": "LENS",
+   "note": "另一筆同名 relation 1647285 為區級行政區，未用；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.5
+  },
+  "St Pol": {
+   "px": [
+    452,
+    246
+   ],
+   "lonlat": [
+    2.3361,
+    50.3812
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1232837
+   },
+   "nameOsm": "Saint-Pol-sur-Ternoise",
+   "nameOnMap": "St POL",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.23
+  },
+  "Bailleul": {
+   "px": [
+    508,
+    266
+   ],
+   "lonlat": [
+    2.4438,
+    50.3711
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1135409
+   },
+   "nameOsm": "Bailleul-aux-Cornailles",
+   "nameOnMap": "Bailleul",
+   "note": "圖上只寫 Bailleul；位置在 St Pol–Arras 公路上、St Pol 與 Tincques 之間，對應 Bailleul-aux-Cornailles（村中心在公路北側約 2 km，圖上圓點畫在公路上，殘差可能偏大）；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.94
+  },
+  "Tincques": {
+   "px": [
+    533,
+    273
+   ],
+   "lonlat": [
+    2.493,
+    50.3581
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1216469
+   },
+   "nameOsm": "Tincques",
+   "nameOnMap": "Tincques",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.23
+  },
+  "Savy": {
+   "px": [
+    570,
+    280
+   ],
+   "lonlat": [
+    2.5699,
+    50.354
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1211145
+   },
+   "nameOsm": "Savy-Berlette",
+   "nameOnMap": "Savy",
+   "note": "圖上只寫 Savy；對應 Savy-Berlette；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.83
+  },
+  "Mingoval": {
+   "px": [
+    580,
+    259
+   ],
+   "lonlat": [
+    2.5748,
+    50.373
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1187382
+   },
+   "nameOsm": "Mingoval",
+   "nameOnMap": "Mingoval",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.46
+  },
+  "Avesnes": {
+   "px": [
+    553,
+    341
+   ],
+   "lonlat": [
+    2.5277,
+    50.2762
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1122551
+   },
+   "nameOsm": "Avesnes-le-Comte",
+   "nameOnMap": "Avesnes",
+   "note": "圖上只寫 Avesnes；位置在 Arras 西南西，對應 Avesnes-le-Comte；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.57
+  },
+  "Saulty": {
+   "px": [
+    548,
+    394
+   ],
+   "lonlat": [
+    2.5341,
+    50.2166
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1216389
+   },
+   "nameOsm": "Saulty",
+   "nameOnMap": "Saulty",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.41
+  },
+  "Gaudiempre": {
+   "px": [
+    547,
+    426
+   ],
+   "lonlat": [
+    2.5309,
+    50.1778
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 2755738
+   },
+   "nameOsm": "Gaudiempré",
+   "nameOnMap": "Gaudiempré",
+   "note": "圓點在「6 (Flank-guard)」弧線內；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.12
+  },
+  "Doullens": {
+   "px": [
+    444,
+    438
+   ],
+   "lonlat": [
+    2.3411,
+    50.1572
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1346218
+   },
+   "nameOsm": "Doullens",
+   "nameOnMap": "DOULLENS",
+   "note": "圓點在道路彎折處，圖面此處靠近書溝略模糊，±3 px；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.29
+  },
+  "Souchez": {
+   "px": [
+    670,
+    251
+   ],
+   "lonlat": [
+    2.7411,
+    50.391
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1206420
+   },
+   "nameOsm": "Souchez",
+   "nameOnMap": "Souchez",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.26
+  },
+  "Vimy": {
+   "px": [
+    700,
+    268
+   ],
+   "lonlat": [
+    2.8108,
+    50.3733
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1188473
+   },
+   "nameOsm": "Vimy",
+   "nameOnMap": "Vimy",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.68
+  },
+  "Thelus": {
+   "px": [
+    701,
+    285
+   ],
+   "lonlat": [
+    2.8,
+    50.3545
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1216448
+   },
+   "nameOsm": "Thélus",
+   "nameOnMap": "Thélus",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.45
+  },
+  "Roclincourt": {
+   "px": [
+    692,
+    307
+   ],
+   "lonlat": [
+    2.7884,
+    50.3256
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1206572
+   },
+   "nameOsm": "Roclincourt",
+   "nameOnMap": "Roclincourt",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.23
+  },
+  "Maroeuil": {
+   "px": [
+    647,
+    308
+   ],
+   "lonlat": [
+    2.7055,
+    50.3233
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1180852
+   },
+   "nameOsm": "Marœuil",
+   "nameOnMap": "Marœuil",
+   "note": "圓點在字的下方、多條箭頭線之間，±3 px；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.05
+  },
+  "Arras": {
+   "px": [
+    677,
+    336
+   ],
+   "lonlat": [
+    2.7772,
+    50.291
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1121015
+   },
+   "nameOsm": "Arras",
+   "nameOnMap": "ARRAS",
+   "note": "城鎮符號為圓圈，取圓圈中心；另一筆同名 relation 2918314 為區級行政區，未用；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.99
+  },
+  "Achicourt": {
+   "px": [
+    673,
+    351
+   ],
+   "lonlat": [
+    2.7577,
+    50.2732
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1118870
+   },
+   "nameOsm": "Achicourt",
+   "nameOnMap": "Achicourt",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.08
+  },
+  "Beaurains": {
+   "px": [
+    689,
+    360
+   ],
+   "lonlat": [
+    2.7887,
+    50.2632
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 1140595
+   },
+   "nameOsm": "Beaurains",
+   "nameOnMap": "Beaurains",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.1
+  },
+  "Wailly": {
+   "px": [
+    655,
+    373
+   ],
+   "lonlat": [
+    2.7226,
+    50.2466
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 224362
+   },
+   "nameOsm": "Wailly",
+   "nameOnMap": "Wailly",
+   "note": "Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.28
+  },
+  "Wancourt": {
+   "px": [
+    737,
+    376
+   ],
+   "lonlat": [
+    2.872,
+    50.2473
+   ],
+   "osm": {
+    "type": "relation",
+    "id": 224368
+   },
+   "nameOsm": "Wancourt",
+   "nameOnMap": "Wancourt",
+   "note": "圓點緊貼「7」雙圈左上緣，±3 px；Nominatim 只有行政區 relation（無 place node），lonlat 取 relation 的 lat/lon（鎮中心附近，與圖上圓點可差 1–3 km）",
+   "loo_km": 0.69
+  }
+ },
+ "features": [
+  {
+   "label": "2",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    160,
+    458
+   ],
+   "note": "雙圈（圖例：裝甲師），圈住 Abbeville；px 取圓圈中心，數字在 [170,458]",
+   "timeState": "morning of 21st May",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    1.8368,
+    50.1088
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "8",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    298,
+    243
+   ],
+   "note": "雙圈（圖例：裝甲師），圈住 Hesdin；px 取圓圈中心，數字在 [298,252]",
+   "timeState": "morning of 21st May",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.0545,
+    50.3737
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    268,
+    325
+   ],
+   "note": "雙圈（圖例：裝甲師），圈住 Le Boisle；px 取圓圈中心，數字在 [268,339]",
+   "timeState": "morning of 21st May",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.012,
+    50.2753
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    752,
+    389
+   ],
+   "note": "雙圈（圖例：裝甲師），Arras 東南、Wancourt 旁；px 取圓圈中心，數字在 [753,387]",
+   "timeState": "morning of 21st May",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.9082,
+    50.2328
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "?",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    145,
+    164
+   ],
+   "note": "Montreuil 南側的粗細雙弧（圖例：日終位置），旁邊沒有印數字；Hesdin「8」雙圈有一條箭頭沿 R. Canche 指到這裡。px 取弧線中點",
+   "timeState": "end of day",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    1.7634,
+    50.4506
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "8",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    403,
+    203
+   ],
+   "note": "粗細雙弧（圖例：裝甲師日終位置），Anvin 旁；Hesdin「8」雙圈有箭頭指來。px 取數字中心",
+   "timeState": "end of day",
+   "unitKey": "de-8-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（end of day）；標號即師番號",
+   "lonlat": [
+    2.2411,
+    50.4291
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    519,
+    277
+   ],
+   "note": "數字在 Bailleul 與 Tincques 之間、公路南側；周圍有三段日終弧線：Bailleul 上方（中點約 [509,245]）、Tincques 上方（約 [540,254]）、Tincques 東側朝東的細弧（約 [555,284]）。Le Boisle「6」雙圈有箭頭指來。px 取數字中心",
+   "timeState": "end of day",
+   "unitKey": "de-6-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（end of day）；標號即師番號",
+   "lonlat": [
+    2.4649,
+    50.3514
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6 (Flank-guard)",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    534,
+    428
+   ],
+   "note": "粗細雙弧（日終位置）包住數字與 Gaudiempré，數字下方印「(Flank-guard)」；Le Boisle「6」雙圈有箭頭指來。px 取數字中心",
+   "timeState": "end of day",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.5066,
+    50.1738
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "7",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    615,
+    309
+   ],
+   "note": "Marœuil 西側、Duisans 上方，數字左側有多重弧線（日終位置）。px 取數字中心",
+   "timeState": "end of day",
+   "unitKey": "de-7-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（end of day）；標號即師番號",
+   "lonlat": [
+    2.6465,
+    50.3201
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "5",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (ii)(iii)(iv)：German Armoured Divisions 的雙圈／虛線弧／弧線符號",
+   "px": [
+    735,
+    343
+   ],
+   "note": "Arras 正東，數字左側（朝西）有三重弧線（日終位置），東邊有箭頭指來。圖例把這種符號稱為裝甲師。px 取數字中心",
+   "timeState": "end of day",
+   "unitKey": "de-5-pzdiv",
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "圖例：此符號樣式為德軍裝甲師（end of day）；標號即師番號",
+   "lonlat": [
+    2.8737,
+    50.2867
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (iii)：Defensive positions taken up by 6th Armoured Division during British Counter-attack 的粗虛線弧",
+   "px": [
+    472,
+    245
+   ],
+   "note": "St Pol 東側的粗虛線弧，旁邊沒有印數字，「6」取自圖例文字。px 取弧線中點（弧由約 [435,229] 經 [473,245] 到 [466,275]）",
+   "timeState": "defensive positions during counter-attack",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.3742,
+    50.3855
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (iii)：Defensive positions taken up by 6th Armoured Division during British Counter-attack 的粗虛線弧",
+   "px": [
+    579,
+    277
+   ],
+   "note": "Mingoval–Savy 之間的粗虛線弧，旁邊沒有印數字，「6」取自圖例文字。px 取弧線中點（弧由約 [558,263] 經 [580,280] 到 [571,300]）",
+   "timeState": "defensive positions during counter-attack",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.5764,
+    50.3555
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "6",
+   "echelon": "division",
+   "sideGuess": "german",
+   "sideNote": "圖例 (iii)：Defensive positions taken up by 6th Armoured Division during British Counter-attack 的粗虛線弧",
+   "px": [
+    566,
+    340
+   ],
+   "note": "Avesnes 東側的粗虛線弧，旁邊沒有印數字，「6」取自圖例文字。px 取弧線中點（弧由約 [545,320] 經 [566,340] 到 [545,361]）",
+   "timeState": "defensive positions during counter-attack",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.5583,
+    50.2804
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SST",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "圖例沒有列出 SST；符號樣式（上方粗細雙弧）與圖例的德軍日終弧線相同，因此猜為德軍",
+   "px": [
+    582,
+    314
+   ],
+   "note": "Duisans 西北，字上方罩一道粗細雙弧（樣式同日終位置弧線）。層級不明。px 取字中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.5856,
+    50.3121
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "SST",
+   "echelon": "other",
+   "sideGuess": "german",
+   "sideNote": "圖例沒有列出 SST；粗線圓圈樣式近似圖例的德軍符號，因此猜為德軍",
+   "px": [
+    636,
+    383
+   ],
+   "note": "Wailly 西側，字在單一粗線圓圈內（看不出圖例雙圈的內細線，可能是縮圖解析度不足）。層級不明。px 取圓圈中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "同圖另一時間狀態、無標號、或無法確定所屬，不對名冊",
+   "lonlat": [
+    2.6914,
+    50.2337
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "17 Bde",
+   "echelon": "other",
+   "sideGuess": "british",
+   "sideNote": "標字為英軍旅級寫法「Bde」；圖例說英軍反擊以紅色表示，但掃描檔是灰階，無法用顏色確認",
+   "px": [
+    719,
+    268
+   ],
+   "note": "Vimy 右側，只有文字沒有符號。px 取文字中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "not_attempted",
+   "unitKeyBasis": "非德軍或師以下，本輪不對名冊",
+   "lonlat": [
+    2.8381,
+    50.3745
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "151 Bde",
+   "echelon": "other",
+   "sideGuess": "british",
+   "sideNote": "標字為英軍旅級寫法「Bde」；圖例說英軍反擊以紅色表示，但掃描檔是灰階，無法用顏色確認",
+   "px": [
+    706,
+    292
+   ],
+   "note": "Thélus 下方、Ecurie 上方，只有文字沒有符號。px 取文字中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "not_attempted",
+   "unitKeyBasis": "非德軍或師以下，本輪不對名冊",
+   "lonlat": [
+    2.8155,
+    50.3455
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "150 Bde",
+   "echelon": "other",
+   "sideGuess": "british",
+   "sideNote": "標字為英軍旅級寫法「Bde」；圖例說英軍反擊以紅色表示，但掃描檔是灰階，無法用顏色確認",
+   "px": [
+    729,
+    328
+   ],
+   "note": "Arras 東北、R. Scarpe 北岸，只有文字沒有符號。px 取文字中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "not_attempted",
+   "unitKeyBasis": "非德軍或師以下，本輪不對名冊",
+   "lonlat": [
+    2.8614,
+    50.3042
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  },
+  {
+   "label": "13 Bde",
+   "echelon": "other",
+   "sideGuess": "british",
+   "sideNote": "標字為英軍旅級寫法「Bde」；圖例說英軍反擊以紅色表示，但掃描檔是灰階，無法用顏色確認",
+   "px": [
+    765,
+    318
+   ],
+   "note": "150 Bde 東北，只有文字沒有符號。px 取文字中心",
+   "timeState": "undated on map",
+   "unitKeyStatus": "not_attempted",
+   "unitKeyBasis": "非德軍或師以下，本輪不對名冊",
+   "lonlat": [
+    2.9286,
+    50.3179
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": true
+  }
+ ],
+ "lines": [],
+ "unresolved": [
+  {
+   "label": "?",
+   "px": [
+    145,
+    164
+   ],
+   "reason": "Montreuil 的日終弧線沒有印部隊番號（已列入 features，label 為 ?）；只能從箭頭看出來自 Hesdin 的「8」"
+  },
+  {
+   "label": "SST",
+   "px": [
+    582,
+    314
+   ],
+   "reason": "圖例未說明 SST 是什麼，陣營與層級都只是依符號樣式猜測（兩處 SST 都已列入 features）"
+  }
+ ]
+}

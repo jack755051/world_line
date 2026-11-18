@@ -1,0 +1,2085 @@
+{
+ "batch": "b3-full-v3-batch013",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦／黨職在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization，R3 類因此以 R6（roleGap 含 regime）留在 positions。三人的元首／首腦任期皆已在名單 5442，不重建。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14／15）：無具名作者者只當 gap 候選。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch013/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "gnd-machado": {
+   "title": "Machado y Morales, Gerardo (GND 13194200X)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org／hbz 提供）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/13194200X.json",
+   "archive_url": null,
+   "catalog_id": "GND 13194200X",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 官方鏡像取得"
+  },
+  "gnd-ahmad": {
+   "title": "Ahmad, Iran, Schah (GND 1267849312)",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org／hbz 提供）",
+   "published_text": "GND 人名權威檔",
+   "url": "https://lobid.org/gnd/1267849312.json",
+   "archive_url": null,
+   "catalog_id": "GND 1267849312",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國國家圖書館人名權威檔（GND），經 lobid.org 官方鏡像取得"
+  },
+  "loc-cuba-2006": {
+   "title": "Cuba (Country Profile, September 2006)",
+   "authors": [],
+   "publisher": "Library of Congress, Federal Research Division",
+   "published_text": "Country Profile: Cuba, September 2006",
+   "url": "https://tile.loc.gov/storage-services/master/frd/copr/Cuba.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國會圖書館聯邦研究部國家簡介（政府官方出版）"
+  },
+  "duke-state-of-ambiguity": {
+   "title": "State of Ambiguity: Civic Life and Culture in Cuba's First Republic",
+   "authors": [
+    "Steven Palmer",
+    "José Antonio Piqueras",
+    "Amparo Sánchez Cobos（編）"
+   ],
+   "publisher": "Duke University Press",
+   "published_text": "Duke University Press, 2014",
+   "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/96/63/2020719663/2020719663.pdf",
+   "archive_url": null,
+   "catalog_id": "LCCN 2013048700",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社論文集（具名編者與各章作者）"
+  },
+  "encyc-qajar-hooglund": {
+   "title": "Qajar Dynasty（Encyclopedia of the Modern Middle East and North Africa）",
+   "authors": [
+    "John Foran",
+    "Eric Hooglund（updated by）"
+   ],
+   "publisher": "Gale／Encyclopedia.com",
+   "published_text": "Encyclopedia of the Modern Middle East and North Africa",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/qajar-dynasty",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（John Foran，Eric Hooglund 更新）之中東百科條目"
+  },
+  "treccani-qagiari": {
+   "title": "QĀGIĀRI（Enciclopedia Italiana, 1935）",
+   "authors": [
+    "Francesco Gabrieli"
+   ],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana, 1935",
+   "url": "https://www.treccani.it/enciclopedia/qagiari_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Treccani《Enciclopedia Italiana》具名條目（Francesco Gabrieli）"
+  },
+  "dhv-marquez": {
+   "title": "Márquez Bustillos, Victorino（Diccionario de Historia de Venezuela）",
+   "authors": [
+    "Nikita Harwich Vallenilla"
+   ],
+   "publisher": "Fundación Empresas Polar",
+   "published_text": "Diccionario de Historia de Venezuela, Fundación Polar, 1997（BiblioFEP）",
+   "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/m/marquez-bustillos-victorino/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術性歷史辭典具名條目（Nikita Harwich Vallenilla）"
+  },
+  "dhv-gomez-gobierno": {
+   "title": "Gómez, Juan Vicente, gobierno de（Diccionario de Historia de Venezuela）",
+   "authors": [
+    "Ramón J. Velásquez"
+   ],
+   "publisher": "Fundación Empresas Polar",
+   "published_text": "Diccionario de Historia de Venezuela, Fundación Polar, 1997（BiblioFEP）",
+   "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/g/gomez-juan-vicente-gobierno-de/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術性歷史辭典具名條目（Ramón J. Velásquez）"
+  },
+  "encyc-wb-machado": {
+   "title": "Gerardo Machado y Morales（Encyclopedia of World Biography）",
+   "authors": [],
+   "publisher": "Gale／Encyclopedia.com",
+   "published_text": "Encyclopedia of World Biography（無署名）",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/gerardo-machado-y-morales",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名百科條目，只可當缺口候選（Q9）"
+  },
+  "treccani-machado": {
+   "title": "MACHADO y MORALES, Gerardo（Enciclopedia Italiana, 1934）",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia Italiana, 1934（無署名）",
+   "url": "https://www.treccani.it/enciclopedia/machado-y-morales-gerardo_(Enciclopedia-Italiana)/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名條目，只可當缺口候選（Q9）"
+  },
+  "treccani-ahmed": {
+   "title": "Àḥmed Shāh（Enciclopedia on line）",
+   "authors": [],
+   "publisher": "Istituto della Enciclopedia Italiana (Treccani)",
+   "published_text": "Enciclopedia on line（無署名）",
+   "url": "http://www.treccani.it/enciclopedia/ahmed-shah",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名條目，只可當缺口候選（Q9）"
+  },
+  "fep-cronologia-1914": {
+   "title": "1914 - Cronología de historia de Venezuela",
+   "authors": [],
+   "publisher": "Fundación Empresas Polar",
+   "published_text": "BiblioFEP 歷史年表（無署名）",
+   "url": "https://bibliofep.fundacionempresaspolar.org/_custom/static/cronologia_hv/zoom/s20/1914-2.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "機構年表無具名作者，只可當缺口候選（Q9）"
+  }
+ },
+ "people": [
+  {
+   "key": "cu-machado-gerardo",
+   "bioId": "01a1b488-13d8-7337-a49a-f44a35ca1e6d",
+   "name": "Gerardo Machado y Morales",
+   "nameZh": "傑拉爾多·馬查多·莫拉萊斯",
+   "recordIds": [
+    "bc8e54e3-8779-4313-b8c8-260fb9a9e5b1",
+    "2db1df1d-b1cd-47c5-aafb-8bede32ec98f"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "軍人、糖廠主與自由黨領袖",
+      "en": "Soldier, sugar-mill owner and Liberal Party leader"
+     },
+     "body": {
+      "zh-Hant": "杜克大學出版社的古巴第一共和國論文集稱馬查多為准將，與兄弟卡洛斯共同擁有卡爾米塔（Carmita）糖廠。同書把他描述為自由黨（Partido Liberal）領袖，並於1925年當選共和國總統；以「水、道路與學校」為口號的競選活動，正是他的總統競選。",
+      "en": "A Duke University Press volume on Cuba's First Republic calls Machado a brigadier general who owned the Carmita sugar mill together with his brother Carlos. It describes him as leader of the Partido Liberal and as elected president of the republic in 1925, and notes that the slogan \"Water, roads, and schools\" anchored his presidential campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第八章（糖廠與殖民者）",
+       "quote": "Brigadier General Gerardo Machado",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第八章（糖廠與殖民者）",
+       "quote": "owner of the Carmita sugar mill together with his brother Carlos",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第九章（扶輪社）人物列舉",
+       "quote": "leader of the Partido Liberal, elected as president of the republic in 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第九章（扶輪社）",
+       "quote": "the presidential campaign of Gerardo Machado",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第九章（扶輪社）",
+       "quote": "“Water, roads, and schools”",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1934-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總統任內與公共工程",
+      "en": "The presidency and public works"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔記他為1925至1933年的古巴總統；美國國會圖書館的國家簡介同樣標示「1925–33」。論文集稱他是中央公路（Carretera Central）與國家議會大廈（Capitolio Nacional）等紀念性建築的推動者。1928年初，在第六屆美洲國家國際會議與美國總統柯立芝訪問之際，他高調落成梅恩號廣場（Plaza del Maine）；該書另指他與公共工程部長塞斯佩德斯是華倫兄弟公司（Warren Brothers）的股東。",
+      "en": "The German National Library authority record lists him as Cuban president 1925–1933, and the Library of Congress country profile likewise gives \"1925–33\". The volume calls him the promoter of the Carretera Central and of the Capitolio Nacional among other monumental buildings. In early 1928, around the sixth International Conference of American States in Havana and President Calvin Coolidge's visit, he ostentatiously inaugurated the Plaza del Maine; the book also says that he and his minister of public works, Céspedes, were shareholders in Warren Brothers."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-machado",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1925-1933 Präsident; Kubanischer Präsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-cuba-2006",
+       "locator": "History 概述",
+       "quote": "the cruel dictatorship of Gerardo Machado y Morales (president, 1925–33)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第七章（歷史城市與紀念建築）",
+       "quote": "Machado (1925–33), the promoter of the Carretera Central",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第七章",
+       "quote": "Capitólio Nacional, among other monumental buildings",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第一章（梅恩號紀念碑）",
+       "quote": "Early in 1928",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第一章",
+       "quote": "sixth international Conference of American States in Havana",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第一章",
+       "quote": "Calvin Coolidge",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第一章",
+       "quote": "Gerardo Machado ostentatiously inaugurated the plaza",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第一章",
+       "quote": "Plaza del Maine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第七章",
+       "quote": "were shareholders in Warren Brothers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第七章",
+       "quote": "Machado and his minister of public works, Carlos Miguel de Céspedes",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1934-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "獨裁化與垮台",
+      "en": "Dictatorship and downfall"
+     },
+     "body": {
+      "zh-Hant": "論文集指出，馬查多離開早期的改革主義後，開始行使獨裁權力。美國國會圖書館的國家簡介稱他的統治為「殘酷的獨裁」，並說在數次小規模軍隊叛變之後，他於1933年8月12日被迫辭職並逃離古巴。論文集談到醫界的反對運動時另指，其在推翻獨裁者一事上的作用於1933至1934年達到高潮。",
+      "en": "The volume says that when Machado moved away from his early reformism he assumed dictatorial powers. The Library of Congress profile calls his rule a cruel dictatorship and says that after several small army revolts he was forced to resign and flee the country on 12 August 1933. Discussing the physicians' opposition, the volume adds that their role in the dictator's overthrow culminated in 1933–34."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第九章（扶輪社）",
+       "quote": "When Machado moved away from his early reformism and assumed dictatorial powers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-cuba-2006",
+       "locator": "History 概述",
+       "quote": "the cruel dictatorship of Gerardo Machado y Morales (president, 1925–33)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-cuba-2006",
+       "locator": "History 概述",
+       "quote": "Following several small army revolts, Machado was forced to",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-cuba-2006",
+       "locator": "History 概述",
+       "quote": "resign and flee the country on August 12, 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第三章（科學與醫界）",
+       "quote": "Ross Danielson has called a “medical insurgency”",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "duke-state-of-ambiguity",
+       "locator": "第三章",
+       "quote": "their role in the dictator’s overthrow culminated in 1933–34",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "role:machado-liberal-party-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Duke University Press 論文集（B）只寫他是自由黨領袖，未載任職起迄；Treccani《Enciclopedia Italiana》（無署名，未評等）寫「militando nel partito liberale」。已查 GND、LoC、Duke、Treccani、Encyclopedia of World Biography；DBE（dbe.rah.es）頁面為 JS 外殼無內容、BNE 為 Cloudflare 封鎖、Britannica 403。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-machado",
+       "locator": "MACHADO y MORALES 條目",
+       "quote": "militando nel partito liberale",
+       "quoteLang": "it"
+      }
+     ]
+    },
+    {
+     "target": "position:machado-secretary-interior",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；A／B 來源未載內政部長任期。無署名的 Encyclopedia of World Biography 寫他在何塞·米格爾·戈麥斯政府（1909-1913）任軍隊總監、後任內政部長（secretary of interior），但為未評等來源，只能當候選；需國家級傳記辭典（如 DBE）或古巴官方名錄確認。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "encyc-wb-machado",
+       "locator": "第 3 段",
+       "quote": "was appointed inspector of the armed forces and later secretary of interior",
+       "quoteLang": "en"
+      },
+      {
+       "sourceKey": "encyc-wb-machado",
+       "locator": "第 3 段",
+       "quote": "during José Miguel Gómez's administration (1909-1913)",
+       "quoteLang": "en"
+      }
+     ]
+    },
+    {
+     "target": "position:machado-mayor-santa-clara",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；A／B 來源未載聖克拉拉市長任期；Encyclopedia of World Biography（無署名，未評等）只寫 He became mayor of Santa Clara，無日期。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "encyc-wb-machado",
+       "locator": "第 3 段",
+       "quote": "He became mayor of Santa Clara",
+       "quoteLang": "en"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Machado y Morales Gerardo",
+     "url": "https://lobid.org/gnd/search?q=Machado+y+Morales+Gerardo&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 13194200X；官職「1925-1933 Präsident」"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 記錄全文 13194200X",
+     "url": "https://lobid.org/gnd/13194200X.json",
+     "result": "found_A",
+     "note": "已存原文"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "DBE（Real Academia de la Historia）Gerardo Machado y Morales",
+     "url": "https://dbe.rah.es/biografias/12583/gerardo-machado-y-morales",
+     "result": "no_result",
+     "note": "回傳 JS 外殼頁，無條目內文（該網址亦為猜測）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "BNE datos Machado y Morales",
+     "url": "https://datos.bne.es/find?s=Machado+y+Morales",
+     "result": "blocked_403",
+     "note": "Cloudflare 封鎖頁（ERROR 1000），放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Gerardo Machado y Morales",
+     "url": "https://www.britannica.com/biography/Gerardo-Machado-y-Morales",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，放棄"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of Latin American History and Culture：Machado y Morales, Gerardo",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/machado-y-morales-gerardo-1871-1939",
+     "result": "unrated",
+     "note": "頁面無署名，只當候選（未用）"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of World Biography：Gerardo Machado y Morales",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/gerardo-machado-y-morales",
+     "result": "unrated",
+     "note": "無署名；市長、內政部長線索只放 gap 候選"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana MACHADO y MORALES, Gerardo（意大利文檢索）",
+     "url": "https://www.treccani.it/enciclopedia/machado-y-morales-gerardo_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "1934 年條目無署名，只當候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Library of Congress Country Profile Cuba 2006",
+     "url": "https://tile.loc.gov/storage-services/master/frd/copr/Cuba.pdf",
+     "result": "found_A",
+     "note": "只有簡短歷史概述，引用 1925–33 與 1933-08-12"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "loc.gov Cuba: A Country Study（item JSON）",
+     "url": "https://www.loc.gov/item/87600506/?fo=json",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，放棄"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "lcweb2.loc.gov／countrystudies.us Cuba 歷史章",
+     "url": "https://countrystudies.us/cuba/6.htm",
+     "result": "blocked_403",
+     "note": "403；lcweb2 路徑 404"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "history.state.gov FRUS 1933 v05 Cuba（comp6）",
+     "url": "https://history.state.gov/historicaldocuments/frus1933v05/comp6",
+     "result": "not_relevant",
+     "note": "只有檔案編目頁，未載生平"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "Duke University Press: State of Ambiguity（LoC 數位書 PDF）",
+     "url": "https://tile.loc.gov/storage-services/master/gdc/gdcebookspublic/20/20/71/96/63/2020719663/2020719663.pdf",
+     "result": "found_B",
+     "note": "全書 39 處提到 Machado；取黨領袖、糖廠、公共工程、獨裁段"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "University of Miami Machado papers 館藏說明",
+     "url": "https://atom.library.miami.edu/machado-y-morales-gerardo-1871-1939",
+     "result": "challenge_page",
+     "note": "回傳需 JS 的轉址頁，放棄"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "WebSearch：Gerardo Machado y Morales biografía presidente de Cuba（西班牙文）",
+     "url": null,
+     "result": "no_result",
+     "note": "只回 wiki／部落格類，未用"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "WebSearch：Gerardo Machado Secretario de Gobernación／José Miguel Gómez（西班牙文）",
+     "url": null,
+     "result": "no_result",
+     "note": "同上，僅得未評等來源"
+    },
+    {
+     "step": 17,
+     "sourceType": "other",
+     "query": "WebSearch：LoC Country Study Machado 1925 Liberal Party",
+     "url": null,
+     "result": "no_result",
+     "note": "回 LoC 2006 簡介與 FRUS 電報，無完整傳記"
+    }
+   ]
+  },
+  {
+   "key": "ve-marquez-bustillos-victorino",
+   "bioId": "65946b65-9aa4-4dea-8ea1-116090e84eea",
+   "name": "Victorino Márquez Bustillos",
+   "nameZh": "維多里諾·馬奎斯·布斯蒂略斯",
+   "recordIds": [
+    "22e3e369-8236-4ee1-8fc0-9fa08bc24ada",
+    "3990200a-4f96-4b40-a092-d6f965e48b72"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1877-01-01",
+      "end": "1910-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "律師與地方政壇",
+      "en": "Lawyer and regional politician"
+     },
+     "body": {
+      "zh-Hant": "馬克斯·布斯蒂略斯是律師與政治人物，辭典記他生於瓜納雷（Guanare），1858年。他在1877至1887年主持報紙《特魯希略人》（El Trujillano），1890年當選大州「安地斯」的議員；1892年任該聯邦實體的臨時主席，1893年獲克雷斯波晉升為准將。其後他於1902至1904年任特魯希略州政務秘書，1904至1906年任該州議會議員，1909年任蘇利亞州政務秘書。",
+      "en": "The dictionary calls him a lawyer and politician and gives his birthplace as Guanare, 1858. He directed the newspaper El Trujillano from 1877 to 1887 and was a deputy for the great state of Los Andes in 1890; in 1892 he was provisional president of that federal entity and in 1893 Joaquín Crespo promoted him to brigadier general. He was government secretary of Trujillo state in 1902–1904, deputy in the state assembly in 1904–1906, and government secretary of Zulia state in 1909."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目標題行",
+       "quote": "Guanare (Edo. Portuguesa) 1858",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目首句",
+       "quote": "Abogado y político.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Director del periódico El Trujillano (1877-1887)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "diputado por el gran estado los Andes (1890)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "presidente provisional de esa entidad federal en 1892",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Ascendido a general de brigada por Joaquín Crespo (1893)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "secretario de Gobierno del estado Trujillo (1902-1904)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "diputado del distrito Trujillo a la Asamblea del estado (1904-1906)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "secretario de Gobierno del estado Zulia (1909)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1910-01-01",
+      "end": "1915-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "參議員、部長與臨時總統",
+      "en": "Senator, minister and provisional president"
+     },
+     "body": {
+      "zh-Hant": "1910年他任特魯希略州臨時主席，並於1910至1914年任該州參議員；1911至1912年任聯邦區（Distrito Federal）省長，1913至1914年任陸海軍部長。1914年4月，國會選出戈麥斯為共和國總統，但戈麥斯決定不就任，仍留在馬拉凱擔任軍隊總司令；已被任命為臨時總統的馬克斯·布斯蒂略斯，則藉通過臨時憲法規約而留任。",
+      "en": "In 1910 he was provisional president of Trujillo state and from 1910 to 1914 senator for Trujillo; he was governor of the Federal District in 1911–1912 and Minister of War and Navy in 1913–1914. In April 1914 Congress elected Juan Vicente Gómez president, but Gómez decided not to take office and stayed in Maracay as army commander-in-chief; Márquez Bustillos, who had been named provisional president, was kept in office through approval of a provisional constitutional statute."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Presidente provisional del estado Trujillo en 1910",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Senador por el estado Trujillo (1910-1914)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "gobernador del Distrito Federal (1911-1912)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "es ministro de Guerra y Marina (1913-1914)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "En abril de 1914, Juan Vicente Gómez es elegido por el Congreso",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "decide no asumir la Presidencia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "permanece en Maracay como comandante en jefe del Ejército",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "había sido nombrado presidente provisional de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "es mantenido en el cargo mediante la aprobación de un Estatuto",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "臨時總統任內",
+      "en": "Years as provisional president"
+     },
+     "body": {
+      "zh-Hant": "辭典稱當時委內瑞拉有兩位總統：臨時總統馬克斯·布斯蒂略斯與當選總統戈麥斯；他向戈麥斯詳報行政細節，並把決定交由這位首領批准。另一條目稱他七年間擔任實質上的「首相」，每週在加拉加斯召集並主持內閣會議。1920年6月30日他批准公布碳氫化合物法，同年國會咨文中他宣布依戈麥斯指示頒令設立軍事航空學校。1921年底戈麥斯患病期間的陰謀導致其垮台；1922年6月國會通過第三次修憲。",
+      "en": "The dictionary says Venezuela effectively had two presidents, the provisional president Márquez Bustillos and the president-elect Gómez; he reported every administrative detail to Gómez and deferred decisions to his approval. Another entry says that for seven years he served as the true \"prime minister\", convening and chairing weekly cabinet meetings in Caracas. On 30 June 1920 he signed the Hydrocarbons Law, and in his 1920 message to Congress he announced a decree, issued on Gómez's instruction, creating the Military Aviation School. Intrigues during Gómez's illness at the end of 1921 brought about his fall; in June 1922 Congress passed a third constitutional reform."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Venezuela tiene 2 presidentes",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Márquez Bustillos informa escrupulosamente a Gómez de todos los detalles",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "subroga cualquier decisión a la aprobación del jefe",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "第一節（政府組織）",
+       "quote": "desempeñó durante 7 años las funciones de verdadero «primer ministro»",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "第一節",
+       "quote": "convocaba y presidía semanalmente en Caracas reuniones de gabinete",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "石油一節",
+       "quote": "El 30 de junio, el presidente provisional Márquez Bustillos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "石油一節",
+       "quote": "puso el ejecútese a la Ley sobre Hidrocarburos y Demás Minerales Combustibles",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "立法一節",
+       "quote": "En su Mensaje al Congreso, en sus sesiones de 1920",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "立法一節",
+       "quote": "dictó un decreto por el cual se crea la Escuela de Aviación Militar",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "a fines de 1921, provocan su caída",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-gomez-gobierno",
+       "locator": "第一節",
+       "quote": "En junio de 1922, el Congreso Nacional aprueba una tercera reforma",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "晚年與著作",
+      "en": "Later years and writings"
+     },
+     "body": {
+      "zh-Hant": "1924年他被提名為駐教廷的外交代表，卻因個人問題未能遞交國書。1935年他任總統洛佩斯·孔特雷拉斯的首席秘書，數月後在反戈麥斯風潮下被迫辭職。他著有研究解放革命的《兩場戰役》（Dos campañas），並於1918年成為政治科學院院士；辭典記他卒於加拉加斯，日期為1941年1月10日。",
+      "en": "In 1924 he was proposed as diplomatic representative to the Holy See, but personal problems kept him from presenting credentials. In 1935 he was first secretary to President Eleazar López Contreras, and the anti-Gómez reaction forced him to resign within a few months. He wrote Dos campañas, a study of the Liberating Revolution, and became a member of the Academy of Political Sciences in 1918; the dictionary gives his death in Caracas on 10 January 1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Propuesto como representante diplomático ante la Santa Sede en 1924",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Primer secretario del presidente Eleazar López Contreras en 1935",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "la reacción antigomecista lo obliga a renunciar a los pocos meses",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "estudio sobre la Revolución Libertadora",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Miembro de la Academia de Ciencias Políticas (1918)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目標題行",
+       "quote": "Caracas 10.1.1941",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "marquez-gov-secretary-trujillo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "特魯希略州政府（委內瑞拉）",
+      "en": "Government of Trujillo State (Venezuela)"
+     },
+     "title": {
+      "orig": "secretario de Gobierno del estado Trujillo",
+      "zh-Hant": "特魯希略州政務秘書",
+      "en": "Government Secretary of Trujillo State"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1902-01-01",
+      "end": "1905-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "secretario de Gobierno del estado Trujillo (1902-1904)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-assembly-trujillo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "特魯希略州議會（委內瑞拉）",
+      "en": "Trujillo State Assembly (Venezuela)"
+     },
+     "title": {
+      "orig": "diputado del distrito Trujillo a la Asamblea del estado",
+      "zh-Hant": "特魯希略區州議會議員",
+      "en": "Deputy for Trujillo District in the State Assembly"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1904-01-01",
+      "end": "1907-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "diputado del distrito Trujillo a la Asamblea del estado (1904-1906)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-gov-secretary-zulia",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇利亞州政府（委內瑞拉）",
+      "en": "Government of Zulia State (Venezuela)"
+     },
+     "title": {
+      "orig": "secretario de Gobierno del estado Zulia",
+      "zh-Hant": "蘇利亞州政務秘書",
+      "en": "Government Secretary of Zulia State"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1909-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "secretario de Gobierno del estado Zulia (1909)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-state-pres-trujillo-1910",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "特魯希略州政府（委內瑞拉）",
+      "en": "Government of Trujillo State (Venezuela)"
+     },
+     "title": {
+      "orig": "Presidente provisional del estado Trujillo",
+      "zh-Hant": "特魯希略州臨時主席",
+      "en": "Provisional President of Trujillo State"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Presidente provisional del estado Trujillo en 1910",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-senator-trujillo",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "委內瑞拉國會（參議院）",
+      "en": "Congress of Venezuela (Senate)"
+     },
+     "title": {
+      "orig": "Senador por el estado Trujillo",
+      "zh-Hant": "特魯希略州參議員",
+      "en": "Senator for Trujillo State"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Senador por el estado Trujillo (1910-1914)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-gov-federal-district",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "委內瑞拉聯邦區",
+      "en": "Federal District of Venezuela"
+     },
+     "title": {
+      "orig": "gobernador del Distrito Federal",
+      "zh-Hant": "聯邦區省長",
+      "en": "Governor of the Federal District"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1911-01-01",
+      "end": "1913-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "gobernador del Distrito Federal (1911-1912)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "marquez-war-navy-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "委內瑞拉政府",
+      "en": "Government of Venezuela"
+     },
+     "title": {
+      "orig": "ministro de Guerra y Marina",
+      "zh-Hant": "陸海軍部長",
+      "en": "Minister of War and Navy"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-01-01",
+      "end": "1915-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "es ministro de Guerra y Marina (1913-1914)",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R3（戰爭部正職），但 DHV 只給年份（1913–1914），依年精度可證明任期僅約 1 天，無法證明 ≥90 天；且 regimeId 因不連庫未能確認，故歸 R6，roleGap=dates+regime",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "marquez-first-secretary-lopez",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "委內瑞拉總統府",
+      "en": "Presidency of Venezuela"
+     },
+     "title": {
+      "orig": "Primer secretario del presidente Eleazar López Contreras",
+      "zh-Hant": "總統洛佩斯·孔特雷拉斯首席秘書",
+      "en": "First Secretary to President Eleazar López Contreras"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1935-01-01",
+      "end": "1936-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "dhv-marquez",
+       "locator": "條目正文",
+       "quote": "Primer secretario del presidente Eleazar López Contreras en 1935",
+       "quoteLang": "es",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:provisional_presidency_end",
+     "gapKind": "not_found",
+     "note": "待查證：兩份 A／B 來源（DHV 兩條）未明寫臨時總統的確切迄日（只寫「1922年6月」國會修憲與「1921年底戈麥斯患病」）；無署名的 Fundación Polar 年表寫 24 de junio de 1922，屬未評等只可當候選。元首任期已在名單 5442，不在此建候選。已查：DBE（JS 外殼）、GND（無此人）、Britannica 未查、biblat／ANH（只列入內閣名單）。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "fep-cronologia-1914",
+       "locator": "1914 年條目",
+       "quote": "Márquez Bustillos gobernará como tal hasta el 24 de junio de 1922",
+       "quoteLang": "es"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Márquez Bustillos Victorino",
+     "url": "https://lobid.org/gnd/search?q=M%C3%A1rquez+Bustillos+Victorino&format=json&size=5",
+     "result": "no_result",
+     "note": "totalItems 0"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "DBE（Real Academia de la Historia）Victorino Márquez Bustillos",
+     "url": "https://dbe.rah.es/biografias?search=Victorino+M%C3%A1rquez+Bustillos",
+     "result": "no_result",
+     "note": "JS 外殼頁，無內文"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "WebSearch：Victorino Márquez Bustillos presidente provisional Venezuela 1914 1922 biografía",
+     "url": null,
+     "result": "no_result",
+     "note": "回傳 wiki 與 biografiasyvidas（無署名，未用）"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "WebSearch：Márquez Bustillos Fundación Polar Diccionario de Historia de Venezuela",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 BiblioFEP 線索"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "WebSearch：Victorino Márquez Bustillos Gómez presidente provisional Academia Nacional de la Historia",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 DHV 條目與年表網址"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Diccionario de Historia de Venezuela：Márquez Bustillos, Victorino",
+     "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/m/marquez-bustillos-victorino/",
+     "result": "found_B",
+     "note": "署名 Nikita Harwich Vallenilla；已存原文"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "Diccionario de Historia de Venezuela：Gómez, Juan Vicente, gobierno de",
+     "url": "https://bibliofep.fundacionempresaspolar.org/dhv/entradas/g/gomez-juan-vicente-gobierno-de/",
+     "result": "found_B",
+     "note": "署名 Ramón J. Velásquez；已存原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Boletín de la Academia Nacional de la Historia vol.66 no.264（López Contreras 傳）",
+     "url": "https://biblat.unam.mx/hevila/BoletindelaAcademiaNacionaldelaHistoriaCaracas/1983/vol66/no264/10.pdf",
+     "result": "not_relevant",
+     "note": "只列入內閣與總統府秘書名單，不含生平，未用"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "BiblioFEP 歷史年表 1914",
+     "url": "https://bibliofep.fundacionempresaspolar.org/_custom/static/cronologia_hv/zoom/s20/1914-2.html",
+     "result": "unrated",
+     "note": "機構年表無署名，只當 gap 候選"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "BiblioFEP 歷史年表 1922",
+     "url": "https://bibliofep.fundacionempresaspolar.org/_custom/static/cronologia_hv/zoom/s20/1922-3.html",
+     "result": "unrated",
+     "note": "同上"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "ANH Venezuela PDF（ANH N°429-430）",
+     "url": "https://www.anhvenezuela.org.ve/wp-content/uploads/2026/01/ANH-N°-429-y-430-1.pdf",
+     "result": "no_result",
+     "note": "curl 回 404"
+    }
+   ]
+  },
+  {
+   "key": "ir-ahmad-shah-qajar",
+   "bioId": "01a1b4b2-2f9b-7ff4-bedb-510eaef26a75",
+   "name": "Aḥmad Shāh Qājār",
+   "nameZh": "艾哈邁德沙·卡扎爾",
+   "recordIds": [
+    "01a1aa4a-7e35-7687-bce3-4280a59a02a3"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1910-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "登基與攝政",
+      "en": "Accession and regency"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館權威檔稱艾哈邁德沙為卡扎爾王朝第七位也是最後一位統治者，生卒為1897至1930年，在位期間自1909年7月16日至1925年10月31日。義大利百科列其在位為1909至1925年，其父穆罕默德·阿里沙在位為1906至1909年。1909年7月，立憲派軍隊進入德黑蘭，推翻穆罕默德·阿里沙；其十一歲的兒子艾哈邁德被擁立，在攝政之下統治，並受重組後的第二屆議會（Majles）監督。",
+      "en": "The German National Library authority record calls Ahmad Shah the seventh and last ruler of the Qajars, dates him 1897–1930, and gives his reign as 16 July 1909 to 31 October 1925. The Italian encyclopedia lists his reign as 1909–1925 and that of his father Muhammad Ali Shah as 1906–1909. In July 1909 two pro-constitutional armies converged on Tehran and deposed Mohammad Ali Shah; his eleven-year-old son was crowned and ruled under a regent and under the watchful eye of the reconstituted Second Majles."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-ahmad",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Der siebte und letzte Herrscher von Kadscharen (1897-1930)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-ahmad",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "regierte vom 16. Juli 1909 bis zum 31. Oktober 1925",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-qagiari",
+       "locator": "QĀGIĀRI 條目首段",
+       "quote": "Aḥmad Shāh, 1909-1925",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-qagiari",
+       "locator": "QĀGIĀRI 條目首段",
+       "quote": "Muḥammad ‛Alī Shāh, 1906-1909",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 5 段",
+       "quote": "in July 1909, two proconstitution armies converged on Tehran",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 5 段",
+       "quote": "and deposed Mohammad Ali Shah",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 5 段",
+       "quote": "His eleven-year-old son, Ahmad Shah Qajar, was crowned and ruled under a regent",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 5 段",
+       "quote": "the watchful eye of the reconstituted Second Majles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "傀儡君主與禮薩汗崛起",
+      "en": "A figurehead monarch and the rise of Reza Khan"
+     },
+     "body": {
+      "zh-Hant": "條目稱艾哈邁德沙名下的中央政府是「傀儡」，在第一次世界大戰期間眼睜睜看著俄英軍隊與土耳其軍在伊朗交戰。1921年2月的政變使哥薩克旅指揮官禮薩汗掌權；至1923年10月，他已出任首相。其後艾哈邁德沙赴歐洲作無限期旅行，實際上再未返回伊朗；義大利百科亦記其自1923年起已在歐洲。",
+      "en": "The entry describes the central government under the figurehead Ahmad Shah as looking on helplessly during the First World War while Russian and British troops fought Turkish forces in Iran. A coup in February 1921 brought to power Reza Khan, commander of the Cossack Brigade, and by October 1923 he had become prime minister. Ahmad Shah then left Iran for Europe on a trip of indefinite duration and in fact never returned; the Italian encyclopedia likewise says he had been in Europe since 1923."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "The central government under the figurehead Ahmad Shah looked on helplessly",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "Russian and British troops fought against Turkish forces in Iran",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "A coup d' é tat in February 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "brought to power Reza Khan, commander of the Cossack Brigade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "by October 1923 he had become prime minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "Ahmad Shah left Iran for Europe on a trip of indefinite duration",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "he never would return",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-qagiari",
+       "locator": "QĀGIĀRI 條目",
+       "quote": "il cui ultimo rappresentante del resto sin dal 1923 era passato in Europa",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1925-01-01",
+      "end": "1926-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "遭廢黜與王朝終結",
+      "en": "Deposition and the end of the dynasty"
+     },
+     "body": {
+      "zh-Hant": "條目稱禮薩汗憑軍隊與第五屆議會多數黨的支持，促成1925年10月31日廢黜艾哈邁德沙；兩個月後議會把王權授予禮薩汗，這次「合法」的王權轉移正式結束卡扎爾王朝的統治。義大利百科的卡扎爾條目同樣記載，議會於1925年10月31日表決廢黜該王朝；德國國家圖書館權威檔則記他的在位至同日止。",
+      "en": "The entry says Reza Khan used his power base in the army and among the majority parties in the Fifth Majles to bring about the deposition of Ahmad Shah on 31 October 1925; two months later the Majles vested the monarchy in Reza Khan, and this \"legal\" transfer formally ended Qajar rule. The Italian encyclopedia's Qajar entry likewise records that parliament voted the dynasty's deposition on 31 October 1925, and the German National Library record ends his reign on the same day."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "Reza Khan used his power base in the army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "among the majority parties in the Fifth Majles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "the deposition of Ahmad Shah on 31 October 1925",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "Two months later the Majles vested the monarchy in Reza Khan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "\"legal\" transfer of royal authority",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "encyc-qajar-hooglund",
+       "locator": "Qajar Dynasty 第 6 段",
+       "quote": "formally ended the rule of the Qajar dynasty",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "treccani-qagiari",
+       "locator": "QĀGIĀRI 條目",
+       "quote": "che il 31 ottobre 1925 fece votare dal parlamento la deposizione dei Qāgiāri",
+       "quoteLang": "it",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-ahmad",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "regierte vom 16. Juli 1909 bis zum 31. Oktober 1925",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:birth_date",
+     "gapKind": "not_found",
+     "note": "待查證：GND（A）只給出生年 1897；無署名的 Treccani 線上條目寫 n. 1898，屬未評等，只可當候選，A／B 來源間無明確生日。已查：Encyclopaedia Iranica（Cloudflare 挑戰頁，不繞過）、Britannica（403 挑戰頁）、Deutsche Biographie 檢索（無相關結果）、波斯文檢索（僅新聞／部落格）。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "treccani-ahmed",
+       "locator": "Àḥmed Shāh 條目",
+       "quote": "Ultimo sovrano di Persia della dinastia dei Qāgiār (n. 1898 - m. Neuilly 1930)",
+       "quoteLang": "it"
+      }
+     ]
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Ahmad Shah Qajar",
+     "url": "https://lobid.org/gnd/search?q=Ahmad+Shah+Qajar&format=json&size=5",
+     "result": "found_A",
+     "note": "GND 1267849312；原文姓名 احمد, شاه"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "lobid GND 記錄全文 1267849312",
+     "url": "https://lobid.org/gnd/1267849312.json",
+     "result": "found_A",
+     "note": "官職摘要：regierte vom 16. Juli 1909 bis zum 31. Oktober 1925"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Encyclopaedia Iranica AḤMAD SHAH QAJAR",
+     "url": "https://iranicaonline.org/articles/ahmad-shah-qajar",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁（Just a moment），不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Encyclopaedia Iranica（完整條目網址）",
+     "url": "https://iranicaonline.org/articles/ahmad-shah-qajar-1909-1925-the-seventh-and-last-ruler-of-the-qajar-dynasty",
+     "result": "challenge_page",
+     "note": "同上，放棄"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 檢索 Ahmad Shah Qajar",
+     "url": "https://www.deutsche-biographie.de/search?name=Ahmad+Shah+Qajar",
+     "result": "no_result",
+     "note": "無相關條目"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ahmad Shah",
+     "url": "https://www.britannica.com/biography/Ahmad-Shah",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia of the Modern Middle East and North Africa：Qajar Dynasty",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/qajar-dynasty",
+     "result": "found_B",
+     "note": "Eric Hooglund 更新之具名條目；已存原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia Italiana QĀGIĀRI（Francesco Gabrieli）",
+     "url": "https://www.treccani.it/enciclopedia/qagiari_(Enciclopedia-Italiana)/",
+     "result": "found_B",
+     "note": "具名條目；已存原文"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Àḥmed Shāh（Enciclopedia on line）",
+     "url": "http://www.treccani.it/enciclopedia/ahmed-shah",
+     "result": "unrated",
+     "note": "無署名，只當 gap 候選"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Persia（Enciclopedia Italiana 1935，Storia 段）",
+     "url": "https://www.treccani.it/enciclopedia/persia_(Enciclopedia-Italiana)/",
+     "result": "unrated",
+     "note": "多人合署且 Storia 段未標明作者，未用於事實"
+    },
+    {
+     "step": 11,
+     "sourceType": "other",
+     "query": "WebSearch：Ahmad Shah Qajar biography 1909 1925 Encyclopaedia Iranica regent",
+     "url": null,
+     "result": "no_result",
+     "note": "Iranica 被擋；其餘為 wiki 類"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "WebSearch：Aḥmad Shah Qajar Treccani Enciclopedia",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 Treccani 條目網址"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "WebSearch（波斯文）：احمدشاه قاجار زندگینامه ۱۲۸۸ ۱۳۰۴ پادشاه",
+     "url": null,
+     "result": "no_result",
+     "note": "僅新聞／部落格／wiki 類，無 A／B 來源"
+    }
+   ]
+  }
+ ]
+}

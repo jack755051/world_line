@@ -1,0 +1,111 @@
+{
+ "batch": "03",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 0,
+  "editedSentences": 9,
+  "spotRefetched": 6
+ },
+ "countsNote": "另有（schema 無欄位）：新增 31 筆支撐引文（皆逐字取自研究當天已抓原文、且在審查重抓頁面中逐字比對到，只用來撐住原有句子，未增加新事實）；改寫 5 筆引文的 quote（擴成含日期／主語的同一原句片段）；修正 10 筆 citation 的 datePrecision；1 段 period 終點修正；1 筆 gap 由 conflict 改 not_found；2 個來源 gradeBasis 定稿；1 個來源 url 改為轉址後的正式網址。",
+ "people": [
+  {
+   "key": "it-vittorio-emanuele-iii",
+   "bioId": "2e92f31f-cda7-4be2-bdb3-953fac108b0d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "gaps": 1,
+   "changes": [
+    "重抓 treccani-ve3（DBI 條目，200），全部引文逐字比對到。",
+    "段1：「很早投身軍旅」原文無據，改為「二十歲起從軍、升遷迅速」，引文擴為「A venti anni iniziò una rapida carriera militare (nel 1890 era già colonnello)」；補引文支撐「黑山的埃萊娜」（La scelta cadde su Elena del Montenegro）與「在希臘乘遊艇」（erano in crociera in Grecia a bordo del loro yacht Yela）。",
+    "段2：period 終點 1922-01-01 → 1918-01-01（正文最後事件為 1917 年卡波雷托；原值涵蓋無內容的 1918–1921）；「常赴前線」引文擴為「Si recava di frequente al fronte (da qui il soprannome di ‘re soldato’)」。",
+    "段3：正文的「1922年10月」「1925年12月至1926年1月」「1938年3月」「授予領袖與國王」原引文皆未含，補 5 筆原句片段引文；原「leggi fascistissime」「primo maresciallo」兩筆 datePrecision month → null（引文本身無日期）。",
+    "段4：「5月簽署鋼鐵盟約」改「5月底」（原文 A fine maggio）並補引文；格蘭迪議案引文擴為含「Il 25 luglio」；補「(9 luglio 1943)」引文錨定年份；3 settembre 一筆 datePrecision null → day；「南行避往南方」改「南下避難」。",
+    "段5：「王國副王」譯法不準，改「特殊的『王國中將』（luogotenente del Regno）」，標題「luogotenenza、退位與流亡」改「交權、退位與流亡」；補引文支撐交權職位與「僅保留名義國王」；退位引文擴為含「(a ridosso del referendum istituzionale)」以支撐「制度公投前夕」。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "kr-sunjong",
+   "bioId": "01a1b520-ef3c-70f4-887f-70bf97bd141e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "重抓 aks-sunjong（한국민족문화대백과사전，200），全部引文逐字比對到。",
+    "段2：「使日本統監得以干預國政」原引文止於「강제 체결하여」，補引文「국정 전반을 일본인 통감이 간섭할 수 있게 하였다」。",
+    "段3：「'창덕궁(昌德宮) 이왕(李王)'으로 불렸고」datePrecision day → null（引文無日期）。",
+    "gap field:birthDate：conflict → not_found。AKS 只給 1874 年 2 月；研究者稱與 5442 現存 1874-01-01 矛盾，但該值若為 gap-830 慣例的年精度寫法即不矛盾，且本審查不連庫無法確認，故不記為來源矛盾，改記日不詳；note 已改寫說明。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "eg-ali-maher",
+   "bioId": "01a1c42c-5fe2-7e73-bd0c-9fe30979161a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 1,
+   "gaps": 3,
+   "changes": [
+    "重抓 treccani-maher（EI II Appendice，200），全部引文逐字比對到。",
+    "段1：「義大利參戰後主張絕對中立、與英國利益及部分埃及輿論衝突」整句原本沒有任何引文，補 3 筆原句片段引文（Dopo l'intervento italiano in guerra／un atteggiamento di assoluta neutralità in contrasto con gl'interessi britannici／e con parte dell'opinione pubblica egiziana）。",
+    "來源 gradeBasis 定稿：具名作者的國家級百科機構條目 → B（維持）。",
+    "職位 maher-royal-cabinet-chief（other、regimeId=null＋organization、期間空＋gap）合規，未改。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pt-ginestal-machado",
+   "bioId": "01a1c411-2492-7689-8723-43b64bb523c0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 5,
+   "gaps": 1,
+   "changes": [
+    "重抓 bnp-ginestal（BNP 官方頁，200；轉址到 www. 子網域，內容相同），全部引文逐字比對到。",
+    "段1：首句「教師、政論作者與共和派政治家」原無引文，補「Professor, publicista, político e estadista republicano」；「從事教職」補「dedicou-se à docência」。",
+    "職位 ginestal-cp-commissioner：原引文不含年份卻標 year，改 null，另補引文「Caminhos-de-Ferro Portugueses (1911-1940)」（year）。",
+    "regimeId 01a18e71-ccc4-76ef-a4ef-157823b5a1ca 經 repo 內 data/seed/capitals/send_capitals.py 對到 slug portuguese-republic；教育部長（1921）、桑塔雷姆議員（1921–1926→終點 1927-01-01）落在 1908–1945，Q5 合規。其餘 3 職位 regimeId=null＋organization，Q3 終點寫法正確。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "us-fdr",
+   "bioId": "01a1b48b-c87a-768a-b372-2918df397b6c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "gaps": 3,
+   "changes": [
+    "重抓 miller-fdr（node/311 轉址到 /president/fdroosevelt/life-in-brief，200）與 treccani-fdr（200），全部引文逐字比對到；sources.url 改為轉址後正式網址。",
+    "段2：「雙腿癱瘓」「投入大量資產」「1932年大蕭條加劇、民主黨推他挑戰胡佛」原無引文支撐，補 6 筆引文，「投入大量資產」依原文改「1920年代把相當部分家產投入整修療養地」；polio 引文 datePrecision year → null。",
+    "段2→段3：就職演說句（1933 年 3 月）落在段2 period [1921,1933) 之外，移到段3 開頭，並補引文「In his inaugural address, Roosevelt gave hope to dispirited Americans」。",
+    "段3：「爐邊談話…安撫公眾」引文改為含「fireside chats」並補「calmed a worried public」；「1935年新政轉向更自由主義方向」補引文；「智囊團」原無引文，補 2 筆 treccani-fdr 引文；「再獲連任」改「三度連任」（原文 riconfermato … tre volte）；Wagner Act 引文 datePrecision year → null。",
+    "段3、段4：relatedRecordIds 填本人兩筆 5442 任期（段3 起日 1933-03-04 即依該任期，引文未給到日）。",
+    "段4：援英「1940至1941年」補引文；「向國會發表、遠早於參戰」補引文；援英、腦出血兩筆 datePrecision → null。",
+    "regimeId 01a191b4-36ac-792e-9113-9a46cc51fc9b 經 repo 內 seed（capital-records 美國）確認為美國政權；海軍助理部長 1913 起，Q5 合規。州參議員、州長 regimeId=null＋organization，期間空＋gap，合規。"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "最普遍的問題：研究者常只引日期或句尾片段，沒引到支撐該句主幹的原文（例：Maher 中立句、FDR 1935 新政轉向、智囊團、Ginestal 首句都完全沒有引文），verify.py 只查引文是否存在，查不出「句子無據」。本批以原文既有句子補 31 筆引文修補，未新增事實；建議下批研究提示要求「每個事實句列出對應 quote」。",
+  "datePrecision 標錯：引文本身不含日期卻標 day／month／year（10 筆），研究者把段落日期精度套到每筆引文上。",
+  "段落 period 與正文不一致：VE3 段2 終點延伸到無內容的年份；FDR 段2 收了落在 period 外的就職演說。",
+  "gap 類型誤用：在未核對 5442 值精度的情況下把「月精度 vs 現存 YYYY-01-01」記為 conflict；conflict 應保留給 A／B 來源互相矛盾。",
+  "來源皆為 A／B，未見 Wikipedia／Wikidata／百度、防機器人繞過或未評等來源；Infopédia 403 已如實記入 gap 未繞過。Q4（無元首／首腦職位）、Q5、Q2 字數皆合規。",
+  "Treccani Enciclopedia Italiana（1948／1949 II Appendice）條目屬戰後初期觀點，作 B 級可接受，但正文已以「義大利百科條目指出」標示來源視角，建議保留。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

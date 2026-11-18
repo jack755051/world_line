@@ -1,0 +1,100 @@
+{
+  "batch": "090",
+  "reviewedOn": "2026-11-15",
+  "reviewer": "opus",
+  "researcher": "sonnet",
+  "promptVersion": "full-v3",
+  "counts": {
+    "returned": 0,
+    "toUnverified": 0,
+    "deletedParagraphs": 0,
+    "deletedPositions": 0,
+    "deletedRoleCandidates": 0,
+    "movedToRoleCandidates": 0,
+    "movedToPositions": 1,
+    "deletedCitations": 0,
+    "addedCitations": 10,
+    "editedSentences": 4,
+    "spotRefetched": 4,
+    "searchLogShort": 0
+  },
+  "people": [
+    {
+      "key": "jp-hara-takashi",
+      "bioId": "284606dc-b6ec-4452-9b51-eda326d3a2d8",
+      "verdict": "pass",
+      "paragraphs": 4,
+      "positions": 1,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 8,
+      "changes": [],
+      "returnedReasons": [],
+      "notes": [
+        "重抓 ndl.go.jp/portrait/datas/172 比對一致；全部引文逐字在原文",
+        "議員與政友會總裁迄日以 1921 遇刺推得，evidenceNote 已標推論，保留"
+      ]
+    },
+    {
+      "key": "lt-galvanauskas",
+      "bioId": "01a1b512-8aca-7ca4-b51d-d281356450cf",
+      "verdict": "pass_with_changes",
+      "paragraphs": 10,
+      "positions": 7,
+      "roleCandidates": 0,
+      "gaps": 2,
+      "searchLogSteps": 13,
+      "changes": [
+        "段2：補引文「Už aktyvią revoliucinę veiklą prieš Rusijos carą」支撐「因革命活動」子句",
+        "段3：原「一戰結束後在巴黎參與為獨立立陶宛爭取承認」無引文支撐，改寫為「在巴黎迎來大戰結束，此後投入政治活動，開始關注獨立立陶宛的事務」並補 3 筆引文；資訊局引文擴為含「E. Galvanausko siūlymu」以支撐「依其提議」；period 迄點依段內最後事件（1919-02）改 1919-03-01",
+        "段4：補引文「einąs susisiekimo ministro pareigas (1920 06 19–1922 01 18)」支撐 1920 年份（原 06 19 引文無年份）",
+        "段5：補引文「skelbė, kad Lietuva atgavo Klaipėdos kraštą」支撐「宣告收回」子句",
+        "段6：刪除原文未寫的「考納斯」；補引文「E. Galvanausko siūlymu politiniu sukilimo vadovu」支撐「依其提議」",
+        "段8：補引文「iš šios tarnybos pasitraukė ir ilgam įsikūrė Klaipėdoje」支撐離職與長期定居克萊佩達",
+        "段9：刪除無引文的「此後流亡」子句（中英同步）；1963 引文擴為含「ir praleido savo likusį gyvenimą」支撐「度過餘生」",
+        "新增 positions galv-finance-minister-1919（財政、商業與工業部長 1919-10-07～1922-01-19，R6，roleGap source/regime）：段4已寫且原文有起訖，屬四部正職卻漏建；只用已抓 bitautas-galv 原文 2 筆引文"
+      ],
+      "returnedReasons": [],
+      "notes": [
+        "重抓 s.vle.lt PDF 與原檔逐位元相同；作者署名 Algis Bitautas, Mindaugas Tamošaitis 在條目末尾、lituanistika 書目頁確認 LEU 2016 出版，B 合理",
+        "GND（lobid）搜尋結果含同姓三筆，引文取自 1063751500 Ernestas 筆，正確",
+        "出生日 GND 1882-11-20 vs Bitautas 1882-11-07 兩合格來源 conflict，保留",
+        "check_min 原報告過期（09:24），重跑後 10 段／884 字達標"
+      ]
+    },
+    {
+      "key": "cs-malypetr",
+      "bioId": "01a1b512-8ad6-7f57-b059-b2d742bf40e8",
+      "verdict": "pass_with_changes",
+      "paragraphs": 5,
+      "positions": 6,
+      "roleCandidates": 1,
+      "gaps": 3,
+      "searchLogSteps": 10,
+      "changes": [
+        "roleCandidates malypetr-agrarian-leading-figure 移回 positions：來源只寫「jeden z vůdčích představitelů agrární strany」（農業黨主要代表人物之一），是描述不是具名黨職；positionKind=other、partyPostAmbiguous=true＋理由、t14Rule R5",
+        "段4、段5 三筆 quote 無日期卻填 datePrecision=year（Q8），改 null",
+        "段3、段4 period 迄點依段內最後事件（議員、議長至 1939）改 1940-01-01（year）",
+        "gap 農業黨執行委員會委員 target 由 position: 改 role:（屬黨職，R1），note 加註 1899 斯拉尼地區黨幹部同樣只有起年；未補建角色（缺迄日，不新增事實）"
+      ],
+      "returnedReasons": [],
+      "notes": [
+        "重抓 vlada.gov.cz 人物頁與 Švehla I 名單頁比對一致",
+        "內政部長 R3 候選：四部正職、日精度約 3 年、1 筆 A（政府官網名單）＋官網傳記，門檻成立"
+      ]
+    }
+  ],
+  "issues": [
+    "段落子句（提議者、宣告內容、定居、度過餘生）常只由部分引文支撐，審查自同一已抓原文補引文",
+    "研究者寫入原文沒有的地名（考納斯）與無出處概括（此後流亡），已刪",
+    "段落已寫的四部閣員任期漏建 positions（加爾瓦瑙斯卡斯 1919–1922 財政部長），審查以既有原文補建 R6",
+    "描述性說法（主要代表人物之一）被當成黨職放入角色層，已移回並標 partyPostAmbiguous",
+    "quote 無日期卻填 datePrecision",
+    "提示寫本批5人，實際名單3人"
+  ],
+  "verify": {
+    "ok": true,
+    "rawChecked": true,
+    "quoteMax": 79
+  }
+}

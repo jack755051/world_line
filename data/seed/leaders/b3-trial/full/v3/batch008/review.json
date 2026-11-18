@@ -1,0 +1,90 @@
+{
+ "batch": "008",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 10,
+  "editedSentences": 6,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "be-albert-i",
+   "bioId": "01a1b4af-e4f1-721c-9e04-967767bb8665",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2：引文「pour devenir le troisième roi des Belges」延長為含「après Léopold Ier et Léopold II」，支撐「繼利奧波德一世、二世之後」子句",
+    "段2：補引文「organizing large international exhibitions」（原引文只有年份與城市，缺「國際博覽會」）",
+    "段3：「被認為可行的攻勢」改「他認為可行的攻勢」（原文 that he considered to be feasible）",
+    "段4：「長子利奧波德」改「其子利奧波德」（兩來源皆未寫長子），補 defense-albert 引文「dont il aura trois enfants : Léopold, futur Léopold III」",
+    "抽查重抓 defense.gouv.fr 頁（200，引文逐字吻合）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cr-ricardo-jimenez-oreamuno",
+   "bioId": "01a1b4af-e4f7-73f2-989d-6e16f8d0194a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1：補引文「Justo Rufino Barrios, the Guatemalan general」支撐「危地馬拉將軍」",
+    "段2：補引文「the dictatorship of José Joaquín Rodríguez」支撐人名子句",
+    "段3：刪「任內」（SINABI 政績清單未標屬哪一任）",
+    "段4：補 SINABI 引文「Actualmente el Instituto Nacional de Seguros.」支撐「今國家保險局」",
+    "段5：刪「他在任期內把水管從奧霍德阿瓜接到蓬塔雷納斯」句及其引文（SINABI 未寫屬第三任，歸屬任期是推論）",
+    "TSE 表三筆任期引文 evidenceNote 補註：重抓 PDF 以 pdftotext -layout 核對列位屬本人欄",
+    "gap field:legislator_1921 改為 target=position:ricardo-legislator-1921、note 以「待查證：缺起日；」開頭（來源只寫 1921 年當選）",
+    "抽查重抓 TSE PDF 與 encyclopedia.com 條目（皆 200，吻合）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "es-alfonso-xiii",
+   "bioId": "01a1b4af-e505-79d3-ad79-95a30a2bda7c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 7,
+   "changes": [
+    "段2：補引文「the internal crisis in the two leading political parties」「took over the leadership of the Conservatives and Liberals respectively」（原引文截斷，缺兩黨與領導權子句）",
+    "段4：引文「under the old constitution of 1876」延長為「charged with holding general elections under…」支撐「舉行大選」；補「creating new \"concentration governments”」支撐「集中政府」",
+    "段5：補引文「sympathetic to the regime as a referendum on the Monarchy」「Juan of Bourbon, Count of Barcelona」",
+    "抽查重抓 galeriadelascoleccionesreales.es 頁（200，吻合）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常把引文截斷到只剩動詞片段（took over、internal crisis、under the old constitution），段落子句（政黨名、人名、頭銜）缺 quote 支撐；本批補 10 筆、延長 2 筆。",
+  "SINABI 政績清單不分任期，研究者把無日期的政績歸入特定任期，已刪一句、去一處「任內」。",
+  "三人皆無 positions／roleCandidates：元首任期都在名單 5442 內，未重建；阿爾貝一世 1914 年親自統帥全軍屬國王憲政職權，依 T14 R0 先命中，不另建軍職。",
+  "名單列 5 人但本批實際 3 人。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

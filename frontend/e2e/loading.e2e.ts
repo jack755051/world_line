@@ -1,8 +1,9 @@
 import { expect, test, type Page, type Route } from '@playwright/test';
 
 /**
- * 載入指示（Tai 2026-10-31）：大幅跳日期或拖到其他區域時，國界／控制區請求或 MapLibre 切片超過約 300ms 未完成，
- * 地圖左上角出現非阻擋的小 spinner（「載入中」）；完成後隱藏、新國界淡入（減少動態時直接出現）。
+ * 全畫面載入蒙版（Tai 2026-11-02）：大幅跳日期或拖到其他區域時，國界／控制區請求或 MapLibre 切片超過約 300ms 未完成，
+ * 蒙版蓋住整個視窗（含時間軸與側欄）、「載入中」置於視窗正中央，擋住操作（pointer-events 開啟）；
+ * 蒙版淡入；資料到位後淡出（減少動態時直接出現／消失）。
  * 快速連續跳日期：舊請求被中止（不讓舊資料蓋掉新資料）。
  * 需要開發 API（5052），以 `WL_E2E_BORDERS=1 WL_E2E_PORT=4201` 執行；用 page.route 只延遲回應，不 mock 內容、不寫入資料。
  */
@@ -11,7 +12,8 @@ const prefix = process.env['WL_SHOT_PREFIX'] ?? 'borders-app-v3';
 type WlMap = { jumpTo: (o: object) => void; querySourceFeatures: (s: string) => { properties: { recordId: string } }[] };
 
 async function open(page: Page, date: string): Promise<void> {
-  await page.goto(`/?date=${date}&axis=sovereignty`);
+  // GeoJSON 備援路徑（開發環境 ?boundarySource=geojson）：這組測的是 /sovereignty 請求的載入狀態；圖磚模式不向 API 取主權
+  await page.goto(`/?date=${date}&axis=sovereignty&boundarySource=geojson`);
   const canvas = page.getByTestId('map-canvas');
   await expect(canvas).toHaveAttribute('data-map-ready', 'true');
   await page.evaluate(() => (window as unknown as { __wlMap: WlMap }).__wlMap.jumpTo({ center: [16, 48], zoom: 3.3 }));
@@ -31,18 +33,25 @@ async function delay(page: Page, dates: Record<string, number>): Promise<void> {
     await route.continue().catch(() => undefined); // 已被前端中止的請求
   });
 }
+/** 蒙版擋住操作時，用 force 繞過覆蓋層直接填入輸入框。 */
+async function jumpForce(page: Page, date: string): Promise<void> {
+  await page.getByTestId('timeline-date-input').fill(date, { force: true });
+  await page.getByTestId('timeline-date-input').press('Enter');
+}
 
-test('大幅跳日期且載入慢：300ms 後角落出現「載入中」、不擋操作；完成後隱藏並淡入新國界', async ({ page }) => {
+test('大幅跳日期且載入慢：掃描揭露層播報「載入中」（不再蓋全畫面蒙版）；完成後淡入新國界', async ({ page }) => {
   await open(page, '1939-10-23');
   await delay(page, { '1944-10-01': 1800 });
   const canvas = page.getByTestId('map-canvas');
   const fade0 = Number(await canvas.getAttribute('data-sov-fade'));
   await jump(page, '1944-10-01');
   const busy = page.getByTestId('map-busy');
-  await expect(busy).toBeVisible();
+  await expect(busy).toBeAttached();
   await expect(busy).toHaveAttribute('role', 'status');
   await expect(busy).toContainText('載入中');
-  await expect(busy).toHaveCSS('pointer-events', 'none');
+  // 跳年改用掃描揭露（06023c2，plan B）：不再蓋全畫面蒙版，改為快照＋亮線掃出新圖，「載入中」由掃描層的 status 播報
+  await expect(page.getByTestId('map-scan')).toBeAttached();
+  await expect(page.getByTestId('map-busy-scrim')).toHaveCount(0);
   await page.mouse.move(5, 5);
   await page.waitForTimeout(200);
   await page.screenshot({ path: `tmp/borders-shots/${prefix}-loading-1944-10-01.png` });
@@ -57,8 +66,8 @@ test('延遲顯示：載入開始後約 300ms 內不出現 spinner（避免快�
   const t0 = Date.now();
   await jump(page, '1942-11-01');
   await page.waitForTimeout(200);
-  if (Date.now() - t0 < 380) await expect(page.getByTestId('map-busy')).toHaveCount(0);
-  await expect(page.getByTestId('map-busy')).toBeVisible();
+  if (Date.now() - t0 < 380) await expect(page.getByTestId('map-busy-scrim')).toHaveCount(0);
+  await expect(page.getByTestId('map-busy')).toBeAttached(); // 掃描揭露層的 status（06023c2 後不再有全畫面蒙版）
   await expect(page.getByTestId('map-busy')).toHaveCount(0, { timeout: 8000 });
 });
 
@@ -71,7 +80,8 @@ test('快速連續跳日期：舊請求被中止，晚到的舊資料不會蓋�
   });
   await jump(page, '1941-12-01');
   await expect(page.getByTestId('map-busy')).toBeVisible();
-  await jump(page, '1944-10-01');
+  // 蒙版擋住操作：用 force 繞過覆蓋層跳到新日期（模擬鍵盤或程式化導航）
+  await jumpForce(page, '1944-10-01');
   await expect(page.getByTestId('map-busy')).toHaveCount(0, { timeout: 8000 });
   await expect.poll(() => aborted).toContain('1941-12-01');
   await page.waitForTimeout(2800); // 超過舊請求的延遲

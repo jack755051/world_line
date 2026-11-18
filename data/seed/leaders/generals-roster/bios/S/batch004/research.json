@@ -1,0 +1,4062 @@
+{
+ "batch": "b3-full-v3-batch004",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；本批 5 人皆無來源明寫之黨職或黨籍席位；regimeId 一律 NULL（未查 5442 政權對應），集團軍群／戰區級／陸軍總司令因政權待查證為 R6，軍／集團軍／師級與兵種職位為 R5。格萊姆來源過薄，任期缺起日未建。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；直接寫 b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch004，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch004/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "lemo-guderian": {
+   "title": "LeMO Biografie - Heinz Guderian",
+   "authors": [
+    "Arnulf Scriba"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Arnulf Scriba, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/heinz-guderian",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-brauchitsch": {
+   "title": "LeMO Biografie - Walther von Brauchitsch",
+   "authors": [
+    "Manfred Wichmann"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Manfred Wichmann, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/walther-von-brauchitsch",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "lemo-model": {
+   "title": "LeMO Biografie - Walter Model",
+   "authors": [
+    "Heinke Lang"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin (LeMO)",
+   "published_text": "Heinke Lang, LeMO-Biografie, Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/walter-model",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者的機構傳記（DHM LeMO，T1 B）"
+  },
+  "db-guderian": {
+   "title": "Deutsche Biographie - Guderian, Heinz Wilhelm（NDB 全文）",
+   "authors": [
+    "Thilo Vogelsang"
+   ],
+   "publisher": "Neue Deutsche Biographie 7 (1966), S. 251 f.（Deutsche Biographie 頁面）",
+   "published_text": "Vogelsang, Thilo, \"Guderian, Heinz Wilhelm\" in: NDB 7 (1966), S. 251 f.",
+   "url": "https://www.deutsche-biographie.de/pnd118543156.html",
+   "archive_url": null,
+   "catalog_id": "GND 118543156",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "db-brauchitsch": {
+   "title": "Deutsche Biographie - Brauchitsch, Heinrich Alfred Walther von（NDB 全文）",
+   "authors": [
+    "Helmut Krausnick"
+   ],
+   "publisher": "Neue Deutsche Biographie 2 (1955), S. 540（Deutsche Biographie 頁面）",
+   "published_text": "Krausnick, Helmut, \"Brauchitsch, Heinrich Alfred Walther von\" in: NDB 2 (1955), S. 540",
+   "url": "https://www.deutsche-biographie.de/pnd116414855.html",
+   "archive_url": null,
+   "catalog_id": "GND 116414855",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "db-model": {
+   "title": "Deutsche Biographie - Model, Walter（NDB 全文）",
+   "authors": [
+    "Dermot Bradley"
+   ],
+   "publisher": "Neue Deutsche Biographie 17 (1994)（Deutsche Biographie 頁面）",
+   "published_text": "Bradley, Dermot, \"Model, Walter\" in: NDB 17 (1994)",
+   "url": "https://www.deutsche-biographie.de/pnd118582909.html",
+   "archive_url": null,
+   "catalog_id": "GND 118582909",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "db-richthofen": {
+   "title": "Deutsche Biographie - Richthofen, Wolfram Freiherr von（NDB 全文）",
+   "authors": [
+    "Wolfgang Schmidt"
+   ],
+   "publisher": "Neue Deutsche Biographie 21 (2003), S. 545-546（Deutsche Biographie 頁面）",
+   "published_text": "Schmidt, Wolfgang, \"Richthofen, Wolfram (Ulf) Karl Ludwig Moritz Hermann Freiherr von\" in: NDB 21 (2003), S. 545-546",
+   "url": "https://www.deutsche-biographie.de/pnd129413232.html",
+   "archive_url": null,
+   "catalog_id": "GND 129413232",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB）＋GND 權威檔（T1 A）"
+  },
+  "ba-richthofen": {
+   "title": "Bundesarchiv Findbuch N 671 - Nachlass Wolfram Freiherr von Richthofen（Biografie／Dienstlaufbahn）",
+   "authors": [
+    "Johannes Ganser",
+    "Stephanie Jozwiak"
+   ],
+   "publisher": "Bundesarchiv, Koblenz",
+   "published_text": "Bundesarchiv, Findbuch N 671, bearb. Johannes Ganser, Stephanie Jozwiak, 1986/2005",
+   "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/N671-32638.xml",
+   "archive_url": null,
+   "catalog_id": "BArch N 671",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案館官方 Findbuch（T1 A）"
+  },
+  "gnd-guderian": {
+   "title": "GND/lobid.org - Guderian, Heinz",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 118543156（lobid.org JSON）",
+   "url": "https://lobid.org/gnd/118543156.json",
+   "archive_url": null,
+   "catalog_id": "GND 118543156",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（T1 A）"
+  },
+  "gnd-brauchitsch": {
+   "title": "GND/lobid.org - Brauchitsch, Walther von",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 116414855（lobid.org JSON）",
+   "url": "https://lobid.org/gnd/116414855.json",
+   "archive_url": null,
+   "catalog_id": "GND 116414855",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（T1 A）"
+  },
+  "gnd-model": {
+   "title": "GND/lobid.org - Model, Walter",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 118582909（lobid.org JSON）",
+   "url": "https://lobid.org/gnd/118582909.json",
+   "archive_url": null,
+   "catalog_id": "GND 118582909",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（T1 A）"
+  },
+  "gnd-richthofen": {
+   "title": "GND/lobid.org - Richthofen, Wolfram von",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 129413232（lobid.org JSON）",
+   "url": "https://lobid.org/gnd/129413232.json",
+   "archive_url": null,
+   "catalog_id": "GND 129413232",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（T1 A）"
+  },
+  "gnd-greim": {
+   "title": "GND/lobid.org - Greim, Robert von",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 116830670（lobid.org JSON）",
+   "url": "https://lobid.org/gnd/116830670.json",
+   "archive_url": null,
+   "catalog_id": "GND 116830670",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔 GND（T1 A）"
+  },
+  "ba-luftschlacht": {
+   "title": "Die Luftschlacht um England - Bundesarchiv",
+   "authors": [],
+   "publisher": "Bundesarchiv",
+   "published_text": "Bundesarchiv, Themenseite «Die Luftschlacht um England»",
+   "url": "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/die-luftschlacht-um-england/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案館官方頁（T1 A）"
+  },
+  "ba-bild-greim": {
+   "title": "Bundesarchiv Bilddatenbank - Suche 116830670（Robert Ritter v. Greim）",
+   "authors": [],
+   "publisher": "Bundesarchiv, Bilddatenbank",
+   "published_text": "Bundesarchiv Bilddatenbank, Bild 146-1971-033-33 u. a. (Bildunterschriften)",
+   "url": "https://www.bild.bundesarchiv.de/dba/en/search/?query=116830670",
+   "archive_url": null,
+   "catalog_id": "GND 116830670",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案館官方圖像資料庫之機構著錄說明（T1 A）"
+  },
+  "rf-lemo-guderian": {
+   "title": "LeMO Biografie - Heinz Guderian",
+   "authors": [
+    "Arnulf Scriba"
+   ],
+   "publisher": "Deutsches Historisches Museum, Berlin",
+   "published_text": "Stand: 14. September 2014",
+   "url": "https://www.dhm.de/lemo/biografie/heinz-guderian",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "具名作者 Arnulf Scriba、德國歷史博物館（DHM）LeMO 機構傳記頁，與本批既有 lemo-brauchitsch 同類評 B"
+  },
+  "rf-db-guderian": {
+   "title": "Deutsche Biographie - Guderian, Heinz（NDB 7 (1966) 索引頁）",
+   "authors": [],
+   "publisher": "Deutsche Biographie（Bayerische Staatsbibliothek／Historische Kommission）",
+   "published_text": null,
+   "url": "https://www.deutsche-biographie.de/sfz69951.html",
+   "archive_url": null,
+   "catalog_id": "GND 118543156",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 Deutsche Biographie 官方頁（NDB 7 (1966)，作者 Thilo Vogelsang 見頁面）；本頁只有索引資料，未含 NDB 全文"
+  },
+  "rf-gnd-guderian": {
+   "title": "GND/lobid.org - Guderian, Heinz",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek／lobid.org",
+   "published_text": null,
+   "url": "https://lobid.org/gnd/118543156.json",
+   "archive_url": null,
+   "catalog_id": "GND 118543156",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（德國國家圖書館 GND，經 lobid.org 官方鏡像）"
+  }
+ },
+ "people": [
+  {
+   "key": "wolframvonrichthofen",
+   "bioId": null,
+   "name": "Wolfram von Richthofen",
+   "nameZh": "沃爾弗拉姆·馮·里希特霍芬",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1895-10-10",
+      "end": "1924-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1895年10月10日生於西里西亞的巴爾茨多夫。1911至1913年就讀柏林利希特費爾德的主要軍校，一戰期間先在第4驃騎兵團服役，1918年轉入第1戰鬥機聯隊並取得八次空戰勝利。戰後他於1920至1923年在漢諾威工業大學攻讀機械工程，1923年以降為少尉重返國防軍。",
+      "en": "Born on 10 October 1895 at Barzdorf in Silesia, he attended the main cadet school at Lichterfelde near Berlin in 1911–13. In the First World War he served first in Hussar Regiment 4, then moved in 1918 to Jagdgeschwader 1 and scored eight aerial victories. He studied mechanical engineering at the Technical University of Hanover in 1920–23 and rejoined the Reichswehr in 1923 with a reduction to lieutenant."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Lebensdaten",
+       "quote": "10.10.1895 geboren in Barzdorf/Kreis Striegau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "absolvierte R. 1911-13 die Hauptkadettenanstalt in Lichterfelde bei Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "1914-17 im Husaren- Rgt. Nr. 4",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "Bis Kriegsende errang er acht Luftsiege.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "studierte R. 1920-23 an der TH Hannover Maschinenbau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "trat unter Rückstufung zum Leutnant 1923 in die Reichswehr ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1934-03-01",
+      "end": "1939-07-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "空軍與西班牙內戰",
+      "en": "Luftwaffe service and the Spanish Civil War"
+     },
+     "body": {
+      "zh-Hant": "1934年3月1日他轉入帝國航空部任處長。1936年11月10日起任「禿鷲軍團」前身之第88特遣隊負責人，兼任軍團參謀長；1938年11月1日晉升少將，出任第88指揮參謀部（禿鷲軍團）指揮官。他在西班牙參與新機種的實戰測試，並因當地的猛烈空襲經驗，被命令組建直接支援陸軍的航空軍。",
+      "en": "On 1 March 1934 he was taken into the Reich Air Ministry as a department head. From 10 November 1936 he headed Versuchskommando 88, serving as chief of staff of the Condor Legion, and on 1 November 1938 he became a major general and commander of Führungsstab 88 (Condor Legion). In Spain he took a major part in testing new aircraft in action and, on the strength of the experience gained there, was ordered to raise an air corps for direct army support."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "01.03.1934 als Abteilungschef ins Reichsluftfahrtministerium",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "10.11.1936 Leiter des Versuchskommandos 88",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "(Chef des Stabes \"Legion Condor\")",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "01.11.1938 Generalmajor und Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "des Führungsstabes 88 (\"Legion Condor\")",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "19.07.1939 Fliegerführer z.b.V.",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "R. hatte maßgeblichen Anteil an der Erprobung neuer Flugzeuge im Einsatz.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "ein spezielles Fliegerkorps zur unmittelbaren Heeresunterstützung aufzustellen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-10-03",
+      "end": "1942-07-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第八航空軍與閃擊戰",
+      "en": "VIII Fliegerkorps in the early campaigns"
+     },
+     "body": {
+      "zh-Hant": "1939年10月3日他出任第8航空軍的軍長，1940年7月19日晉升航空兵上將。這個以俯衝轟炸機為主力的航空軍，在德軍的進攻戰役中位居中心，為對波蘭、法國與巴爾幹的勝利創造了重要條件。",
+      "en": "On 3 October 1939 he became commanding general of VIII Fliegerkorps and on 19 July 1940 General der Flieger. Employed at the centre of the German offensive campaigns, the corps, with its dive-bombers above all, created important preconditions for the victories over Poland, France and in the Balkans."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "03.10.1939 Kommandierender General VIII.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "19.07.1940 General der Flieger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "Das im Zentrum der dt. Angriffsfeldzüge",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "unter seiner Führung seit 1939 eingesetzte VIII. Fliegerkorps",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "Voraussetzungen für die Siege gegen Polen, Frankreich und auf dem Balkan.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-07-20",
+      "end": "1945-07-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第四、第二航空艦隊與晚年",
+      "en": "Air Fleets 4 and 2, and death"
+     },
+     "body": {
+      "zh-Hant": "1942年7月20日他成為第4航空艦隊司令兼東南部司令；該艦隊未能補給在史達林格勒被圍的第6集團軍，他仍於1943年2月16日晉升元帥。1943年6月12日轉任駐義大利的第2航空艦隊司令，1944年10月因病解除指揮，1945年7月12日在巴特伊施爾的空軍醫院去世。",
+      "en": "On 20 July 1942 he became chief of Luftflotte 4 and Befehlshaber Südost; the fleet failed to supply the Sixth Army encircled at Stalingrad, yet he was promoted field marshal on 16 February 1943. On 12 June 1943 he took over Luftflotte 2 in Italy, was relieved of his command in October 1944, and died on 12 July 1945 in the Luftwaffe hospital at Bad Ischl."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "20.07.1942 Chef Luftflotte 4 und Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "die in Stalingrad eingekesselte 6. Armee zu versorgen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "wurde R. am 16.2.1943 zum Generalfeldmarschall befördert.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "12.06.1943 Chef Luftflotte 2 in Italien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "im Okt. 1944 von seinem Kommando entbunden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Lebensdaten",
+       "quote": "12.07.1945 gestorben im",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Lebensdaten",
+       "quote": "Luftwaffenlazarett Bad Ischl",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "richthofen-legion-condor-stab",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "「禿鷲軍團」前身第88特遣隊（德國空軍）",
+      "en": "Versuchskommando 88 (Condor Legion), Luftwaffe"
+     },
+     "title": {
+      "orig": "Leiter des Versuchskommandos 88 (Chef des Stabes \"Legion Condor\")",
+      "zh-Hant": "第88特遣隊負責人（禿鷲軍團參謀長）",
+      "en": "Head of Versuchskommando 88 (chief of staff, Condor Legion)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-11-10",
+      "end": "1937-03-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "10.11.1936 Leiter des Versuchskommandos 88",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "01.03.1937 Kommandeur der IV. Gruppe Kampfgeschwader 153",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團參謀長，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "richthofen-legion-condor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍「禿鷲軍團」（Führungsstab 88）",
+      "en": "Condor Legion (Führungsstab 88), Luftwaffe"
+     },
+     "title": {
+      "orig": "Befehlshaber des Führungsstabes 88 (\"Legion Condor\")",
+      "zh-Hant": "禿鷲軍團指揮官",
+      "en": "Commander of Führungsstab 88 (Condor Legion)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-11-01",
+      "end": "1939-07-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "01.11.1938 Generalmajor und Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "19.07.1939 Fliegerführer z.b.V.",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "派駐西班牙的志願軍團指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "richthofen-fliegerkorps-viii",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍第8航空軍",
+      "en": "VIII Fliegerkorps, Luftwaffe"
+     },
+     "title": {
+      "orig": "Kommandierender General VIII. Fliegerkorps",
+      "zh-Hant": "第8航空軍軍長",
+      "en": "Commanding general, VIII Fliegerkorps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-10-03",
+      "end": "1942-07-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "03.10.1939 Kommandierender General VIII.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "20.07.1942 Chef Luftflotte 4 und Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "richthofen-luftflotte-4",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍第4航空艦隊（兼東南部司令）",
+      "en": "Luftflotte 4 (and Befehlshaber Südost), Luftwaffe"
+     },
+     "title": {
+      "orig": "Chef Luftflotte 4 und Befehlshaber Südost",
+      "zh-Hant": "第4航空艦隊司令兼東南部司令",
+      "en": "Chief of Luftflotte 4 and Befehlshaber Südost"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-07-20",
+      "end": "1943-06-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "20.07.1942 Chef Luftflotte 4 und Befehlshaber",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "12.06.1943 Chef Luftflotte 2 in Italien",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "die in Stalingrad eingekesselte 6. Armee zu versorgen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "航空艦隊（戰區級）指揮，有戰役連結但無日期＋地點之任內戰役引文；政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "richthofen-luftflotte-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國空軍第2航空艦隊（義大利）",
+      "en": "Luftflotte 2 (Italy), Luftwaffe"
+     },
+     "title": {
+      "orig": "Chef Luftflotte 2 in Italien",
+      "zh-Hant": "第2航空艦隊司令（義大利）",
+      "en": "Chief of Luftflotte 2 in Italy"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-06-12",
+      "end": "1944-11-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ba-richthofen",
+       "locator": "Dienstlaufbahn",
+       "quote": "12.06.1943 Chef Luftflotte 2 in Italien",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-richthofen",
+       "locator": "NDB Biographie",
+       "quote": "im Okt. 1944 von seinem Kommando entbunden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "航空艦隊（戰區級）指揮；缺有日期＋地點之戰役連結，且政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:richthofen-luftflotte-2",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源在 Luftflotte 2 任期後段略有出入：Bundesarchiv Findbuch 寫病於1944年6月（「bis zu seiner Erkrankung im Juni 1944」），NDB 寫1944年10月解除指揮；本檔迄日取 NDB 的月份（Luftflotte 2）。已查：Bundesarchiv N 671、NDB、GND（lobid）、LeMO（無此人條目 404）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Wolfram von Richthofen GND",
+     "url": "https://lobid.org/gnd/search?q=Wolfram+von+Richthofen&format=json",
+     "result": "found_A",
+     "note": "GND 129413232，1895-10-10／1945-07-12，Generalfeldmarschall"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 21）",
+     "url": "https://www.deutsche-biographie.de/pnd129413232.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Wolfgang Schmidt）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie wolfram-von-richthofen",
+     "url": "https://www.dhm.de/lemo/biografie/wolfram-von-richthofen",
+     "result": "no_result",
+     "note": "404，LeMO 無此人條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Bundesarchiv N 671 Nachlass Richthofen 生平與 Dienstlaufbahn",
+     "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/N671-32638.xml",
+     "result": "found_A",
+     "note": "curl 抓取 Findbuch，含逐日 Dienstlaufbahn"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Wolfram Richthofen Generalfeldmarschall Legion Condor Luftflotte 4 Biographie（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Bundesarchiv N 671"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Richthofen NDB 文獻（Hümmelchen 1998、Homze 1998）",
+     "url": "https://www.deutsche-biographie.de/pnd129413232.html",
+     "result": "not_relevant",
+     "note": "僅書目，未抓全文"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Bundesarchiv Bilddatenbank 129413232",
+     "url": "https://www.bild.bundesarchiv.de/dba/de/search/?query=129413232",
+     "result": "not_relevant",
+     "note": "僅圖片，未取用"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Richthofen, Wolfram Freiherr von 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/129413232.json",
+     "result": "found_A",
+     "note": "確認生卒與職業"
+    }
+   ],
+   "nameZhOrig": "沃尔弗拉姆·冯·里希特霍芬"
+  },
+  {
+   "key": "walthervonbrauchitsch",
+   "bioId": null,
+   "name": "Walther von Brauchitsch",
+   "nameZh": "瓦爾特·馮·布勞希奇",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1881-10-04",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1881年10月4日生於柏林。1900年自軍校畢業後成為近衛擲彈兵團的少尉，1912年被調入大總參謀部，第一次世界大戰期間在多個單位擔任總參軍官，1921年以少校身分被接收進國防軍。",
+      "en": "He was born in Berlin on 4 October 1881. After cadet training he became a lieutenant in a Guards Grenadier regiment in 1900, was called into the Great General Staff in 1912, served as a general staff officer in various units during the First World War, and in 1921 was taken into the Reichswehr as a major."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1881",
+       "quote": "4. Oktober: Walther von Brauchitsch wird in Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1900",
+       "quote": "wird Brauchitsch Leutnant in einem Garde-Grenadierregiment",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1912",
+       "quote": "Einberufung in den Großen Generalstab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1914-1918",
+       "quote": "Im Ersten Weltkrieg ist er in verschiedenen Einheiten Generalstabsoffizier.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1921",
+       "quote": "Brauchitsch wird als Major in die Reichswehr übernommen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1927-01-01",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國防軍時期的職務",
+      "en": "Reichswehr and Wehrmacht postings"
+     },
+     "body": {
+      "zh-Hant": "1927年任第6軍區參謀長，1929年任國防部陸軍訓練處處長；1933年2月1日接替布隆貝格，任第1師師長兼第1軍區（東普魯士）司令。1937年他以砲兵上將身分獲得統率陸軍全部機動化部隊的第4集團司令部。",
+      "en": "In 1927 he became chief of staff of Wehrkreis VI and in 1929 head of the army training department in the Reichswehr ministry. On 1 February 1933, succeeding Blomberg, he became commander of the 1st Division and of Wehrkreis I (East Prussia). In 1937, as General der Artillerie, he took Group Command 4, which united the army's motorised formations."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1927",
+       "quote": "Stabschef des Wehrkreises VI.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1929",
+       "quote": "Brauchitsch wird Abteilungsleiter der Heeresausbildung im Reichswehrministerium.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "am 1. Februar 1933 Kommandeur der 1. Division und Befehlshaber im Wehrkreis I",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "1937 als General der Artillerie Befehlshaber des Gruppenkommandos 4",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1937",
+       "quote": "erhält den Oberbefehl über sämtliche motorisierten Verbände des Heers.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1941-12-20"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍總司令",
+      "en": "Commander-in-chief of the army"
+     },
+     "body": {
+      "zh-Hant": "1938年，在弗里奇—布隆貝格事件之後，他接替被希特勒罷黜的弗里奇出任陸軍總司令。他在波蘭、法國與蘇聯戰役中指導陸軍作戰，1940年7月19日晉升元帥。1941年12月19日，希特勒把冬季戰役的失敗歸咎於他並將他免職，自己接掌陸軍指揮權。",
+      "en": "In 1938, after the Fritsch–Blomberg affair, he replaced Colonel-General von Fritsch, whom Hitler had removed, as Commander-in-Chief of the Army. He directed the army's operations in Poland, France and the Soviet Union and was promoted field marshal on 19 July 1940. On 19 December 1941 Hitler made him the scapegoat for the failure of the Russian winter campaign and dismissed him, taking over the army command himself."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1938",
+       "quote": "wird Brauchitsch Oberbefehlshaber des Heers.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "An Stelle des von",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "Generalobersten Freiherr von Fritsch wurde er 1938 Oberbefehlshaber des Heeres.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "zum Sündenbock für das Mißlingen des russischen Winterfeldzugs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1939-1941",
+       "quote": "leitet Brauchitsch die militärischen Operationen des Heers in Polen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "den er am 19.7.1940 zum Generalfeldmarschall befördert hatte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "entließ ihn am 19.12.1941",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-08-20",
+      "end": "1948-10-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚年",
+      "en": "Later years and death"
+     },
+     "body": {
+      "zh-Hant": "1944年8月20日他在《民族觀察家報》上發表文章，把七月二十日事件稱為一個「瘋狂的行為」，一般認為其用意是為一名親近的被捕者向希特勒說情。他在紐倫堡被作為證人訊問，1948年10月18日在英軍醫院羈押中去世，審判尚未開始。",
+      "en": "On 20 August 1944 he published an article in the Völkischer Beobachter condemning the events of 20 July, apparently to be able to intercede with Hitler for an arrested acquaintance. He was questioned as a witness at Nuremberg and died on 18 October 1948 in British military custody in Hamburg before his trial opened."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "trat B. am 20.8.1944 in einem Aufsatz im „Völkischen Beobachter“ hervor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "offenbar, um sich für einen ihm nahestehenden Verhafteten bei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "Wahnsinnstat einer kleinen Zahl Ehrvergessener",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1945/46",
+       "quote": "In den Kriegsverbrecherprozessen in Nürnberg wird er als Zeuge vernommen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1948",
+       "quote": "18. Oktober: Vor der Eröffnung eines Prozesses gegen ihn stirbt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "brauchitsch-wehrkreis-i",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國國防軍第1師與第1軍區（東普魯士）",
+      "en": "1st Division and Wehrkreis I (East Prussia), Reichswehr"
+     },
+     "title": {
+      "orig": "Kommandeur der 1. Division und Befehlshaber im Wehrkreis I",
+      "zh-Hant": "第1師師長兼第1軍區司令",
+      "en": "Commander, 1st Division and Wehrkreis I"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1933-02-01",
+      "end": "1938-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "am 1. Februar 1933 Kommandeur der 1. Division und Befehlshaber im Wehrkreis I",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1933",
+       "quote": "Brauchitsch Befehlshaber des Wehrkreises I (Ostpreußen).",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "am 1. Februar 1933 Kommandeur der 1. Division und Befehlshaber im Wehrkreis I",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "1937 als General der Artillerie Befehlshaber des Gruppenkommandos 4",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區／師級指揮，非國家級最高軍職或戰區司令（R5）；迄日待查證"
+    },
+    {
+     "key": "brauchitsch-gruppenkommando-4",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第4集團司令部（機動化部隊）",
+      "en": "Group Command 4 (motorised formations), German Army"
+     },
+     "title": {
+      "orig": "Befehlshaber des Gruppenkommandos 4",
+      "zh-Hant": "第4集團司令部司令",
+      "en": "Commander, Group Command 4"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "1937 als General der Artillerie Befehlshaber des Gruppenkommandos 4",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB 本文",
+       "quote": "wurde er 1938 Oberbefehlshaber des Heeres",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團司令部級指揮（R5）；迄日待查證"
+    },
+    {
+     "key": "brauchitsch-oberbefehlshaber-heer",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍",
+      "en": "German Army (Heer)"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber des Heeres",
+      "zh-Hant": "陸軍總司令",
+      "en": "Commander-in-Chief of the Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-01-01",
+      "end": "1941-12-19"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lemo-brauchitsch",
+       "locator": "Lebenslauf 1938",
+       "quote": "wird Brauchitsch Oberbefehlshaber des Heers.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "Generalobersten Freiherr von Fritsch wurde er 1938 Oberbefehlshaber des Heeres.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-brauchitsch",
+       "locator": "NDB Text",
+       "quote": "entließ ihn am 19.12.1941",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍總司令（軍種總司令，職稱明寫），但政權對應待查證（regimeId NULL）；起日只有年精度",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：LeMO 與 NDB 只寫他「leitet die militärischen Operationen des Heers in Polen, Frankreich und in der Sowjetunion」，未載有日期與地點的具體戰役；已查 LeMO、NDB、GND（lobid）。可再查聯邦檔案館或紐倫堡審判文件。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Walther von Brauchitsch GND",
+     "url": "https://lobid.org/gnd/search?q=Walther+von+Brauchitsch&format=json",
+     "result": "found_A",
+     "note": "GND 116414855，1881-10-04／1948-10-18"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 2）",
+     "url": "https://www.deutsche-biographie.de/pnd116414855.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Helmut Krausnick）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie walther-von-brauchitsch",
+     "url": "https://www.dhm.de/lemo/biografie/walther-von-brauchitsch",
+     "result": "found_B",
+     "note": "curl 抓取（Manfred Wichmann）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Brauchitsch 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/116414855.json",
+     "result": "found_A",
+     "note": "確認生卒"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "generals.dk Brauchitsch Walther service history",
+     "url": "http://www.generals.dk/general/von_Brauchitsch/Walther/Germany.html",
+     "result": "found_C",
+     "note": "具名作者 Steen Ammentorp；第1軍區司令至 1937-04-01、第4集團司令部 1937-04-01 至 1938-02-04（下一職起日同為 1938-02-04）"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Bundesarchiv 首頁 Brauchitsch 任命公報",
+     "url": "https://www.bundesarchiv.de/",
+     "result": "not_relevant",
+     "note": "首頁無人物資料"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Brauchitsch Wehrkreis I Befehlshaber 1937 Nachfolger Gruppenkommando 4",
+     "url": "WebSearch",
+     "result": "no_result",
+     "note": "以結果多為維基類，不採用"
+    }
+   ],
+   "nameZhOrig": "瓦尔特·冯·布劳希奇",
+   "resolvedGaps": [
+    {
+     "target": "position:brauchitsch-wehrkreis-i",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 與 LeMO 只寫 1937 年改任第4集團司令部，未寫卸任日。已查：LeMO（Manfred Wichmann）、NDB（Helmut Krausnick）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    },
+    {
+     "target": "position:brauchitsch-gruppenkommando-4",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 與 LeMO 只寫 1938 年改任陸軍總司令，未寫卸任日。已查：LeMO、NDB、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "brauchitsch-wehrkreis-i",
+     "basis": "db-brauchitsch",
+     "diff": "原：1933-02-01～1937-04-01（迄日僅 generals.dk）；起日依 db-brauchitsch 不變；迄日依 db-brauchitsch：1937年改任第4集團司令部，記 1938-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1933-02-01",
+        "end": "1937-04-01"
+       },
+       "after": {
+        "start": "1933-02-01",
+        "end": "1938-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "brauchitsch-gruppenkommando-4",
+     "basis": "db-brauchitsch",
+     "diff": "原：1937（year）～1938-02-04（迄日僅 generals.dk）；起日不變；迄日依 db-brauchitsch：1938年任陸軍總司令，記 1939-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1937-01-01",
+        "end": "1938-02-04"
+       },
+       "after": {
+        "start": "1937-01-01",
+        "end": "1939-01-01"
+       }
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    }
+   ]
+  },
+  {
+   "key": "waltermodel",
+   "bioId": null,
+   "name": "Walter Model",
+   "nameZh": "瓦爾特·莫德爾",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1891-01-24",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與國防軍時期",
+      "en": "Origins and Reichswehr career"
+     },
+     "body": {
+      "zh-Hant": "1891年1月24日生於根廷。1909年中學畢業後以軍校生身分進入科特布斯的第52步兵團，1914年隨該團第1營出征，任營副官。1919年他被接收進國防軍，組織自庫爾蘭撤回的志願兵部隊，1929年調入國防部陸軍訓練處，1934年任步兵團團長。",
+      "en": "He was born in Genthin on 24 January 1891. After the Abitur in 1909 he joined Infantry Regiment 52 at Cottbus as an officer cadet and went to war in 1914 as adjutant of its 1st Battalion. In 1919 he was taken into the Reichswehr and organised the return of the volunteer units from Courland, moved to the army training department of the Reichswehr ministry in 1929, and in 1934 commanded an infantry regiment."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1891",
+       "quote": "24. Januar: Walter Model wird als Sohn des Seminaroberlehrers",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1909",
+       "quote": "Abitur, anschließend Eintritt als Fahnenjunker in das Infanterieregiment Nr. 52",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1914",
+       "quote": "Model zieht als Adjutant des I. Bataillons in den Ersten Weltkrieg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1919",
+       "quote": "Zunächst organisiert er die Rückführung der Freiwilligenverbände aus Kurland",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1929",
+       "quote": "Versetzung ins Reichswehrministerium in Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "1934 Kommandeur des Infanterie-Regiments Allenstein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1942-01-18"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭、法國與莫斯科前線",
+      "en": "Poland, France and the approach to Moscow"
+     },
+     "body": {
+      "zh-Hant": "1938年他任德勒斯登第4軍的參謀長，1939年參加波蘭戰役，1940年任第16集團軍參謀長參加法國戰役。1940年11月13日他任第3裝甲師師長，1941年10月26日任第41軍軍長；12月4日他的部隊推進到莫斯科以北數公里處，隨後被蘇軍擊退。",
+      "en": "In 1938 he was chief of staff of IV Army Corps in Dresden, took part in the Polish campaign in 1939 and in the French campaign in 1940 as chief of staff of the 16th Army. On 13 November 1940 he became commander of the 3rd Panzer Division and on 26 October 1941 commanding general of XXXXI Army Corps; on 4 December his units reached a point a few kilometres north of Moscow before being thrown back."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1938",
+       "quote": "Er wird Generalmajor und Chef des Generalstabs des IV. Armeekorps in Dresden.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1939",
+       "quote": "1. September: Teilnahme am Überfall auf Polen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1940",
+       "quote": "Als Stabschef der 16. Armee nimmt er am Frankreichfeldzug teil.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 13.11.1940 wurde M. Kommandeur der 3. Panzerdivision",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "am 26.10.1941 General der Panzertruppe und Kommandierender General",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 4.12.1941 stießen seine Verbände bis wenige Kilometer nördlich von Moskau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 18.1.1942 übernahm M. die 9. Armee",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1942-01-18",
+      "end": "1943-11-03"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第9集團軍與勒熱夫、堡壘作戰",
+      "en": "Ninth Army: Rzhev and Citadel"
+     },
+     "body": {
+      "zh-Hant": "1942年1月18日他接掌在勒熱夫突出部受到猛攻的第9集團軍，1942年2月1日晉升上將；他在1943年2月28日至3月22日執行了東線唯一一次有計畫的撤退「水牛行動」。1943年7月5日起，他的集團軍積極參與了庫爾斯克與奧廖爾突出部的「堡壘」作戰，11月3日他被調入元首預備隊。",
+      "en": "On 18 January 1942 he took over the Ninth Army, hard pressed in the Rzhev salient, and became Generaloberst on 1 February 1942; he carried out the only planned retreat on the Eastern Front, the \"Büffel\" movement, from 28 February to 22 March 1943. From 5 July 1943 his army took a leading part in Operation Citadel in the Kursk and Orel salients, and on 3 November 1943 he was put into the Führer reserve."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 18.1.1942 übernahm M. die 9. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "(1.2.1942 Generaloberst)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "des einzigen planmäßigen Rückzuges an der Ostfront",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Befehl zum Rückzug (28.2.-22.3.1943)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Seit dem 5.7.1943",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 3.11.1943 wurde er in die Führerreserve versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-01-31",
+      "end": "1945-04-22"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "集團軍群司令與魯爾包圍圈",
+      "en": "Army group commands and the Ruhr pocket"
+     },
+     "body": {
+      "zh-Hant": "1944年1月31日他受命指揮北方集團軍群，3月1日晉升元帥，3月31日改任北烏克蘭集團軍群。1944年8月16日他接替克魯格出任西線總司令兼B集團軍群司令，9月4日交出西線總司令職務；12月他參與策劃並指揮阿登攻勢，1945年4月17日在魯爾包圍圈中解散B集團軍群，4月21日自殺。",
+      "en": "On 31 January 1944 he was entrusted with Army Group North, became field marshal on 1 March and on 31 March took over Army Group North Ukraine. On 16 August 1944, succeeding Kluge, he was made Oberbefehlshaber West and commander of Army Group B; he gave up the western command on 4 September. In December he helped plan and lead the Ardennes offensive; on 17 April 1945 he dissolved Army Group B in the Ruhr pocket and on 21 April he committed suicide."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 31.1.1944 wurde er mit der Führung der Heeresgruppe Nord beauftragt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "(1.3.1944 Generalfeldmarschall)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "31. März in der Nachfolge Mansteins mit der Führung der Heeresgruppe Nordukraine",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 16.8.1944 wurde M. – als Nachfolger Kluges – zum Oberbefehlshaber West",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "gab er am 4.9. die Aufgaben des Oberbefehlshabers West ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "löste M. am 17.4.1945 seine Heeresgruppe im Ruhrkessel auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1945",
+       "quote": "21. April: Nachdem er die Heeresgruppe B nach deren Einschließung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1945",
+       "quote": "begeht Walter Model Selbstmord.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "model-3-panzerdivision",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第3裝甲師",
+      "en": "3rd Panzer Division, German Army"
+     },
+     "title": {
+      "orig": "Kommandeur der 3. Panzerdivision",
+      "zh-Hant": "第3裝甲師師長",
+      "en": "Commander, 3rd Panzer Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-11-13",
+      "end": "1941-10-26"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 13.11.1940 wurde M. Kommandeur der 3. Panzerdivision",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "am 26.10.1941 General der Panzertruppe und Kommandierender General",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮（R5）"
+    },
+    {
+     "key": "model-xxxxi-ak",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第41軍",
+      "en": "XXXXI Army Corps, German Army"
+     },
+     "title": {
+      "orig": "Kommandierender General des XXXXI. Armeekorps",
+      "zh-Hant": "第41軍軍長",
+      "en": "Commanding general, XXXXI Army Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-10-26",
+      "end": "1942-01-18"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "am 26.10.1941 General der Panzertruppe und Kommandierender General",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 18.1.1942 übernahm M. die 9. Armee",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 4.12.1941 stießen seine Verbände bis wenige Kilometer nördlich von Moskau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮（R5）"
+    },
+    {
+     "key": "model-9-armee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第9集團軍",
+      "en": "9th Army, German Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 9. Armee",
+      "zh-Hant": "第9集團軍司令",
+      "en": "Commander, 9th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-18",
+      "end": "1943-11-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 18.1.1942 übernahm M. die 9. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 3.11.1943 wurde er in die Führerreserve versetzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍級指揮，非國家級最高軍職或戰區司令（R5）"
+    },
+    {
+     "key": "model-hg-nord",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍北方集團軍群",
+      "en": "Army Group North, German Army"
+     },
+     "title": {
+      "orig": "Führung der Heeresgruppe Nord",
+      "zh-Hant": "北方集團軍群指揮官",
+      "en": "Commander, Army Group North"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-01-31",
+      "end": "1944-03-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 31.1.1944 wurde er mit der Führung der Heeresgruppe Nord beauftragt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "31. März in der Nachfolge Mansteins mit der Führung der Heeresgruppe Nordukraine",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級（戰區／方面軍等級）指揮；缺任內有日期＋地點之戰役連結，政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "model-hg-nordukraine",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍北烏克蘭集團軍群",
+      "en": "Army Group North Ukraine, German Army"
+     },
+     "title": {
+      "orig": "Führung / Oberbefehlshaber der Heeresgruppe Nordukraine",
+      "zh-Hant": "北烏克蘭集團軍群指揮官／總司令",
+      "en": "Commander, Army Group North Ukraine"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-03-31",
+      "end": "1944-08-16"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "31. März in der Nachfolge Mansteins mit der Führung der Heeresgruppe Nordukraine",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 16.8.1944 wurde M. – als Nachfolger Kluges – zum Oberbefehlshaber West",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任起日推得（推論）；同一來源下一職務起日",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級指揮；缺任內有日期＋地點之戰役連結，政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "model-ob-west",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍西線總司令部（法國）",
+      "en": "Oberbefehlshaber West (France), German Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber West",
+      "zh-Hant": "西線總司令",
+      "en": "Commander-in-Chief West"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-08-16",
+      "end": "1944-09-04"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 16.8.1944 wurde M. – als Nachfolger Kluges – zum Oberbefehlshaber West",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "gab er am 4.9. die Aufgaben des Oberbefehlshabers West ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區總司令；缺任內有日期＋地點之戰役連結，政權對應待查證（regimeId NULL）；迄日之年份取自同段上下文（1944）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "model-hg-b",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍B集團軍群",
+      "en": "Army Group B, German Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der Heeresgruppe B",
+      "zh-Hant": "B集團軍群總司令",
+      "en": "Commander, Army Group B"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-08-16",
+      "end": "1945-04-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "Am 16.8.1944 wurde M. – als Nachfolger Kluges – zum Oberbefehlshaber West",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "und Oberbefehlshaber der Heeresgruppe B in Frankreich ernannt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-model",
+       "locator": "NDB Text",
+       "quote": "löste M. am 17.4.1945 seine Heeresgruppe im Ruhrkessel auf",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-model",
+       "locator": "Lebenslauf 1944",
+       "quote": "Dezember: Während der von ihm mitgeplanten Ardennenoffensive",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群級指揮，有戰役連結（阿登攻勢 1944-12，LeMO 月精度、地點阿登），但政權對應待查證（regimeId NULL）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:model-hg-mitte",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；HG Mitte 兼任（1944 年 6／7 月起「knapp zwei Monate」）。LeMO 只寫「Juni/Juli」，NDB 只寫「für knapp zwei Monate」，均無起迄日，未建職位。已查：LeMO（Heinke Lang）、NDB（Dermot Bradley）、GND（lobid）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Walter Model GND",
+     "url": "https://lobid.org/gnd/search?q=Walter+Model&format=json",
+     "result": "found_A",
+     "note": "GND 118582909，1891-01-24／1945-04-21"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁（NDB 17）",
+     "url": "https://www.deutsche-biographie.de/pnd118582909.html",
+     "result": "found_A",
+     "note": "curl 抓取 NDB 全文（Dermot Bradley）"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie walter-model",
+     "url": "https://www.dhm.de/lemo/biografie/walter-model",
+     "result": "found_B",
+     "note": "curl 抓取（Heinke Lang）"
+    },
+    {
+     "step": 4,
+     "sourceType": "authority",
+     "query": "Model 權威檔 lobid JSON",
+     "url": "https://lobid.org/gnd/118582909.json",
+     "result": "found_A",
+     "note": "確認出生地、卒地"
+    }
+   ],
+   "nameZhOrig": "瓦尔特·莫德尔"
+  },
+  {
+   "key": "robertrittervongreim",
+   "bioId": null,
+   "name": "Robert Ritter von Greim",
+   "nameZh": "羅伯特·馮·格萊姆",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1892-06-22",
+      "end": "1892-06-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身",
+      "en": "Birth"
+     },
+     "body": {
+      "zh-Hant": "羅伯特·馮·格萊姆於1892年6月22日生於拜羅伊特，1945年5月24日在薩爾茨堡去世。",
+      "en": "Robert von Greim was born in Bayreuth on 22 June 1892 and died in Salzburg on 24 May 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "dateOfBirth",
+       "quote": "1892-06-22",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "placeOfBirth",
+       "quote": "Bayreuth",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "dateOfDeath",
+       "quote": "1945-05-24",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "placeOfDeath",
+       "quote": "Salzburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第一次世界大戰的戰鬥機飛行員",
+      "en": "First World War combat pilot"
+     },
+     "body": {
+      "zh-Hant": "權威檔把他列為戰鬥機飛行員，記載他在第一次世界大戰取得28次空戰勝利。",
+      "en": "The authority record lists him as a combat pilot and records 28 aerial victories in the First World War."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "professionOrOccupation",
+       "quote": "Kampfflieger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "28 Luftsiege im Ersten Weltkrieg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "第二次世界大戰的指揮職務",
+      "en": "Command posts in the Second World War"
+     },
+     "body": {
+      "zh-Hant": "聯邦檔案館的專題頁寫道，第5航空軍受上將級的格萊姆指揮（頁面所指為不列顛空戰期間）。1945年3月，聯邦檔案館圖像庫對一張北方集團軍群（維斯瓦）司令部會議照片的說明，把他列為第6航空艦隊司令。權威檔另記載1945年他成為元帥兼空軍總司令。",
+      "en": "A Bundesarchiv theme page states that V Fliegerkorps stood under the command of Generalleutnant Greim (in the context of the Battle of Britain). A Bundesarchiv photo caption of March 1945 from a conference at the Army Group Vistula headquarters lists him as commander of Luftflotte 6. The authority record also notes that in 1945 he became a Generalfeldmarschall and Oberbefehlshaber der Luftwaffe."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-luftschlacht",
+       "locator": "Abschnitt V. Fliegerkorps",
+       "quote": "Das Korps stand unter dem Befehl von Generalleutnant Robert Ritter von Greim",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "General Ritter v. Greim; Kommandeur d. Luftflotte 6",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "März 1945",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Generalfeldmarschall u. Oberbefehlshaber d. Luftwaffe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰鬥機飛行員的明信片",
+      "en": "A wartime postcard"
+     },
+     "body": {
+      "zh-Hant": "聯邦檔案館圖像庫收有一張約1917／1918年的明信片，標題稱他為「我們成功的戰鬥機飛行員中尉格萊姆」，發行者為柏林的桑克明信片發行社。圖像庫另有他1939年1月與1940年的照片。",
+      "en": "The Bundesarchiv picture database holds a postcard from about 1917/1918 titled 'Our successful fighter pilot Oberleutnant Greim', distributed by the postcard publisher W. Sanke in Berlin. The database also lists photographs of him from January 1939 and from 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1969-030-18",
+       "quote": "Unser erfolgreicher Kampfflieger Oberleutnant Greim",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1969-030-18",
+       "quote": "Postkartenvertrieb W. Sanke, Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1969-030-18",
+       "quote": "1917/1918 ca.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 183-2004-1220-500",
+       "quote": "Januar 1939",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 101I-401-0204-25",
+       "quote": "1940",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    },
+    {
+     "period": {
+      "start": "1945-03-01",
+      "end": "1945-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "維斯瓦集團軍群司令部的戰況會議",
+      "en": "Situation conference at Army Group Vistula headquarters"
+     },
+     "body": {
+      "zh-Hant": "1945年3月，聯邦檔案館的一張照片拍下維斯瓦集團軍群司令部的戰況會議。圖說列出站在希特勒身後的人，其中有格萊姆（第6航空艦隊司令）與第9軍團司令布塞上將。",
+      "en": "In March 1945 a Bundesarchiv photograph shows a situation conference at the headquarters of Army Group Vistula. Its caption lists the persons standing behind Hitler, among them Greim, commander of Luftflotte 6, and Colonel-General Busse, commander of the 9th Army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "Hauptquartier der Heeresgruppe Weichsel, Lagebesprechung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "Personen hinter Hitler von links:",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "General Ritter v. Greim; Kommandeur d. Luftflotte 6",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "General-Oberst Busse, Theodor; Kommandeut 9. Armee",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ba-bild-greim",
+       "locator": "Bild 146-1971-033-33",
+       "quote": "März 1945",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
+    },
+    {
+     "period": {
+      "start": "1945-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1945年的授勳與結局",
+      "en": "Honours and end in 1945"
+     },
+     "body": {
+      "zh-Hant": "權威檔的註記說，他在1945年獲頒納粹黨金質黨徽，並成為元帥兼空軍總司令。該檔案同時記載他以自殺結束生命。",
+      "en": "The authority file notes that in 1945 he received the Golden Party Badge of the NSDAP and became a field marshal and commander-in-chief of the Luftwaffe. The same record states that he took his own life."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "1945 Goldenes Parteiabzeichen der NSDAP",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Generalfeldmarschall u. Oberbefehlshaber d. Luftwaffe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-greim",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "beging Suizid",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 6
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:greim-v-fliegerkorps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Bundesarchiv 頁面只寫第5航空軍由格萊姆指揮，無任命日與卸任日。已查：GND（lobid）、Bundesarchiv 主題頁與 Bilddatenbank、Deutsche Biographie（僅索引條目，無 NDB 全文）、Historisches Lexikon Bayerns（只有索引頁與無署名表列）、DDB（Anubis 挑戰頁，未繞過）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:greim-luftflotte-6",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；僅 Bundesarchiv 圖說（1945 年 3 月）列為第 6 航空艦隊司令，無任命與卸任日。已查：同上。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:greim-oberbefehlshaber-luftwaffe",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；GND 只寫 1945 年任空軍總司令與元帥，無日期；英文維基類二手來源給 4 月下旬，依規則不採。已查：GND（lobid）、Deutsche Biographie（索引）、Bundesarchiv、HLB、DDB（Anubis）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 3 段／約 220 字（中文），任期 0 筆有起迄日（3 筆缺起日，未建職位）。本輪已查來源類型：權威檔（lobid GND）、國家級傳記辭典（Deutsche Biographie 僅索引頁，無 NDB 條目；NDB 21 Reitsch 條目僅提及）、官方（Bundesarchiv 主題頁、Bilddatenbank、RL 8 Bestand）、機構百科（Historisches Lexikon Bayerns 僅索引與無署名表、DHM LeMO 無條目 404）；DDB 為 Anubis 挑戰頁（未繞過）。可再查 Braatz《Robert Ritter von Greim》（2018）、Bundesarchiv Personalakte、Kalliope、Oxford DNB 類以外之學術專書。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：未取得格萊姆在不列顛空戰或東線指揮之有日期與地點的戰役敘述；已查來源同 paragraph:length。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Robert Ritter von Greim GND",
+     "url": "https://lobid.org/gnd/search?q=Robert+Ritter+von+Greim&format=json",
+     "result": "found_A",
+     "note": "GND 116830670，1892-06-22／1945-05-24"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie 人物頁",
+     "url": "https://www.deutsche-biographie.de/pnd116830670.html",
+     "result": "not_relevant",
+     "note": "僅索引條目，無 NDB 全文"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie robert-ritter-von-greim",
+     "url": "https://www.dhm.de/lemo/biografie/robert-ritter-von-greim",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Historisches Lexikon Bayerns Greim",
+     "url": "https://www.historisches-lexikon-bayerns.de/Lexikon/Person:116830670",
+     "result": "unrated",
+     "note": "只有索引頁"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "HLB Bayerische Fliegertruppe 表列",
+     "url": "https://www.historisches-lexikon-bayerns.de/Lexikon/Bayerische_Fliegertruppe",
+     "result": "unrated",
+     "note": "表列無署名之簡述，不採"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Bundesarchiv 主題頁 Luftschlacht um England",
+     "url": "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/die-luftschlacht-um-england/",
+     "result": "found_A",
+     "note": "寫第5航空軍由格萊姆指揮"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Bundesarchiv Bilddatenbank 116830670",
+     "url": "https://www.bild.bundesarchiv.de/dba/en/search/?query=116830670",
+     "result": "found_A",
+     "note": "圖說：1945 年 3 月，第 6 航空艦隊司令"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek Greim",
+     "url": "https://www.deutsche-digitale-bibliothek.de/item/XHOPU7TU3YOEJ2Z4EYX2WFTLCJ2B7Q2E",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，未繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Bundesarchiv RL 8 Findbuch",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RL_8.xml",
+     "result": "not_relevant",
+     "note": "僅書目（Braatz 2018）"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "WebSearch Greim Oberbefehlshaber Luftwaffe 1945",
+     "url": null,
+     "result": "unrated",
+     "note": "只出現維基類二手頁，不採"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "generals.dk Greim (4 種 URL 寫法)",
+     "url": "http://www.generals.dk/",
+     "result": "no_result",
+     "note": "資料庫涵蓋陸軍將領，無空軍的格萊姆條目（取得為搜尋頁）"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Greim Luftflotte 6 Kommandierender General V. Fliegerkorps 1939 Biographie",
+     "url": "WebSearch",
+     "result": "not_relevant",
+     "note": "結果以維基類、tracesofwar、部落格為主，不採；起迄日仍無 A/B/C 來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Luftwaffe Officer Career Summaries (deZeng/Stankey) Greim",
+     "url": "https://aviationarchaeology.gr/wp-content/uploads/2014/12/Lw-Offz-Intro-Apr-2014-.pdf",
+     "result": "no_result",
+     "note": "只找到導言 PDF，G 字母檔 404，未取得 Greim 條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "Braatz Robert Ritter von Greim Hitlers letzter Feldmarschall Verlagstext",
+     "url": "https://www.schweitzer-online.de/en/buch/Braatz/Robert-Greim/9783981832419/A48253308/",
+     "result": "no_result",
+     "note": "書商頁無內文，無可引用的任期"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie NDB Reitsch 提及 Greim",
+     "url": "https://www.deutsche-biographie.de/sfz101366.html",
+     "result": "no_result",
+     "note": "頁面無可用文字"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "heinzguderian",
+   "bioId": null,
+   "name": "Heinz Guderian",
+   "nameZh": "海因茨·古德里安",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "period": {
+      "start": "1888-06-17",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "海因茨·古德里安於1888年6月17日生於西普魯士的庫爾姆，是普魯士軍官之子。他先後在卡爾斯魯厄與柏林的軍校受教，1907年進入陸軍，1908年以少尉身分配屬戈斯拉爾的獵兵營。第一次世界大戰開始後，他在西線擔任通信軍官，1917年轉入總參謀部。",
+      "en": "Heinz Guderian was born on 17 June 1888 in Kulm, West Prussia, the son of a Prussian officer. After attending cadet schools in Karlsruhe and Berlin he entered the army in 1907, and in 1908 he was assigned as a lieutenant to the Jäger Battalion at Goslar. After the First World War began he served as a signals officer on the Western Front, and in 1917 he moved into the General Staff."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1888",
+       "quote": "wird in Kulm/Westpreußen als Sohn des preußischen Offiziers Friedrich Guderian",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1907",
+       "quote": "Kadettenanstalten in Karlsruhe und Berlin tritt er in die Armee ein.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1908",
+       "quote": "Als Leutnant wird Guderian dem Jäger-Bataillon in Goslar zugeteilt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1914",
+       "quote": "wird Guderian als Nachrichtenoffizier an der Westfront eingesetzt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1917",
+       "quote": "Wechsel in den Generalstab.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 1
+    },
+    {
+     "period": {
+      "start": "1931-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "裝甲兵的建立",
+      "en": "Building the Panzer arm"
+     },
+     "body": {
+      "zh-Hant": "1931年他出任交通兵監察部參謀長，1935年10月德軍編成最初三個裝甲師，他獲得第2裝甲師的指揮權。1938年11月，他成為裝甲兵上將並兼任快速部隊總監。LeMO 稱他為德國現代化、強大裝甲兵的創建者。",
+      "en": "In 1931 he became chief of staff of the Inspectorate of Motor Transport Troops. When the first three Panzer divisions were formed in October 1935 he received command of the 2nd Panzer Division, and in November 1938 he became General of Panzer Troops and chief of the fast troops. LeMO calls him the creator of a modern and powerful Panzer force in Germany."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1931",
+       "quote": "Er wird Chef des Stabes der Inspektion der Verkehrstruppen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1935",
+       "quote": "Guderian erhält das Kommando über die 2. Panzerdivision.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1938",
+       "quote": "Guderian wird General der Panzertruppen und Chef der Schnellen Truppen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf ab 1933",
+       "quote": "Schöpfer einer modernen und schlagkräftigen Panzertruppe in Deutschland.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 2
+    },
+    {
+     "period": {
+      "start": "1939-09-01",
+      "end": "1941-12-25"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "波蘭、法國與東線的作戰",
+      "en": "Campaigns in Poland, France and the Eastern Front"
+     },
+     "body": {
+      "zh-Hant": "1939年9、10月波蘭戰役期間，他擔任機動化第19軍的指揮官。1940年6月法蘭西會戰中，他經凡爾登向瑞士邊境推進。1941年6月德軍進攻蘇聯時，他指揮第2裝甲集群，後來擴編的第2裝甲軍團在10月打贏布良斯克包圍戰。12月25日，他因擅自拉直戰線而被希特勒免職。",
+      "en": "During the Polish campaign in September and October 1939 he commanded the motorised XIX Army Corps. In the battle of France in June 1940 he advanced via Verdun towards the Swiss border. When Germany attacked the Soviet Union in June 1941 he led Panzer Group 2, whose expanded 2nd Panzer Army won the encirclement battle of Bryansk in October. On 25 December he was dismissed by Hitler over his unauthorised straightening of the front."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1939",
+       "quote": "Befehlshaber des motorisierten XIX. Armeekorps.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1940",
+       "quote": "stößt er über Verdun Richtung Schweizer Grenze vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1941 Juni",
+       "quote": "befehligt er die Panzergruppe 2",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1941 Oktober",
+       "quote": "entscheidet er die Kesselschlacht von Brjansk für sich.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1941 Dezember",
+       "quote": "25. Dezember: Guderian wird aufgrund seiner eigenmächtigen Frontbegradigung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 3
+    },
+    {
+     "period": {
+      "start": "1943-03-01",
+      "end": "1954-05-15"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "重新啟用、總參謀長與晚年",
+      "en": "Recall, Chief of the General Staff and later years"
+     },
+     "body": {
+      "zh-Hant": "1943年3月他被重新啟用為裝甲兵總監。1944年7月21日，他接替失寵的蔡茨勒出任陸軍總參謀長；1945年3月28日，在與希特勒激烈爭執後被免職。其後他被美軍俘虜，1954年5月14日在富森附近的施旺高去世。權威檔稱他為陸軍軍官，指揮過較大的裝甲部隊。",
+      "en": "In March 1943 he was recalled as Inspector-General of Panzer Troops. On 21 July 1944 he succeeded Kurt Zeitzler, who had fallen out of favour, as Chief of the General Staff, and on 28 March 1945 he was dismissed after severe quarrels with Hitler. He was then held in American captivity and died on 14 May 1954 in Schwangau near Füssen. The authority file describes him as an army officer who commanded larger armoured formations."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1943",
+       "quote": "wird er reaktiviert und Generalinspekteur der Panzertruppen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1944",
+       "quote": "Guderian tritt die Nachfolge des bei Hitler aus strategischen Gründen in Ungnade",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1945",
+       "quote": "wird er nach schweren Auseinandersetzungen mit Hitler verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1945-1948",
+       "quote": "Er ist in amerikanischer",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1954",
+       "quote": "14. Mai: Heinz Guderian stirbt in Schwangau bei Füssen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gnd-guderian",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Dt. Heeresoffizier; Kommandeur größerer Panzerverbände",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    }
+   ],
+   "positions": [
+    {
+     "key": "guderian-2-panzerdivision",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第2裝甲師",
+      "en": "2nd Panzer Division, German Army"
+     },
+     "title": {
+      "orig": "General Officer Commanding 2nd Panzer Division",
+      "zh-Hant": "第2裝甲師師長",
+      "en": "General Officer Commanding, 2nd Panzer Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-10-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1935",
+       "quote": "Guderian erhält das Kommando über die 2. Panzerdivision.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1935 Oktober",
+       "quote": "Guderian erhält das Kommando über die 2. Panzerdivision.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-db-guderian",
+       "locator": "NDB 本文",
+       "quote": "1938 Generalleutnant und Kommandierender General des aus Panzerdivisionen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮（R5）"
+    },
+    {
+     "key": "guderian-xix-korps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第19機動軍（波蘭—法國）",
+      "en": "XIX Motorised Corps, German Army (Poland–France)"
+     },
+     "title": {
+      "orig": "General Officer Commanding XIX Motorised Corps",
+      "zh-Hant": "第19機動軍軍長",
+      "en": "General Officer Commanding, XIX Motorised Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1939",
+       "quote": "ist er Befehlshaber des motorisierten XIX. Armeekorps.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮（R5）"
+    },
+    {
+     "key": "guderian-panzergruppe-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第2裝甲集群（東線）",
+      "en": "2nd Panzer Group, German Army (Eastern Front)"
+     },
+     "title": {
+      "orig": "General Officer Commanding 2nd Panzer Group",
+      "zh-Hant": "第2裝甲集群司令",
+      "en": "General Officer Commanding, 2nd Panzer Group"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": null,
+      "end": "1941-11-01"
+     },
+     "startPrecision": null,
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941-06",
+       "quote": "befehligt er die Panzergruppe 2, mit der er sich an der ersten Kesselschlacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 Oktober",
+       "quote": "Oktober: Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集群級指揮，非國家級最高軍職（R5）"
+    },
+    {
+     "key": "guderian-2-panzerarmee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍第2裝甲軍團（東線）",
+      "en": "2nd Panzer Army, German Army (Eastern Front)"
+     },
+     "title": {
+      "orig": "General Officer Commanding 2nd Panzer Army",
+      "zh-Hant": "第2裝甲軍團司令",
+      "en": "General Officer Commanding, 2nd Panzer Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-10-01",
+      "end": "1941-12-25"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941-10",
+       "quote": "Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 Oktober",
+       "quote": "Oktober: Mit seinen zur 2. Panzerarmee erweiterten Verbänden entscheidet er die",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1941 25. Dezember",
+       "quote": "25. Dezember: Guderian wird aufgrund seiner eigenmächtigen Frontbegradigung",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮（R5）"
+    },
+    {
+     "key": "guderian-generalinspekteur-panzertruppen",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍裝甲兵",
+      "en": "Panzer Troops, German Army"
+     },
+     "title": {
+      "orig": "Inspector-General of Panzer Troops",
+      "zh-Hant": "裝甲兵總監",
+      "en": "Inspector-General of Panzer Troops"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-03-01",
+      "end": "1945-03-28"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1943",
+       "quote": "wird er reaktiviert und Generalinspekteur der Panzertruppen.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1943 März",
+       "quote": "März: Nach der für die Wehrmacht vernichtenden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-db-guderian",
+       "locator": "NDB 本文",
+       "quote": "im März 1943 berief ihn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1945 28. März",
+       "quote": "wird er nach schweren Auseinandersetzungen mit Hitler verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "兵種總監，非軍種總司令或參謀總長（R5）"
+    },
+    {
+     "key": "guderian-chef-generalstab-heer",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德國陸軍總司令部（OKH）",
+      "en": "Army High Command (OKH), German Army"
+     },
+     "title": {
+      "orig": "Chief of the Army General Staff, Army High Command OKH",
+      "zh-Hant": "陸軍總參謀長（陸軍總司令部）",
+      "en": "Chief of the Army General Staff, OKH"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-07-21",
+      "end": "1945-03-28"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "Lebenslauf 1944",
+       "quote": "Guderian tritt die Nachfolge des bei Hitler aus strategischen Gründen in Ungnade",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1944 21. Juli",
+       "quote": "21. Juli: Guderian tritt die Nachfolge des bei Hitler aus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-lemo-guderian",
+       "locator": "LeMO 生平年表 1945 28. März",
+       "quote": "wird er nach schweren Auseinandersetzungen mit Hitler verabschiedet.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍參謀長（職稱明寫）但只有具名 C 與 LeMO（B）、政權對應待查證（regimeId NULL）；缺 A 或 2 筆獨立 B",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "待查證：本批名單未附 recordId；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:guderian-xix-korps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    },
+    {
+     "target": "position:guderian-xix-korps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    },
+    {
+     "target": "position:guderian-panzergruppe-2",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "lobid GND Guderian, Heinz (118543156)",
+     "url": "https://lobid.org/gnd/118543156.json",
+     "result": "found_A",
+     "note": "權威檔：1888-06-17 生、1954-05-14 卒、Generaloberst；摘要稱曾任陸軍總參謀長"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Guderian, Heinz",
+     "url": "https://www.deutsche-biographie.de/sfz69951.html",
+     "result": "found_A",
+     "note": "只有索引資料（Lebensdaten、Kulm、Schwangau），NDB 7 全文未在頁面，不引為段落出處"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Biografie Heinz Guderian",
+     "url": "https://www.dhm.de/lemo/biografie/heinz-guderian",
+     "result": "found_B",
+     "note": "作者 Arnulf Scriba；年表含 1907–1954 全程"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "generals.dk Guderian, Heinz Wilhelm",
+     "url": "http://www.generals.dk/general/Guderian/Heinz_Wilhelm/Germany.html",
+     "result": "found_C",
+     "note": "具名作者 Steen Ammentorp；提供各職位起迄日"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Guderian Heinz Chef des Generalstabes des Heeres 21. Juli 1944",
+     "url": "WebSearch",
+     "result": "not_relevant",
+     "note": "搜尋結果以維基類與 tracesofwar 為主，不採用"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Guderian XIX. Armeekorps / Panzergruppe 2 / 2. Panzerarmee（LeMO，既有 rf-lemo-guderian）",
+     "url": "https://www.dhm.de/lemo/biografie/heinz-guderian",
+     "result": "found_B",
+     "note": "generals.dk 替換；LeMO 無精確起訖日，日期以原值保留"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-xix-korps",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1939-08-26～1940-06-01（僅 generals.dk）；LeMO／NDB 只寫 1939年9／10月波蘭戰役期間任軍長，未寫起迄，起迄均設 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1939-08-26",
+        "end": "1940-06-01"
+       },
+       "after": {
+        "start": null,
+        "end": null
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": null
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-panzergruppe-2",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1940-11-16～1941-07-28（僅 generals.dk）；迄日依 rf-lemo-guderian：1941年10月已擴編為第2裝甲集團軍，記 1941-11-01／month；起日無替代來源，設 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1940-11-16",
+        "end": "1941-07-28"
+       },
+       "after": {
+        "start": null,
+        "end": "1941-11-01"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-2-panzerarmee",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1941-08-03～1941-12-26（僅 generals.dk）；起日依 rf-lemo-guderian：1941年10月（month）；迄日依 rf-lemo-guderian：1941-12-25（day）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1941-08-03",
+        "end": "1941-12-26"
+       },
+       "after": {
+        "start": "1941-10-01",
+        "end": "1941-12-25"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-2-panzerdivision",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1935-10-15～1938-02-04（僅 generals.dk）；起日依 rf-lemo-guderian：1935年10月（month）；迄日依 rf-db-guderian：1938年改任第16軍軍長，記 1939-01-01／year",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1935-10-15",
+        "end": "1938-02-04"
+       },
+       "after": {
+        "start": "1935-10-01",
+        "end": "1939-01-01"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "year"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "guderian-generalinspekteur-panzertruppen",
+     "basis": "rf-lemo-guderian",
+     "diff": "原：1943-02-28～1945-03-28（僅 generals.dk）；起日依 rf-lemo-guderian／rf-db-guderian：1943年3月（month）；迄日依 rf-lemo-guderian：1945-03-28",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1943-02-28",
+        "end": "1945-03-28"
+       },
+       "after": {
+        "start": "1943-03-01",
+        "end": "1945-03-28"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "batch": "053",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 7,
+  "editedSentences": 4,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "lv-cakste",
+   "bioId": "01a1b4b8-ea08-738d-a396-42955eacb7e3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 19,
+   "changes": [
+    "段3刪「替新政府爭取利益」子句（引文只寫在巴黎）",
+    "段4截斷引文（缺受詞）改為「ar 83 balsīm」＋補「Latvijas pirmā parlamenta – Satversmes sapulces – priekšsēdētāju」",
+    "段4刪「已是民主中央黨領導人」子句及其引文：兩個合格出處（president.lv vs Stradiņš）說法衝突，已在 gap role:cakste-democratic-centre-leader",
+    "gap 民主中央黨候選引文 82 字超長，縮為完整子句「Čakste līdz mūža beigām palika bezpartijisks」",
+    "field:identity gap 補註第二輪已取得 Latvijas Vēstnesis 來源",
+    "段3與難民委員會職位補引文「pēc šīs centrālkomitejas priekšsēdētāja Viļa Plutes-Olava nāves」支撐「前任主席去世後」子句",
+    "重抓 president.lv（lv）比對一致；最低嘗試達標（5 類來源、19 步含 retry），篇幅不足 gap 屬任期缺迄日，已記錄"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "nl-colijn",
+   "bioId": "01a1b4b5-71e3-7cda-8438-a26f4ffb78fc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 16,
+   "roleCandidates": 2,
+   "gaps": 1,
+   "searchLogSteps": 8,
+   "changes": [
+    "引文「adjudant van J.B. van Heutsz, Gouverneur van Atjeh」不含日期，刪 datePrecision（Q8）",
+    "引文「secretaris Gouvernement van Nederlandsch-Indië」不含日期，刪 datePrecision（Q8）",
+    "引文「hoofdredacteur \"De Standaard\"」不含日期，刪 datePrecision（Q8）",
+    "職位 colijn-govt-secretary-ni 引文「secretaris Gouvernement van Nederlandsch-Indië」不含日期，刪 datePrecision（Q8）",
+    "職位 colijn-destandaard-editor 引文「hoofdredacteur \"De Standaard\"」不含日期，刪 datePrecision（Q8）",
+    "ARP 領袖由 gap 移入 roleCandidates（de_facto_leader，R1）：已抓 Parlement.com 原文「Partijpolitieke functies」明列 politiek leider ARP 1920-04-14～1944-09-18，研究者漏看；起迄日依該行修正並補引文，刪原「缺迄日」gap",
+    "1909–1911 眾議院議席：已抓 Encyclopedia.com 原文明寫 member of parliament for the Anti-Revolutionaire Partij，依 Tai 12:47 由 positions 移入 roleCandidates（de_facto_leader，originalPositionKind=legislator），補引文",
+    "重抓 parlement.com 比對一致；另註：原文 Partijpolitieke functies 尚列 Centraal Comité van ARP-kiesverenigingen 主席（1918–1933、1939–1941）、1922–1923 眾議院 ARP 黨團主席等黨職，研究者未收，審查不新增，留待下一輪；fractievoorzitter 兩筆維持 partyPostAmbiguous"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gb-macdonald",
+   "bioId": "01a19f15-3480-7a0d-a003-e8ec492198ce",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 10,
+   "changes": [
+    "段1 period 迄點依段內最後事件（1895）改 1896-01-01＋year（Q3）",
+    "段2刪重複句（萊斯特議席起迄寫兩次）；period 迄點改半開 1918-12-15",
+    "段3「兼理外交」改正歸屬（出自 Encyclopedia.com，非議會網站）；補 GOV.UK 引文支撐「選舉期間報紙刊出季諾維也夫信」；period 迄點改半開 1924-11-04",
+    "段4「經濟危機」「反對黨領袖」子句原無引文覆蓋：擴充 GOV.UK 引文並補一筆；period 迄點改半開 1935-06-08",
+    "段5 period 起點依段內首事件（1935 年大選、1935 年起任樞密院議長，年精度）改 1935-01-01＋year",
+    "重抓 Historic Hansard 與 GOV.UK 比對一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者漏看已抓原文中明列起迄日的黨職（Parlement.com Partijpolitieke functies）與「以政黨身分取得的席位」（Encyclopedia.com member of parliament for the ARP），把可建候選的黨職降為 gap",
+  "部分子句（歸屬、因果、受詞）未被引文覆蓋或引文截斷，審查已補引文或刪子句",
+  "引文不含日期卻填 datePrecision（Colijn 3 處）",
+  "段落 period 迄點未一律依半開區間／段內最後事件推定（MacDonald 5 處）",
+  "三人 regimeId 皆 null（不連庫），四部閣員依前批慣例 R6＋regime",
+  "WebSearch 額度用盡致權威檔（LoC／VIAF）未查；Britannica、ODNB 403 未繞過"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

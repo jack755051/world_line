@@ -1,0 +1,3639 @@
+{
+ "batch": "b3-full-v3-batch003",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 與 b3-trial/ALIGN.md 直接以對齊格式撰寫：本批無黨職與 R0–R4 命中；將領職位留 positions 並標 t14Overlap／t14Rule（R5／R6）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch003/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ndb-student": {
+   "title": "Student, Kurt Arthur Benno",
+   "authors": [
+    "Wolfgang Schmidt"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften (NDB／Deutsche Biographie)",
+   "published_text": "Neue Deutsche Biographie 25 (2013)",
+   "url": "https://www.deutsche-biographie.de/gnd118619616.html#ndbcontent",
+   "archive_url": null,
+   "catalog_id": "GND 118619616",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie；具名作者；T1 A）"
+  },
+  "ndb-halder": {
+   "title": "Halder, Franz Julius",
+   "authors": [
+    "Christian Hartmann"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften (NDB／Deutsche Biographie)",
+   "published_text": "NDB-online, veröffentlicht am 01.10.2022",
+   "url": "https://www.deutsche-biographie.de/gnd11870091X.html#dbocontent",
+   "archive_url": null,
+   "catalog_id": "GND 11870091X",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie；具名作者；T1 A）"
+  },
+  "ndb-hipper": {
+   "title": "Hipper, Franz Ritter von",
+   "authors": [
+    "Walther Hubatsch"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften (NDB／Deutsche Biographie)",
+   "published_text": "Neue Deutsche Biographie 9 (1972)",
+   "url": "https://www.deutsche-biographie.de/gnd118774492.html#ndbcontent",
+   "archive_url": null,
+   "catalog_id": "GND 118774492",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie；具名作者；T1 A）"
+  },
+  "ndb-busch": {
+   "title": "Busch, Ernst",
+   "authors": [
+    "Fritz von Siegler"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften (NDB／Deutsche Biographie)",
+   "published_text": "Neue Deutsche Biographie 3 (1957)",
+   "url": "https://www.deutsche-biographie.de/gnd118665405.html#ndbcontent",
+   "archive_url": null,
+   "catalog_id": "GND 118665405",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie；具名作者；T1 A）"
+  },
+  "ndb-dietl": {
+   "title": "Dietl, Eduard Wohlrat Christian",
+   "authors": [
+    "Otto Freiherr von Waldenfels"
+   ],
+   "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften (NDB／Deutsche Biographie)",
+   "published_text": "Neue Deutsche Biographie 3 (1957), S. 674 f.",
+   "url": "https://www.deutsche-biographie.de/gnd118525492.html#ndbcontent",
+   "archive_url": null,
+   "catalog_id": "GND 118525492",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB（Deutsche Biographie；具名作者；T1 A）"
+  },
+  "barch-rh20-16": {
+   "title": "RH 20-16 Armeeoberkommando 16（Onlinefindbuch）",
+   "authors": [],
+   "publisher": "Bundesarchiv, Abteilung Militärarchiv",
+   "published_text": "Bundesarchiv Findbuch RH 20-16（1939–1944；Online 2007）",
+   "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/rh20-16.xml",
+   "archive_url": null,
+   "catalog_id": "BArch RH 20-16",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方 Findbuch（Bestandsgeschichte／Oberbefehlshaber 名單）；§16 T1 A（官方檔案館）"
+  },
+  "barch-rh19-ii": {
+   "title": "RH 19-II Oberkommando der Heeresgruppe Nord／B／Mitte（Onlinefindbuch）",
+   "authors": [],
+   "publisher": "Bundesarchiv, Abteilung Militärarchiv",
+   "published_text": "Bundesarchiv Findbuch RH 19-II",
+   "url": "https://www.bundesarchiv.de/findbuecher/rlg_findm/findb/RH19II-34195.xml",
+   "archive_url": null,
+   "catalog_id": "BArch RH 19-II",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方 Findbuch（Oberbefehlshaber 名單）；§16 T1 A"
+  },
+  "barch-rh19-xiii": {
+   "title": "RH 19-XIII Heeresgruppe H／Oberbefehlshaber Nordwest（Onlinefindbuch）",
+   "authors": [
+    "Dr. Thomas Menzel"
+   ],
+   "publisher": "Bundesarchiv, Abteilung Militärarchiv",
+   "published_text": "Bundesarchiv Findbuch RH 19-XIII（Juni 2005）",
+   "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/RH19XIII-30937.xml",
+   "archive_url": null,
+   "catalog_id": "BArch RH 19-XIII",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方 Findbuch（Oberbefehlshaber 名單）；§16 T1 A"
+  },
+  "barch-rh20-20": {
+   "title": "RH 20-20 Gebirgs-Armeeoberkommando 20（Onlinefindbuch）",
+   "authors": [],
+   "publisher": "Bundesarchiv, Abteilung Militärarchiv",
+   "published_text": "Bundesarchiv Findbuch RH 20-20",
+   "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/rh20-20.xml",
+   "archive_url": null,
+   "catalog_id": "BArch RH 20-20",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方 Findbuch（Oberbefehlshaber 名單）；§16 T1 A"
+  },
+  "barch-rh24-19": {
+   "title": "RH 24-19 XIX. Gebirgskorps（Findbuch）",
+   "authors": [],
+   "publisher": "Bundesarchiv, Abteilung Militärarchiv",
+   "published_text": "Bundesarchiv Findbuch RH 24-19（1940–1945）",
+   "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_24-19.xml",
+   "archive_url": null,
+   "catalog_id": "BArch RH 24-19",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方 Findbuch；§16 T1 A"
+  },
+  "barch-norwegen": {
+   "title": "Die deutsche Wehrmacht in Norwegen 1940 bis 1945（Bundesarchiv Themenseite）",
+   "authors": [],
+   "publisher": "Bundesarchiv",
+   "published_text": "Bundesarchiv, Archivgut nach Themen",
+   "url": "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/die-deutsche-wehrmacht-in-norwegen-1940-bis-1945/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "德國聯邦檔案館官方頁（含 Nachlass N 5101 Dietl 簡介）；§16 T1 A"
+  },
+  "snl-dietl": {
+   "title": "Eduard Dietl",
+   "authors": [
+    "Berit Nøkleby",
+    "Dag Leraand"
+   ],
+   "publisher": "Store norske leksikon（snl.no）",
+   "published_text": "Store norske leksikon, Internasjonale militære biografier",
+   "url": "https://snl.no/Eduard_Dietl",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Berit Nøkleby、Dag Leraand）之機構百科條目（挪威大學／基金會共同擁有）；暫分 B（§16 T1：未列入網域，具名機構百科）"
+  },
+  "lemo-sommeroffensive-1944": {
+   "title": "LeMO Zeitstrahl – Der Zweite Weltkrieg – Kriegsverlauf – Sommeroffensive 1944",
+   "authors": [],
+   "publisher": "Deutsches Historisches Museum (LeMO)",
+   "published_text": "Lebendiges Museum Online, DHM",
+   "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/sommeroffensive-1944",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": "CC BY-NC-SA 4.0",
+   "grade": "B",
+   "gradeBasis": "DHM LeMO（國家級歷史博物館線上百科；T1 B）"
+  },
+  "whn-bagration": {
+   "title": "Soviet Operation Bagration Destroyed German Army Group Center",
+   "authors": [
+    "Victor Kamenir"
+   ],
+   "publisher": "Warfare History Network（Sovereign Media）",
+   "published_text": "Warfare History Network, 專文",
+   "url": "https://warfarehistorynetwork.com/?p=48205",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Victor Kamenir）專文；未列入網域，暫分 B（§16 T1）"
+  }
+ },
+ "people": [
+  {
+   "key": "kurtstudent",
+   "bioId": null,
+   "name": "Kurt Student",
+   "nameZh": "庫爾特·斯圖登特",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-05-12",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與一戰飛行員",
+      "en": "Origins and First World War flying service"
+     },
+     "body": {
+      "zh-Hant": "1890年5月12日生於新馬克的伯克霍爾茨，1901至1910年在普魯士軍校受教育，後以軍官候補生身分進入獵兵營。1913年受飛行員訓練，第一次世界大戰中以六次擊落戰績成為出色的戰鬥機飛行員，並曾率領一個戰鬥機中隊。",
+      "en": "Born on 12 May 1890 at Birkholz in the Neumark, he was educated in the Prussian cadet corps from 1901 to 1910 and then joined a Jäger battalion as an officer candidate. Trained as a pilot in 1913, he became a successful fighter pilot in the First World War with six victories and led a fighter squadron."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "12.5. 1890 Birkholz (Neumark)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Nach Erziehung im preuß. Kadettenkorps (1901–10)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "trat S. als Offizieranwärter",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "1913 zum Flugzeugführer ausgebildet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "mit sechs Abschüssen ein erfolgreicher Jagdflieger",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Führer einer Jagdstaffel",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國防軍與空軍時期",
+      "en": "Reichswehr and the build-up of the Luftwaffe"
+     },
+     "body": {
+      "zh-Hant": "1920至1928年他在國防部擔任飛行技術參謀。1933年轉入帝國航空部，負責空軍擴軍階段的技術訓練與試驗，其後任飛行學校與飛行武器學校的指揮官，靠赫爾曼·戈林的庇護迅速晉升，1938年升為少將。",
+      "en": "From 1920 to 1928 he served as a referent for aviation technology in the Reich defence ministry. Taken into the Reich Air Ministry in 1933, he worked on technical training and testing during the Luftwaffe build-up, then commanded flying and flying-weapons schools, rose quickly through the protection of Hermann Göring, and became major general in 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "als Referent (1920–28) für Fliegertechnologie im Reichswehrministerium",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "in das Reichsluftfahrtministerium 1933 übernommen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "in der technischen Ausbildung und Erprobung tätig",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "dann Kommandeur der Flieger- und Fliegerwaffenschulen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "durch die Protektion Hermann Görings rasch Karriere",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "1938 Gen.major",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "傘兵部隊與空降作戰",
+      "en": "Parachute troops and airborne operations"
+     },
+     "body": {
+      "zh-Hant": "1938年起，他把空軍的傘兵部隊組建為大型部隊，並此後（偶有中斷）一直指揮到1945年。1940年西線戰役中的埃本·埃馬爾與鹿特丹空降，以及1941年攻打克里特島的「水星行動」使德軍傘兵聲名大噪；他本人在鹿特丹頭部重傷。",
+      "en": "From 1938 he formed the Luftwaffe parachute troops into a large formation, which he led with few interruptions until 1945. The airborne operations of 1940 in the western campaign against Eben-Emael and Rotterdam, and Operation Merkur against Crete in 1941, made the German paratroopers famous; he was badly wounded in the head at Rotterdam."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Seit 1938 formierte er die Fallschirmtruppe der Luftwaffe zu einem Großverband",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "den er mit wenigen Unterbrechungen bis 1945 führte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Luftlande-Einsätze 1940 im Westfeldzug gegen Eben-Emael und Rotterdam",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "im Unternehmen „Merkur“ 1941 gegen Kreta",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "in Rotterdam am Kopf schwer verwundeten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-01-01",
+      "end": "1978-07-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "晚期、戰後與逝世",
+      "en": "Late war, trial and death"
+     },
+     "body": {
+      "zh-Hant": "1944年他晉升大將；同年9月下令淹沒荷蘭部分地區，主要使平民受害。1946年英國軍事法庭因克里特島上的戰爭罪行判他五年徒刑，1948年即獲釋。1951年起任德國傘兵協會會長，1978年7月1日卒於萊姆戈。",
+      "en": "He was promoted to Generaloberst in 1944; in September 1944 he ordered the flooding of parts of Holland, which hit the civilian population. A British military court sentenced him in 1946 to five years for war crimes on Crete, but he was released in 1948. From 1951 he was president of the German paratroopers' association and died at Lemgo on 1 July 1978."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "1944 zum Generaloberst befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Die von ihm im Sept. 1944 angeordnete Überflutung von Holland",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Militärgericht 1946 wegen Kriegsverbrechen auf Kreta zu fünf Jahren",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "bereits 1948 entlassen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "als dessen Präsident seit 1951",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "1. 7. 1978 Lemgo",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "student-fallschirmtruppe",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "空軍傘兵部隊",
+      "en": "Luftwaffe parachute troops"
+     },
+     "title": {
+      "orig": "Führer der Fallschirmtruppe der Luftwaffe（Großverband）",
+      "zh-Hant": "空軍傘兵部隊指揮官（傘兵大型部隊）",
+      "en": "Commander of the Luftwaffe parachute troops"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "Seit 1938 formierte er die Fallschirmtruppe der Luftwaffe zu einem Großverband",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-student",
+       "locator": "Biographie",
+       "quote": "den er mit wenigen Unterbrechungen bis 1945 führte",
+       "quoteLang": "de",
+       "evidenceNote": "「mit wenigen Unterbrechungen」：期間有中斷，起迄僅年精度",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "空軍傘兵大部隊指揮官，非國家級最高軍職亦非戰區／方面軍司令（T14 R4 不符）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:student-fallschirmarmee",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；NDB（A）只寫「與 wenigen Unterbrechungen 指揮傘兵大部隊至1945」，未載1944年起集團軍級指揮職的名稱與任期；已查 NDB、GND（lobid），未查到官方戰史頁。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Kurt Student (lobid GND 搜尋)",
+     "url": "https://lobid.org/gnd/search?q=Kurt%20Student&filter=type:Person",
+     "result": "found_A",
+     "note": "確認 GND 118619616 身分與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118619616 記錄（lobid.org JSON）",
+     "url": "https://lobid.org/gnd/118619616.json",
+     "result": "found_A",
+     "note": "取得姓名異寫與生卒；僅作身分確認，未當引文來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Kurt Student（Deutsche Biographie）",
+     "url": "https://www.deutsche-biographie.de/gnd118619616.html",
+     "result": "found_A",
+     "note": "NDB 25 (2013)（Wolfgang Schmidt）全文，已 curl 存檔"
+    }
+   ],
+   "nameZhOrig": "库尔特·斯图登特"
+  },
+  {
+   "key": "franzhalder",
+   "bioId": null,
+   "name": "Franz Halder",
+   "nameZh": "弗朗茲·哈爾德",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-06-30",
+      "end": "1934-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "1884年6月30日生於維爾茨堡。1902年7月加入第3野戰砲兵團，1911至1914年在慕尼黑戰爭學院接受總參謀訓練。一戰期間他多任參謀，最後在魯普雷希特王儲集團軍群；1920年編入國防軍，1931年晉升上校，1934年升少將。",
+      "en": "Born at Würzburg on 30 June 1884, he entered the 3rd Field Artillery Regiment in July 1902 and trained in general-staff duties at the Munich war academy from 1911 to 1914. In the First World War he served mainly on staffs, last with Army Group Crown Prince Rupprecht; he was taken into the Reichswehr in 1920 and became colonel in 1931 and major general in 1934."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Geboren am 30. Juni 1884 in Würzburg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "im Juli 1902 mit seinem Eintritt in das 3. Feldartillerie-Regiment",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "von 1911 bis 1914 auch eine Schulung im Generalstabsdienst",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "zuletzt bei der Heeresgruppe „Kronprinz Rupprecht“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "1920 in die Reichswehr übernommen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Halder wurde 1931 zum Oberst und 1934 zum Generalmajor befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1934-01-01",
+      "end": "1938-09-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "師長與總參謀長之路",
+      "en": "Division commander and path to the General Staff"
+     },
+     "body": {
+      "zh-Hant": "1934至1936年他在慕尼黑指揮第7步兵師；1937年秋以中將身分組織大型國防軍演習。1938年2月升砲兵上將，同年先後任總參謀部的二處、一處高級軍需官，並於9月1日出任陸軍總參謀長。",
+      "en": "From 1934 to 1936 he commanded the 7th Infantry Division at Munich; in autumn 1937, as lieutenant general, he organised the large Wehrmacht manoeuvre. General of Artillery since February 1938, he became Oberquartiermeister II and then I in the Army General Staff that year and its chief on 1 September 1938."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "von 1934 bis 1936 die 7. Infanteriedivision in München kommandiert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "organisierte er im Herbst 1937 als Generalleutnant das große Wehrmachtsmanöver",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "seit Februar 1938 General der Artillerie",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Oberquartiermeister II (Ausbildung), dann I (Operative Planung)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "am 1. September 1938 dessen Chef",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1938-09-01",
+      "end": "1942-09-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍總參謀長與德軍戰役規劃",
+      "en": "Chief of the Army General Staff and the campaigns of 1939–1942"
+     },
+     "body": {
+      "zh-Hant": "作為陸軍總參謀長，他成為1939年波蘭、1940年西線與1941年巴爾幹戰役最重要的策劃者與組織者。晉升大將後，他自1940年夏起籌備進攻蘇聯的「巴巴羅薩行動」；隨著影響力下降，他於1942年9月24日辭去總參謀長職務。",
+      "en": "As chief of the Army General Staff he became the chief planner and organiser of the campaigns in Poland (1939), the West (1940) and the Balkans (1941). Promoted to Generaloberst, he prepared the attack on the Soviet Union, Operation Barbarossa, from summer 1940; his influence declined, and he left the post on 24 September 1942."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "wichtigsten Planer und Organisator der deutschen Feldzüge",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "die Feldzüge in Polen (1939), im Westen (1940) und auf dem Balkan (1941)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Zum Generaloberst befördert, bereitete Halder seit Sommer 1940",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "den deutschen Angriff auf die Sowjetunion vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "das „Unternehmen Barbarossa“",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Halders Demission als Generalstabschef am 24. September 1942",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-07-20",
+      "end": "1972-04-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "被捕、美軍歷史處與逝世",
+      "en": "Arrest, work for the US Army and death"
+     },
+     "body": {
+      "zh-Hant": "1944年7月20日事件後他遭逮捕，被關押於達豪與弗洛森堡集中營，1945年5月4日在南蒂羅爾被解救。1946年6月他被任命為美軍歷史處德國部門的負責人，直到1961年6月，並於1949年發表《希特勒作為統帥》；1972年4月2日卒於阿紹。",
+      "en": "After the 20 July 1944 plot he was arrested and held in the Dachau and Flossenbürg concentration camps; a Wehrmacht unit freed him on 4 May 1945. In June 1946 he was appointed head of the German section of the US Army Historical Division, serving until June 1961, and published \"Hitler als Feldherr\" in 1949; he died at Aschau on 2 April 1972."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Inhaftierung nach dem Attentat des 20. Juli 1944",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "zeitweise in den Konzentrationslagern Dachau und Flossenbürg inhaftiert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "befreite ihn dort am 4. Mai 1945 eine Einheit der Wehrmacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Im Juni 1946 wurde er von Colonel Harold E. Potter",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "stand bis Juni 1961 im Dienst der US-Army",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "legte Halder 1949 die Schrift „Hitler als Feldherr“ vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Gestorben am 2. April 1972 in Aschau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "halder-infdiv7",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第7步兵師（慕尼黑）",
+      "en": "7th Infantry Division (Munich)"
+     },
+     "title": {
+      "orig": "Kommandeur der 7. Infanterie-Division",
+      "zh-Hant": "第7步兵師師長",
+      "en": "Commander, 7th Infantry Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1934-01-01",
+      "end": "1937-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "von 1934 bis 1936 die 7. Infanteriedivision in München kommandiert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職亦非戰區／方面軍司令（T14 R4 不符）"
+    },
+    {
+     "key": "halder-gstdh",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "陸軍總參謀部（OKH）",
+      "en": "Army General Staff (OKH)"
+     },
+     "title": {
+      "orig": "Chef des Generalstabes des Heeres",
+      "zh-Hant": "陸軍總參謀長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-09-01",
+      "end": "1942-09-24"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "am 1. September 1938 dessen Chef",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-halder",
+       "locator": "Biographie",
+       "quote": "Halders Demission als Generalstabschef am 24. September 1942",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "陸軍總參謀長，期間有波蘭／西線／巴爾幹戰役規劃；但 regimeId NULL（德國是否在系統中待查證）、引文未明寫為「國家級最高軍職」，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Franz Halder (lobid GND 搜尋)",
+     "url": "https://lobid.org/gnd/search?q=Franz%20Halder&filter=type:Person",
+     "result": "found_A",
+     "note": "確認 GND 11870091X 身分與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 11870091X 記錄（lobid.org JSON）",
+     "url": "https://lobid.org/gnd/11870091X.json",
+     "result": "found_A",
+     "note": "取得姓名異寫與生卒；僅作身分確認，未當引文來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Franz Halder（Deutsche Biographie）",
+     "url": "https://www.deutsche-biographie.de/gnd11870091X.html",
+     "result": "found_A",
+     "note": "NDB-online（Christian Hartmann，2022）全文，已 curl 存檔"
+    }
+   ]
+  },
+  {
+   "key": "franzvonhipper",
+   "bioId": null,
+   "name": "Franz von Hipper",
+   "nameZh": "弗朗茲·馮·希佩爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-09-13",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與海軍早年",
+      "en": "Origins and early naval career"
+     },
+     "body": {
+      "zh-Hant": "1863年9月13日生於上巴伐利亞的魏爾海姆。1881年他以學員身分加入帝國海軍，1884年秋成為軍官，曾任皇家遊艇的航海官。自1903年起，他負責指揮大小巡洋艦，逐漸進入自己真正擅長的領域。",
+      "en": "Born on 13 September 1863 at Weilheim in Upper Bavaria, he entered the Imperial Navy as a cadet in 1881 and became an officer in autumn 1884, serving among other things as navigation officer of the imperial yacht. From 1903 he was entrusted with leading small and large cruisers."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "13.9.1863 Weilheim (Oberbayern)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "trat 1881 als Kadett in die Kaiserliche Marine ein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "im Herbst 1884 Offizier",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "als Navigationsoffizier der Kaiserjacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Seit 1903 war er mit der Führung von kleinen und großen Kreuzern beauftragt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1912-01-01",
+      "end": "1916-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "偵察艦隊與斯卡格拉克海戰",
+      "en": "Scouting forces and the battle of Jutland"
+     },
+     "body": {
+      "zh-Hant": "自1912年起，他以海軍上將身分出任公海艦隊偵察部隊指揮官，戰時仍留任此職。1914年的巡洋艦出擊與1915年的多格灘海戰顯示他是冷靜的戰術家；1916年5月31日的斯卡格拉克（日德蘭）海戰中，他所率領的裝甲巡洋艦群優於英國戰列巡洋艦，為他贏得最高聲望。",
+      "en": "From 1912 he was an admiral and commander of the scouting forces of the High Seas Fleet, a post he kept in wartime. The cruiser sorties of 1914 and the action on the Dogger Bank in 1915 showed him as a cool tactician; in the battle of the Skagerrak (Jutland) on 31 May 1916 his group of armoured cruisers proved superior to the British battle cruisers, which brought him his highest fame."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Seit 1912 war er Admiral und Befehlshaber der Aufklärungsstreitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Die Kreuzervorstöße von 1914",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Gefecht auf der Doggerbank 1915",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "kaltblütigen Taktiker von persönlicher Einsatzbereitschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Tagschlacht im Skagerrak am 31.5.1916",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "die von ihm geführte Panzerkreuzer-Gruppe",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1918-08-01",
+      "end": "1932-05-25"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "公海艦隊司令與晚年",
+      "en": "High Seas Fleet command and later life"
+     },
+     "body": {
+      "zh-Hant": "1918年8月，他接替舍爾出任公海艦隊司令，準備最後一次艦隊出擊，但因部分艦艇發生兵變而未能實施。1918年12月13日他請辭退役，此後隱居於漢堡-奧特馬申；1932年5月25日在阿爾托納-奧特馬申去世。",
+      "en": "In August 1918 he succeeded Scheer as chief of the High Seas Forces and prepared the last fleet sortie, which never took place because of the mutiny on several ships. He took his leave on 13 December 1918, lived in seclusion at Hamburg-Othmarschen, and died at Altona-Othmarschen on 25 May 1932."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Im August 1918 als Nachfolger von Scheer zum Chef der Hochseestreitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "bereitete H. den letzten Flottenvorstoß vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "wegen der Meuterei auf einigen Schiffen der Flotte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Am 13.12.1918 nahm er seinen Abschied",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "lebte seitdem zurückgezogen in Hamburg-Othmarschen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "25.5.1932 Altona-Othmarschen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hipper-aufklaerung",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "公海艦隊偵察部隊",
+      "en": "Scouting Forces of the High Seas Fleet"
+     },
+     "title": {
+      "orig": "Befehlshaber der Aufklärungsstreitkräfte der Hochseeflotte",
+      "zh-Hant": "公海艦隊偵察部隊指揮官",
+      "en": "Commander, Scouting Forces of the High Seas Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1912-01-01",
+      "end": "1918-09-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Seit 1912 war er Admiral und Befehlshaber der Aufklärungsstreitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Im August 1918 als Nachfolger von Scheer zum Chef der Hochseestreitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": "迄日依下一職任命月份推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "艦隊所屬偵察部隊指揮官，非軍種總司令（T14 R4 不符）"
+    },
+    {
+     "key": "hipper-hochseestreitkraefte",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "公海艦隊",
+      "en": "High Seas Fleet"
+     },
+     "title": {
+      "orig": "Chef der Hochseestreitkräfte",
+      "zh-Hant": "公海艦隊司令",
+      "en": "Commander of the High Seas Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-08-01",
+      "end": "1918-12-13"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Im August 1918 als Nachfolger von Scheer zum Chef der Hochseestreitkräfte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-hipper",
+       "locator": "Biographie",
+       "quote": "Am 13.12.1918 nahm er seinen Abschied",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取其請辭日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "公海艦隊司令；regimeId NULL（德意志帝國是否在系統中待查證）、引文未明寫為軍種最高職、任期內無有日期地點的戰役連結，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Franz von Hipper (lobid GND 搜尋)",
+     "url": "https://lobid.org/gnd/search?q=Franz%20von%20Hipper&filter=type:Person",
+     "result": "found_A",
+     "note": "確認 GND 118774492 身分與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118774492 記錄（lobid.org JSON）",
+     "url": "https://lobid.org/gnd/118774492.json",
+     "result": "found_A",
+     "note": "取得姓名異寫與生卒；僅作身分確認，未當引文來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Franz von Hipper（Deutsche Biographie）",
+     "url": "https://www.deutsche-biographie.de/gnd118774492.html",
+     "result": "found_A",
+     "note": "NDB 9 (1972)（Walther Hubatsch）全文，已 curl 存檔"
+    }
+   ]
+  },
+  {
+   "key": "ernstbusch",
+   "bioId": null,
+   "name": "Ernst Busch",
+   "nameZh": "恩斯特·布施",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1885-07-06",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與國防軍時期",
+      "en": "Origins and Reichswehr career"
+     },
+     "body": {
+      "zh-Hant": "1885年7月6日生於埃森-施泰勒。他走過一般的軍旅路線，第一次世界大戰中以營長身分獲得功勳勳章。國防軍時期晉升很快：1935年任少將及第23師師長，1937年升中將。",
+      "en": "Born on 6 July 1885 at Essen-Steele, he followed the usual military career and was awarded the Pour le mérite in the First World War as a battalion commander. He rose quickly in the Reichswehr: major general and commander of the 23rd Division in 1935, lieutenant general in 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "6.7.1885 Essen-Steele",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "durchlief die übliche Militärlaufbahn",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "als Bataillonsführer mit dem Pour le mérite ausgezeichnet",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "1935 Generalmajor und Kommandeur der 23. Division",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "1937 Generalleutnant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1942-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "波蘭、西線與東線戰役",
+      "en": "Campaigns in Poland, the West and the East"
+     },
+     "body": {
+      "zh-Hant": "1938年他升任軍長並出任布雷斯勞第8軍區司令，率該軍參加波蘭戰役；其後以第16集團軍指揮官身分打過西線戰役，1940年7月19日晉升大將。1941年他以第16集團軍司令身分隨北方集團軍群推進至列寧格勒城下，並在沃爾霍夫與傑米揚斯克打過防禦戰。",
+      "en": "In 1938 he became commanding general and commander of Wehrkreis VIII at Breslau and took part in the Polish campaign with that corps; at the head of the 16th Army he fought the western campaign, and from 19 July 1940 he was Generaloberst. In 1941, as commander of the 16th Army within Army Group North, he advanced to the gates of Leningrad and fought defensive battles at the Volkhov and at Demyansk."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "1938 erhielt er seine Beförderung zum Kommandierenden General",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Befehlshaber des Wehrkreises VIII in Breslau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "nahm mit diesem Korps am Polenfeldzug teil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "An der Spitze der 16. Armee machte er den Westfeldzug in Belgien, Flandern",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Seit dem 19.7.1940 war B. Generaloberst.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Als Oberbefehlshaber der 16. Armee nahm er dann 1941",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "im Rahmen der Heeresgruppe Nord am Vormarsch bis vor Leningrad",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "die Abwehrschlachten am Wolchow, bei Demjansk",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1943-10-12",
+      "end": "1945-07-17"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "中央集團軍群與戰敗",
+      "en": "Army Group Centre and defeat"
+     },
+     "body": {
+      "zh-Hant": "1943年10月12日他以元帥身分接掌中央集團軍群，該集團軍群捲入最艱苦的防禦戰；蘇軍優勢使它幾近瓦解後，他於1944年6月28日被免職。1945年4月15日他再度出任，指揮已被切成兩截的西線北段，把部隊撤往石勒蘇益格-荷爾斯泰因；1945年7月17日在英軍俘虜中去世。",
+      "en": "On 12 October 1943 he took over Army Group Centre as field marshal; it was caught up in the hardest defensive fighting, and after Soviet superiority had nearly destroyed it he was relieved on 28 June 1944. On 15 April 1945 he again took supreme command, over the northern part of the western front, and withdrew his armies to Schleswig-Holstein; he died in British captivity on 17 July 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Am 12.10.1943 erhielt B. als Generalfeldmarschall",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "die Führung der Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "wurde er am 28.6.1944 seines Postens enthoben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "übernahm dann aber nochmals am 15.4.1945 den Oberbefehl über den Nordteil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "führte den Rückzug seiner Armeen nach Schleswig-Holstein",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "17.7.1945 in britischer Gefangenschaft",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-05-20",
+      "end": "1944-06-28"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "白俄羅斯防禦與免職",
+      "en": "Defence in Belarus and dismissal"
+     },
+     "body": {
+      "zh-Hant": "1944年5月20日，布施向希特勒提出兩套撤退方案，一案退到第聶伯河，另一案退到別列津納河，都被希特勒當場否決。1944年6月22日蘇軍對中央集團軍群發動大攻勢；布施6月26日飛往東普魯士的大本營，請求准許把殘部撤到第聶伯河後方，希特勒仍不答應，並在6月28日將他免職，繼任者是莫德爾。",
+      "en": "On 20 May 1944 Busch presented Hitler with two plans for withdrawal, one to the Dnieper and one to the Berezina, and Hitler rejected both out of hand. On 22 June 1944 the Red Army launched a great offensive against Army Group Centre; on 26 June Busch flew to headquarters in East Prussia and begged leave to pull the remnants back behind the Dnieper, but Hitler refused and dismissed him on 28 June, with Model as his successor."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "on May 20, 1944, Generalfeldmarschall Ernst Busch presented",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "The first plan called for a minor withdrawal to the Dnieper River.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "The alternate plan called for a withdrawal to the Berezina River.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "Hitler rejected both proposals out of hand.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-sommeroffensive-1944",
+       "locator": "Kriegsverlauf Sommeroffensive 1944",
+       "quote": "begann die Rote Armee am 22. Juni 1944 an der Ostfront",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-sommeroffensive-1944",
+       "locator": "Kriegsverlauf Sommeroffensive 1944",
+       "quote": "eine Großoffensive gegen die Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "Busch flew to Fuehrer Headquarters at the Wolfsschanze",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "in East Prussia on 26 June.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "He practically begged Hitler to allow him to save the remnants",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "Hitler would not hear of it, though.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whn-bagration",
+       "locator": "article",
+       "quote": "He sacked Busch on June 28",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lemo-sommeroffensive-1944",
+       "locator": "Kriegsverlauf Sommeroffensive 1944",
+       "quote": "Als Buschs Nachfolger Generalfeldmarschall Walter Model",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "busch-wehrkreis8",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第8軍區（布雷斯勞）",
+      "en": "Wehrkreis VIII (Breslau)"
+     },
+     "title": {
+      "orig": "Kommandierender General und Befehlshaber des Wehrkreises VIII",
+      "zh-Hant": "軍長兼第8軍區司令",
+      "en": "Commanding General and commander of Wehrkreis VIII"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-01-01",
+      "end": "1939-10-22"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "1938 erhielt er seine Beförderung zum Kommandierenden General",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Befehlshaber des Wehrkreises VIII in Breslau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rh20-16",
+       "locator": "Findbuch",
+       "quote": "22.10.1939Busch, Ernst",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿所載其下一職（16. Armee Oberbefehlshaber）起日推得（推論）；NDB 敘述其先以軍參加波蘭戰役、其後領 16. Armee",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "An der Spitze der 16. Armee machte er den Westfeldzug",
+       "quoteLang": "de",
+       "evidenceNote": "NDB 敘述順序：軍區／軍→16. Armee",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍／軍區司令，非國家級最高軍職亦非戰區／方面軍司令（T14 R4 不符）；迄日 NULL"
+    },
+    {
+     "key": "busch-armee16",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第16集團軍",
+      "en": "16th Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber der 16. Armee",
+      "zh-Hant": "第16集團軍司令",
+      "en": "Commander-in-Chief, 16th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-10-22",
+      "end": "1943-10-11"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "barch-rh20-16",
+       "locator": "Findbuch",
+       "quote": "22.10.1939Busch, Ernst11.10.1943Hansen, Christian",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任（Hansen）起日推得（推論）；Bundesarchiv RH 20-16 Oberbefehlshaber 名單",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Als Oberbefehlshaber der 16. Armee nahm er dann 1941",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍司令，非國家級最高軍職亦非戰區／方面軍司令（T14 R4 不符）；起迄日見 Bundesarchiv 名簿"
+    },
+    {
+     "key": "busch-heeresgruppe-mitte",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中央集團軍群",
+      "en": "Army Group Centre"
+     },
+     "title": {
+      "orig": "Führer der Heeresgruppe Mitte（Generalfeldmarschall）",
+      "zh-Hant": "中央集團軍群司令",
+      "en": "Commander, Army Group Centre"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-12",
+      "end": "1944-06-28"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "Am 12.10.1943 erhielt B. als Generalfeldmarschall",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "die Führung der Heeresgruppe Mitte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "wurde er am 28.6.1944 seines Postens enthoben",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rh19-ii",
+       "locator": "Findbuch",
+       "quote": "12. 10.1943: Generalfeldmarschall Ernst Busch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rh19-ii",
+       "locator": "Findbuch",
+       "quote": "28.6.1944: Generalfeldmarschall Walter Model",
+       "quoteLang": "de",
+       "evidenceNote": "依名簿下一任（Model）起日推得（推論）；與 NDB 之免職日同為 28.6.1944",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍群（戰區）司令；regimeId NULL（德國是否在系統中待查證）、來源只寫「Abwehrkämpfe」未給有日期地點的戰役連結，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "busch-nordwest",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西線北段",
+      "en": "Northern sector of the Western Front"
+     },
+     "title": {
+      "orig": "Oberbefehl über den Nordteil der Westfront",
+      "zh-Hant": "西線北段總指揮",
+      "en": "Supreme command of the northern sector of the Western Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-04-15",
+      "end": "1945-05-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ndb-busch",
+       "locator": "Biographie",
+       "quote": "übernahm dann aber nochmals am 15.4.1945 den Oberbefehl über den Nordteil",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rh19-xiii",
+       "locator": "Findbuch",
+       "quote": "15.4.-5.5.1945 Generalfeldmarschall Ernst Busch",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區總指揮；regimeId NULL、無有日期地點的戰役連結，門檻無法證明（起迄日 15.4.–5.5.1945 見 Bundesarchiv RH 19-XIII）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 4 段／約 480 字，已達篇幅標準；任期尚缺 busch-wehrkreis8 迄日（NDB 只寫 1938 年任職）。16. Armee、中央集團軍群、西北總指揮三筆任期已補齊起迄日（Bundesarchiv 名簿）。本輪已查來源類型：權威檔（GND／BnF／LoC／VIAF）、官方檔案（Bundesarchiv 5 份 Findbuch）、具名機構百科（SNL、LeMO、Britannica 403）、國家傳記辭典（HLB 404、SBL、Kansallisbiografia）、專文（Warfare History Network）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:busch-wehrkreis8",
+     "gapKind": "not_found",
+     "note": "待查證：busch-wehrkreis8 迄日仍無 A／B／具名 C 來源。補查 Bundesarchiv RH 53-8 Findbuch（open-data，無司令名簿）、LeMO（Busch 傳記頁 404）、Lexikon der Wehrmacht（404）；網搜僅得維基類來源，不收。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Ernst Busch Generalfeldmarschall (lobid GND 搜尋)",
+     "url": "https://lobid.org/gnd/search?q=Ernst%20Busch%20Generalfeldmarschall&filter=type:Person",
+     "result": "found_A",
+     "note": "確認 GND 118665405 身分與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118665405 記錄（lobid.org JSON）",
+     "url": "https://lobid.org/gnd/118665405.json",
+     "result": "found_A",
+     "note": "取得姓名異寫與生卒；僅作身分確認，未當引文來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Ernst Busch Generalfeldmarschall（Deutsche Biographie）",
+     "url": "https://www.deutsche-biographie.de/gnd118665405.html",
+     "result": "found_A",
+     "note": "NDB 3 (1957)（Fritz von Siegler）全文，已 curl 存檔"
+    },
+    {
+     "step": 4,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "Ernst Busch 1885-1945 GND about/lds",
+     "url": "https://d-nb.info/gnd/118665405/about/lds",
+     "result": "found_A",
+     "note": "DNB：生卒與異名 Busch, Ernst Wilhelm Bernhard；無任期"
+    },
+    {
+     "step": 5,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BnF data：Ernst Busch feldmarschall",
+     "url": "https://data.bnf.fr/en/search?term=Ernst+Busch+feldmarschall",
+     "result": "no_result",
+     "note": "BnF 無對應軍人權威條目"
+    },
+    {
+     "step": 6,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "LoC：Busch, Ernst, 1885-1945",
+     "url": "https://id.loc.gov/search/?q=Busch%2C+Ernst%2C+1885-1945",
+     "result": "not_relevant",
+     "note": "只回搜尋頁，無任期"
+    },
+    {
+     "step": 7,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "VIAF：Busch, Ernst",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Busch%2C%20Ernst%22",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 8,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov Busch, Ernst, 1885-1945 label",
+     "url": "https://id.loc.gov/authorities/names/label/Busch,%20Ernst,%201885-1945",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 9,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Ernst Busch Generalfeldmarschall（Store norske leksikon）",
+     "url": "https://snl.no/Ernst_Busch",
+     "result": "unrated",
+     "note": "無署名條目（只列 fagansvarlig），依 Q9 只作 gap 候選；其「mars til mai 1945」與 A 級來源不同"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "snl.no 站內搜尋 Ernst Busch feldmarskalk",
+     "url": "https://snl.no/.search?query=Ernst+Busch+feldmarskalk",
+     "result": "not_relevant",
+     "note": "搜尋頁"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ernst Busch German field marshal",
+     "url": "https://www.britannica.com/biography/Ernst-Busch-German-field-marshal",
+     "result": "blocked_403",
+     "note": "403，換查其他百科；/Ernst-Busch 也 403"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Sommeroffensive 1944（Heeresgruppe Mitte, Busch）",
+     "url": "https://www.dhm.de/lemo/kapitel/der-zweite-weltkrieg/kriegsverlauf/sommeroffensive-1944",
+     "result": "found_B",
+     "note": "DHM LeMO：1944-06-22 蘇軍攻勢、Busch 為中央集團軍群司令、Model 接任"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon Bayerns：Busch, Ernst",
+     "url": "https://www.historisches-lexikon-bayerns.de/Lexikon/Busch,_Ernst",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Svenskt biografiskt lexikon／Kansallisbiografia：Busch",
+     "url": "https://kansallisbiografia.fi/search?q=Dietl",
+     "result": "no_result",
+     "note": "芬蘭 Kansallisbiografia 搜尋頁無對應；SBL 無 Busch 條目"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 20-16 AOK 16：Oberbefehlshaber 名單（原文查詢：Armeeoberkommando 16 Oberbefehlshaber Busch 1939）",
+     "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/rh20-16.xml",
+     "result": "found_A",
+     "note": "Oberbefehlshaber: 22.10.1939 Busch … 11.10.1943 Hansen"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 19-II Heeresgruppe Mitte：Oberbefehlshaber（原文查詢：Heeresgruppe Mitte Oberbefehlshaber Busch 12.10.1943）",
+     "url": "https://www.bundesarchiv.de/findbuecher/rlg_findm/findb/RH19II-34195.xml",
+     "result": "found_A",
+     "note": "12.10.1943 Busch；28.6.1944 Model"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 19-XIII Oberbefehlshaber Nordwest（原文查詢：Busch 1945 Nordwest Oberbefehlshaber）",
+     "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/RH19XIII-30937.xml",
+     "result": "found_A",
+     "note": "15.4.–5.5.1945 Busch"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 53-8 Wehrkreiskommando VIII（原文查詢：Wehrkreis VIII Befehlshaber 1938）",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_53-8.xml",
+     "result": "not_relevant",
+     "note": "無司令任期名簿，缺迄日仍待查"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek：Bestand Oberbefehlshaber Nordwest",
+     "url": "https://www.deutsche-digitale-bibliothek.de/item/X2XHMMLFE2V42M43K2VADXGSL44ONW3J",
+     "result": "not_relevant",
+     "note": "僅 Bestand 摘要（與 Bundesarchiv 同源）"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Warfare History Network：Soviet Operation Bagration Destroyed German Army Group Center",
+     "url": "https://warfarehistorynetwork.com/?p=48205",
+     "result": "found_B",
+     "note": "Victor Kamenir 專文：1944-05-20 兩套撤退案、06-26 見希特勒、06-28 免職"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "WebSearch：Ernst Busch generalfeltmarskalk Heeresgruppe Mitte 1944 Bagration（瑞典語）",
+     "url": null,
+     "result": "found_B",
+     "note": "導向 LeMO、WHN"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "WebSearch：Ernst Busch Generalfeldmarschall Britannica／IWM／USHMM／CMH",
+     "url": null,
+     "result": "no_result",
+     "note": "IWM 照片說明無名；Britannica 403"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 53-8 Wehrkreiskommando VIII",
+     "url": "https://open-data.bundesarchiv.de/apex-ead/DE-1958_RH_53-8.xml",
+     "result": "not_relevant",
+     "note": "只有檔案單位，無司令任期"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Ernst Busch 傳記",
+     "url": "https://www.dhm.de/lemo/biografie/ernst-busch.html",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Busch Kommandierender General VIII. Armeekorps 1939 Ende",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋結果僅維基類來源，不收"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 24-8 VIII. Armeekorps Findbuch（Kommandierender General 名單）",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_24-8.xml",
+     "result": "not_relevant",
+     "note": "只有檔案標題，無 Busch 任期"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "Busch VIII. AK 離任／Heitz 接任日期",
+     "url": null,
+     "result": "no_result",
+     "note": "網搜僅見維基類與 tracesofwar（不收）；改依 RH 20-16 下一職起日推得迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    },
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:busch-wehrkreis8",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB（A）只寫 1938 年任職，未寫何時離任。本輪另查 Bundesarchiv RH 53-8（Wehrkreiskommando VIII）Findbuch、RH 20-16、RH 19-II、RH 19-XIII（均無第8軍區司令任期名簿）、Store norske leksikon、LeMO、Britannica（403）、Historisches Lexikon Bayerns（404）、BnF／LoC／VIAF／GND 權威檔（只含生卒）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "eduarddietl",
+   "bioId": null,
+   "name": "Eduard Dietl",
+   "nameZh": "愛德華·迪特爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1936-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與山地獵兵",
+      "en": "Origins and mountain troops"
+     },
+     "body": {
+      "zh-Hant": "1909年他加入巴伐利亞第5步兵團，第一次世界大戰中先後任排長、連長，後任團與旅的副官。戰後留在國防軍，任肯普滕獵兵營營長並重視部隊的高山訓練，並以簡樸的軍人作風與乾燥的幽默受上下級喜愛；1935年晉升上校，出任第99山地獵兵團團長。",
+      "en": "He joined the Bavarian 5th Infantry Regiment in 1909 and served in it through the First World War as platoon and company leader and later regimental and brigade adjutant. He stayed in the Reichswehr as commander of the Kempten Jäger battalion, stressing high-mountain training and winning popularity with superiors and subordinates through his plain soldierly manner and dry humour, and in 1935, promoted colonel, became commander of Mountain Infantry Regiment 99."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "1909 in das bayerische 5. Infanterie-Regiment eingetreten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "als Zug- und Kompanieführer, später als Regiments- und Brigade-Adjutant",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "als Kommandeur des Kemptener Jägerbataillons",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Durch sein einfaches, soldatisches Auftreten und seinen trockenen Humor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "1935 wurde er, zum Oberst befördert, Kommandeur des Gebirgsjäger-Regiments 99",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "納爾維克戰役",
+      "en": "The battle of Narvik"
+     },
+     "body": {
+      "zh-Hant": "他以第3山地師師長（少將）參加了波蘭戰役，最大的戰績是佔領納爾維克：他的6000名山地獵兵與水兵在兩個月裡抵擋六倍優勢之敵。西線戰役開始時英軍撤出挪威，他晉升步兵上將，並成為國防軍第一位獲橡葉騎士鐵十字勳章的軍官。",
+      "en": "As commander of the 3rd Mountain Division (major general) he took part in the Polish campaign; his greatest success was the occupation of Narvik, where 6,000 mountain troops and sailors held out for two months against sixfold odds. At the start of the western campaign the British withdrew from Norway; he was promoted General of Infantry and became the first Wehrmacht officer awarded the Oak Leaves to the Knight's Cross."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Kommandeur der 3. Gebirgs-Division machte Generalmajor D. den Polenfeldzug mit",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Sein größter Erfolg aber wurde die Besetzung Narviks",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "6000 Gebirgsjäger und Matrosen gegen sechsfache Übermacht",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "mußten die Engländer ihre Kräfte von Norwegen abziehen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "als erster Offizier der Wehrmacht mit dem Eichenlaub zum Ritterkreuz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-06-01",
+      "end": "1944-06-23"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "北極圈戰線與逝世",
+      "en": "The Arctic front and death"
+     },
+     "body": {
+      "zh-Hant": "1941年6月，迪特爾軍開始沿北冰洋推進；1942年1月15日他受命指揮拉普蘭集團軍司令部，其下除德軍外還有多個芬蘭部隊，同年6月他晉升大將。1944年6月23日他在格拉茨附近的空難中喪生。",
+      "en": "In June 1941 the Dietl corps began its advance along the Arctic Ocean; on 15 January 1942 he was given command of Army High Command Lapland, which included numerous Finnish units besides German ones, and in June he was promoted Generaloberst. He died in an aeroplane accident near Graz on 23 June 1944."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Im Juni 1941 trat das Korps D. den Vormarsch am nördlichen Eismeer an",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Am 15.1. | 1942 wurde D.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "mit der Führung des Armee-Oberkommandos Lappland betraut",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "dem neben deutschen auch zahlreiche finnische Truppenteile unterstellt waren",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "im Juni zum Generalobersten befördert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "23.6.1944 bei Graz (Flugzeugunfall)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-04-09",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "納爾維克攻防細節",
+      "en": "Details of the Narvik fighting"
+     },
+     "body": {
+      "zh-Hant": "1940年4月9日挪威戰役開始時，納爾維克是德軍最北的目標；迪特爾率人數居劣勢的德軍壓倒挪威守軍，奪得該地。挪威軍在卡爾·古斯塔夫·弗萊舍爾少將指揮下反攻，並把迪特爾部隊逼向比約恩菲耶勒的瑞典邊界，但盟軍放棄挪威時他避免了投降。挪威投降後，他取得山地軍團挪威的指揮權。",
+      "en": "When Norway was invaded on 9 April 1940, Narvik was the northernmost German objective; Dietl led the outnumbered German forces, which overcame the Norwegian defenders and took the town. The Norwegians under Major General Carl Gustav Fleischer counter-attacked and pressed Dietl's men against the Swedish border at Bjørnfjell, but he avoided surrender when the Allies gave up Norway. After the Norwegian capitulation he received command of Mountain Corps Norway."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "Under invasjonen av Norge, 9. april 1940, var Narvik det nordligste målet.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "Dietl ledet de tallmessig underlegne tyske styrkene",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "som utmerket seg ved å overvinne de norske forsvarerne",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "under ledelse av generalmajor Carl Gustav Fleischer, gikk til motangrep",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "presset Dietl og hans menn inn mot svenskegrensen på Bjørnfjell",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "men han unngikk å kapitulere da de allierte oppga Norge",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "fikk Dietl kommandoen over Gebirgskorps Norwegen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-06-23"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "拉普蘭集團軍與摩爾曼斯克攻勢",
+      "en": "Lapland Army and the Murmansk offensive"
+     },
+     "body": {
+      "zh-Hant": "1942年1月起，已晉升大將的迪特爾任第20山地集團軍（即拉普蘭集團軍）司令，司令部設在芬蘭羅瓦涅米，指揮進攻摩爾曼斯克；該軍只深入境內數公里，在利察河邊凍結，沒有到達摩爾曼斯克。1944年6月23日他從上薩爾茨貝格前往赫爾辛基途中，飛機起飛後不久墜毀，他罹難。",
+      "en": "From January 1942, by then a Generaloberst, Dietl was commander of the 20th Mountain Army (the Lapland Army) with headquarters at Rovaniemi in Finland and led its attack on Murmansk; it advanced only a few kilometres, froze fast by the River Litsa and never reached Murmansk. On 23 June 1944, on his way from the Obersalzberg to Helsinki, his aircraft crashed shortly after take-off and he was killed."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "Fra januar 1942 var Dietl, nå forfremmet til generaloberst",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "sjef for 20. Gebirgs-Armee (20. bergarmé, også kjent som Lapplandsarmeen)",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "hovedkvarter i finske Rovaniemi",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "ledet han sin armé i angrepet mot Murmansk",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "Den kom noen kilometer inn i landet, frøs fast ved elven Litsa",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "og nådde ikke Murmansk.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "var Dietl 23. juni 1944 på vei fra Obersalzberg til",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "da flyet styrtet like etter avgang og Dietl omkom",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "dietl-gebjr99",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第99山地獵兵團",
+      "en": "Mountain Infantry Regiment 99"
+     },
+     "title": {
+      "orig": "Kommandeur des Gebirgsjäger-Regiments 99",
+      "zh-Hant": "第99山地獵兵團團長",
+      "en": "Commander, Mountain Infantry Regiment 99"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1935-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "1935 wurde er, zum Oberst befördert, Kommandeur des Gebirgsjäger-Regiments 99",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "I 1935 ble Dietls utnevnt som oberst, med kommando over Gebirgsjäger-Regiment 99",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "overtok han 3. Gebirgsjägerdivision i Graz",
+       "quoteLang": "no",
+       "evidenceNote": "SNL 句首「Etter ... innmarsj i Østerrike i 1938」；終點為接任下一職務之年推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "團級指揮官，非國家級最高軍職亦非戰區司令（T14 R4 不符）；迄日依 SNL 敘述的下一職務起年推得"
+    },
+    {
+     "key": "dietl-gebdiv3",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第3山地師",
+      "en": "3rd Mountain Division"
+     },
+     "title": {
+      "orig": "Kommandeur der 3. Gebirgs-Division",
+      "zh-Hant": "第3山地師師長",
+      "en": "Commander, 3rd Mountain Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "overtok han 3. Gebirgsjägerdivision i Graz",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-norwegen",
+       "locator": "Findbuch",
+       "quote": "als Kommandeur der 3. Gebirgs-Division die Kämpfe um Narvik",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮官，非國家級最高軍職亦非戰區司令（T14 R4 不符）；迄日 NULL"
+    },
+    {
+     "key": "dietl-korps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "山地軍團挪威（迪特爾軍）",
+      "en": "Mountain Corps Norway (Corps Dietl)"
+     },
+     "title": {
+      "orig": "Kommandierender General des Gebirgskorps Norwegen（Korps Dietl）",
+      "zh-Hant": "山地軍團挪威軍長",
+      "en": "Commanding General, Mountain Corps Norway"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-01-01",
+      "end": "1942-01-15"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "fikk Dietl kommandoen over Gebirgskorps Norwegen",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "Dietl var fra 1940 og til sin død i 1944 sjef for den tyske hæren i Nord-Norge",
+       "quoteLang": "no",
+       "evidenceNote": "年份 1940 取自此句；軍團確切起日待查",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "barch-rh24-19",
+       "locator": "Findbuch",
+       "quote": "1.7.1940 in Norwegen aus Teilen der Gruppe XXI und der 3. Geb.Div.",
+       "quoteLang": "de",
+       "evidenceNote": "軍司令部組建日，非 Dietl 任命日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "wurde D. mit der Führung des Armee-Oberkommandos Lappland betraut",
+       "quoteLang": "de",
+       "evidenceNote": "依 NDB 所載其下一職（AOK Lappland）受命日 15.1.1942 推得（推論）；Bundesarchiv RH 20-20 名簿寫 14.1.1942，差一天，採 NDB 明寫日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職亦非戰區／方面軍司令（T14 R4 不符）；迄日 NULL"
+    },
+    {
+     "key": "dietl-aok-lappland",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "拉普蘭集團軍司令部／第20山地集團軍",
+      "en": "Army High Command Lapland / 20th Mountain Army"
+     },
+     "title": {
+      "orig": "Oberbefehlshaber AOK Lappland／20. Gebirgs-Armee",
+      "zh-Hant": "拉普蘭集團軍（第20山地集團軍）司令",
+      "en": "Commander-in-Chief, AOK Lappland / 20th Mountain Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-14",
+      "end": "1944-06-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "barch-rh20-20",
+       "locator": "Findbuch",
+       "quote": "14. Jan. 1942Dietl, Eduard25. Juni 1944Rendulic, Dr. Lothar",
+       "quoteLang": "de",
+       "evidenceNote": "終點依名簿下一任（Rendulic）起日推得（推論）；Dietl 於 1944-06-23 空難身亡",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "mit der Führung des Armee-Oberkommandos Lappland betraut",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-dietl",
+       "locator": "Artikkel",
+       "quote": "sjef for 20. Gebirgs-Armee (20. bergarmé, også kjent som Lapplandsarmeen)",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "集團軍（戰區）司令；regimeId NULL（德國是否在系統中待查證）、來源無有日期地點的戰役連結，門檻無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:dietl-gebdiv3",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；SNL（B）只寫 1938 年接任第3山地師（年精度），未寫離任；Bundesarchiv 北歐戰史頁只說他以師長身分指揮納爾維克戰鬥。已查 NDB、SNL、Bundesarchiv（RH 20-20／RH 24-19／Norwegen 專頁／Nachlass N 5101）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:dietl-aok-lappland",
+     "gapKind": "conflict",
+     "note": "兩份已抓 A 級來源起日相差一天：Bundesarchiv RH 20-20 名簿寫 Oberbefehlshaber 自 14. Jan. 1942；NDB 寫 15.1.1942 受命。本檔採名簿 14.1.1942（官方名簿），NDB 日期列為候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ndb-dietl",
+       "locator": "Biographie",
+       "quote": "Am 15.1. | 1942 wurde D.",
+       "quoteLang": "de",
+       "evidenceNote": "NDB 寫 15.1.1942 受命；Bundesarchiv 名簿 Oberbefehlshaber 自 14. Jan. 1942",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 5 段／約 580 字，篇幅已達標；任期尚缺 dietl-gebdiv3 迄日、dietl-korps 迄日（及確切起日）。第99山地獵兵團迄日依 SNL 下一職務年推得（推論）；拉普蘭集團軍起迄日採 Bundesarchiv 名簿（迄日為下一任起日推得）。本輪已查來源類型：權威檔（GND／BnF／LoC 403／VIAF 403）、官方檔案（Bundesarchiv 6 份 Findbuch／專頁）、具名機構百科（SNL、Britannica 403、LeMO）、國家傳記辭典（HLB 404、NBL／SBL、Kansallisbiografia）、學術期刊（journal.fi 遇 Anubis 挑戰頁）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:dietl-gebdiv3",
+     "gapKind": "not_found",
+     "note": "待查證：dietl-gebdiv3 迄日仍無合格來源。補查 LeMO 傳記（只寫 1938-04 任師長）、Bundesarchiv RH 28-3 Findbuch（無指揮官名簿）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:dietl-korps",
+     "gapKind": "not_found",
+     "note": "待查證：dietl-korps 迄日與確切起日仍無合格來源。補查 LeMO 傳記、Bundesarchiv RH 28-3（皆無軍團長任期）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Eduard Dietl (lobid GND 搜尋)",
+     "url": "https://lobid.org/gnd/search?q=Eduard%20Dietl&filter=type:Person",
+     "result": "found_A",
+     "note": "確認 GND 118525492 身分與生卒"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "GND 118525492 記錄（lobid.org JSON）",
+     "url": "https://lobid.org/gnd/118525492.json",
+     "result": "found_A",
+     "note": "取得姓名異寫與生卒；僅作身分確認，未當引文來源"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Eduard Dietl（Deutsche Biographie）",
+     "url": "https://www.deutsche-biographie.de/gnd118525492.html",
+     "result": "found_A",
+     "note": "NDB 3 (1957)（Otto Freiherr von Waldenfels）全文，已 curl 存檔"
+    },
+    {
+     "step": 4,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "BnF data：Eduard Dietl",
+     "url": "https://data.bnf.fr/en/search?term=Eduard+Dietl",
+     "result": "no_result",
+     "note": "無任期資料"
+    },
+    {
+     "step": 5,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov：Dietl, Eduard, 1890-1944",
+     "url": "https://id.loc.gov/authorities/names/label/Dietl,%20Eduard,%201890-1944",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 6,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋：Dietl Eduard Generaloberst",
+     "url": "https://lobid.org/gnd/search?q=Dietl+Eduard+Generaloberst&format=json",
+     "result": "found_A",
+     "note": "僅確認身分與生卒"
+    },
+    {
+     "step": 7,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "SNAC：Dietl, Eduard, 1890-1944",
+     "url": "https://snaccooperative.org/view/51287526",
+     "result": "not_relevant",
+     "note": "頁面為 JS 殼，無內容"
+    },
+    {
+     "step": 8,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Eduard Dietl（Store norske leksikon；挪威語）",
+     "url": "https://snl.no/Eduard_Dietl",
+     "result": "found_B",
+     "note": "具名作者 Nøkleby／Leraand：1935 GebJgRgt 99、1938 第3山地師、1940 Gebirgskorps Norwegen、1942-01 20. Gebirgs-Armee、1944-06-23 空難"
+    },
+    {
+     "step": 9,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Norsk biografisk leksikon：Dietl",
+     "url": "https://nbl.snl.no/Eduard_Dietl",
+     "result": "no_result",
+     "note": "重新導向至 SNL 同頁"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Eduard Dietl",
+     "url": "https://www.britannica.com/biography/Eduard-Dietl",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "DHM LeMO 站內搜尋 Dietl",
+     "url": "https://www.dhm.de/lemo/suche?q=Dietl",
+     "result": "not_relevant",
+     "note": "搜尋頁無人物條目"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Historisches Lexikon Bayerns：Dietl, Eduard",
+     "url": "https://www.historisches-lexikon-bayerns.de/Lexikon/Dietl,_Eduard",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Svenskt biografiskt lexikon 搜尋 Dietl",
+     "url": "https://sok.riksarkivet.se/sbl/Search.aspx?q=Dietl",
+     "result": "no_result",
+     "note": "無 Dietl 條目"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Kansallisbiografia 搜尋 Dietl（芬蘭語）",
+     "url": "https://kansallisbiografia.fi/search?q=Dietl",
+     "result": "no_result",
+     "note": "無條目"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "national_dictionary",
+     "query": "Bavarikon：Eduard Dietl",
+     "url": "https://www.bavarikon.de/search?lang=de&q=Eduard+Dietl",
+     "result": "no_result",
+     "note": "無人物條目"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv 站內搜尋：Eduard Dietl（德語）",
+     "url": "https://www.bundesarchiv.de/DE/Navigation/Suche/suche.html?queryString=Eduard+Dietl",
+     "result": "not_relevant",
+     "note": "搜尋殼頁"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 20-20 Gebirgs-Armeeoberkommando 20：Oberbefehlshaber（德語）",
+     "url": "https://apps.bundesarchiv.de/findbuecher/rlg_findm/findb/rh20-20.xml",
+     "result": "found_A",
+     "note": "Oberbefehlshaber: 14. Jan. 1942 Dietl … 25. Juni 1944 Rendulic"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv 專頁：Die deutsche Wehrmacht in Norwegen 1940 bis 1945（德語）",
+     "url": "https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/die-deutsche-wehrmacht-in-norwegen-1940-bis-1945/",
+     "result": "found_A",
+     "note": "N 5101 Nachlass Dietl：3. Gebirgs-Division 師長、Befehlsstelle Finnland、AOK Lappland、20. Gebirgs-Armee"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Findbuch RH 24-19 XIX. Gebirgskorps（德語）",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_24-19.xml",
+     "result": "found_A",
+     "note": "Gebirgskorps Norwegen 組建日 1.7.1940；無軍長名簿"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Bundesarchiv Nachlassdatenbank N 5101 Dietl",
+     "url": "https://www.bundesarchiv.de/nachlassdatenbank/viewsingle.php?person_id=33531&asset_id=19183",
+     "result": "not_relevant",
+     "note": "Kalliope 殼頁"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Deutsche Digitale Bibliothek 搜尋 Eduard Dietl",
+     "url": "https://www.deutsche-digitale-bibliothek.de/searchresults?query=Eduard+Dietl",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Nasjonalbiblioteket 搜尋 Eduard Dietl Narvik（挪威語）",
+     "url": "https://www.nb.no/search?q=Eduard%20Dietl%20Narvik",
+     "result": "not_relevant",
+     "note": "JS 搜尋殼"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "Finnish journal Tiede&Ase（芬蘭語查詢：Dietl Lapin armeija）",
+     "url": "https://journal.fi/ta/article/view/47543/13418",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "lokalhistoriewiki 20. Gebirgsarmee／Eduard Dietl",
+     "url": "https://lokalhistoriewiki.no/wiki/Eduard_Dietl",
+     "result": "no_result",
+     "note": "連線逾時；且為維基型網站，不收"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "WebSearch：Eduard Dietl Gebirgskorps Norwegen 20. Gebirgsarmee Oberbefehlshaber Lappland",
+     "url": null,
+     "result": "found_B",
+     "note": "導向 SNL、Bundesarchiv"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "LeMO Eduard Dietl 傳記",
+     "url": "https://www.dhm.de/lemo/biografie/eduard-dietl.html",
+     "result": "found_B",
+     "note": "只寫 1938-04 任師長、1942-01 接拉普蘭軍，無迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 28-3 3. Gebirgs-Division Findbuch",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_28-3.xml",
+     "result": "not_relevant",
+     "note": "無指揮官任期"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Lexikon der Wehrmacht Dietl",
+     "url": "null",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "Bundesarchiv RH 28-3／RH 24-19 Findbuch（師長／軍長名單）",
+     "url": "https://open-data.bundesarchiv.de/ddb-bestand/DE-1958_RH_28-3.xml",
+     "result": "not_relevant",
+     "note": "無 Dietl 離任第3山地師日期"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "Dietl 3. Gebirgs-Division 離任日（Ringel 接任）",
+     "url": null,
+     "result": "no_result",
+     "note": "網搜僅見維基類與 tracesofwar（不收）；第3山地師迄日仍待查證"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    },
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:dietl-korps",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；SNL 只寫 1940 年（「fra 1940」）及納爾維克後取得山地軍團挪威指揮權，Bundesarchiv RH 24-19 只載軍司令部組建日 1.7.1940，皆無 Dietl 軍長任期止日；起日亦僅年精度。已查 NDB、SNL、Bundesarchiv RH 24-19／RH 20-20。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "batch": "049",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 5,
+  "deletedParagraphs": 2,
+  "deletedPositions": 5,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 30,
+  "addedCitations": 15,
+  "editedSentences": 12,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gr-zaimis",
+   "bioId": "01a1b4bb-0751-7a84-a502-4203bd1038b1",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 1,
+   "roleCandidates": 3,
+   "gaps": 6,
+   "searchLogSteps": 16,
+   "changes": [
+    "4 筆無日期引文的 datePrecision 改 null（Q8）：a tre riprese…、formando un governo…、restaurazione monarchica、Si dimise…",
+    "段5 period 迄點改 1936-09-16（段內最後一件事為 1936-09-15 逝世）",
+    "抽查重抓 Treccani 原文吻合；R0 三筆 1915–1917 首相候選、克里特高級專員 R6 維持"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-de-la-guardia",
+   "bioId": "01a1b4b8-e9a8-79d6-b0d0-323b052cfc52",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 11,
+   "changes": [
+    "Biografías y Vidas 降為未評等（C）：全站通用作者範本、商業網站，比照 batch023",
+    "刪去只由該站支撐的句子（省長、醫院院長、1941-12-09 宣戰、1942 美國海軍、1945-06-15 交權等），改以 Encyclopedia.com 已抓原文重寫為 4 段",
+    "positions 3 筆移出：省長、醫院院長→field:positions gap；政府與司法部長→「待查證：缺起日」gap（合格來源無日期）",
+    "死亡年 conflict 改 not_found（合格 vs 不合格不算衝突）",
+    "篇幅不足 gap 更新為 4 段／278 字"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bo-penaranda",
+   "bioId": "01a1b4b8-e9b4-7a5a-9554-98e09721dfa6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 12,
+   "changes": [
+    "Biografías y Vidas 降為未評等（C），刪其支撐子句（1932–1935、1933–1935 陸軍總司令、基斯基羅加 1939 政變、卡塔維、與軸心斷交、1943-12-20 祖國理性政變）",
+    "原段2併入段1，以 Encyclopedia.com 原文補述總統任內與遭推翻原因",
+    "positions 2 筆（陸軍總司令 R6、國防部長 R6）移為「待查證：缺起日」gap",
+    "刪除原 paragraph:length gap（現 4 段／347 字已達標）；死亡 conflict 只保留兩份合格來源"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把 Biografías y Vidas（站方通用作者範本）評為 B，與 batch023 審查判 C 不一致；建議 PROMPT 明列為未評等",
+  "研究者對無日期引文填 datePrecision（Q8）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 74
+ }
+}

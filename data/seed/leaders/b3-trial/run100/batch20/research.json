@@ -1,0 +1,2559 @@
+{
+  "batch": "b3-run100-batch20",
+  "researchedOn": "2026-11-11",
+  "policyVersion": "bio-2026-11-v0",
+  "alignedTo": "b0b0e0f",
+  "alignNote": "直接依 ARCHITECTURE b0b0e0f（T11／T12）與 Tai 2026-11-11 12:12、12:47 裁決（黨職一律 de_facto_leader、role_kind、T14 R0–R6、黨籍席位比照黨職）撰寫；經歷層 positionKind、角色層 roleCandidates 兩層互斥；元首／首腦任期在 leader_records，本檔不重建。",
+  "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id。",
+  "rawDir": "/tmp/b3run100/batch20/raw",
+  "rawMap": "rawmap.json",
+  "sources": {
+    "nasu-lyzohub": {
+      "title": "Діяльність Федора Лизогуба щодо організації роботи уряду Української Держави (травень – листопад 1918 р.)",
+      "authors": [
+        "Р. Я. Пиріг"
+      ],
+      "publisher": "Інститут історії України НАН України（《Український історичний журнал》）",
+      "published_text": "Укр. іст. журн., 2011, №5",
+      "url": "https://nasu-periodicals.org.ua/index.php/uhj/article/download/28769/22882/45238",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "具名學者（Руслан Пиріг，烏克蘭國家科學院歷史研究所）學術期刊論文"
+    },
+    "nasu-ostapenko": {
+      "title": "Зміна урядів та урядової політики Директорії УНР у 1919 р.",
+      "authors": [
+        "О. Д. Бойко"
+      ],
+      "publisher": "Інститут історії України НАН України（《Український історичний журнал》）",
+      "published_text": "Укр. іст. журн.",
+      "url": "https://nasu-periodicals.org.ua/index.php/uhj/article/download/28263/22597/44604",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "具名學者（О. Д. Бойко）學術期刊論文"
+    },
+    "eu-lyzohub": {
+      "title": "Lyzohub, Fedir",
+      "authors": [],
+      "publisher": "Encyclopedia of Ukraine (CIUS)",
+      "published_text": "Encyclopedia of Ukraine, vol. 3 (1993)",
+      "url": "https://www.encyclopediaofukraine.com/pages/L/Y/LyzohubFedir.htm",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "C",
+      "gradeBasis": "具名出版機構或作者：Encyclopedia of Ukraine (CIUS) → C（grade-ungraded-b3-2026-11-14，原：抓取頁面無署名作者 → 依 Q9 視為未評等，只放 gap 候選）"
+    },
+    "eu-ostapenko": {
+      "title": "Ostapenko, Serhii",
+      "authors": [],
+      "publisher": "Encyclopedia of Ukraine (CIUS)",
+      "published_text": "Encyclopedia of Ukraine（2015 更新）",
+      "url": "https://www.encyclopediaofukraine.com/pages/O/S/OstapenkoSerhii.htm",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "C",
+      "gradeBasis": "具名出版機構或作者：Encyclopedia of Ukraine (CIUS) → C（grade-ungraded-b3-2026-11-14，原：抓取頁面無署名作者 → 依 Q9 視為未評等，只放 gap 候選）"
+    },
+    "dbl-zahle": {
+      "title": "C.Th. Zahle",
+      "authors": [
+        "Helge Larsen"
+      ],
+      "publisher": "Dansk Biografisk Leksikon（Lex.dk）",
+      "published_text": "Dansk Biografisk Leksikon, 3. udgave (1979–84)",
+      "url": "https://biografiskleksikon.lex.dk/C.Th._Zahle",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "A",
+      "gradeBasis": "國家級傳記辭典（Dansk Biografisk Leksikon），具名作者"
+    },
+    "ency-szalasi": {
+      "title": "Szálasi, Ferenc",
+      "authors": [
+        "Jozeph Michman (Melkman)"
+      ],
+      "publisher": "Encyclopaedia Judaica（經 Encyclopedia.com／Gale 轉載）",
+      "published_text": "Encyclopaedia Judaica",
+      "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/szalasi-ferencdeg",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "具名作者的機構百科條目（Encyclopaedia Judaica）"
+    },
+    "ency-morinigo": {
+      "title": "Morínigo, Higínio (1897–1983)",
+      "authors": [
+        "Thomas L. Whigham"
+      ],
+      "publisher": "Encyclopedia of Latin American History and Culture（經 Encyclopedia.com／Gale 轉載）",
+      "published_text": "Encyclopedia of Latin American History and Culture",
+      "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/morinigo-higinio-1897-1983",
+      "archive_url": null,
+      "catalog_id": null,
+      "license_code": null,
+      "grade": "B",
+      "gradeBasis": "具名作者的機構百科條目（Encyclopedia of Latin American History and Culture）"
+    }
+  },
+  "people": [
+    {
+      "key": "ua-fedir-lyzohub",
+      "bioId": "01a1c35f-186c-7459-94d9-f5c3a548ec1c",
+      "name": "Fedir Lyzohub",
+      "nameZh": "費奧多爾·利佐胡布",
+      "recordIds": [],
+      "thickness": "薄",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1851-10-01",
+            "end": "1918-01-01"
+          },
+          "periodStartPrecision": "month",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與帝俄時期經歷",
+            "en": "Origins and pre-1918 career"
+          },
+          "body": {
+            "zh-Hant": "利佐胡布1851年10月生於切爾尼戈夫附近的謝德涅夫，出自頗有名望的哥薩克軍官世家。他任波爾塔瓦省地方自治會（zemstvo）主席約十五年，1915至1917年擔任高加索總督的顧問，臨時政府時期在內務部任司長一職；他屬十月黨。",
+            "en": "Lyzohub was born in October 1851 in Sedniv near Chernihiv, of a fairly well-known Cossack officer-class family. He headed the Poltava gubernia zemstvo for about fifteen years, served 1915–1917 as adviser to the viceroy of the Caucasus, and under the Provisional Government worked as a department head in the Ministry of Internal Affairs; he belonged to the Octobrist party."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "Ф.Лизогуб народився в жовтні 1851 р. у місті Седневі",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "був нащадком досить відомого козацько-старшинського роду",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "близько 15 років очолював Полтавське губернське земство",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "у 1915–1917 рр. служив радником намісника на Кавказі",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "працював начальником відділу в міністерстві внутрішніх справ",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "належав до партії октябристів",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1918-05-02",
+            "end": "1918-11-07"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "烏克蘭國（赫特曼政權）部長會議主席",
+            "en": "Chairman of the Council of Ministers of the Ukrainian State (1918)"
+          },
+          "body": {
+            "zh-Hant": "依皮里赫論文（涵蓋1918年5月至11月），內閣骨幹於5月2日組成；他任部長會議主席約半年，並自己接管內務部的領導工作。內閣會議紀錄顯示，他任總理的最後一天是11月7日。",
+            "en": "According to Pyrih's study (covering May–November 1918), the cabinet's core was formed by the end of 2 May; he headed the Council of Ministers for half a year and took over leadership of the Ministry of Internal Affairs himself. The cabinet minutes show his last day as prime minister was 7 November."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "論文標題",
+              "quote": "(травень – листопад 1918 р.)",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 4 段",
+              "quote": "до кінця дня 2 травня кістяк кабінету було сформовано",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 1 段",
+              "quote": "він півроку очолював Раду Міністрів",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 4 段",
+              "quote": "керівництво МВС узяв на себе Ф.Лизогуб",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文末段",
+              "quote": "останнім днем прем’єрства Ф.Лизогуба стало 7 листопада",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "lyzohub-poltava-zemstvo",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "波爾塔瓦省地方自治會",
+            "en": "Poltava gubernia zemstvo"
+          },
+          "title": {
+            "orig": "очолював Полтавське губернське земство",
+            "zh-Hant": "波爾塔瓦省地方自治會主席",
+            "en": "Head of the Poltava gubernia zemstvo"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "близько 15 років очолював Полтавське губернське земство",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "lyzohub-caucasus-adviser",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "高加索總督府",
+            "en": "Caucasus viceroyalty"
+          },
+          "title": {
+            "orig": "радником намісника на Кавказі",
+            "zh-Hant": "高加索總督顧問",
+            "en": "Adviser to the viceroy of the Caucasus"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1915-01-01",
+            "end": "1918-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "у 1915–1917 рр. служив радником намісника на Кавказі",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "lyzohub-interior-dept",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "俄羅斯臨時政府內務部",
+            "en": "Ministry of Internal Affairs, Russian Provisional Government"
+          },
+          "title": {
+            "orig": "начальником відділу в міністерстві внутрішніх справ",
+            "zh-Hant": "內務部司長",
+            "en": "Department head, Ministry of Internal Affairs"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 3 段",
+              "quote": "працював начальником відділу в міністерстві внутрішніх справ",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "lyzohub-hetman-interior",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "烏克蘭國（赫特曼政權）內務部",
+            "en": "Ministry of Internal Affairs, Ukrainian State (Hetmanate)"
+          },
+          "title": {
+            "orig": "керівництво МВС узяв на себе",
+            "zh-Hant": "接管內務部領導",
+            "en": "Took over leadership of the Ministry of Internal Affairs"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "nasu-lyzohub",
+              "locator": "正文第 4 段",
+              "quote": "керівництво МВС узяв на себе Ф.Лизогуб",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "內政部屬四部之一；來源只寫『接管領導』，未寫起訖日、未明寫正職部長，且政權待查證，門檻無法證明（缺日期、政權）",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "dates",
+            "regime"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:lyzohub-hetman-interior",
+          "gapKind": "not_found",
+          "note": "內務部任期起訖：A/B 來源（Пиріг 2011）只寫『接管』，未給日期；未評等的 Encyclopedia of Ukraine（無署名）寫 10 May–8 Jul 1918，待 A/B 來源證實。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-lyzohub",
+              "locator": "全文",
+              "quote": "minister of internal affairs (10 May to 8 July 1918)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "paragraph:2",
+          "gapKind": "conflict",
+          "note": "總理任期終點：Пиріг（B）據內閣會議紀錄稱最後一天為 1918-11-07，並指出一般文獻說 11-14；未評等的 Encyclopedia of Ukraine 寫『premier (10 May to 14 November 1918)』。兩份已抓來源互相矛盾，正文採已評等來源；任期在 leader_records，待核。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-lyzohub",
+              "locator": "全文",
+              "quote": "premier (10 May to 14 November 1918)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "position:lyzohub-poltava-zemstvo",
+          "gapKind": "not_found",
+          "note": "波爾塔瓦省地方自治會主席的起訖年：A/B 來源只寫『約15年』；未評等的 Encyclopedia of Ukraine 寫 1901–15，待 A/B 來源。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-lyzohub",
+              "locator": "全文",
+              "quote": "executive chairman of the Poltava gubernia zemstvo in 1901–15",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "field:death",
+          "gapKind": "not_found",
+          "note": "卒年（1928，貝爾格萊德）僅見未評等來源，待 A/B 來源。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-lyzohub",
+              "locator": "全文",
+              "quote": "d 1928 in Belgrade, Serbia",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "Lyzohub, Fedir encyclopediaofukraine.com Hetman government Council of Ministers 1918",
+          "url": "https://www.encyclopediaofukraine.com/pages/L/Y/LyzohubFedir.htm",
+          "result": "unrated",
+          "note": "找到 Encyclopedia of Ukraine 條目，抓取頁無署名作者 → 未評等；結果另含 archontology.org（未評等，未抓取）"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Лизогуб Федір Андрійович Енциклопедія історії України голова Ради міністрів 1918 гетьман",
+          "url": "https://nasu-periodicals.org.ua/index.php/uhj/article/download/28769/22882/45238",
+          "result": "found_B",
+          "note": "找到 Р.Я. Пиріг 論文（烏克蘭歷史雜誌 2011），抓取並轉文字"
+        },
+        {
+          "step": 3,
+          "sourceType": "academic",
+          "query": "同上（esu.com.ua PDF 條目）",
+          "url": "https://www.esu.com.ua/pdf/file/54624.pdf",
+          "result": "no_result",
+          "note": "curl 傳輸中斷（partial file），PDF 損壞，無法轉文字，未採用"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Encyclopedia of Ukraine Lyzohub",
+          "url": "https://www.encyclopediaofukraine.com/pages/L/Y/LyzohubFedir.htm",
+          "result": "unrated",
+          "note": "成功抓取，無署名"
+        },
+        {
+          "step": 5,
+          "sourceType": "academic",
+          "query": "curl 抓取 Пиріг 論文 PDF",
+          "url": "https://nasu-periodicals.org.ua/index.php/uhj/article/download/28769/22882/45238",
+          "result": "found_B",
+          "note": "成功抓取；為本人物主要出處"
+        }
+      ]
+    },
+    {
+      "key": "ua-ostapenko",
+      "bioId": "01a1c41f-dc49-7916-a922-ed9fd25fc57b",
+      "name": "Serhii Ostapenko",
+      "nameZh": "謝爾蓋·奧斯塔片科",
+      "recordIds": [],
+      "thickness": "薄",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1919-01-24",
+            "end": "1919-04-09"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "1919年烏克蘭人民共和國總理",
+            "en": "Prime minister of the Ukrainian People's Republic, 1919"
+          },
+          "body": {
+            "zh-Hant": "1919年1月24至25日，烏克蘭人民共和國外交使團（納札魯克、奧斯塔片科）開始與法軍代表談判。2月13日新政府任命，由奧斯塔片科領導，他是前社會革命黨人、當時無黨派；政府的首要目標是與協約國結盟。3月14日內閣致函督政府請求辭職；4月9日督政府正式下令政府去職。",
+            "en": "On 24–25 January 1919 a UNR diplomatic mission (Nazaruk, Ostapenko) began talks with French representatives. The new government was appointed on 13 February under Ostapenko, a former SR who was then non-party; its main aim was an alliance with the Entente. On 14 March the cabinet sent the Directory a letter asking to resign; on 9 April the Directory formally ordered the government's dismissal."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "論文標題",
+              "quote": "ЗМІНА УРЯДІВ ТА УРЯДОВОЇ ПОЛІТИКИ ДИРЕКТОРІЇ УНР У 1919 р.",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 2 段",
+              "quote": "Початок переговорів 24–25 січня 1919 р. дипломатичної місії УНР",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 2 段",
+              "quote": "із начальником штабу французьких військ полковником Фрайденбергом",
+              "quoteLang": "uk",
+              "evidenceNote": "審查補引文（Opus 2026-11-11，已逐字核對原文）",
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 2 段",
+              "quote": "(О.Назарук, С.Остапенко)",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 3 段",
+              "quote": "Новий уряд був призначений 13 лютого, його очолив С.Остапенко",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 3 段",
+              "quote": "колишній есер, наразі безпартійний",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 3 段",
+              "quote": "Головною метою було встановлення союзницьких стосунків з Антантою",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 4 段",
+              "quote": "14 березня кабінет міністрів на чолі з С.Остапенком надіслав листа",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 4 段",
+              "quote": "з проханням про відставку",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 5 段",
+              "quote": "9 квітня Директорія нарешті видала постанову про відставку уряду С.Остапенка",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "ostapenko-entente-mission",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "烏克蘭人民共和國督政府",
+            "en": "Directory of the Ukrainian People's Republic"
+          },
+          "title": {
+            "orig": "дипломатичної місії УНР",
+            "zh-Hant": "烏克蘭人民共和國外交使團成員",
+            "en": "Member of the UNR diplomatic mission"
+          },
+          "positionKind": "diplomat",
+          "period": {
+            "start": "1919-01-24",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 2 段",
+              "quote": "Початок переговорів 24–25 січня 1919 р. дипломатичної місії УНР",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "nasu-ostapenko",
+              "locator": "正文第 2 段",
+              "quote": "(О.Назарук, С.Остапенко)",
+              "quoteLang": "uk",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:ostapenko-trade-minister",
+          "gapKind": "not_found",
+          "note": "貿易工業部長（1918-12～1919-02）：只見未評等的 Encyclopedia of Ukraine（無署名）；貿易工業部非四部閣員，亦待 A/B 來源證實起訖。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-ostapenko",
+              "locator": "全文",
+              "quote": "minister of trade and industry in the Council of National Ministers",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "position:ostapenko-central-rada",
+          "gapKind": "not_found",
+          "note": "UPSR 代表（中央拉達代表）：只見未評等來源；若 A/B 來源證實『以政黨身分取得席位』，依 12:47 裁決比照黨職入 roleCandidates。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-ostapenko",
+              "locator": "全文",
+              "quote": "delegate to the Central Rada from the Ukrainian Party of Socialist",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "paragraph:1",
+          "gapKind": "not_found",
+          "note": "1881 年生、1931 年被捕、卒於蘇聯勞改營等生平僅見未評等來源；總理任期（1919-02-13～04-09）在 leader_records，本檔未重建。",
+          "candidateCitations": [
+            {
+              "sourceKey": "eu-ostapenko",
+              "locator": "全文",
+              "quote": "b 18 November 1881 in Troianiv, Zhytomyr county",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "C",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "checkedOn": "2026-11-11"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "named_encyclopedia",
+          "query": "Ostapenko, Serhii encyclopediaofukraine.com Ukrainian People's Republic Council of Ministers",
+          "url": "https://www.encyclopediaofukraine.com/pages/O/S/OstapenkoSerhii.htm",
+          "result": "unrated",
+          "note": "Encyclopedia of Ukraine 條目無署名 → 未評等"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "Остапенко Сергій Енциклопедія історії України голова Ради Міністрів УНР 1919",
+          "url": "https://www.esu.com.ua/pdf/file/77054.pdf",
+          "result": "no_result",
+          "note": "curl 傳輸中斷，PDF 損壞，未採用；搜尋另得 nasu-periodicals 論文"
+        },
+        {
+          "step": 3,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Encyclopedia of Ukraine Ostapenko",
+          "url": "https://www.encyclopediaofukraine.com/pages/O/S/OstapenkoSerhii.htm",
+          "result": "unrated",
+          "note": "成功抓取，無署名"
+        },
+        {
+          "step": 4,
+          "sourceType": "academic",
+          "query": "curl 抓取 О.Д. Бойко 論文 PDF",
+          "url": "https://nasu-periodicals.org.ua/index.php/uhj/article/download/28263/22597/44604",
+          "result": "found_B",
+          "note": "成功抓取；具名學者論文，為主要出處"
+        },
+        {
+          "step": 5,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Encyclopedia of Ukraine Council of National Ministers 條目",
+          "url": "https://www.encyclopediaofukraine.com/pages/C/O/CouncilofNationalMinistersoftheUkrainianNationalRepublic.htm",
+          "result": "unrated",
+          "note": "成功抓取，無署名，僅作旁證，未引用"
+        }
+      ]
+    },
+    {
+      "key": "dk-zahle",
+      "bioId": "01a1b4b8-e99e-784e-9551-3f3d95bc3d0b",
+      "name": "Carl Theodor Zahle",
+      "nameZh": "卡爾·特奧多爾·察勒",
+      "recordIds": [],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1866-01-19",
+            "end": "1905-05-21"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "出身、議員生涯與激進自由黨成立",
+            "en": "Origins, parliamentary career and the founding of Radikale Venstre"
+          },
+          "body": {
+            "zh-Hant": "察勒生於1866年1月19日，父親是羅斯基勒製鞋行會的會長；他1884年中學畢業，1890年取得法學學位。他代表林斯泰兹選區進入眾議院。1905年5月20至21日激進自由黨在奧登塞成立時，由他任主席的眾議院自由派集團宣布加入新黨。",
+            "en": "Zahle was born on 19 January 1866, his father being the head of the shoemakers' guild in Roskilde; he finished school in 1884 and took his law degree in 1890. He represented the Ringsted constituency in the Folketing. When Radikale Venstre was founded at Odense on 20–21 May 1905, the 'Folketingets Venstre' group he chaired announced it was joining the new party."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "19.1.1866-3.2.1946, konseilspræsident, justitsminister",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Faderen var oldermand for skomagerlavet i Roskilde",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "1884 blev han student og 1890 cand.jur.",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "repræsenterede Ringstedkredsen i folketinget til 1928",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "20.-21.5.1905 i Odense stiftede vælgerpartiet det radikale venstre",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "\"folketingets venstre\" med C.Th. Zahle som formand",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1909-11-03",
+            "end": "1913-06-21"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "第一次組閣與在野時期",
+            "en": "First government and the years out of office"
+          },
+          "body": {
+            "zh-Hant": "1909年11月3日，他向眾議院介紹自己的第一屆政府。1910年7月5日自由黨的貝恩特森政府上台；他在1911至1913年擔任施泰厄的地方司法官兼市長。1913年6月21日他的第二屆政府就職，他除首相外並兼任司法大臣。",
+            "en": "On 3 November 1909 he presented his first government to the Folketing. On 5 July 1910 the Venstre government of Klaus Berntsen took office; in 1911–13 he was herredsfoged and mayor in Stege. His second government took office on 21 June 1913, and besides the premiership he also took the justice ministry."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "3.11.1909 præsenterede sin første regering for folketinget",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "5.7.1910 trådte venstreregeringen Klaus Berntsen til",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "var 1911-13 herredsfoged og borgmester i Stege",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "21.6.1913 tiltrådte Zahles anden regering",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Ud over konseilspræsidentposten overtog han justitsministeriet",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": "1913-06-21",
+            "end": "1920-03-29"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "第二屆政府：憲法、一戰與去職",
+            "en": "Second government: the constitution, the First World War and dismissal"
+          },
+          "body": {
+            "zh-Hant": "各黨在1915年6月5日就新憲法達成一致；1914年8月1日一戰爆發。1918年的聯邦法使冰島成為與丹麥結盟的獨立國家。1920年3月14日中石勒蘇益格公投顯示德方多數，3月27日自由黨與保守黨要求立即舉行大選，3月29日國王也向他提出同樣要求；國王隨即解散內閣，他結束了七年的首相任期。",
+            "en": "All parties agreed on the constitution of 5 June 1915; the First World War had broken out on 1 August 1914. The Act of Union of 1918 made Iceland an independent state in union with Denmark. On 14 March 1920 the Mid-Schleswig plebiscite showed a German majority; on 27 March Venstre and the Conservatives demanded an immediate election, and on 29 March the king made the same demand of him, and promptly dismissed the ministry, ending his seven years as prime minister."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Alle partier samledes i enighed om grundloven af 5.6.1915",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "udbrød første verdenskrig 1.8.1914",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "ordnet med forbundsloven af 1918",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "hvorved Island blev en selvstændig stat i forbund med Danmark",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Afstemningen i Mellemslesvig 14.3.1920 viste tysk flertal",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "27.3. krævede venstre og konservative",
+              "quoteLang": "da",
+              "evidenceNote": "審查補引文（Opus 2026-11-11，已逐字核對原文）",
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "øjeblikkelig udskrivning af valg",
+              "quoteLang": "da",
+              "evidenceNote": "審查補引文（Opus 2026-11-11，已逐字核對原文）",
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "29.3. stillede kongen samme krav til C.Th. Zahle",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "afskedige ministeriet hvilket kongen umiddelbart derpå gjorde",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "afslutning på syv års virke som statsminister",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1920-03-29",
+            "end": "1939-10-03"
+          },
+          "periodStartPrecision": "day",
+          "periodEndPrecision": "day",
+          "heading": {
+            "zh-Hant": "離任之後：議員、司法大臣與上議院議長",
+            "en": "After office: Landsting member, justice minister and Speaker"
+          },
+          "body": {
+            "zh-Hant": "下台後他再度任激進黨議會集團的主席。1923至1929年他是一家農戶信貸協會的董事長與法律主管。1928年他當選上議院議員，1929至1935年任司法大臣；1936年起任上議院議長，直到1939年10月3日辭去議席。",
+            "en": "After leaving office he again became chairman of the Radical parliamentary group. In 1923–29 he was board chairman and legal director of a smallholders' credit association. In 1928 he was elected to the Landsting and in 1929–35 was justice minister; from 1936 until he gave up his seat on 3 October 1939 he was the Landsting's chairman."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "blev C.Th. Zahle atter formand for den radikale rigsdagsgruppe",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "1923-29 var C.Th. Zahle bestyrelsesformand",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "juridisk direktør i husmandskreditforeningen for øerne",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "1928 blev han tingvalgt medlem af landstinget og var 1929-35 justitsminister",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Fra 1936 til han nedlagde sit landstingsmandat 3.10.1939",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "var han landstingets formand",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "zahle-justice-1913",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "丹麥司法部",
+            "en": "Ministry of Justice (Denmark)"
+          },
+          "title": {
+            "orig": "justitsministeriet",
+            "zh-Hant": "司法大臣（兼首相）",
+            "en": "Minister of Justice (concurrently prime minister)"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1913-06-21",
+            "end": null
+          },
+          "startPrecision": "day",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "21.6.1913 tiltrådte Zahles anden regering",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Ud over konseilspræsidentposten overtog han justitsministeriet",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R5",
+          "t14Reason": "司法部不屬外交、國防、財政、內政四部之一 → R5"
+        },
+        {
+          "key": "zahle-justice-1929",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "丹麥司法部（斯陶寧–蒙克政府）",
+            "en": "Ministry of Justice (Stauning–Munch government)"
+          },
+          "title": {
+            "orig": "justitsminister",
+            "zh-Hant": "司法大臣",
+            "en": "Minister of Justice"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1929-01-01",
+            "end": "1936-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "1928 blev han tingvalgt medlem af landstinget og var 1929-35 justitsminister",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R5",
+          "t14Reason": "司法部不屬四部之一 → R5"
+        },
+        {
+          "key": "zahle-folketing",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "丹麥眾議院（Folketing）",
+            "en": "Folketing (Denmark)"
+          },
+          "title": {
+            "orig": "folketinget (Ringstedkredsen)",
+            "zh-Hant": "眾議院議員（林斯泰兹選區）",
+            "en": "Member of the Folketing for Ringsted"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": null,
+            "end": "1929-01-01"
+          },
+          "startPrecision": null,
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "repræsenterede Ringstedkredsen i folketinget til 1928",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "zahle-landsting",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "丹麥上議院（Landsting）",
+            "en": "Landsting (Denmark)"
+          },
+          "title": {
+            "orig": "tingvalgt medlem af landstinget",
+            "zh-Hant": "上議院議員",
+            "en": "Member of the Landsting"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": "1928-01-01",
+            "end": "1939-10-03"
+          },
+          "startPrecision": "year",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "1928 blev han tingvalgt medlem af landstinget og var 1929-35 justitsminister",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Fra 1936 til han nedlagde sit landstingsmandat 3.10.1939",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "zahle-landsting-chair",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "丹麥上議院（Landsting）",
+            "en": "Landsting (Denmark)"
+          },
+          "title": {
+            "orig": "landstingets formand",
+            "zh-Hant": "上議院議長",
+            "en": "Chairman of the Landsting"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": "1936-01-01",
+            "end": "1939-10-03"
+          },
+          "startPrecision": "year",
+          "endPrecision": "day",
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "Fra 1936 til han nedlagde sit landstingsmandat 3.10.1939",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "day",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "var han landstingets formand",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "zahle-stege",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "施泰厄",
+            "en": "Stege"
+          },
+          "title": {
+            "orig": "herredsfoged og borgmester i Stege",
+            "zh-Hant": "施泰厄地方司法官兼市長",
+            "en": "Herredsfoged and mayor of Stege"
+          },
+          "positionKind": "other",
+          "period": {
+            "start": "1911-01-01",
+            "end": "1914-01-01"
+          },
+          "startPrecision": "year",
+          "endPrecision": "year",
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "var 1911-13 herredsfoged og borgmester i Stege",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "key": "zahle-radical-group-chair",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "激進自由黨議會集團",
+            "en": "Radical Venstre parliamentary group"
+          },
+          "title": {
+            "orig": "formand for den radikale rigsdagsgruppe",
+            "zh-Hant": "激進黨議會集團主席",
+            "en": "Chairman of the Radical parliamentary group"
+          },
+          "positionKind": "legislator",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "dbl-zahle",
+              "locator": "DBL 條目正文",
+              "quote": "blev C.Th. Zahle atter formand for den radikale rigsdagsgruppe",
+              "quoteLang": "da",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "A",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "partyPostAmbiguous": true,
+          "partyPostAmbiguousReason": "議會黨團主席是否算黨職不明確（非黨主席／黨中央職務）；起訖日來源未寫（1910 與 1920 後各一次）"
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "position:zahle-radical-group-chair",
+          "gapKind": "not_found",
+          "note": "議會集團主席兩次任期（1910 年後、1920 年後）的起訖日；DBL 未寫，且是否另任 Radikale Venstre 黨主席（Britannica 類摘要稱創黨主席）未見 A/B 來源證實。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "position:zahle-justice-1913",
+          "gapKind": "not_found",
+          "note": "司法大臣（1913）的卸任日：DBL 只寫 1913 年兼任，未寫異動；總理任期（1909-11、1913-06～1920-03）在 leader_records，本檔未重建。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "national_dictionary",
+          "query": "Carl Theodor Zahle Dansk Biografisk Leksikon lex.dk",
+          "url": "https://biografiskleksikon.lex.dk/C.Th._Zahle",
+          "result": "found_A",
+          "note": "搜尋未直接給 lex.dk，改依 lex.dk 慣用條目名 C.Th._Zahle 直接抓取；DBL 具名作者 Helge Larsen"
+        },
+        {
+          "step": 2,
+          "sourceType": "national_dictionary",
+          "query": "curl 抓取 DBL 條目",
+          "url": "https://biografiskleksikon.lex.dk/C.Th._Zahle",
+          "result": "found_A",
+          "note": "成功，條目全文含 1909–1939 全期經歷"
+        },
+        {
+          "step": 3,
+          "sourceType": "other",
+          "query": "同次搜尋結果其他頁面",
+          "url": "https://dansketaler.dk/tale/aabningstale-1913.pdf",
+          "result": "no_result",
+          "note": "僅為議會開幕演說，非人物傳記，未抓取"
+        }
+      ]
+    },
+    {
+      "key": "hu-ferenc-szalasi",
+      "bioId": "01a1b54f-2c79-7855-9983-e3a10b288ae2",
+      "name": "Ferenc Szálasi",
+      "nameZh": "薩拉希·費倫茨",
+      "recordIds": [],
+      "thickness": "中",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1897-01-01",
+            "end": "1939-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與早期政治活動",
+            "en": "Early political activity"
+          },
+          "body": {
+            "zh-Hant": "薩拉希生於1897年。1935年自軍中退役後，他創立國家社會主義的「民族意志黨」，後來發展出匈牙利主義運動；1938年因這些活動被判處三年徒刑。",
+            "en": "Szálasi was born in 1897. After retiring from the army in 1935 he founded the National Socialist 'Party of National Will' and later the Hungarist movement; in 1938 he was sentenced to three years' imprisonment for these activities."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "(1897–1946), leader of the antisemitic *Arrow Cross Party",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "Upon retirement from the army (1935)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "founded the National Socialist \"Party of National Will\"",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "and later the Hungarist movement",
+              "quoteLang": "en",
+              "evidenceNote": "審查補引文（Opus 2026-11-11，已逐字核對原文）",
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "He was sentenced to three years imprisonment for these activities in 1938",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1940-01-01",
+            "end": "1947-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "箭十字黨領袖、國家領袖與處決",
+            "en": "Arrow Cross leader, 'Nation's Leader' and execution"
+          },
+          "body": {
+            "zh-Hant": "1940年他獲釋，隨即成為箭十字黨領袖。1944年10月，希特勒任命他為『民族領袖』並出任政府首腦；來源稱他為匈牙利國家元首（1944年10月至1945年3月）。他在德國境內被美軍俘獲，移交匈牙利政府，經審判後於1946年被處絞刑。",
+            "en": "He was released in 1940 and then became leader of the Arrow Cross Party. In October 1944 Hitler made him 'Nation's Leader' and head of the government; the source describes him as chief of state of Hungary (October 1944–March 1945). Seized by the Americans on German territory, he was handed to the Hungarian government and, after trial, hanged in 1946."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "was released in 1940, whereupon he became the leader of the Arrow Cross Party",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "Hitler made him the \"Nation's Leader\" and head of the government in Oct. 1944",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "chief of state of Hungary (October 1944–March 1945)",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "Seized by Americans on German territory",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "he was handed over to the Hungarian government",
+              "quoteLang": "en",
+              "evidenceNote": "審查補引文（Opus 2026-11-11，已逐字核對原文）",
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "tried, sentenced, and hanged in 1946",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [],
+      "roleCandidates": [
+        {
+          "key": "szalasi-arrow-cross-leader",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "箭十字黨",
+            "en": "Arrow Cross Party"
+          },
+          "title": {
+            "orig": "the leader of the Arrow Cross Party",
+            "zh-Hant": "箭十字黨領袖",
+            "en": "Leader of the Arrow Cross Party"
+          },
+          "originalPositionKind": "party",
+          "period": {
+            "start": "1940-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-szalasi",
+              "locator": "Encyclopaedia Judaica 條目",
+              "quote": "was released in 1940, whereupon he became the leader of the Arrow Cross Party",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "role_kind": "de_facto_leader",
+          "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+          "t14Rule": "R1"
+        }
+      ],
+      "gaps": [
+        {
+          "target": "position:szalasi-arrow-cross-leader",
+          "gapKind": "not_found",
+          "note": "箭十字黨領袖的終點（黨至1945年）與精確獲釋／就任月日：EJ 只寫年份；待匈牙利國家級／學術出處。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "paragraph:2",
+          "gapKind": "not_found",
+          "note": "元首／首腦任期（1944-10～1945-03）在 leader_records，本檔未重建；EJ 只寫月份，精確起訖日（10-15／16 與 03-28／05-07 之爭）待 A/B 來源。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "field:military_career",
+          "gapKind": "not_found",
+          "note": "退役前軍職（總參謀部軍官）未見 A/B 來源證實；Britannica 被 Cloudflare 擋，未取得。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "other",
+          "query": "Szálasi Ferenc Nyilaskeresztes Párt Hungarista Mozgalom vezér életrajz",
+          "url": "https://portal.ehri-project.eu/authorities/ehri-cb-474",
+          "result": "not_relevant",
+          "note": "結果多為鏡像百科與檔案目錄，未抓取"
+        },
+        {
+          "step": 2,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Britannica Ferenc Szálasi",
+          "url": "https://www.britannica.com/biography/Ferenc-Szalasi",
+          "result": "challenge_page",
+          "note": "Cloudflare 挑戰頁（Just a moment），不繞過，改用同類來源"
+        },
+        {
+          "step": 3,
+          "sourceType": "named_encyclopedia",
+          "query": "Szálasi, Ferenc encyclopedia.com Encyclopaedia Judaica Arrow Cross",
+          "url": "https://encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/szalasi-ferencdeg",
+          "result": "found_B",
+          "note": "Encyclopaedia Judaica 條目，署名 Jozeph Michman (Melkman)，成功抓取"
+        },
+        {
+          "step": 4,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Encyclopedia.com Arrow Cross Party（EJ）",
+          "url": "https://www.encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/arrow-cross-party",
+          "result": "found_B",
+          "note": "成功抓取，僅作旁證，未引用"
+        },
+        {
+          "step": 5,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Jewish Virtual Library Arrow Cross Party",
+          "url": "https://www.jewishvirtuallibrary.org/arrow-cross-party",
+          "result": "unrated",
+          "note": "成功抓取，未署名，未引用"
+        }
+      ]
+    },
+    {
+      "key": "py-higinio-morinigo",
+      "bioId": "01a1b4ae-0e0f-7d21-9a02-b1f22fb659b0",
+      "name": "Higinio Morínigo Martínez",
+      "nameZh": "伊希尼奧·莫里尼戈",
+      "recordIds": [],
+      "thickness": "厚",
+      "paragraphs": [
+        {
+          "ord": 1,
+          "period": {
+            "start": "1897-01-01",
+            "end": "1937-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "出身與軍旅",
+            "en": "Origins and military career"
+          },
+          "body": {
+            "zh-Hant": "莫里尼戈生於1897年，出身巴拉瓜里內陸小鎮的中產家庭，1906年舉家遷往亞松森，後來進入國家軍校。他一度擔任地區野戰指揮官而晉升少校；1936年拉斐爾·佛朗哥政府將他升為上校，並交給他重要的孔塞普西翁駐軍。",
+            "en": "Morínigo was born in 1897 into a middle-class family in the interior town of Paraguarí; his family moved to Asunción in 1906, where he later entered the national military academy. A brief spell as a regional field commander earned him the rank of major; in 1936 the Rafael Franco government promoted him to colonel and gave him command of the important Concepción garrison."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "b. 1897; d. 1983",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Born into a middle-class family in the interior town of Paraguarí",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "In 1906 his family moved to Asunción",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "where he later entered the national military academy",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "A brief assignment as a regional field commander earned him the rank of major",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "in 1936, the Rafael Franco government promoted him to colonel",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "gave him command of the important garrison of Concepción",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 2,
+          "period": {
+            "start": "1938-01-01",
+            "end": "1940-06-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "陸軍參謀長與內閣",
+            "en": "Army chief of staff and cabinet posts"
+          },
+          "body": {
+            "zh-Hant": "1938年他升任陸軍參謀長，1939年在費利克斯·派瓦政府出任內政部長。1940年5月，軍中激進派迫使埃斯蒂加里維亞接受他任戰爭部長。",
+            "en": "He advanced to army chief of staff in 1938 and to interior minister under Félix Paiva in 1939. In May 1940 radicals in the army pressured José Félix Estigarribia to accept him as war minister."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "to the post of army chief of staff in 1938",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "interior minister in 1939 under Félix Paiva",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Finally, in May 1940, radicals in the army pressured José Félix Estigarribia",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "to accept Morínigo as war minister",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 3,
+          "period": {
+            "start": null,
+            "end": "1945-03-01"
+          },
+          "periodStartPrecision": null,
+          "periodEndPrecision": "month",
+          "heading": {
+            "zh-Hant": "出任總統與戰時統治",
+            "en": "Presidency and wartime rule"
+          },
+          "body": {
+            "zh-Hant": "埃斯蒂加里維亞四個月後死於空難，莫里尼戈被強加給自由黨人而成為新總統。他建立帶有明顯親軸心色彩的鎮壓性警察國家；巴拉圭直到1945年2月才對德國宣戰。",
+            "en": "When Estigarribia died in an airplane crash four months later, Morínigo was forced upon the Liberals as the new president. He erected a repressive police state with clear pro-Axis overtones; Paraguay declared war on Germany only in February 1945."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "forced upon the Liberals as the new president",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "when Estigarribia died in an airplane crash four months later",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Morínigo erected a repressive police state with clear pro-Axis overtones",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Paraguay declared war on Germany, but only in February 1945",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        },
+        {
+          "ord": 4,
+          "period": {
+            "start": "1946-01-01",
+            "end": "1949-01-01"
+          },
+          "periodStartPrecision": "year",
+          "periodEndPrecision": "year",
+          "heading": {
+            "zh-Hant": "聯合政府、內戰與流亡",
+            "en": "Coalition, civil war and exile"
+          },
+          "body": {
+            "zh-Hant": "1946年他進一步妥協，呼籲組成包括科羅拉多黨與二月黨人的聯合政府；巴拉圭隨後陷入1947年的血腥內戰，他擊敗叛軍。1948年他同意退出政壇，並在布宜諾斯艾利斯流亡。",
+            "en": "In 1946 he compromised still further, calling for a coalition government including Colorados and Febreristas; Paraguay then slipped into the bloody civil war of 1947, and he managed to defeat the rebels. In 1948 he agreed to retire from politics and went into permanent exile in Buenos Aires."
+          },
+          "relatedRecordIds": [],
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "He compromised still further in 1946",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "he called for a coalition government that included Colorados and Febreristas",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Paraguay slip into the bloody civil war of 1947",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "he managed to defeat the rebels",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "In 1948, he agreed to retire from politics",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "went to live in permanent exile in Buenos Aires",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ]
+        }
+      ],
+      "positions": [
+        {
+          "key": "morinigo-military-academy",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭國家軍校",
+            "en": "National military academy (Paraguay)"
+          },
+          "title": {
+            "orig": "national military academy",
+            "zh-Hant": "國家軍校學員",
+            "en": "Cadet at the national military academy"
+          },
+          "positionKind": "military_education",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "where he later entered the national military academy",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Rule": "R5",
+          "t14Reason": "軍校 → R5"
+        },
+        {
+          "key": "morinigo-chaco-field-commander",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭陸軍",
+            "en": "Paraguayan Army"
+          },
+          "title": {
+            "orig": "regional field commander",
+            "zh-Hant": "地區野戰指揮官",
+            "en": "Regional field commander"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "startPrecision": null,
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "A brief assignment as a regional field commander earned him the rank of major",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "general",
+          "t14Rule": "R5",
+          "t14Reason": "地區野戰指揮官，非國家級最高軍職或戰區司令，且無日期／戰役連結 → R5"
+        },
+        {
+          "key": "morinigo-concepcion-garrison",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭陸軍孔塞普西翁駐軍",
+            "en": "Concepción garrison, Paraguayan Army"
+          },
+          "title": {
+            "orig": "command of the garrison of Concepción",
+            "zh-Hant": "孔塞普西翁駐軍指揮官",
+            "en": "Commander of the Concepción garrison"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1936-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "in 1936, the Rafael Franco government promoted him to colonel",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "gave him command of the important garrison of Concepción",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "general",
+          "t14Rule": "R5",
+          "t14Reason": "轄區內駐軍指揮，非國家級最高軍職 → R5"
+        },
+        {
+          "key": "morinigo-chief-of-staff",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭陸軍",
+            "en": "Paraguayan Army"
+          },
+          "title": {
+            "orig": "army chief of staff",
+            "zh-Hant": "陸軍參謀長",
+            "en": "Army chief of staff"
+          },
+          "positionKind": "military_command",
+          "period": {
+            "start": "1938-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "to the post of army chief of staff in 1938",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "general",
+          "t14Rule": "R6",
+          "t14Reason": "職稱『army chief of staff』，來源未明寫是否國家級最高軍職（職位等級），亦缺終點日；regimeId 未附（政權待連庫比對）",
+          "roleEligible": true,
+          "roleEligibleKind": "military_commander",
+          "roleGap": [
+            "rank",
+            "dates",
+            "regime"
+          ]
+        },
+        {
+          "key": "morinigo-interior-1939",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭內政部（派瓦政府）",
+            "en": "Ministry of the Interior (Paiva government)"
+          },
+          "title": {
+            "orig": "interior minister",
+            "zh-Hant": "內政部長",
+            "en": "Minister of the Interior"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1939-01-01",
+            "end": null
+          },
+          "startPrecision": "year",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "interior minister in 1939 under Félix Paiva",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "year",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "內政部屬四部，但只有年精度且缺終點日，無法證明任期≥90天；regimeId 未附（政權待連庫比對）",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "dates",
+            "regime"
+          ]
+        },
+        {
+          "key": "morinigo-war-1940",
+          "regimeId": null,
+          "organization": {
+            "zh-Hant": "巴拉圭戰爭部（埃斯蒂加里維亞政府）",
+            "en": "Ministry of War (Estigarribia government)"
+          },
+          "title": {
+            "orig": "war minister",
+            "zh-Hant": "戰爭部長",
+            "en": "War minister"
+          },
+          "positionKind": "minister",
+          "period": {
+            "start": "1940-05-01",
+            "end": null
+          },
+          "startPrecision": "month",
+          "endPrecision": null,
+          "citations": [
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "Finally, in May 1940, radicals in the army pressured José Félix Estigarribia",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": "month",
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            },
+            {
+              "sourceKey": "ency-morinigo",
+              "locator": "Encyclopedia of Latin American History and Culture 條目",
+              "quote": "to accept Morínigo as war minister",
+              "quoteLang": "en",
+              "evidenceNote": null,
+              "accessedOn": "2026-11-11",
+              "grade": "B",
+              "datePrecision": null,
+              "claimSpan": null,
+              "policyVersion": "bio-2026-11-v0"
+            }
+          ],
+          "t14Overlap": "cabinet",
+          "t14Rule": "R6",
+          "t14Reason": "戰爭部屬四部，但缺終點日（『四個月後』接任總統，無明確日期），無法證明任期≥90天；regimeId 未附（政權待連庫比對）",
+          "roleEligible": true,
+          "roleEligibleKind": "cabinet_minister",
+          "roleGap": [
+            "dates",
+            "regime"
+          ]
+        }
+      ],
+      "roleCandidates": [],
+      "gaps": [
+        {
+          "target": "paragraph:3",
+          "gapKind": "not_found",
+          "note": "總統任期（1940-09～1948）在 leader_records，本檔未重建；1943 年當選與精確日期未見於已抓 B 來源，待 A 來源（國家圖書館／議會歷任總統頁）。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "position:morinigo-chief-of-staff",
+          "gapKind": "not_found",
+          "note": "陸軍參謀長的起訖日與是否為全軍最高職位：Whigham 條目未寫；待 A/B 來源。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        },
+        {
+          "target": "field:death",
+          "gapKind": "not_found",
+          "note": "卒年／地點：已抓 B 來源稱 1983，搜尋摘要另有 1985 之說（僅摘要，未抓原文），待 A/B 來源核對。",
+          "candidateCitations": [],
+          "checkedOn": "2026-11-11"
+        }
+      ],
+      "searchLog": [
+        {
+          "step": 1,
+          "sourceType": "national_dictionary",
+          "query": "Higinio Morínigo dbe.rah.es biografía presidente Paraguay",
+          "url": "https://dbe.rah.es",
+          "result": "no_result",
+          "note": "搜尋未返回 dbe.rah.es 條目，未抓取"
+        },
+        {
+          "step": 2,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Britannica Higinio Morínigo",
+          "url": "https://www.britannica.com/biography/Higinio-Morinigo",
+          "result": "challenge_page",
+          "note": "Cloudflare 挑戰頁，不繞過"
+        },
+        {
+          "step": 3,
+          "sourceType": "named_encyclopedia",
+          "query": "curl 抓取 Encyclopedia.com Morínigo（Whigham）",
+          "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/morinigo-higinio-1897-1983",
+          "result": "found_B",
+          "note": "Encyclopedia of Latin American History and Culture，署名 Thomas L. Whigham"
+        },
+        {
+          "step": 4,
+          "sourceType": "official",
+          "query": "curl 抓取 BACN（巴拉圭國會圖書館）書介",
+          "url": "https://www.bacn.gov.py/libros/8264/higinio-mor-nigo-el-soldado-dictador",
+          "result": "unrated",
+          "note": "館藏書介／讀者評論，無作者書目，未引用"
+        }
+      ]
+    }
+  ]
+}

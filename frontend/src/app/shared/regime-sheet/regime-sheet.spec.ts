@@ -5,12 +5,15 @@ import { RegimeSheet } from './regime-sheet';
 @Component({
   imports: [RegimeSheet],
   template: `<wl-regime-sheet [open]="open()" [side]="side()" [size]="300" title="德意志國" description="Deutsches Reich" descriptionLang="de"
-    titleTestId="sovereignty-card-title" closeTestId="sovereignty-card-close" (closed)="closes = closes + 1" (hidden)="hides = hides + 1">
+    titleTestId="sovereignty-card-title" closeTestId="sovereignty-card-close" [snap]="snap()"
+    (snapChange)="snaps.push($event)" (closed)="closes = closes + 1" (hidden)="hides = hides + 1">
     <p data-testid="sheet-content">內容</p></wl-regime-sheet>`,
 })
 class Host {
   open = signal(false);
   side = signal<'right' | 'bottom'>('right');
+  snap = signal<'peek' | 'half' | 'full'>('half');
+  snaps: string[] = [];
   closes = 0;
   hides = 0;
 }
@@ -66,5 +69,18 @@ describe('RegimeSheet（政權資訊側邊面板，參考 sanring Sheet）', () 
     expect(panel.getAttribute('data-side')).toBe('bottom');
     expect(panel.style.height).toBe('300px');
     expect(panel.className).toContain('bottom-0');
+  });
+
+  it('§10 v2：右側無寬度把手；標頭至少 56px；底部 bottom sheet 點把手切換三段高度', async () => {
+    const { fixture, host, el } = await setup();
+    host.open.set(true);
+    await fixture.whenStable();
+    expect(q(el, 'regime-sheet-resize')).toBeNull();
+    expect(el.querySelector('sanring-sheet-header')?.className).toContain('min-h-[56px]');
+    host.side.set('bottom');
+    await fixture.whenStable();
+    expect(q(el, 'regime-sheet-resize')).toBeNull();
+    q(el, 'regime-sheet-snap')!.click();
+    expect(host.snaps).toEqual(['full']);
   });
 });

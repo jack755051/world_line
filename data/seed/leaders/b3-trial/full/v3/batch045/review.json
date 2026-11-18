@@ -1,0 +1,90 @@
+{
+ "batch": "045",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 1,
+  "deletedParagraphs": 3,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 1,
+  "movedToPositions": 0,
+  "deletedCitations": 30,
+  "addedCitations": 9,
+  "editedSentences": 8,
+  "spotRefetched": 3,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "uy-campisteguy",
+   "bioId": "c00a818a-ecca-4dc2-8450-c35ea7e2b6f4",
+   "verdict": "returned",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 1,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "引文逐字核對 enc-campisteguy.txt 全部吻合；重抓 Encyclopedia.com 條目與快取同大小、關鍵句一致",
+    "制憲會議成員 1917：來源明寫 for the Colorado Party's Riverista faction，依 ALIGN 規則 7／Tai 12:47 薩拉查裁決，由 positions（partyPostAmbiguous）移入 roleCandidates：de_facto_leader、originalPositionKind=legislator、t14Rule=R1",
+    "段 1 引文「joined the revolutionary movement…」不含日期，datePrecision 由 year 改 null（Q8）",
+    "其餘職位 T14 判定（時間窗外部長 R5、國家行政委員會 t14Ambiguous）核對無誤"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 10 步只涵蓋 3 類來源（權威檔、國家辭典／官方、具名百科），缺條約法律與學術出版類；原文（西班牙文）查詢僅 step 1 一次，需 ≥2。建議下一步：IMPO／Registro Nacional de Leyes y Decretos（官方公報，查 1897–1904 部長任命）、Lindahl《Uruguay's New Path》／Taylor《Government and Politics of Uruguay》出版社或 JSTOR 頁、西班牙文查詢「Juan Campisteguy ministro de Gobierno 1903」「Campisteguy Consejo Nacional de Administración 1921」、Biblioteca Nacional de Uruguay 權威檔"
+   ]
+  },
+  {
+   "key": "co-abadia",
+   "bioId": "aca8d578-0573-41a6-91b4-afcb92673edb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 12,
+   "changes": [
+    "重抓 Encyclopedia.com（Helguera）與快取一致",
+    "段 1 刪重複句「國會圖書館人名權威檔登錄他的生卒年為1867至1947年」及其 LoC 引文（與同段生卒重複，湊字數）",
+    "段 2 補引文「Abadía's energy, dedication, and deserved reputation for probity」支撐評語子句",
+    "段 3 改寫：原文未說他本人與勞工衝突或下令鎮壓，改為經濟衰退帶來衝突與對香蕉工人罷工的血腥鎮壓；「大舉舉債」改「進一步不負責任地舉債」；補 3 筆引文（economic downturn、Santander、bloody repression），英文刪重複 the the；periodEndPrecision 改 month",
+    "段 4 兩筆引文擴為含「popular and student demonstrations」「As a result」的完整片段",
+    "searchLog step 5（banrep Credencial）實為 ShieldSquare captcha 頁，result 改 challenge_page"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-mihai",
+   "bioId": "01a1b4b7-2907-75c7-866c-90b0f21c2084",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 27,
+   "changes": [
+    "peles-mihai（Peleș 國家博物館無署名人物頁）由 B 改評 C（機構無署名介紹文，比照 batch005／012／017 先例），刪其 28 筆段落／職位引文；原段 1、2 全刪，段 3–5 僅留 Hitchins 支撐內容並重組為 2 段（1940–1941、1944-08–1947-12），補 Hitchins 引文 5 筆；Peleș 引文移入新 gap paragraph:peles 候選",
+    "職位 mihai-grand-voivode-alba-iulia（僅 Peleș 支撐）刪除，原缺迄日 gap 併入 paragraph:peles",
+    "hitchins-michael gradeBasis 更正（Polirom 文集，非學術出版社），維持 B；重抓 romaniaregala.ro 頁與快取一致",
+    "role:mihai-second-reign-end、paragraph:sources gap 說明依改評更新"
+   ],
+   "returnedReasons": [
+    "最低標準未達（6c）：改評後中文 2 段 159 字（<3 段／300 字），無「篇幅不足：」gap；唯一合格來源 Hitchins 只涵蓋 1940–1947。建議下一步：LoC 權威檔 n93036221（已抓 loc-mihai-a.txt，A）、Monitorul Oficial 1927／1930／1940／1947 王位詔令、Academia Română 傳記辭典、Senat／Camera Deputaților 歷史頁、Keith Hitchins《Rumania 1866–1947》（Oxford UP）出版社頁、Ivor Porter《Michael of Romania》出版社頁"
+   ]
+  }
+ ],
+ "issues": [
+  "研究者把無署名機構頁（國家博物館人物介紹）評 B，與 batch005／012／017 先例（機構無署名介紹文降 C）不一致",
+  "薄人物 searchLog 把 official 與 national_dictionary 當兩類計算，實屬同一類（第 2 類），導致來源類型不足未被察覺",
+  "改寫時把來源的無主語敘述補成人物主動行為（Abadía 與勞工衝突、鎮壓罷工），違反「不替原文補主語」"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

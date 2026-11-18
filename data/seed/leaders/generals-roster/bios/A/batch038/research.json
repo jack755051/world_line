@@ -1,0 +1,5557 @@
+{
+ "batch": "b3-full-v3-batch038",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "gradePolicy": "ABC-2026-11-12",
+ "alignNote": "直接以對齊格式撰寫；蘇聯 regimeId 一律 null；符合 R4 類別（方面軍司令、總參謀長）但僅 B／C 級來源者留 positions 標 R6；黨中央委員會職務（候補委員等）入 roleCandidates（R1）、迄日來源未載者記 gap。Britannica 403、bigenc.ru 未查獲、Deutsche Biographie 僅生卒資料；全批以具名 B／C 來源撐起，預算所限查詢次數少於最低嘗試標準，已如實寫入 searchLog。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch038/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "enc-tukh": {
+   "title": "Tukhachevsky, Mikhail Nikolayevich",
+   "authors": [
+    "Sally W. Stoecker"
+   ],
+   "publisher": "Macmillan Reference USA（Encyclopedia of Russian History，經 Encyclopedia.com 收錄）",
+   "published_text": "Encyclopedia of Russian History 條目",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/tukhachevsky-mikhail-nikolayevich",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者 Sally W. Stoecker 之機構百科條目（Macmillan Reference USA, Encyclopedia of Russian History）"
+  },
+  "enc-bud": {
+   "title": "Budenny, Semeon Mikhailovich",
+   "authors": [
+    "Jonathan D. Smele"
+   ],
+   "publisher": "Macmillan Reference USA（Encyclopedia of Russian History，經 Encyclopedia.com 收錄）",
+   "published_text": "Encyclopedia of Russian History 條目",
+   "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/budenny-semeon-mikhailovich",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者 Jonathan D. Smele 之機構百科條目（Macmillan Reference USA, Encyclopedia of Russian History）"
+  },
+  "enc-blu": {
+   "title": "Blücher, Vasily Konstantinovich",
+   "authors": [],
+   "publisher": "Columbia University Press（The Columbia Encyclopedia, 6th ed.，經 Encyclopedia.com 收錄）",
+   "published_text": "Columbia Encyclopedia 第6版條目",
+   "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/blucher-vasily-konstantinovich",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 Columbia University Press 之百科條目（無個別署名）"
+  },
+  "booksite-tukh": {
+   "title": "Тухачевский Михаил Николаевич",
+   "authors": [],
+   "publisher": "Воениздат（Советская военная энциклопедия，booksite.ru 數位版）",
+   "published_text": "Советская военная энциклопедия 條目",
+   "url": "https://booksite.ru/FullText/1/001/008/113/074.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名出版機構 Воениздат（Министерство обороны СССР）之軍事百科條目（無個別署名）"
+  },
+  "booksite-blu": {
+   "title": "Блюхер Василий Константинович",
+   "authors": [],
+   "publisher": "Воениздат（Советская военная энциклопедия，booksite.ru 數位版）",
+   "published_text": "Советская военная энциклопедия 條目",
+   "url": "https://booksite.ru/FullText/1/001/008/122/824.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名出版機構 Воениздат（Министерство обороны СССР）之軍事百科條目（無個別署名）"
+  },
+  "ru-tukh": {
+   "title": "Rise and Fall of a Military Leader",
+   "authors": [],
+   "publisher": "Russian Life（雜誌）",
+   "published_text": "Russian Life, June 1997",
+   "url": "https://russianlife.com/magazine/june-1997/rise-and-fall-of-a-military-leader/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 Russian Life 雜誌之文章（無個別署名）"
+  },
+  "gb-bud": {
+   "title": "House where Marshal of the Soviet Union S.M. Budyonny lived",
+   "authors": [],
+   "publisher": "ГБУ «МАЦ»（莫斯科市國有預算機構）",
+   "published_text": "QR 人物頁",
+   "url": "https://qr.gbumac.ru/?p=20332",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 ГБУ «МАЦ» 發布之人物傳略頁"
+  },
+  "gw-bud": {
+   "title": "Marshal Budyonny: The best Soviet cavalryman who was friends with Stalin",
+   "authors": [
+    "Boris Egorov"
+   ],
+   "publisher": "Russia Beyond（ANO TV-Novosti）",
+   "published_text": "2023-09-13",
+   "url": "https://gw2ru.com/history/1037-marshal-budyonny-best-soviet-cavalryman",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Boris Egorov、具名出版機構 ANO TV-Novosti 之文章"
+  },
+  "gb-mal": {
+   "title": "House where Marshal of the Soviet Union R.J. Malinovsky lived",
+   "authors": [],
+   "publisher": "ГБУ «МАЦ»（莫斯科市國有預算機構）",
+   "published_text": "QR 人物頁",
+   "url": "https://qr.gbumac.ru/?p=20385",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 ГБУ «МАЦ» 發布之人物傳略頁"
+  },
+  "gs-mal": {
+   "title": "Rodion Malinovsky",
+   "authors": [],
+   "publisher": "GlobalSecurity.org",
+   "published_text": "Malinovsky 頁",
+   "url": "https://www.globalsecurity.org/military/world/russia/malinovsky.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 GlobalSecurity.org 之軍事資料頁（無個別署名）"
+  },
+  "gb-tol": {
+   "title": "Monument to the Hero of the Soviet Union, Marshal F.I. Tolbukhin",
+   "authors": [],
+   "publisher": "ГБУ «МАЦ»（莫斯科市國有預算機構）",
+   "published_text": "QR 人物頁",
+   "url": "https://qr.gbumac.ru/?p=13088",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 ГБУ «МАЦ» 發布之人物傳略頁"
+  },
+  "gw-tol": {
+   "title": "Fyodor Tolbukhin: A Tsarist officer who became a Soviet marshal",
+   "authors": [
+    "Boris Egorov"
+   ],
+   "publisher": "Russia Beyond（ANO TV-Novosti）",
+   "published_text": "2025-01-15",
+   "url": "https://gw2ru.com/history/225659-fyodor-tolbukhin-a-tsarist-officer-who-became-a-soviet-marshal",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Boris Egorov、具名出版機構 ANO TV-Novosti 之文章"
+  },
+  "sakh-blu": {
+   "title": "Блюхер Василий Константинович",
+   "authors": [],
+   "publisher": "Сахаровский центр（база данных «Воспоминания о ГУЛАГе и их авторы»）",
+   "published_text": "年表（по воспоминаниям сына В. В. Блюхера）",
+   "url": "https://www.sakharov-center.ru/asfcd/auth/?t=author&i=2143",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構 Сахаровский центр（Сахаров中心）之人物資料庫頁，年表註明據其子 В. В. Блюхер 回憶"
+  },
+  "kot-blu": {
+   "title": "ブリュッヘル（改訂新版 世界大百科事典）",
+   "authors": [
+    "平井 友義"
+   ],
+   "publisher": "平凡社（經 Kotobank 收錄）",
+   "published_text": "改訂新版 世界大百科事典 條目",
+   "url": "https://kotobank.jp/word/%E3%81%B6%E3%82%8A%E3%82%86%E3%81%A4%E3%81%B8%E3%82%8B-3230475",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者平井友義之機構百科條目（平凡社『世界大百科事典』，Kotobank）"
+  },
+  "msu-blu": {
+   "title": "The War Nobody Knew (September 1929)",
+   "authors": [
+    "Eugene Lyons"
+   ],
+   "publisher": "Michigan State University（Russian History Archive, soviethistory.msu.edu；原載 Lyons, Assignment in Utopia, Harcourt Brace 1937）",
+   "published_text": "1929 Chinese Railway Incident 文本",
+   "url": "https://soviethistory.msu.edu/1929/chinese-railway-incident/chinese-railway-incident-texts/war-nobody-knew/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Eugene Lyons（美國記者）之回憶錄節選，由 Michigan State University 數位資料庫刊載（當時人記述）"
+  },
+  "nids-blu": {
+   "title": "第二次世界大戦期におけるソ連軍指導部の対日・対独認識",
+   "authors": [
+    "花田 智之"
+   ],
+   "publisher": "防衛研究所（nids.mod.go.jp）",
+   "published_text": "共同研究報告書 series19 論文",
+   "url": "https://www.nids.mod.go.jp/publication/joint_research/series19/pdf/series19-2-5.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所官方出版之具名作者（花田智之）研究報告"
+  },
+  "hero-bud": {
+   "title": "Будённый Семён Михайлович :: Герои страны",
+   "authors": [],
+   "publisher": "Международный патриотический интернет-проект «Герои страны»",
+   "published_text": "© 2000-2026",
+   "url": "https://warheroes.ru/hero/hero.asp?Hero_id=1088",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構（Международный патриотический интернет-проект «Герои страны»）之人物頁"
+  },
+  "snl-bud": {
+   "title": "Semjon Budjonnyj",
+   "authors": [
+    "Kåre Johan Mjør"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "具名條目（Ph.d. Kåre Johan Mjør, Høgskulen på Vestlandet）",
+   "url": "https://snl.no/Semjon_Budjonnyj",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者 Kåre Johan Mjør（Høgskulen på Vestlandet）之機構百科條目"
+  },
+  "psth-bud": {
+   "title": "Armia Konna na froncie polskim w 1920 r.",
+   "authors": [
+    "Paweł Sztama"
+   ],
+   "publisher": "Instytut Pamięci Narodowej（Przystanek Historia）",
+   "published_text": "2020-08-09",
+   "url": "https://przystanekhistoria.pl/pa2/teksty/29170,Armia-Konna-na-froncie-polskim-w-1920-r.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Paweł Sztama、具名出版機構波蘭國家記憶研究院（IPN）之文章"
+  },
+  "rf-booksite-tol": {
+   "title": "Толбухин Федор Иванович（Советская военная энциклопедия）",
+   "authors": [],
+   "publisher": "Воениздат（Военное издательство）",
+   "published_text": null,
+   "url": "https://booksite.ru/FullText/1/001/008/111/120.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "蘇聯大百科（國家級編纂物，原件 A）經 booksite.ru 第三方轉錄 → B（source-rules §2 轉錄本記 B，2026-11-14 統一）；原：具名出版機構 Воениздат 出版之《Советская военная энциклопедия》條目；非個人網站",
+   "addedAt": "2026-11-13T08:37:15+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-gs-tukh": {
+   "title": "1930-1937 Tukhachevsky",
+   "authors": [],
+   "publisher": "GlobalSecurity.org",
+   "published_text": null,
+   "url": "https://www.globalsecurity.org/military/world/russia/army-cccp-tukhachevsky.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構 GlobalSecurity.org 之 Red Army / Soviet Army 專題頁（機構發布）",
+   "addedAt": "2026-11-13T08:37:15+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rg-fhn-bud": {
+   "title": "Russian Commanders: Marshal Semyon M. Budenny",
+   "authors": [
+    "Blaine Taylor"
+   ],
+   "publisher": "Warfare History Network（Sovereign Media）",
+   "published_text": "Warfare History Network，2025-04-28",
+   "url": "https://warfarehistorynetwork.com/?p=11384",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Blaine Taylor 與具名出版機構 Sovereign Media 之軍史專文（C）",
+   "addedAt": "2026-11-13T10:57:40+08:00",
+   "addedBy": "gendk-replace-2026-11-13"
+  }
+ },
+ "people": [
+  {
+   "key": "mikhailtukhachevsky",
+   "bioId": null,
+   "name": "Mikhail Tukhachevsky",
+   "nameZh": "米哈伊爾·圖哈切夫斯基",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-01-01",
+      "end": "1920-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與內戰初期",
+      "en": "Origins and early Civil War commands"
+     },
+     "body": {
+      "zh-Hant": "據《蘇聯軍事百科全書》，圖哈切夫斯基1893年生於斯摩棱斯克省的貴族家庭，1914年畢業於亞歷山德羅夫軍校，一戰時在近衛謝苗諾夫團任中尉，1915年被俘，1917年逃回俄國。1918年起在紅軍服役，1918年6月至1919年1月指揮東方面軍第1集團軍，1919年4月至11月指揮東方面軍第5集團軍，該軍參與將高爾察克軍隊逐出烏拉爾與西伯利亞。",
+      "en": "According to the Soviet Military Encyclopedia, Tukhachevsky was born in 1893 into a noble family in Smolensk governorate, graduated from the Alexandrovsky military school in 1914, served as a lieutenant in the Semyonovsky Life Guards in the First World War, was captured in 1915 and escaped back to Russia in 1917. In the Red Army from 1918, he commanded the 1st Army of the Eastern Front from June 1918 to January 1919 and its 5th Army from April to November 1919, which helped clear the Urals and Siberia of Kolchak's forces."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "[4(16).2.1893 — 11.6.1937]",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "Окончил Александровское военное училище (1914)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "В 1915 попал в плен, в 1917 бежал в Россию",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "командовал 1-й армией Восточного фронта (июнь 1918 — январь 1919)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "5-й армией Восточного фронта (апрель — ноябрь 1919)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "по освобождению Урала и Сибири от войск Колчака",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-02-01",
+      "end": "1921-09-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1920–21年：方面軍與鎮壓行動",
+      "en": "Fronts and suppression operations, 1920–21"
+     },
+     "body": {
+      "zh-Hant": "同一條目載，他1920年2月至4月任高加索方面軍司令，戰勝鄧尼金軍；1920年4月至1921年8月任西方面軍司令，參加1920年蘇波戰爭。《俄羅斯史百科全書》提及，史達林與他在1920年華沙戰役指揮權上存在衝突。1921年3月他以第7集團軍司令身分參與鎮壓喀琅施塔得兵變，1921年4至5月又指揮坦波夫地區部隊。",
+      "en": "The same entry says he commanded the Caucasian Front from February to April 1920 against Denikin, and the Western Front from April 1920 to August 1921 in the Soviet-Polish War of 1920. The Encyclopedia of Russian History notes conflicts between Stalin and Tukhachevsky over the command of the Battle for Warsaw in 1920. In March 1921 he commanded the 7th Army in suppressing the Kronstadt mutiny, and in April-May 1921 he led the troops of the Tambov district."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "Командовал войсками Кавказского фронта (февраль — апрель 1920)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "войсками Западного фронта (с апреля 1920 по август 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-tukh",
+       "locator": "全文",
+       "quote": "over the command of the Battle for Warsaw in 1920",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "7-й армией при ликвидации Кронштадтского мятежа (март 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ru-tukh",
+       "locator": "全文",
+       "quote": "in command of the 7th Army who crushed the Kronstadt Mutiny on March 17, 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "войсками Тамбовского района (апрель — май 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1921-01-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1921年後的參謀與軍區職務",
+      "en": "Staff and district posts after 1921"
+     },
+     "body": {
+      "zh-Hant": "條目記載，他1921年任紅軍軍事學院院長，1925年11月至1928年5月任紅軍參謀長，1928年5月至1931年6月指揮列寧格勒軍區，1931年起任蘇聯革命軍事委員會副主席兼紅軍軍備部長，1934年起任副國防人民委員，1936年起任第一副國防人民委員。他1935年獲蘇聯元帥銜，1928年著有《未來戰爭》，與同僚發展縱深戰鬥概念。",
+      "en": "The entry records that he headed the Red Army Military Academy in 1921, was chief of the Red Army Staff from November 1925 to May 1928, commanded the Leningrad Military District from May 1928 to June 1931, and from 1931 was deputy chairman of the USSR Revolutionary Military Council and chief of armaments. He became deputy defence commissar in 1934 and first deputy in 1936. He became Marshal of the Soviet Union in 1935; Stoecker adds that he wrote Future War (1928) and developed the deep battle concept."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "Был начальником Военной академии РККА (1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "с ноября 1925 по май 1928 начальником Штаба РККА",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "С мая 1928 по июнь 1931 командовал войсками Ленинградского военного округа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "начальник вооружений РККА",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "с 1934 заместитель наркома обороны",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "с 1936 1-й заместитель наркома обороны",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "Маршал Советского Союза (1935)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-tukh",
+       "locator": "全文",
+       "quote": "Future War (1928)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-tukh",
+       "locator": "全文",
+       "quote": "deep battle",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1937-05-26",
+      "end": "1937-06-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "被捕與處決",
+      "en": "Arrest and execution"
+     },
+     "body": {
+      "zh-Hant": "《俄羅斯生活》1997年的文章稱，圖哈切夫斯基1937年5月26日被捕，被指控領導紅軍內的「陰謀」，同年6月11日與其「集團」被槍決。《俄羅斯史百科全書》則寫道，下令處決他的是史達林，發生在1937年大清洗期間；他與史達林的關係至今有爭議。",
+      "en": "Russian Life (1997) states that Tukhachevsky was arrested on May 26, 1937, charged with leading a \"conspiracy\" in the Red Army, and that he and his \"group\" were shot on June 11, 1937. The Encyclopedia of Russian History says it was Stalin who ordered his execution in 1937 during the Great Terror, and that their relationship remains controversial."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ru-tukh",
+       "locator": "全文",
+       "quote": "On May 26, 1937, the legendary marshal was arrested",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ru-tukh",
+       "locator": "全文",
+       "quote": "were shot on June 11, 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-tukh",
+       "locator": "全文",
+       "quote": "who ordered his execution in 1937 during the Great Terror",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tukhachevsky-1st-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "東方面軍第1集團軍司令",
+      "en": "Commander, 1st Army, Eastern Front",
+      "orig": "командовал 1-й армией Восточного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1918-06-01",
+      "end": "1919-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "командовал 1-й армией Восточного фронта (июнь 1918 — январь 1919)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-8th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "南方面軍第8集團軍司令",
+      "en": "Commander, 8th Army, Southern Front",
+      "orig": "8-й армией Южного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1919-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "8-й армией Южного фронта (январь— март 1919)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-5th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "東方面軍第5集團軍司令",
+      "en": "Commander, 5th Army, Eastern Front",
+      "orig": "5-й армией Восточного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-04-01",
+      "end": "1919-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "5-й армией Восточного фронта (апрель — ноябрь 1919)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-caucasus-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "高加索方面軍司令",
+      "en": "Commander, Caucasian Front",
+      "orig": "войсками Кавказского фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1920-02-01",
+      "end": "1920-05-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "Командовал войсками Кавказского фронта (февраль — апрель 1920)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tukhachevsky-western-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "西方面軍司令",
+      "en": "Commander, Western Front",
+      "orig": "войсками Западного фронта"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1920-04-01",
+      "end": "1921-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "войсками Западного фронта (с апреля 1920 по август 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。（來源間迄日有出入，僅採此條目）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tukhachevsky-7th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第7集團軍司令（喀琅施塔得）",
+      "en": "Commander, 7th Army (Kronstadt)",
+      "orig": "7-й армией"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-03-01",
+      "end": "1921-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "7-й армией при ликвидации Кронштадтского мятежа (март 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-tambov",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "坦波夫地區部隊指揮",
+      "en": "Commander, Tambov district troops",
+      "orig": "войсками Тамбовского района"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-04-01",
+      "end": "1921-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "войсками Тамбовского района (апрель — май 1921)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-chief-of-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "紅軍參謀長",
+      "en": "Chief of the Red Army Staff",
+      "orig": "начальником Штаба РККА"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1925-11-01",
+      "end": "1928-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "с ноября 1925 по май 1928 начальником Штаба РККА",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-tukh",
+       "locator": "全文",
+       "quote": "chief of the Red Army Staff, Chief of Armaments",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（國家級參謀長），任期可證明逾30天，但僅一筆 B 加 C、蘇聯 regimeId 未確認，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tukhachevsky-leningrad-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "列寧格勒軍區司令",
+      "en": "Commander, Leningrad Military District",
+      "orig": "командовал войсками Ленинградского военного округа"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1928-05-01",
+      "end": "1931-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "С мая 1928 по июнь 1931 командовал войсками Ленинградского военного округа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-armaments",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "紅軍軍備部長",
+      "en": "Chief of Armaments, Red Army",
+      "orig": "начальник вооружений РККА"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1931-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "С 1931 заместитель председателя Реввоенсовета СССР",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "начальник вооружений РККА",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍備部長非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "tukhachevsky-deputy-commissar",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "副國防人民委員",
+      "en": "Deputy People's Commissar of Defence",
+      "orig": "заместитель наркома обороны"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1934-01-01",
+      "end": "1937-05-11"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "с 1934 заместитель наркома обороны",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-gs-tukh",
+       "locator": "1930-1937 Tukhachevsky 段",
+       "quote": "On 11 May 1937, Tukhachevsky was demoted and made commander of the Volga",
+       "quoteLang": "en",
+       "evidenceNote": "來源明寫1937-05-11降職改任伏爾加軍區司令，據此推定副國防人民委員任期止於該日（推論）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "副職，屬 R5。"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "tukhachevsky-cc-candidate",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the All-Union Communist Party (Bolsheviks)"
+     },
+     "title": {
+      "orig": "кандидат в члены ЦК ВКП (б)",
+      "zh-Hant": "中央委員會候補委員",
+      "en": "Candidate member of the Central Committee"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1934-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "booksite-tukh",
+       "locator": "全文",
+       "quote": "С 1934 кандидат в член ЦК ВКП (б)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:tukhachevsky-armaments",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；條目只寫「С 1931」，已查 Советская военная энциклопедия、Encyclopedia of Russian History、Russian Life，均未寫軍備部長迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:tukhachevsky-cc-candidate",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；條目只寫「С 1934 кандидат в член ЦК」，已查 Советская военная энциклопедия、Russian Life，未寫迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:regime_ids",
+     "gapKind": "not_found",
+     "note": "來源不足：蘇聯 regimeId 未確認，各方面軍／參謀長任期留 positions（R6）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "Tukhachevsky Mikhail Nikolayevich Encyclopedia of Russian History",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/tukhachevsky-mikhail-nikolayevich",
+     "result": "found_B",
+     "note": "curl 成功；作者 Sally W. Stoecker"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "Tuchačevskij Michail Nikolaevič GND",
+     "url": "https://www.deutsche-biographie.de/pnd118763091.html",
+     "result": "found_A",
+     "note": "curl 成功；僅生卒資料（1893-02-16—1937-06-12，與軍事百科 11.6.1937 不同），未用作引文"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Тухачевский Михаил Николаевич Советская военная энциклопедия",
+     "url": "https://booksite.ru/FullText/1/001/008/113/074.htm",
+     "result": "unrated",
+     "note": "curl 成功（cp1251）；具名出版機構 Воениздат，列 C"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "Tukhachevsky Western Front Kronstadt Chief of Staff dates",
+     "url": "https://russianlife.com/magazine/june-1997/rise-and-fall-of-a-military-leader/",
+     "result": "unrated",
+     "note": "curl 成功；Russian Life，列 C"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Mikhail Tukhachevsky Britannica",
+     "url": "https://britannica.com/biography/Mikhail-Tukhachevsky",
+     "result": "blocked_403",
+     "note": "Britannica 擋，未取得"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Тухачевский Михаил Николаевич znanierussia",
+     "url": "https://znanierussia.ru/",
+     "result": "unrated",
+     "note": "curl 成功但頁面過大且署名不明，未採用"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Тухачевский 1937 снят с должности заместителя наркома обороны Приволжский военный округ",
+     "url": "https://www.globalsecurity.org/military/world/russia/army-cccp-tukhachevsky.htm",
+     "result": "found_C",
+     "note": "GlobalSecurity 明載1937-05-11降職任伏爾加軍區司令；用於副國防人民委員迄日"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Tukhachevsky armaments chief end date / candidate member Central Committee end date",
+     "url": "https://encspb.ru/object/2804021699?lc=en",
+     "result": "not_relevant",
+     "note": "圣彼得堡百科僅寫1931-36副國防人民委員，與既有條目（1934起）衝突，未採；仍未見軍備部長與中央候補委員迄日"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "AUSA LWP_56W Tukhachevsky practitioner and theorist of war",
+     "url": "https://www.ausa.org/SiteCollectionDocuments/ILW%20Web-ExclusivePubs/Land%20Warfare%20Papers/LWP_56W.pdf",
+     "result": "challenge_page",
+     "note": "回傳 HTML 擋頁（非 PDF），未取得"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "DTIC ADA510945 Tukhachevsky",
+     "url": "https://apps.dtic.mil/sti/pdfs/ADA510945.pdf",
+     "result": "challenge_page",
+     "note": "回傳 HTML 擋頁，未取得"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:tukhachevsky-deputy-commissar",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；條目只寫「с 1934」，另有1936年任第一副國防人民委員，已查三來源，均未寫卸任日（Russian Life 僅寫1937年5月26日被捕）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "vasilyblyukher",
+   "bioId": null,
+   "name": "Vasily Blyukher",
+   "nameZh": "瓦西里·布柳赫爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-01-01",
+      "end": "1919-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與一戰、1918年烏拉爾突圍",
+      "en": "Origins, First World War and the 1918 Urals march"
+     },
+     "body": {
+      "zh-Hant": "據《蘇聯軍事百科全書》，布柳赫爾1890年生於雅羅斯拉夫省巴爾欽卡村的農民家庭，一戰時先為列兵、後為下士，獲兩枚喬治十字章，1915年1月重傷退伍。1918年3月他任車里雅賓斯克蘇維埃主席，捷克軍團叛亂後率被圍的蘇軍在烏拉爾行軍1500公里，同年9月與第3紅軍會合。1918年9月28日他成為首位獲紅旗勳章者。",
+      "en": "According to the Soviet Military Encyclopedia, Blyukher was born in 1890 in Barshchinka village, Yaroslavl governorate, into a peasant family; in the First World War he served as a private and then junior NCO, won two St. George crosses, and was gravely wounded and discharged in January 1915. In March 1918 he became chairman of the Chelyabinsk Soviet; after the Czechoslovak Corps revolt he led the encircled Soviet troops on a 1,500-km march across the Urals, joining the 3rd Red Army in September 1918. On 28 September 1918 he was the first recipient of the Order of the Red Banner."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "[19.11(1.12).1890 — 9.11.1938]",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "Родился в деревне Барщинка Ярославской губернии в крестьянской семье",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "награжден 2 георгиевскими крестами",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В январе 1915 тяжело ранен и уволен из армии",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "в марте 1918 председателем Совета",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "совершил с ними героический 1500-километровый рейд по Уралу",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "выйдя в сентябре 1918",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "28 сентября 1918 был первым награжден орденом Красного Знамени",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1920-08-01",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1920–27年：克里米亞、遠東共和國與中國",
+      "en": "1920–27: Crimea, Far Eastern Republic and China"
+     },
+     "body": {
+      "zh-Hant": "同一條目載，1920年8月至11月他任第51步兵師師長，參與卡霍夫卡登陸場防禦戰與突擊彼列科普；1921至1922年任遠東共和國人民革命軍的軍事部長兼總司令，並進行軍隊改編、在沃洛恰耶夫卡擊潰白衛軍。1924至1927年任廣州中國革命政府首席軍事顧問，參與北伐。哥倫比亞百科全書也稱他1922年自海參崴驅逐日本干涉軍。",
+      "en": "The same entry records that from August to November 1920 he commanded the 51st Rifle Division in the defence of the Kakhovka bridgehead and the storming of Perekop; in 1921-22 he was war minister and commander-in-chief of the People's Revolutionary Army of the Far Eastern Republic, reorganising it and defeating the Whites at Volochayevka; and in 1924-27 he was chief military adviser to the revolutionary government at Guangzhou, taking part in the Northern Expedition. The Columbia Encyclopedia adds that he drove the Japanese interventionists from Vladivostok in 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В августе — ноябре 1920, командуя 51-й стрелковой дивизией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "участвовал в героической обороне Каховского плацдарма и штурме Перекопа",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "военный министр, главком и член Военного совета Народно-революционной армии",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "разгромом белогвардейцев под Волочаевкой",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В 1924—27 был главным военным советником",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "участвовал в проведении Великого Северного похода",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-blu",
+       "locator": "全文",
+       "quote": "he drove the Japanese interventionists from Vladivostok (1922)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1929-01-01",
+      "end": "1939-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "特別紅旗遠東軍與晚年",
+      "en": "Special Far Eastern Army and final years"
+     },
+     "body": {
+      "zh-Hant": "條目記載，1929至1938年他任特別紅旗遠東軍司令，領導擊潰中國軍閥軍隊（1929年蘇中衝突）並在遠東建立防禦，1935年獲蘇聯元帥銜，1934年當選黨中央候補委員。條目生卒括號寫明他卒於1938年11月9日。哥倫比亞百科全書稱1936年封帥並於稍後清洗中罹難，1956年獲平反。美國記者萊昂斯記述，1929年紅軍在滿洲對中國作戰，布柳赫爾奉命統率入侵的紅軍，他先前以加倫之名在中國指導北伐的國民革命軍。",
+      "en": "The entry records that in 1929-38 he commanded the Special Red Banner Far Eastern Army, led the defeat of Chinese warlord troops in the 1929 Sino-Soviet conflict and built the Far Eastern defences; he became Marshal of the Soviet Union in 1935 and was elected candidate member of the Central Committee in 1934. Its bracketed dates give his death as 9 November 1938. The Columbia Encyclopedia says he was created marshal in 1936, soon fell victim to Stalin's purge and was posthumously rehabilitated in 1956. American journalist Eugene Lyons wrote that in 1929 the Red Army fought a war against the Chinese in Manchuria with Blyukher, earlier Galen in China, at the head of the invading troops."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В 1929—38 командовал Особой Краснознамённой дальневосточной армией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "руководил разгромом войск китайских милитаристов",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "Маршал Советского Союза (1935)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "На 17-м съезде партии (1934) избран кандидатом в члены ЦК ВКП (б)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "[19.11(1.12).1890 — 9.11.1938]",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-blu",
+       "locator": "全文",
+       "quote": "He was created marshal in 1936",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-blu",
+       "locator": "全文",
+       "quote": "posthumously rehabilitated in 1956",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msu-blu",
+       "locator": "全文",
+       "quote": "the Red Army fought a war against the Chinese in Manchuria",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "msu-blu",
+       "locator": "全文",
+       "quote": "General Bliukher-Galen's place at the head of the invading Red troops",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1938-07-01",
+      "end": "1938-11-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1938年：遠東方面軍與被捕",
+      "en": "1938: Far Eastern Front and arrest"
+     },
+     "body": {
+      "zh-Hant": "薩哈羅夫中心資料庫的年表載，布柳赫爾1929年8月6日出任特別遠東軍司令，1938年7月1日出任遠東方面軍首長。年表又載他10月22日在阿德勒治療期間被捕，10月24日被關進內務人民委員部位於盧比揚卡的內部監獄，11月9日在該監獄醫生辦公室去世。",
+      "en": "The Sakharov Center database chronology says Blyukher became commander of the Special Far Eastern Army on 6 August 1929 and head of the Far Eastern Front on 1 July 1938. The chronology adds that he was arrested on 22 October while being treated at Adler, was placed in the NKVD internal prison at the Lubyanka on 24 October, and died on 9 November in the prison doctor's office."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1938, 1 июля. — Глава Дальневосточного фронта.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1938, 22 октября. — Арест во время лечения в Адлере.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1938, 24 октября. — Помещен во внутреннюю тюрьму НКВД СССР на Лубянке.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "Скончался Блюхер Василий Константинович в кабинете врача внутренней тюрьмы.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "Командующий Особой Дальневосточной армией.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "blyukher-51st-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第51步兵師師長",
+      "en": "Commander, 51st Rifle Division",
+      "orig": "командуя 51-й стрелковой дивизией"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1920-08-01",
+      "end": "1920-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В августе — ноябре 1920, командуя 51-й стрелковой дивизией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師長非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "blyukher-fer-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "遠東共和國（人民革命軍）",
+      "en": "Far Eastern Republic (People's Revolutionary Army)"
+     },
+     "title": {
+      "zh-Hant": "遠東共和國人民革命軍軍事部長兼總司令",
+      "en": "War Minister and Commander-in-Chief, People's Revolutionary Army of the Far Eastern Republic",
+      "orig": "военный министр, главком"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1921-06-27",
+      "end": "1922-07-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В 1921— 1922 военный министр, главком и член Военного совета",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "военный министр, главком и член Военного совета Народно-революционной армии",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1921,27 июня. — Председатель Военного совета, главнокомандующий",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kot-blu",
+       "locator": "全文",
+       "quote": "〉総司令官兼陸軍大臣となる。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "1922, июнь",
+       "quote": "Возвращение в Москву. Командир-комиссар 1-го стрелкового корпуса.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4／R3，但遠東共和國 regimeId 未確認、僅 B／C 來源（B 一筆、C 兩筆，未達 1 筆 A 或 2 筆獨立 B）、迄日為月精度，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "blyukher-china-adviser",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨廣州政府",
+      "en": "Guangzhou revolutionary government, China"
+     },
+     "title": {
+      "zh-Hant": "廣州革命政府首席軍事顧問",
+      "en": "Chief military adviser, Guangzhou revolutionary government",
+      "orig": "главным военным советником при китайском революционном правительстве в Гуанчжоу"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В 1924—27 был главным военным советником",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-blu",
+       "locator": "全文",
+       "quote": "sent (1924) to China as military adviser",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-blu",
+       "locator": "全文",
+       "quote": "特別極東軍司令官（1924 年から 27 年まで中国最高軍事顧問）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍事顧問，非指揮職，屬 R5。"
+    },
+    {
+     "key": "blyukher-okdva",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "特別紅旗遠東軍司令",
+      "en": "Commander, Special Red Banner Far Eastern Army",
+      "orig": "командовал Особой Краснознамённой дальневосточной армией"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1929-08-06",
+      "end": "1938-07-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "В 1929—38 командовал Особой Краснознамённой дальневосточной армией",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1929, 6 августа. — Командующий Особой Дальневосточной армией.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kot-blu",
+       "locator": "全文",
+       "quote": "による死まで，一貫してソ連極東軍司令官の",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "1929, 6 августа",
+       "quote": "Командующий Особой Дальневосточной армией.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "1938, 1 июля",
+       "quote": "Глава Дальневосточного фронта.",
+       "quoteLang": "ru",
+       "evidenceNote": "接任遠東方面軍首長之日，視為特別遠東軍司令止日（推定）",
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別近 R4（戰區司令），任期可證明逾30天，但僅 B／C 來源、蘇聯 regimeId 未確認、1929年衝突有 Lyons 記述（無日期地點之官方戰役連結），留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "blyukher-far-eastern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "遠東方面軍司令",
+      "en": "Commander in Chief, Far Eastern Front",
+      "orig": "Commander in Chief Far Eastern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-07-01",
+      "end": "1938-10-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1938, 1 июля. — Глава Дальневосточного фронта.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1938, 22 октября. — Арест во время лечения в Адлере.",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別近 R4（方面軍司令），任期可證明逾30天，但僅 C 來源、蘇聯 regimeId 未確認、缺有日期地點之戰役連結（張鼓峰事件未取得可收來源），留 positions。迄日為被捕日。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "blyukher-cc-candidate",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the All-Union Communist Party (Bolsheviks)"
+     },
+     "title": {
+      "orig": "кандидатом в члены ЦК ВКП (б)",
+      "zh-Hant": "中央委員會候補委員",
+      "en": "Candidate member of the Central Committee"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1934-01-01",
+      "end": "1938-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "booksite-blu",
+       "locator": "全文",
+       "quote": "На 17-м съезде партии (1934) избран кандидатом в члены ЦК ВКП (б)",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1934. — Кандидат в члены ЦК ВКП (б).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sakh-blu",
+       "locator": "全文",
+       "quote": "1937. — Член ЦК ВКП (б). Депутат Верховного Совета СССР.",
+       "quoteLang": "ru",
+       "evidenceNote": "迄日依 Sakharov 年表「1937年起為中央委員」推得（推論，年精度）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:khasan_1938",
+     "gapKind": "not_found",
+     "note": "待查證：1938年7月張鼓峰（哈桑湖）事件與其任期連結（戰役日期地點）；本輪另查 Sakharov、Generals.dk、世界大百科事典、NIDS、Lyons，均未寫哈桑戰役，Britannica／Time 403／406 被擋，僅維基類或個人網站載有，不收；任期迄日（被捕日）已由 Generals.dk／Sakharov 補上。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:marshal_year",
+     "gapKind": "conflict",
+     "note": "待查證：晉元帥年份兩來源衝突（Советская военная энциклопедия 1935，Columbia Encyclopedia 1936）；正文並列。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:cc_member_1937",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Sakharov 年表載1937年起為中央委員（晉升日 knowbysight 載1937-10-12，該站無署名，僅作候選），未見可收來源寫其迄日，故未列入 roleCandidates。已查 Сахаровский центр、Generals.dk、世界大百科事典、knowbysight.info。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "Blyukher Vasily Konstantinovich encyclopedia.com",
+     "url": "https://www.encyclopedia.com/reference/encyclopedias-almanacs-transcripts-and-maps/blucher-vasily-konstantinovich",
+     "result": "unrated",
+     "note": "curl 成功；Columbia Encyclopedia，列 C"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Блюхер Василий Константинович Советская военная энциклопедия",
+     "url": "https://booksite.ru/FullText/1/001/008/122/824.htm",
+     "result": "unrated",
+     "note": "curl 成功（cp1251）；Воениздат，列 C"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Vassili K Blucher Britannica",
+     "url": "https://www.britannica.com/biography/Vassili-K-Blucher",
+     "result": "blocked_403",
+     "note": "Britannica 擋"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Encyclopedia of Modern Ukraine Blyukher pdf",
+     "url": "https://www.esu.com.ua/pdf/file/35573.pdf",
+     "result": "no_result",
+     "note": "PDF 下載不完整，無法轉文字"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Блюхер ОКДВА Хасан",
+     "url": "https://cyclowiki.org/",
+     "result": "not_relevant",
+     "note": "維基類站台，不收"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Блюхер Василий Константинович биография Большая российская энциклопедия",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無 BRE 條目；bigenc.ru 直抓回 401（未登入不繞過）",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Blyukher Vasily marshal Special Red Banner Far Eastern Army Lake Khasan 1938 arrested biography",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅維基類／鏡像，不收",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Блюхер кандидат в члены ЦК ВКП(б) 1934 исключён 1938 справочник по истории КПСС",
+     "url": "https://booksite.ru/FullText/1/001/008/122/824.htm",
+     "result": "unrated",
+     "note": "重複既有來源",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Блюхер Герои страны Хасан командующий Дальневосточным фронтом 1 июля 1938 арестован 22 октября",
+     "url": "https://generals.dk/general/Bliukher/Vasilii_Konstantinovich/Soviet_Union.html",
+     "result": "found_C",
+     "note": "curl 成功；Steen Ammentorp 任職表，得1929-08-06至1938-10-22 各職起迄",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Блюхер РГАСПИ ЦК кандидат 1934 1938 исключен",
+     "url": null,
+     "result": "no_result",
+     "note": "RGASPI 未見可抓頁",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Wasili Blücher Marschall Biographie Deutsche Biographie OR lobid OR Bundesarchiv Fernost 1938",
+     "url": null,
+     "result": "no_result",
+     "note": "無 NDB／GND／Bundesarchiv 條目；universalis.fr 抓得為壓縮／付費內容無法轉文字",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Blyukher Galen Chinese military adviser Whampoa Northern Expedition 1924 1927 history university journal",
+     "url": null,
+     "result": "not_relevant",
+     "note": "學術來源僅列表／摘要",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "加倫 布留赫爾 蘇聯 軍事顧問 廣州 北伐 1924 1927 國史館 OR 近代史研究所",
+     "url": null,
+     "result": "no_result",
+     "note": "國史館／近史所無可抓頁",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "ブリュッヘル ヴァシーリー 元帥 極東軍 張鼓峰事件 コトバンク",
+     "url": null,
+     "result": "not_relevant",
+     "note": "搜尋未直接給出條目",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "Блюхер кандидат в члены ЦК ВКП(б) 1934–1938 выведен（限 knowbysight／hrono／sakharov-center 等）",
+     "url": "https://www.sakharov-center.ru/asfcd/auth/?t=author&i=2143",
+     "result": "found_C",
+     "note": "curl 成功；Сахаровский центр 年表（具名機構）：1934候補、1937委員、1938-07-01遠東方面軍、10-22被捕、11-09去世",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "同上，另抓 knowbysight.info 人物頁",
+     "url": "http://www.knowbysight.info/BBB/01427.asp",
+     "result": "unrated",
+     "note": "無署名彙編，只作 gap 候選；https 憑證不符未使用 -k",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "ブリュヘル OR ブリュッヘル OR ブリューヘル 極東赤軍 元帥 ソ連（限 kotobank／ndl／jacar／nids）",
+     "url": "https://kotobank.jp/word/%E3%81%B6%E3%82%8A%E3%82%86%E3%81%A4%E3%81%B8%E3%82%8B-3230475",
+     "result": "found_B",
+     "note": "curl 成功；『世界大百科事典』平井友義執筆：極東共和国、中國顧問、極東軍司令",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "同上，抓防衛研究所 花田智之 論文",
+     "url": "https://www.nids.mod.go.jp/publication/joint_research/series19/pdf/series19-2-5.pdf",
+     "result": "found_A",
+     "note": "curl 成功；寫「特別極東軍司令官（1924年から27年まで中国最高軍事顧問）」",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "Блюхер Волочаевка 1922 Народно-революционная армия ДВР главнокомандующий военный министр Приморье",
+     "url": null,
+     "result": "unrated",
+     "note": "僅 booksite／維基類",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "Blyukher 51st Rifle Division Perekop Kakhovka 1920 Wrangel Crimea",
+     "url": null,
+     "result": "not_relevant",
+     "note": "維基類為主；military-review.com curl 失敗（SSL）",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "academic",
+     "query": "1929 Sino-Soviet conflict Chinese Eastern Railway Blyukher Special Far Eastern Army",
+     "url": "https://soviethistory.msu.edu/1929/chinese-railway-incident/chinese-railway-incident-texts/war-nobody-knew/",
+     "result": "found_C",
+     "note": "curl 成功；Eugene Lyons 回憶（MSU 數位庫）：1929年滿洲戰事由 Bliukher-Galen 統率",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Blyukher Far Eastern Front July 1938 Khasan Lyushkov arrest FRUS OR National Archives",
+     "url": "https://history.state.gov/historicaldocuments/frus1929v02/d266",
+     "result": "unrated",
+     "note": "curl 成功；FRUS 1929 文件僅提 Special Far Eastern Army 與 Galen 化名，無新任期資料",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "other",
+     "query": "Блюхер 51-я стрелковая дивизия Перекоп Сиваш Врангель 1920",
+     "url": null,
+     "result": "unrated",
+     "note": "gazeta／ruwiki 等；未抓",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "other",
+     "query": "curl 嘗試：calend.ru／hrono.ru／time.com／rambler／universalis／britannica",
+     "url": "https://www.calend.ru/persons/5396",
+     "result": "not_relevant",
+     "note": "calend 無用；hrono 395 byte 空頁；time 406；britannica 403；rambler 無署名新聞彙編不收",
+     "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "薩哈羅夫中心年表 1922、1929 條目（既有 sakh-blu）",
+     "url": "https://www.sakharov-center.ru/",
+     "result": "found_C",
+     "note": "generals.dk 替換"
+    },
+    {
+     "step": 91,
+     "sourceType": "other",
+     "query": "Britannica Blyukher / Budyonny",
+     "url": "https://www.britannica.com/print/article/83440",
+     "result": "blocked_403",
+     "note": "Cloudflare 擋，不繞過"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "paragraphs",
+     "item": 4,
+     "basis": null,
+     "diff": "原：正文含「Generals.dk 任職表記他1929-08-06至1938-07-01任特別紅旗遠東軍司令，後任遠東方面軍司令到10月22日」；新：刪去 Generals.dk 轉述，改以薩哈羅夫年表（sakh-blu）所載1929-08-06任特別遠東軍司令、1938-07-01任遠東方面軍首長；刪去「方面軍司令任到10月22日」一語（10月22日被捕仍由 sakh-blu 支撐）",
+     "changes": {
+      "body": {
+       "before": {
+        "zh-Hant": "薩哈羅夫中心資料庫的年表載，布柳赫爾1938年7月1日出任遠東方面軍首長；Generals.dk 任職表同樣記他自1929年8月6日任特別紅旗遠東軍司令，至1938年7月1日改任遠東方面軍司令，到10月22日。年表又載他10月22日在阿德勒治療期間被捕，10月24日被關進內務人民委員部位於盧比揚卡的內部監獄，11月9日在該監獄醫生辦公室去世。",
+        "en": "The Sakharov Center database chronology says Blyukher became head of the Far Eastern Front on 1 July 1938; the Generals.dk service table likewise has him commanding the Special Red Banner Far Eastern Army from 6 August 1929 until 1 July 1938 and then the Far Eastern Front until 22 October. The chronology adds that he was arrested on 22 October while being treated at Adler, was placed in the NKVD internal prison at the Lubyanka on 24 October, and died on 9 November in the prison doctor's office."
+       },
+       "after": {
+        "zh-Hant": "薩哈羅夫中心資料庫的年表載，布柳赫爾1929年8月6日出任特別遠東軍司令，1938年7月1日出任遠東方面軍首長。年表又載他10月22日在阿德勒治療期間被捕，10月24日被關進內務人民委員部位於盧比揚卡的內部監獄，11月9日在該監獄醫生辦公室去世。",
+        "en": "The Sakharov Center database chronology says Blyukher became commander of the Special Far Eastern Army on 6 August 1929 and head of the Far Eastern Front on 1 July 1938. The chronology adds that he was arrested on 22 October while being treated at Adler, was placed in the NKVD internal prison at the Lubyanka on 24 October, and died on 9 November in the prison doctor's office."
+       }
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "blyukher-fer-commander",
+     "basis": "sakh-blu",
+     "diff": "原：迄日 1922-08-01（month，僅 generals.dk「1922-07-XX」）；新來源 sakh-blu：1922年6月返回莫斯科任第1步兵軍軍長，故迄日取 1922-07-01（month）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1921-06-27",
+        "end": "1922-08-01"
+       },
+       "after": {
+        "start": "1921-06-27",
+        "end": "1922-07-01"
+       }
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    }
+   ]
+  },
+  {
+   "key": "semyonbudyonny",
+   "bioId": null,
+   "name": "Semyon Budyonny",
+   "nameZh": "謝苗·布瓊尼",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1903-01-01",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與內戰：第一騎兵軍",
+      "en": "Origins and the Civil War: First Cavalry Army"
+     },
+     "body": {
+      "zh-Hant": "據《俄羅斯史百科全書》，布瓊尼生於羅斯托夫附近，一戰中因勇敢獲四枚喬治十字章，1918年加入布爾什維克，先在察里津周圍組建騎兵支隊，後創建並指揮傳奇的第一騎兵軍，對白軍與波軍作戰。莫斯科市ГБУ«МАЦ»傳略載，1919年6月騎兵軍成立，同年11月擴編為第1騎兵集團軍，參加擊敗鄧尼金、波蘭軍與弗蘭格爾的多次戰役。波蘭國家記憶研究院的文章載，布瓊尼的部隊於1920年5月29日在烏克蘭戰線的利波韋茨至薩姆哥羅德克一帶首次與波蘭軍交戰。",
+      "en": "According to the Encyclopedia of Russian History, Budyonny was born near Rostov-on-Don, won four St. George's Crosses for bravery in the First World War, joined the Bolsheviks in 1918, organised cavalry detachments around Tsaritsyn and then created and commanded the legendary First Cavalry Army against the Whites and the Poles. A Moscow GBU \"MAC\" profile adds that a cavalry corps was formed under him in June 1919 and expanded into the 1st Cavalry Army in November 1919, taking part in operations against Denikin, the Polish armies and Wrangel. An article of the Polish Institute of National Remembrance says Budyonny's units first came into combat contact with Polish forces on 29 May 1920 on the Lipowiec–Samhorodek sector of the Ukrainian Front."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "Born near Rostov-on-Don to non-Cossack parents",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "receiving four St. George's Crosses for bravery",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "creating and commanding the legendary First Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "In June 1919, a cavalry corps was created under Budyonny’s command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "In November 1919, the corps was expanded into the 1st Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Wrangel’s forces in Northern Taurida and Crimea",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psth-bud",
+       "locator": "全文",
+       "quote": "Froncie Ukraińskim 29 maja 1920 r., na odcinku Lipowiec – Samhorodek",
+       "quoteLang": "pl",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1923-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰間期：騎兵總監與軍區",
+      "en": "Interwar: Inspector of Cavalry and Moscow district"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1924至1937年任紅軍騎兵總監，1935年11月20日獲蘇聯元帥銜，1937年起任莫斯科軍區司令，1940年8月起任第一副國防人民委員。《俄羅斯史百科全書》稱他1937年積極參與清洗紅軍；Russia Beyond 稱他1937年6月11日作為最高法院特別法庭成員，對圖哈切夫斯基等人判處死刑。",
+      "en": "The profile records that he was Inspector of Cavalry of the Red Army from 1924 to 1937, became Marshal of the Soviet Union on 20 November 1935, commanded the Moscow Military District from 1937 and was First Deputy People's Commissar of Defence from August 1940. The Encyclopedia of Russian History says he actively helped purge the Red Army in 1937; Russia Beyond says that on 11 June 1937, as a member of the Special Judicial Presence, he passed the death sentence on Tukhachevsky and others."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From 1924 to 1937, he was Inspector of Cavalry of the Red Army.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Marshal of the Soviet Union (November 20, 1935)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From 1937, he was Commander of the Moscow Military District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From August 1940, he was First Deputy People’s Commissar of Defense.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "He actively helped purge the Red Army in 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-bud",
+       "locator": "全文",
+       "quote": "he passed a death sentence on Marshal Mikhail Tukhachevsky",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-06-01",
+      "end": "1942-09-04"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1941–42年：西南方向與北高加索",
+      "en": "1941–42: Southwestern Direction and North Caucasus"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1941年7月10日至9月13日任西南方向總司令，9月13日至10月8日任預備隊方面軍司令，1942年4月26日至5月20日任北高加索方向總司令，5月20日至9月3日任北高加索方面軍司令。《俄羅斯史百科全書》稱他須為1941年8月基輔失守負大部分責任；Russia Beyond 稱他9月12日被撤職。",
+      "en": "The profile records that he was Commander-in-Chief of the Southwestern Direction from 10 July to 13 September 1941, commanded the Reserve Front from 13 September to 8 October 1941, was Commander-in-Chief of the North Caucasus Direction from 26 April to 20 May 1942 and commanded the North Caucasus Front from 20 May to 3 September 1942. The Encyclopedia of Russian History says he was largely responsible for the loss of Kiev in August 1941; Russia Beyond says he was dismissed on 12 September."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Southwestern Direction (July 10, 1941 – September 13, 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Commander of the Reserve Front (September 13, 1941 – October 8, 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "North Caucasus Direction (April 26, 1942 – May 20, 1942)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Commander of the North Caucasus Front (May 20, 1942 – September 3, 1942)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "Budenny was largely responsible for the disastrous loss of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-bud",
+       "locator": "全文",
+       "quote": "he was dismissed from command as a \"panicker\"",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1973-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1943年後與晚年",
+      "en": "From 1943 to his death"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1943年1月起任蘇軍騎兵司令，1947至1953年兼任農業部副部長（負責養馬），1953年5月至1954年9月再任騎兵總監。《俄羅斯史百科全書》稱他1939至1952年為黨中央委員；Russia Beyond 稱他1973年去世，享年90歲。",
+      "en": "The profile records that from January 1943 he was Commander of the Cavalry of the Soviet Army, from 1947 to 1953 he concurrently served as Deputy Minister of Agriculture for horse breeding, and from May 1953 to September 1954 he was again Inspector of Cavalry. The Encyclopedia of Russian History says he was a member of the Central Committee from 1939 to 1952; Russia Beyond says he died in 1973 aged 90."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From January 1943, he was Commander of the Cavalry of the Soviet Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "from 1947 to 1953, he simultaneously served as Deputy Minister of Agriculture",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From May 1953 to September 1954, he was Inspector of Cavalry.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-bud",
+       "locator": "全文",
+       "quote": "Semyon Mikhailovich died in 1973 aged 90.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "budyonny-cavalry-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "騎兵軍軍長",
+      "en": "Commander, Cavalry Corps",
+      "orig": "Cavalry corps under Budyonny's command"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-06-01",
+      "end": "1919-11-17"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "In June 1919, a cavalry corps was created under Budyonny’s command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "In November 1919, the corps was expanded into the 1st Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rg-fhn-bud",
+       "locator": "全文",
+       "quote": "On November 17, 1919, Budenny was named commander of the First Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "budyonny-1st-cavalry-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第1騎兵集團軍司令",
+      "en": "Commander, 1st Cavalry Army",
+      "orig": "1st Cavalry Army, led by Budyonny"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-11-17",
+      "end": "1923-10-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "In November 1919, the corps was expanded into the 1st Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-bud",
+       "locator": "全文",
+       "quote": "On November 19, 1919, on the basis of the cavalry corps, the First Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rg-fhn-bud",
+       "locator": "全文",
+       "quote": "On November 17, 1919, Budenny was named commander of the First Cavalry Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rg-fhn-bud",
+       "locator": "全文",
+       "quote": "In September 1923, he appointed Budenny deputy commander in chief of Cavalry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "budyonny-inspector-cavalry",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "紅軍騎兵總監",
+      "en": "Inspector of Cavalry of the Red Army",
+      "orig": "Inspector of Cavalry of the Red Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1938-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From 1924 to 1937, he was Inspector of Cavalry of the Red Army.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "From 1924 to 1937 he served as Inspector of Cavalry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "騎兵總監非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "budyonny-moscow-md",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "莫斯科軍區司令",
+      "en": "Commander, Moscow Military District",
+      "orig": "Commander of the Moscow Military District"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-06-06",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From 1937, he was Commander of the Moscow Military District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-bud",
+       "locator": "全文",
+       "quote": "sjef for Moskva militærdistrikt",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rg-fhn-bud",
+       "locator": "全文",
+       "quote": "On June 6, 1937, Marshal Budenny was named head of the Moscow Military District.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-13",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區司令，屬 R5。"
+    },
+    {
+     "key": "budyonny-southwest-direction",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "西南方向總司令",
+      "en": "Commander-in-Chief, Southwestern Direction",
+      "orig": "Commander-in-Chief of the Southwestern Direction"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-07-10",
+      "end": "1941-09-13"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Southwestern Direction (July 10, 1941 – September 13, 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-bud",
+       "locator": "全文",
+       "quote": "Budyonny was appointed commander-in-chief of the troops of the South-West",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。（戰役連結：基輔，1941年8月，enc-bud；僅 1 B）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "budyonny-reserve-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "預備隊方面軍司令",
+      "en": "Commander, Reserve Front",
+      "orig": "Commander of the Reserve Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-09-13",
+      "end": "1941-10-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Commander of the Reserve Front (September 13, 1941 – October 8, 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "budyonny-north-caucasus-direction",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "北高加索方向總司令",
+      "en": "Commander-in-Chief, North Caucasus Direction",
+      "orig": "Commander-in-Chief of the North Caucasus Direction"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-04-26",
+      "end": "1942-05-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "North Caucasus Direction (April 26, 1942 – May 20, 1942)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "budyonny-north-caucasus-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "北高加索方面軍司令",
+      "en": "Commander, North Caucasus Front",
+      "orig": "Commander of the North Caucasus Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-05-20",
+      "end": "1942-09-03"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "Commander of the North Caucasus Front (May 20, 1942 – September 3, 1942)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "budyonny-cavalry-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "蘇軍騎兵司令",
+      "en": "Commander of the Cavalry of the Soviet Army",
+      "orig": "Commander of the Cavalry of the Soviet Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From January 1943, he was Commander of the Cavalry of the Soviet Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "騎兵司令／總監非國家級最高軍職，屬 R5。"
+    },
+    {
+     "key": "budyonny-inspector-cavalry-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "蘇軍騎兵總監（再任）",
+      "en": "Inspector of Cavalry (second term)",
+      "orig": "Inspector of Cavalry"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1953-05-01",
+      "end": "1954-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From May 1953 to September 1954, he was Inspector of Cavalry.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "騎兵司令／總監非國家級最高軍職，屬 R5。"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "budyonny-cc-candidate",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the All-Union Communist Party (Bolsheviks)"
+     },
+     "title": {
+      "orig": "candidate member of the Central Committee",
+      "zh-Hant": "中央委員會候補委員",
+      "en": "Candidate member of the Central Committee"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1934-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "From 1934, he was a candidate member",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hero-bud",
+       "locator": "全文",
+       "quote": "Член ЦК ВКП(б)/КПСС в 1939-52 годах (кандидат в 1934-1939 годах и с 1952 года).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "budyonny-cc-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯共產黨（布）中央委員會",
+      "en": "Central Committee of the All-Union Communist Party (Bolsheviks)"
+     },
+     "title": {
+      "orig": "full member of the Central Committee",
+      "zh-Hant": "中央委員會委員",
+      "en": "Member of the Central Committee"
+     },
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1953-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gb-bud",
+       "locator": "全文",
+       "quote": "from 1939, a full member of the Central Committee",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-bud",
+       "locator": "全文",
+       "quote": "from 1939 to 1952",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hero-bud",
+       "locator": "全文",
+       "quote": "Член ЦК ВКП(б)/КПСС в 1939-52 годах (кандидат в 1934-1939 годах и с 1952 года).",
+       "quoteLang": "ru",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:first_deputy_commissar_1940",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；1940年8月起任第一副國防人民委員（副職，R5），本輪兩來源衝突（Generals.dk 列1942-06-23與1942-08-27兩個日期，knowbysight 無署名載27.8.1942），未收入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:budyonny-cc-member",
+     "gapKind": "conflict",
+     "note": "中央委員迄日兩份已抓來源矛盾：Герои страны 與 Encyclopedia of Russian History 寫1939–1952年，Store norske leksikon 寫1939–1961年；本筆依兩筆一致者取1952（年精度，迄日1953-01-01）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:budyonny_cc_dates",
+     "gapKind": "not_found",
+     "note": "待查證：中央委員／候補委員起迄之日精度；knowbysight.info（無署名，僅作候選）載候補1934-02-10至1939-03-10、委員1939-03-21至1952-10-05，未評等不可當出處。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:budyonny-moscow-md",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    },
+    {
+     "target": "position:budyonny-cavalry-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日（原僅 generals.dk 支撐，已移除）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-13",
+     "by": "gendk-replace-2026-11-13"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "Budenny Semeon Mikhailovich Encyclopedia of Russian History",
+     "url": "https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/budenny-semeon-mikhailovich",
+     "result": "found_B",
+     "note": "curl 成功；作者 Jonathan D. Smele"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Budyonny commands dates 1941 1942",
+     "url": "https://qr.gbumac.ru/?p=20332",
+     "result": "unrated",
+     "note": "curl 成功；ГБУ«МАЦ»，列 C"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "Marshal Budyonny best Soviet cavalryman",
+     "url": "https://gw2ru.com/history/1037-marshal-budyonny-best-soviet-cavalryman",
+     "result": "unrated",
+     "note": "curl 成功；作者 Boris Egorov，列 C"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Semyon Mikhaylovich Budenny Britannica",
+     "url": "https://www.britannica.com/print/article/83440",
+     "result": "no_result",
+     "note": "未抓取（Britannica 同類頁面 403）"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Будённый Семён Михайлович биография Большая российская энциклопедия",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無 BRE 條目；bigenc.ru 直抓401",
+     "round": "retry"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Budyonny Semyon Marshal Soviet Union biography Moscow Military District 1937 1939 Central Committee",
+     "url": null,
+     "result": "unrated",
+     "note": "維基類為主",
+     "round": "retry"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Буденный член ЦК ВКП(б) 1939 1952 кандидат ЦК 1934 справочник",
+     "url": null,
+     "result": "unrated",
+     "note": "得 knowbysight 線索",
+     "round": "retry"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Буденный кандидат член ЦК 1934 1939 1952 1956（限 knowbysight／hrono／warheroes 等）",
+     "url": "https://warheroes.ru/hero/hero.asp?Hero_id=1088",
+     "result": "found_C",
+     "note": "curl 成功；Герои страны：中央委員1939–52、候補1934–39及1952起",
+     "round": "retry"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Буденный Московский военный округ 1937 1939 1940 первый заместитель наркома（限 mil.ru／warheroes／ria 等）",
+     "url": "https://ria.ru/20230425/budennyy-1867316594.html",
+     "result": "unrated",
+     "note": "curl 成功；RIA 與 warheroes 重複，僅作佐證；encyclopedia.mil.ru curl 逾時兩次",
+     "round": "retry"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "ブジョーンヌイ セミョーン 元帥 第一騎兵軍 日本大百科全書 OR 世界大百科事典",
+     "url": null,
+     "result": "no_result",
+     "note": "Nipponica／世界大百科 無此條",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "ブジョーンヌイ OR ブジョンヌイ 騎兵 元帥 ソ連（限 kotobank／ndl／jacar／nids）",
+     "url": "https://kotobank.jp/word/%E3%81%9B%E3%81%BF%E3%82%88%E3%83%BC%E3%82%93%E3%81%BF%E3%81%AF%E3%81%84%E3%82%8D%E3%83%B4%E3%81%84%E3%81%A1%E3%81%B6%E3%81%98%E3%82%88%E3%83%BC%E3%82%93%E3%81%AC%E3%81%84-1792512",
+     "result": "unrated",
+     "note": "curl 成功；僅『367日誕生日大事典』生年月日，無任期，不用",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "布瓊尼 謝苗·布瓊尼 蘇聯元帥 第一騎兵軍 生平",
+     "url": null,
+     "result": "no_result",
+     "note": "無中文權威來源",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Budjonny Semjon Michailowitsch Marschall Sowjetunion Deutsche Biographie OR Bundesarchiv",
+     "url": null,
+     "result": "no_result",
+     "note": "無 NDB／Bundesarchiv 條目",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "Budionny Siemion Marszałek 1920 wojna polsko-bolszewicka Armia Konna Komarów Zamość",
+     "url": "https://przystanekhistoria.pl/pa2/teksty/29170,Armia-Konna-na-froncie-polskim-w-1920-r.html",
+     "result": "found_C",
+     "note": "curl 成功；IPN 具名作者 Paweł Sztama：1920-05-29 首次與波軍交戰",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Будьонний Семен Михайлович Енциклопедія сучасної України Перша кінна армія",
+     "url": "https://www.esu.com.ua/pdf/file/36577.pdf",
+     "result": "unrated",
+     "note": "curl 成功（PDF 部分下載，未取得可核引文）",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Budënnyj Semën Michajlovič Treccani enciclopedia maresciallo",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Treccani 條目；得 snl.no、vle.lt",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "同上，抓 Store norske leksikon",
+     "url": "https://snl.no/Semjon_Budjonnyj",
+     "result": "found_B",
+     "note": "curl 成功；Kåre Johan Mjør 具名：1924–37騎兵總監、1937–40莫斯科軍區；中央委員寫1939–1961（與他源衝突）",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "other",
+     "query": "同上，抓 Visuotinė lietuvių enciklopedija",
+     "url": "https://www.vle.lt/straipsnis/semion-budionnyj/",
+     "result": "unrated",
+     "note": "curl 成功；無署名作者，未採用",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "other",
+     "query": "Буденный Киевская оборонительная операция 1941 Юго-Западное направление главнокомандующий 10 июля",
+     "url": null,
+     "result": "unrated",
+     "note": "bigenc 條目被擋、其餘維基類／vk",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "other",
+     "query": "Budenny Tsaritsyn 1918 Stalin Tenth Army cavalry history journal university press",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅普及文章",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "Budenny Marshal Soviet cavalry National Archives OR FRUS OR history.army.mil",
+     "url": null,
+     "result": "no_result",
+     "note": "NARA／FRUS／history.army.mil 無可用頁；britannica 403",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "other",
+     "query": "Буденный Первая Конная армия Врангель Северная Таврия Крым 1920 Польский фронт",
+     "url": null,
+     "result": "unrated",
+     "note": "rhga／gazeta 等未抓",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "academic",
+     "query": "Budyonny 1st Cavalry Army 1920 Polish-Soviet war Lwów Zamość Wrangel scholarly",
+     "url": null,
+     "result": "not_relevant",
+     "note": "維基類為主",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "other",
+     "query": "curl 嘗試：generals.dk／warhistory.org／tracesofwar／warfarehistorynetwork／timenote／knowbysight",
+     "url": "https://generals.dk/general/Budennyi/Semen_Mikhailovich/Soviet_Union.html",
+     "result": "found_C",
+     "note": "generals.dk 任職表可用（得1st Cavalry Army 迄1923-10-26、莫斯科軍區迄1940-08-15）；tracesofwar 403、timenote 403；knowbysight 無署名僅作候選",
+     "round": "retry"
+    },
+    {
+     "step": 90,
+     "sourceType": "other",
+     "query": "Budyonny Moscow Military District 1937 1940 end date（encyclopedia.mil.ru）",
+     "url": null,
+     "result": "no_result",
+     "note": "generals.dk 替換"
+    },
+    {
+     "step": 91,
+     "sourceType": "academic",
+     "query": "Warfare History Network Blaine Taylor Budenny",
+     "url": "https://warfarehistorynetwork.com/?p=11384",
+     "result": "found_C",
+     "note": "generals.dk 替換"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "budyonny-cavalry-corps",
+     "basis": "gb-bud",
+     "diff": "原：起日 1919-06-26（day，僅 generals.dk）；新來源 gb-bud：1919年6月成立騎兵軍，起日改 1919-06-01（month）；迄日 1919-11-17 由 rg-fhn-bud 支撐，不變",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1919-06-26",
+        "end": "1919-11-17"
+       },
+       "after": {
+        "start": "1919-06-01",
+        "end": "1919-11-17"
+       }
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "budyonny-1st-cavalry-army",
+     "basis": "rg-fhn-bud",
+     "diff": "原：1919-11-01（month）至 1923-10-26（day，僅 generals.dk）；新來源 rg-fhn-bud：1919-11-17 任第1騎兵集團軍司令；1923年9月改任騎兵部隊副總司令，迄日取 1923-10-01（month）",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1919-11-01",
+        "end": "1923-10-26"
+       },
+       "after": {
+        "start": "1919-11-17",
+        "end": "1923-10-01"
+       }
+      },
+      "startPrecision": {
+       "before": "month",
+       "after": "day"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "budyonny-moscow-md",
+     "basis": "rg-fhn-bud",
+     "diff": "原：1937-01-01（year）至 1940-08-15（day，僅 generals.dk）；新來源 rg-fhn-bud：1937-06-06 任莫斯科軍區首長；可收來源皆未載迄日，迄日改 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1937-01-01",
+        "end": "1940-08-15"
+       },
+       "after": {
+        "start": "1937-06-06",
+        "end": null
+       }
+      },
+      "startPrecision": {
+       "before": "year",
+       "after": "day"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": null
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    },
+    {
+     "run": "gendk-replace-2026-11-13",
+     "on": "2026-11-13",
+     "section": "positions",
+     "item": "budyonny-cavalry-commander",
+     "basis": "gb-bud",
+     "diff": "原：迄日 1947-04-01（month，僅 generals.dk「1947-03-XX」）；可收來源（gb-bud、hero-bud 皆只載1943年1月起）未載迄日，改 null",
+     "changes": {
+      "period": {
+       "before": {
+        "start": "1943-01-01",
+        "end": "1947-04-01"
+       },
+       "after": {
+        "start": "1943-01-01",
+        "end": null
+       }
+      },
+      "endPrecision": {
+       "before": "month",
+       "after": null
+      }
+     },
+     "rule": "新來源與既有值不同時以新來源為準（Tai 2026-11-13 10:32）"
+    }
+   ]
+  },
+  {
+   "key": "rodionmalinovsky",
+   "bioId": null,
+   "name": "Rodion Malinovsky",
+   "nameZh": "羅季翁·馬利諾夫斯基",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "早年：法國遠征軍、內戰與西班牙",
+      "en": "Early life: France, Civil War and Spain"
+     },
+     "body": {
+      "zh-Hant": "據莫斯科市ГБУ«МАЦ»傳略，馬利諾夫斯基一戰時志願從軍任機槍手，1916年隨俄國遠征軍赴法國作戰，1919年返回俄國後在東方面軍參加對高爾察克的內戰，1930年畢業於伏龍芝軍事學院，1937至1938年在西班牙內戰中任軍事顧問。",
+      "en": "According to a Moscow GBU \"MAC\" profile, Malinovsky volunteered as a machine gunner in the First World War, was sent to France in 1916 with the Russian Expeditionary Corps, returned to Russia in 1919 and fought on the Eastern Front against Kolchak in the Civil War, graduated from the Frunze Military Academy in 1930 and served as a military adviser in the Spanish Civil War in 1937-38."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "He volunteered as a soldier in the First World War, serving as a machine gunner.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "In 1916, as part of the Russian Expeditionary Corps, he was sent to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "he participated in the Civil War on the Eastern Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "graduating from Military Academy named after M.V. Frunze in 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "From 1937 to 1938, he participated in the Spanish Civil War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-06-01",
+      "end": "1944-06-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1941–44年：南方、西南與烏克蘭方面軍",
+      "en": "1941–44: Southern, Southwestern and Ukrainian Fronts"
+     },
+     "body": {
+      "zh-Hant": "傳略載，戰爭初期他指揮第48步兵軍，1941年12月24日至1942年7月28日任南方面軍司令，1943年2月20日至3月22日再任，1943年3月27日至10月20日任西南方面軍司令，1943年10月20日至1944年5月15日任烏克蘭第3方面軍司令，並參與史達林格勒戰役、右岸烏克蘭解放與雅西—基什尼奧夫攻勢。GlobalSecurity 稱他指揮的近衛第2集團軍在史達林格勒擊潰了德軍頓河集團。",
+      "en": "The profile says that at the start of the war he commanded the 48th Rifle Corps, then the Southern Front (24 December 1941 - 28 July 1942 and again 20 February - 22 March 1943), the Southwestern Front (27 March - 20 October 1943) and the 3rd Ukrainian Front (20 October 1943 - 15 May 1944), and took part in the Battle of Stalingrad, the liberation of Right-Bank Ukraine and the Iasi-Kishinev Offensive. GlobalSecurity says the Second Guards Army he commanded routed the German Don group at Stalingrad."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "he was in command of the 48th Rifle Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "December 24, 1941 – July 28, 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "February 20, 1943 – March 22, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Southwestern Front (March 27, 1943 – October 20, 1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "3rd Ukrainian Front (October 20, 1943 – May 15, 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "including the Battle of Stalingrad, the liberation of Right-Bank Ukraine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "During the battle of Stalingrad the Second Guards Army he commanded",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-05-22",
+      "end": "1945-10-02"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1944–45年：烏克蘭第2方面軍與滿洲",
+      "en": "1944–45: 2nd Ukrainian Front and Manchuria"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1944年5月22日至1945年6月10日任烏克蘭第2方面軍司令，參加雅西—基什尼奧夫與解放羅馬尼亞、匈牙利、奧地利與捷克斯洛伐克之戰，1944年9月10日獲蘇聯元帥銜；1945年7月12日至10月1日任外貝加爾方面軍司令，在對日戰爭中橫越戈壁與大興安嶺進攻。GlobalSecurity 稱他與托爾布欣的方面軍於1945年2月13日解放布達佩斯。",
+      "en": "The profile says he commanded the 2nd Ukrainian Front from 22 May 1944 to 10 June 1945, took part in the Iasi-Kishinev Offensive and the liberation of Romania, Hungary, Austria and Czechoslovakia, and became Marshal of the Soviet Union on 10 September 1944; from 12 July to 1 October 1945 he commanded the Transbaikal Front, whose forces advanced across the Gobi Desert and the Greater Khingan range in the war against Japan. GlobalSecurity says his and Tolbukhin's fronts took Budapest on 13 February 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "2nd Ukrainian Front (May 22, 1944 – June 10, 1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "the Iasi–Kishinev Offensive",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Marshal of the Soviet Union (September 10, 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "he commanded the Transbaikal Front (July 12, 1945 – October 1, 1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "executed a brilliant offensive operation across the Gobi Desert",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "On 13 February 1945 the operation ended with the liberation of Budapest",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "commanded the fronts advancing on Budapest",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1956-01-01",
+      "end": "1967-04-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "戰後：陸軍總司令與國防部長",
+      "en": "Postwar: Ground Forces and Defence Minister"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1956至1957年任陸軍總司令，1957年10月至1967年3月任蘇聯國防部長，主持軍隊現代化與飛彈部隊發展。GlobalSecurity 載，1957年10月26日塔斯社宣布他接替朱可夫為國防部長，並稱他1967年4月1日去世，享年69歲。",
+      "en": "The profile says he was Commander-in-Chief of the Ground Forces in 1956-57 and Minister of Defence of the USSR from October 1957 to March 1967, overseeing modernisation of the army and the missile forces. GlobalSecurity says TASS announced on 26 October 1957 that he had replaced Zhukov as Minister of Defence, and that he died on 1 April 1967 aged 69."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Commander-in-Chief of the Ground Forces (1956-1957)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Minister of Defence of the USSR (October 1957 – March 1967)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "On 26 October 1957, TASS announced that Marshal Georgi K. Zhukov",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "died 01 April 1967 at the age of 69",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "malinovsky-spain-adviser",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "西班牙共和軍軍事顧問",
+      "en": "Military adviser, Spanish Civil War",
+      "orig": "military advisor"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "From 1937 to 1938, he participated in the Spanish Civil War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍事顧問，非指揮職，屬 R5。"
+    },
+    {
+     "key": "malinovsky-southern-front-1",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "南方面軍司令（第一次）",
+      "en": "Commander, Southern Front (first term)",
+      "orig": "Commander of the Southern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-24",
+      "end": "1942-07-28"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "December 24, 1941 – July 28, 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-southern-front-2",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "南方面軍司令（第二次）",
+      "en": "Commander, Southern Front (second term)",
+      "orig": "Commander of the Southern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-02-20",
+      "end": "1943-03-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "February 20, 1943 – March 22, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。（任期僅30天，亦不足以證明逾30天）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-southwestern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "西南方面軍司令",
+      "en": "Commander, Southwestern Front",
+      "orig": "Southwestern Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-03-27",
+      "end": "1943-10-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Southwestern Front (March 27, 1943 – October 20, 1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-3rd-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第3方面軍司令",
+      "en": "Commander, 3rd Ukrainian Front",
+      "orig": "3rd Ukrainian Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-20",
+      "end": "1944-05-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "3rd Ukrainian Front (October 20, 1943 – May 15, 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-2nd-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第2方面軍司令",
+      "en": "Commander, 2nd Ukrainian Front",
+      "orig": "2nd Ukrainian Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-05-22",
+      "end": "1945-06-10"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "2nd Ukrainian Front (May 22, 1944 – June 10, 1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "commanded the fronts advancing on Budapest",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-transbaikal-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "外貝加爾方面軍司令",
+      "en": "Commander, Transbaikal Front",
+      "orig": "Transbaikal Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-07-12",
+      "end": "1945-10-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "he commanded the Transbaikal Front (July 12, 1945 – October 1, 1945)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "malinovsky-ground-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "陸軍總司令",
+      "en": "Commander-in-Chief of the Ground Forces",
+      "orig": "Commander-in-Chief of the Ground Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1956-01-01",
+      "end": "1958-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Commander-in-Chief of the Ground Forces (1956-1957)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "時間窗外（1957–1967，與1908–1945無交集），屬 R5。"
+    },
+    {
+     "key": "malinovsky-defence-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "蘇聯國防部長",
+      "en": "Minister of Defence of the USSR",
+      "orig": "Minister of Defence of the USSR"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1957-10-01",
+      "end": "1967-04-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-mal",
+       "locator": "全文",
+       "quote": "Minister of Defence of the USSR (October 1957 – March 1967)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gs-mal",
+       "locator": "全文",
+       "quote": "On 26 October 1957, TASS announced that Marshal Georgi K. Zhukov",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "時間窗外（1957–1967，與1908–1945無交集），屬 R5。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:malinovsky-48th-corps",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第48步兵軍軍長任期，傳略只寫「戰爭開始時」，已查 ГБУ«МАЦ»、GlobalSecurity，未寫起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:stalingrad_army_commands",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；1942年7月至1943年2月間其指揮的第66集團軍、近衛第2集團軍任期，GlobalSecurity 僅提「Second Guards Army」，已查 ГБУ«МАЦ»、GlobalSecurity，未載起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:party_posts",
+     "gapKind": "not_found",
+     "note": "待查證：黨職任期；已查兩來源，只見1926年入黨，未見黨職起迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:regime_ids",
+     "gapKind": "not_found",
+     "note": "來源不足：蘇聯 regimeId 未確認，方面軍司令任期留 positions（R6）；Britannica 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Malinovsky Rodion Yakovlevich Marshal commands dates",
+     "url": "https://qr.gbumac.ru/?p=20385",
+     "result": "unrated",
+     "note": "curl 成功；ГБУ«МАЦ»，列 C"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Rodion Malinovsky globalsecurity",
+     "url": "https://www.globalsecurity.org/military/world/russia/malinovsky.htm",
+     "result": "unrated",
+     "note": "curl 成功；GlobalSecurity.org，列 C"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Rodion Yakovlevich Malinovsky Britannica",
+     "url": "https://www.britannica.com/biography/Rodion-Yakovlevich-Malinovsky",
+     "result": "blocked_403",
+     "note": "Britannica 擋"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Малиновский Родион Яковлевич Кругосвет",
+     "url": "https://www.krugosvet.ru/enc/istoriya/MALINOVSKI_RODION_YAKOVLEVICH.html",
+     "result": "no_result",
+     "note": "主機無法解析"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Malinovsky encyclopedia.com Encyclopedia of Russian History",
+     "url": "https://www.encyclopedia.com/",
+     "result": "no_result",
+     "note": "搜尋未見 Malinovsky 條目"
+    }
+   ]
+  },
+  {
+   "key": "fyodortolbukhin",
+   "bioId": null,
+   "name": "Fyodor Tolbukhin",
+   "nameZh": "費奧多爾·托爾布欣",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1894-01-01",
+      "end": "1941-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、一戰與內戰",
+      "en": "Origins, First World War and Civil War"
+     },
+     "body": {
+      "zh-Hant": "據莫斯科市ГБУ«МАЦ»傳略，托爾布欣生於雅羅斯拉夫省安德羅尼基村的農民家庭，一戰時任參謀上尉，1918年8月加入紅軍從事參謀工作，參與1921年鎮壓喀琅施塔得兵變與1921至1922年卡累利阿對芬蘭支隊的作戰，1938年7月起任外高加索軍區參謀長。",
+      "en": "According to a Moscow GBU \"MAC\" profile, Tolbukhin was born in Androniki village, Yaroslavl province, to a peasant family, served as a staff captain in the First World War, joined the Red Army in August 1918 in staff posts, took part in suppressing the Kronstadt Uprising in 1921 and in operations against Finnish detachments in Karelia in 1921-22, and from July 1938 was chief of staff of the Transcaucasian Military District."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "He was born in the village of Androniki, Yaroslavl province.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Participant of the 1st World War, staff captain.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "In August 1918 He joined the Red Army, in staff positions.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "He participated in the suppression of the Kronstadt Uprising (1921)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Since July 1938 he was a Chief of Staff of the Transcaucasian Military District.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1941-01-01",
+      "end": "1944-05-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1941–44年：克里米亞、史達林格勒與南方面軍",
+      "en": "1941–44: Crimea, Stalingrad and the Southern Front"
+     },
+     "body": {
+      "zh-Hant": "Russia Beyond 載，1941年12月起的克里米亞登陸戰以刻赤半島解放告終，他此後任克里米亞方面軍參謀長；1942年7月起指揮第57集團軍，掩護史達林格勒南面，並在11月反攻中從南面合攏包圍圈。傳略載，他1943年2月起任第68集團軍司令，1943年3月起指揮南方面軍，1943年10月起指揮烏克蘭第4方面軍。",
+      "en": "Russia Beyond says the landing in Crimea that began in December 1941 ended with the liberation of the Kerch Peninsula, after which he was chief of staff of the Crimean Front; from July 1942 he commanded the 57th Army, covering the southern approaches to Stalingrad, and in the November counteroffensive it closed the encirclement ring from the south. The profile says he commanded the 68th Army from February 1943, the Southern Front from March 1943 and the 4th Ukrainian Front from October 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "The landing, which began on December 26",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "Fyodor Ivanovich took up the post of Chief of Staff of the Crimean Front",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "From July 1942, Tolbukhin commanded the 57th Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "closed the encirclement ring around the German troops in Stalingrad",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from July 1942 – commander of the 57th, from February 1943 – 68th armies.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From March 1943 he commanded the Southern, from October 1943 – the 4th Ukrainian",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1944-05-01",
+      "end": "1945-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1944–45年：烏克蘭第3方面軍",
+      "en": "1944–45: 3rd Ukrainian Front"
+     },
+     "body": {
+      "zh-Hant": "Russia Beyond 載，他1944年5月任烏克蘭第3方面軍司令，8月與馬利諾夫斯基的第2方面軍進行雅西—基什尼奧夫戰役，1944年9月12日獲蘇聯元帥銜；1944年10月部隊與南斯拉夫人民解放軍解放貝爾格萊德，1945年2月13日布達佩斯被攻占，1945年4月13日其部隊攻占維也納。傳略載，他任方面軍司令至1945年6月。",
+      "en": "Russia Beyond says he was appointed commander of the 3rd Ukrainian Front in May 1944, conducted the Jassy-Kishinev operation with Malinovsky's 2nd Front in August, and became Marshal of the Soviet Union on 12 September 1944; in October 1944 his troops and the Yugoslav People's Liberation Army liberated Belgrade, Budapest was captured on 13 February 1945, and his troops took Vienna on 13 April 1945. The profile says he commanded the front until June 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "In May 1944, after a successful operation to liberate Crimea",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "Tolbukhin was appointed commander of the 3rd Ukrainian Front.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "carried out the brilliant Jassy-Kishinev operation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "On September 12, 1944, Tolbukhin was awarded the rank of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "liberated Belgrade",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "On February 13, 1945, Budapest was captured.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "On April 13, 1945, Tolbukhin's troops captured Vienna.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from May 1944 to June 1945. – 3rd Ukrainian fronts.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1944-09-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰後職務與逝世",
+      "en": "Postwar posts and death"
+     },
+     "body": {
+      "zh-Hant": "傳略載，他1944年9月起任保加利亞盟國管制委員會主席，1945年7月至1947年1月任南方軍隊集群總司令，1947年1月起任外高加索軍區司令。Russia Beyond 稱他1949年死於糖尿病；傳略稱他1965年5月7日獲追授蘇聯英雄稱號。",
+      "en": "The profile says he was Chairman of the Allied Control Commission in Bulgaria from September 1944, Commander-in-Chief of the Southern Group of Troops from July 1945 to January 1947, and from January 1947 commander of the Transcaucasian Military District. Russia Beyond says he died of diabetes in 1949; the profile says he was posthumously made Hero of the Soviet Union by decree of 7 May 1965."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Since September 1944 – Chairman of the Allied Control Commission in Bulgaria.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From July 1945 to January 1947.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Commander-in-chief of the Southern Group of Troops.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Since January 1947, Commander of the Transcaucasian Military District.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "In 1949, he died of diabetes.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Decree of the Presidium of the Supreme Soviet of the USSR of May 7, 1965",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "tolbukhin-transcaucasus-chief-of-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "外高加索軍區參謀長",
+      "en": "Chief of Staff, Transcaucasian Military District",
+      "orig": "Chief of Staff of the Transcaucasian Military District"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-07-01",
+      "end": "1941-08-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Since July 1938 he was a Chief of Staff of the Transcaucasian Military District.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-booksite-tol",
+       "locator": "全文",
+       "quote": "начальник штаба Закавказского (август— декабрь 1941)",
+       "quoteLang": "ru",
+       "evidenceNote": "依名簿下一任起日推得（推論）：同條目前文「С июля 1938 начальник штаба Закавказского военного округа」，其後轉任Закавказский фронт參謀長（1941年8月起）",
+       "accessedOn": "2026-11-13",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍區參謀長，屬 R5。"
+    },
+    {
+     "key": "tolbukhin-57th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第57集團軍司令",
+      "en": "Commander, 57th Army",
+      "orig": "commander of the 57th"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-07-01",
+      "end": "1943-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from July 1942 – commander of the 57th, from February 1943 – 68th armies.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "From July 1942, Tolbukhin commanded the 57th Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tolbukhin-68th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "第68集團軍司令",
+      "en": "Commander, 68th Army",
+      "orig": "68th armies"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-02-01",
+      "end": "1943-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from July 1942 – commander of the 57th, from February 1943 – 68th armies.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From March 1943 he commanded the Southern, from October 1943 – the 4th Ukrainian",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集團軍／軍區／師級等非國家級最高軍職，不符 R4，屬 R5。"
+    },
+    {
+     "key": "tolbukhin-southern-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "南方面軍司令",
+      "en": "Commander, Southern Front",
+      "orig": "commanded the Southern"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-03-01",
+      "end": "1943-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From March 1943 he commanded the Southern, from October 1943 – the 4th Ukrainian",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tolbukhin-4th-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第4方面軍司令",
+      "en": "Commander, 4th Ukrainian Front",
+      "orig": "the 4th Ukrainian"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-01",
+      "end": "1944-05-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From March 1943 he commanded the Southern, from October 1943 – the 4th Ukrainian",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from May 1944 to June 1945. – 3rd Ukrainian fronts.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tolbukhin-3rd-ukrainian-front",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "烏克蘭第3方面軍司令",
+      "en": "Commander, 3rd Ukrainian Front",
+      "orig": "3rd Ukrainian fronts"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-05-01",
+      "end": "1945-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "from May 1944 to June 1945. – 3rd Ukrainian fronts.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "In May 1944, after a successful operation to liberate Crimea",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gw-tol",
+       "locator": "全文",
+       "quote": "Tolbukhin was appointed commander of the 3rd Ukrainian Front.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "類別符合 R4（方面軍／戰區司令），任期可證明逾30天，但來源未達 1 筆 A 或 2 筆獨立 B、蘇聯 regimeId 未確認，門檻無法證明，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tolbukhin-acc-bulgaria",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "保加利亞盟國管制委員會主席",
+      "en": "Chairman, Allied Control Commission in Bulgaria",
+      "orig": "Chairman of the Allied Control Commission in Bulgaria"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1944-09-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Since September 1944 – Chairman of the Allied Control Commission in Bulgaria.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "類別近 R2（佔領管制長官），但迄日缺、保加利亞 regimeId 未確認、僅 C 來源，留 positions。",
+     "roleEligible": true,
+     "roleEligibleKind": "occupation_administrator",
+     "roleGap": [
+      "dates",
+      "source",
+      "regime"
+     ]
+    },
+    {
+     "key": "tolbukhin-southern-group",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "蘇聯（紅軍）",
+      "en": "USSR (Red Army)"
+     },
+     "title": {
+      "zh-Hant": "南方軍隊集群總司令",
+      "en": "Commander-in-Chief, Southern Group of Troops",
+      "orig": "Commander-in-chief of the Southern Group of Troops"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-07-01",
+      "end": "1947-02-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "From July 1945 to January 1947.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gb-tol",
+       "locator": "全文",
+       "quote": "Commander-in-chief of the Southern Group of Troops.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "集群總司令，非國家級最高軍職，屬 R5。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:tolbukhin-acc-bulgaria",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；傳略只寫「Since September 1944」，已查 ГБУ«МАЦ»、Russia Beyond，未載卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:crimean_front_chief_of_staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；克里米亞方面軍參謀長任期，Russia Beyond 只寫「1942年3月離任」（與梅赫利斯衝突），起日未載，未列入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:transcaucasian_md_1947",
+     "gapKind": "not_found",
+     "note": "待查證：1947年1月起任外高加索軍區司令超出1908–1945窗，僅寫正文；迄日來源亦未載。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "field:regime_ids",
+     "gapKind": "not_found",
+     "note": "來源不足：蘇聯／保加利亞 regimeId 未確認，方面軍司令任期留 positions（R6）；Britannica、yarregion.ru 403／未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Tolbukhin Fyodor Ivanovich commands dates",
+     "url": "https://qr.gbumac.ru/?p=13088",
+     "result": "unrated",
+     "note": "curl 成功；ГБУ«МАЦ»，列 C"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Fyodor Tolbukhin: A Tsarist officer who became a Soviet marshal",
+     "url": "https://gw2ru.com/history/225659-fyodor-tolbukhin-a-tsarist-officer-who-became-a-soviet-marshal",
+     "result": "unrated",
+     "note": "curl 成功；作者 Boris Egorov，列 C"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Fyodor Ivanovich Tolbukhin Yaroslavl region",
+     "url": "https://yarregion.ru/eng/Pages/famous_people_Fyodor_Ivanovich_Tolbukhin.aspx",
+     "result": "blocked_403",
+     "note": "403，未取得"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Tolbukhin encyclopedia.com Encyclopedia of Russian History",
+     "url": "https://www.encyclopedia.com/",
+     "result": "no_result",
+     "note": "搜尋未見條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Толбухин начальник штаба Закавказского военного округа 1938 1941 Советская военная энциклопедия",
+     "url": "https://booksite.ru/FullText/1/001/008/111/120.htm",
+     "result": "found_C",
+     "note": "Воениздат 條目：1941年8月起任外高加索方面軍參謀長；用於軍區參謀長迄日（推論）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Толбухин bigenc.ru Большая российская энциклопедия",
+     "url": "https://bigenc.ru/c/tolbukhin-fiodor-ivanovich-52adf3",
+     "result": "no_result",
+     "note": "頁面為 JS 動態載入，curl 僅得空文字，未取得"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Allied Control Commission Bulgaria chairman Tolbukhin end of chairmanship Biryuzov",
+     "url": "https://history.state.gov/historicaldocuments/frus1945v04/d303",
+     "result": "not_relevant",
+     "note": "FRUS 1944–46 文件只見 Biryuzov 稱副主席，未載 Tolbukhin 卸任主席日"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Толбухин председатель Союзной контрольной комиссии Болгария迄日",
+     "url": "https://orlova-center.ru/en/drying/tolbuhin-fedor-ivanovich-zhizn-i-deyatelnost-syn-otechestva-istoricheskaya/",
+     "result": "no_result",
+     "note": "SSL 憑證主機名不符，依規則不使用 -k，未取得"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "Толбухин СКК Болгария 1945 Бирюзов председатель",
+     "url": null,
+     "result": "no_result",
+     "note": "兩輪中俄文搜尋均無來源明載 ACC 主席迄日；維持既有 gap"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:tolbukhin-transcaucasus-chief-of-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；傳略只寫「Since July 1938」，Russia Beyond 寫1941年6月仍任此職，但無具體卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "resolvedOn": "2026-11-13",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  }
+ ]
+}

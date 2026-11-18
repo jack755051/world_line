@@ -1,0 +1,127 @@
+{
+ "batch": "01",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 7,
+  "editedSentences": 3,
+  "spotRefetched": 5,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "co-lopez-pumarejo",
+   "bioId": "4714c91b-6a3e-4f20-abf3-32ba6ba435ff",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 12,
+   "changes": [
+    "searchLog 第 1（Britannica）、2（Banrepcultural）步 sourceType 由 official 改為 named_encyclopedia（欄位歸類）",
+    "重抓 lopez-pres（historico.presidencia.gov.co），HTTP 200，引文「fue elegido por casi un millón de votos」吻合",
+    "薄人物最低嘗試已核：4 類來源（authority、official、named_encyclopedia、academic）、≥8 次查詢（含西班牙文）、≥3 頁實抓 → 達標",
+    "兩段的每個子句都有 quote 支撐；Q3 迄點（1905-01-01、1946-01-01）正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fr-sarraut",
+   "bioId": "3da55b45-9234-4243-a029-3315719c77a6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 8,
+   "roleCandidates": 2,
+   "gaps": 4,
+   "searchLogSteps": 10,
+   "changes": [
+    "sarraut-senator 由 positions 移到 roleCandidates（de_facto_leader、R1、originalPositionKind=legislator）：BnF 職稱「sénateur (1926-1942) radical-socialiste de l'Aude」跟研究者已移入的眾議員席位是同一寫法，屬於職稱明寫黨籍的席位（Tai 12:47）；移除 partyPostAmbiguous",
+    "P0「1902年」當選眾議員原本沒有含日期的 quote → 補 sarraut-an「Du 27 avril 1902 au 31 mai 1906」",
+    "positions 的 organization 被截成「法／國」→ 依引文改為「法國政府／French Government」（參議員則為法國參議院）",
+    "新增 gap（conflict）：1933 年政府首腦迄日 Sycomore 寫 11-23、Gouvernements et Parlements 表寫 26/11/1933，兩份已抓官方來源矛盾",
+    "POS sarraut-govgen-indochina-1911 的 t14Reason 改寫清楚（只有「三年」概數、沒有迄日；regime 待確認）",
+    "重抓 sarraut-an-gouv，HTTP 200，任期列吻合",
+    "漏列未補（審查不新增事實）：an-gouv 表另列 Ministre Intérieur 09/02/1934–13/10/1934（內政部正職、≥90 天，屬 R3 類，依現行 regimeId=null 應為 R6），以及 Intérieur 18/01–13/03/1938、Ministre d'État 1937–38、Marine 1930／1933–34、Éducation nationale 1940 → 建議下一輪補"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pe-benavides",
+   "bioId": "59037518-62ab-4446-a9d8-5c42ced7991e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "P0 刪「是秘魯將軍」子句（所列 quote 都沒有支撐）；中英文改為「1876年生於利馬」",
+    "POS0 organization 被截成「秘／魯」→ 改為「秘魯陸軍／Peruvian Army」（引文 chief of staff of the Peruvian army）",
+    "POS0（R6）roleGap 補 source（只有 1 筆 B 來源，Quiroz），t14Reason 一併更新",
+    "重抓 benav-congreso，HTTP 200，「04.02.1914」任期列吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pt-almeida",
+   "bioId": "01a1b4c0-2f42-7c38-9174-04173acd2cfe",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 6,
+   "changes": [
+    "P1 補 4 筆原文引文支撐既有子句：「Implantada a República…governo provisório」（共和國成立後）、「no ministério da «União Sagrada»」（神聖聯盟）、「a partir de 1911, a República14…órgão」（1911、共和國報）、「também criou canais de propaganda próprios」",
+    "P1 的「《共和國報》成為他的演進共和黨機關報」改寫：來源沒寫他領導該黨，改成「他也自辦宣傳刊物，1911年起為《共和國報》，該報後來成為演進共和黨的機關報」（英文同步）",
+    "3 筆 positions 的 organization 被截成「葡／萄」→ 依引文改為眾議院／臨時政府／政府",
+    "POS almeida-interior-provisional（R6）roleGap 補 source（只有 1 筆 B 來源）",
+    "1906 年眾議員：原文沒寫以何黨身分當選，維持一般 positions（核對無誤）",
+    "重抓 almeida-cml PDF，HTTP 200，「União Sagrada」吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fi-kivimaki",
+   "bioId": "01a1b4c2-3f00-7e6f-aa7d-311ec00877f3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "kivimaki-mp-1922 由 positions（原標 partyPostAmbiguous）移到 roleCandidates（de_facto_leader、R1、originalPositionKind=legislator）：BLF 明寫「Han invaldes från partiets lista」，partiets 即前句的 Nationella framstegspartiet，屬來源明寫以政黨身分取得的席位；補引文「det i december 1918 grundade republikanska Nationella framstegspartiet」",
+    "P1 中文「尤哈·尤霍·蘇尼拉」不是來源寫法（原文為 J. E. Sunila）→ 改為「J. E. 蘇尼拉」",
+    "P3「因這一使職而被判徒刑」的因果子句缺 quote → 補「På grund av det senare uppdraget blev han dömd till fängelse」",
+    "positions 的 organization 被截成「芬／蘭」「赫／爾」→ 依引文改為芬蘭議會／芬蘭政府／赫爾辛基大學／芬蘭",
+    "重抓 kivimaki-blf，HTTP 200，「partiets lista」吻合"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者寫檔有系統性錯誤：positions 的 organization 雙語欄被截成中文名前兩個字（例：zh-Hant=「法」、en=「國」）。本批 4 人共 16 筆受影響，已全部依引文修正；跑後續批次前應先修研究提示或寫檔方式",
+  "以政黨身分取得的席位判斷前後不一：同一種「職稱＋黨名」寫法，研究者有時移到 roleCandidates、有時標 partyPostAmbiguous（Sarraut 參議員），或沒注意到「從某黨名單當選」（Kivimäki）",
+  "因為不連庫，regimeId 一律是 null，所以所有 R2–R4 類任期都落到 R6（roleGap 含 regime）；之後補 regimeId 時要整批重判（例：Sarraut 內政部長 1926–28、1938–40 只差 regime 這一項）",
+  "漏列：研究者只從官方任期表挑部分任期寫進 positions（Sarraut 1934 年內政部長等）。審查依規則不補，僅在此記錄",
+  "有幾句缺少支撐子句的 quote（日期、因果、名稱），本批審查補了 7 筆原文引文；研究提示的「每個子句都要有 quote」仍沒有完全做到",
+  "名單推定屬性與實查：López＝哥倫比亞（南美）共和制，總統 1934–38、1942–45；Sarraut＝法國第三共和，1909–1940 間任閣員、總督、總理；Benavides＝秘魯，1914–15、1933–39 掌權。López 雖然兩度任總統，但 A/B 來源只抓到總統府頁，研究者因此判定為薄"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

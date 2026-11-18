@@ -1,0 +1,5331 @@
+{
+ "batch": "b3-full-v3-batch017",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "gradePolicy": "ABC-2026-11-12",
+ "alignNote": "直接以對齊格式撰寫；5 人皆無 regimeId（美國政權待查證），戰區級職位（第7艦隊、中緬印戰區）因此留 positions 為 R6，師／軍／集團軍級與軍校職位為 R5。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch017/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "wheeler-kinkaid": {
+   "title": "Kinkaid of the Seventh Fleet: A Biography of Admiral Thomas C. Kinkaid, U.S. Navy",
+   "authors": [
+    "Gerald E. Wheeler"
+   ],
+   "publisher": "Naval Historical Center（美國海軍歷史中心，今 NHHC）",
+   "published_text": "Gerald E. Wheeler 著，Naval Historical Center 1995；ibiblio HyperWar 轉載 PDF",
+   "url": "https://www.ibiblio.org/hyperwar/NHC/NewPDFs/USN/USN,%20KINKAID%20OF%20THE%20SEVENTH%20FLEET%20(Bio).pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍歷史中心官方出版之傳記專書（官方戰史類）；PDF 經 pdftotext 轉文字，含 OCR 錯字；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "oxf-stilwell": {
+   "title": "Stilwell, Joseph（The Oxford Companion to American Military History）",
+   "authors": [
+    "G. Kurt Piehler"
+   ],
+   "publisher": "Oxford University Press（經 encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to American Military History 條目，署名 G. Kurt Piehler",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/stilwell-joseph",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術出版社 Oxford University Press 之具名作者條目"
+  },
+  "hoover-stil": {
+   "title": "Register of the Joseph Warren Stilwell papers（Biographical Note 與 Chronology）",
+   "authors": [
+    "John Easterbrook"
+   ],
+   "publisher": "Hoover Institution Library & Archives（Stanford University），經 Online Archive of California 公開",
+   "published_text": "finding aid，Prepared by John Easterbrook",
+   "url": "https://oac.cdlib.org/findaid/ark:/13030/tf958006qb/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名編者 John Easterbrook；大學附設檔案館（胡佛研究所）之檔案目錄；依具名 C 級使用"
+  },
+  "hn-allen": {
+   "title": "'Is this a private war or can anybody get in it?' – \"Terrible Terry\" Allen",
+   "authors": [
+    "Jerry D. Morelock"
+   ],
+   "publisher": "HistoryNet（Historynet LLC）",
+   "published_text": "Jerry D. Morelock 撰，HistoryNet 2016-03-31",
+   "url": "https://historynet.com/is-this-a-private-war-or-can-anybody-get-in-it-terrible-terry-allen/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Jerry D. Morelock、具名出版機構 HistoryNet；依具名 C 級使用"
+  },
+  "eisen-allen": {
+   "title": "ALLEN, TERRY de la M.: Papers, 1942-45（finding aid）",
+   "authors": [],
+   "publisher": "Dwight D. Eisenhower Presidential Library（NARA，Abilene, Kansas）",
+   "published_text": "館藏目錄，Processed by RWD，1970-04",
+   "url": "https://www.eisenhowerlibrary.gov/sites/default/files/finding-aids/pdf/allen-terry-papers.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國家檔案暨文件署（NARA）轄總統圖書館官方館藏目錄"
+  },
+  "nhhc-kinkaid": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "Admiral Thomas C. Kinkaid, USN (1888-1972)（Online Library of Selected Images: People — United States）",
+   "authors": [],
+   "publisher": "美國海軍歷史與遺產司令部 NHHC（經 ibiblio HyperWar 轉載）",
+   "published_text": "Naval Historical Center 官方頁，1999 起",
+   "url": "https://ibiblio.org/hyperwar/OnlineLibrary/photos/pers-us/uspers-k/t-kinkad.htm",
+   "grade": "B",
+   "gradeBasis": "美國海軍官方史料機構 NHHC 人物頁（官方戰史類）；經 ibiblio 轉載；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "nhhc-fletcher": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "Admiral Frank Jack Fletcher, USN (Retired), (1885-1973)（Online Library of Selected Images: People — United States）",
+   "authors": [],
+   "publisher": "美國海軍歷史與遺產司令部 NHHC（經 ibiblio HyperWar 轉載）",
+   "published_text": "Naval Historical Center 官方頁，1999 起",
+   "url": "https://ibiblio.org/hyperwar/OnlineLibrary/photos/pers-us/uspers-f/fj-fltr.htm",
+   "grade": "B",
+   "gradeBasis": "美國海軍官方史料機構 NHHC 人物頁（官方戰史類）；經 ibiblio 轉載；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14，transcript-regrade-2026-11-14）"
+  },
+  "wpaog-eich": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "Robert L. Eichelberger 1909（Be Thou At Peace／TAPS 追悼文）",
+   "authors": [],
+   "publisher": "West Point Association of Graduates（西點軍校校友會）",
+   "published_text": "Cullum No. 4817-1909 追悼文",
+   "url": "https://alumni.westpointaog.org/memorial-article?id=30556ea6-db10-4edd-9165-2021b2b40c3b",
+   "grade": "C",
+   "gradeBasis": "具名出版機構 West Point Association of Graduates 的追悼文（頁面無個人署名，以具名機構發布）"
+  },
+  "ucla-eich": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "Robert L. Eichelberger Papers, 1940-1947（Collection 234 finding aid）",
+   "authors": [],
+   "publisher": "UCLA Library Special Collections, Charles E. Young Research Library（透過 OAC）",
+   "published_text": "Online Archive of California 館藏指引",
+   "url": "https://oac.cdlib.org/findaid/ark:/13030/tf5p300721/admin/",
+   "grade": "B",
+   "gradeBasis": "大學圖書館特藏部館藏指引之傳記說明（學術機構傳記）"
+  },
+  "holden-allen": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "Who Fired Terry Allen and Ted Roosevelt, Jr., the best Combat Generals?",
+   "authors": [
+    "Walter Holden"
+   ],
+   "publisher": "Warfare History Network（Military Heritage, February 2018）",
+   "published_text": "Holden, W., Military Heritage, 2018-02",
+   "url": "https://warfarehistorynetwork.com/?p=34988",
+   "grade": "C",
+   "gradeBasis": "具名作者 Walter Holden；具名出版者 Warfare History Network"
+  },
+  "airborne-104id": {
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "title": "104th Infantry Division",
+   "authors": [],
+   "publisher": "Airborne Museum（Sainte-Mère-Église）",
+   "published_text": "館方「歷史／師」頁",
+   "url": "https://airborne-museum.org/en/histoire/divisions/104id/",
+   "grade": "C",
+   "gradeBasis": "具名機構 Airborne Museum（博物館）官方頁"
+  },
+  "nhhc-danfs-fletcher-dd992": {
+   "title": "Fletcher II (DD-992)（Dictionary of American Naval Fighting Ships）",
+   "authors": [],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "DANFS 條目，含艦名由來人物簡傳",
+   "url": "https://www.history.navy.mil/research/histories/ship-histories/danfs/f/fletcher-dd-992.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "NHHC 官方《美國海軍作戰艦艇辭典》(DANFS)，官方戰史類",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h010-2": {
+   "title": "H-010-2: The Battle of the Eastern Solomons, 23–25 August 1942",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "H-Gram 010, Attachment 2, September 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-010/h-010-2.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "milner-papua": {
+   "title": "Victory in Papua（United States Army in World War II: The War in the Pacific）",
+   "authors": [
+    "Samuel Milner"
+   ],
+   "publisher": "Office of the Chief of Military History, Department of the Army（今 U.S. Army Center of Military History）；HyperWar Foundation（ibiblio）全文轉錄",
+   "published_text": "1957",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-P-Papua/USA-P-Papua-11.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方戰史（綠皮書）；HyperWar 轉錄（history.army.mil 對 curl 回 403）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）；其他章節／頁：（及 -17、-18）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h006-4": {
+   "title": "H-006-4: The Victory—Barely",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "H-Gram 006, Attachment 4, May 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-006/h-006-4.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "oni-cn-midway": {
+   "title": "The Battle of Midway, including the Aleutian Phase, June 3 to June 14, 1942（Combat Narratives）",
+   "authors": [],
+   "publisher": "Office of Naval Intelligence, U.S. Navy（ibiblio HyperWar 全文轉錄）",
+   "published_text": "ONI Publication Section, Combat Intelligence Branch, 1943；HyperWar 轉錄",
+   "url": "https://www.ibiblio.org/hyperwar/USN/USN-CN-Midway/USN-CN-Midway-1.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國海軍情報局戰時官方戰史（Combat Narrative）；HyperWar 全文轉錄；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h005-3": {
+   "title": "H-005-3: Battle of the Coral Sea",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "H-Gram 005, Attachment 3, April 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-005/h-005-3.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h005": {
+   "title": "H-Gram 005: The Battle of the Coral Sea",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "24 April 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-005.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "cullum-eich": {
+   "title": "Biographical Register of the Officers and Graduates of the U.S. Military Academy（Cullum's Register）, No. 4817 Robert L. Eichelberger（Vols. V–IX）",
+   "authors": [
+    "George W. Cullum（原編）及續編各卷編者",
+    "Bill Thayer（網頁轉錄）"
+   ],
+   "publisher": "U.S. Military Academy／Association of Graduates 出版之畢業生名錄；Bill Thayer 於 penelope.uchicago.edu（LacusCurtius）轉錄",
+   "published_text": "Vol. V（1910）至 Vol. IX（1950）",
+   "url": "https://penelope.uchicago.edu/Thayer/E/Gazetteer/Places/America/United_States/Army/USMA/Cullums_Register/4817*.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "西點軍校官方畢業生名錄（軍方機構編纂，按職務年月記載）；轉錄者 Bill Thayer 自行補入出生地與死亡兩行（頁面注 a、b 標明），那兩行不得當 Cullum 原文引用；等級待人工確認（A 或 B）；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）",
+   "addedAt": "2026-11-14T08:24:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "smith-approach": {
+   "title": "The Approach to the Philippines（United States Army in World War II: The War in the Pacific）",
+   "authors": [
+    "Robert Ross Smith"
+   ],
+   "publisher": "Office of the Chief of Military History, Department of the Army；HyperWar Foundation（ibiblio）全文轉錄",
+   "published_text": "1953",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-P-Approach/USA-P-Approach-2.html（及 -14、-16）",
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方戰史（綠皮書）；HyperWar 轉錄；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "addedAt": "2026-11-14T08:40:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "cannon-leyte": {
+   "title": "Leyte: The Return to the Philippines（United States Army in World War II: The War in the Pacific）, Chapter XXII",
+   "authors": [
+    "M. Hamlin Cannon"
+   ],
+   "publisher": "Office of the Chief of Military History, Department of the Army；HyperWar Foundation（ibiblio）全文轉錄",
+   "published_text": "1954",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-P-Return/USA-P-Return-22.html",
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方戰史（綠皮書）；HyperWar 轉錄；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "addedAt": "2026-11-14T08:40:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "smith-triumph": {
+   "title": "Triumph in the Philippines（United States Army in World War II: The War in the Pacific）",
+   "authors": [
+    "Robert Ross Smith"
+   ],
+   "publisher": "Office of the Chief of Military History, Department of the Army；HyperWar Foundation（ibiblio）全文轉錄",
+   "published_text": "1963",
+   "url": "https://www.ibiblio.org/hyperwar/USA/USA-P-Triumph/USA-P-Triumph-12.html（及 -17、-23）",
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方戰史（綠皮書）；HyperWar 轉錄；讀到的是第三方轉錄本，原著 A 依轉錄降為 B（Tai 2026-11-14）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "addedAt": "2026-11-14T08:40:26+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h010-3": {
+   "title": "H-010-3: \"Torpedo Junction\"",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "H-Gram 010, Attachment 3, September 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-010/h-010-3.html",
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "addedAt": "2026-11-14T12:00:00+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  },
+  "nhhc-h010": {
+   "title": "H-Gram 010: Guadalcanal—Operation on a Shoestring",
+   "authors": [
+    "Samuel J. Cox"
+   ],
+   "publisher": "Naval History and Heritage Command（NHHC，美國海軍官方史料機構）",
+   "published_text": "29 September 2017",
+   "url": "https://www.history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-010.html",
+   "grade": "A",
+   "gradeBasis": "NHHC 主任 Samuel J. Cox 署名之官方 H-Gram（history.navy.mil，美國海軍官方史料機構出版）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "addedAt": "2026-11-14T12:00:00+08:00",
+   "addedBy": "banned-replace-2026-11-14"
+  }
+ },
+ "people": [
+  {
+   "key": "thomasckinkaid",
+   "bioId": null,
+   "name": "Thomas C. Kinkaid",
+   "nameZh": "托馬斯·金凱德",
+   "recordIds": [],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins"
+     },
+     "body": {
+      "zh-Hant": "金凱德1888年生於新罕布什爾州的漢諾威；其父托馬斯·賴特·金凱德原是海軍軍官，獲海軍部准假後到當地的新罕布什爾農工學院任職。",
+      "en": "Kinkaid was born in 1888 at Hanover, New Hampshire, where his father, the naval officer Thomas Wright Kinkaid, had been granted leave by the Navy Department to take a post at the New Hampshire College of Agricultural and Mechanical Arts."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "granted Thomas Wright Kinkaid a leave from duty",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "New Hampshire College of Agricultural and Mechanical Arts in Hanover",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "was born there on 3 pril 1888",
+       "quoteLang": "en",
+       "evidenceNote": "OCR 原文月名脫字（3 pril），僅採年份",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "珍珠港後與中途島、聖塔克魯斯",
+      "en": "Cruiser Division 6, Midway and Santa Cruz"
+     },
+     "body": {
+      "zh-Hant": "1941年12月30日，金凱德在珍珠港接替弗萊徹，出任第6巡洋艦分艦隊司令。中途島作戰中他在第16特遣艦隊下指揮巡洋艦群；1942年10月聖塔克魯斯海戰時，他是第61特遣艦隊指揮官，並於25至26日夜間率艦隊北上，以便迫近日軍。他自1942年6月30日起接掌第16特遣艦隊，11月23日由謝爾曼接替。",
+      "en": "On 30 December 1941 Kinkaid relieved Fletcher at Pearl Harbor as commander of Cruiser Division 6. At Midway he led the cruiser group under Task Force 16, and at the Battle of the Santa Cruz Islands in October 1942 he was commander of Task Force 61, taking it north during the night of 25–26 October to close the Japanese force. He took over Task Force 16 on 30 June 1942 and was relieved by Sherman on 23 November."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "The task force finally entered Pearl on 29 December.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Kinkaid relieved his friend Frank Jack Fletcher of command of CRUDIV 6.",
+       "quoteLang": "en",
+       "evidenceNote": "依前句 29 日抵珍珠港、『翌日』接替推得 12 月 30 日；年份依上下文為 1941（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "CTG 16.2 Cruiser Group RADM Thomas C. Kinkaid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "CTF 61 RADM Thomas C. Kinkaid",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "During the night of 25-26 October Kinkaid took TF.61 to the north",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Battle of the Santa Cruz Islands, 26 October 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "On 30 June on board Enterprise, Kinkaid read his orders",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1942 依章節標題『The Enterprise Task Force, June-October 1942』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Ted Sherman, now available in Noumea, relieved Kinkaid on 23 November",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1942 依章節標題『Task Force 16, November 1942』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "阿留申：北太平洋部隊",
+      "en": "North Pacific Force"
+     },
+     "body": {
+      "zh-Hant": "1943年1月，金凱德接替西奧博爾德，出任北太平洋部隊司令，司令部設在科迪亞克島，負責在阿留申一帶阻止日軍的聯合作戰。",
+      "en": "In January 1943 Kinkaid relieved Rear Admiral Theobald as Commander North Pacific Force, with headquarters on Kodiak Island, to lead the joint effort to deny the Aleutians to the Japanese."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "he was to relieve Rear Admiral Theobald as Commander North Pacific Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "with headquarters on Kodiak Island",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "When Kinkaid relieved Theobald on 4 January",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1943 依上下文（章節 Aleutians, 1943）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Aleutians, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第7艦隊與雷伊泰灣",
+      "en": "Seventh Fleet and Leyte Gulf"
+     },
+     "body": {
+      "zh-Hant": "1943年11月26日，金凱德正式接替卡本特，成為麥克阿瑟西南太平洋戰區的第7艦隊司令。他的作戰計畫要求在雷伊泰灣登陸前先奪取蘇里高海峽一帶島嶼；1944年10月23至25日打了雷伊泰灣海戰。1945年9月他在漢城接受南韓日軍投降。",
+      "en": "On 26 November 1943 Kinkaid formally relieved Carpender as Commander Seventh Fleet under MacArthur's Southwest Pacific command. His plan for Leyte required seizing islands in the Surigao Strait–Leyte Gulf area before the landings, the Battle for Leyte Gulf was fought on 23–25 October 1944, and in September 1945 he accepted the surrender of Japanese forces in Korea."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "he formally relieved Carpender on Friday, 26 November",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1943 依章節『November 1943』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Commander Seventh Fleet, November 1943- 7. October 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "seizing certain islands in the Surigao Strait-Leyte Gulf area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Battle for Leyte Gulf, 23-25 October 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "accepts surrender ofJapanese forces in South Korea (Sep 1945)",
+       "quoteLang": "en",
+       "evidenceNote": "索引條目；OCR 缺空格",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "戰後與退役",
+      "en": "Postwar and retirement"
+     },
+     "body": {
+      "zh-Hant": "戰後他接替利里，出任東海岸海疆司令兼第16艦隊司令，總部在紐約；1950年4月28日舉行退役閱兵。官方簡傳稱他1946年起任東海岸海疆暨大西洋預備艦隊司令，至1950年5月退役；其後1951至1953年重回現役，任國家安全訓練委員會成員。",
+      "en": "After the war he relieved Leary as Commander Eastern Sea Frontier and Commander Sixteenth Fleet, headquartered in New York, and a retirement parade was held on 28 April 1950. The Navy's official sketch has him commanding the Eastern Sea Frontier and Atlantic Reserve Fleet from 1946 until retirement in May 1950, then returning to active duty with the National Security Training Commission in 1951-53."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "he was to relieve his old friend Fairfax Leary as Commander Eastern Sea Frontier",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "The headquarters building for Kinkaid's command was 90 Church Street",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Retirement parade, 28 April 1950",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "Commander Eastern Sea Frontier and the Atlantic Reserve Fleet from 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "until his retirement in May 1950",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "returned to active duty with the National Security Training Commission",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "kinkaid-crudiv6",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第6巡洋艦分艦隊",
+      "en": "Cruiser Division 6, US Navy"
+     },
+     "title": {
+      "zh-Hant": "第6巡洋艦分艦隊司令",
+      "en": "Commander, Cruiser Division 6",
+      "orig": "CRUDIV 6"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-30",
+      "end": "1943-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Kinkaid relieved his friend Frank Jack Fletcher of command of CRUDIV 6.",
+       "quoteLang": "en",
+       "evidenceNote": "依前句 29 日抵珍珠港、『翌日』接替推得（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Commander CRUDIV 6 (1941-1942)",
+       "quoteLang": "en",
+       "evidenceNote": "索引條目；迄點依 Q3 取 1943-01-01（年精度），確切離任日未見",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "分艦隊級指揮職，非國家級最高軍職亦非戰區司令 → R5"
+    },
+    {
+     "key": "kinkaid-task-force-16",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第16特遣艦隊（企業號）",
+      "en": "Task Force 16 (Enterprise), US Navy"
+     },
+     "title": {
+      "zh-Hant": "第16特遣艦隊指揮官",
+      "en": "Commander, Task Force 16",
+      "orig": "TF 16 (Enterprise)"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-06-30",
+      "end": "1942-11-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "On 30 June on board Enterprise, Kinkaid read his orders",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1942 依章節標題『The Enterprise Task Force, June-October 1942』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Ted Sherman, now available in Noumea, relieved Kinkaid on 23 November",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1942 依章節標題『Task Force 16, November 1942』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "特遣艦隊級指揮職 → R5"
+    },
+    {
+     "key": "kinkaid-north-pacific-force",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍北太平洋部隊",
+      "en": "North Pacific Force, US Navy"
+     },
+     "title": {
+      "zh-Hant": "北太平洋部隊司令",
+      "en": "Commander North Pacific Force",
+      "orig": "COMNORPACFOR"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-01-04",
+      "end": "1943-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "When Kinkaid relieved Theobald on 4 January",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1943 依上下文（章節 Aleutians, 1943）；職稱見 'relieve Rear Admiral Theobald as Commander North Pacific Force'",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "placed in charge of the North Pacific Force in January 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "Moved in November 1943 from the cold of the northern Pacific",
+       "quoteLang": "en",
+       "evidenceNote": "迄點依 Q3 取 1943-12 起日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "區域部隊司令，來源未明寫為戰區最高指揮且任期缺迄日 → R5"
+    },
+    {
+     "key": "kinkaid-seventh-fleet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第7艦隊",
+      "en": "Seventh Fleet, US Navy"
+     },
+     "title": {
+      "zh-Hant": "第7艦隊司令",
+      "en": "Commander Seventh Fleet",
+      "orig": "Commander Seventh Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-11-26",
+      "end": "1945-12-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "he formally relieved Carpender on Friday, 26 November",
+       "quoteLang": "en",
+       "evidenceNote": "年份 1943 依章節標題『November 1943』",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wheeler-kinkaid",
+       "locator": "全文",
+       "quote": "Seventh Fleet operations (Nov 1943-Nov 1945)",
+       "quoteLang": "en",
+       "evidenceNote": "索引條目；迄點依 Q3 取 1945-12 起日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "第7艦隊為西南太平洋戰區海軍，類別符合 R4，但美國政權待查證（regimeId NULL）、職位等級來源未明寫",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "kinkaid-eastern-sea-frontier",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍東海岸海疆／大西洋預備艦隊",
+      "en": "Eastern Sea Frontier and Atlantic Reserve Fleet, US Navy"
+     },
+     "title": {
+      "zh-Hant": "東海岸海疆司令兼大西洋預備艦隊司令",
+      "en": "Commander Eastern Sea Frontier and Atlantic Reserve Fleet",
+      "orig": "Commander Eastern Sea Frontier and the Atlantic Reserve Fleet"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1946-01-01",
+      "end": "1950-06-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "Commander Eastern Sea Frontier and the Atlantic Reserve Fleet from 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-kinkaid",
+       "locator": "全文",
+       "quote": "until his retirement in May 1950",
+       "quoteLang": "en",
+       "evidenceNote": "迄點依 Q3 取 1950-06 起日；Wheeler 另有 1950-04-28 退役閱兵（來源間略有出入）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "指揮職，非國家級最高軍職亦非戰區司令 → R5",
+     "t14Overlap": "general"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:kinkaid-task-force-61",
+     "gapKind": "not_found",
+     "note": "待查證：『第61特遣艦隊』指揮官之編成起迄日（1942年10月聖塔克魯斯）Wheeler 戰鬥序列表只標 October 1942，無逐字日期句，未單列職位；第16特遣艦隊任期已另列。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "待查證：Wheeler 專書量大，除本批引用外之各役（阿留申 Attu／Kiska、新幾內亞各登陸、呂宋）細節未逐一引文；本批僅取聖塔克魯斯、雷伊泰灣。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:kinkaid-crudiv6",
+     "gapKind": "not_found",
+     "note": "待查證：迄日精度；僅 Wheeler 索引寫 1941-1942，已以年精度（1943-01-01）收尾，確切卸任日仍待查；已查 NHHC 人物頁、Wheeler 全書。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Thomas C. Kinkaid Seventh Fleet commander biography Naval History and Heritage Command",
+     "url": "https://www.history.navy.mil/",
+     "result": "found_A",
+     "note": "搜尋結果含 NHHC 與 Wheeler 專書"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "NHHC modern biographical files Kinkaid（curl）",
+     "url": "https://www.history.navy.mil/research/library/research-guides/modern-biographical-files-ndl/modern-bios-k/kinkaid-thomas-c.html",
+     "result": "no_result",
+     "note": "回空檔，未取得"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "NHHC photography Kinkaid（curl）",
+     "url": "https://history.navy.mil/our-collections/photography/us-people/k/kinkaid-thomas-c.html",
+     "result": "no_result",
+     "note": "逾時 60 秒，未取得"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Wheeler, Kinkaid of the Seventh Fleet（ibiblio HyperWar PDF，curl）",
+     "url": "https://www.ibiblio.org/hyperwar/NHC/NewPDFs/USN/USN,%20KINKAID%20OF%20THE%20SEVENTH%20FLEET%20(Bio).pdf",
+     "result": "found_A",
+     "note": "取得全書 PDF，轉文字；官方戰史類 A"
+    },
+    {
+     "sourceType": "official",
+     "query": "Thomas C. Kinkaid admiral biography Seventh Fleet Eastern Sea Frontier 1946 history.navy.mil",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋索引到 NHHC 人物頁與 ibiblio 轉載",
+     "step": 5,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC Kinkaid 人物頁（ibiblio 轉載，curl）",
+     "url": "https://ibiblio.org/hyperwar/OnlineLibrary/photos/pers-us/uspers-k/t-kinkad.htm",
+     "result": "found_A",
+     "note": "取得 NHHC 官方簡傳，補北太平洋部隊、第7艦隊、東海岸海疆任期",
+     "step": 6,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC 照片頁 kinkaid-thomas-c（curl）",
+     "url": "https://history.navy.mil/our-collections/photography/us-people/k/kinkaid-thomas-c.html",
+     "result": "no_result",
+     "note": "逾時 60 秒（連線失敗），未取得",
+     "step": 7,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC Kinkaid Papers 館藏頁（curl）",
+     "url": "https://www.history.navy.mil/research/archives/Collections/personal-donated-collections/pd-k/kinkaid-thomas-c.html",
+     "result": "no_result",
+     "note": "HTTP 404",
+     "step": 8,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Admiral Thomas Kinkaid Arlington National Cemetery notable graves（限 arlingtoncemetery.mil／history.navy.mil／archives.gov／usni.org）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "無 Kinkaid 專頁",
+     "step": 9,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Spartacus Educational Kinkaid（curl）",
+     "url": "https://spartacus-educational.com/2WWkinkaid.htm",
+     "result": "unrated",
+     "note": "已抓；頁面無明確具名作者與任期日期，未採用",
+     "step": 10,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Kinkaid Britannica biography（curl）",
+     "url": "https://www.britannica.com/biography/Thomas-C-Kinkaid",
+     "result": "blocked_403",
+     "note": "HTTP 403 防機器人頁，不繞過",
+     "step": 11,
+     "round": "retry"
+    },
+    {
+     "sourceType": "academic",
+     "query": "Kinkaid Thomas Cassin admiral Seventh Fleet Leyte Gulf Eastern Sea Frontier biography（限 britannica／anb／usni／nps／archives.gov／loc.gov）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只得 USNI 戰役文章，無東海岸海疆任期",
+     "step": 12,
+     "round": "retry"
+    },
+    {
+     "sourceType": "authority",
+     "query": "SNAC Kinkaid, Thomas C. 1888-1972",
+     "url": "https://snaccooperative.org/view/67404744",
+     "result": "unrated",
+     "note": "權威彙編，僅確認身分，未取得可引原文，不當出處",
+     "step": 13,
+     "round": "retry"
+    }
+   ],
+   "nameZhOrig": "托马斯·金凯德"
+  },
+  {
+   "key": "frankjackfletcher",
+   "bioId": null,
+   "name": "Frank Jack Fletcher",
+   "nameZh": "法蘭克·傑克·弗萊徹",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Early career"
+     },
+     "body": {
+      "zh-Hant": "弗萊徹於1906年自安納波利斯海軍官校畢業；1914年參與美軍佔領韋拉克魯斯，並因此獲榮譽勳章。一戰期間他指揮驅逐艦本漢號。",
+      "en": "Fletcher graduated from the Naval Academy at Annapolis in 1906. He took part in the 1914 US occupation of Vera Cruz, where he won the Medal of Honor, and in the First World War commanded the destroyer Benham."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Graduated from the U.S. Naval Academy in 1906",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "during the Vera Cruz intervention in 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-danfs-fletcher-dd992",
+       "locator": "全文",
+       "quote": "Medal of Honor award for actions at Vera Cruz, Mexico (21–22 April 1914)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "He was awarded the Medal of Honor for distinguished conduct",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-danfs-fletcher-dd992",
+       "locator": "全文",
+       "quote": "In May 1918, Fletcher was awarded the Navy Cross",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-danfs-fletcher-dd992",
+       "locator": "全文",
+       "quote": "while serving as the commanding officer of Benham (Destroyer No. 49)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "珊瑚海海戰",
+      "en": "Battle of the Coral Sea"
+     },
+     "body": {
+      "zh-Hant": "1942年，弗萊徹受命指揮第17特遣艦隊，旗艦為約克鎮號。5月4日攻擊圖拉吉，7日萊辛頓號與約克鎮號的機群擊沉祥鳳號，8日萊辛頓號被日軍擊沉、約克鎮號受損；日軍的莫爾斯比港登陸艦隊被迫折返。",
+      "en": "In 1942 Fletcher was appointed to command Task Force 17 with his flag in Yorktown. The attack on Tulagi took place on 4 May, Lexington and Yorktown aircraft sank Shoho on 7 May, and on 8 May Lexington was sunk and Yorktown damaged, but the Japanese Port Moresby invasion fleet was forced to turn back."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "given command of a carrier task force with USS Yorktown (CV-5) as his flagship",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Rear Admiral Frank Jack Fletcher, Commander Task Force 17",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005-3",
+       "locator": "全文",
+       "quote": "attacked the Japanese landing force on 4 May 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005",
+       "locator": "全文",
+       "quote": "The carrier USS Lexington was sunk as a result of secondary explosions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005-3",
+       "locator": "全文",
+       "quote": "At dawn on 8 May 1942, TF17, the Lexington and Yorktown",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005-3",
+       "locator": "全文",
+       "quote": "The Japanese attempt to invade Port Moresby was “postponed,”",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005",
+       "locator": "全文",
+       "quote": "The Japanese also lost the small carrier Shoho on 7 May",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005-3",
+       "locator": "全文",
+       "quote": "At about 1040, Lexington’s air group found the small carrier Shoho.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h005-3",
+       "locator": "全文",
+       "quote": "At about 1125, Yorktown’s air group arrived",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "中途島海戰",
+      "en": "Battle of Midway"
+     },
+     "body": {
+      "zh-Hant": "6月2日，修復後的約克鎮號在中途島外海與艦隊會合。弗萊徹資歷高於斯普魯恩斯，因此在日軍前三艘航艦被擊沉時，是美軍艦隊的總指揮；約克鎮號重創後，他把指揮權交給斯普魯恩斯。",
+      "en": "On 2 June the repaired Yorktown joined the fleet off Midway. Fletcher was senior to Spruance and so in overall command of the American fleet when the first three Japanese carriers were sunk; after Yorktown was badly damaged he handed command to Spruance."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oni-cn-midway",
+       "locator": "全文",
+       "quote": "effected their rendezvous northeast of Midway on June 2d",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oni-cn-midway",
+       "locator": "全文",
+       "quote": "The combined force then proceeded under the command of Admiral Fletcher",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "he was senior officer present during the battles of Coral Sea and Midway",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h006-4",
+       "locator": "全文",
+       "quote": "transferred tactical control of the entire force to Rear Admiral Spruance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "瓜達爾卡納爾與北太平洋",
+      "en": "Guadalcanal and the North Pacific"
+     },
+     "body": {
+      "zh-Hant": "瓜達爾卡納爾登陸時，弗萊徹統率航艦部隊，8月9日決定把航艦撤離瓜島附近，受到批評。他在8月23至25日的東所羅門海戰打了最後一仗，此後未再擔任作戰指揮，航艦部隊指揮官由諾伊斯接替。11月起他出任第13海軍區兼西北海疆司令，後來統轄北太平洋；1947年5月以上將退役。",
+      "en": "At Guadalcanal Fletcher commanded the carriers and on 9 August decided to move them away from the island, drawing criticism. His final battle was the Eastern Solomons on 23–25 August; he never held another combat command, and Leigh Noyes relieved him as carrier task force commander. From November 1942 he commanded the 13th Naval District and the Northwestern Sea Frontier, later the North Pacific area, and retired as a full admiral in May 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Vice Admiral Fletcher commanded the invasion of Guadalcanal and Tulagi",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-2",
+       "locator": "全文",
+       "quote": "U.S. carrier task force (TF 61), Rear Admiral Frank Jack Fletcher",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-2",
+       "locator": "全文",
+       "quote": "The Battle of the Eastern Solomons, 23–25 August 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-2",
+       "locator": "全文",
+       "quote": "Nagumo would be given yet another chance; Fletcher would not.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In November 1942, he became Commander, Thirteenth Naval District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "he was placed in charge of the Northern Pacific area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "he was advanced to the rank of Admiral upon retirement in May 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-danfs-fletcher-dd992",
+       "locator": "全文",
+       "quote": "retired on 1 May 1947, with the rank of full admiral",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-3",
+       "locator": "全文",
+       "quote": "Fletcher’s decision on 9 August 1942 to relocate his three carriers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010",
+       "locator": "全文",
+       "quote": "was heavily criticized at the time and by historians since",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-3",
+       "locator": "全文",
+       "quote": "never held another combat command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-3",
+       "locator": "全文",
+       "quote": "Leigh Noyes (who had relieved Fletcher as carrier task force commander)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "北太平洋與戰後",
+      "en": "North Pacific and postwar"
+     },
+     "body": {
+      "zh-Hant": "官方簡傳說，1942年11月起他任第13海軍區司令與西北海疆司令；約一年後掌管北太平洋地區，直到二戰結束後，他的部隊佔領日本北部。他最後的職務是海軍總委員會主席，1947年5月退役時晉升上將。",
+      "en": "The Navy's official sketch says he became Commander of the 13th Naval District and the Northwestern Sea Frontier in November 1942, a year later took charge of the Northern Pacific area, and his forces occupied northern Japan after the war. His final duty was Chairman of the General Board, and he was advanced to admiral on retiring in May 1947."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In November 1942, he became Commander, Thirteenth Naval District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "A year later, he was placed in charge of the Northern Pacific area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "when his forces occupied northern Japan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "final duty was as Chairman of the General Board",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "advanced to the rank of Admiral upon retirement in May 1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "威克島救援與航艦戰",
+      "en": "Wake relief and the carrier battles"
+     },
+     "body": {
+      "zh-Hant": "1941年12月，珍珠港事變後最初幾週，他指揮了功敗垂成的威克島救援行動。1942年1月初，他受命統率以約克鎮號為旗艦的航艦特遣艦隊；同年8月美軍轉入攻勢，他統率瓜達爾卡納爾與圖拉吉登陸，並在當月稍後打了東所羅門海戰。",
+      "en": "In December 1941, in the first weeks of the Pacific War, he commanded the abortive Wake Island relief expedition. In early January 1942 he was given a carrier task force with Yorktown as flagship, and in August 1942, as the U.S. took the offensive, he commanded the Guadalcanal and Tulagi invasion and later that month fought the Battle of the Eastern Solomons."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In December 1941, during the first weeks of the Pacific War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "he commanded the abortive Wake Island relief expedition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Rear Admiral Fletcher was given command of a carrier task force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "As the U.S. took the offensive in August 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "invasion of Guadalcanal and Tulagi",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "fought the carrier Battle of the Eastern Solomons later in the month",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "fletcher-13th-naval-district",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第13海軍區／西北海疆",
+      "en": "13th Naval District and Northwestern Sea Frontier, US Navy"
+     },
+     "title": {
+      "zh-Hant": "第13海軍區司令兼西北海疆司令",
+      "en": "Commander, 13th Naval District and Northwestern Sea Frontier",
+      "orig": "13th Naval District / Northwestern Sea Frontier"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-11-01",
+      "end": "1943-12-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In November 1942, he became Commander, Thirteenth Naval District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In November 1942, he became Commander, Thirteenth Naval District",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "A year later, he was placed in charge of the Northern Pacific area",
+       "quoteLang": "en",
+       "evidenceNote": "迄點依「一年後改任北太平洋」推得 1943-11 之下月起日（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "海軍區／海疆長官屬地方性指揮職 → R5"
+    },
+    {
+     "key": "fletcher-guadalcanal-carriers",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第61特遣艦隊（瓜島航艦部隊）",
+      "en": "Task Force 61 carrier forces, Guadalcanal"
+     },
+     "title": {
+      "zh-Hant": "瓜島登陸航艦部隊指揮官",
+      "en": "Commander of the carriers, Guadalcanal invasion",
+      "orig": "carriers (Saratoga, Enterprise and Wasp), Task Force 61"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-08-01",
+      "end": "1942-10-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Vice Admiral Fletcher commanded the invasion of Guadalcanal and Tulagi",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-2",
+       "locator": "全文",
+       "quote": "U.S. carrier task force (TF 61), Rear Admiral Frank Jack Fletcher",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-3",
+       "locator": "全文",
+       "quote": "Nimitz stuck with him, at least until September",
+       "quoteLang": "en",
+       "evidenceNote": "來源寫 King 想撤換、Nimitz 留用他「至少到九月」，且他隨 Saratoga 返珍珠港後未再任作戰指揮；迄點取 1942 年 9 月之下月起日（推論）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-h010-3",
+       "locator": "全文",
+       "quote": "never held another combat command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級海上行動指揮；類別近 R4，但美國政權待查證、起日只到8月登陸（來源寫『After Midway』並以 8–10 August 的事件間接確定，起日精度不足）、職位等級未明寫",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "regime",
+      "source",
+      "rank"
+     ]
+    },
+    {
+     "key": "fletcher-task-force-17",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍第17特遣艦隊（約克鎮號）",
+      "en": "Task Force 17 (Yorktown), US Navy"
+     },
+     "title": {
+      "zh-Hant": "第17特遣艦隊指揮官",
+      "en": "Commander, Task Force 17",
+      "orig": "a carrier task force with USS Yorktown (CV-5) as his flagship"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1942-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In early January 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "Rear Admiral Fletcher was given command of a carrier task force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "In May and June 1942",
+       "quoteLang": "en",
+       "evidenceNote": "迄點取自最後一役（中途島，1942年6月）之月份後的下月起日；確切卸任日來源未寫（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "指揮職，非國家級最高軍職亦非戰區司令 → R5",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "fletcher-north-pacific",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國海軍北太平洋部隊",
+      "en": "North Pacific area, US Navy"
+     },
+     "title": {
+      "zh-Hant": "北太平洋地區指揮官",
+      "en": "Commander, Northern Pacific area",
+      "orig": "in charge of the Northern Pacific area"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-11-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "A year later, he was placed in charge of the Northern Pacific area",
+       "quoteLang": "en",
+       "evidenceNote": "起點依前句 1942-11 加「一年後」推得 1943-11（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nhhc-fletcher",
+       "locator": "全文",
+       "quote": "holding that position until after the end of World War II",
+       "quoteLang": "en",
+       "evidenceNote": "來源只寫至二戰結束後；迄點取 1946-01-01（年精度上限，推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "指揮職，非國家級最高軍職亦非戰區司令 → R5",
+     "t14Overlap": "general"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:fletcher-guadalcanal-carriers",
+     "gapKind": "not_found",
+     "note": "待查證：起日精度；NHHC H-Gram 只寫 8 月登陸與 8 月 9 日撤離航艦，未寫任命日；起日 1942-08-01 為依登陸月份的暫記，需官方戰史（NHHC／Morison）確認。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:fletcher-chairman-general-board",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；來源只寫戰後任海軍總委員會主席、1947年5月退役，無任期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:fletcher-13th-naval-district",
+     "gapKind": "not_found",
+     "note": "待查證：迄日精度；NHHC 只寫「一年後」改掌北太平洋，迄日 1943-12-01 為推論；已查 NHHC（ibiblio 轉載）、搜尋摘要稱 1943-10 卸任（未取得原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:fletcher-task-force-17",
+     "gapKind": "not_found",
+     "note": "待查證：迄日精度；NHHC 只寫 1942 年 5–6 月珊瑚海與中途島，迄日 1942-07-01 為推論，確切卸任日須官方戰史；已查 NHHC、Wheeler 旁證（續任 TF61 另列）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:fletcher-north-pacific",
+     "gapKind": "not_found",
+     "note": "待查證：起迄日精度；NHHC 只寫「一年後」與「二戰結束後」，起點 1943-11、迄點 1946-01-01 皆為推論；需 NHHC 完整傳記頁（本輪連線失敗／404）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Frank Jack Fletcher admiral biography Coral Sea Midway Naval History and Heritage Command",
+     "url": "https://www.history.navy.mil/research/histories/biographies-list/bios-f/fletcher-frank-j.html",
+     "result": "no_result",
+     "note": "curl 取得 404／空檔；NHHC 頁暫不可取"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "historyofwar.org Fletcher（curl）",
+     "url": "https://www.historyofwar.org/articles/people_fletcher_frank.html",
+     "result": "unrated",
+     "note": "具名作者 Rickard，依具名 C 級採用"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "搜尋結果之 Wikipedia、LLMpedia、Blogspot、Cavac 頁",
+     "url": "",
+     "result": "not_relevant",
+     "note": "不收"
+    },
+    {
+     "sourceType": "official",
+     "query": "Frank Jack Fletcher admiral biography Task Force 17 Coral Sea Midway Northwestern Sea Frontier",
+     "url": null,
+     "result": "found_A",
+     "note": "索引到 NHHC 人物頁",
+     "step": 4,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC Fletcher 人物頁（ibiblio 轉載，curl）",
+     "url": "https://ibiblio.org/hyperwar/OnlineLibrary/photos/pers-us/uspers-f/fj-fltr.htm",
+     "result": "found_A",
+     "note": "取得 NHHC 官方簡傳：威克島、TF17、瓜島、第13海軍區、北太平洋、總委員會、1947 退役",
+     "step": 5,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC fletcher-frank-j-text.html（curl）",
+     "url": "https://www.history.navy.mil/research/histories/biographies-list/bios-f/fletcher-frank-j/fletcher-frank-j-text.html",
+     "result": "no_result",
+     "note": "HTTP 404 空檔",
+     "step": 6,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC biographies-list fletcher-frank-j.html（curl，兩種網址）",
+     "url": "https://www.history.navy.mil/content/history/nhhc/research/histories/biographies-list/bios-f/fletcher-frank-j.html",
+     "result": "no_result",
+     "note": "一為 404、一為逾時 45–60 秒",
+     "step": 7,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "NHHC H-Gram 005-3 Coral Sea（curl）",
+     "url": "https://history.navy.mil/about-us/leadership/director/directors-corner/h-grams/h-gram-005/h-005-3.html",
+     "result": "no_result",
+     "note": "逾時 45 秒",
+     "step": 8,
+     "round": "retry"
+    },
+    {
+     "sourceType": "academic",
+     "query": "Frank Jack Fletcher Arlington／USNI／history.navy.mil Wake Island relief Guadalcanal",
+     "url": null,
+     "result": "found_B",
+     "note": "索引到 USNI Naval History 文章（具名作者）",
+     "step": 9,
+     "round": "retry"
+    },
+    {
+     "sourceType": "academic",
+     "query": "USNI Naval History「The Enigma of Admiral Frank Jack Fletcher」與「Got a Bum Rap」兩篇（curl）",
+     "url": "https://www.usni.org/magazines/naval-history-magazine/2003/february/enigma-admiral-frank-jack-fletcher",
+     "result": "blocked_403",
+     "note": "USNI 三篇皆 HTTP 403 防機器人頁，不繞過",
+     "step": 10,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Fletcher Britannica biography（curl）",
+     "url": "https://www.britannica.com/biography/Frank-J-Fletcher",
+     "result": "blocked_403",
+     "note": "HTTP 403 防機器人頁，不繞過",
+     "step": 11,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Fletcher Task Force 17 Yorktown command 1942 Task Force 61 dates",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只得單一部落格與維基類頁，不收；確切任期仍待官方戰史",
+     "step": 12,
+     "round": "retry"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 1,
+     "basis": "nhhc-danfs-fletcher-dd992",
+     "diff": "原：一戰指揮 Allen 與 Benham、珍珠港時指揮巡洋艦 Minneapolis（僅禁用來源）；改：只寫指揮 Benham（DANFS 1918 年 5 月）；Allen 與 Minneapolis 兩句刪除。理由：NHHC DANFS Allen (DD-66) 艦長名單無 Fletcher、DANFS Minneapolis 未提及他，合法來源只支撐 Benham",
+     "changes": {
+      "body.zh-Hant": {
+       "before": "弗萊徹於1906年自安納波利斯海軍官校畢業；1914年參與美軍佔領韋拉克魯斯，並因此獲榮譽勳章。一戰期間他指揮過驅逐艦艾倫號與本漢號。珍珠港事變時，他在指揮巡洋艦明尼阿波利斯號。",
+       "after": "弗萊徹於1906年自安納波利斯海軍官校畢業；1914年參與美軍佔領韋拉克魯斯，並因此獲榮譽勳章。一戰期間他指揮驅逐艦本漢號。"
+      },
+      "body.en": {
+       "before": "Fletcher graduated from the Naval Academy at Annapolis in 1906. He took part in the 1914 US occupation of Vera Cruz, where he won the Medal of Honor, commanded the destroyers Allen and Benham in the First World War, and at the time of Pearl Harbor commanded the cruiser USS Minneapolis.",
+       "after": "Fletcher graduated from the Naval Academy at Annapolis in 1906. He took part in the 1914 US occupation of Vera Cruz, where he won the Medal of Honor, and in the First World War commanded the destroyer Benham."
+      }
+     },
+     "rule": "以新來源為準／查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 2,
+     "basis": "nhhc-h005-3",
+     "diff": "原：7日約克鎮號機群擊沉祥鳳號（僅禁用來源）；改：萊辛頓號與約克鎮號的機群擊沉祥鳳號。理由：NHHC H-005-3 寫 Lexington 機群先命中、Yorktown 機群隨後加入",
+     "changes": {
+      "body.zh-Hant": {
+       "before": "1942年，弗萊徹受命指揮第17特遣艦隊，旗艦為約克鎮號。5月4日攻擊圖拉吉，7日約克鎮號機群擊沉祥鳳號，8日萊辛頓號被日軍擊沉、約克鎮號受損；日軍的莫爾斯比港登陸艦隊被迫折返。",
+       "after": "1942年，弗萊徹受命指揮第17特遣艦隊，旗艦為約克鎮號。5月4日攻擊圖拉吉，7日萊辛頓號與約克鎮號的機群擊沉祥鳳號，8日萊辛頓號被日軍擊沉、約克鎮號受損；日軍的莫爾斯比港登陸艦隊被迫折返。"
+      },
+      "body.en": {
+       "before": "In 1942 Fletcher was appointed to command Task Force 17 with his flag in Yorktown. The attack on Tulagi took place on 4 May, Yorktown aircraft sank Shoho on 7 May, and on 8 May Lexington was sunk and Yorktown damaged, but the Japanese Port Moresby invasion fleet was forced to turn back.",
+       "after": "In 1942 Fletcher was appointed to command Task Force 17 with his flag in Yorktown. The attack on Tulagi took place on 4 May, Lexington and Yorktown aircraft sank Shoho on 7 May, and on 8 May Lexington was sunk and Yorktown damaged, but the Japanese Port Moresby invasion fleet was forced to turn back."
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 4,
+     "basis": "nhhc-h010-3",
+     "diff": "原：8月10日撤離、1942年10月18日被正式取代（僅禁用來源）；改：8月9日決定撤離航艦（NHHC H-010-3、H-Gram 010）；此後未再任作戰指揮、由 Noyes 接替航艦部隊（不寫日期）。理由：合法來源寫 9 August，查無 18 October 日期",
+     "changes": {
+      "body.zh-Hant": {
+       "before": "瓜達爾卡納爾登陸時，弗萊徹統率航艦部隊，於8月10日撤離，受到批評。他在8月23至25日的東所羅門海戰打了最後一仗，1942年10月18日被正式取代。11月起他出任第13海軍區兼西北海疆司令，後來統轄北太平洋；1947年5月以上將退役。",
+       "after": "瓜達爾卡納爾登陸時，弗萊徹統率航艦部隊，8月9日決定把航艦撤離瓜島附近，受到批評。他在8月23至25日的東所羅門海戰打了最後一仗，此後未再擔任作戰指揮，航艦部隊指揮官由諾伊斯接替。11月起他出任第13海軍區兼西北海疆司令，後來統轄北太平洋；1947年5月以上將退役。"
+      },
+      "body.en": {
+       "before": "At Guadalcanal Fletcher commanded the carriers and withdrew on 10 August, drawing criticism. His final battle was the Eastern Solomons on 23–25 August; he was officially replaced on 18 October 1942. From November 1942 he commanded the 13th Naval District and the Northwestern Sea Frontier, later the North Pacific area, and retired as a full admiral in May 1947.",
+       "after": "At Guadalcanal Fletcher commanded the carriers and on 9 August decided to move them away from the island, drawing criticism. His final battle was the Eastern Solomons on 23–25 August; he never held another combat command, and Leigh Noyes relieved him as carrier task force commander. From November 1942 he commanded the 13th Naval District and the Northwestern Sea Frontier, later the North Pacific area, and retired as a full admiral in May 1947."
+      }
+     },
+     "rule": "以新來源為準／查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "fletcher-guadalcanal-carriers",
+     "basis": "nhhc-h010-3",
+     "diff": "原：迄 1942-10-18（day，僅禁用來源）；改：迄 1942-10-01（month，即 1942 年 9 月止，推論）。理由：查無 18 October 日期，NHHC 只到「at least until September」",
+     "changes": {
+      "period.end": {
+       "before": "1942-10-18",
+       "after": "1942-10-01"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "以新來源為準／降精度"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "gaps",
+     "item": "position:fletcher-guadalcanal-carriers",
+     "basis": null,
+     "diff": "gap note 移除禁用網域（historyofwar.org／Rickard）字樣",
+     "changes": {
+      "note": {
+       "before": "待查證：起日精度；Rickard 只寫『After Midway』任命、8月9–10日行動，未寫任命日；起日 1942-08-01 為依登陸月份的暫記，需官方戰史（NHHC／Morison）確認。",
+       "after": "待查證：起日精度；NHHC H-Gram 只寫 8 月登陸與 8 月 9 日撤離航艦，未寫任命日；起日 1942-08-01 為依登陸月份的暫記，需官方戰史（NHHC／Morison）確認。"
+      }
+     },
+     "rule": "查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "gaps",
+     "item": "position:fletcher-13th-naval-district",
+     "basis": null,
+     "diff": "gap note 移除禁用網域（historyofwar.org／Rickard）字樣",
+     "changes": {
+      "note": {
+       "before": "待查證：迄日精度；NHHC 只寫「一年後」改掌北太平洋，迄日 1943-12-01 為推論；已查 NHHC（ibiblio 轉載）、Rickard、搜尋摘要稱 1943-10 卸任（未取得原文）。",
+       "after": "待查證：迄日精度；NHHC 只寫「一年後」改掌北太平洋，迄日 1943-12-01 為推論；已查 NHHC（ibiblio 轉載）、搜尋摘要稱 1943-10 卸任（未取得原文）。"
+      }
+     },
+     "rule": "查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "gaps",
+     "item": "position:fletcher-task-force-17",
+     "basis": null,
+     "diff": "gap note 移除禁用網域（historyofwar.org／Rickard）字樣",
+     "changes": {
+      "note": {
+       "before": "待查證：迄日精度；NHHC 只寫 1942 年 5–6 月珊瑚海與中途島，迄日 1942-07-01 為推論，確切卸任日須官方戰史；已查 NHHC、Rickard、Wheeler 旁證（續任 TF61 另列）。",
+       "after": "待查證：迄日精度；NHHC 只寫 1942 年 5–6 月珊瑚海與中途島，迄日 1942-07-01 為推論，確切卸任日須官方戰史；已查 NHHC、Wheeler 旁證（續任 TF61 另列）。"
+      }
+     },
+     "rule": "查無移除"
+    }
+   ]
+  },
+  {
+   "key": "josephstilwell",
+   "bioId": null,
+   "name": "Joseph Stilwell",
+   "nameZh": "約瑟夫·史迪威",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "史迪威1883年3月19日生於佛羅里達州帕拉特卡。1904年自西點軍校畢業，隨後在菲律賓的第12步兵團服役，並曾在西點任教。一戰期間，他擔任第4軍的情報參謀長。",
+      "en": "Stilwell was born at Palatka, Florida, on 19 March 1883 and graduated from West Point in 1904. He then served with the 12th Infantry in the Philippines and taught at the Military Academy; in the First World War he was assistant chief of staff for intelligence of IV Corps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1883 March 19 Born, Palatka, Florida",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1904 June 15 B.S., U.S. Military Academy, West Point, New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1904-1906 12th Infantry, Philippine Islands",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1906-1910 Instructor, Department of Modern Languages, U.S. Military Academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1918-1919 Assistant Chief of Staff for Intelligence, IV Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "與中國的淵源",
+      "en": "Years in China"
+     },
+     "body": {
+      "zh-Hant": "1919至1923年他在加州大學柏克萊分校與北京學中文，1926至1929年在天津任第15步兵團營長，1935至1939年任美國駐北平大使館武官，其間觀察了中日戰爭。他中文流利，也深受馬歇爾器重。",
+      "en": "From 1919 to 1923 he studied Chinese at Berkeley and Peking, commanded a battalion of the 15th Infantry at Tientsin in 1926–29, and was military attaché at the Peking embassy in 1935–39, observing the Sino-Japanese War. He was fluent in Chinese and highly regarded by Marshall."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1919-1923 Chinese language student, University of California, Berkeley",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "Berkeley, California, and Peking, China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1926-1929 Battalion Commander, 15th Infantry, Tientsin, China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1935-1939 Military Attaché, U.S. Embassy, Peking, China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "observed the Sino‐Japanese War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "Highly regarded by Gen. George C. Marshall",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "fluent in Chinese",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "中緬印戰區與緬甸戰事",
+      "en": "China–Burma–India Theater"
+     },
+     "body": {
+      "zh-Hant": "1942年3月4日起，史迪威出任蔣介石的參謀長，並指揮美軍在中緬印戰區的部隊。他未能用中國軍隊阻止1942年日軍征服緬甸北部；兩年後的緬北戰役中，他靠美方訓練的中國部隊奪回大片地區，為1945年重開滇緬公路鋪路。1944年10月，羅斯福應蔣的要求召回了他。",
+      "en": "From 4 March 1942 Stilwell served as chief of staff to the Supreme Commander of the China Theater and commanded US forces in the China-Burma-India theater. He could not use Chinese troops to halt the 1942 Japanese conquest of northern Burma, but two years later recaptured a large part of it in the Burma campaign with American-trained Chinese forces, paving the way for the reopening of the Burma Road in 1945. Roosevelt recalled him in October 1944 at Chiang's behest."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1942 March 4 - 1944 October 26",
+       "quoteLang": "en",
+       "evidenceNote": "Hoover 任職表之起迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "Commanding General, U.S. Forces in China-Burma-India Theater",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "Stilwell proved unable to use Chinese troops to halt the 1942 conquest",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "he succeeded two years later in recapturing a large part of northern Burma",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "This campaign eventually paved the way for the reopening of the Burma Road",
+       "quoteLang": "en",
+       "evidenceNote": "原文接 in 1945",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "Recalled by President Franklin D. Roosevelt in October 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "晚期指揮職與逝世",
+      "en": "Later commands and death"
+     },
+     "body": {
+      "zh-Hant": "1945年1月，史迪威出任陸軍地面部隊司令，6月23日改任第10軍團司令，駐沖繩。1946年3月起他任第6軍團司令，10月12日在舊金山的普雷西迪奧逝世。",
+      "en": "In January 1945 Stilwell became commanding general of Army Ground Forces and from 23 June 1945 commanded Tenth Army on Okinawa. He commanded Sixth Army from March 1946 and died at the Presidio of San Francisco on 12 October 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1945 January 24 - June 21 Commanding General, Army Ground Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1945 June 23 - October 15 Commanding General, Tenth Army, Okinawa, Japan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1946 March 1 - October 12 Commanding General, Sixth Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1946 October 12 Died, Presidio of San Francisco, California",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "stilwell-attache-peking",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國駐北平大使館",
+      "en": "US Embassy, Peking"
+     },
+     "title": {
+      "zh-Hant": "駐北平武官",
+      "en": "Military Attaché, US Embassy, Peking",
+      "orig": "Military Attaché, U.S. Embassy, Peking, China"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1935-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1935-1939 Military Attaché, U.S. Embassy, Peking, China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "stilwell-7th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第7師",
+      "en": "7th Division, US Army"
+     },
+     "title": {
+      "zh-Hant": "第7師師長",
+      "en": "Commanding General, 7th Division",
+      "orig": "Commander, 7th Division, Ford Ord, California"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-07-01",
+      "end": "1941-07-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1940 July 1 - 1941 July 25 Commanding General, 7th Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮職 → R5"
+    },
+    {
+     "key": "stilwell-3rd-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第3軍",
+      "en": "III Corps, US Army"
+     },
+     "title": {
+      "zh-Hant": "第3軍軍長",
+      "en": "Commanding General, 3rd Corps",
+      "orig": "Commanding General, 3rd Corps, Presidio of Monterey, California"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-07-25",
+      "end": "1941-12-23"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1941 July 25 - December 23 Commanding General, 3rd Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮職 → R5"
+    },
+    {
+     "key": "stilwell-cbi",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍中緬印戰區",
+      "en": "China-Burma-India Theater, US Army"
+     },
+     "title": {
+      "zh-Hant": "中緬印戰區美軍司令（兼中國戰區參謀長）",
+      "en": "Commanding General, US Forces in the China-Burma-India Theater (and Chief of Staff to the Supreme Commander, China Theater)",
+      "orig": "Commanding General, U.S. Forces in China-Burma-India Theater"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-03-04",
+      "end": "1944-10-26"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1942 March 4 - 1944 October 26",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1942-1944 Commanding General, U.S. Forces in China-Burma-India Theater",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxf-stilwell",
+       "locator": "全文",
+       "quote": "Recalled by President Franklin D. Roosevelt in October 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令，類別符合 R4，但美國政權待查證（regimeId NULL）、職位等級未明寫、僅 1 筆 B＋C 來源",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "source",
+      "rank"
+     ]
+    },
+    {
+     "key": "stilwell-army-ground-forces",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍地面部隊",
+      "en": "Army Ground Forces, US Army"
+     },
+     "title": {
+      "zh-Hant": "陸軍地面部隊司令",
+      "en": "Commanding General, Army Ground Forces",
+      "orig": "Commanding General, Army Ground Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-01-24",
+      "end": "1945-06-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1945 January 24 - June 21 Commanding General, Army Ground Forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "兵種級司令部，非全軍總司令或參謀總長 → R5"
+    },
+    {
+     "key": "stilwell-tenth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第10軍團",
+      "en": "Tenth Army, US Army"
+     },
+     "title": {
+      "zh-Hant": "第10軍團司令",
+      "en": "Commanding General, Tenth Army",
+      "orig": "Commanding General, Tenth Army, Okinawa, Japan"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-06-23",
+      "end": "1945-10-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1945 June 23 - October 15 Commanding General, Tenth Army, Okinawa, Japan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮職 → R5"
+    },
+    {
+     "key": "stilwell-sixth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第6軍團",
+      "en": "Sixth Army, US Army"
+     },
+     "title": {
+      "zh-Hant": "第6軍團司令",
+      "en": "Commanding General, Sixth Army",
+      "orig": "Commanding General, Sixth Army, Presidio of San Francisco, California"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1946-03-01",
+      "end": "1946-10-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hoover-stil",
+       "locator": "全文",
+       "quote": "1946 March 1 - October 12 Commanding General, Sixth Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮職，且落在1908–1945時間窗外 → R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "待查證：緬甸1942年撤退（5月步行入印）與密支那戰役（1944年8月）各日期，已查 Oxford Companion（只寫年份）、Hoover 目錄（只有任職表）；cbi-theater.com 頁有此兩事但為未具名網站，不收。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "備註：已4段、逾300字；但來源集中於 Oxford Companion（B）與 Hoover 檔案目錄（C），history.army.mil、Britannica、NHHC、Arlington 官方頁本輪未取得（Britannica 搜尋結果未實抓）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Joseph Stilwell biography China Burma India commander",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/stilwell-joseph",
+     "result": "found_B",
+     "note": "Oxford Companion to American Military History 條目，署名 G. Kurt Piehler"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Stilwell papers Hoover Institution biographical note",
+     "url": "https://oac.cdlib.org/findaid/ark:/13030/tf958006qb/",
+     "result": "unrated",
+     "note": "胡佛研究所檔案目錄，具名編者，依具名 C 級採用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Encyclopedia of World Biography 條目（curl）",
+     "url": "https://www.encyclopedia.com/people/history/us-history-biographies/joseph-warren-stilwell",
+     "result": "unrated",
+     "note": "無署名條目，依 Q9 不收"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "cbi-theater.com Stilwell 簡傳（curl）",
+     "url": "https://www.cbi-theater.com/stilwellpages/stilwell_bio.html",
+     "result": "unrated",
+     "note": "無具名作者／出版機構，不收"
+    }
+   ],
+   "nameZhOrig": "约瑟夫·史迪威"
+  },
+  {
+   "key": "robertleichelberger",
+   "bioId": null,
+   "name": "Robert L. Eichelberger",
+   "nameZh": "羅伯特·艾克爾伯格",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與戰前經歷",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "艾克爾伯格1886年生於俄亥俄州厄巴納，1909年畢業於西點軍校。一戰時他在陸軍部參謀部工作，並隨格雷夫斯的遠征軍赴西伯利亞，任情報與作戰參謀。1940年11月他出任西點軍校校長。",
+      "en": "Eichelberger was born in 1886 at Urbana, Ohio, and graduated from West Point in 1909. In the First World War he served on the War Department General Staff and then with Graves's expedition to Siberia as intelligence and operations officer. He became superintendent of West Point in November 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ucla-eich",
+       "locator": "全文",
+       "quote": "Robert Lawrence Eichelberger was born March 9, 1886 in Urbana, Ohio",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "was born in Urbana, Ohio, on 9 March 1886",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "at Washington, D. C., with General Staff to",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "in Siberia as Assistant Chief of Staff and for last 14 months as G‑2",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ucla-eich",
+       "locator": "全文",
+       "quote": "became assistant chief of staff and later intelligence officer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "West Point NY, Supt USMA, Nov 40",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "assignment as Superintendent, USMA, in 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "Cadet at the Military Academy, June 15, 1905 to June 11, 1909",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "布納—戈納戰役",
+      "en": "Buna–Gona"
+     },
+     "body": {
+      "zh-Hant": "1942年1月他出任第77師師長，6月改任第1軍軍長。11月29日麥克阿瑟召他到新幾內亞；12月1日他接管布納地區全部美軍，撤換了前線指揮官；日軍最後據點在1943年1月22日被攻下。",
+      "en": "In January 1942 he was given command of the 77th Division and in June moved to command I Corps. MacArthur summoned him to New Guinea on 29 November; on 1 December he took over all U.S. troops in the Buna sector and replaced front-line commanders, and the last Japanese strongholds fell on 22 January 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "It was 29 November, a summery and quiet Sunday",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "General MacArthur had already ordered General Eichelberger to Port Moresby",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "as commander of I Corps, assumed command of all U.S. troops in the Buna Area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "They took off in two C-47",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "early the next morning, 30 November",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "In the morning, immediately after breakfast, General Eichelberger",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "relief was followed the next day by that of Colonels Hale and Mott",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "Sanananda Front Last Phase, 15-22 January 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "The Papuan Campaign was over, six months to the day after it had begun.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG 77 Div, Jan",
+       "quoteLang": "en",
+       "evidenceNote": "Cullum 名錄 Vol. IX：CG 77 Div, Jan‑ Jun 42（1942年）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "Jun 42; SWPA, CG 1 Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第1軍與霍蘭迪亞、比亞克",
+      "en": "I Corps, Hollandia and Biak"
+     },
+     "body": {
+      "zh-Hant": "他續任第1軍軍長，第1軍司令部以「魯莽特遣隊」名義負責霍蘭迪亞的地面作戰。1944年6月15日他抵達比亞克，接掌「颶風特遣隊」，至6月底離開。",
+      "en": "He continued to command I Corps, whose headquarters, designated the Reckless Task Force, was responsible for ground operations at Hollandia. On 15 June 1944 he arrived at Biak and assumed command of the Hurricane Task Force, leaving the island at the end of June."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "smith-approach",
+       "locator": "全文",
+       "quote": "Commanded by Lt. Gen. Robert L. Eichelberger, I Corps headquarters",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-approach",
+       "locator": "全文",
+       "quote": "ground operations at Hollandia was delegated by General Krueger",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-approach",
+       "locator": "全文",
+       "quote": "which for this undertaking was designated the R ECKLESS Task Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-approach",
+       "locator": "全文",
+       "quote": "General Eichelberger arrived at Biak late on the morning of 15 June",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-approach",
+       "locator": "全文",
+       "quote": "decided on 27 June that he could leave and took his departure on the 28th",
+       "quoteLang": "en",
+       "evidenceNote": "說法不一：Smith 正文記6月28日離開；註17引 I Corps 史稿記6月27日交卸，General Order 8 則到6月29日才任命 Doe；正文只寫「6月底」",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第8軍團與菲律賓、佔領日本",
+      "en": "Eighth Army, the Philippines and Japan"
+     },
+     "body": {
+      "zh-Hant": "1944年9月他出任新組建的第8軍團司令。1944年12月26日零時一分，第8軍團在雷伊泰地區接替第6軍團；1945年1月29日與31日，第11軍與第11空降師先後登陸呂宋西岸，後者在納蘇格布上岸。戰後他指揮駐日佔領地面部隊，至1948年9月。",
+      "en": "In September 1944 he took command of the new Eighth Army, which at 0001 on 26 December 1944 relieved Sixth Army in the Leyte area. On 29 and 31 January 1945 its XI Corps and 11th Airborne Division landed on Luzon’s west coast, the latter at Nasugbu. After the war he commanded the occupation ground forces in Japan until September 1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Command of the Eighth Army followed in September 1944.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Eighth Army, Sep 44",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cannon-leyte",
+       "locator": "全文",
+       "quote": "in the Leyte area at 0001 on 26 December 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cannon-leyte",
+       "locator": "全文",
+       "quote": "On 26 December, General Eichelberger assumed control of all combat units",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-triumph",
+       "locator": "全文",
+       "quote": "landings on Luzon's west coast on 29 and 31 January, respectively",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-triumph",
+       "locator": "全文",
+       "quote": "Staged at Leyte by Eighth Army, XI Corps sailed to Luzon",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "smith-triumph",
+       "locator": "全文",
+       "quote": "since the 11th Airborne Division had landed at Nasugbu on 31 January",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "佔領日本與退役",
+      "en": "Occupation of Japan and retirement"
+     },
+     "body": {
+      "zh-Hant": "1945年8月30日清晨，他在厚木機場降落，展開最後一項現役任務，出任佔領軍司令。他在1948年夏末返美，1949年1月1日退役，之後定居北卡羅來納州，撰寫回憶錄《我們通往東京的叢林路》。",
+      "en": "On the morning of 30 August 1945 he landed at Atsugi Airfield, beginning his last active assignment as commanding general of the Army of Occupation. He returned to the United States in late summer 1948, retired on 1 January 1949, and settled in North Carolina, where he wrote Our Jungle Road to Tokyo."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "landing at Atsugi Airfield on the morning of 30 August 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Commanding General, The Army of Occupation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "He returned to the United States in the late summer of 1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "retired I January 1949",
+       "quoteLang": "en",
+       "evidenceNote": "原文 OCR 將「1」誤作「I」",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Our Jungle Road to Tokyo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "eichelberger-west-point",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍軍官學校（西點）",
+      "en": "US Military Academy, West Point"
+     },
+     "title": {
+      "zh-Hant": "西點軍校校長",
+      "en": "Superintendent, US Military Academy",
+      "orig": "superintendant of West Point"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1940-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "West Point NY, Supt USMA, Nov 40",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "assignment as Superintendent, USMA, in 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長屬邊界個案 → R5"
+    },
+    {
+     "key": "eichelberger-77th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第77師",
+      "en": "77th Division, US Army"
+     },
+     "title": {
+      "zh-Hant": "第77師師長",
+      "en": "Commanding General, 77th Division",
+      "orig": "command of the newly formed 77th Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1942-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG 77 Div, Jan",
+       "quoteLang": "en",
+       "evidenceNote": "Cullum 名錄 Vol. IX：CG 77 Div, Jan‑ Jun 42",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "Jun 42; SWPA, CG 1 Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮職 → R5"
+    },
+    {
+     "key": "eichelberger-i-corps",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第1軍",
+      "en": "I Corps, US Army"
+     },
+     "title": {
+      "zh-Hant": "第1軍軍長",
+      "en": "Commanding General, I Corps",
+      "orig": "command I Corps"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-06-01",
+      "end": "1944-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "Jun 42; SWPA, CG 1 Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Eighth Army, Sep 44",
+       "quoteLang": "en",
+       "evidenceNote": "第1軍迄日以接任第8軍團的月份記；Cullum 第1軍一欄記到「‑ Jul 44」",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Command of the Eighth Army followed in September 1944.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮職 → R5"
+    },
+    {
+     "key": "eichelberger-buna-sector",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "盟軍新幾內亞前進部隊（布納地區）",
+      "en": "Advance New Guinea Force / Buna sector"
+     },
+     "title": {
+      "zh-Hant": "布納地區部隊指揮官／新幾內亞前進部隊司令",
+      "en": "Commander, Buna sector and Advance New Guinea Force",
+      "orig": "command of all troops in the Buna sector"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-12-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "as commander of I Corps, assumed command of all U.S. troops in the Buna Area",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "They took off in two C-47",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "early the next morning, 30 November",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "In the morning, immediately after breakfast, General Eichelberger",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "Two days later, General Eichelberger took command of all Australian and American",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "milner-papua",
+       "locator": "全文",
+       "quote": "returned to Port Moresby on 11 January",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "戰場／方面級以下之臨時指揮職，且起訖皆有日期但非國家級最高軍職 → R5"
+    },
+    {
+     "key": "eichelberger-eighth-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第8軍團",
+      "en": "Eighth Army, US Army"
+     },
+     "title": {
+      "zh-Hant": "第8軍團司令",
+      "en": "Commanding General, Eighth Army",
+      "orig": "command of the US Eighth Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1944-09-01",
+      "end": "1948-09-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Command of the Eighth Army followed in September 1944.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Eighth Army, Sep 44",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48",
+       "quoteLang": "en",
+       "evidenceNote": "Cullum 記 CG Eighth Army Japan, 45‑46，其後 CG Occupation Ground Forces Japan, 46‑Sep 48；迄日以後者記",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍團級指揮職 → R5"
+    },
+    {
+     "key": "eichelberger-occupation-japan",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "駐日佔領軍（美國陸軍）",
+      "en": "Army of Occupation, Japan"
+     },
+     "title": {
+      "zh-Hant": "佔領軍司令",
+      "en": "Commanding General, The Army of Occupation",
+      "orig": "Commanding General, The Army of Occupation"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-08-30",
+      "end": "1948-09-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "landing at Atsugi Airfield on the morning of 30 August 1945",
+       "quoteLang": "en",
+       "evidenceNote": "起日取登陸厚木當日，來源稱此為其最後現役任務之始；UCLA 館藏指引另寫佔領軍司令 1946–48，來源間有出入",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "Commanding General, The Army of Occupation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cullum-eich",
+       "locator": "全文",
+       "quote": "CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wpaog-eich",
+       "locator": "全文",
+       "quote": "He returned to the United States in the late summer of 1948",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "指揮職，非國家級最高軍職亦非戰區司令 → R5",
+     "t14Overlap": "general"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:eichelberger-west-point",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；WPAOG 追悼文與 UCLA 館藏指引只寫1940年任校長、其後轉任第77師／第1軍，未寫離任日；Wheeler 無關；Britannica 403（防機器人頁）、DTIC 研究 403、history.army.mil 403 皆未取得；搜尋摘要稱 1942 年 1 月交卸但無可抓原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前 4 段／約 380 字（已達篇幅），但西點軍校校長一職缺迄日；已查來源類型：官方軍史（history.army.mil 403、DTIC 403）、校友會（WPAOG）、大學特藏指引（UCLA OAC）、百科（Britannica 403、ANB 未取得）、具名網站（Rickard／Peter Dunn 彙編）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:eichelberger-buna-sector-end",
+     "gapKind": "not_found",
+     "note": "待查證：布納地區／Advance New Guinea Force 指揮迄日（原僅禁用網域支撐的1943-02-16）；已查 Milner《Victory in Papua》第11–18章、Cullum 名錄、WPAOG 追悼文、UCLA 館藏指引；HyperWar 的 Cartwheel 卷404、history.army.mil 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14",
+     "by": "banned-replace-2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Robert L. Eichelberger Eighth Army biography Buna Hollandia Leyte",
+     "url": "https://www.historyofwar.org/articles/people_eichelberger_robert.html",
+     "result": "unrated",
+     "note": "具名作者 Rickard，依具名 C 級採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Eichelberger",
+     "url": "https://www.britannica.com/biography/Robert-L-Eichelberger",
+     "result": "no_result",
+     "note": "搜尋結果列出但本輪未 curl（Britannica 以往對 curl 回 403）"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "搜尋結果之 Wikipedia、Scribd、Find a Grave、yolasite、Pacific Wrecks",
+     "url": "",
+     "result": "not_relevant",
+     "note": "不收"
+    },
+    {
+     "sourceType": "official",
+     "query": "Robert L. Eichelberger lieutenant general biography Eighth Army Buna Hollandia Japan occupation",
+     "url": null,
+     "result": "found_B",
+     "note": "索引到 history.army.mil、UCLA OAC、WPAOG 等",
+     "step": 4,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Eichelberger Arlington／history.army.mil／westpointaog／archives.gov（限定網域）",
+     "url": "https://alumni.westpointaog.org/memorial-article?id=30556ea6-db10-4edd-9165-2021b2b40c3b",
+     "result": "found_B",
+     "note": "取得 WPAOG 追悼文（具名機構，C）：1940 校長、Buna、第8軍團、1945-08-30 厚木、1949-01-01 退役",
+     "step": 5,
+     "round": "retry"
+    },
+    {
+     "sourceType": "academic",
+     "query": "Robert L. Eichelberger Papers 館藏指引（UCLA，curl）",
+     "url": "https://oac.cdlib.org/findaid/ark:/13030/tf5p300721/admin/",
+     "result": "found_B",
+     "note": "取得 UCLA 圖書館特藏部傳記說明（B）：生平與職務概要",
+     "step": 6,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Robert L. Eichelberger（curl）",
+     "url": "https://www.britannica.com/biography/Robert-L-Eichelberger",
+     "result": "blocked_403",
+     "note": "HTTP 403 防機器人頁，不繞過",
+     "step": 7,
+     "round": "retry"
+    },
+    {
+     "sourceType": "other",
+     "query": "Australia @ War Eichelberger（curl）",
+     "url": "https://mail.ozatwar.com/people/eichelberger.htm",
+     "result": "unrated",
+     "note": "Peter Dunn 個人彙編網站，無任期資料，未採用",
+     "step": 8,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "West Point superintendents list Eichelberger 1940 1942 dates（限 usma／westpoint／westpointaog）",
+     "url": null,
+     "result": "no_result",
+     "note": "只得 WPAOG 追悼文與館藏目錄，無校長任期日期",
+     "step": 9,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Francis B. Wilby succeeded Eichelberger as superintendent West Point January 1942",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果皆為維基類；維基只當索引，不收",
+     "step": 10,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Eichelberger Eighth Army relinquished command September 1948（限 history.army.mil／dtic／archives.gov）",
+     "url": "https://apps.dtic.mil/sti/tr/pdf/ADA428623.pdf",
+     "result": "blocked_403",
+     "note": "DTIC 研究 PDF 回 HTTP 403 防機器人頁，不繞過",
+     "step": 11,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "history.army.mil Papua／Sicily 戰役專書 PDF（curl）",
+     "url": "https://history.army.mil/portals/143/Images/Publications/catalog/5-4.pdf",
+     "result": "blocked_403",
+     "note": "history.army.mil 回 HTTP 403，不繞過",
+     "step": 12,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Eichelberger Britannica／ANB／Ohio History／NPS（限定網域）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "只索引到 Britannica 與 National WWII Museum 戰役文章，無西點離任日",
+     "step": 13,
+     "round": "retry"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "USMA past superintendents list (westpoint.edu / usma.edu)",
+     "url": "https://www.westpoint.edu/about/superintendent/past-superintendents",
+     "result": "no_result",
+     "note": "兩個猜測網址皆 404，未取得名單頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "USMA archives Eichelberger papers finding aid",
+     "url": "https://archives.westpoint.edu/repositories/2/archival_objects/15349",
+     "result": "blocked_403",
+     "note": "403 防機器人頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "WPAOG Timeline / Highlights PDF 檢索 Eichelberger、Wilby、1942",
+     "url": "https://www.westpointaog.org/wp-content/uploads/2022/12/West_Point_AOG_Timeline.pdf",
+     "result": "not_relevant",
+     "note": "已抓取並全文檢索；未提校長交接日"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Britannica Robert L. Eichelberger；Army Press CSI 軍長合傳／戰鬥序列 PDF；history.army.mil 77th Div 戰鬥紀事",
+     "url": "https://www.britannica.com/biography/Robert-L-Eichelberger",
+     "result": "blocked_403",
+     "note": "Britannica、armyupress、history.army.mil 皆 403 或無法解析，無法取得可逐字引用的原文；Pacific Wrecks／Pacific War Online Encyclopedia 屬個人網站不收"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 1,
+     "basis": "cullum-eich",
+     "diff": "原：1909年畢業、全班103人中第68名（historyofwar）；正文只寫1909年畢業，改以 Cullum 名錄「June 11, 1909」支撐；名次與班級人數不寫入正文",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:graduating in 1909 68th in his class of 103"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "cullum-eich:Cadet at the Military Academy, June 15, 1905 to June 11, 1909"
+       ]
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 2,
+     "basis": "cullum-eich",
+     "diff": "原：1942年3月任新成立的第77師師長、6月22日改任第1軍軍長（僅 historyofwar）；改：依 Cullum 名錄改為1942年1月任第77師師長、1942年6月改任第1軍軍長（降為月）；「新成立」查無刪除；「11月底」依既有 Milner 引文改為11月29日、「全部部隊」依 Milner 改為「全部美軍」",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:Eichelberger was given command of the newly formed 77th Division",
+        "how-eich:On 22 June 1942 he was moved again, this time to command I Corps"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "cullum-eich:CG 77 Div, Jan",
+        "cullum-eich:Jun 42; SWPA, CG 1 Corps"
+       ]
+      },
+      "body.zh-Hant": {
+       "before": "1942年3月他受命指揮新成立的第77師，6月22日改任第1軍軍長。11月底麥克阿瑟召他到新幾內亞，12月1日他接管布納地區全部部隊，撤換了前線指揮官；日軍最後據點在1943年1月22日被攻下。",
+       "after": "1942年1月他出任第77師師長，6月改任第1軍軍長。11月29日麥克阿瑟召他到新幾內亞；12月1日他接管布納地區全部美軍，撤換了前線指揮官；日軍最後據點在1943年1月22日被攻下。"
+      },
+      "body.en": {
+       "before": "In March 1942 he was given command of the new 77th Division and on 22 June moved to command I Corps. MacArthur summoned him to New Guinea at the end of November; on 1 December he took over all troops in the Buna sector and replaced front-line commanders, and the last Japanese strongholds fell on 22 January 1943.",
+       "after": "In January 1942 he was given command of the 77th Division and in June moved to command I Corps. MacArthur summoned him to New Guinea on 29 November; on 1 December he took over all U.S. troops in the Buna sector and replaced front-line commanders, and the last Japanese strongholds fell on 22 January 1943."
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 3,
+     "basis": "smith-approach",
+     "diff": "原：1943年2月16日回任第1軍、1944年3月開始規劃霍蘭迪亞、6月15至27日暫代比亞克指揮（僅 historyofwar）；改：依 Smith《The Approach to the Philippines》寫續任第1軍、以魯莽特遣隊負責霍蘭迪亞地面作戰、6月15日抵比亞克接掌颶風特遣隊至6月底；回任日與「3月」查無刪除；卸任日同書內有27／28／29日三說，正文只寫6月底",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:On 16 February 1943",
+        "how-eich:Eichelberger returned to his original post, as commander of I Corps",
+        "how-eich:In March 1944 Eichelberger began the planning for the attack on Hollandia",
+        "how-eich:he took temporary command of the invasion of Biak"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "smith-approach:Commanded by Lt. Gen. Robert L. Eichelberger, I Corps headquarters",
+        "smith-approach:ground operations at Hollandia was delegated by General Krueger",
+        "smith-approach:which for this undertaking was designated the R ECKLESS Task Force",
+        "smith-approach:General Eichelberger arrived at Biak late on the morning of 15 June",
+        "smith-approach:decided on 27 June that he could leave and took his departure on the 28th"
+       ]
+      },
+      "body.zh-Hant": {
+       "before": "1943年2月16日，他回到第6軍團下的第1軍軍長原職，其後在新幾內亞北岸等地作戰。1944年3月他開始規劃4月的霍蘭迪亞進攻，6月15至27日又暫時接管比亞克登陸戰的指揮。",
+       "after": "他續任第1軍軍長，第1軍司令部以「魯莽特遣隊」名義負責霍蘭迪亞的地面作戰。1944年6月15日他抵達比亞克，接掌「颶風特遣隊」，至6月底離開。"
+      },
+      "body.en": {
+       "before": "On 16 February 1943 he returned to command I Corps within Sixth Army, which fought along the north coast of New Guinea and elsewhere. In March 1944 he began planning the April attack on Hollandia, and between 15 and 27 June he took temporary command of the Biak invasion.",
+       "after": "He continued to command I Corps, whose headquarters, designated the Reckless Task Force, was responsible for ground operations at Hollandia. On 15 June 1944 he arrived at Biak and assumed command of the Hurricane Task Force, leaving the island at the end of June."
+      }
+     },
+     "rule": "查無移除＋說法衝突降精度"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "paragraphs",
+     "item": 4,
+     "basis": "cannon-leyte",
+     "diff": "原：1944年9月7日任第8軍團、12月25日接替第6軍團、1945年1月31日納蘇格布為第8軍團首次呂宋登陸、佔領軍任至1948年9月3日、1954年晉升四星上將（僅 historyofwar）；改：任職降為1944年9月（WPAOG、Cullum）；接替日依 Cannon 改為12月26日；依 Smith 改寫為第11軍（1月29日，第8軍團部署）與第11空降師（1月31日，納蘇格布）先後登陸，不再稱納蘇格布為首次；佔領軍迄日降為1948年9月（Cullum）；1954年晉升查無（Britannica、Military Hall of Honor 403，Duke 館藏指引為 bot 挑戰頁），刪除",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:On 7 September 1944, Eichelberger was promoted to command of the US Eighth Army",
+        "how-eich:relieving the Sixth Army in the Leyte-Samar area on 25 December 1944",
+        "how-eich:On 31 January 1945 the Eighth Army made its first landing on Luzon",
+        "how-eich:remaining in that post until 3 September 1948",
+        "how-eich:In 1954, after he had retired, Eichelberger was promoted to full general"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "wpaog-eich:Command of the Eighth Army followed in September 1944.",
+        "cullum-eich:CG Eighth Army, Sep 44",
+        "cannon-leyte:in the Leyte area at 0001 on 26 December 1944",
+        "cannon-leyte:On 26 December, General Eichelberger assumed control of all combat units",
+        "smith-triumph:landings on Luzon's west coast on 29 and 31 January, respectively",
+        "smith-triumph:Staged at Leyte by Eighth Army, XI Corps sailed to Luzon",
+        "smith-triumph:since the 11th Airborne Division had landed at Nasugbu on 31 January",
+        "cullum-eich:CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48"
+       ]
+      },
+      "body.zh-Hant": {
+       "before": "1944年9月7日他晉升指揮新組建的第8軍團；12月25日該軍團在雷伊泰—薩馬接替第6軍團，1945年1月31日在呂宋的納蘇格布登陸。戰後他指揮駐日盟軍佔領部隊，至1948年9月3日；1954年退役後晉升四星上將。",
+       "after": "1944年9月他出任新組建的第8軍團司令。1944年12月26日零時一分，第8軍團在雷伊泰地區接替第6軍團；1945年1月29日與31日，第11軍與第11空降師先後登陸呂宋西岸，後者在納蘇格布上岸。戰後他指揮駐日佔領地面部隊，至1948年9月。"
+      },
+      "body.en": {
+       "before": "On 7 September 1944 he was promoted to command the new Eighth Army, which relieved Sixth Army in the Leyte-Samar area on 25 December and made its first Luzon landing at Nasugbu on 31 January 1945. After the war he commanded the Allied occupation forces in Japan until 3 September 1948 and was promoted full general in 1954.",
+       "after": "In September 1944 he took command of the new Eighth Army, which at 0001 on 26 December 1944 relieved Sixth Army in the Leyte area. On 29 and 31 January 1945 its XI Corps and 11th Airborne Division landed on Luzon’s west coast, the latter at Nasugbu. After the war he commanded the occupation ground forces in Japan until September 1948."
+      }
+     },
+     "rule": "以新來源為準＋降精度＋查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "eichelberger-77th-division",
+     "basis": "cullum-eich",
+     "diff": "原：1942-03-01（月）至1942-06-22（日），僅 historyofwar；改：依 Cullum 名錄1942-01（月）至1942-06（月）",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:Eichelberger was given command of the newly formed 77th Division",
+        "how-eich:On 22 June 1942 he was moved again, this time to command I Corps"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "cullum-eich:CG 77 Div, Jan",
+        "cullum-eich:Jun 42; SWPA, CG 1 Corps"
+       ]
+      },
+      "period.start": {
+       "before": "1942-03-01",
+       "after": "1942-01-01"
+      },
+      "period.end": {
+       "before": "1942-06-22",
+       "after": "1942-06-01"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "eichelberger-i-corps",
+     "basis": "cullum-eich",
+     "diff": "原：1942-06-22至1944-09-07（日），僅 historyofwar；改：1942-06至1944-09（月），依 Cullum 與 WPAOG",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:On 22 June 1942 he was moved again, this time to command I Corps",
+        "how-eich:On 7 September 1944, Eichelberger was promoted to command of the US Eighth Army"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "cullum-eich:Jun 42; SWPA, CG 1 Corps",
+        "cullum-eich:CG Eighth Army, Sep 44",
+        "wpaog-eich:Command of the Eighth Army followed in September 1944."
+       ]
+      },
+      "period.start": {
+       "before": "1942-06-22",
+       "after": "1942-06-01"
+      },
+      "period.end": {
+       "before": "1944-09-07",
+       "after": "1944-09-01"
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "降精度"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "eichelberger-buna-sector",
+     "basis": null,
+     "diff": "原：迄1943-02-16（日），僅 historyofwar；改：迄日查無，清空並記缺口（Milner 第17–18章只寫到1月13日任 Advance NGF 司令及1月22日戰役結束；Cullum、WPAOG、UCLA 未記；HyperWar Cartwheel 卷404）",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:On 16 February 1943"
+       ],
+       "after": null
+      },
+      "period.end": {
+       "before": "1943-02-16",
+       "after": null
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": null
+      }
+     },
+     "rule": "查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "gaps",
+     "item": "position:eichelberger-buna-sector-end",
+     "basis": null,
+     "diff": "新增缺口：布納地區指揮迄日查無",
+     "changes": {
+      "gaps.added": {
+       "before": null,
+       "after": "position:eichelberger-buna-sector-end"
+      }
+     },
+     "rule": "查無移除"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "eichelberger-eighth-army",
+     "basis": "cullum-eich",
+     "diff": "原：1944-09-07至1948-09-03（日），僅 historyofwar；改：1944-09至1948-09（月），依 WPAOG、Cullum",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:On 7 September 1944, Eichelberger was promoted to command of the US Eighth Army",
+        "how-eich:remaining in that post until 3 September 1948"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "wpaog-eich:Command of the Eighth Army followed in September 1944.",
+        "cullum-eich:CG Eighth Army, Sep 44",
+        "cullum-eich:CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48"
+       ]
+      },
+      "period.start": {
+       "before": "1944-09-07",
+       "after": "1944-09-01"
+      },
+      "period.end": {
+       "before": "1948-09-03",
+       "after": "1948-09-01"
+      },
+      "startPrecision": {
+       "before": "day",
+       "after": "month"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "降精度"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "eichelberger-occupation-japan",
+     "basis": "cullum-eich",
+     "diff": "原：迄1948-09-03（日），僅 historyofwar；改：迄1948-09（月），依 Cullum；WPAOG 記1948年夏末返美",
+     "changes": {
+      "citations.removed": {
+       "before": [
+        "how-eich:remaining in that post until 3 September 1948"
+       ],
+       "after": null
+      },
+      "citations.added": {
+       "before": null,
+       "after": [
+        "cullum-eich:CG Occupation Grd Fcs Japan, 46 ‑ (DSM) Sep 48",
+        "wpaog-eich:He returned to the United States in the late summer of 1948"
+       ]
+      },
+      "period.end": {
+       "before": "1948-09-03",
+       "after": "1948-09-01"
+      },
+      "endPrecision": {
+       "before": "day",
+       "after": "month"
+      }
+     },
+     "rule": "降精度"
+    }
+   ]
+  },
+  {
+   "key": "terrydelamesaallensr",
+   "bioId": null,
+   "name": "Terry de la Mesa Allen Sr.",
+   "nameZh": "老泰利·德·拉·梅薩·艾倫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "艾倫1888年4月1日生於猶他領地的道格拉斯堡，1907年進西點軍校，但因成績與違規被退學。他改讀天主教大學，1912年畢業，同年11月以騎兵少尉任官。一戰時他在第90師率營作戰，獲銀星勳章並被子彈打穿下巴。",
+      "en": "Allen was born at Fort Douglas, Utah Territory, on 1 April 1888 and entered West Point in 1907 but was dismissed. He graduated from Catholic University in 1912 and was commissioned a cavalry lieutenant that November. In the First World War he led a battalion of the 90th Division, winning the Silver Star and taking a bullet through the jaw."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "was born on a frontier Army post (Fort Douglas, Utah Territory)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "he ultimately was dismissed from the academy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "graduated in 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "commissioned a cavalry lieutenant in November 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "leading a battalion in heavy combat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "earned him the Silver Star medal and a German bullet through the jaw",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第1步兵師與北非、西西里",
+      "en": "1st Infantry Division in North Africa and Sicily"
+     },
+     "body": {
+      "zh-Hant": "1942年，艾倫以臨時少將接掌第1步兵師。11月2日該師在奧蘭登陸，參加火炬行動。在突尼西亞，該師反攻凱塞林隘口、攻取加夫薩、苦戰埃爾蓋塔，最後進逼突尼斯；在西西里，又在傑拉與特羅伊納作戰。1943年他遭撤換。",
+      "en": "In 1942 Allen received the 1st Infantry Division as a temporary major general. It landed at Oran on 2 November 1942 in Operation Torch, fought in Tunisia at Kasserine Pass, Gafsa, El Guettar and the final drive on Tunis, and in Sicily at Gela and Troina; Allen was relieved in 1943."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "in 1942, as a temporary major general",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "the 1st U.S. Infantry Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On November 2, 1942, when Allen’s division landed at Oran",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "led the American counterattack in the Kasserine Pass",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "fought through 21 days at the grueling battle of El Guettar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "Allen and his Soldiers saw heavy combat action in Sicily",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "his controversial 1943 relief from command of the 1st Infantry Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第104步兵師",
+      "en": "104th Infantry Division"
+     },
+     "body": {
+      "zh-Hant": "1943年10月15日，艾倫在奧勒岡州本德的訓練營接掌第104師。該師1944年8月27日自紐約出航，10月23日進入戰鬥，1945年2月23日渡過洛爾河，3月7日攻占科隆南半部，22日渡過萊茵河；4月11日解放諾德豪森集中營，27日在易北河與蘇軍會合。",
+      "en": "On 15 October 1943 Allen took over the 104th Infantry Division at its training camp in Bend, Oregon. The division sailed on 27 August 1944, entered combat on 23 October, crossed the Roer on 23 February 1945, took southern Cologne on 7 March, crossed the Rhine on 22 March, liberated Nordhausen on 11 April and met the Red Army on the Elbe on 27 April."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On October 15, 1943, just over two months after Bradley had fired Allen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "104th Infantry Division at its training camp in Bend, Ore.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "The 104th sailed from New York for Europe on August 27, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On October 23, 1944, the 104th entered combat",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "crossing of the flooded Roer River on February 23, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On March 7 the Timberwolves seized the southern half of Cologne",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "on March 22 they crossed the Rhine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On April 11 the Timberwolves liberated Nordhausen concentration camp",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On April 27 East met West",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "西西里的撤換",
+      "en": "The relief in Sicily"
+     },
+     "body": {
+      "zh-Hant": "1943年8月西西里戰事接近尾聲時，艾倫與第1師副師長小羅斯福正受媒體稱讚。英軍亞歷山大曾說他是自己在兩次大戰中見過最好的師長；但他在戰鬥中被撤換。",
+      "en": "In August 1943, as the fight for Sicily neared its close, Allen and Ted Roosevelt were widely praised in the press. General Sir Harold Alexander called him the best division leader he had seen in either world war, yet Allen was relieved during the campaign."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "holden-allen",
+       "locator": "全文",
+       "quote": "In August 1943, as the fight for Sicily neared its close",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "holden-allen",
+       "locator": "全文",
+       "quote": "Terry Allen and Ted Roosevelt seemed to be at the top of their game",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "holden-allen",
+       "locator": "全文",
+       "quote": "called Allen the best division leader he had seen in either world war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "holden-allen",
+       "locator": "全文",
+       "quote": "Despite the humiliation of being fired during battle",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "第104師赴歐作戰",
+      "en": "The 104th in Europe"
+     },
+     "body": {
+      "zh-Hant": "第104師1944年9月7日經英吉利海峽抵法國，隨即前往比利時，從10月23日起參加斯海爾德河戰役。11月16日該師參加「皇后行動」，12月15日起至1945年2月22日防守迪倫一帶，3月5日進入科隆。",
+      "en": "The 104th landed in France via the Channel on 7 September 1944, then went to Belgium for the Battle of the Scheldt from 23 October. On 16 November it joined Operation Queen, held the Duren sector from 15 December to 22 February 1945, and entered Cologne on 5 March."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "arrived in France via the English Channel on September 7, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "Battle of the Scheldt, beginning on October 23, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "On November 16, the 104th Infantry Division took part in Operation Queen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "from December 15, 1944, to February 22, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "The 104th Infantry Division entered Cologne on March 5",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "allen-1st-infantry-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第1步兵師",
+      "en": "1st Infantry Division, US Army"
+     },
+     "title": {
+      "zh-Hant": "第1步兵師師長",
+      "en": "Commanding General, 1st Infantry Division",
+      "orig": "commanding the 1st Infantry Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1943-09-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "in 1942, as a temporary major general",
+       "quoteLang": "en",
+       "evidenceNote": "來源只寫1942年；依 Q3 取該年起日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "his controversial 1943 relief from command of the 1st Infantry Division",
+       "quoteLang": "en",
+       "evidenceNote": "來源只寫1943年撤換；迄點依 Q3 取下一年起日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eisen-allen",
+       "locator": "全文",
+       "quote": "commanded the 1st Infantry Division in North Africa and Sicily",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "holden-allen",
+       "locator": "全文",
+       "quote": "In August 1943, as the fight for Sicily neared its close",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮職 → R5"
+    },
+    {
+     "key": "allen-104th-infantry-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國陸軍第104步兵師",
+      "en": "104th Infantry Division, US Army"
+     },
+     "title": {
+      "zh-Hant": "第104步兵師師長",
+      "en": "Commanding General, 104th Infantry Division",
+      "orig": "commander of the 104th (Timberwolf) Infantry Division"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1943-10-15",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "On October 15, 1943, just over two months after Bradley had fired Allen",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eisen-allen",
+       "locator": "全文",
+       "quote": "commander of the 104th (Timberwolf) Infantry Division",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "airborne-104id",
+       "locator": "全文",
+       "quote": "On October 15, 1943, Major General Terry de la Mesa Allen Sr.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "eisen-allen",
+       "locator": "Scope and Content Note",
+       "quote": "until the end of the war in Europe",
+       "quoteLang": "en",
+       "evidenceNote": "艾森豪圖書館：指揮第104師至歐戰結束",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "The Timberwolves returned to the States in July 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hn-allen",
+       "locator": "全文",
+       "quote": "General Allen retired in 1946",
+       "quoteLang": "en",
+       "evidenceNote": "推論：至少指揮至歐戰結束、該師 1945 年 7 月返美，1946 年退役；確切卸任日未載，迄點依 Q3 取 1946-01-01（year）",
+       "accessedOn": "2026-11-14",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮職 → R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:allen-104th-infantry-division",
+     "gapKind": "conflict",
+     "note": "來源有出入：迄日 LoneSentry（引 Army Almanac）寫 1945-10，Eisenhower Library 目錄寫 1943-46，HistoryNet 寫 1945-07 返美；暫採 1945-10（月精度），需官方戰史確認；history.army.mil 403。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:allen-1st-infantry-division",
+     "gapKind": "not_found",
+     "note": "待查證：起迄僅到月精度（1942-05 至 1943-08，LoneSentry 引 Army Almanac）；確切日期須官方戰史（history.army.mil 戰鬥編年 403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Terry de la Mesa Allen 1st Infantry Division 104th Division biography",
+     "url": "https://historynet.com/is-this-a-private-war-or-can-anybody-get-in-it-terrible-terry-allen/",
+     "result": "unrated",
+     "note": "HistoryNet，Jerry D. Morelock 撰，依具名 C 級採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Eisenhower Library Allen papers finding aid",
+     "url": "https://www.eisenhowerlibrary.gov/sites/default/files/finding-aids/pdf/allen-terry-papers.pdf",
+     "result": "found_A",
+     "note": "NARA 總統圖書館館藏目錄"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "搜尋結果之 Wikipedia、generals.dk、ww2gravestone、domalberto 頁",
+     "url": "",
+     "result": "not_relevant",
+     "note": "維基類、個人網站、無出處頁，不收"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Terry de la Mesa Allen major general biography 1st Infantry Division 104th Division Tunisia Sicily",
+     "url": null,
+     "result": "found_B",
+     "note": "索引到 HistoryNet、Warfare History Network、Eisenhower Library",
+     "step": 4,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Warfare History Network「Who Fired Terry Allen and Ted Roosevelt」（curl）",
+     "url": "https://warfarehistorynetwork.com/?p=34988",
+     "result": "found_B",
+     "note": "具名作者 Walter Holden（C）；補西西里撤換與104師",
+     "step": 5,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "War History Online Terrible Terry Allen（curl）",
+     "url": "https://warhistory.org/2020/05/06/terrible-terry-allen/",
+     "result": "unrated",
+     "note": "已抓；同文轉載無署名，未採用",
+     "step": 6,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Atkinson 戰史網站 Major Figures from An Army At Dawn（curl）",
+     "url": "https://liberationtrilogy.com/?p=109",
+     "result": "unrated",
+     "note": "已抓；無任期日期，未採用",
+     "step": 7,
+     "round": "retry"
+    },
+    {
+     "sourceType": "authority",
+     "query": "SNAC Allen, Terry de la Mesa, 1888-1969（curl）",
+     "url": "https://snaccooperative.org/view/129267",
+     "result": "unrated",
+     "note": "權威彙編，只確認身分，不當出處",
+     "step": 8,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Eisenhower Library Allen, Terry de la M. 館藏頁（curl）",
+     "url": "https://www.eisenhowerlibrary.gov/research/finding-aids/allen-terry-de-la-m",
+     "result": "found_A",
+     "note": "NARA 轄下總統圖書館：第1師 1942-43、第104師 1943-46",
+     "step": 9,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "history.army.mil 戰鬥編年 001id／104id、Sicily 戰役專書 PDF（curl）",
+     "url": "https://history.army.mil/html/forcestruc/cbtchron/cc/001id.htm",
+     "result": "blocked_403",
+     "note": "三頁皆 HTTP 403（一為 DNS 失敗 www 主機），不繞過",
+     "step": 10,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Terry Allen 1st Infantry Division commander relieved Sicily（限 arlingtoncemetery／history.army.mil／archives.gov／eisenhowerlibrary）",
+     "url": null,
+     "result": "found_A",
+     "note": "只得 Eisenhower Library 與 history.army.mil（403）",
+     "step": 11,
+     "round": "retry"
+    },
+    {
+     "sourceType": "official",
+     "query": "Terry Allen assumed command 104th Infantry Division October 1943",
+     "url": "https://airborne-museum.org/en/histoire/divisions/104id/",
+     "result": "found_B",
+     "note": "Airborne Museum（具名機構，C）：1943-10-15 接掌與歐洲戰役日期",
+     "step": 12,
+     "round": "retry"
+    },
+    {
+     "sourceType": "other",
+     "query": "LoneSentry 1st／104th Infantry Division Commanders（curl，兩頁）",
+     "url": "https://collection.lonesentry.com/usdivisions/commanders/infantry/division/1st_infantry_division.html",
+     "result": "found_B",
+     "note": "具名出版者網站（C），引 Army Almanac（GPO 1950）：第1師 1942-05–1943-08、第104師 1943-10–1945-10",
+     "step": 13,
+     "round": "retry"
+    },
+    {
+     "sourceType": "named_encyclopedia",
+     "query": "Allen Handbook of Texas／Britannica／ANB（限定網域）；Britannica Terry-Allen（curl）",
+     "url": "https://www.britannica.com/biography/Terry-Allen",
+     "result": "blocked_403",
+     "note": "無 Handbook of Texas 條目；Britannica HTTP 403，不繞過",
+     "step": 14,
+     "round": "retry"
+    }
+   ],
+   "sourceReplaceLog": [
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "allen-1st-infantry-division",
+     "basis": "hn-allen",
+     "diff": "原：起日 1942-05-01（month），只有禁用來源 lonesentry-1id 支撐；改：起日 1942-01-01（year），依 HistoryNet（Morelock）只寫 1942 年；迄日 1943-09-01（month）仍由 holden-allen「In August 1943」支撐",
+     "changes": {
+      "period.start": {
+       "before": "1942-05-01",
+       "after": "1942-01-01"
+      },
+      "startPrecision": {
+       "before": "month",
+       "after": "year"
+      }
+     },
+     "rule": "以新來源為準"
+    },
+    {
+     "run": "banned-replace-2026-11-14",
+     "on": "2026-11-14",
+     "section": "positions",
+     "item": "allen-104th-infantry-division",
+     "basis": "eisen-allen",
+     "diff": "原：迄日 1945-11-01（month），只有禁用來源 lonesentry-104id 支撐；改：迄日 1946-01-01（year），依艾森豪圖書館（指揮至歐戰結束）與 HistoryNet（1945-07 返美、1946 退役），確切卸任月無合法來源",
+     "changes": {
+      "period.end": {
+       "before": "1945-11-01",
+       "after": "1946-01-01"
+      },
+      "endPrecision": {
+       "before": "month",
+       "after": "year"
+      }
+     },
+     "rule": "以新來源為準"
+    }
+   ]
+  }
+ ]
+}

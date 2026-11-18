@@ -1,0 +1,133 @@
+{
+ "batch": "12",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 19,
+  "editedSentences": 9,
+  "spotRefetched": 5,
+  "searchLogShort": 5
+ },
+ "people": [
+  {
+   "key": "sv-quinonez-molina",
+   "bioId": "01a1b4b7-28ae-7df3-9bdd-095333b9421e",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 2,
+   "gaps": 4,
+   "searchLogSteps": 3,
+   "changes": [
+    "段落3引文「exploited by later military regimes, particularly that of General Maximiliano」截掉人名受詞 → 改為「a situation that was exploited by later military regimes,」並補原文引文「particularly that of General Maximiliano Hernández Martínez」",
+    "候選 presidency-1914-1915／1918-1919 的 title.orig 原為截斷或加省略號的片段 → 改為原文「president of El Salvador」；R0、year 精度、Q3 迄日正確",
+    "gap field:birth_death_dates 的 note 含檢索摘要的生日（1873-01-11）與出生地（Suchitoto），沒有已抓原文支撐 → 刪掉該子句",
+    "紅色聯盟（Liga Roja）組織者維持 positions＋partyPostAmbiguous（來源只寫 organizing，沒寫黨內職稱），理由成立",
+    "重抓 enc-quinonez：全部引文仍逐字出現；Grieb 署名，B 合理"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 只有 3 筆；來源類型只有 named_encyclopedia（other 不屬 1–5 類），缺 authority、official、treaty_law、academic；查詢 <8 次，西班牙文查詢只有 1 次；可用實抓頁只有 1 個（biografiasyvidas 未評等）",
+    "建議下一步：LoC Name Authority／VIAF「Quiñónez Molina, Alfonso, 1873-1950」；Presidencia de la República de El Salvador 歷任總統頁；Asamblea Legislativa de El Salvador；Diario Oficial（1914、1918、1923 就職令）；條目書目 Soto Gómez《Todos los presidentes, 1821–2004》、Ching 1997 博論（出版社或大學典藏頁）"
+   ]
+  },
+  {
+   "key": "lt-mironas",
+   "bioId": "01a1b545-5f9a-74f7-b257-4aca0ce09d17",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 3,
+   "gaps": 2,
+   "searchLogSteps": 5,
+   "changes": [
+    "職位 religious-affairs-dept-head 的 title.orig 用「…」刪掉原文片段 → 改為逐字原文（含「(vėliau – Švietimo)」），中英標題同步；原引文截在「prie Švietimo」，缺「vadovas」（主管）→ 補引文「vėliau Vidaus reikalų (vėliau – Švietimo)ministerijos vadovas」",
+    "段落5「此後關押於弗拉基米爾監獄」缺支撐 → 補原文引文「Iki mirties kalėjo Vladimiro kalėjime.」",
+    "第三屆議會議員（依民族主義者聯盟名單當選）在 roleCandidates、de_facto_leader、originalPositionKind=legislator、reason 引 Tai 12:47，正確；民族主義者聯盟領導人與 1939 主席 R1 正確",
+    "農業部長 R5（非四部）正確；總隨軍神父 R5 正確；總理 1938–1939 留 gap 供比對名單，合理",
+    "重抓 lrs-mironas：全部引文仍逐字出現；Seimas 官方頁，A 合理；vle 無具名作者，只當 gap 候選，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "am-vratsian",
+   "bioId": "01a1c42c-601f-7207-9a5b-735b59663160",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 7,
+   "changes": [
+    "段落1中文「卡林（埃爾祖魯姆）」：「埃爾祖魯姆」不見於來源 → 刪掉；「並任教」缺支撐 → 補原文引文「եղել է Սանասարյան և Ս. Հռիփսիմյան վարժարաններում ուսուցիչ」",
+    "段落2「主編《地平線》」引文截在「«Հորիզոն» թերթի」，缺「խմբագիր」（編輯）→ 補引文「«Հորիզոն» թերթի (Թիֆլիս) խմբագիր」",
+    "職位 salvation-committee-1921（祖國救亡委員會主席）：可能是起義政權的執政機構（R0），但來源沒寫政權性質 → 加 t14Ambiguous＋理由，不硬判",
+    "內政／外交兼任（1920-11-23～12-02，約 9 天）R5：四部正職，但可證明最長任期遠低於 90 天，判 R5 可接受；迄日取政府辭職日，note 已寫明這是推得的",
+    "1919 議員來源沒寫以何黨身分取得席位，留 positions 正確；ARF 局成員只見於未評等黨報，放 gap 候選正確",
+    "重抓 despan-vratsian：全部引文仍逐字出現；注意該頁條目末註明 Աղբյուր historyofarmenia.am（轉載），仍屬政府官方頁，維持 A"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-wu-tingfang",
+   "bioId": "01a1c437-b43f-7116-bd87-22313035593e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 8,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "段落3「成立上海革命政府」「武昌中央共和政府」缺支撐 → 補引文「that established the Shanghai revolutionary government」「of the central republican government at Wuhan」（後者也補到職位 foreign-minister-wuhan-1911）",
+    "段落4「黎元洪」與「1917」年份只靠上下文推得 → 補引文「Li Yuanhung (q.v.), the president, issued an order」「Early in 1917 Tuan Ch'i-jui encountered parliamentary opposition」（年份引文也補到代理總理候選與段祺瑞內閣外交總長職位）",
+    "段落5「廣州軍政府」「1920年11月隨孫返廣州」「1922年4月接替陳炯明」缺支撐 → 補 4 筆原文引文（new military government at Canton／In October 1920…／Sun returned to Canton in November…／removed Ch'en … in April 1922）；廣州外交總長職位補 1920 年份引文",
+    "title.orig 原寫非原文的組合字句 → 改為原文：governor-kwangtung-1922「governor of Kwangtung」、foreign-minister-canton-1920「foreign minister」、acting-premier-1917「acting premier」",
+    "職位 canton-directorate-1918（七人政務總裁）可能屬集體元首（R0），T14 沒有涵蓋 → 加 t14Ambiguous＋理由",
+    "代理總理 R0 acting（1917-05-23～05-28，day）正確；外交、財政各段 R6（regime／dates）的 roleGap 正確；司法總長 R5、廣東省長 R5 正確",
+    "重抓 enp-wu：全部引文仍逐字出現；Boorman《Biographical Dictionary of Republican China》（Columbia UP），B 合理"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ro-antonescu",
+   "bioId": "01a1b4c2-3ec6-7305-a572-6f13398c199c",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 4,
+   "changes": [
+    "段落3「猶太領袖與外交使節施壓」缺支撐 → 補原文引文「the Jewish leadership in Bucharest enlisted the aid of local politicians」「neutral diplomats, and the papal nuncio, who applied pressure on Antonescu」",
+    "參謀長 R6（dates／rank／regime）與國防部長 R6（dates／regime）判斷正確，roleEligible 欄位齊全",
+    "重抓 enc-antonescu：全部引文仍逐字出現；Lavi 署名，B 合理"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 只有 4 筆，來源類型只有 named_encyclopedia、official 2 類，缺 authority、treaty_law、academic；查詢 <8 次，沒有任何羅馬尼亞文查詢；可用實抓頁只有 1 個（Britannica 挑戰頁、USHMM 不可用）",
+    "名單預估「厚」，實際只用一篇約 400 字的 Judaica 條目，研究者把厚薄寫成「中」；厚人物在資料不足時應繼續查，不應只靠單一短條目就停下。1940–1944 掌權期、元帥銜、1944-08-23 政變等都沒有 A/B 來源",
+    "建議下一步：LoC／VIAF「Antonescu, Ion, 1882-1946」；Biblioteca Națională a României 權威檔；Monitorul Oficial（1937-12 國防部長、1940-09-04／09-06 任命令）；Institutul Național pentru Studierea Holocaustului din România「Elie Wiesel」最終報告（官方，羅馬尼亞文／英文）；USHMM Holocaust Encyclopedia 稍後重抓；學術專書出版社頁（Deletant《Hitler's Forgotten Ally》，Palgrave）"
+   ]
+  }
+ ],
+ "issues": [
+  "searchLog 仍普遍過短：5 人全部未達最低嘗試（3–9 筆、來源類型 2–3 類、幾乎沒有權威檔類、原文語言查詢不足）；多數只靠單一來源就停（每人實際只引用 1 個來源）",
+  "段落子句缺引文支撐仍多：地名、人名（黎元洪、埃爾祖魯姆）、機構名（廣州軍政府、武昌政府）及從上下文推得的年份（1917、1920）常只靠前後文推得；本批補了 19 筆引文",
+  "title.orig 常寫成非原文的組合字句或加「…」／括號說明（Quiñónez、Mironas、Wu 共 6 處），應逐字取原文職稱",
+  "gap note 寫入只見於檢索摘要的事實（Quiñónez 生日、出生地），違反「只寫已抓原文」",
+  "集體執政機構（廣州七人政務總裁、亞美尼亞祖國救亡委員會）T14 沒有涵蓋，本批標 t14Ambiguous，需 Tai 裁決是否算 R0"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "batch": "097",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 15,
+  "editedSentences": 1,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pe-leguia-martinez-german",
+   "bioId": "01a1b520-eef8-72ce-ab3a-a280720fc7b6",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "第1段 period 迄點 1911-01-01 改 1929-01-01（段內最後一事為 1928 年卒，Q3）",
+    "第1段補 GND 引文 \"label\" : \"Peru\"（geographicAreaCode）支撐「秘魯人」",
+    "第3段補外交部名單引文「Germán Leguía y Martínez, Ministro de Gobierno encargado del Ministerio」支撐「以政府部長身分署理外交部」",
+    "gap position:leguia-minister-pre-1911 刪去未見於已抓原文的《Historia de Arequipa》（1912）",
+    "重抓 lobid GND 與 rree.gob.pe 部長名單 PDF 比對一致；1911 外交部長 R6（regime）、兩段 encargado R5 判斷維持"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jp-konoe-fumimaro",
+   "bioId": "e8e4a14e-09b9-40a2-99b5-153deca6b12b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "第1段 period 迄點 1919-01-01 改 1919-12-01（段內最後一事為 1919.1～11 巴黎和會隨員，月精度，Q3）",
+    "重抓 NDL 近代日本人の肖像與リサーチ・ナビ頁比對一致；外務大臣兼任（1938.9～10，<90 天）R5、兩筆國務大臣 R5、貴族院議員（公爵議員，非政黨席位）判斷維持",
+    "貴族院議長（1933.6 起）未建 position、只記 field gap（缺迄日）：維持研究者處理，未新增項目"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-obaldia",
+   "bioId": "01a1b520-ef54-7541-b6be-9bd4733c5d3c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "第2段補 2 筆 FRUS 引文（John Hay 之死、感謝美方來函）",
+    "第3段補引文支撐「選舉人團前一日召開正式會議」",
+    "第4段補 4 筆引文（外交部 1908-10-03 電報日期行、任命內閣、署名 Arango、白宮 1908-10-03 日期行）",
+    "第5段改寫：來源只寫「the President of my country」，刪去替原文補上的姓名「德奧巴爾迪亞」，改為「巴拿馬總統及該國政府」，並補 6 筆引文（公使標題、外交部長指示、一名議員、攻擊總統、administration、unanimously）",
+    "重抓 FRUS 1908 d634 得 93 位元組拒絕回應（不重試、不繞過），以既有原文比對"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常漏寫支撐子句的引文（身分、署名人、日期行），本批補 15 筆；段落 period 迄點未依段內最後一事定（2 人）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

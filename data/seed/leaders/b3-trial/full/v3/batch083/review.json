@@ -1,0 +1,97 @@
+{
+ "batch": "083",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 27,
+  "editedSentences": 5,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "be-theunis",
+   "bioId": "01a1b4c2-3f0f-7de9-9594-302fb3a90439",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 15,
+   "changes": [
+    "段2 period 迄點改 1935-04-01（月，依段內最後一件事：第二任首相至1935年3月）；補2筆引文（安特衛普陷落、兩次大戰之間）",
+    "段3「1924年初」改「1924年2至3月」依原文；補5筆引文（高等教育荷語化、1923年中宣布、佛拉芒運動人士不滿、1924政府危機、第二任首相）",
+    "段4「特命全權大使」刪「全權」（原文 buitengewoon ambassadeur 無全權字樣）；補2筆引文（回到民間能源產業、在倫敦任命）",
+    "Q8：8 筆 quote 不含日期卻填 datePrecision，改為 null",
+    "抽查重抓 DEVB PDF 與 Crombois 論文（journalbelgianhistory.be），引文與原文一致",
+    "保留財政部長 R6（roleGap=source）：DEVB 1920–25 與 Crombois 1921–24 年份不一，已有 conflict gap；國防部長 1932 年精度 R6 正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cz-udrzal",
+   "bioId": "01a1b4c2-3f1c-7af2-ad4b-761f026a52de",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 4,
+   "gaps": 5,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1補2筆引文（塔博爾農業學院、施泰爾馬克馬里博爾）",
+    "段2 period 迄點改 1917-06-01（月，最後一件事為1917年5月）；補2筆引文（一戰爆發後、捷克聯盟副主席）",
+    "段3 period 迄點改 1920-06-01（月，最後一件事為1920年5月）；補1筆引文（革命國民議會）",
+    "段4 period 改月精度 1921-09-01～1929-10-01（段內引文為月精度）；補3筆引文（降低法國軍事使團地位、小協約國、與總統合作）",
+    "段5 period 起點精度改 month；施政綱領引文由「13. 12. 1929」擴為含標題的完整片段；補1筆引文（少數民族代表）",
+    "Q8：3 筆 quote 不含日期卻填 datePrecision，改為 null",
+    "抽查重抓 vlada.gov.cz 傳記頁，四段國防部長日期一致；R3 cabinet_minister 四筆門檻（四部、正職、日精度≥90天、A 來源）核對通過",
+    "1897 年以自由思想民族黨身分取得的帝國議會席位落在時間窗外且無迄日，維持只寫正文＋gap 說明"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ee-strandman",
+   "bioId": "01a1b51c-8347-7437-bbcf-988267f6dea0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 11,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 17,
+   "changes": [
+    "段2補1筆引文（帕茨第一屆臨時政府）",
+    "段3標題「首任總理兼國防部長」改「總理兼戰爭部長」（原文未稱首任、職稱為 sõjaminister）；溫諾戰役句依原文拆為對地方防衛軍作戰與溫諾戰役；補2筆引文",
+    "段4 period 迄點改 1925-01-01（最後一件事在1924年）；黃金儲備引文原截掉受詞 otsakulutamise，改為完整片段；補2筆引文（1923、阿克爾政府）",
+    "段5「列席」改「是…議員」（原文 kuulus koosseisu）；段5與 envoy-1927 各補1筆引文（捷克斯洛伐克、羅馬尼亞）",
+    "段6與 envoy-1933 各補1筆引文（西班牙、比利時、梵蒂岡）",
+    "gap head_of_government_terms 候選引文原為他人（Lui Olesk）任期，改為人物頁本人政府起迄「9. V 1919 - 18. XI 1919」",
+    "Q8：3 筆 quote 不含日期卻填 datePrecision，改為 null",
+    "抽查重抓 valitsus.ee 人物頁，引文一致",
+    "財政部長 1924 R3 迄日依政府止日推得，evidenceNote 已註明推論；外交 1920、1924 任期 <90 天歸 R5 正確"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "多段子句（地點、時間、受詞）缺 quote 支撐，審查補 27 筆取自已抓原文的引文",
+  "段落 period 迄點多處未依段內最後一件事定（Q3），已修正",
+  "14 筆 quote 不含日期卻填 datePrecision（Q8），改為 null",
+  "Strandman 首相任期 gap 的候選引文誤用他人（Lui Olesk）任期，已替換",
+  "本批名單標「5 人」實為 3 人"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

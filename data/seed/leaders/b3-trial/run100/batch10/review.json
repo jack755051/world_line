@@ -1,0 +1,134 @@
+{
+ "batch": "10",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 3,
+  "toUnverified": 9,
+  "deletedParagraphs": 3,
+  "deletedPositions": 3,
+  "deletedRoleCandidates": 3,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 26,
+  "addedCitations": 9,
+  "editedSentences": 2,
+  "spotRefetched": 6,
+  "searchLogShort": 3
+ },
+ "people": [
+  {
+   "key": "sv-castaneda-castro",
+   "bioId": "01a1b533-d81e-73c2-9830-80fecd6e69f1",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 6,
+   "changes": [
+    "引文「Castaneda Castro introdujo reformas en el」截掉受詞 → 改為原文完整片段「…en el Ejército」",
+    "段落寫「1945年的總統選舉」：原文只寫 las elecciones，且 1945 無引文支撐 → 補引文「Cuando las elecciones se celebraron al año siguiente, 1945」，句子改為「1945年舉行的選舉」",
+    "重抓 chanta-sv（redalyc HTML）與 perez-sv（PDF，sha256 與存檔相同）比對通過",
+    "黨（Partido Unificación Social Demócrata）職位維持 partyPostAmbiguous（原文只寫 del general，無黨內職稱）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺權威檔類（authority）——來源類型只有 named_encyclopedia／academic／official 3 類（需 ≥4 類）",
+    "最低嘗試未達：查詢僅 6 次（需 ≥8 次，含西班牙文 ≥2 次）",
+    "建議下一步：VIAF／LoC Name Authority 查「Castañeda Castro, Salvador, 1888-1965」；Asamblea Legislativa de El Salvador／Casa Presidencial 歷任總統頁；DBE（dbe.rah.es）；Biblioteca Nacional de El Salvador 權威檔"
+   ]
+  },
+  {
+   "key": "fi-ingman",
+   "bioId": "01a1b539-97e6-7acd-aeb0-e9dac76acfc5",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 12,
+   "changes": [
+    "段落 period 迄點 1934-01-01 與引文「(1930–34)」及同段職位迄點不一致 → 依 Q3 改為 1935-01-01（year）",
+    "重抓 evl-karttunen PDF，sha256 與存檔相同",
+    "evl-karttunen 為芬蘭福音路德教會教會管理署出版、具名作者 Tomi Karttunen 的研究報告，維持 B（見 issues）",
+    "searchLog 12 筆、6 類來源、芬蘭／瑞典文查詢 ≥2、實抓 ≥3，達最低嘗試；首相任期（1918–19、1924–25）等仍在 gaps"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-tan-yankai",
+   "bioId": "01a1b490-dc9a-7674-9818-d28238f59f2d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 10,
+   "roleCandidates": 4,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "內政部長（段落2與職位 interior-minister-1923）：原引文只寫 3/2 組建大本營，未寫委任譚 → 補原文同句兩段引文「自任大元帥,統率各軍,並委任譚」「延闓為內政部長」（PDF 轉文字夾私用字元，evidenceNote 已註）",
+    "段落3與職位 northern-expedition-coalition-commander-1924：「11月孫中山北上後」原無引文 → 引文改為原文完整片段「11 月孫中山北上後,譚出任北伐聯軍總司令主持北伐事務」",
+    "職位 army2-commander：原引文為顧問回憶「組成 1 個軍」未寫第二軍 → 改引「建國湘軍改為第二軍,譚延闓任軍長」並補「1925 年 8 月,統一的國民革命軍初步成軍」，起點 1925-08-01（month）",
+    "候選 executive-yuan-president-1928：迄日 1930-10-01 係由病逝推得（來源未寫任至病逝）→ 迄日改 null，刪除病逝引文",
+    "T14 逐筆：內政部長 R5（原文「不及兩月」明示未滿 90 天，非門檻不明的 R6）；建設部長 R5；建國湘軍／北伐聯軍總司令 R6（roleGap 合理）；第二軍軍長 R5；省級都督／督軍／省長 R5；國民黨中執委／中常委 R1；代理政治委員會主席保留 partyPostAmbiguous（原文未寫所屬機構）",
+    "重抓 ipm-tan PDF，sha256 與存檔相同",
+    "名單推定屬性（不明）實查為東亞·中國／民國，約 1909–1930，研究者已在 identity gap 註明"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cr-picado-michalski",
+   "bioId": "01a1b520-ef47-7ef2-8cfc-403e3a988fc3",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 7,
+   "changes": [
+    "段落「國會在3月1日的會議上宣告烏拉特的勝利無效」主語錯置（原文主語為許多卡爾德龍派人士）且「1948年選舉後」無引文 → 改寫句子，補 3 筆原文引文，原引文延長為「quienes lograron anular la victoria de Ulate en la sesión del Congreso」",
+    "職位 congress-president 刪除 → gap：原文只寫「apoyaron a Teodoro Picado para Presidente del Congreso」（支持他出任），未明寫當選／在任",
+    "重抓 lehoucq-cr PDF（pdftotext）比對引文通過"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺權威檔類（authority）與條約法律類——來源類型只有 named_encyclopedia／official／academic 3 類（other 不計）",
+    "最低嘗試未達：查詢僅 7 次（需 ≥8 次）",
+    "建議下一步：VIAF／LoC 查「Picado Michalski, Teodoro, 1900-1960」；Asamblea Legislativa de Costa Rica 歷任議長／議員名錄；Sistema Costarricense de Información Jurídica（SCIJ）或 La Gaceta 任命令（教育部長 1932–36）；Presidencia de la República de Costa Rica 歷任總統頁"
+   ]
+  },
+  {
+   "key": "ro-maniu",
+   "bioId": "01a1b52c-f97f-72c3-a3ed-d8ca8b828272",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 2,
+   "gaps": 11,
+   "searchLogSteps": 8,
+   "changes": [
+    "來源 bcu-maniu（BCU Cluj 數位館藏節錄自 Argonaut 2018 文集）條目及館藏頁均無具名作者或編者 → 依 Q9 降為未評等",
+    "因此刪除段落1–3（布達佩斯議會與一戰、1918 阿爾巴尤利亞與執政委員會、政黨領導與1926年合併）、職位 budapest-deputy-1906／consiliul-dirigent-president、候選 pnr-leader-1919／pnt-president-1926／pnt-president-1937，全部改為 gaps 並把原引文列入 candidateCitations",
+    "保留段落4（三段首相任期）與首相候選 pm-1930-june、pm-1932-1933（gov.ro 官網 A，重抓比對三段日期均一致；R0 head_of_government）",
+    "1928–30 首相任期依名單 5442 不重建候選，維持 gap"
+   ],
+   "returnedReasons": [
+    "降級後僅剩 1 段／2 筆候選，黨主席（R1）等核心事實無 A／B 來源；搜尋類型只有 named_encyclopedia／academic／official 3 類，缺權威檔類（最低嘗試未達）",
+    "建議下一步：VIAF／BNR（Biblioteca Națională a României）權威檔；Camera Deputaților（cdep.ro）歷屆議員資料；Academia Română《Dicționarul enciclopedic》或 IICCMER 具名作者傳記；Cambridge／De Gruyter 關於 Partidul Național Țărănesc 的具名學術專書；如可取得，查該文集 Argonaut 2018 的具名編者以重評 bcu-maniu"
+   ]
+  }
+ ],
+ "issues": [
+  "無具名作者的機構館藏節錄（bcu-maniu）被研究者評為 B，並自註「請審查確認」；依 Q9 與 batch09 lex.dk 前例降為未評等。研究者應在評等前就排除無作者條目",
+  "研究者多處以引文片段支撐但漏掉子句（年份、主語、受詞）：perez-sv 截斷受詞、lehoucq-cr 主語錯置、ipm-tan「11月孫中山北上後」與「委任內政部長」缺引文",
+  "推論出的迄日（行政院長以病逝推得）不可寫入 period，應留 null",
+  "薄人物 searchLog 普遍未做權威檔（VIAF／LoC）查詢，3 人未達 ≥4 類來源；Britannica 全數 403",
+  "日精度迄點寫法不一致：Maniu 段落4 period 迄點寫 1933-01-13（半開），候選 pm-1932-1933 迄點寫官網原值 1933-01-12；規則只規定月／年精度（Q3），日精度未明訂，未改動，請 Tai 定案",
+  "evl-karttunen（教會中央機構出版、具名作者研究報告）維持 B；若 Tai 認為非學術出版社，Ingman 唯一段落需降級"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 76
+ }
+}

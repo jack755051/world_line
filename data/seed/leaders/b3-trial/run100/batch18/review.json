@@ -1,0 +1,62 @@
+{
+ "batch": "18", "reviewedOn": "2026-11-11", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "run100-v1",
+ "counts": {"returned": 3, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 0, "addedCitations": 15, "editedSentences": 1, "spotRefetched": 5, "searchLogShort": 3},
+ "people": [
+  {"key": "ie-cosgrave", "bioId": "01a1b4ae-0dcb-7c3c-a901-857261977451", "verdict": "returned", "paragraphs": 4, "positions": 4, "roleCandidates": 3, "gaps": 3, "searchLogSteps": 5,
+   "changes": [
+    "重抓 cosgrave-eihc（Encyclopedia.com，Maume）：新增／改寫引文均逐字出現於重抓頁",
+    "第 1 段補引文「He was active in Arthur Griffith」（原引文缺 active in）",
+    "第 2 段補引文「at the South Dublin Union during the 1916 Easter Rising」（原引文未涵蓋地點與 1916 起義）",
+    "第 3 段補引文「local government in the underground Dáil administration」「In 1922, Cosgrave was a pivotal supporter of the Anglo-Irish Treaty」（部門名與 1922 年原無支撐）；period 迄點 1944-01-01 → 1933-01-01（段內最後一事為 1932 卸任行政委員會主席）",
+    "第 3 段中文把 Cumann na nGaedheal 譯成「愛爾蘭統一黨」，與第 4 段 Fine Gael「統一愛爾蘭黨」易混，改保留原名；候選 cosgrave-pro-treaty-leader 標題／組織中文同改",
+    "第 4 段引文「Cosgrave became」改為「Cosgrave became Fine Gael leader in 1934」，另補「…as leader of the new Fine Gael Party」",
+    "職位 cosgrave-local-govt-1919、候選 cosgrave-pro-treaty-leader、cosgrave-fine-gael-leader 各補 1 筆引文（部門名、1922、Fine Gael）",
+    "T14：地方政府部長 R5 正確；新芬黨補選席位 R1（以政黨身分取得的席位，Tai 12:47）正確；其餘議員職位來源未寫黨籍，留 positions 正確；1922–1932 行政委員會主席在 5442 內不重建，正確"],
+   "returnedReasons": ["最低嘗試未達：searchLog 僅 5 步，查詢 <8 次、無愛爾蘭語查詢、來源類型僅 national_dictionary／named_encyclopedia／authority／other（academic、official 未試）；建議下一步：Oireachtas 官方議員資料庫（oireachtas.ie members，William T. Cosgrave）、DIB 條目以可抓的靜態版／印本 DOI、National Archives of Ireland 內閣紀錄、愛爾蘭語查詢 Liam T. Mac Cosgair"]},
+  {"key": "pt-gomes-da-costa", "bioId": "01a1c41f-dc8b-7291-858c-e15bc4f38179", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 2, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 8,
+   "changes": [
+    "重抓 gomes-presid（presidencia.pt）：新增引文逐字出現",
+    "第 1 段 period 迄點 1915-01-01 → 1916-01-01（「Até 1915」依 Q3 年精度終點取次年起日）",
+    "第 2 段：「se envolve em conspirações,」不含日期，刪 datePrecision（Q8）；補「o prestígio que a I República procurou utilizar」（第一共和國任命原無主語支撐）、「Mesmo quando no início dos anos 20」（1920 年代初原無支撐）",
+    "第 3 段：補「Convidado à última hora por Sinel de Cordes para chefiar o golpe」（他領導政變原無支撐）；「Carmona fê-lo marechal」改為「Ainda aí, Carmona fê-lo marechal」（支撐英文 there／在亞速爾）",
+    "第 2 段 period 起點 1917-01-01 無本段引文支撐（本人條目未寫 CEP 任命年），未改，留待下一輪（相關衝突已在 gap position:cep-command-level）",
+    "T14：CEP 第一師師長 R5（師級，非國家級／戰區）正確；海外軍事督察 positionKind=other 正確；1926 內閣主席／元首在 5442 內不重建"],
+   "returnedReasons": []},
+  {"key": "sk-tuka", "bioId": "01a1b4c1-cdcd-7c12-8280-f471db9fb9f6", "verdict": "returned", "paragraphs": 2, "positions": 3, "roleCandidates": 1, "gaps": 4, "searchLogSteps": 6,
+   "changes": [
+    "重抓 tuka-ej（Encyclopedia.com，Rothkirchen）：新增／改寫引文逐字出現",
+    "第 1 段與職位 tuka-slovak-editor：引文「and editor of its publication」改為「editor of its publication Slovak after World War i」（原未涵蓋刊名《Slovak》與「一戰後」）",
+    "第 2 段補引文「Slovakia, its prime minister (1939–44)」（原引文未含 prime minister）",
+    "職位 tuka-foreign-minister：R6 roleGap 由 [dates, regime] 補為 [dates, source, regime]（只有 1 筆 B；JVL 為同一 EJ 條目，非獨立），t14Reason 同步",
+    "人民黨書記 R1、黨報主編 partyPostAmbiguous 正確；1939 起總理任期在 5442 內不重建",
+    "第 1 段含 1923、1929 事件但 period 為 null，未改（起點只寫 after World War i，無可用年份）"],
+   "returnedReasons": ["最低嘗試未達：研究者自標「薄」，searchLog 僅 6 步、只有 named_encyclopedia／authority 2 種來源類型、無斯洛伐克語／匈牙利語查詢；建議下一步：Slovenský biografický slovník／Biografický lexikón Slovenska（SNK）、Ústav pamäti národa（upn.gov.sk）、斯洛伐克語查詢「Vojtech Tuka predseda vlády 1939」「Tuka minister zahraničných vecí 1940」、Národný súd 判決相關學術論文（以補外交部長起訖日與死亡日衝突）"]},
+  {"key": "pt-machado", "bioId": "01a1b51e-62a3-7d02-aa8f-4448171661af", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 6, "roleCandidates": 3, "gaps": 4, "searchLogSteps": 7,
+   "changes": [
+    "重抓 machado-presid2（presidencia.pt）：新增引文逐字出現",
+    "第 2 段、職位 machado-foreign-1914／machado-interior-1914：原引文「…Negócios Estrangeiros e do」截斷未含 Interior，改為「ministro dos Negócios Estrangeiros e do Interior entre 9 de fevereiro de 1914」（day），第 2 段另補「Presidente do Ministério, ministro dos Negócios Estrangeiros e do Interior」",
+    "第 2 段 period 迄點 1915-08-06 → 1914-12-12（段內最後一事；原值為下一段起點）",
+    "「Presidente do Ministério e ministro do Interior desde」「Não terminou o mandato que foi interrompido」不含日期，刪 datePrecision（Q8）；「presidindo ao diretório, entre 1906 e 1909.」含年份，補 datePrecision=year",
+    "候選 machado-president-1925：迄點 1926-05-28（day）為推論（來源只寫任期因該運動而中斷，未寫卸任日），改為 null 並改寫 note",
+    "T14：1914 外交 134 天、1914 內政 >90 天，四部正職、1A，regimeId 未知 → R6（regime）正確；1921 內政 82 天 → R5 正確；共和黨執行委員會主席 R1 正確；1919 參議員來源未寫黨籍，留 legislator 正確"],
+   "returnedReasons": []},
+  {"key": "pa-alfaro", "bioId": "01a1b512-33b1-7a04-970d-a39cb2933856", "verdict": "returned", "paragraphs": 1, "positions": 4, "roleCandidates": 0, "gaps": 4, "searchLogSteps": 6,
+   "changes": [
+    "重抓 alfaro-elac（Encyclopedia.com，Leonard）：新增／改寫引文逐字出現",
+    "第 1 段：引文「minister to the」改為「served as minister to the United States (1922–1930; 1933–1936)」；「International Court of Justice」改為「a member of the International Court of Justice at The Hague (1959–1964)」；補「a Panamanian statesman」",
+    "職位 alfaro-minister-us-1922／1933、alfaro-icj-1959 引文同上改為含職稱與年份的完整片段",
+    "第 1 段 period 迄點 1972-01-01（year）→ 1971-02-23（day，段內最後一事為逝世日）",
+    "T14：1946 外交部長在時間窗外 R5 正確；1931–1932 臨時總統在 5442 內不重建；外交部長年份衝突 gap（兩份已抓來源）成立"],
+   "returnedReasons": ["最低嘗試未達：名單預估「厚」，實寫 1 段；searchLog 僅 6 步、查詢 <8 次、西班牙語查詢僅 1 次；建議下一步：國際法院官方前任法官傳記（icj-cij.org）、巴拿馬總統府／Asamblea Nacional 官方歷任頁、Biblioteca Nacional de Panamá 權威檔、西班牙語查詢「Ricardo J. Alfaro presidente encargado 1931」「Alfaro Secretario de Gobierno y Justicia 1918」"]}
+ ],
+ "issues": [
+  "引文仍常只抓句首或片段、未涵蓋所支撐子句（職稱、地點、年份被截在連結斷行處），本批補 15 筆、改 11 筆引文",
+  "段落 period 迄點未依段內最後一事定（Cosgrave 第 3 段、Machado 第 2 段誤用下一段起點、Alfaro 用年精度而有逝世日、Gomes 第 1 段 Q3 未進位）",
+  "datePrecision 填在不含日期的 quote（Gomes、Machado 各 1–2 筆），Q8",
+  "以「運動日」當卸任日屬推論（Machado 1925 總統），已改 null",
+  "Gomes searchLog 第 4 步遇 RCAAP Anubis 挑戰頁後，第 5 步改抓同站 /server/api/ 端點取得內容，形同繞過防機器人驗證；該原文未被引用、未入 rawmap 的 rcaap2，本批不影響產出，但應提醒研究者不得如此",
+  "薄／厚預估人物 searchLog 未達最低嘗試即停（3 人 returned），研究者找到 1 個 B 來源後就未再查原文語言來源",
+  "全批 recordIds 為空（名單未附），各人皆有 field:recordIds gap"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 79}
+}

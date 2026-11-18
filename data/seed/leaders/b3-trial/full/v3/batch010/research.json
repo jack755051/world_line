@@ -1,0 +1,3374 @@
+{
+ "batch": "b3-full-v3-batch010",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式。三人元首／首腦任期均在名簿 leader_records，不重建；黨職與以政黨身分取得的席位進 roleCandidates（R1）；閣員、將領任期因日期精度或 regimeId 未查（不連庫）歸 R6 留 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md 與 data/source-policy.json（無署名條目與私人彙編只放 gap 候選）。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch010/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "bcn-alessandri": {
+   "title": "Arturo Alessandri Palma（Reseña biográfica parlamentaria）",
+   "authors": [],
+   "publisher": "Biblioteca del Congreso Nacional de Chile（Historia Política）",
+   "published_text": "Reseñas biográficas parlamentarias",
+   "url": "https://www.bcn.cl/historiapolitica/resenas_parlamentarias/wiki/Arturo_Alessandri_Palma",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "智利國會圖書館官方人物頁（議員任職與政黨逐屆列出）"
+  },
+  "memoria-alessandri": {
+   "title": "Arturo Alessandri Palma (1868-1950)",
+   "authors": [],
+   "publisher": "Memoria Chilena, Biblioteca Nacional de Chile",
+   "published_text": "Memoria Chilena 人物條目",
+   "url": "https://www.memoriachilena.gob.cl/602/w3-article-3307.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "智利國家圖書館 Memoria Chilena 官方條目"
+  },
+  "museu-carmona": {
+   "title": "Óscar Carmona",
+   "authors": [],
+   "publisher": "Museu da Presidência da República（Presidência da República Portuguesa）",
+   "published_text": "Presidentes da República - Biografias",
+   "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/presidentes-da-ditadura/oscar-carmona/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "葡萄牙總統府轄下總統博物館官方歷任總統傳記頁"
+  },
+  "universalis-carmona": {
+   "title": "CARMONA ÓSCAR (1869-1951)",
+   "authors": [
+    "André Dessens"
+   ],
+   "publisher": "Encyclopædia Universalis",
+   "published_text": "Encyclopædia Universalis 人物條目",
+   "url": "https://www.universalis.fr/encyclopedie/oscar-carmona/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Encyclopædia Universalis 具名作者（André Dessens）條目"
+  },
+  "tccb-inonu": {
+   "title": "İsmet İnönü",
+   "authors": [],
+   "publisher": "T.C. Cumhurbaşkanlığı（土耳其共和國總統府）",
+   "published_text": "Cumhurbaşkanlarımız",
+   "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/ismet_inonu/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "土耳其總統府官方歷任總統頁"
+  },
+  "lueleci-inonu": {
+   "title": "İsmet İnönü’nün Cumhurbaşkanlığı Seçimleri",
+   "authors": [
+    "Taner Lüleci"
+   ],
+   "publisher": "Akademik Bakış（Cilt 16, Sayı 32, 2023 Yaz）",
+   "published_text": "Akademik Bakış 16(32), 2023",
+   "url": "https://dergipark.org.tr/en/download/article-file/3212364",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術期刊具名作者論文（DergiPark）"
+  },
+  "archontology-carmona": {
+   "title": "António Óscar de Fragoso Carmona",
+   "authors": [],
+   "publisher": "Archontology.org",
+   "published_text": null,
+   "url": "https://archontology.org/nations/portugal/port010/carmona.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "未評等：私人彙編（Archontology），僅供 gap 候選引文"
+  },
+  "museu-gomesdacosta": {
+   "title": "Gomes da Costa",
+   "authors": [],
+   "publisher": "Museu da Presidência da República（Presidência da República Portuguesa）",
+   "published_text": "Presidentes da República - Biografias",
+   "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/presidentes-da-ditadura/gomes-da-costa/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "葡萄牙總統府轄下總統博物館官方歷任總統傳記頁"
+  },
+  "kure-inonu": {
+   "title": "İNÖNÜ, Mustafa İsmet（TDV İslâm Ansiklopedisi 條目，Kürē İslam Ansiklopedisi 轉載）",
+   "authors": [
+    "Atilla Çetin"
+   ],
+   "publisher": "Kürē İslam Ansiklopedisi（轉載 TDV İslâm Ansiklopedisi）",
+   "published_text": "İslam Ansiklopedisi 條目，作者 Atilla Çetin",
+   "url": "https://kureansiklopedi.com/tr/detay/inonu-mustafa-ismet",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Atilla Çetin）機構百科條目（TDV İslâm Ansiklopedisi），第三方轉載頁，原件 B 記 B"
+  }
+ },
+ "people": [
+  {
+   "key": "pt-carmona",
+   "bioId": "01a1b4b2-2f00-733b-8d99-f824ac9205ca",
+   "name": "António Óscar de Fragoso Carmona",
+   "nameZh": "奧斯卡·卡爾莫納",
+   "recordIds": [
+    "01a1aa4a-4852-7a1a-a51b-3f1ee1725493",
+    "01a1aa4a-45be-7bd9-8c59-907768d0168d",
+    "01a1aa4a-45be-7dc3-a4c1-33d1e42ad4fe",
+    "01a1aa4a-45be-7f9c-9e69-5f27559e0a94",
+    "01a1aa4a-45bf-734e-a170-c09fbdb8afd7"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1869-11-24",
+      "end": "1923-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍旅",
+      "en": "Birth and army career"
+     },
+     "body": {
+      "zh-Hant": "卡爾莫納1869年11月24日生於里斯本，是陸軍將領之子與孫。他1882年進入軍事學院，1890年進入陸軍學校並選擇騎兵科。其後軍階逐步晉升：1916年中校、1919年上校、1922年將軍。",
+      "en": "Carmona was born in Lisbon on 24 November 1869, the son and grandson of army generals. He entered the Colégio Militar in 1882 and the Army School in 1890, choosing the cavalry. He rose to lieutenant-colonel in 1916, colonel in 1919 and general in 1922."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "nasceu em Lisboa, a 24 de novembro de 1869",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "Filho e neto de generais do Exército",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "ingressando no Colégio Militar, em 1882",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "em 1890 entrou para a Escola do Exército, optando pela Cavalaria",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "tenente-coronel, em 1916; coronel, em 1919; general, em 1922",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-carmona",
+       "locator": "首段",
+       "quote": "devient général en 1922",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1915-01-01",
+      "end": "1926-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰爭部長祕書、校長與第一次入閣",
+      "en": "Staff posts, school command and first cabinet post"
+     },
+     "body": {
+      "zh-Hant": "1915年他在皮門塔·德卡斯特羅政府擔任戰爭部長祕書。1918至1922年任托雷斯諾瓦斯騎兵實習學校校長。1922年晉升將軍並主持埃武拉第四軍區。1923年出任金納斯塔爾·馬沙多政府的戰爭部長；1924年任第二領土軍事法庭庭長，並在1925年4月18日叛亂案的審判中擔任公訴人。",
+      "en": "In 1915 he was secretary to the Minister of War in the Pimenta de Castro government. He commanded the Cavalry Practical School at Torres Novas in 1918-1922. In 1922 he was promoted general and headed the 4th Military Division at Évora. In 1923 he was Minister of War in the Ginestal Machado government; in 1924 he presided over the 2nd Territorial Military Court and was prosecutor in the trials of the officers implicated in the revolt of 18 April 1925."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "secretário do ministro da Guerra no Governo de Pimenta de Castro, em 1915",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "comandante da Escola Prática de Cavalaria, em Torres Novas (1918-1922)",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "A promoção a general e a chefia da 4.ª Divisão Militar, em Évora, em 1922",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "Ministro da Guerra no Governo de António Ginestal Machado, em 1923",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "presidente do 2.º Tribunal Militar Territorial, em 1924",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "promotor de Justiça nos julgamentos dos militares implicados",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "revolta de 18 de abril de 1925",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-05-28",
+      "end": "1926-11-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1926年政變與接掌政權",
+      "en": "The 1926 coup and the seizure of power"
+     },
+     "body": {
+      "zh-Hant": "1926年5月28日軍事政變後，卡爾莫納起初沒有立即加入，後來成為勝利三人團成員之一。6月他出任外交部長，主要任務是爭取國際承認軍事獨裁政權；7月9日接掌戰爭部並兼任部長會議主席。他自7月9日起實際行使國家元首職權，11月26日以法令確認，29日以代理身分就職。",
+      "en": "After the military coup of 28 May 1926 Carmona at first did not join, but became one of the elements of the victorious triumvirate. In June he took the Foreign Affairs portfolio, with the main task of securing international recognition of the military dictatorship; on 9 July he took the War portfolio and the presidency of the Ministry. He exercised the functions of head of state from 9 July, made official by decree on 26 November, and took office on 29 November in an interim capacity."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "golpe militar de 28 de Maio de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "Carmona não aderiu de imediato",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "um dos elementos do triunvirato que saiu vitorioso da revolta",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "assumiu, durante o mês de junho, a pasta dos Negócios Estrangeiros",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-carmona",
+       "locator": "首段",
+       "quote": "et du général Carmona, ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "assegurar o reconhecimento internacional da Ditadura Militar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "assumiu, a 9 de julho, a pasta da Guerra e a presidência do Ministério",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "assumiu funções de chefia do Estado a partir de 9 de julho de 1926",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "oficializadas com o Decreto n.º 12 740 de 26 de novembro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "A 29 de novembro, tomou posse das novas funções a título interino",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1928-03-25",
+      "end": "1951-04-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1928年當選與長期在任",
+      "en": "Election in 1928 and the long presidency"
+     },
+     "body": {
+      "zh-Hant": "1928年3月25日，他以唯一候選人身分當選總統，得到民主黨與自由共和聯盟支持，任期五年。當選後的第一屆政府立刻納入薩拉查，卡爾莫納直到1932年才把部長會議主席職位交給他。他在1935、1942與1949年連任，1947年獲元帥身分，1951年4月18日在任內去世。",
+      "en": "On 25 March 1928 he was elected President as the sole candidate, backed by the Democratic Party and the Republican Liberal Union, for a five-year term. The first government after his election immediately included Salazar, and Carmona handed him the presidency of the Council of Ministers only in 1932. He was re-elected in 1935, 1942 and 1949, became a marshal in 1947 and died in office on 18 April 1951."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "tendo sido eleito no dia 25 de março de 1928, para um mandato de cinco anos",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "Único candidato, Carmona contou com o apoio do Partido Democrático",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "Carmona contou com o apoio do Partido Democrático e da União Liberal Republicana",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "integrou de imediato António de Oliveira Salazar",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "até lhe entregar a presidência do Conselho de Ministros, em 1932",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Mandatos presidenciais",
+       "quote": "Carmona foi sucessiva e consensualmente reeleito em 1935, 1942 e 1949",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "e marechal, em 1947",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Depois da Presidência",
+       "quote": "foi Presidente da República até ao dia da sua morte, em 18 de abril de 1951",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-carmona",
+       "locator": "首段",
+       "quote": "En mars 1928, il est élu président de la République",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "carmona-cavalry-school",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "騎兵實習學校（托雷斯諾瓦斯）",
+      "en": "Escola Prática de Cavalaria, Torres Novas"
+     },
+     "title": {
+      "orig": "Comandante da Escola Prática de Cavalaria",
+      "zh-Hant": "騎兵實習學校校長",
+      "en": "Commander, Cavalry Practical School"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1918-01-01",
+      "end": "1923-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "comandante da Escola Prática de Cavalaria, em Torres Novas (1918-1922)",
+       "quoteLang": "pt",
+       "evidenceNote": "年精度；迄日取 1922 的下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "originalPositionKind": "military_command",
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍事學校校長屬邊界個案（T14 §4），R5 留經歷層"
+    },
+    {
+     "key": "carmona-war-minister-1923",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙政府",
+      "en": "Government of Portugal"
+     },
+     "title": {
+      "orig": "Ministro da Guerra（Governo de António Ginestal Machado）",
+      "zh-Hant": "戰爭部長（金納斯塔爾·馬沙多政府）",
+      "en": "Minister of War (Ginestal Machado government)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "Ministro da Guerra no Governo de António Ginestal Machado, em 1923",
+       "quoteLang": "pt",
+       "evidenceNote": "來源只寫 1923 年；年精度，迄日取下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "戰爭部屬四部、正職，但年精度無法證明任期 ≥90 天，且 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "carmona-military-tribunal-1924",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "第二領土軍事法庭",
+      "en": "2.º Tribunal Militar Territorial"
+     },
+     "title": {
+      "orig": "Presidente do 2.º Tribunal Militar Territorial",
+      "zh-Hant": "第二領土軍事法庭庭長",
+      "en": "President, 2nd Territorial Military Court"
+     },
+     "positionKind": "judicial",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "presidente do 2.º Tribunal Militar Territorial, em 1924",
+       "quoteLang": "pt",
+       "evidenceNote": "年精度；迄日取下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "carmona-foreign-minister-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙政府",
+      "en": "Government of Portugal"
+     },
+     "title": {
+      "orig": "Ministro dos Negócios Estrangeiros（Governo de Gomes da Costa）",
+      "zh-Hant": "外交部長（戈梅斯·達科斯塔政府）",
+      "en": "Minister of Foreign Affairs (Gomes da Costa government)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-06-01",
+      "end": "1926-07-06"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "assumiu, durante o mês de junho, a pasta dos Negócios Estrangeiros",
+       "quoteLang": "pt",
+       "evidenceNote": "月精度；迄日取下一月起日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "universalis-carmona",
+       "locator": "首段",
+       "quote": "et du général Carmona, ministre des Affaires étrangères",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-gomesdacosta",
+       "locator": "Biografia",
+       "quote": "Em 6 de julho de 1926, no decorrer de um atribulado Conselho de Ministros",
+       "quoteLang": "pt",
+       "evidenceNote": "迄日：Gomes da Costa 於此日將抗議的部長（含 Carmona）免職",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-gomesdacosta",
+       "locator": "Biografia",
+       "quote": "ouviram-se os protestos dos ministros Carmona, Ochoa e António Claro",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "museu-gomesdacosta",
+       "locator": "Biografia",
+       "quote": "Gomes da Costa demitiu-os de imediato",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "外交部屬四部、正職，但起日最早 1926-06-01（月精度）、迄日 1926-07-06，最長可能任期約 35 天，確定未達 R3③ 的 90 天，不是「無法證明」，歸 R5（審查改判，原 R6）"
+    },
+    {
+     "key": "carmona-war-minister-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "葡萄牙政府",
+      "en": "Government of Portugal"
+     },
+     "title": {
+      "orig": "Ministro da Guerra（Governo presidido por Carmona）",
+      "zh-Hant": "戰爭部長（卡爾莫納主持的政府）",
+      "en": "Minister of War (government headed by Carmona)"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1926-07-09",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "museu-carmona",
+       "locator": "Biografia",
+       "quote": "assumiu, a 9 de julho, a pasta da Guerra e a presidência do Ministério",
+       "quoteLang": "pt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "戰爭部屬四部、正職；起日明確但迄日缺，無法證明任期 ≥90 天，且 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:carmona-war-minister-1926",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；總統博物館（A）只寫 1926-07-09 接掌戰爭部與部長會議主席，未寫戰爭部長何時結束；Universalis（B）未提；Infopédia（Cloudflare 挑戰頁）、Britannica（403）未取得。Archontology（私人彙編，未評等）寫至 1926-11-29，僅列候選。",
+     "candidateCitations": [
+      {
+       "sourceKey": "archontology-carmona",
+       "locator": "Biography",
+       "quote": "war minister (9 Jul 1926 - 29 Nov 1926)",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:carmona-war-minister-1923",
+     "gapKind": "not_found",
+     "note": "待查證：A 級來源只寫「1923 年」，未寫日期級起訖，無法證明 ≥90 天；Archontology（未評等）列 1923-11-15 至 12-18，僅作候選，需官方（政府公報 Diário do Governo）或國家級傳記辭典核實。",
+     "candidateCitations": [
+      {
+       "sourceKey": "archontology-carmona",
+       "locator": "Biography",
+       "quote": "briefly served as war minister (15 Nov 1923 - 18 Dec 1923)",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:carmona-foreign-minister-1926",
+     "gapKind": "not_found",
+     "note": "待查證：A 級來源只寫「6 月期間」，月精度不足以證明 ≥90 天；Archontology（未評等）列 1926-06-03 至 07-06，僅作候選。 【retry 2026-11-15】迄日已由總統博物館 Gomes da Costa 傳記頁（A）得 1926-07-06（遭免職）；起日仍僅月精度。",
+     "candidateCitations": [
+      {
+       "sourceKey": "archontology-carmona",
+       "locator": "Biography",
+       "quote": "served as minister of foreign affairs (3 Jun 1926 - 6 Jul 1926)",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:partyRoles",
+     "gapKind": "not_found",
+     "note": "待查證：已查總統博物館（A）與 Universalis（B），皆未載任何政黨職務；博物館稱他在第一共和時期刻意保持「超越政治」的形象。本人名單內元首／首腦任期（1926–1945）已在 leader_records，不重建。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:headOfStateTitleDiscrepancy",
+     "gapKind": "not_found",
+     "note": "名單內 1926-07-09 至 1926-11-26 的元首紀錄標題為「)」（疑資料殘缺），總統博物館寫 7 月 9 日起實際行使元首職權、11 月 26 日以法令正式化、29 日代理就職；屬庫內標題問題，不在本批改動範圍，僅提醒。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 4 段／499 字（段數與字數已達標），但 position:carmona-war-minister-1926 仍缺迄日（待查證），未達最低標準。本輪（retry）已查來源類型：官方（總統博物館 Carmona 與 Gomes da Costa 傳記頁、政府歷史檔案頁 historico.portugal.gov.pt 為純外殼無內容、Diário da República 為 JS 外殼、parlamento.pt）、權威檔（id.loc.gov 403）、具名百科（Infopédia 挑戰頁）、學術（ap1.sib.uc.pt 無法解析）；能找到 1926 戰爭部長迄日的僅有 Archontology／Wikipedia 類（不合格），故未寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Carmona, Oscar（LoC Name Authority 站內搜尋）",
+     "url": "https://id.loc.gov/search/?q=Carmona%2C+Oscar",
+     "result": "unrated",
+     "note": "取得搜尋頁，未用於引文"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Óscar Carmona 總統府 ex-presidentes",
+     "url": "https://www.presidencia.pt/presidente/ex-presidentes/oscar-carmona/",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Presidência da República 歷任總統頁",
+     "url": "https://www.presidencia.pt/historia/presidentes-da-republica/",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "museu.presidencia.pt 猜測路徑 /pt/presidentes/oscar-carmona/",
+     "url": "https://museu.presidencia.pt/pt/presidentes/oscar-carmona/",
+     "result": "no_result",
+     "note": "HTTP 404，改從站內導覽找正確路徑"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica António Óscar de Fragoso Carmona",
+     "url": "https://www.britannica.com/biography/Antonio-Oscar-de-Fragoso-Carmona",
+     "result": "challenge_page",
+     "note": "HTTP 403「Just a moment」Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Infopédia Óscar Carmona（含 $oscar-carmona 兩種路徑）",
+     "url": "https://www.infopedia.pt/$oscar-carmona",
+     "result": "challenge_page",
+     "note": "三種路徑皆 Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Óscar Carmona Presidente da República 1926 biografia Presidência da República ministro da Guerra",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 結果多為百科鏡像與 Archontology；指出 museu.presidencia.pt 為官方傳記"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "museu.presidencia.pt Óscar Carmona biografia Presidente da República Portuguesa",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 未直接給出頁面，改讀首頁導覽"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "總統博物館首頁導覽 → 歷任總統傳記索引",
+     "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/",
+     "result": "found_A",
+     "note": "找到 presidentes-da-ditadura/oscar-carmona 路徑"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "總統博物館 Óscar Carmona 傳記與任期頁",
+     "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/presidentes-da-ditadura/oscar-carmona/",
+     "result": "found_A",
+     "note": "可抓原文；含 1923 戰爭部長、1926 外交部長、元首與連任"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopædia Universalis CARMONA ÓSCAR",
+     "url": "https://www.universalis.fr/encyclopedie/oscar-carmona/",
+     "result": "found_B",
+     "note": "具名作者 André Dessens；需 --compressed 才能取得文字"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Archontology Carmona（私人彙編）",
+     "url": "https://archontology.org/nations/portugal/port010/carmona.php",
+     "result": "unrated",
+     "note": "X 級，只作 gap 候選引文"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "Governo da Ditadura Militar 1926 Carmona presidente do Ministério ministro da Guerra 9 julho 1926 16 novembro 1926 governo.pt",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 未找到官方內閣名單頁；戰爭部長迄日未取得"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "Torre do Tombo digitarq 搜尋 Oscar Carmona",
+     "url": "https://digitarq.arquivos.pt/results?t=Oscar+Carmona",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "museu.presidencia.pt Gomes da Costa 傳記頁（找 Carmona 外交部長迄日）",
+     "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/presidentes-da-ditadura/gomes-da-costa/",
+     "result": "found_A",
+     "note": "取得 1926-07-06 免職記載；存為 museu-gomesdacosta",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "museu.presidencia.pt Mendes Cabeçadas 傳記頁",
+     "url": "https://museu.presidencia.pt/pt/conhecer/presidentes-da-republica-biografias/presidentes-da-ditadura/mendes-cabecadas/",
+     "result": "not_relevant",
+     "note": "無 Carmona 任期日期",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "historico.portugal.gov.pt 歷屆政府（Governos Provisórios／Constitucionais）",
+     "url": "https://historico.portugal.gov.pt/pt/o-governo/arquivo-historico/governos-provisorios.aspx",
+     "result": "no_result",
+     "note": "純外殼頁，無內容",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "portugal.gov.pt 歷屆政府",
+     "url": "https://www.portugal.gov.pt/pt/gc24/historico/governos-da-republica",
+     "result": "no_result",
+     "note": "HTTP 404",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "Diário da República Decreto 12740/1926",
+     "url": "https://diariodarepublica.pt/dr/detalhe/decreto/12740-1926-",
+     "result": "no_result",
+     "note": "JS 外殼頁，無法取得內容",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "id.loc.gov Carmona 權威檔",
+     "url": "https://id.loc.gov/authorities/names/n85098813.html",
+     "result": "blocked_403",
+     "note": "HTTP 403，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "parlamento.pt 首頁",
+     "url": "https://www.parlamento.pt/Paginas/default.aspx",
+     "result": "not_relevant",
+     "note": "Carmona 非議員，無相關頁",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "other",
+     "query": "Wikisource pt 站內搜尋 Carmona ministro da Guerra",
+     "url": "https://pt.wikisource.org/wiki/Special:Search?search=Carmona+ministro+da+Guerra",
+     "result": "no_result",
+     "note": "無 Diário do Governo 轉錄",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "academic",
+     "query": "Revista Portuguesa de História 45 artigo5（Univ. Coimbra）",
+     "url": "https://ap1.sib.uc.pt/bitstream/10316.2/35356/1/rph45_artigo5.pdf",
+     "result": "no_result",
+     "note": "主機名無法解析",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "other",
+     "query": "WebSearch：Carmona ministro da Guerra 1926 Presidente do Ministério decreto exoneração",
+     "url": null,
+     "result": "unrated",
+     "note": "結果僅 Wikipedia 類與 Archontology，不合格",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "other",
+     "query": "WebSearch：Carmona ministro da Guerra 1926 substituído Passos e Sousa",
+     "url": null,
+     "result": "unrated",
+     "note": "結果僅 Wikipedia 類與 Archontology，不合格；各說 11-16 與 11-29 不一",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "other",
+     "query": "WebSearch：Carmona ministro da Guerra 1923 Ginestal Machado 日期",
+     "url": null,
+     "result": "unrated",
+     "note": "僅 Wikipedia 類／Infopédia 摘要，不合格",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "tr-inonu",
+   "bioId": "01a1b492-3f0b-7ae0-abea-db47e3277815",
+   "name": "Mustafa İsmet İnönü",
+   "nameZh": "伊斯麥特·伊諾努",
+   "recordIds": [
+    "01a1aa4a-66a8-7b36-bda6-00523d5951cf",
+    "01a1aa4a-66a8-7fbf-86ee-e9fdd5e00046",
+    "01a1aa4a-66a9-78e9-b3b0-32c44c46b561",
+    "01a1aa4a-66a9-7d5e-a255-ab3920b02e21",
+    "01a1aa4a-66aa-71d2-8bfb-b01ea48e426c",
+    "01a1aa4a-66aa-7676-8f43-5fa5f375e7e7",
+    "01a1aa4a-66aa-7afa-a3b7-eabdd68b22f9",
+    "01a1aa4a-659e-7e80-970b-49e1321e81bb",
+    "01a1aa4a-659f-70ea-9cea-9871f9c9bc1a"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-09-24",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、軍校與加入統一與進步委員會",
+      "en": "Birth, military schooling and the Committee of Union and Progress"
+     },
+     "body": {
+      "zh-Hant": "伊諾努1884年9月24日生於伊茲密爾。他1903年以第一名從軍事工程學校畢業，成為砲兵少尉；1906年又以第一名從參謀學校畢業，以參謀上尉身分派往埃迪爾內第2軍。1907年他加入統一與進步委員會，1908年升為「kolağası」。",
+      "en": "İnönü was born in İzmir on 24 September 1884. He graduated first in his class from the military engineering school in 1903 as an artillery second lieutenant, and again first from the General Staff school in 1906, being posted as a staff captain to the 2nd Army at Edirne. He joined the Committee of Union and Progress in 1907 and became a kolağası in 1908."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "olarak 24 Eylül 1884 tarihinde İzmir’de",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1903’te topçu teğmeni olarak birincilikle bitirdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1906’da Erkân-ı Harbiye Mektebi’nden gene birincilikle mezun olarak",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "kurmay yüzbaşı rütbesiyle Edirne’deki 2. Ordu’nun 8. Alayı’nda",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "İttihat ve Terakki Cemiyetine üye oldu (1907)",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1908’de kolağası oldu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰爭、國民議會與西線指揮",
+      "en": "Wars, the Grand National Assembly and the Western Front"
+     },
+     "body": {
+      "zh-Hant": "1909年他參與鎮壓3月31日事件的行動軍，1910至1913年參加鎮壓葉門叛亂。1920年4月23日他以埃迪爾內議員身分加入大國民議會，5月3日出任參謀總部部長；10月25日接替阿里·福阿德帕夏，掌管西線北段。1921年1月與4月的第一、第二伊諾努戰役中，他阻止了希臘軍隊向安納托利亞內陸推進。",
+      "en": "In 1909 he served in the Action Army that suppressed the 31 March Incident, and in 1910-1913 he took part in the operations against the Yemen revolt. On 23 April 1920 he joined the Grand National Assembly as deputy for Edirne, and on 3 May became Minister of the General Staff; on 25 October he replaced Ali Fuad Pasha in command of the northern sector of the Western Front. In the First and Second Battles of İnönü in January and April 1921 he halted the Greek army's advance into inner Anatolia."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "31 Mart Olayı (13 Nisan 1909) olarak bilinen ayaklanmayı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Hareket Ordusu’nda görev aldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1910–1913 yılları arasında Yemen İsyanı’nın bastırılması harekâtına katıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "23 Nisan 1920’de Büyük Millet Meclisi’ne Edirne mebusu olarak katıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "3 Mayıs’ta İcra Vekilleri Heyeti’nde Erkân-ı Harbiye-i Umumiye Vekili oldu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "25 Ekim 1920’de Ali Fuad Paşa’nın yerine Batı Cephesi Kuzey kesimi kumandanlığı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Ocak ve Nisan 1921’de I. ve II. İnönü savaşlarında",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Yunan ordusunun Anadolu içlerine ilerleyişini durdurdu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "外交部長、洛桑與總理任期",
+      "en": "Foreign minister, Lausanne and the premiership"
+     },
+     "body": {
+      "zh-Hant": "1922年，他在穆達尼亞停戰談判中代表大國民議會，同年出任外交部長，並以外交部長兼土耳其代表團團長身分赴洛桑和會。1923年至1924年間，他在首屆共和國政府任總理，同時兼任人民黨代理主席。1934年姓氏法頒布後，他取得阿塔圖克所賜的伊諾努姓氏。據一份學術論文，1923年10月30日至1937年11月1日間成立的八屆政府中，他出任其中七屆的總理。",
+      "en": "In 1922 he represented the Grand National Assembly at the Mudanya armistice talks and became Foreign Minister that year; as Foreign Minister and head of the Turkish delegation he went to the Lausanne Peace Conference. In 1923-1924 he was prime minister of the first republican government and also acting chairman of the People's Party. When the Surname Law came in 1934 he took the surname İnönü given by Atatürk. According to an academic article he was prime minister of seven of the eight governments formed between 30 October 1923 and 1 November 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Mudanya Ateşkes toplantısında Büyük Millet Meclisi’ni temsil etti",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1922'de hariciye vekili oldu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Dışişleri Bakanı ve Türk heyeti başkanı olarak gönderildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1923–1924 yıllarında ilk hükûmette başbakan olarak görev aldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Halk Fırkası Genel Başkan Vekilliği’ni üstlendi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1934’te Soyadı Kanunu çıktığında Atatürk’ün verdiği İnönü soyadını",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "30 Ekim 1923 tarihinden 01.11.1937’ye kadar",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "kurulan sekiz Türkiye Cumhuriyeti hükûmetinden yedisinin Başbakanı olmuştur",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1938-11-11",
+      "end": "1972-05-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統、人民共和黨終身主席與晚年",
+      "en": "President, permanent chairman of the CHP and later years"
+     },
+     "body": {
+      "zh-Hant": "阿塔圖克去世後，伊諾努1938年11月11日被大國民議會選為第二任總統。12月26日，共和人民黨臨時黨代表大會選他為不可更換的黨主席，並授予「民族領袖」稱號。他在二戰期間使土耳其置身戰禍之外，並在1950年大選後把政權交給民主黨，其後擔任主要反對黨主席直到1960年。1972年5月8日他辭去共和人民黨主席職務。",
+      "en": "After Atatürk's death, İnönü was elected the second President by the Grand National Assembly on 11 November 1938. On 26 December the CHP's extraordinary congress elected him permanent chairman and gave him the title National Chief. He kept Turkey out of the Second World War, handed power to the Democrat Party after the 1950 elections, and led the main opposition party until 1960. On 8 May 1972 he resigned the CHP chairmanship."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Atatürk’ün ölümünden sonra 1938 yılında Türkiye Büyük Millet Meclisi tarafından",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Cumhurbaşkanlığı",
+       "quote": "11 Kasım’da Türkiye’nin 2. Cumhurbaşkanı seçilmiştir",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "26 Aralık 1938’de toplanan I. Olağanüstü Kurultayı’nda",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "partinin değişmez genel başkanı seçilerek Millî Şef unvanını aldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Türkiye’yi savaş felâketinin dışında tutmayı başaran",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1950 genel seçimlerinden sonra CHP, iktidarı Demokrat Parti’ye bırakırken",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1960 yılına kadar ana muhalefet partisi genel başkanlığı yaptı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "8 Mayıs 1972’de CHP Genel Başkanlığından çekildi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "inonu-edirne-deputy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "土耳其大國民議會",
+      "en": "Grand National Assembly of Turkey"
+     },
+     "title": {
+      "orig": "Edirne Milletvekili（TBMM）",
+      "zh-Hant": "埃迪爾內議員（大國民議會）",
+      "en": "Deputy for Edirne, Grand National Assembly"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1920-04-23",
+      "end": "1923-08-11"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "23 Nisan 1920’de Büyük Millet Meclisi’ne Edirne mebusu olarak katıldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "11 Ağustos 1923’te çalışmalarına başlayan",
+       "quoteLang": "tr",
+       "evidenceNote": "迄日依第二屆議會開議日推得（推論）：他自此以馬拉蒂亞議員身分入第二屆議會",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "ikinci Türkiye Büyük Millet Meclisi’ne Malatya mebusu olarak girdi",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "inonu-general-staff-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "土耳其政府",
+      "en": "Government of Turkey"
+     },
+     "title": {
+      "orig": "Erkân-ı Harbiye-i Umumiye Vekili",
+      "zh-Hant": "參謀總部部長（Erkân-ı Harbiye-i Umumiye Vekili）",
+      "en": "Minister of the General Staff"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1920-05-03",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "3 Mayıs’ta İcra Vekilleri Heyeti’nde Erkân-ı Harbiye-i Umumiye Vekili oldu",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Reason": "參謀總部部長是否等同 R3 四部（國防／陸軍）或 R4 國家級最高軍職，文件未涵蓋；且迄日缺",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "T14 文件未涵蓋『參謀總部部長』（Erkân-ı Harbiye-i Umumiye Vekâleti）的歸類"
+    },
+    {
+     "key": "inonu-western-front-north",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "西線（安卡拉政府軍）",
+      "en": "Western Front (Ankara government forces)"
+     },
+     "title": {
+      "orig": "Batı Cephesi Kuzey Kesimi Kumandanı",
+      "zh-Hant": "西線北段司令",
+      "en": "Commander, Northern Sector of the Western Front"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1920-10-25",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "25 Ekim 1920’de Ali Fuad Paşa’nın yerine Batı Cephesi Kuzey kesimi kumandanlığı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區司令類且有戰役連結（1921 年 1 月、4 月伊諾努戰役，TCCB），但來源寫「北段」，戰區級職位等級未明寫，且迄日缺、regimeId 未查",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "inonu-foreign-minister-1922",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "土耳其政府",
+      "en": "Government of Turkey"
+     },
+     "title": {
+      "orig": "Hariciye Vekili",
+      "zh-Hant": "外交部長（Hariciye Vekili）",
+      "en": "Minister of Foreign Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-10-26",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "1922'de hariciye vekili oldu",
+       "quoteLang": "tr",
+       "evidenceNote": "年精度；未寫迄日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "26 Ekim 1922’de Türkiye Büyük Millet Meclisi tarafından Hariciye vekilliğine",
+       "quoteLang": "tr",
+       "evidenceNote": "起日（兩筆片段合併為同句完整引文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "İsmet Paşa ayrıca Hariciye vekilliği görevini de üstlendi",
+       "quoteLang": "tr",
+       "evidenceNote": "1923-10-30 組閣後仍兼外交部長；迄日未寫",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職；起日 1922-10-26（日精度，TDV 轉載 B）但迄日缺，無法證明任期 ≥90 天，且 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "inonu-chp-vice-chair-1923",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "人民黨（後稱共和人民黨）",
+      "en": "People's Party (later Republican People's Party)"
+     },
+     "title": {
+      "orig": "Halk Fırkası Genel Başkan Vekili",
+      "zh-Hant": "人民黨代理主席（Genel Başkan Vekili）",
+      "en": "Acting Chairman of the People's Party"
+     },
+     "period": {
+      "start": "1923-11-19",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "Halk Fırkası Genel Başkan Vekilliği’ni üstlendi",
+       "quoteLang": "tr",
+       "evidenceNote": "與「1923–1924 yıllarında … başbakan」同句（aynı zamanda）；引文本身無日期，起日見下一筆；未寫迄日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "Halk Fırkası başkanlığına da vekâleten tayin edildi (19 Kasım 1923)",
+       "quoteLang": "tr",
+       "evidenceNote": "起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kure-inonu",
+       "locator": "Mustafa İsmet İnönü (TDV)",
+       "quote": "Cumhuriyet Halk Partisi başkan vekilliğinden de alınan",
+       "quoteLang": "tr",
+       "evidenceNote": "1937 年 9 月前後被免，來源未寫確切日期，故迄日仍缺",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "inonu-chp-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "共和人民黨（CHP）",
+      "en": "Republican People's Party (CHP)"
+     },
+     "title": {
+      "orig": "CHP Genel Başkanı（1938-12-26 起為 değişmez genel başkan）",
+      "zh-Hant": "共和人民黨主席（1938年12月26日起為不可更換的黨主席）",
+      "en": "Chairman of the CHP (permanent chairman from 26 December 1938)"
+     },
+     "period": {
+      "start": "1938-12-26",
+      "end": "1972-05-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "tccb-inonu",
+       "locator": "Biyografi",
+       "quote": "partinin değişmez genel başkanı seçilerek Millî Şef unvanını aldı",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Cumhurbaşkanlığı",
+       "quote": "26 Aralık 1938 tarihinde olağan",
+       "quoteLang": "tr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lueleci-inonu",
+       "locator": "Mustafa İsmet İnönü (1884-1973)",
+       "quote": "8 Mayıs 1972’de CHP Genel Başkanlığından çekildi",
+       "quoteLang": "tr",
+       "evidenceNote": "迄日依來源『çekildi』日；1950–1960 為主要反對黨主席（TCCB）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "role:inonu-chp-vice-chair-1923",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TCCB（A）只寫 1923–1924 年他任總理「同時」兼人民黨副主席（Genel Başkan Vekili），未寫此職迄日；Lüleci（B）未提；TDV İslâm Ansiklopedisi（403 挑戰頁）未取得。 【retry】TDV 轉載頁（B）得起日 1923-11-19；迄日只寫 1937 年被免（無日期）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:inonu-general-staff-minister",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TCCB 與 Lüleci 只寫 1920 年起任參謀總部部長，未寫何時卸任（TDV 403 未取得）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:inonu-western-front-north",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Lüleci（B）寫 1920-10-25 起接掌西線北段，TCCB 寫「Garp Cephesi Komutanlığı」但無日期，兩者的職位範圍（北段／西線整體）與迄日均未寫明。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:inonu-foreign-minister-1922",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；TCCB 只寫「1922'de hariciye vekili oldu」（年精度），未寫月日與迄日；TDV（403）未取得。 【retry】TDV（kureansiklopedi 轉載，B）得起日 1922-10-26，迄日仍未寫。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:inonu-lausanne-delegation-head",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；TCCB 寫他以外交部長與土耳其代表團團長身分赴洛桑和會，未寫起迄日期；不寫入職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:lausanneSigningDate",
+     "gapKind": "conflict",
+     "note": "兩份已抓來源日期不同：TCCB 寫簽署洛桑條約為 1923-07-24，Lüleci 文中寫「23 Temmuz 1924」（年份疑為筆誤）；正文不寫條約簽署日，待第三份 A 級來源（如 TBMM、條約文本）核實。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 4 段／588 字（段數字數已達標），但 position:inonu-general-staff-minister、inonu-western-front-north、inonu-foreign-minister-1922 與 role:inonu-chp-vice-chair-1923 仍缺迄日（待查證）。本輪（retry）已查：具名百科（TDV 條目經 kureansiklopedi 轉載，補得起日與埃迪爾內議員迄日）、官方（tbmm.gov.tr 議員頁 404／連線重置、www5.tbmm 為無內容外殼、tccb.gov.tr 歷任政府頁、ataturkansiklopedisi.gov.tr 為 JS 外殼）、學術（meforum 書評）；TDV 原站 403 未繞過；迄日僅見未評等來源，故未寫入。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Inonu Ismet（GND／lobid.org）",
+     "url": "https://lobid.org/gnd/search?q=Inonu+Ismet&format=json&size=3",
+     "result": "found_A",
+     "note": "權威檔確認生卒 1884-09-24／1973-12-25，未用於引文"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "TDV İslâm Ansiklopedisi İnönü, Mustafa İsmet（猜測路徑 /ismet-inonu）",
+     "url": "https://islamansiklopedisi.org.tr/ismet-inonu",
+     "result": "challenge_page",
+     "note": "HTTP 403 Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "TBMM 議員頁 İsmet İnönü（猜測路徑）",
+     "url": "https://www.tbmm.gov.tr/Milletvekilleri/Ismet-Inonu",
+     "result": "no_result",
+     "note": "HTTP 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "總統府 Cumhurbaşkanlarımız 猜測路徑 /turkiye_cumhuriyeti_cumhurbaskanlari/ismet_inonu/",
+     "url": "https://www.tccb.gov.tr/receptayyiperdogan/turkiye_cumhuriyeti_cumhurbaskanlari/ismet_inonu/",
+     "result": "not_relevant",
+     "note": "回傳的是現任總統頁，非本人"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica İsmet İnönü",
+     "url": "https://www.britannica.com/biography/Ismet-Inonu",
+     "result": "challenge_page",
+     "note": "HTTP 403 Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "İsmet İnönü biyografi Başvekil Cumhuriyet Halk Partisi Genel Başkanı 1938 TBMM",
+     "url": null,
+     "result": "found_B",
+     "note": "WebSearch（土文）找到 DergiPark 論文與 TDV 條目網址"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "總統府 İsmet İnönü 傳記",
+     "url": "https://www.tccb.gov.tr/cumhurbaskanlarimiz/ismet_inonu/",
+     "result": "found_A",
+     "note": "官方歷任總統頁，可抓原文"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Lüleci，İsmet İnönü’nün Cumhurbaşkanlığı Seçimleri（DergiPark PDF）",
+     "url": "https://dergipark.org.tr/en/download/article-file/3212364",
+     "result": "found_B",
+     "note": "具名作者學術論文，pdftotext 轉文字"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "İsmet İnönü ataturkansiklopedisi.gov.tr OR tbmm.gov.tr OR atam.gov.tr biyografi Başvekil Genel Başkan",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch（土文）未出現官方站點；僅百科鏡像與書評"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Atatürk Ansiklopedisi 條目（猜測路徑）",
+     "url": "https://ataturkansiklopedisi.gov.tr/bilgi/ismet-inonu/",
+     "result": "no_result",
+     "note": "頁面為前端殼，無正文"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Heper 專書書評（Middle East Quarterly，Pipes）",
+     "url": "https://www.meforum.org/1324/ismet-inonu-the-making-of-a-turkish-statesman",
+     "result": "found_B",
+     "note": "書評，僅確認生涯概況，未用於引文（避免與官方日期衝突）"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "DergiPark 另一篇 İnönü 與女議員論文",
+     "url": "https://dergipark.org.tr/en/download/article-file/879109",
+     "result": "not_relevant",
+     "note": "主題為女議員，與本人任期無關，未採用"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "biyografya 人物頁",
+     "url": "https://www.biyografya.com/biyografi/10700?lang=en",
+     "result": "challenge_page",
+     "note": "HTTP 403 挑戰頁，未繞過"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "kureansiklopedi İNÖNÜ, Mustafa İsmet（TDV 條目轉載）",
+     "url": "https://kureansiklopedi.com/tr/detay/inonu-mustafa-ismet",
+     "result": "found_B",
+     "note": "具名作者 Atilla Çetin；補得 1922-10-26、1923-11-19、1923-08-11；存為 kure-inonu",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "TDV İslâm Ansiklopedisi 原站",
+     "url": "https://islamansiklopedisi.org.tr/inonu-mustafa-ismet",
+     "result": "blocked_403",
+     "note": "HTTP 403，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "TBMM 議員頁 /Milletvekilleri/Ismet-Inonu",
+     "url": "https://www.tbmm.gov.tr/Milletvekilleri/Ismet-Inonu",
+     "result": "no_result",
+     "note": "HTTP 404",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "TBMM milletvekillerimiz_sd.bilgi（www5，p_sicil 猜測）",
+     "url": "https://www5.tbmm.gov.tr/develop/owa/milletvekillerimiz_sd.bilgi?p_donem=1&p_sicil=2003",
+     "result": "no_result",
+     "note": "200 但無該人內容",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "TBMM 歷屆政府 /hukumetler",
+     "url": "https://www.tbmm.gov.tr/hukumetler",
+     "result": "no_result",
+     "note": "空頁",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "TBMM 議員 Albümü",
+     "url": "https://www.tbmm.gov.tr/Yayinlar/Milletvekilleri-Albumu",
+     "result": "no_result",
+     "note": "連線重置",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "tccb.gov.tr 歷任總統／政府頁",
+     "url": "https://www.tccb.gov.tr/receptayyiperdogan/hukumetler/",
+     "result": "not_relevant",
+     "note": "現任政府頁，無歷史任期",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Atatürk Ansiklopedisi 條目",
+     "url": "https://ataturkansiklopedisi.gov.tr/bilgi/inonu-mustafa-ismet/",
+     "result": "no_result",
+     "note": "JS 外殼，無內容",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "atam.gov.tr 首頁",
+     "url": "https://www.atam.gov.tr/",
+     "result": "not_relevant",
+     "note": "無人物條目",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "ttk.gov.tr 首頁",
+     "url": "https://www.ttk.gov.tr/",
+     "result": "not_relevant",
+     "note": "無相關",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "named_encyclopedia",
+     "query": "HMDB 標示頁（İnönü）",
+     "url": "https://www.hmdb.org/m.asp?m=83979",
+     "result": "blocked_403",
+     "note": "HTTP 403，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "academic",
+     "query": "meforum 書評（重抓）",
+     "url": "https://www.meforum.org/1324/ismet-inonu-the-making-of-a-turkish-statesman",
+     "result": "not_relevant",
+     "note": "書評無任期日期",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "other",
+     "query": "WebSearch：İsmet İnönü Erkân-ı Harbiye Vekili 1921 Hariciye Vekili görev süresi TBMM",
+     "url": null,
+     "result": "unrated",
+     "note": "僅 Wikipedia 類與 biyografiler.com（未評等）；曾見 1921-08-03 卸參謀總部之說，不合格故未寫",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "other",
+     "query": "kureansiklopedi 原文語言檢索（Hariciye vekili／Genel Başkan Vekili）",
+     "url": null,
+     "result": "found_B",
+     "note": "已讀全文，無更多迄日",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "other",
+     "query": "DergiPark Lüleci 全文重檢（Garp Cephesi／Hariciye）",
+     "url": "https://dergipark.org.tr/en/download/article-file/3212364",
+     "result": "not_relevant",
+     "note": "無新增任期日期",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "cl-alessandri",
+   "bioId": "9f340844-7855-4a49-8095-93b6379958c9",
+   "name": "Arturo Alessandri Palma",
+   "nameZh": "阿圖羅·亞歷山德里",
+   "recordIds": [
+    "df4304c4-6adc-44a2-ba5b-01e82d786ee0",
+    "33d592f1-2372-4ee2-b685-e09fa561aae4",
+    "4c5b427a-e281-4edf-bde4-5bc057be4770",
+    "44fc1372-90d9-4fbf-91bc-cf2991701c3b",
+    "ba0fa9c2-0bb6-418d-98a5-e7b8883339b1",
+    "fc8a7812-a099-4c01-b917-4468dcca3304"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1868-12-20",
+      "end": "1898-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、律師資格與進入政壇",
+      "en": "Origins, law degree and entry into politics"
+     },
+     "body": {
+      "zh-Hant": "亞歷山德里1868年12月20日生於林阿雷斯的隆加維莊園。他在智利大學法學院就讀，1893年1月12日取得律師資格。他很年輕就加入自由黨，1897年首次當選眾議員，此後數十年擔任眾議員與參議員。",
+      "en": "Alessandri was born on 20 December 1868 at the Longaví estate in Linares. He studied law at the University of Chile and qualified as a lawyer on 12 January 1893. He joined the Liberal Party while still very young and was first elected deputy in 1897, then served as deputy and senator for several decades."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Reseña biográfica",
+       "quote": "Nació el 20 de diciembre de 1868 en la Hacienda Longaví, en Linares",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Estudios y vida laboral",
+       "quote": "ingresó a la Escuela de Derecho de la Universidad de Chile",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Estudios y vida laboral",
+       "quote": "se recibió de abogado el 12 de enero de 1893",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Siendo aún muy joven ingresó al Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "memoria-alessandri",
+       "locator": "Presentación",
+       "quote": "resultando electo diputado en 1897",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Fue diputado y senador por varias décadas, desde 1897 hasta su muerte en 1950",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1913-06-16",
+      "end": "1921-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "財政部長、內政部長與北方參議員",
+      "en": "Finance and Interior minister, senator for Tarapacá"
+     },
+     "body": {
+      "zh-Hant": "1913年6月16日至11月17日，他在巴羅斯·盧科政府擔任財政部長。1915年他當選塔拉帕卡參議員，競選風格強調民眾動員。1918年4月22日至9月6日，他在桑富恩特斯政府出任內政部長。1920年，自由派改革者、激進黨與民主黨組成的聯盟推舉他為總統候選人。",
+      "en": "From 16 June to 17 November 1913 he was Finance Minister under Ramón Barros Luco. In 1915 he was elected senator for Tarapacá with a decidedly popular campaign. From 22 April to 6 September 1918 he was Interior Minister under Juan Luis Sanfuentes. In 1920 a coalition of reformist Liberals, Radicals and Democrats proclaimed him its presidential candidate."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "ministro de Hacienda durante el gobierno de Ramón Barros Luco",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Ejerció el cargo entre el 16 de junio al 17 de noviembre de 1913",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "En 1915 se presentó como candidato a Senador por Tarapacá",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1915-1921",
+       "quote": "En 1915 fue electo senador por Tarapacá, período 1915-1921",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Le imprimió a su campaña una orientación decididamente popular",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Ejerció dicha cartera entre el 22 de abril al 6 de septiembre de 1918",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "como ministro del Interior",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "En 1920, la coalición formada por liberales reformistas, radicales y demócratas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "lo proclamó candidato Presidente de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-12-23",
+      "end": "1925-10-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第一個總統任期與1925年憲法",
+      "en": "First presidency and the 1925 Constitution"
+     },
+     "body": {
+      "zh-Hant": "1920年12月23日他就任總統。1924年9月8日，國會因擔心軍事政變，在一日內通過先前否決的全部法案；軍事委員會仍要求解散國會，亞歷山德里選擇辭職，並於9月10日前往阿根廷。1925年3月20日他被請回完成任期，其後產生的1925年憲法把總統任期由5年延為6年。他的任期記載至1925年10月1日。",
+      "en": "He took office as President on 23 December 1920. On 8 September 1924 Congress, fearing a military coup, passed in a single day all the bills it had previously rejected; when the Military Committee still demanded the dissolution of Congress, Alessandri chose to resign and left for Argentina on 10 September. On 20 March 1925 he was asked to return to complete his term, and the 1925 Constitution that followed lengthened the presidential term from five to six years. His term is recorded as ending on 1 October 1925."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "El 23 de diciembre de 1920 tomó posesión de la Presidencia de la República",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "El Congreso, temiendo un golpe militar, se reunió",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "el 8 de septiembre de 1924- votó favorablemente todos los proyectos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "todos los proyectos que había rechazado anteriormente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "continuó funcionando y pidió la disolución del Congreso Nacional",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "Ante esto, Alessandri prefirió renunciar",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "y partió a Argentina el 10 de septiembre",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "20 de marzo de 1925, fecha en que se le pidió a Alessandri que regresara",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "Bajo estos principios, surgió la Constitución de 1925",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "aumentó el período presidencial de 5 a 6 años",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Cargos públicos",
+       "quote": "20 de marzo de 1925 - 1 de octubre de 1925",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1927-07-21",
+      "end": "1950-08-24"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "流亡、第二任期與晚年",
+      "en": "Exile, second presidency and later years"
+     },
+     "body": {
+      "zh-Hant": "伊瓦涅斯執政期間（1927年7月21日至1931年7月26日），他流亡歐洲。他於1932年12月24日再度就任總統，任期至1938年12月24日。1944年11月8日他經補選重返參議院，並自1945年5月22日起擔任參議院議長，1950年8月24日在聖地牙哥去世。",
+      "en": "During Ibáñez's presidency (21 July 1927 to 26 July 1931) he lived in exile in Europe. He took office as President again on 24 December 1932 and handed over power on 24 December 1938. He returned to the Senate through a by-election on 8 November 1944, became its president from 22 May 1945, and died in Santiago on 24 August 1950."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "entre el 21 de julio de 1927 y el 26 de julio de 1931",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Primera Presidencia",
+       "quote": "se exilió en Europa",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Segunda Presidencia",
+       "quote": "asumió el 24 de diciembre de 1932, por el periodo 1932 a 1938",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Segunda Presidencia",
+       "quote": "El 24 de diciembre de 1938, Alessandri le entregó el mando del país",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1941-1949",
+       "quote": "El 8 de noviembre de 1944 volvió al Senado mediante la elección complementaria",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1941-1949",
+       "quote": "presidente a contar de esta última fecha",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Cargos públicos",
+       "quote": "Presidente del Senado 22 de mayo de 1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Reseña biográfica",
+       "quote": "Murió el 24 de agosto de 1950, en Santiago",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "alessandri-hacienda-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利政府（巴羅斯·盧科總統任內）",
+      "en": "Government of Chile (Barros Luco presidency)"
+     },
+     "title": {
+      "orig": "Ministro de Hacienda",
+      "zh-Hant": "財政部長",
+      "en": "Minister of Finance"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1913-06-16",
+      "end": "1913-11-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Cargos públicos",
+       "quote": "Ministro de Hacienda 16 de junio de 1913 - 17 de noviembre de 1913",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Ejerció el cargo entre el 16 de junio al 17 de noviembre de 1913",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職、日精度可證明 ≥90 天（154 天），來源 1 筆 A；僅 regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "alessandri-interior-1918",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利政府（桑富恩特斯總統任內）",
+      "en": "Government of Chile (Sanfuentes presidency)"
+     },
+     "title": {
+      "orig": "Ministro del Interior",
+      "zh-Hant": "內政部長",
+      "en": "Minister of the Interior"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1918-04-22",
+      "end": "1918-09-06"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Cargos públicos",
+       "quote": "Ministro de Interior 22 de abril de 1918 - 6 de septiembre de 1918",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria política",
+       "quote": "Ejerció dicha cartera entre el 22 de abril al 6 de septiembre de 1918",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職、日精度可證明 ≥90 天（137 天），來源 1 筆 A；僅 regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "alessandri-senate-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利參議院",
+      "en": "Senate of Chile"
+     },
+     "title": {
+      "orig": "Presidente del Senado",
+      "zh-Hant": "參議院議長",
+      "en": "President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1945-05-22",
+      "end": "1949-05-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Cargos públicos",
+       "quote": "Presidente del Senado 22 de mayo de 1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1941-1949",
+       "quote": "presidente a contar de esta última fecha hasta el 15 de mayo de 1949",
+       "quoteLang": "es",
+       "evidenceNote": "BCN 內文寫至 1949-05-15；頁首列表寫 1949-05-31，採內文",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "alessandri-diputado-1906",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利國會（眾議院）",
+      "en": "Chamber of Deputies of Chile"
+     },
+     "title": {
+      "orig": "Diputado (Partido Liberal)",
+      "zh-Hant": "眾議員（自由黨）",
+      "en": "Deputy (Liberal Party)"
+     },
+     "period": {
+      "start": "1906-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Diputado 1906-1909 Curicó y Vichuquén Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": "年精度；屆期 1906-1909，迄日依 Q3 取 1910-01-01（審查改，原取 1909-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 逐屆標明政黨為 Partido Liberal（Curicó y Vichuquén）",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-diputado-1909",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利國會（眾議院）",
+      "en": "Chamber of Deputies of Chile"
+     },
+     "title": {
+      "orig": "Diputado (Partido Liberal)",
+      "zh-Hant": "眾議員（自由黨）",
+      "en": "Deputy (Liberal Party)"
+     },
+     "period": {
+      "start": "1909-01-01",
+      "end": "1913-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Diputado 1909-1912 Curicó y Vichuquén Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": "年精度；屆期 1909-1912，迄日依 Q3 取 1913-01-01；BCN 此屆列兩次，內容相同",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-diputado-1912",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利國會（眾議院）",
+      "en": "Chamber of Deputies of Chile"
+     },
+     "title": {
+      "orig": "Diputado (Partido Liberal)",
+      "zh-Hant": "眾議員（自由黨）",
+      "en": "Deputy (Liberal Party)"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": "1913-07-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Diputado 1912-1915 Curicó y Vichuquén Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": "年精度起日；屆期 1912-1915，但內文寫 1913 年 6 月中離任，迄日見下一筆",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1912-1915",
+       "quote": "Dejó su cargo a mediados de junio de 1913",
+       "quoteLang": "es",
+       "evidenceNote": "月精度；迄日依 Q3 取 1913-07-01（原依屆期寫 1915-01-01）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-senador-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利參議院",
+      "en": "Senate of Chile"
+     },
+     "title": {
+      "orig": "Senador (Partido Liberal)",
+      "zh-Hant": "參議員（自由黨，塔拉帕卡）",
+      "en": "Senator for Tarapacá (Liberal Party)"
+     },
+     "period": {
+      "start": "1915-01-01",
+      "end": "1920-12-23"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Término de periodo: 23 de diciembre de 1920",
+       "quoteLang": "es",
+       "evidenceNote": "1915 年起（年精度）；迄日為 BCN 載明的『Término de periodo』，1918 年 4–9 月因任內政部長暫離席位",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "1920 Tarapacá Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1915-1921",
+       "quote": "En 1915 fue electo senador por Tarapacá, período 1915-1921",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-senador-1926",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利參議院",
+      "en": "Senate of Chile"
+     },
+     "title": {
+      "orig": "Senador (Partido Liberal)",
+      "zh-Hant": "參議員（自由黨，塔拉帕卡與安托法加斯塔）",
+      "en": "Senator for Tarapacá and Antofagasta (Liberal Party)"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": "1926-05-12"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1926-1934",
+       "quote": "En 1926 fue electo nuevamente senador",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1926-1934",
+       "quote": "el 12 de mayo de 1926, el Senado acordó aceptar su dimisión",
+       "quoteLang": "es",
+       "evidenceNote": "起日僅知 1926 年（年精度）；迄日為參議院接受辭職日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Primera Agrupación Provincial Tarapacá y Antofagasta Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-senador-1932",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利參議院",
+      "en": "Senate of Chile"
+     },
+     "title": {
+      "orig": "Senador (Partido Liberal)",
+      "zh-Hant": "參議員（自由黨，補缺）",
+      "en": "Senator (Liberal Party), by-election replacement"
+     },
+     "period": {
+      "start": "1932-05-01",
+      "end": "1932-12-24"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Legislatura 1926-1934",
+       "quote": "Volvió al Senado en mayo de 1932",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Término de periodo: 24 de diciembre de 1932",
+       "quoteLang": "es",
+       "evidenceNote": "迄日為 BCN 載明的『Término de periodo』，即再度就任總統之日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Primera Agrupación Provincial Tarapacá y Antofagasta Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "alessandri-senador-1941",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "智利參議院",
+      "en": "Senate of Chile"
+     },
+     "title": {
+      "orig": "Senador (Partido Liberal)",
+      "zh-Hant": "參議員（自由黨，庫里科、塔爾卡、毛萊與利納雷斯）",
+      "en": "Senator for Curicó, Talca, Maule and Linares (Liberal Party)"
+     },
+     "period": {
+      "start": "1944-11-08",
+      "end": "1950-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Inicio de periodo: 8 de noviembre de 1944",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Senador 1941-1949",
+       "quoteLang": "es",
+       "evidenceNote": "BCN 只寫屆期 1941-1949；迄日依年精度取 1950-01-01（Q3）；實際 1949 年改任下一屆",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bcn-alessandri",
+       "locator": "Trayectoria Parlamentaria",
+       "quote": "Sexta Agrupación Provincial Curicó, Talca, Maule y Linares Partido Liberal",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；BCN 標明 Partido Liberal",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:alessandri-senate-president",
+     "gapKind": "not_found",
+     "note": "BCN 同一頁內矛盾：頁首列表「Presidente del Senado 22 de mayo de 1945 - 31 de mayo de 1949」，內文寫至 1949-05-15；僅單一來源（非兩份來源互相矛盾），已採內文日期，待另一份 A／B 來源（參議院官方紀錄）核實。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:presidencyEnd1925",
+     "gapKind": "not_found",
+     "note": "BCN 同一頁內矛盾：頁首與清單寫 1925-10-01 結束第二段任期，內文寫「2 de octubre de 1925」辭職；名單 recordId 為 1925-10-01，正文採 BCN 清單日期。待另一份 A／B 來源核實。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:alessandri-banco-central-councillor",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；BCN 只寫 1926 年他為「dedicarse a sus labores de Consejero del Banco Central」辭去參議員，未寫入職與離職日期；Memoria Chilena 未提。未寫入職位。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:partyOffices",
+     "gapKind": "not_found",
+     "note": "待查證：BCN 與 Memoria Chilena 只稱他是自由黨成員與 1920 年自由聯盟候選人，未載自由黨黨內職務（如主席）的任期；Britannica（403 挑戰頁）、DBE（頁面無內容）未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Arturo Alessandri Palma 智利國會圖書館 Reseñas biográficas",
+     "url": "https://www.bcn.cl/historiapolitica/resenas_parlamentarias/wiki/Arturo_Alessandri_Palma",
+     "result": "found_A",
+     "note": "官方人物頁，含歷任職位日期與逐屆政黨"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "Memoria Chilena 猜測文章 w3-article-3398",
+     "url": "https://www.memoriachilena.gob.cl/602/w3-article-3398.html",
+     "result": "not_relevant",
+     "note": "頁面是「El plebiscito de 1989」，非本人"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Arturo Alessandri",
+     "url": "https://www.britannica.com/biography/Arturo-Alessandri",
+     "result": "challenge_page",
+     "note": "HTTP 403 Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Arturo Alessandri Palma Memoria Chilena presidente biografía",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch（西文）指向 w3-article-3307"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Memoria Chilena Arturo Alessandri Palma (1868-1950)",
+     "url": "https://www.memoriachilena.gob.cl/602/w3-article-3307.html",
+     "result": "found_A",
+     "note": "國家圖書館官方條目，可抓原文"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Universidad de Chile Arturo Alessandri Palma",
+     "url": "https://uchile.cl/presentacion/historia/grandes-figuras/presidentes-de-chile-ex-estudiantes-de-la-u/arturo-alessandri-palma",
+     "result": "not_relevant",
+     "note": "內容轉載 BCN 文字，非獨立來源，未採用"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Arturo Alessandri（Encyclopedia of World Biography）",
+     "url": "https://www.encyclopedia.com/people/history/chilean-history-biographies/arturo-alessandri",
+     "result": "unrated",
+     "note": "無署名條目（Q9），未採用"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "DBE Real Academia de la Historia Arturo Alessandri Palma",
+     "url": "https://dbe.rah.es/biografias/arturo-alessandri-palma",
+     "result": "no_result",
+     "note": "頁面無傳記內容（約 2KB）"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "BNE datos 權威檔 Alessandri Palma",
+     "url": "https://datos.bne.es/find?s=Alessandri+Palma",
+     "result": "blocked_403",
+     "note": "HTTP 403，未繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Alessandri Palma Arturo ministro de Hacienda 1913 ministro del Interior 1918 diputado Partido Liberal biografía Real Academia de la Historia",
+     "url": null,
+     "result": "found_A",
+     "note": "WebSearch（西文）再確認 BCN／Memoria Chilena；hacienda.cl 部長名錄頁連線逾時"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "智利財政部歷任部長 1911-1920",
+     "url": "https://www.hacienda.cl/index.php/el-ministerio/historia/ministros/1911-1920",
+     "result": "no_result",
+     "note": "curl 逾時 60 秒，未取得"
+    }
+   ]
+  }
+ ]
+}

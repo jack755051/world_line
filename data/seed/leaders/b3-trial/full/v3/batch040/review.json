@@ -1,0 +1,87 @@
+{
+ "batch": "040",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 19,
+  "editedSentences": 5,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ni-moncada",
+   "bioId": "01a1b4b7-28c1-7547-9671-a5b00745ce3d",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 11,
+   "changes": [
+    "正文人名「莫卡達」改為名單 nameZh「蒙卡達」",
+    "P1：補「政治生涯開始」「塞拉亞獨裁期間」引文（換為含 began his career／During the Zelaya dictatorship 的完整片段）",
+    "P2：補「反抗塞拉亞的起事」「與保守派決裂」引文",
+    "P3：原「the return from Mexico…」引文無日期卻標 year，改 null 並補含 In 1926 的引文；補「供應武器彈藥」「對抗保守派政府」「桑地諾」「放下武器」引文",
+    "薩卡薩戰爭部長職位補職稱引文；篇幅不足 gap 刪去 searchLog 中不存在的 authority 查詢，改註明未查權威檔"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "co-concha",
+   "bioId": "73700fbe-e27c-4e68-bfbd-f444edb65064",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 11,
+   "changes": [
+    "正文人名「康查」改為名單 nameZh「孔查」",
+    "P1：「生於波哥大」改為原文 a native of Bogotá 的「波哥大人」；補「傳統派（歷史派）」「與自由黨人密謀推翻總統」引文",
+    "P2：刪原文沒有的「其後」；補「是反對雷耶斯的領導人之一」引文",
+    "P3：補「任期正值一戰」「超越黨派作風」「授課」引文"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ec-plaza",
+   "bioId": "01a1b4b7-28db-7387-a6e0-7c7ac9c6b5eb",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 5,
+   "changes": [
+    "P1：補「逃往中美洲」「其後十年」引文",
+    "P2：原文是返國參與 1895 年 8 月獲勝的起義，改寫「起義成功時返國」；補返國、「此後」引文",
+    "P3：刪「任期結束時」（原文 his first presidential term 指阿爾法羅任期，接在普拉薩任期句後會誤讀為普拉薩任期）",
+    "P4：「罷黜加西亞」引文無年份卻標 year，改 null 並補含 1906 的引文；補「阿爾法羅失敗」引文；「以國政仲裁者自居」改為原文的「是國政的仲裁者」"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "三人都只有 1 個可抓的 A／B 來源（Encyclopedia of Latin American History and Culture 具名條目）；Britannica 403、DBE 只有 JS 空殼頁、Banrepcultural Radware 擋，皆照規則放棄",
+  "蒙卡達、孔查任期不完整（缺迄日／缺起日），已有篇幅不足 gap 與 retry 紀錄，但研究者 WebSearch 額度用盡、加強搜尋未做完；下一輪可查 Biblioteca Enrique Bolaños、Presidencia de Colombia（逾時）、各國國會歷史頁",
+  "研究者把中文譯名寫成與名單不同的「莫卡達」「康查」，已統一為名單 nameZh",
+  "兩筆引文無日期卻標 datePrecision=year，已改；本批補 19 筆、換 8 筆引文",
+  "本批 3 人（名單標 5 人但實際 3 人）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

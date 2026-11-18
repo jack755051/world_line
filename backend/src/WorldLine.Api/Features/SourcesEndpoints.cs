@@ -30,6 +30,15 @@ public static class SourcesEndpoints
         if (CitationPolicy.IsSelfMadePublisher(req.Publisher))
             throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, "只標「自製」的來源不採用（R7）。", "publisher");
 
+        // 來源等級（docs/source-rules.md §2）：可不填（尚未評等）；填了就要寫依據。X 與禁用網域不收。
+        var grade = string.IsNullOrWhiteSpace(req.Grade) ? null : Mapping.RequireOneOf(req.Grade, SourceGrades.All, "grade");
+        if (grade == "X")
+            throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, "X 級來源不收（docs/source-rules.md §2）。", "grade");
+        if (grade is not null && string.IsNullOrWhiteSpace(req.GradeBasis))
+            throw ApiError.BadRequest(ErrorCodes.ValidationFailed, "填了來源等級就要寫評等依據。", "gradeBasis");
+        if (BioSourcePolicy.IsExcludedUrl(req.Url) || BioSourcePolicy.IsExcludedUrl(req.ArchiveUrl))
+            throw ApiError.BadRequest(ErrorCodes.SourceNotQualified, "來源網址屬禁用網域（data/source-policy.json）。", "url");
+
         var s = new Source
         {
             Id = Guid.CreateVersion7(),
@@ -45,6 +54,9 @@ public static class SourcesEndpoints
             LocalCopyPath = req.LocalCopyPath,
             CatalogId = req.CatalogId,
             Note = req.Note,
+            Grade = grade,
+            GradeBasis = grade is null ? null : req.GradeBasis!.Trim(),
+            Family = string.IsNullOrWhiteSpace(req.Family) ? null : Mapping.RequireText(req.Family, "family", 64),
         };
         db.Sources.Add(s);
         await db.SaveChangesAsync(ct);
@@ -53,5 +65,5 @@ public static class SourcesEndpoints
 
     public static SourceDto ToDto(Source s) => new(
         s.Id, s.SourceKind, s.Title, s.Publisher, s.Authors, s.PublishedText, s.LicenseCode, s.LicenseEvidenceUrl,
-        s.Url, s.ArchiveUrl, s.LocalCopyPath, s.CatalogId, s.Note);
+        s.Url, s.ArchiveUrl, s.LocalCopyPath, s.CatalogId, s.Note, s.Grade, s.GradeBasis, s.Family);
 }

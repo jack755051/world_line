@@ -1,0 +1,89 @@
+{
+ "batch": "081",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 7,
+  "addedCitations": 7,
+  "editedSentences": 4,
+  "spotRefetched": 4,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "py-paiva",
+   "bioId": "01a1b4c0-c8c3-727b-b955-ec9578d6cbd4",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 10,
+   "changes": [
+    "來源 bacn-paiva（巴拉圭國會圖書館館藏書介，署名僅「Ruth」）由 A 降為 C：屬機構網站介紹文，非當事機關原始文件（source-rules §2、Q9）；第 3 段 7 筆 bacn 引文刪除，其中 2 筆移入新 gap field:provisional_presidency 的 candidateCitations（待查證）",
+    "第 3 段刪去臨時總統、個人檔案、1938-07-21 和約談判文件、與玻利維亞爭端、「價值非凡的書」等句（後者為書評空泛語），只留 GND 1937-08～1939-08；標題改「1937至1939年再任總統」",
+    "第 2 段「指出他兩度任總統：第一次」改為「記他在1921年10月至12月任總統」，標題去「第一次」（段內引文只支撐 1921 一任）",
+    "新增 gap paragraph:length「篇幅不足：」（審查後 3 段／146 字）",
+    "roleCandidate paiva-president-1921（R0，GND 月精度）核對無誤，保留"
+   ],
+   "returnedReasons": [
+    "最低標準未達：審查後中文 146 字 < 300，且 searchLog 無 round=retry 加強搜尋",
+    "最低嘗試未達：來源類型只有權威檔、官方、學術三類（other 不計），缺具名機構百科或國家級傳記辭典類",
+    "建議下一個來源：datos.bne.es（BNE 權威檔）Paiva, Félix；id.loc.gov 名稱權威；presidencia.gov.py 歷任總統頁（上輪逾時，重試）；dbe.rah.es 條目（JS 載入，試其他取得方式但不繞過）；Paul H. Lewis, Political Parties and Generations in Paraguay's Liberal Era（UNC Press）出版社書目或開放章節"
+   ]
+  },
+  {
+   "key": "ni-zelaya",
+   "bioId": "01a1b4c2-3ee7-7f0a-a38b-2275e6ce5b13",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 10,
+   "changes": [
+    "第 1 段補 GND「Politiker」引文（支撐「政治人物」）",
+    "第 2 段：首筆引文延長為含「by means of a revolution」（支撐「藉革命上台」）；補「Railway construction and the building of steamships」「received particular attention」兩筆（支撐鐵路建設與特別重視）；標題「自由派憲法」改「新憲法」（無引文支撐「自由派」）",
+    "第 3 段：period 起點 1895→1893（含上任第一年事件）；補「In his first year in office…」引文；運河引文換成含「negotiations stalled over Zelaya's resistance」並保留原句",
+    "第 4 段補「Recognizing that he could not stay in office against the opposition」引文",
+    "生日 conflict（Stansifer 10-31 vs GND 11-01）兩份已抓合格來源，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "np-prithvi-bir-bikram",
+   "bioId": "01a1b4c2-3f24-7ec1-8267-ce5a58e6500a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 32,
+   "changes": [
+    "第 3 段刪去無引文支撐的評語子句「這是國王在位期間實權落在拉納家族首相手中的開端」；「原先的首相」改寫為「在榮格死後接任首相的」並補 Lévi 引文「A sa mort Ranoddîpa Simha, son frère, devint premier ministre」",
+    "兩筆被斷行截斷的引文補全（assas- siné；céré- monie.），verify 正規化空白後逐字相符",
+    "check_min 舊報告過時（1 段／126 字）；重跑後 4 段／559 字，達標"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "館藏書介、機構網站介紹文不是 A：即使網域是國會／政府，也要看內容性質（source-rules §2 C 列）",
+  "nepalica-pbbs（Documenta Nepalica 人名本體頁）無署名，Notes 的 normdata 指向 wiki／dbpedia，生卒與在位日期可能轉自維基類；暫維持 B（學術機構資料庫，且 Lévi 佐證 1875 生、1881 即位），建議主 session 裁定此類頁面等級",
+  "研究者多處只引子句的一半（如只引 steamships 卻寫鐵路、只引 canal zone 卻寫談判停擺），本批補 7 筆引文"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

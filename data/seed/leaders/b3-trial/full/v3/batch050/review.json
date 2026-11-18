@@ -1,0 +1,85 @@
+{
+ "batch": "050",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 2,
+  "deletedParagraphs": 2,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 18,
+  "addedCitations": 12,
+  "editedSentences": 3,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "sv-jorge-melendez",
+   "bioId": "01a1b4b8-e9bd-75cf-85bc-d85b93cbae6e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 30,
+   "changes": [
+    "Biografías y Vidas（bv-melendez）由 B 降為 C（未評等）：重抓頁面確認「Cómo citar」作者名是全站 JS 範本，非條目具名作者、無書目；比照 batch023／062 同站評等",
+    "原第 1、2 段（出身、家族、1919 舞弊上台、Liga Roja、1919–1923 任期評語、1923 海關抵押）只靠 bv-melendez，刪段；17 筆 bv 引文移到 gap paragraph:1 的 candidateCitations（待查證）",
+    "原第 3 段刪除錯誤子句「副總統金諾涅斯·莫利納曾在他的內閣任職」：原文「Molina había formado parte del gabinete de Jorge Meléndez」指 Miguel Tomás Molina，非 Quiñónez Molina；該引文刪除",
+    "原第 3 段刪除 bv 支撐的移交總統職位、獨裁持續到 1927 等句；「原任總統」改「新的代理總統」，引文改為完整片段「el nuevo presidente en funciones no podía continuar como candidato」；「卡洛斯之弟」改「卡洛斯的兄弟」（原文只寫 hermano）",
+    "段落 period 改 1918-01-01～1924-01-01（原 1922～1928 與內容不符），ord 改 1",
+    "新增 gap paragraph:length（篇幅不足：1 段約 92 字；searchLog 有 round:retry，最低嘗試已達）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "fi-kyosti-kallio",
+   "bioId": "01a1b4c2-3f07-7c81-9b7e-388c80698ea2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 1,
+   "searchLogSteps": 14,
+   "changes": [
+    "第 1 段補足子句引文（改為較完整的逐字片段）：議員任期加「i den finske nasjonalforsamlingen」、中央黨加「det nuværende Centerparti」、「很大程度上靠他的功勞」加「i høj grad hans fortjeneste」、語言爭議加「tidligere i sprogstriden」；kallio-legislator 引文同步改",
+    "第 4 段補 4 筆 SNL 引文（統治者身分的和解政策、最大任務、戰時穩定態度、戰爭損害健康），並把「開戰前」引文改為含「Under opptakten」",
+    "kallio-legislator 的 partyPostAmbiguous 保留：SNL 寫代表農民黨，但起年 1904 早於 Lex 所載 1908 建黨，判斷合理"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "li-franz-josef-ii",
+   "bioId": "01a1b4b8-e9d7-71f2-8836-85cf3afc3c19",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 0,
+   "searchLogSteps": 5,
+   "changes": [
+    "第 3 段 period 迄點由 1939-05-29 改 1939-05-30（半開區間，最後事件為 1939-05-29 效忠典禮）",
+    "第 3 段補 3 筆引文（納粹德國、在他的影響下兩黨達成協議、Erbhuldigung 效忠典禮）",
+    "第 4 段補 5 筆引文（新的政治經濟問題、親王與政府的任務、奉獻給聖母、不讓納粹分子有舞台、伯恩公使館）",
+    "Prinzregent 候選（R0、acting、1938-03-30～1938-07-25）與 IOC 委員（R5）核對無誤"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引日期或名詞片段，讓評語、因果、地點子句沒有引文；本批補 12 筆、改 7 筆引文",
+  "Biografías y Vidas 評等在各批不一致（batch049 記 B、batch023／062 記 C）：頁尾作者名是全站範本，建議統一為未評等並回查 batch049",
+  "研究者把一篇論文中另一位 Molina 的事誤歸給 Quiñónez Molina：同姓人物需看上下文主語"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

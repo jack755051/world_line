@@ -1,0 +1,200 @@
+:root{
+  --ink:#e9e4d8; --ink2:#a9b1b8; --bg:#070d13; --panel:rgba(10,16,22,.86); --line:#2a3946;
+  --axis:#ff3b2f; --axis-deep:#5b1519; --allied:#3f8cff; --allied-deep:#1c3a66; --gold:#ffcf6b; --cyan:#7fe3ff;
+  --tl-h:84px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:"Noto Sans CJK TC","Noto Sans TC",system-ui,sans-serif;overflow:hidden}
+button{font:inherit;color:inherit}
+#app{position:fixed;inset:0;display:grid;grid-template-rows:1fr var(--tl-h)}
+#map-wrap{position:relative;overflow:hidden;min-height:0}
+#map{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:default}
+#hud-top{position:absolute;z-index:5;left:0;right:0;top:0;pointer-events:none;display:flex;align-items:flex-start;justify-content:space-between;padding:18px 22px}
+#hud-top>*{pointer-events:auto}
+#date-main{font-family:"Noto Serif CJK TC","Noto Serif TC",serif;font-weight:900;font-size:44px;letter-spacing:.02em;line-height:1;
+  text-shadow:0 0 18px rgba(255,70,50,.55),0 2px 0 #000;font-variant-numeric:tabular-nums}
+#date-sub{margin-top:8px;font-size:15px;color:var(--ink2);display:flex;gap:10px;align-items:center}
+#phase{color:var(--gold);font-weight:700;letter-spacing:.08em}
+#interp{font-size:12px;border:1px dashed var(--ink2);padding:1px 6px;border-radius:3px}
+#banner{position:absolute;left:50%;transform:translateX(-50%);top:16px;background:#ffcf6b;color:#1a1206;font-weight:800;padding:5px 14px;border-radius:3px;font-size:14px;letter-spacing:.1em;box-shadow:0 0 0 1px #000}
+#legend-btn{display:none;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:14px}
+#legend{position:absolute;z-index:6;left:18px;bottom:14px;width:250px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px;backdrop-filter:blur(4px)}
+.lg-title{font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.lg-title button{background:none;border:0;font-size:18px;line-height:1;cursor:pointer;color:var(--ink2)}
+.lg-row{display:flex;align-items:center;gap:10px;height:22px;white-space:nowrap}
+.lg-note{margin-top:6px;color:var(--ink2);font-size:11.5px;line-height:1.5}
+.sw{display:inline-block;width:30px;height:12px;flex:none;border-radius:2px}
+.sw-axis{background:linear-gradient(90deg,#5b1519,#7a1d20);box-shadow:inset -3px 0 0 #ff5a40}
+.sw-allied{background:#1f3c66}
+.sw-front{height:4px;background:#fff3dc;box-shadow:0 0 6px 2px #ff4030}
+.sw-arrow-a{height:12px;background:linear-gradient(90deg,rgba(255,80,50,.2),#ff5a3c);clip-path:polygon(0 35%,70% 25%,70% 0,100% 50%,70% 100%,70% 75%,0 65%)}
+.sw-arrow-i{height:12px;background:linear-gradient(90deg,rgba(255,150,120,.15),#ff9c80);clip-path:polygon(0 42%,72% 36%,72% 12%,100% 50%,72% 88%,72% 64%,0 58%)}
+.sw-arrow-c{height:12px;background:linear-gradient(90deg,rgba(80,150,255,.2),#5aa2ff);clip-path:polygon(0 38%,70% 28%,70% 0,100% 50%,70% 100%,70% 72%,0 62%)}
+.sw-naval{height:3px;background:repeating-linear-gradient(90deg,#bff3ff 0 5px,transparent 5px 9px)}
+.sw-eng{width:14px;height:14px;border-radius:50%;border:2px solid #ffcf6b;box-shadow:0 0 8px #ffcf6b}
+.sw-dash{height:14px;border:1.5px dashed #9fdcff;background:transparent}
+#info{position:absolute;z-index:7;right:16px;top:84px;width:320px;max-height:calc(100% - 110px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:14px;line-height:1.55}
+#info-close{position:absolute;right:8px;top:6px;background:none;border:0;font-size:20px;cursor:pointer;color:var(--ink2)}
+#info h3{margin:0 0 4px;font-family:"Noto Serif CJK TC",serif;font-size:18px}
+#info .orig{color:var(--ink2);font-size:12.5px;margin-bottom:8px}
+#info dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0}
+#info dt{color:var(--ink2)} #info dd{margin:0}
+#info .ex{margin-top:10px;font-size:12px;color:#1a1206;background:#ffcf6b;display:inline-block;padding:1px 8px;border-radius:3px;font-weight:700}
+#event{position:absolute;z-index:4;left:50%;top:34%;transform:translate(-50%,-50%);text-align:center;pointer-events:none;opacity:0}
+#event .ev-zh{font-family:"Noto Serif CJK TC",serif;font-weight:900;font-size:64px;letter-spacing:.12em;color:#fff;text-shadow:0 0 24px rgba(255,60,40,.8),0 3px 0 #000;white-space:nowrap}
+#event .ev-rule{height:2px;margin:10px auto 8px;width:70%;background:linear-gradient(90deg,transparent,#ff4b3a,transparent)}
+#event .ev-en{font-size:15px;letter-spacing:.6em;color:#ffb3a8}
+#event.show{animation:evshow 2.6s ease-out forwards}
+#event.glitch .ev-zh{animation:glitch .42s steps(2,end) 1}
+@keyframes evshow{0%{opacity:0;transform:translate(-50%,-46%) scale(1.06)}10%{opacity:1;transform:translate(-50%,-50%) scale(1)}78%{opacity:1}100%{opacity:0}}
+@keyframes glitch{0%{text-shadow:-6px 0 #00e5ff,6px 0 #ff1744;clip-path:inset(0 0 55% 0);transform:translateX(-8px)}
+ 25%{clip-path:inset(40% 0 20% 0);transform:translateX(10px)}50%{clip-path:inset(10% 0 60% 0);transform:translateX(-4px);text-shadow:4px 0 #00e5ff,-4px 0 #ff1744}
+ 75%{clip-path:inset(60% 0 0 0);transform:translateX(6px)}100%{clip-path:inset(0);transform:none}}
+#timeline{position:relative;z-index:6;display:flex;align-items:center;gap:18px;padding:0 22px;background:linear-gradient(#0b131a,#070d13);border-top:1px solid var(--line)}
+#tl-controls{display:flex;align-items:center;gap:8px;flex:none}
+#tl-controls>button,#speed button{background:#132029;border:1px solid var(--line);border-radius:6px;height:36px;min-width:40px;cursor:pointer}
+#btn-play{min-width:52px!important;background:#2a1412!important;border-color:#7a2a20!important;color:#ffd9cf}
+#speed{display:flex;gap:4px;margin-left:6px} #speed button{min-width:38px;font-size:13px} #speed button.on{border-color:var(--cyan);color:var(--cyan)}
+#tl-track-wrap{position:relative;flex:1;height:64px;min-width:0}
+#tl-track{position:absolute;left:0;right:0;top:24px;height:6px;background:#1c2a35;border-radius:3px;cursor:pointer}
+#tl-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#7a1d20,#ff4b3a);border-radius:3px}
+#tl-head{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;box-shadow:0 0 10px #ff4b3a}
+#tl-ticks .tk{position:absolute;top:-5px;width:2px;height:16px;margin-left:-1px;background:#6b7c88}
+#tl-ticks .tk.major{background:#ffcf6b;width:3px;margin-left:-1.5px}
+#tl-labels{position:absolute;left:0;right:0;top:40px;height:22px}
+#tl-labels .lb{position:absolute;transform:translateX(-50%);font-size:12px;color:var(--ink2);white-space:nowrap;cursor:pointer;font-variant-numeric:tabular-nums}
+#tl-labels .lb.major{color:#ffcf6b}
+#tl-chip{position:absolute;top:0;transform:translateX(-50%);font-size:12px;font-weight:700;background:#ff4b3a;color:#fff;padding:1px 7px;border-radius:3px;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:700px){
+  :root{--tl-h:112px}
+  #app{grid-template-rows:64px 1fr var(--tl-h)}
+  #hud-top{position:relative;grid-row:1;padding:8px 12px;align-items:center;background:#070d13;border-bottom:1px solid var(--line);height:64px}
+  #date-main{font-size:26px} #date-sub{margin-top:4px;font-size:12px;gap:6px} #interp{font-size:10.5px;padding:0 4px}
+  #banner{position:static;transform:none;font-size:12px;padding:4px 8px;margin-left:auto;margin-right:8px;white-space:nowrap}
+  #legend-btn{display:block}
+  #legend{left:8px;right:8px;bottom:8px;width:auto;columns:2;column-gap:14px}
+  #legend .lg-title{column-span:all} #legend .lg-note{column-span:all}
+  .lg-row{font-size:12px;gap:6px} .sw{width:22px}
+  #info{left:8px;right:8px;top:auto;bottom:8px;width:auto;max-height:45%}
+  #event .ev-zh{font-size:34px;letter-spacing:.06em} #event .ev-en{font-size:11px;letter-spacing:.4em} #event{top:30%}
+  #timeline{flex-direction:column;align-items:stretch;gap:2px;padding:6px 12px 10px}
+  #tl-controls{justify-content:space-between}
+  #tl-controls>button,#speed button{height:34px}
+  #tl-track-wrap{height:56px}
+  #tl-track{top:22px}
+  #tl-labels{top:36px}
+  #tl-labels .lb{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){#event.show{animation:none;opacity:1} #event.glitch .ev-zh{animation:none}}
+
+/* ---- v2.1：醋酸片圖層＋毛玻璃面板（只用在 UI，不蓋地圖本身） ---- */
+@media (min-width:701px){
+  #map-wrap{grid-row:1 / span 2;grid-column:1}
+  #timeline{grid-row:2;grid-column:1;margin:0 14px 10px;border:1px solid rgba(255,255,255,.12);border-radius:10px}
+  :root{--tl-h:84px}
+  #legend{bottom:104px}
+}
+.glass{background:rgba(14,22,30,.55)!important;-webkit-backdrop-filter:blur(6px) saturate(1.25);backdrop-filter:blur(6px) saturate(1.25);border:1px solid rgba(255,255,255,.13)!important;box-shadow:0 1px 0 rgba(255,255,255,.06) inset}
+body.no-blur .glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,17,23,.9)!important}
+#event.glass{padding:16px 34px 14px;border-radius:12px}
+#layers{position:absolute;z-index:6;right:18px;top:16px;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+#info{top:190px;max-height:calc(100% - 300px)}
+.chip{display:flex;align-items:center;gap:7px;height:30px;padding:0 10px 0 8px;border-radius:15px;font-size:13px;cursor:pointer;
+  background:rgba(14,22,30,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.14);white-space:nowrap}
+body.no-blur .chip{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,17,23,.9)}
+.chip i{width:12px;height:12px;border-radius:2px;opacity:.9;box-shadow:0 0 0 1px rgba(255,255,255,.5)}
+.chip small{font-size:11px;color:var(--ink2);border-left:1px solid rgba(255,255,255,.15);padding-left:7px}
+.chip.off{opacity:.5} .chip.off i{opacity:.25}
+.chip.on small{color:#9ff0c0} .chip.auto small{color:var(--gold)}
+.chip.locked{cursor:default;opacity:.85}
+.lg-sec{margin:6px 0 2px;font-size:11.5px;font-weight:700;color:var(--gold);letter-spacing:.06em}
+@media (max-width:700px){
+  #app{grid-template-rows:64px 1fr 42px var(--tl-h)}
+  #layers{position:static;grid-row:3;flex-direction:row;gap:4px;align-items:center;justify-content:space-between;padding:0 6px;background:#070d13;border-top:1px solid var(--line);overflow-x:auto}
+  .chip{height:30px;font-size:11px;padding:0 6px;gap:4px;border-radius:6px;flex:1 1 0;justify-content:center;min-width:0}
+  .chip small{font-size:10px;padding-left:4px}
+  .chip i{width:9px;height:9px}
+  #timeline{grid-row:4}
+  #info{top:auto}
+}
+@media (max-width:700px){
+  .chip small{display:none}
+  .chip.auto{border-style:dashed;border-color:rgba(255,207,107,.7)}
+  .chip.on{border-color:rgba(159,240,192,.7)}
+}
+/* ---- v2.1 收斂：兩個陣營色＋一個強調色（低飽和金 #d9c48f） ---- */
+:root{--gold:#d9c48f}
+#date-main{text-shadow:0 2px 0 #000,0 0 14px rgba(0,0,0,.6)}
+#phase{color:var(--gold)}
+#event .ev-zh{font-size:40px;letter-spacing:.08em;text-shadow:0 2px 0 #000}
+#event .ev-rule{background:linear-gradient(90deg,transparent,rgba(217,196,143,.7),transparent);margin:8px auto 8px}
+#event .ev-en{font-size:15px;letter-spacing:.02em;color:#d8d2c4}
+#event.glitch .ev-zh{animation:none}
+.sw-front{box-shadow:0 0 3px 1px rgba(220,70,55,.6);background:#efe2cc}
+.sw-arrow-a{background:linear-gradient(90deg,rgba(232,98,82,.15),#e86252)}
+.sw-arrow-i{background:linear-gradient(90deg,rgba(214,128,114,.15),#d68072)}
+.sw-arrow-c{background:linear-gradient(90deg,rgba(104,160,236,.15),#68a0ec)}
+.sw-eng{border:1.5px solid #d9c48f;box-shadow:none}
+.sw-dim{width:14px;height:10px;background:#79c8ff;opacity:.4;margin:0 8px}
+.chip.auto small{color:var(--gold)}
+#tl-ticks .tk.major{background:var(--gold)}
+#tl-labels .lb.major{color:var(--gold)}
+#tl-fill{background:linear-gradient(90deg,#5a1c1e,#c4544a)}
+#tl-chip{background:#a8443c}
+#tl-head{box-shadow:0 0 0 2px #a8443c}
+@media (min-width:701px){
+  #legend-btn{display:block;position:fixed;left:18px;bottom:108px;pointer-events:auto}
+  #legend{bottom:150px}
+}
+@media (max-width:700px){ #event .ev-zh{font-size:26px} #event .ev-en{font-size:12px;white-space:normal;max-width:300px} #event.glass{padding:10px 16px} }
+/* ---- v2.2：MapLibre 底圖、可自由縮放 ---- */
+#map{position:absolute;inset:0;width:100%;height:100%}
+#map .maplibregl-canvas{outline:none}
+#vignette{position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(ellipse at 55% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.35) 100%)}
+#sheets{position:absolute;inset:0;pointer-events:none;z-index:2}
+.sheet{--m:calc(8px + var(--i) * 5px);position:absolute;left:calc(var(--m) + var(--i) * 2px);top:calc(var(--m) + var(--i) * 2px);right:calc(var(--m) - var(--i) * 2px);bottom:calc(var(--m) + 84px - var(--i) * 2px);
+  background:rgba(226,220,206,.025);border:1px solid rgba(226,220,206,.2);transition:none}
+.sheet .rg{position:absolute;width:10px;height:10px}
+.sheet .rg::before,.sheet .rg::after{content:"";position:absolute;background:rgba(226,220,206,.4)}
+.sheet .rg::before{left:0;right:0;top:4.5px;height:1px}.sheet .rg::after{top:0;bottom:0;left:4.5px;width:1px}
+.sheet .tl{left:5px;top:5px}.sheet .tr{right:5px;top:5px}.sheet .bl{left:5px;bottom:5px}.sheet .br{right:5px;bottom:5px}
+.sheet .tag{position:absolute;bottom:8px;right:calc(18px + (var(--i) - 1) * 108px);font-size:11px;font-weight:700;color:rgba(226,220,206,.75);background:rgba(226,220,206,.1);padding:1px 5px}
+#pk-tags{position:absolute;inset:0;pointer-events:none;z-index:3}
+#pk-tags span{position:absolute;left:0;top:0;font-size:12px;font-weight:700;color:#cfe0ff;background:rgba(10,18,30,.72);border:1px solid rgba(104,160,236,.55);padding:1px 6px;border-radius:3px;white-space:nowrap}
+#pk-tags small{font-weight:400;color:var(--ink2);margin-left:5px;font-size:10.5px}
+#tip{position:absolute;left:0;top:0;z-index:4;pointer-events:none;padding:5px 8px;border-radius:4px;font-size:12px;line-height:1.45;display:flex;flex-direction:column;border-color:rgba(217,196,143,.5)!important}
+#tip b{color:var(--gold);font-weight:600}#tip span{color:#d8d2c4;font-size:11px}
+#tip[hidden]{display:none}
+#follow{position:absolute;z-index:6;right:18px;top:154px;height:32px;padding:0 12px;border-radius:16px;font-size:13px;cursor:pointer;color:#e9dfc2;border-color:rgba(217,196,143,.6)!important}
+#follow[hidden]{display:none}
+.maplibregl-ctrl-bottom-right{bottom:150px;right:8px}
+.maplibregl-ctrl-group{background:rgba(14,22,30,.75)!important;border:1px solid rgba(255,255,255,.14)}
+.maplibregl-ctrl-group button+button{border-top:1px solid rgba(255,255,255,.14)}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:invert(.9)}
+.maplibregl-ctrl-attrib{background:rgba(10,16,22,.7)!important;color:#9aa4ab;font-size:10.5px}
+.maplibregl-ctrl-attrib a{color:#b8c2c9}
+.maplibregl-ctrl-attrib-button{filter:invert(.85)}
+.sw-pocket{background:#264b85;box-shadow:inset 0 0 0 1.5px #efe2cc,0 0 3px 1px rgba(220,70,55,.6);border-radius:6px}
+.sw-stack{width:18px;height:12px;margin:0 6px;background:#79c8ff;box-shadow:3px -3px 0 rgba(121,200,255,.55),6px -6px 0 rgba(121,200,255,.3)}
+@media (max-width:700px){
+  .sheet{--m:calc(4px + var(--i) * 3px);bottom:calc(var(--m) - var(--i) * 2px)}
+  .sheet .tag{font-size:9.5px;right:calc(18px + (var(--i) - 1) * 86px)}
+  .maplibregl-ctrl-bottom-right{bottom:44px;right:2px}
+  #follow{right:10px;top:10px;height:30px;font-size:12px}
+}
+/* v2.2：圖層膠囊鈕改實色半透明（四顆各自做背景模糊，在軟體 GL 下太貴；毛玻璃只留給時間軸、事件字卡、資訊卡、圖例） */
+.chip{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,17,23,.82)}
+#follow.glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,17,23,.85)!important}
+/* v2.2：時間軸是最大的一塊毛玻璃，背後的 WebGL 地圖每幀都在變，模糊要每幀重算；在這台沒有 GPU 的 box 上量到它單獨就讓 1% low 掉到 30。
+   改成實色半透明＋玻璃邊框（看起來仍是玻璃條，但不做背景模糊）。事件字卡、圖例、資訊卡、交戰標籤仍是毛玻璃。 */
+#timeline.glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(10,16,22,.84)!important}
+/* v2.2：時間軸進度改用 transform（不觸發重排／重畫） */
+#tl-fill{width:100%!important;transform-origin:0 50%;will-change:transform}
+#tl-head{left:0!important;will-change:transform}
+#tl-chip{left:0!important;will-change:transform}
+/* v2.2 perf：事件卡淡出後不再保留 backdrop-filter（opacity:0 的毛玻璃仍會每幀重算） */
+#event{visibility:hidden}
+#event.show{visibility:visible}
+@media (prefers-reduced-motion:reduce){#event.show{visibility:visible}}
+/* v2.2 perf：事件卡在地圖持續移動時出現，backdrop blur 在無 GPU 環境約占 8% 幀超時 → 改為不透明度較高的深色底，保留細邊框與內光 */
+#event.glass{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(11,18,25,.80)!important}

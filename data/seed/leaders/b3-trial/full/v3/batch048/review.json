@@ -1,0 +1,87 @@
+{
+ "batch": "048",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 4,
+  "editedSentences": 0,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "ec-arroyo-del-rio",
+   "bioId": "01a1b4b8-e987-7671-ae8f-8121e531cd63",
+   "verdict": "pass_with_changes",
+   "paragraphs": 7,
+   "positions": 6,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 16,
+   "changes": [
+    "P4 引文擴為「He was elected and took office on 1 September 1940」以支撐「當選」子句；補引文「The insurrection failed」（政變失敗子句原無引文）；「Within a few months…」不含日期，datePrecision 改 null（Q8）",
+    "P6 五筆 PDF 斷行殘句引文改為完整語意片段（參議院議長＋接掌政權、自由黨提名、交給科爾多瓦、1940-01-12 選舉、宣布獲勝）；段內首事（接掌、交權）無日期，period.start 由 1940-01-12 改 null",
+    "P7 三筆殘句引文改完整片段，補「confiscación de todos sus bienes」支撐沒收財產子句",
+    "conflict gap 候選引文「relio Mosquera…diciem-」斷字殘句改為「Mosquera Narváez, hecho luctuoso acaecido el 17 de diciem- bre de 1939」，datePrecision=day",
+    "市議會秘書／議長兩職位：來源把它們列在自由激進黨活動之下，加 partyPostAmbiguous＋理由（不猜是否黨職）",
+    "arroyo-deputy-guayas title.orig 原為研究者自譯西文「diputado por Guayas」，改回來源英文措辭",
+    "field:identity gap 說明過時（稱未取得第二個 A／B），改為已取得兩個 B、缺 A"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-laredo-bru",
+   "bioId": "01a1b4b8-e995-762b-b252-b0f308545910",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 15,
+   "changes": [
+    "P3 補引文「one of the most important pieces of legislation of the period」支撐「最重要立法之一」子句；1940 年憲法引文擴為「It was also under Laredo Bru that…」支撐「在他任內」",
+    "P2 段末事件（被扶為總統）來源無日期，period.end 由 1936-02-01 改 null"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bo-salamanca",
+   "bioId": "01a1aa4a-e5df-78fb-8f5a-b00493708969",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 15,
+   "changes": [
+    "P1「secretary of treasury…Pando」、P4「Blamed for…Chaco War」不含日期，datePrecision 改 null（Q8）",
+    "P3 引文擴為「Hailed as the \"new messiah\" and hombre símbolo」與「the establishment's popular choice…」以支撐「象徵人物」「體制內」子句",
+    "P5 補引文「whose antagonism grew as the war progressed」支撐「歧見日深」",
+    "field:identity gap 說明過時，改為已取得兩筆 B、缺 A"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "名單寫「本批 5 人」但只列 3 人；研究與審查均只涵蓋這 3 人",
+  "陸軍史專書（PDF 轉文字）的引文多是按行切下的殘句，截掉了受詞或謂語；已改為跨行的完整語意片段（verify 會把空白正規化）",
+  "多筆不含日期的引文誤填 datePrecision（Q8）",
+  "三人在任期完整度上都未達最低標準（有缺迄日的任期）；都有「篇幅不足：」gap，也有 round=retry 的加強搜尋紀錄。三人都沒有 A 級來源（Britannica 403、DBE 為 JS 空殼、VIAF 被 Cloudflare 擋）",
+  "三人的 5442 元首／首腦任期不重建；拉雷多的內政部長（可能是 R3）、薩拉曼卡的財政部長都缺起日，只記在 gaps"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

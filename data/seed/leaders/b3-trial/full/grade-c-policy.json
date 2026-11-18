@@ -1,0 +1,32 @@
+{
+ "decision": "Tai 本人 2026-11-12 06:34（World Line 主管轉達）：將領生平來源放寬到具名 C 級",
+ "scope": "只限將領生平（data/seed/leaders/generals-roster/bios；research.json 頂層 gradePolicy=ABC-2026-11-12）；B3 其他檔仍只收 A／B",
+ "rule": "C＝具名作者或具名機構的正當出版物（主管 2026-11-12 22:08 重申；個人網站不算）（報紙／通訊社、大學、博物館、具名作者或出版者的軍事史網站、一般出版社書籍）；逐頁判定，sources.authors 或 publisher 至少一項非空，gradeBasis 寫出具名者",
+ "always_forbidden": [
+  "Wikipedia 及任何維基類（Wikiwand、Fandom 等）",
+  "Wikidata",
+  "百度",
+  "無署名內容",
+  "AI 生成內容站",
+  "論壇／討論區／問答站",
+  "部落格",
+  "個人網站（除非由具名機構發布）",
+  "generals.dk（個人網站；主管 2026-11-12 22:08 明列禁用）"
+ ],
+ "banned_domains": [
+  {
+   "domain": "generals.dk",
+   "decision": "主管 2026-11-12 22:08",
+   "basis": "個人網站；具名 C＝具名作者或機構的正當出版物",
+   "effective": "verify.py／apply_refill.py：生效後新增的來源一律擋；既有已 commit 引用暫不改，REFILL_REPORT 列待替換"
+  }
+ ],
+ "source_kind_hint": {
+  "報紙／通訊社": "news",
+  "大學／博物館": "official_website 或 encyclopedia（依頁面性質）",
+  "軍事史網站": "encyclopedia"
+ },
+ "minimum_standard": "可只靠 C 達成 v3 最低標準；不可因缺 A／B 標來源不足",
+ "t14": "T14 R2–R4 門檻（1 筆 A 或 2 筆獨立 B）不變；只有 C 支持者留 positions（必要時 R6 roleGap=source）",
+ "db_note": "write_b3_paragraphs.py 目前會丟棄 grade 非 A/B 的 citation；寫庫前須由 Tai 決定 C 級如何入庫（不在本次範圍，未改）"
+}

@@ -1,0 +1,506 @@
+{
+ "mapKey": "jm179-map1",
+ "mapDate": "1937-11-24",
+ "dateNote": "圖題「SHANGHAI OPERATION 23 AUG–24 NOV 1937」；示意圖，含 8/23、9/19、11/5、11/13、11/19、11/24 箭頭與日期；mapDate 取圖題迄日",
+ "source": {
+  "type": "secondary_map",
+  "grade": "B",
+  "citation": "Japanese Monograph No. 179, Central China Area Operations Record 1937–1941, Map No. 1 'Shanghai Operation 23 Aug–24 Nov 1937'（PDF 第 18 頁）",
+  "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+  "license": "美國政府出版品"
+ },
+ "method": "第一次判讀（本代理人）：pdftoppm 300 dpi 轉出 PDF 第 18 頁（3299×2540，掃描影像本身約 150 dpi）。mapgrid.swift 3 倍裁圖（10 px 格線）讀城鎮小圓圈中心（約 ±3 px；圖上比例尺 30 miles ≈ 700 px，約 70 m/px）。經緯度依 georef.config.json lonlatRule。",
+ "control_points": {
+  "Chingyangchen（青陽鎮）": {
+   "px": [
+    987.0,
+    714.0
+   ],
+   "lonlat": [
+    120.2709305,
+    31.765227
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244084581
+   },
+   "lonlatBasis": "OSM relation 17008331 的 admin_centre 成員（place=town，青阳镇）",
+   "note": "小圓圈"
+  },
+  "Changshu（常熟）": {
+   "px": [
+    1408.0,
+    886.0
+   ],
+   "lonlat": [
+    120.7480757,
+    31.6572954
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244084671
+   },
+   "lonlatBasis": "OSM relation 4591597 的 admin_centre 成員（place=city，常熟市）",
+   "note": "小圓圈"
+  },
+  "Wuhsi（無錫）": {
+   "px": [
+    944.0,
+    1002.0
+   ],
+   "lonlat": [
+    120.2952752,
+    31.5776626
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3073512713
+   },
+   "lonlatBasis": "OSM relation 4430942 的 label 成員（place=city，无锡市）",
+   "note": "鐵路上小圓圈"
+  },
+  "Kunshan（崑山）": {
+   "px": [
+    1636.0,
+    1233.0
+   ],
+   "lonlat": [
+    120.9764683,
+    31.3869323
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2703828715
+   },
+   "lonlatBasis": "OSM relation 4591878 的 admin_centre 成員（place=city，昆山市）",
+   "note": "鐵路上小圓圈"
+  },
+  "Tachangchen（大場鎮）": {
+   "px": [
+    2183.0,
+    1316.0
+   ],
+   "lonlat": [
+    121.4122977,
+    31.2886709
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2684732951
+   },
+   "lonlatBasis": "OSM relation 3532288 的 admin_centre 成員（place=town，大场镇）",
+   "note": "小圓圈"
+  },
+  "Chiahsing（嘉興）": {
+   "px": [
+    1405.0,
+    2046.0
+   ],
+   "lonlat": [
+    120.7510971,
+    30.7474425
+   ],
+   "osm": {
+    "type": "node",
+    "id": 6442736456
+   },
+   "lonlatBasis": "OSM relation 3308626 的 admin_centre 成員（place=city，嘉兴市）",
+   "note": "鐵路交會小圓圈"
+  },
+  "Wuhsing（吳興＝湖州）": {
+   "px": [
+    668.0,
+    1930.0
+   ],
+   "lonlat": [
+    120.0851114,
+    30.8942995
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3822785671
+   },
+   "lonlatBasis": "OSM relation 3149738 的 admin_centre 成員（place=city，湖州市）",
+   "note": "小圓圈；吳興縣治即今湖州市區"
+  },
+  "Chinshanweicheng（金山衛城）": {
+   "px": [
+    2075.0,
+    2106.0
+   ],
+   "lonlat": [
+    121.3131763,
+    30.7275685
+   ],
+   "osm": {
+    "type": "node",
+    "id": 4194619391
+   },
+   "lonlatBasis": "OSM relation 18058384 的 label 成員（place=town，金山卫镇）",
+   "note": "海岸小圓圈"
+  }
+ },
+ "controlPointExclusions": [
+  {
+   "name": "SHANGHAI",
+   "reason": "只畫成斜線面狀，無點符號（規則）",
+   "decidedBeforeResiduals": true,
+   "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+  },
+  {
+   "name": "SUCHOU",
+   "reason": "只畫成斜線面狀，無點符號（規則）",
+   "decidedBeforeResiduals": true,
+   "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+  },
+  {
+   "name": "Paimaokou（白茆口）",
+   "reason": "圖上為長江口地名；OSM「白茆」為古里鎮內聚落，與白茆口（河口）非同一地，無法唯一對應（規則）",
+   "decidedBeforeResiduals": true,
+   "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑任何配準）"
+  }
+ ],
+ "features": [
+  {
+   "label": "16",
+   "px": [
+    1927.0,
+    683.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號；框旁註 FROM NORTH CHINA",
+   "confidence": "high",
+   "unitKey": "jp-16-div",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "16 號師，兵種依讀圖註記（div）；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "SHIGETO DET",
+   "px": [
+    1965.0,
+    767.0
+   ],
+   "echelon": "detachment",
+   "sideGuess": "japanese",
+   "note": "框旁 ELM（一部）；支隊",
+   "confidence": "high",
+   "unitKey": "jp-shigeto-det",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "SHIGETO DET",
+    "reason": null,
+    "distPx": 81.7,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 82 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：重藤支隊（mnd2017 圖記 iB、文作重籐旅團；JM-179 作 Shigeto Detachment）"
+  },
+  {
+   "label": "9",
+   "px": [
+    2980.0,
+    628.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號；FROM JAPAN",
+   "confidence": "high",
+   "unitKey": "jp-9-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "9",
+    "reason": null,
+    "distPx": 67.3,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 67 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "9 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "13",
+   "px": [
+    2980.0,
+    715.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號",
+   "confidence": "high",
+   "unitKey": "jp-13-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "13",
+    "reason": null,
+    "distPx": 70.7,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 71 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "13 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "101",
+   "px": [
+    2980.0,
+    805.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號",
+   "confidence": "high",
+   "unitKey": "jp-101-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "101",
+    "reason": null,
+    "distPx": 75.1,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 75 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "101 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "5 FLD HV",
+   "px": [
+    2980.0,
+    886.0
+   ],
+   "echelon": "brigade",
+   "sideGuess": "japanese",
+   "note": "X 旅級；野戰重砲兵第5旅團",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "5 FLD HV",
+    "reason": null,
+    "distPx": 92.6,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 93 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組"
+  },
+  {
+   "label": "AMAYA DET",
+   "px": [
+    2755.0,
+    1073.0
+   ],
+   "echelon": "detachment",
+   "sideGuess": "japanese",
+   "note": "X；FROM DAIREN",
+   "confidence": "high",
+   "unitKey": "jp-amaya-det",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "AMAYA DET",
+    "reason": null,
+    "distPx": 85.8,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 86 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：天谷支隊"
+  },
+  {
+   "label": "SHANGHAI EXPEDITIONARY ARMY",
+   "px": [
+    2765.0,
+    1347.0
+   ],
+   "echelon": "army",
+   "sideGuess": "japanese",
+   "note": "XXXX；HQ 旗",
+   "confidence": "high",
+   "unitKey": "jp-sea",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "名稱別名：SHANGHAI EXPEDITIONARY ARMY＝上海派遣軍；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "3",
+   "px": [
+    2765.0,
+    1437.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號",
+   "confidence": "high",
+   "unitKey": "jp-3-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "3",
+    "reason": null,
+    "distPx": 62.6,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 63 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "3 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "11(-AMAYA DET)",
+   "px": [
+    2765.0,
+    1524.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號；欠天谷支隊",
+   "confidence": "high",
+   "unitKey": "jp-11-div",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "11 號師，兵種依讀圖註記（div）；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "10",
+   "px": [
+    2307.0,
+    1514.0
+   ],
+   "echelon": "army",
+   "sideGuess": "japanese",
+   "note": "XXXX 軍級符號；HQ 旗；FROM JAPAN／NORTH CHINA 括號群組",
+   "confidence": "high",
+   "unitKey": "jp-10-army",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "10",
+    "reason": null,
+    "distPx": 17.8
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：XXXX 10＝第十軍"
+  },
+  {
+   "label": "114",
+   "px": [
+    2307.0,
+    1605.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號",
+   "confidence": "high",
+   "unitKey": "jp-114-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "114",
+    "reason": null,
+    "distPx": 66.5,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 66 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "114 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "6",
+   "px": [
+    2307.0,
+    1708.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號",
+   "confidence": "high",
+   "unitKey": "jp-6-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "6",
+    "reason": null,
+    "distPx": 51.2,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 51 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "6 號師，兵種依讀圖註記（div）"
+  },
+  {
+   "label": "KUNISAKI DET",
+   "px": [
+    2307.0,
+    1788.0
+   ],
+   "echelon": "detachment",
+   "sideGuess": "japanese",
+   "note": "X",
+   "confidence": "high",
+   "unitKey": "jp-kunisaki-det",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "KUNISAKI DET",
+    "reason": null,
+    "distPx": 110.6,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 111 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：國崎支隊"
+  },
+  {
+   "label": "18",
+   "px": [
+    2307.0,
+    1878.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "XX 師級符號；FROM MANCHURIA",
+   "confidence": "high",
+   "unitKey": "jp-18-div",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "18 號師，兵種依讀圖註記（div）；兩次判讀標註文字不一致，降為待查證"
+  },
+  {
+   "label": "CENTRAL CHINA AREA ARMY",
+   "px": [
+    1885.0,
+    1585.0
+   ],
+   "echelon": "army_group",
+   "sideGuess": "japanese",
+   "note": "XXXXX；HQ 旗",
+   "confidence": "high",
+   "unitKey": "jp-ccaa",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "CENTRAL CHINA AREA ARMY",
+    "reason": null,
+    "distPx": 103.0,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 103 px（> 容差 49 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：CENTRAL CHINA AREA ARMY＝中支那方面軍"
+  }
+ ],
+ "lines": [],
+ "featuresNote": "第一次判讀（本代理人）：JM-179 圖上部隊框全為日軍；px 為標註中心（3 倍裁圖讀，約 ±5 px）",
+ "labelCheckMethod": "兩次獨立判讀比對：tools/battles/compare_readings.py；第二次判讀檔 checks/label-reading2/jm179-map1.json"
+}

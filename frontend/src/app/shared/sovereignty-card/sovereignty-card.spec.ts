@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import type { SovereigntyFeatureProperties } from '../../core/api/api-types';
+import type { LeaderBioSummary } from '../../core/api/world-line-api';
 import { SovereigntyCard } from './sovereignty-card';
 
 const ev = (verification: 'verified' | 'pending', citations: unknown[] = []) => ({
@@ -37,45 +38,52 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(el.textContent).toContain('Deutsches Reich');
     expect(el.textContent).toContain('1938-10-10');
     expect(q(el, 'sovereignty-card-start')?.textContent).toContain('已查證');
-    expect(q(el, 'sovereignty-card-citation')?.textContent).toContain('Doc. 710, p. 734');
+    // 出處不攤在欄位裡：欄位旁只有上標編號，出處統一列在底部「資料來源」（與人物彈窗同一種做法）
+    expect(q(el, 'sovereignty-card-start')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull();
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('Doc. 710, p. 734');
     expect(q(el, 'sovereignty-card-end')?.querySelector('[data-testid="sovereignty-card-pending"]')?.textContent).toBe('待查證');
   });
 
-  it('起訖變動同一結構：事件名稱 → 日期 → 徽章＋出處；徽章在名稱下方、與出處同一區塊', async () => {
+  it('起訖變動同一結構：標籤 → 日期 → 事件名稱 → 上標編號；沒有出處時不放編號', async () => {
     const { el } = await render(props());
     for (const key of ['start', 'end']) {
       const row = q(el, 'sovereignty-card-' + key)!;
-      const kids = [...row.querySelector('wl-event-ref')!.children].map((c) => c.getAttribute('data-testid'));
-      expect(kids).toEqual(['sovereignty-card-event-name', 'sovereignty-card-event-date', 'sovereignty-card-evidence']);
+      const kids = [...row.children].map((c) => c.getAttribute('data-testid')).filter((x) => x && x !== 'sovereignty-card-sup' && x !== 'sovereignty-card-no-citation');
+      expect(kids).toEqual(['sovereignty-card-evidence', 'sovereignty-card-event-date', 'sovereignty-card-event-name']);
       expect(row.querySelector('[data-testid="sovereignty-card-event-date"]')?.textContent?.trim()).toBe('1938-09-29');
-      const evidence = row.querySelector('[data-testid="sovereignty-card-evidence"]')!;
-      expect(evidence.firstElementChild?.getAttribute('data-testid')).toMatch(/^sovereignty-card-(verified|pending)$/);
+      expect(row.querySelector('[data-testid="sovereignty-card-evidence"] [data-testid]')?.getAttribute('data-testid')).toMatch(/^sovereignty-card-(verified|pending)$/);
     }
-    // 結束變動沒有出處：只標待查證與「尚無正式出處」，不補造
+    // 結束變動沒有出處：標待查證，原因在提示裡，沒有上標編號，不補造
     const end = q(el, 'sovereignty-card-end')!;
-    expect(end.querySelector('[data-testid="sovereignty-card-citation"]')).toBeNull();
+    expect(end.querySelector('[data-testid="sovereignty-card-sup"]')).toBeNull();
+    expect(end.querySelector('[data-testid="sovereignty-card-pending"]')?.getAttribute('title')).toContain('尚無正式出處');
     expect(end.querySelector('[data-testid="sovereignty-card-no-citation"]')?.textContent).toContain('尚無正式出處');
   });
 
-  it('出處預設只顯示簡短引用，點一下展開完整書目、再點收合', async () => {
+  it('資料來源區：預設收合；點上標編號會展開，列出完整書目、等級與用於哪一欄', async () => {
     const title = 'Documents on German Foreign Policy 1918–1945, Series D (1937–1945), Volume VIII: The War Years, September 4, 1939–March 18, 1940（美國國務院版）';
     const { fixture, el } = await render(props({
-      startEvent: ev('verified', [{ sourceId: 's', sourceTitle: title, publisher: 'U.S. Department of State', licenseCode: 'us_federal_pd', locator: 'Doc. 157, pp. 164–165', role: 'primary', evidenceNote: '' }]),
+      startEvent: ev('verified', [{ sourceId: 's', sourceTitle: title, publisher: 'U.S. Department of State', licenseCode: 'us_federal_pd', locator: 'Doc. 157, pp. 164–165', role: 'primary', evidenceNote: '', grade: 'A' }]),
     }));
     const start = q(el, 'sovereignty-card-start')!;
-    const toggle = start.querySelector('[data-testid="sovereignty-card-citation-toggle"]') as HTMLButtonElement;
-    expect(toggle.textContent?.trim()).toBe('DGFP D/VIII, Doc. 157, pp. 164–165');
-    expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
-    expect(start.textContent).not.toContain('The War Years');
-    toggle.click();
+    expect(start.textContent).not.toContain('The War Years'); // 欄位裡不放書目
+    const panel = q(el, 'sovereignty-card-sources-panel') as HTMLElement;
+    expect(panel.hidden).toBe(true);
+    const sup = start.querySelector('[data-testid="sovereignty-card-sup"]') as HTMLButtonElement;
+    const n = sup.getAttribute('data-n');
+    sup.click();
     await fixture.whenStable();
-    expect(toggle.getAttribute('aria-expanded')).toBe('true');
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain(title);
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')?.textContent).toContain('U.S. Department of State');
-    toggle.click();
-    await fixture.whenStable();
-    expect(start.querySelector('[data-testid="sovereignty-card-citation-full"]')).toBeNull();
+    expect(panel.hidden).toBe(false);
+    const note = panel.querySelector(`[data-testid="sovereignty-card-source-note"][data-n="${n}"]`)!;
+    expect(note.textContent).toContain(title);
+    expect(note.textContent).toContain('U.S. Department of State');
+    expect(note.textContent).toContain('Doc. 157, pp. 164–165');
+    expect(note.querySelector('[data-testid="source-grade"]')?.textContent).toContain('A');
+    expect(note.querySelector('[data-testid="sovereignty-card-source-used-for"]')?.textContent).toContain('起始變動');
+    // 國界形狀的來源也編號列在同一區
+    const g = q(el, 'sovereignty-card-geometry')!.querySelector('[data-testid="sovereignty-card-sup"]')!.getAttribute('data-n');
+    expect(g).not.toBe(n);
+    expect(q(el, 'sovereignty-card-sources-label')?.textContent).toMatch(/\(\d+\)/);
   });
 
   it('卡片內容可捲動（太高時不超出外框）', async () => {
@@ -86,9 +94,11 @@ describe('SovereigntyCard（國界資訊卡）', () => {
 
   it('幾何出處：OHM 關係／版本、授權與署名；含 OSM 線段時標 ODbL', async () => {
     const { el } = await render(props());
-    const g = q(el, 'sovereignty-card-geometry')!.textContent!;
+    // 欄位只留名稱與上標；引用位置、授權、署名在底部「資料來源」
+    expect(q(el, 'sovereignty-card-geometry')!.textContent).not.toContain('relation/2704712 v208');
+    const g = q(el, 'sovereignty-card-sources-panel')!.textContent!;
     expect(g).toContain('relation/2704712 v208');
-    expect(g).toContain('cc_by');
+    expect(g).toMatch(/CC BY/); // 授權以名稱顯示（共用來源區塊的做法）
     expect(g).toContain('© GURS');
     expect(q(el, 'sovereignty-card-osm')?.textContent).toContain('ODbL');
     const clean = await render(props({ geometry: { ...props().geometry, flags: { osmDerivedWayCount: 0 } } }));
@@ -140,11 +150,18 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     (q(el, 'sovereignty-card-tab-events') as HTMLElement).click();
     await fixture.whenStable();
     const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
-    expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'now', 'future']);
+    expect(items.map((i) => i.getAttribute('data-when'))).toEqual(['past', 'past', 'future']);
+    // T2：目前日期標線插在第一個晚於目前日期的事件前；T1：未發生的事件 60% 透明
+    expect(items[2].compareDocumentPosition(q(el, 'sovereignty-card-timeline-now')!) & Node.DOCUMENT_POSITION_PRECEDING).toBeTruthy();
+    expect(items[1].compareDocumentPosition(q(el, 'sovereignty-card-timeline-now')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(q(el, 'sovereignty-card-timeline-now')?.textContent).toContain('1939-10-23');
+    expect(items[2].classList.contains('opacity-60')).toBe(true);
+    expect(items[0].classList.contains('opacity-60')).toBe(false);
     expect(items[1].textContent).toContain('交戰方');
     expect(items[1].textContent).toContain('開戰');
-    expect(items[2].querySelector('[data-testid="sovereignty-card-timeline-pending"]')?.textContent).toBe('待查證');
-    (items[0].querySelector('[data-testid="sovereignty-card-timeline-jump"]') as HTMLButtonElement).click();
+    expect(items[2].querySelector('[data-testid="sovereignty-card-timeline-pending"]')?.textContent).toBe('待考證');
+    expect(items[2].getAttribute('data-pending')).toBe('true');
+    (items[0].querySelector('[data-testid="sovereignty-card-timeline-card"]') as HTMLElement).click();
     expect(jumped).toBe('1938-03-13');
   });
 
@@ -161,13 +178,20 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     fixture.componentRef.setInput('eventsStatus', 'ok');
     await fixture.whenStable();
     const el = fixture.nativeElement as HTMLElement;
-    const items = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
-    const add = items[0].querySelector('[data-testid="sovereignty-card-timeline-addition"]');
+    const items = () => [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-item"]')];
+    const card = (i: number) => items()[i].querySelector('[data-testid="sovereignty-card-timeline-card"]') as HTMLElement;
+    card(0).click();
+    await fixture.whenStable();
+    const add = items()[0].querySelector('[data-testid="sovereignty-card-timeline-addition"]');
     expect(add?.getAttribute('data-role')).toBe('belligerent');
     expect(add?.textContent).toContain('事後追加・交戰方');
     expect(add?.textContent).toContain('2026-10-31');
     expect(add?.textContent).toContain('美軍為火炬行動登陸主力');
-    expect(items[1].querySelector('[data-testid="sovereignty-card-timeline-addition"]')).toBeNull();
+    card(1).click();
+    await fixture.whenStable();
+    expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull(); // 同時只有一張被選取
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).not.toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-addition"]')).toBeNull();
   });
 
   it('面板內分頁：概要（含相關衝突）與事件；tablist／tab／tabpanel 的 aria、方向鍵切換、送出 tabChange、依 tab 輸入開在指定分頁', async () => {
@@ -251,5 +275,280 @@ describe('SovereigntyCard（國界資訊卡）', () => {
     expect(q(a.el, 'sovereignty-card-status')?.textContent?.trim()).toBe('德國併入（非主權）');
     const en = await render(props({ layerStatus: 'not_sovereign', occupation: { ...o, occupierSlug: 'deutsches-reich' } }), 'en');
     expect(q(en.el, 'sovereignty-card-status')?.textContent?.trim()).toBe('German occupation (not sovereign)');
+  });
+
+  it('概要顯示首都名稱（依語言）與出處文字', async () => {
+    const cap = {
+      recordId: 'cap1', regimeId: 'g1', regimeSlug: 'deutsches-reich',
+      cityName: { 'zh-Hant': '柏林', en: 'Berlin' },
+      location: { type: 'Point' as const, coordinates: [13.4, 52.5] as [number, number] },
+      validPeriod: { start: '1933-01-30', end: null },
+      sourceRef: 'Wikipedia: Berlin',
+    };
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('capital', cap);
+    fixture.componentRef.setInput('lang', 'zh-Hant');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('柏林');
+    expect(q(el, 'sovereignty-card-capital')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull(); // 首都旁只有上標編號
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('Wikipedia: Berlin');
+    expect(q(el, 'sovereignty-card-capital-none')).toBeNull();
+    // 英文介面
+    fixture.componentRef.setInput('lang', 'en');
+    await fixture.whenStable();
+    expect(q(el, 'sovereignty-card-capital-name')?.textContent?.trim()).toBe('Berlin');
+  });
+
+  it('首都無資料時概要顯示「無資料」', async () => {
+    const { el } = await render(props());
+    // capital 預設 null
+    expect(q(el, 'sovereignty-card-capital-none')?.textContent?.trim()).toBe('無資料');
+    expect(q(el, 'sovereignty-card-capital-name')).toBeNull();
+  });
+
+  it('面板內有「人物」分頁（Tai 2026-11-07 由「領導人」改名；data-testid 不變）', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const tab = q(el, 'sovereignty-card-tab-leaders') as HTMLElement;
+    expect(tab).not.toBeNull();
+    expect(tab.textContent?.trim()).toBe('人物');
+    expect(tab.getAttribute('role')).toBe('tab');
+  });
+
+  it('人物分頁：卡片依角色排序（國家元首在前）、姓名、職位、任期（迄日顯示最後在任日）、來源預設收合', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', [
+      { recordId: 'l2', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒', role: 'head_of_government', title: 'Reichskanzler', validPeriod: { start: '1933-01-30', end: '1945-04-30' }, source: 'Berliner Tageblatt', sourceUrl: null, verified: true, personId: null, bio: null },
+      { recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒', role: 'head_of_state', title: 'Führer und Reichskanzler', validPeriod: { start: '1934-08-02', end: null }, source: '', sourceUrl: null, verified: true, personId: null, bio: null },
+    ]);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const cards = [...el.querySelectorAll('[data-testid="person-card"]')];
+    expect(cards.length).toBe(2);
+    expect(cards[0].querySelector('[data-testid="person-card-role"]')?.getAttribute('data-role')).toBe('head_of_state');
+    expect(cards[1].querySelector('[data-testid="person-card-name"]')?.textContent?.trim()).toBe('阿道夫·希特勒');
+    expect(cards[1].querySelector('[data-testid="person-card-title"]')?.textContent?.trim()).toBe('Reichskanzler');
+    expect(cards[1].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('1933-01-30 – 1945-04-29');
+    expect(cards[0].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('迄今不明');
+    // 來源：有出處 → 任期旁有上標編號，卡片底部「資料來源」預設收合，點編號才展開；沒有 → 靜態「待補來源」
+    const toggle = cards[1].querySelector('[data-testid="person-card-sources-toggle"]') as HTMLButtonElement;
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect((cards[1].querySelector('[data-testid="person-card-sources-panel"]') as HTMLElement).hidden).toBe(true);
+    (cards[1].querySelector('[data-testid="person-card-sup"]') as HTMLButtonElement).click();
+    await fixture.whenStable();
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(cards[0].querySelector('[data-testid="person-card-sup"]')).toBeNull();
+    expect(cards[0].querySelector('[data-testid="person-card-sources"]')).toBeNull();
+    expect(cards[0].querySelector('[data-testid="source-pending"]')?.textContent?.trim()).toBe('待補來源');
+    // 沒有生平 → 沒有「查看詳情」；沒有照片 → 中性佔位
+    expect(cards[0].querySelector('[data-testid="person-card-details"]')).toBeNull();
+    expect(cards[0].querySelector('[data-testid="person-card-placeholder"]')).not.toBeNull();
+  });
+
+  it('人物分頁空態：顯示「無資料」文案', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', []);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    const panel = q(el, 'sovereignty-card-panel-leaders')!;
+    expect(panel.querySelector('[data-testid="person-card"]')).toBeNull();
+    expect(panel.textContent).toContain('無資料');
+  });
+
+  it('控制區區塊：evidence、有效期間、陣營、補充（預設收合，僅限 currentDate 以前）、爭議、來源', async () => {
+    const czProps = {
+      versionId: 'v1', controllerRegimeId: 'g1', controlType: 'occupation',
+      validPeriod: { start: '1939-09-01', end: '1945-05-08', startUncertainty: null, endUncertainty: null },
+      theaterCode: 'europe',
+      controllerAlignment: {
+        camp: 'axis',
+        validPeriod: { start: '1939-09-01', end: null }, citations: [
+          { sourceId: 's1', sourceTitle: 'FRUS 1939', publisher: 'GPO', licenseCode: 'us_federal_pd', locator: 'p. 1', role: 'primary', evidenceNote: '' },
+        ],
+      },
+      controllerSupplements: [
+        { eventId: 'sup1', occurred: { start: '1940-06-22', end: null }, summary: { 'zh-Hant': '法國停戰', en: 'Fall of France' }, citations: [] },
+        { eventId: 'sup2', occurred: { start: '1946-01-01', end: null }, summary: { 'zh-Hant': '未來事件（不顯示）', en: 'Future' }, citations: [] },
+      ],
+      isDisputed: true,
+      citations: [{ sourceId: 's2', sourceTitle: 'Source', publisher: 'P', licenseCode: 'cc0', locator: 'p.1', role: 'primary', evidenceNote: '' }],
+    } as unknown as import('../../core/api/api-types').ControlFeatureProperties;
+
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('currentDate', '1941-06-22');
+    fixture.componentRef.setInput('controlZone', { props: czProps, evidence: 'attested', theater: { attestingSnapshot: { asOf: '1941-06-22' } } });
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+
+    // 史料狀態：已查證
+    expect(q(el, 'feature-card-evidence')?.textContent).toContain('已查證');
+    // 陣營
+    expect(q(el, 'feature-card-camp')?.getAttribute('data-camp')).not.toBe('unassigned');
+    // 依據
+    // 陣營依據：欄位旁只有上標編號，出處在底部「資料來源」
+    expect(q(el, 'feature-card-camp-basis')?.querySelector('[data-testid="sovereignty-card-sup"]')).not.toBeNull();
+    expect(q(el, 'sovereignty-card-sources-panel')?.textContent).toContain('FRUS 1939');
+    // 補充：sup2 的日期 1946 > currentDate 1941，不顯示；sup1 顯示
+    const supplements = q(el, 'feature-card-supplements');
+    expect(supplements).not.toBeNull();
+    const supItems = [...el.querySelectorAll('[data-testid="feature-card-supplement"]')];
+    expect(supItems.length).toBe(1);
+    expect(supItems[0].textContent).toContain('法國停戰');
+    // 爭議
+    expect(el.textContent).toContain('爭議領土');
+    // 補充預設收合（details 元素）
+    const details = supplements?.querySelector('details');
+    expect(details).not.toBeNull();
+    expect(details?.hasAttribute('open')).toBe(false);
+  });
+
+  // ── 人物卡：查看詳情、照片 ─────────────────────────────────────────────────────
+
+  const bioSummary = (over: Partial<LeaderBioSummary> = {}): LeaderBioSummary => ({
+    id: 'p1', name: 'Adolf Hitler', nameZh: null, birthDate: null, birthDatePrecision: null, deathDate: null, summary: null, retractedAt: null, ...over,
+  });
+  const leaderWithPerson = (personId: string | null = 'p1', bio: LeaderBioSummary | null = personId ? bioSummary() : null) => ({
+    recordId: 'l1', regimeId: 'g1', regimeSlug: 'deutsches-reich', name: 'Adolf Hitler', nameZh: '阿道夫·希特勒',
+    role: 'head_of_state' as const, title: 'Führer', validPeriod: { start: '1934-08-02', end: null as string | null },
+    source: 'RGBl. 1934', sourceUrl: null, verified: true, personId, bio,
+  });
+  const renderLeaders = async (leaders: ReturnType<typeof leaderWithPerson>[], lang: 'zh-Hant' | 'en' = 'zh-Hant') => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('lang', lang);
+    fixture.componentRef.setInput('leaders', leaders);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    return { fixture, el };
+  };
+
+  it('有效生平 → 「查看詳情」按鈕，點了送出 personOpen（含觸發元素）', async () => {
+    const { fixture, el } = await renderLeaders([leaderWithPerson('p1')]);
+    const opened: { personId: string; trigger: HTMLElement }[] = [];
+    fixture.componentInstance.personOpen.subscribe((e) => opened.push(e));
+    const btn = q(el, 'person-card-details') as HTMLButtonElement;
+    expect(btn.getAttribute('data-person-trigger')).toBe('p1');
+    btn.click();
+    expect(opened.length).toBe(1);
+    expect(opened[0].personId).toBe('p1');
+    expect(opened[0].trigger).toBe(btn);
+  });
+
+  it('同一人多個角色合併成一張卡：每個角色一列（職位、任期、各自來源），只有一個「查看詳情」；分頁數量算不重複人數', async () => {
+    const a = leaderWithPerson('p1');
+    const b = { ...leaderWithPerson('p1'), recordId: 'l2', role: 'head_of_government' as 'head_of_state', title: 'Reichskanzler', validPeriod: { start: '1933-01-30', end: '1945-04-30' }, source: '' };
+    const c = { ...leaderWithPerson('p2'), recordId: 'l3', role: 'head_of_government' as 'head_of_state', name: 'Other', nameZh: '另一人' };
+    const { el } = await renderLeaders([b, a, c]);
+    const cards = [...el.querySelectorAll('[data-testid="person-card"]')];
+    expect(cards.length).toBe(2);
+    const rows = [...cards[0].querySelectorAll('[data-testid="person-card-role-row"]')];
+    expect(rows.map((r) => r.getAttribute('data-role'))).toEqual(['head_of_state', 'head_of_government']);
+    expect(rows[1].querySelector('[data-testid="person-card-term"]')?.textContent).toContain('1933-01-30 – 1945-04-29');
+    // 來源各自保留：國家元首有出處、政府首腦沒有 → 待補來源
+    expect(rows[0].querySelector('[data-testid="person-card-sup"]')).not.toBeNull();
+    expect(rows[1].querySelector('[data-testid="source-pending"]')).not.toBeNull();
+    expect(cards[0].querySelectorAll('[data-testid="person-card-details"]').length).toBe(1);
+    expect(q(el, 'sovereignty-card-tab-leaders-count')?.textContent?.trim()).toBe('2');
+  });
+
+  it('併入地沿用主要政權人物：另起一組並標示「沿用主要政權：<資料顯示名>」，數量算實際列出的人', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('leaders', []);
+    fixture.componentRef.setInput('inheritedLeaders', [leaderWithPerson('p1'), { ...leaderWithPerson('p1'), recordId: 'l2', role: 'head_of_government' as 'head_of_state' }]);
+    fixture.componentRef.setInput('inheritedFrom', '測試政權');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    expect(q(el, 'sovereignty-card-tab-leaders-count')?.textContent?.trim()).toBe('1');
+    (q(el, 'sovereignty-card-tab-leaders') as HTMLElement).click();
+    await fixture.whenStable();
+    expect(q(el, 'sovereignty-card-leaders-inherited-note')?.textContent).toContain('沿用主要政權：測試政權');
+    expect(el.querySelectorAll('[data-testid="person-card"]').length).toBe(1);
+    expect(q(el, 'sovereignty-card-panel-leaders')?.textContent).not.toContain('無資料');
+  });
+
+  it('沒有生平、生平為 null、生平已撤回 → 不顯示「查看詳情」', async () => {
+    for (const l of [leaderWithPerson(null), leaderWithPerson('p1', null), leaderWithPerson('p1', bioSummary({ retractedAt: '2026-11-01T00:00:00Z' }))]) {
+      const { el } = await renderLeaders([l]);
+      expect(q(el, 'person-card-details')).toBeNull();
+    }
+  });
+
+  it('照片：授權在允許清單才顯示；不在清單（或沒有）→ 中性佔位', async () => {
+    const portrait = { url: 'https://upload.wikimedia.org/a.jpg', sourceUrl: 'https://commons.wikimedia.org/wiki/File:a.jpg', author: null, licenseCode: 'pd_expired', licenseUrl: null, attribution: 'Unknown author', retrievedOn: '2026-11-07' };
+    let r = await renderLeaders([leaderWithPerson('p1', bioSummary({ portrait }))]);
+    expect((q(r.el, 'person-card-photo') as HTMLImageElement).getAttribute('src')).toBe(portrait.url);
+    r = await renderLeaders([leaderWithPerson('p1', bioSummary({ portrait: { ...portrait, licenseCode: 'cc_by_nc' } }))]);
+    expect(q(r.el, 'person-card-photo')).toBeNull();
+    expect(q(r.el, 'person-card-placeholder')).not.toBeNull();
+  });
+
+  it('英文介面：分頁 People、角色英文、姓名用 name', async () => {
+    const { el } = await renderLeaders([leaderWithPerson('p1')], 'en');
+    expect(q(el, 'sovereignty-card-tab-leaders')?.textContent?.replace(/\s+/g, ' ').trim()).toBe('People 1');
+    expect(q(el, 'person-card-name')?.textContent?.trim()).toBe('Adolf Hitler');
+    expect(q(el, 'person-card-role')?.textContent?.trim()).toBe('Head of State');
+    expect(q(el, 'person-card-details')?.textContent?.trim()).toBe('View details');
+  });
+
+  it('事件卡片（§10 v2）：同月份一組、月份標頭；不收合（無展開按鈕）；選取才顯示出處與「在地圖上看」且不重複標題日期；再點一次收起；節點與戰役圖示；目前日期標線', async () => {
+    const fixture = TestBed.createComponent(SovereigntyCard);
+    fixture.componentRef.setInput('props', props());
+    fixture.componentRef.setInput('embedded', true);
+    fixture.componentRef.setInput('tab', 'events');
+    const tev = (id: string, start: string, kind = 'treaty') => ({ ...ev('verified'), id, eventKind: kind, occurred: { start, end: start }, roles: ['belligerent'] });
+    fixture.componentRef.setInput('regimeEvents', [tev('a', '1940-05-10', 'battle'), tev('b', '1940-05-28'), { ...tev('c', '1940-06-22'), verification: 'pending' }]);
+    fixture.componentRef.setInput('eventsStatus', 'ok');
+    fixture.componentRef.setInput('currentDate', '1940-06-01');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const groups = [...el.querySelectorAll('[data-testid="sovereignty-card-timeline-group"]')];
+    expect(groups.map((g) => g.getAttribute('data-month'))).toEqual(['1940-05', '1940-06']);
+    expect(groups[0].querySelector('[data-testid="sovereignty-card-timeline-month"]')?.textContent?.trim()).toBe('1940年5月');
+    const items = () => [...el.querySelectorAll<HTMLElement>('[data-testid="sovereignty-card-timeline-item"]')];
+    const card = (i: number) => items()[i].querySelector<HTMLElement>('[data-testid="sovereignty-card-timeline-card"]')!;
+    expect(el.querySelector('[data-testid="sovereignty-card-timeline-toggle"]')).toBeNull();
+    expect(q(el, 'sovereignty-card-timeline-rail')).not.toBeNull();
+    expect(items().map((i) => i.querySelector('[data-testid="sovereignty-card-timeline-node"]')?.getAttribute('data-kind'))).toEqual(['battle', 'verified', 'pending']);
+    expect(items().map((i) => i.querySelector('[data-testid="sovereignty-card-timeline-status"]')?.textContent?.trim())).toEqual(['⚔', '✓', '?']);
+    expect(groups[1].previousElementSibling?.getAttribute('data-testid')).toBe('sovereignty-card-timeline-now'); // 落在月份交界時畫在月份標頭前
+    expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-battle"]')).not.toBeNull();
+    expect(items()[0].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull();
+    expect(el.querySelector('[data-testid="sovereignty-card-timeline-detail-citation"], [data-testid="sovereignty-card-timeline-detail-no-citation"]')).toBeNull(); // C1
+    let jumped = '';
+    fixture.componentInstance.eventJump.subscribe((d) => (jumped = d));
+    card(1).click();
+    await fixture.whenStable();
+    expect(jumped).toBe('1940-05-28');
+    expect(items()[1].getAttribute('data-selected')).toBe('true');
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-citation"], [data-testid="sovereignty-card-timeline-detail-no-citation"]')).not.toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-event-name"]')).toBeNull(); // 不重複標題
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail-event-date"]')).toBeNull();
+    jumped = '';
+    (items()[1].querySelector('[data-testid="sovereignty-card-timeline-map"]') as HTMLButtonElement).click();
+    expect(jumped).toBe('1940-05-28');
+    card(1).click();
+    await fixture.whenStable();
+    expect(items()[1].getAttribute('data-selected')).toBeNull();
+    expect(items()[1].querySelector('[data-testid="sovereignty-card-timeline-detail"]')).toBeNull();
   });
 });

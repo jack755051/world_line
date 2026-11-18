@@ -1,0 +1,90 @@
+{
+ "batch": "075",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 2,
+  "deletedCitations": 0,
+  "addedCitations": 6,
+  "editedSentences": 0,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pa-arosemena-florencio",
+   "bioId": "01a1b4c1-ce67-7a1d-bb23-5cc005fd8f68",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 9,
+   "changes": [
+    "第1段 period 迄點改 1932-01-01（段內最後一件事為 1928–1931 總統任期）",
+    "第2段：引文延長為「only previous political involvement had been a brief period as a councilman」「largely as a result of the manipulations of President Rodolfo Chiari (1924–1928)」以支撐「唯一」「主要」子句",
+    "searchLog 第2步 La Estrella（報紙）sourceType official 改 other",
+    "重抓 pdba.georgetown.edu 歷任總統表比對引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "byelorussian-chervyakov",
+   "bioId": "01a1b4c1-ce6e-73f1-812c-7901dde51d5b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 5,
+   "roleCandidates": 2,
+   "gaps": 5,
+   "searchLogSteps": 19,
+   "changes": [
+    "刪職位 chervyakov-riga-talks-1920（和談參加屬事件，Q1 只寫正文；organization「蘇俄—烏克蘭」無出處）",
+    "候選 chervyakov-ussr-cec-cochair（R0 head_of_state）移回 positions：來源只寫蘇聯中執委共同主席之一，未寫元首，標 t14Ambiguous；gap target 改 position:",
+    "gap paragraph:cec-snk-chair 由 conflict 改 not_found（BSU 未寫 ЦИК 主席結束年，與 preslib 不矛盾）",
+    "教育副人民委員：無日期引文 datePrecision 改 null，補含 1919 的 preslib 引文",
+    "第5段 period 迄點改 1958-01-01（段內最後一件事為 1957 平反）",
+    "重抓 preslib 條目比對引文一致",
+    "黨中央委員會職務缺迄日已有「待查證：缺迄日」gap 且 searchLog 有 retry，check_min 未達僅因此"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "french-third-republic-millerand",
+   "bioId": "d39b770b-d2d7-4d8e-93db-229e37b5adbc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 3,
+   "gaps": 6,
+   "searchLogSteps": 9,
+   "changes": [
+    "候選 millerand-deputy-seine（R1 黨籍席位）移回 positions（legislator，partyPostAmbiguous）：Élysée「Député radical」概括 1885–1919，Sycomore 各屆黨團不同；regimeId 改 null（始於 1885）；gap target 改 position:",
+    "Strasbourg 總專員加 t14Ambiguous（R2／R5 無法判定）",
+    "第1段：無日期引文 datePrecision 改 null；引文補 1881 日期、la Justice；補「carrière de journaliste」「carrière d'homme politique」引文",
+    "第2段：1904 引文含年份；延長引文支撐「bourgeois」；補 Waldeck-Rousseau 與社會立法括號內容引文",
+    "第4段：引文延長支撐 Deschanel、「導致」白里安辭職、「選舉」子句",
+    "商業部長職位補 Waldeck-Rousseau 引文",
+    "重抓 Élysée 頁比對引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常截短引文，致人名、年份、因果或括號內容等子句無 quote 對應；審查以同一已抓原文延長或補引文",
+  "datePrecision 填在不含日期的引文上（Q8）",
+  "事件參與（和談）被建成 positions；含糊的元首／黨籍席位歸類直接進角色候選，審查改回經歷層並標 ambiguous"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

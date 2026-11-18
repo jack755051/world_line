@@ -16,12 +16,14 @@ public sealed record IntervalDto(DateOnly Start, DateOnly End, DatePeriodDto? St
 public sealed record CreateSourceRequest(
     string? SourceKind, string? Title, string? Publisher, string? Authors = null, string? PublishedText = null,
     string? LicenseCode = null, string? LicenseEvidenceUrl = null, string? Url = null, string? ArchiveUrl = null,
-    string? LocalCopyPath = null, string? CatalogId = null, string? Note = null);
+    string? LocalCopyPath = null, string? CatalogId = null, string? Note = null,
+    string? Grade = null, string? GradeBasis = null, string? Family = null);
 
+/// <summary>grade：來源等級 A｜B｜C｜X，null＝尚未評等；family：來源家族，同家族只算一個獨立來源（docs/source-rules.md）。</summary>
 public sealed record SourceDto(
     Guid Id, string SourceKind, string Title, string Publisher, string? Authors, string? PublishedText,
     string? LicenseCode, string? LicenseEvidenceUrl, string? Url, string? ArchiveUrl, string? LocalCopyPath,
-    string? CatalogId, string? Note);
+    string? CatalogId, string? Note, string? Grade = null, string? GradeBasis = null, string? Family = null);
 
 // ───────────── 政權（I2、I4、R4） ─────────────
 public sealed record RegimeNameInput(
@@ -60,7 +62,8 @@ public sealed record CreateControlRecordRequest(
 public sealed record ControlRecordCreatedDto(Guid ControlRecordId, Guid VersionId);
 
 public sealed record CitationDto(
-    Guid SourceId, string SourceTitle, string Publisher, string? LicenseCode, string Locator, string Role, string EvidenceNote);
+    Guid SourceId, string SourceTitle, string Publisher, string? LicenseCode, string Locator, string Role, string EvidenceNote,
+    string? Grade = null);
 
 /// <summary>
 /// <c>controllerAlignment</c>：控制方在該日期的陣營切片（憲法 §6「陣營」），附引用；
@@ -165,7 +168,8 @@ public sealed record CreateEventRequest(
 public sealed record EventParticipantInput(Guid? RegimeId, string? Role);
 
 /// <summary>事件引用（PRD §6.3 event_citations）：來源＋locator（頁碼、文件號）＋審查依據。</summary>
-public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote);
+/// <summary>grade／gradeBasis：這一份被引用文件的等級 A｜B｜C 與依據（可不填；填了優先於來源整冊的等級，docs/source-rules.md §2）。</summary>
+public sealed record EventCitationInput(Guid? SourceId, string? Locator, string? EvidenceNote, string? Grade = null, string? GradeBasis = null);
 
 /// <summary>addedAt／additionNote：事後追加（方案 A）的參與方才有；隨事件寫入的為 null。</summary>
 public sealed record EventParticipantDto(Guid RegimeId, string Role, DateTimeOffset? AddedAt = null, IReadOnlyDictionary<string, string>? AdditionNote = null);
@@ -199,6 +203,12 @@ public sealed record RegimeAlignmentDto(
 public sealed record RetractionRequest(string? Reason);
 
 public sealed record RetractionDto(Guid Id, DateTimeOffset RetractedAt, string Reason);
+
+/// <summary>
+/// 替主權紀錄本身附引文（docs/source-rules.md D5）：支持「這段期間的疆界是這樣」的出處，例如當時地圖集的圖版、劃界條約。
+/// grade：被引用那一份文件的等級 A｜B｜C；gradeBasis：評等依據；evidenceNote：這份出處怎麼支持這段疆界。
+/// </summary>
+public sealed record CreateSovereigntyRecordCitationRequest(Guid? SourceId, string? Locator, string? EvidenceNote, string? Grade, string? GradeBasis);
 
 // ───────────── 主權圖層（法理國界；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
 /// <summary>
@@ -243,11 +253,38 @@ public sealed record GeometryProvenanceDto(
 
 /// <summary>
 /// 主權圖層要素屬性。地圖依 regimeSlug 上色（一個政權一種顏色）；陣營只作補充（regimeAlignment），不決定填色。
+/// confidence：這筆國界的可信程度 verified｜needs_check（docs/source-rules.md §5，取自 v_record_confidence）；
+/// confidenceBasis：依據。start_event_*＝依起始事件的出處（接續前一筆、形狀相同的紀錄沿用前一筆的）；baseline＝1908 起點時既有；
+/// startDatePrecision：起始日能由出處確定到的精度 month｜year（null＝到日，或尚未標示）。record_citation_*＝依這筆國界自己的引文（recordCitations）；new_no_event＝新出現但沒有事件；change_no_event＝疆界有變但沒有事件；minor_revision_no_event＝形狀細微差異未確認；dataset_only＝尚未判定來歷。
 /// </summary>
 public sealed record SovereigntyFeatureProperties(
     Guid RecordId, Guid RegimeId, string RegimeSlug, string LayerStatus, DatePeriodDto ValidPeriod,
     SovereigntyEventRefDto? StartEvent, SovereigntyEventRefDto? EndEvent, GeometryProvenanceDto Geometry,
-    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null);
+    IReadOnlyDictionary<string, string>? Note, RegimeAlignmentDto? RegimeAlignment = null, OccupationRefDto? Occupation = null,
+    string? Confidence = null, string? ConfidenceBasis = null, IReadOnlyList<CitationDto>? RecordCitations = null,
+    string? StartDatePrecision = null, IReadOnlyList<SovereigntyDisputeDto>? Disputes = null);
+
+/// <summary>
+/// 主權爭議（憲法 R6、I3）：同一塊地有不只一方主張。summary＝爭議點；claims＝各方的主張。
+/// 系統不裁判誰對。掛在主權紀錄上回傳時，claims 含這筆紀錄自己那一方與其他各方。
+/// kind：contested＝各方爭奪同一塊地（畫面標「主權爭議」）；layered＝名義上的宗主權與實際治理並存（畫面標「主權並存」）。
+/// </summary>
+public sealed record SovereigntyDisputeDto(
+    Guid Id, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<SovereigntyDisputeClaimDto> Claims, string Kind = "contested");
+
+/// <summary>
+/// 爭議裡某一方的主張。recordId＝畫出這一方主張範圍的主權紀錄；null＝這一方的主張查無出處，沒有畫範圍。
+/// position＝主張什麼、誰承認。effective＝當時實際生效的是不是這一方（null＝未判定或本身有爭議）。
+/// </summary>
+public sealed record SovereigntyDisputeClaimDto(
+    Guid ClaimantRegimeId, string ClaimantRegimeSlug, Guid? RecordId, IReadOnlyDictionary<string, string> Position, bool? Effective);
+
+/// <summary>新增主權爭議：slug、爭議點（多語）、至少兩方的主張。同一方跨好幾筆前後相接的主權紀錄時，每筆紀錄各給一列。</summary>
+public sealed record CreateSovereigntyDisputeRequest(
+    string? Slug, IReadOnlyDictionary<string, string>? Summary, IReadOnlyList<CreateSovereigntyDisputeClaimRequest>? Claims, string? Kind = null);
+
+public sealed record CreateSovereigntyDisputeClaimRequest(
+    Guid? ClaimantRegimeId, Guid? RecordId, IReadOnlyDictionary<string, string>? Position, bool? Effective = null);
 
 /// <summary>
 /// 佔領歸屬（主權圖層依佔領國上色）。controlKind：annexed（併入，最深）| civil_administration（帝國專員／總督轄區，中等）|
@@ -278,6 +315,22 @@ public sealed record SovereigntyFeatureCollection(IReadOnlyList<SovereigntyFeatu
 }
 
 public sealed record SovereigntyMapDto(DateOnly Date, SovereigntyFeatureCollection FeatureCollection);
+
+/// <summary>GET /sovereignty/dispute-zones?date=：當天各筆主權爭議的重疊範圍；沒有爭議時 features 為空。</summary>
+public sealed record DisputeZonesDto(DateOnly Date, DisputeZoneCollection FeatureCollection);
+
+/// <summary>主權爭議在地圖上的範圍：各方主張紀錄互相重疊的部分。只有一方畫得出範圍的爭議沒有 zone。</summary>
+public sealed record DisputeZoneProperties(Guid DisputeId, string Slug, IReadOnlyDictionary<string, string> Summary, IReadOnlyList<string> ClaimantRegimeSlugs);
+
+public sealed record DisputeZoneFeature(Guid Id, JsonElement Geometry, DisputeZoneProperties Properties)
+{
+    public string Type => "Feature";
+}
+
+public sealed record DisputeZoneCollection(IReadOnlyList<DisputeZoneFeature> Features)
+{
+    public string Type => "FeatureCollection";
+}
 
 // ───────────── 衝突圖示（交叉雙劍；2026-10-31 試驗 feature/borders-1938-1940，AI 提案・待拍板） ─────────────
 /// <summary>
@@ -319,3 +372,185 @@ public sealed record ConflictFeatureCollection(IReadOnlyList<ConflictFeature> Fe
 }
 
 public sealed record ConflictMapDto(DateOnly Date, ConflictFeatureCollection FeatureCollection);
+
+// ───────────── 首都（capital_records；2026-11-02 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增首都紀錄。regimeId＝政權；cityName＝雙語城市名；location＝GeoJSON Point（WGS84）；
+/// validPeriod＝半開區間 [start, end)，end 為 null 表示至今仍有效；sourceRef＝出處文字（查不到標「待查證」）。
+/// </summary>
+public sealed record CreateCapitalRecordRequest(
+    Guid? RegimeId, IReadOnlyDictionary<string, string>? CityName, JsonElement? Location,
+    string? ValidStart, string? ValidEnd, string? SourceRef, string? Note = null);
+
+public sealed record CapitalRecordDto(
+    Guid Id, Guid RegimeId, IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod, string? SourceRef, string? Note);
+
+/// <summary>地圖首都圖層：依日期查，每筆含城市名（多語）、座標（GeoJSON Point）與出處查證狀態。</summary>
+public sealed record CapitalFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    IReadOnlyDictionary<string, string> CityName,
+    JsonElement Location, DatePeriodDto ValidPeriod,
+    string? SourceRef);
+
+public sealed record CapitalMapDto(DateOnly Date, IReadOnlyList<CapitalFeature> Features);
+
+// ───────────── 領導人（leader_records；2026-11-03 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增領導人紀錄。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// validFrom 必填（YYYY-MM-DD）；validTo 可空（開放迄日）。source 必填；verified=false 表示待查證。
+/// personId 選填：指向 leader_bios 的現有生平紀錄。
+/// </summary>
+public sealed record CreateLeaderRecordRequest(
+    Guid? RegimeId, string? Name, string? NameZh, string? Role, string? Title,
+    string? ValidFrom, string? ValidTo, string? Source, string? SourceUrl = null,
+    bool Verified = true, Guid? PersonId = null);
+
+public sealed record LeaderRecordDto(
+    Guid Id, Guid RegimeId, string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified,
+    Guid? PersonId = null);
+
+/// <summary>
+/// 領導人紀錄（GET 回應）。role：head_of_state（國家元首）| head_of_government（政府首腦）。
+/// verified=false 表示待查證（找不到可信出處）。
+/// bio：若已連結 leader_bios，回傳生平摘要（不含 fieldSources）。
+/// </summary>
+public sealed record LeaderFeature(
+    Guid RecordId, Guid RegimeId, string RegimeSlug,
+    string Name, string? NameZh, string Role, string? Title,
+    DatePeriodDto ValidPeriod, string Source, string? SourceUrl, bool Verified,
+    Guid? PersonId = null, LeaderBioSummaryDto? Bio = null,
+    IReadOnlyList<BioDetailCitationDto>? Citations = null);
+
+public sealed record LeaderMapDto(DateOnly Date, IReadOnlyList<LeaderFeature> Features);
+
+// ───────────── 領導人生平（leader_bios；2026-11-03 試驗，AI 提案・待拍板） ─────────────
+/// <summary>
+/// 新增領導人生平。一人一筆，多次任期共用。
+/// birthDate 為 YYYY-MM-DD（可只知年份，配合 birthDatePrecision = "year"）。
+/// fieldSources：各欄位出處 {"birthDate": {"source": "...", "url": "..."}, ...}。
+/// isTest=true 標記測試資料；summary 測試資料應以「【測試資料】」開頭。
+/// </summary>
+public sealed record CreateLeaderBioRequest(
+    string? Name,
+    string? NameZh = null,
+    string? BirthDate = null,
+    string? BirthDatePrecision = null,
+    string? DeathDate = null,
+    IReadOnlyDictionary<string, string>? BirthPlace = null,
+    IReadOnlyDictionary<string, string>? Party = null,
+    IReadOnlyDictionary<string, string>? Summary = null,
+    JsonElement? FieldSources = null,
+    bool IsTest = false,
+    string? DeathDatePrecision = null,
+    string? WikidataQid = null,
+    CreateLeaderPortraitRequest? Portrait = null,
+    IReadOnlyList<CreateLeaderBioFieldCitationRequest>? Citations = null);
+
+/// <summary>
+/// 照片（2026-11-07）：只收允許授權（us_federal_pd、pd_expired、cc0、cc_by、cc_by_sa）。
+/// url 為圖檔、sourceUrl 為出處頁（如 Commons 檔案頁）；attribution、retrievedOn（查證授權日期）必填。
+/// </summary>
+public sealed record CreateLeaderPortraitRequest(
+    string? Url, string? SourceUrl, string? Author, string? LicenseCode, string? LicenseUrl,
+    string? Attribution, string? RetrievedOn);
+
+/// <summary>生平欄位引用：field 見 LeaderBioFields；locator 必填（頁碼／條目／段落）；accessedOn 為查證日期。</summary>
+public sealed record CreateLeaderBioFieldCitationRequest(
+    string? Field, Guid? SourceId, string? Locator, string? EvidenceNote = null, string? AccessedOn = null);
+
+/// <summary>撤回重寫生平（I5）：撤回舊筆＋建立新筆＋把任期改連到新筆＋複製舊筆未撤回的引用，一次完成。</summary>
+public sealed record ReviseLeaderBioRequest(string? Reason, CreateLeaderBioRequest? Bio);
+
+public sealed record LeaderPortraitDto(
+    string Url, string SourceUrl, string? Author, string LicenseCode, string? LicenseUrl,
+    string Attribution, string RetrievedOn);
+
+/// <summary>
+/// 生平欄位引用。quote：引自該來源的原文短引（逐字，≤ 80 字，見 ARCHITECTURE §16.7.4）；
+/// DB 為 NULL 時輸出 null（不轉空字串）。quoteLang：引文語言（BCP 47），可為 null。
+/// grade：這筆引用文件的等級 A｜B｜C（docs/source-rules.md §2；前端每筆來源都顯示等級）；datePrecision：此出處能支撐的日期精度 day｜month｜year。
+/// </summary>
+public sealed record LeaderBioFieldCitationDto(
+    Guid Id, string Field, string Locator, string? EvidenceNote, string AccessedOn, SourceDto Source,
+    string? Quote = null, string? QuoteLang = null, string? Grade = null, string? DatePrecision = null);
+
+/// <summary>人物詳情的任期清單（含已結束任期）。validPeriod.end 不含當天。</summary>
+/// <remarks>citations：任期的結構化引文（leader_record_citations，帶等級；docs/source-rules.md §6 D6）。source／sourceUrl 是舊格式自由文字出處。</remarks>
+public sealed record LeaderTermDto(
+    Guid RecordId, Guid RegimeId, string RegimeSlug, IReadOnlyDictionary<string, string>? RegimeName,
+    string Role, string? Title, DatePeriodDto ValidPeriod, string Source, string? SourceUrl,
+    IReadOnlyList<BioDetailCitationDto>? Citations = null);
+
+/// <summary>
+/// 生平摘要（GET /leaders 回應內嵌用，不含 fieldSources）。
+/// birthDate 為 YYYY-MM-DD；birthDatePrecision：day | month | year（null＝精確度未知）。
+/// </summary>
+public sealed record LeaderBioSummaryDto(
+    Guid Id,
+    string Name,
+    string? NameZh,
+    string? BirthDate,
+    string? BirthDatePrecision,
+    string? DeathDate,
+    IReadOnlyDictionary<string, string>? Summary,
+    string? DeathDatePrecision = null,
+    LeaderPortraitDto? Portrait = null);
+
+/// <summary>領導人生平完整資料（GET /leader-bios/{id} 回應，含 fieldSources）。</summary>
+public sealed record LeaderBioDto(
+    Guid Id,
+    string Name,
+    string? NameZh,
+    string? BirthDate,
+    string? BirthDatePrecision,
+    string? DeathDate,
+    IReadOnlyDictionary<string, string>? BirthPlace,
+    IReadOnlyDictionary<string, string>? Party,
+    IReadOnlyDictionary<string, string>? Summary,
+    JsonElement? FieldSources,
+    bool IsTest,
+    DateTimeOffset? RetractedAt,
+    string? RetractionReason,
+    DateTimeOffset CreatedAt,
+    string? DeathDatePrecision = null,
+    string? WikidataQid = null,
+    LeaderPortraitDto? Portrait = null,
+    Guid? SupersededBy = null,
+    IReadOnlyList<LeaderBioFieldCitationDto>? FieldCitations = null,
+    IReadOnlyList<LeaderTermDto>? Terms = null,
+    IReadOnlyList<BioParagraphDto>? Paragraphs = null,
+    IReadOnlyList<BioPositionDto>? Positions = null,
+    IReadOnlyList<BioRoleDto>? Roles = null,
+    IReadOnlyList<BioGapDto>? Gaps = null);
+
+/// <summary>B3 段落／經歷／角色引文（§16.4.1）：Source 含 title／url／publisher。claimSpan 本批全空。</summary>
+public sealed record BioDetailCitationDto(
+    Guid Id, string Locator, string Quote, string? QuoteLang, string? EvidenceNote, string AccessedOn,
+    string? Grade, string? DatePrecision, SourceDto Source);
+
+/// <summary>生平段落（只在詳情；不進 GET /leaders／overlay）。heading／body 為雙語物件。</summary>
+public sealed record BioParagraphDto(
+    Guid Id, int Ord, DatePeriodDto? Period, string? PeriodStartPrecision, string? PeriodEndPrecision,
+    IReadOnlyDictionary<string, string>? Heading, IReadOnlyDictionary<string, string> Body,
+    IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>經歷（不決定出卡、地圖不讀）。period.end 為 null＝無界。</summary>
+public sealed record BioPositionDto(
+    Guid Id, string SeedKey, Guid? RegimeId, IReadOnlyDictionary<string, string>? Organization,
+    IReadOnlyDictionary<string, string> Title, string PositionKind, DatePeriodDto Period,
+    string? StartPrecision, string? EndPrecision, string? Note, IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>角色（元首／首腦／實質領導／閣員）；非地圖出卡資料（T13 未決）。</summary>
+public sealed record BioRoleDto(
+    Guid Id, string SeedKey, Guid? RegimeId, IReadOnlyDictionary<string, string>? Organization,
+    IReadOnlyDictionary<string, string> Title, string RoleKind, DatePeriodDto Period,
+    string? StartPrecision, string? EndPrecision, bool Acting, string? T14Rule, string? Note,
+    IReadOnlyList<BioDetailCitationDto> Citations);
+
+/// <summary>未解決缺口（來源矛盾／待補）。</summary>
+public sealed record BioGapDto(Guid Id, string Target, string GapKind, string? Note, string CheckedOn);
+
+/// <summary>把現有 LeaderRecord 連結到 LeaderBio（PATCH /leader-records/{id}/person）。</summary>
+public sealed record LinkLeaderPersonRequest(Guid? PersonId);

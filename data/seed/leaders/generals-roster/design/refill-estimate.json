@@ -1,0 +1,351 @@
+{
+ "generatedAt": "2026-11-12T21:41:42+08:00",
+ "statsGeneratedAt": "2026-11-12T21:41:42+08:00",
+ "assumptions": {
+  "unit": {
+   "任期": [
+    0.15,
+    0.3,
+    0.5
+   ],
+   "戰役": [
+    0.15,
+    0.3,
+    0.5
+   ],
+   "指揮職": [
+    0.05,
+    0.25,
+    0.5
+   ],
+   "L3": [
+    0.6,
+    0.85,
+    1.0
+   ],
+   "段落0": [
+    1.0,
+    1.0,
+    1.3
+   ],
+   "引文": [
+    0.1,
+    0.2,
+    0.3
+   ]
+  },
+  "secondary": 0.5,
+  "refetch_rate": [
+   0.0,
+   0.25,
+   1.0
+  ],
+  "refetch_penalty": 0.4
+ },
+ "avgPerPerson": {
+  "S": 0.5343,
+  "A": 0.5717
+ },
+ "minCheck": {
+  "S": {
+   "rows": 102,
+   "meets": 44,
+   "fail": 58,
+   "uniquePeople": 101,
+   "uniqueMeets": 44,
+   "uniqueFail": 57,
+   "knownDuplicatesPresent": [
+    "chesternimitz"
+   ]
+  },
+  "A": {
+   "rows": 256,
+   "meets": 104,
+   "fail": 152,
+   "uniquePeople": 255,
+   "uniqueMeets": 103,
+   "uniqueFail": 152,
+   "knownDuplicatesPresent": [
+    "小泽治三郎"
+   ]
+  }
+ },
+ "staleMinCheckJson": 22,
+ "failRows": 210,
+ "failUnique": 209,
+ "neverWritten": [
+  "S/heinzguderian"
+ ],
+ "keyMismatchWithSelection": [
+  "A/batch022 tamonyamaguchi→yamaguchi",
+  "A/batch022 yamagataaritomo→yamagata",
+  "A/batch022 shigetaroshimada→shimada",
+  "A/batch022 heitarokimura→kimura",
+  "A/batch022 iwanematsui→matsui"
+ ],
+ "exclusiveBuckets": {
+  "任期": 134,
+  "任期＋戰役": 27,
+  "戰役": 19,
+  "戰役＋指揮職＋L3": 6,
+  "指揮職": 5,
+  "戰役＋指揮職": 4,
+  "任期＋戰役＋指揮職": 3,
+  "任期＋指揮職": 3,
+  "戰役＋指揮職＋段落0": 3,
+  "任期＋戰役＋L3": 3,
+  "指揮職＋L3": 1,
+  "任期＋L3": 1
+ },
+ "overlapping": {
+  "任期": 171,
+  "指揮職": 25,
+  "L3": 11,
+  "戰役": 65,
+  "段落0": 3
+ },
+ "termsPeople": 171,
+ "termsCount": {
+  "缺起或迄": 33,
+  "缺迄待查": 347
+ },
+ "missingQuoteParagraphs": 0,
+ "estimates": {
+  "全部未達標": [
+   {
+    "scenario": "低",
+    "people": 209,
+    "byField": {
+     "任期": 12.99,
+     "戰役": 4.82,
+     "指揮職": 0.38,
+     "L3": 3.64,
+     "段落0": 1.68,
+     "引文": 0
+    },
+    "a_L1L2": 18.19,
+    "b_L3": 5.32,
+    "total": 23.51
+   },
+   {
+    "scenario": "中",
+    "people": 209,
+    "byField": {
+     "任期": 28.58,
+     "戰役": 10.61,
+     "指揮職": 2.07,
+     "L3": 5.67,
+     "段落0": 1.85,
+     "引文": 0
+    },
+    "a_L1L2": 41.26,
+    "b_L3": 7.52,
+    "total": 48.78
+   },
+   {
+    "scenario": "高",
+    "people": 209,
+    "byField": {
+     "任期": 60.05,
+     "戰役": 21.14,
+     "指揮職": 7.22,
+     "L3": 8.49,
+     "段落0": 3.05,
+     "引文": 0
+    },
+    "a_L1L2": 88.41,
+    "b_L3": 11.54,
+    "total": 99.95
+   }
+  ],
+  "戰役指揮官優先 P1（嚴，代理）": [
+   {
+    "scenario": "低",
+    "people": 135,
+    "byField": {
+     "任期": 11.36,
+     "戰役": 0,
+     "指揮職": 0,
+     "L3": 0.32,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 11.36,
+    "b_L3": 0.32,
+    "total": 11.68
+   },
+   {
+    "scenario": "中",
+    "people": 135,
+    "byField": {
+     "任期": 25.0,
+     "戰役": 0,
+     "指揮職": 0,
+     "L3": 0.5,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 25.0,
+    "b_L3": 0.5,
+    "total": 25.5
+   },
+   {
+    "scenario": "高",
+    "people": 135,
+    "byField": {
+     "任期": 53.03,
+     "戰役": 0,
+     "指揮職": 0,
+     "L3": 0.75,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 53.03,
+    "b_L3": 0.75,
+    "total": 53.78
+   }
+  ],
+  "戰役指揮官優先 P2（寬，代理）": [
+   {
+    "scenario": "低",
+    "people": 184,
+    "byField": {
+     "任期": 12.62,
+     "戰役": 3.99,
+     "指揮職": 0,
+     "L3": 1.33,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 16.61,
+    "b_L3": 1.33,
+    "total": 17.93
+   },
+   {
+    "scenario": "中",
+    "people": 184,
+    "byField": {
+     "任期": 27.77,
+     "戰役": 8.77,
+     "指揮職": 0,
+     "L3": 2.07,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 36.54,
+    "b_L3": 2.07,
+    "total": 38.6
+   },
+   {
+    "scenario": "高",
+    "people": 184,
+    "byField": {
+     "任期": 58.9,
+     "戰役": 18.6,
+     "指揮職": 0,
+     "L3": 3.1,
+     "段落0": 0,
+     "引文": 0
+    },
+    "a_L1L2": 77.5,
+    "b_L3": 3.1,
+    "total": 80.6
+   }
+  ]
+ },
+ "neverWrittenCost": [
+  0.53,
+  0.59,
+  0.97
+ ],
+ "spent": {
+  "generalsGlob": 204.1461,
+  "files": 128,
+  "total": 205.9376,
+  "personFacts": {
+   "cc-person-facts-design.json": 1.6258,
+   "cc-person-facts-estimate.json": 0.1657
+  }
+ },
+ "cap": {
+  "全部未達標": [
+   {
+    "scenario": "低",
+    "estimate": 23.51,
+    "after": 229.45,
+    "headroom": 110.55,
+    "exceeds340": false
+   },
+   {
+    "scenario": "中",
+    "estimate": 48.78,
+    "after": 254.72,
+    "headroom": 85.28,
+    "exceeds340": false
+   },
+   {
+    "scenario": "高",
+    "estimate": 99.95,
+    "after": 305.89,
+    "headroom": 34.11,
+    "exceeds340": false
+   }
+  ],
+  "戰役指揮官優先 P1（嚴，代理）": [
+   {
+    "scenario": "低",
+    "estimate": 11.68,
+    "after": 217.62,
+    "headroom": 122.38,
+    "exceeds340": false
+   },
+   {
+    "scenario": "中",
+    "estimate": 25.5,
+    "after": 231.44,
+    "headroom": 108.56,
+    "exceeds340": false
+   },
+   {
+    "scenario": "高",
+    "estimate": 53.78,
+    "after": 259.72,
+    "headroom": 80.28,
+    "exceeds340": false
+   }
+  ],
+  "戰役指揮官優先 P2（寬，代理）": [
+   {
+    "scenario": "低",
+    "estimate": 17.93,
+    "after": 223.87,
+    "headroom": 116.13,
+    "exceeds340": false
+   },
+   {
+    "scenario": "中",
+    "estimate": 38.6,
+    "after": 244.54,
+    "headroom": 95.46,
+    "exceeds340": false
+   },
+   {
+    "scenario": "高",
+    "estimate": 80.6,
+    "after": 286.54,
+    "headroom": 53.46,
+    "exceeds340": false
+   }
+  ]
+ },
+ "tmpRawCache": {
+  "dirs": {
+   "S": 21,
+   "A": 52
+  },
+  "batches": {
+   "S": 21,
+   "A": 52
+  }
+ }
+}

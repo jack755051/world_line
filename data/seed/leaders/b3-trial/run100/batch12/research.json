@@ -1,0 +1,3720 @@
+{
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 對齊格式直接產出（Tai 2026-11-11 10:03 T11／T12；12:12 黨職與 role_kind；12:47 黨籍席位與 T14 R0–R6）；未建角色資料、未寫庫。",
+ "batch": "b3-run100-batch12",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "b0b0e0f 對齊格式（人物／角色／經歷三層）；positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職規則照 Tai 2026-11-11 12:12／12:47 套用（兩層互斥）。recordIds 未提供於名單（留空）。",
+ "rawDir": "/tmp/b3run100/batch12/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "enc-quinonez": {
+   "title": "Quiñones Molina, Alfonso (1873–1950)",
+   "authors": [
+    "Kenneth J. Grieb"
+   ],
+   "publisher": "Encyclopedia of Latin American History and Culture（Gale，經 Encyclopedia.com）",
+   "published_text": "條目署名 Kenneth J. Grieb",
+   "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/quinones-molina-alfonso-1873-1950",
+   "grade": "B",
+   "gradeBasis": "具名作者（Kenneth J. Grieb）的機構百科條目",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "lrs-mironas": {
+   "title": "Vladas Mironas (1880–1953)",
+   "authors": [],
+   "publisher": "Lietuvos Respublikos Seimas（Seimo kanceliarija）",
+   "published_text": "III Seimo narių biografija，2015-08-27 更新",
+   "url": "https://www.lrs.lt/pls/inter/w5_show?p_r=4165&p_d=159798&p_k=1",
+   "grade": "A",
+   "gradeBasis": "立陶宛議會官方議員傳記頁",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "despan-vratsian": {
+   "title": "Հայաստանի Հանրապետության դիվանագիտական ներկայացուցիչներ（Սիմոն Լազարի Վրացյան 條）",
+   "authors": [],
+   "publisher": "亞美尼亞共和國外交部相關官方網站 despan.am",
+   "published_text": "生平條目，標註轉引自「Հայկական հարց」百科與 historyofarmenia.am",
+   "url": "https://www.despan.am/hy/first-republic-ministers/",
+   "grade": "A",
+   "gradeBasis": "政府官方頁（亞美尼亞共和國外交代表名錄）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "enp-wu": {
+   "title": "Wu Tingfang（Wu T'ing-fang）",
+   "authors": [
+    "Howard L. Boorman（主編，Biographical Dictionary of Republican China）"
+   ],
+   "publisher": "X-Boorman，ENP-China（轉載 Columbia University Press 之 Biographical Dictionary of Republican China）",
+   "published_text": "Boorman 民國人物傳記辭典條目",
+   "url": "https://xboorman.enpchina.eu/biographie/wu-tingfang/",
+   "grade": "B",
+   "gradeBasis": "學術出版社（哥倫比亞大學出版社）人物傳記辭典，主編具名",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "enc-antonescu": {
+   "title": "Antonescu, Ion",
+   "authors": [
+    "Theodor Lavi"
+   ],
+   "publisher": "Encyclopaedia Judaica（Gale，經 Encyclopedia.com）",
+   "published_text": "條目署名 [Theodor Lavi]",
+   "url": "https://encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/antonescu-iondeg",
+   "grade": "B",
+   "gradeBasis": "具名作者（Theodor Lavi）的機構百科條目",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "vle-mironas": {
+   "title": "Vladas Mironas",
+   "authors": [],
+   "publisher": "Visuotinė lietuvių enciklopedija",
+   "published_text": "作者欄空白",
+   "url": "https://www.vle.lt/straipsnis/vladas-mironas/",
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Visuotinė lietuvių enciklopedija → C（grade-ungraded-b3-2026-11-14，原：條目作者欄空白、無具名作者，未評等（Q9），不引用）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  },
+  "aztag-vratsian": {
+   "title": "Սիմոն Վրացեան (1882-1969). Հայաստանի վարչապետն ու Դաշնակցութեան դրօշակիրը",
+   "authors": [
+    "Ն. Պէրպէրեան"
+   ],
+   "publisher": "Ազդակ（ARF 報紙）",
+   "published_text": "2019-05-22",
+   "url": "https://www.aztagdaily.com/archives/438659",
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Ազդակ（ARF 報紙） → C（grade-ungraded-b3-2026-11-14，原：政黨報紙文章，未評等，僅作 gap 候選）",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null
+  }
+ },
+ "people": [
+  {
+   "key": "sv-quinonez-molina",
+   "bioId": "01a1b4b7-28ae-7df3-9bdd-095333b9421e",
+   "name": "Alfonso Quiñónez Molina",
+   "nameZh": "阿方索·基尼奧內斯·莫利納",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1873-01-01",
+      "end": "1951-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒年與家族背景",
+      "en": "Life span and family background"
+     },
+     "body": {
+      "zh-Hant": "據 Grieb 署名的百科條目，基尼奧內斯·莫利納（1873–1950）曾三度擔任薩爾瓦多總統（1914–1915、1918–1919、1923–1927）。他屬於控制總統職位的基尼奧內斯—梅倫德斯家族王朝，這些家族以操縱選舉維持政府控制，直到1931年大蕭條後軍方接管。",
+      "en": "According to the signed entry by Kenneth J. Grieb, Quiñones Molina (1873–1950) was president of El Salvador three times (1914–1915, 1918–1919 and 1923–1927). He belonged to the Quiñones-Meléndez family dynasty that controlled the presidency; these families used rigged elections to keep control until the Great Depression brought military control in 1931."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "Alfonso Quiñones Molina ( b. 1873; d. 1950)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "president of El Salvador (1914–1915, 1918–1919, and 1923–1927)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "belonged to the Quiñones-Meléndez Family dynasty that controlled the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "used rigged elections to maintain governmental control from the 1890s",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "until the Great Depression brought military control in 1931",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "三度任職經過",
+      "en": "The three terms"
+     },
+     "body": {
+      "zh-Hant": "條目稱他1914年短暫執政，當時的選舉讓其姻兄弟卡洛斯·梅倫德斯上台；1918年他組織首個正式政黨紅色聯盟（Liga Roja）後，再度掌權並過渡到1919年起由豪爾赫·梅倫德斯任總統；1923年他以自身名義成為總統，任至1927年。",
+      "en": "The entry says he governed briefly in 1914 during the election that installed his brother-in-law Carlos Meléndez. After organizing the first official party, the Liga Roja (Red League), in 1918, he again held office during a transition that allowed Jorge Meléndez to be elected (president 1919–1923). He became president in his own right in 1923, serving until 1927."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "He governed briefly in 1914 during the election that installed his",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "brother-in-law, Carlos Meléndez",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "After organizing the first official party, the Liga Roja (Red League) in 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "he again held office during a transition that allowed the election of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "Jorge Meléndez (president 1919–1923)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "became president in his own right in 1923, serving until 1927.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1923-01-01",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "外債與後續影響",
+      "en": "Foreign borrowing and its aftermath"
+     },
+     "body": {
+      "zh-Hant": "條目寫到，他為取得聖薩爾瓦多鋪路經費而舉借的外債引起爭議，使民眾拒絕外債，這種情緒後來被歷屆軍人政權（特別是埃爾南德斯·馬丁內斯將軍的政權）利用。條目並指出，這個時期沒有詳細的研究專著。",
+      "en": "The entry reports that his controversial foreign borrowing to secure funds for street paving in San Salvador caused the populace to reject external debt, a situation exploited by later military regimes, particularly that of General Maximiliano Hernández Martínez. It adds that there are no detailed studies of this era."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "His controversial foreign borrowing to secure funds for street paving",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "caused a rejection of external debt by the populace",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "a situation that was exploited by later military regimes,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "particularly that of General Maximiliano Hernández Martínez",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "There are no detailed studies of this era.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "liga-roja-1918",
+     "title": {
+      "orig": "organizing the first official party, the Liga Roja (Red League)",
+      "zh-Hant": "組織首個正式政黨紅色聯盟",
+      "en": "Organizer of the first official party, the Liga Roja (Red League)"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "紅色聯盟",
+      "en": "Liga Roja (Red League)"
+     },
+     "period": {
+      "start": "1918-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "After organizing the first official party, the Liga Roja (Red League) in 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫他「組織」該黨，未寫黨內正式職稱；是否黨職不確定，不猜",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "來源只寫 organizing（組織）紅色聯盟，沒有寫明黨主席或其他黨內職務，無法判定是否黨職",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：非 R0–R4 類別（一般經歷），留經歷層"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "presidency-1914-1915",
+     "title": {
+      "orig": "president of El Salvador",
+      "zh-Hant": "薩爾瓦多總統（1914–1915）",
+      "en": "President of El Salvador (1914–1915)"
+     },
+     "role_kind": "head_of_state",
+     "reason": "R0 元首；來源只寫年份，且寫「governed briefly in 1914」，是否為代理／是否在名單 5442 任期內待比對",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "薩爾瓦多政府",
+      "en": "Government of El Salvador"
+     },
+     "period": {
+      "start": "1914-01-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "president of El Salvador (1914–1915, 1918–1919, and 1923–1927)",
+       "quoteLang": "en",
+       "evidenceNote": "只寫年份，起訖日未寫",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "He governed briefly in 1914 during the election that installed his",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R0"
+    },
+    {
+     "key": "presidency-1918-1919",
+     "title": {
+      "orig": "president of El Salvador",
+      "zh-Hant": "薩爾瓦多總統（1918–1919）",
+      "en": "President of El Salvador (1918–1919)"
+     },
+     "role_kind": "head_of_state",
+     "reason": "R0 元首；來源只寫年份；1919 年部分是否已在名單 5442 任期內待比對（名單記 1919–1929）",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "薩爾瓦多政府",
+      "en": "Government of El Salvador"
+     },
+     "period": {
+      "start": "1918-01-01",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "president of El Salvador (1914–1915, 1918–1919, and 1923–1927)",
+       "quoteLang": "en",
+       "evidenceNote": "只寫年份，起訖日未寫",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-quinonez",
+       "locator": "條目正文",
+       "quote": "he again held office during a transition that allowed the election of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:presidency-1923-1927",
+     "gapKind": "not_found",
+     "note": "1923–1927 總統任期依規則視為已在名單 5442 任期內，不建候選；條目只寫「serving until 1927」，確切起訖日不見於已抓 A/B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:birth_death_dates",
+     "gapKind": "not_found",
+     "note": "條目只寫 b. 1873、d. 1950，無月日與出生地；需薩爾瓦多國家級傳記或國會官方資料。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:presidency-1914-1915",
+     "gapKind": "not_found",
+     "note": "條目只寫「governed briefly in 1914」，未寫是否為代理總統及確切起訖日；需薩爾瓦多總統府／國會歷任名單或學術專書。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:cabinet-and-other-offices",
+     "gapKind": "not_found",
+     "note": "Encyclopedia of Latin American History and Culture 條目未寫他任總統以前的官職與醫師經歷；需 A/B 傳記來源（例：DBE、薩爾瓦多國家文化機構、學術專書）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Alfonso Quiñónez Molina presidente El Salvador 1923 1927 biografía（WebSearch，西班牙文）",
+     "url": null,
+     "result": "found_B",
+     "note": "結果多為維基鏡像（不採）；找到 Encyclopedia.com 的 Gale 條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Quiñones Molina, Alfonso (1873–1950) Encyclopedia of Latin American History and Culture",
+     "url": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/quinones-molina-alfonso-1873-1950",
+     "result": "found_B",
+     "note": "curl 存檔 enc-quinonez；署名 Kenneth J. Grieb，採用"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "biografiasyvidas Alfonso Quiñones Molina",
+     "url": "https://www.biografiasyvidas.com/biografia/q/quinones_molina.htm",
+     "result": "unrated",
+     "note": "curl 存檔 bio-quinones；無署名彙編，未評等，不引用"
+    }
+   ]
+  },
+  {
+   "key": "lt-mironas",
+   "bioId": "01a1b545-5f9a-74f7-b257-4aca0ce09d17",
+   "name": "Vladas Mironas",
+   "nameZh": "弗拉達斯·米羅納斯",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1880-06-22",
+      "end": "1905-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與成為神父",
+      "en": "Origins and ordination"
+     },
+     "body": {
+      "zh-Hant": "據立陶宛議會傳記，米羅納斯1880年6月22日生於庫奧迪什基農場的農民家庭；1897至1901年在維爾紐斯神學院就讀，1904年畢業於聖彼得堡神學院並受任為神父。",
+      "en": "According to the Seimas biography, Mironas was born on 22 June 1880 at the Kuodiškiai farmstead into a peasant family. He studied at the Vilnius seminary in 1897–1901, graduated from the Saint Petersburg ecclesiastical academy in 1904 and was ordained a priest that year."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Gimė 1880 m. birželio 22 d. Kuodiškių vienkiemyje",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "valstiečių šeimoje",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1897–1901 m. mokėsi Vilniaus dvasinėje seminarijoje",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1904 m. baigė Peterburgo dvasinę akademiją",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1904 m. įšventintas į kunigus",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1905-12-04",
+      "end": "1918-02-16"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "大維爾紐斯會議與立陶宛國家委員會",
+      "en": "Great Vilnius Seimas and the Council of Lithuania"
+     },
+     "body": {
+      "zh-Hant": "傳記記載他1905年12月4至5日是大維爾紐斯會議成員；1917年立陶宛會議中選入立陶宛國家委員會，自1917年9月24日至1918年2月15日任第二副主席，1918年2月16日簽署立陶宛獨立法案。",
+      "en": "The biography records that he was a member of the Great Vilnius Seimas on 4–5 December 1905. He was elected to the Council of Lithuania at the 1917 Lithuanian Conference and served as its second vice-chairman from 24 September 1917 to 15 February 1918; on 16 February 1918 he signed the Act of Independence of Lithuania."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1905 m. gruodžio 4–5 d. – Didžiojo Vilniaus Seimo narys.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Išrinktas į Lietuvos tarybą.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1917 m. rugsėjo 24 d. iki 1918 m. vasario 15 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Lietuvos Tarybos II vicepirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1918 m. vasario 16 d. – Lietuvos Nepriklausomybės Akto signataras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1926-06-02",
+      "end": "1927-04-12"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "第三屆議會議員",
+      "en": "Member of the Third Seimas"
+     },
+     "body": {
+      "zh-Hant": "他在馬里扎姆波列選區依立陶宛民族主義者聯盟名單當選第三屆議會議員，任期自1926年6月2日至1927年4月12日，屬民族主義者黨團。",
+      "en": "He was elected to the Third Seimas in the Marijampolė constituency on the list of the Lithuanian Nationalist Union and was a member from 2 June 1926 to 12 April 1927, belonging to the nationalist faction."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "pagal Lietuvių tautininkų sąjungos sąrašą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1926 m. birželio 2 d. iki 1927 m. balandžio 12 d. – III Seimo narys",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Priklausė tautininkų frakcijai.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1929-05-01",
+      "end": "1939-03-29"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "軍隊總隨軍神父與總理任期",
+      "en": "Chief chaplain and prime minister"
+     },
+     "body": {
+      "zh-Hant": "傳記載明，他自1929年5月1日起擔任立陶宛軍隊總隨軍神父，至1938年3月24日止；1938年3月24日起任第十八屆總理，並於同年10月1日起任農業部長；1938年12月5日起任第十九屆總理，至1939年3月29日。",
+      "en": "The biography states that from 1 May 1929 until 24 March 1938 he was chief chaplain of the Lithuanian army. He was prime minister of the XVIII cabinet from 24 March to 5 December 1938, became minister of agriculture on 1 October 1938, and was prime minister of the XIX cabinet from 5 December 1938 to 29 March 1939."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1929 m. gegužės 1 d. iki 1938 m. kovo 24 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "vyriausiasis Lietuvos kariuomenės kapelionas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1938 m. kovo 24 d. iki 1938 m. gruodžio 5 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "XVIII Lietuvos Respublikos Ministras Pirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1938 m. spalio 1 d. – žemės ūkio ministras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1938 m. gruodžio 5 d. iki 1939 m. kovo 29 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "XIX Lietuvos Respublikos Ministras Pirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1940-09-12",
+      "end": "1953-02-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "蘇聯占領後的被捕與死亡",
+      "en": "Soviet arrests and death"
+     },
+     "body": {
+      "zh-Hant": "傳記記載，1940年9月12日他被蘇聯鎮壓機構逮捕；1941年6月23日起義者將他從監獄釋放；1947年8月23日被判七年徒刑，此後關押於弗拉基米爾監獄，1953年2月18日死於該處。",
+      "en": "The biography records that on 12 September 1940 he was arrested by Soviet repressive structures and that insurgents freed him from prison on 23 June 1941. On 23 August 1947 he was sentenced to seven years in prison and he died in Vladimir prison on 18 February 1953."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1940 m. rugsėjo 12 d. sovietų represinių struktūrų buvo areštuotas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1941 m. birželio 23 d. sukilėlių iš kalėjimo išlaisvintas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1947 m. rugpjūčio 23 d. nuteistas septynerių metų kalėjimo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Iki mirties kalėjo Vladimiro kalėjime.",
+       "quoteLang": "lt",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Mirė 1953 m. vasario 18 d. Vladimiro kalėjime (Rusija)",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "council-of-lithuania-vice-chair",
+     "title": {
+      "orig": "Lietuvos Tarybos II vicepirmininkas",
+      "zh-Hant": "立陶宛國家委員會第二副主席",
+      "en": "Second Vice-Chairman of the Council of Lithuania"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛國家委員會",
+      "en": "Council of Lithuania"
+     },
+     "period": {
+      "start": "1917-09-24",
+      "end": "1918-02-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1917 m. rugsėjo 24 d. iki 1918 m. vasario 15 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Lietuvos Tarybos II vicepirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "迄日依來源寫 1918-02-15（day）"
+    },
+    {
+     "key": "religious-affairs-dept-head",
+     "title": {
+      "orig": "Tikybos reikalų departamento prie Švietimo, vėliau Vidaus reikalų (vėliau – Švietimo)ministerijos vadovas",
+      "zh-Hant": "宗教事務司司長（隸屬教育部，後隸屬內政部，再隸屬教育部）",
+      "en": "Head of the Department of Religious Affairs (under the Ministry of Education, later Interior, later Education)"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛教育部／內政部",
+      "en": "Lithuanian Ministry of Education / Interior"
+     },
+     "period": {
+      "start": "1928-01-01",
+      "end": "1930-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1928–1929 m. – Tikybos reikalų departamento prie Švietimo",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "vėliau Vidaus reikalų (vėliau – Švietimo)ministerijos vadovas",
+       "quoteLang": "lt",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "「1928–1929」依 Q3 迄日寫 1930-01-01；非部長級職務",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：司級主管，非 R0–R4"
+    },
+    {
+     "key": "chief-army-chaplain",
+     "title": {
+      "orig": "vyriausiasis Lietuvos kariuomenės kapelionas",
+      "zh-Hant": "立陶宛軍隊總隨軍神父",
+      "en": "Chief Chaplain of the Lithuanian Army"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛軍隊",
+      "en": "Lithuanian Army"
+     },
+     "period": {
+      "start": "1929-05-01",
+      "end": "1938-03-24"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1929 m. gegužės 1 d. iki 1938 m. kovo 24 d.",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "vyriausiasis Lietuvos kariuomenės kapelionas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫「具准將權利」之神職，非指揮職",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：隨軍神父，非將領指揮職"
+    },
+    {
+     "key": "kaunas-city-council",
+     "title": {
+      "orig": "Kauno miesto tarybos narys",
+      "zh-Hant": "考納斯市議會議員",
+      "en": "Member of the Kaunas City Council"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "考納斯市議會",
+      "en": "Kaunas City Council"
+     },
+     "period": {
+      "start": "1934-01-01",
+      "end": "1939-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1934–1938 m. – Kauno miesto tarybos narys",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null
+    },
+    {
+     "key": "poland-talks-1938",
+     "title": {
+      "orig": "atstovavo Lietuvai derybose su Lenkija",
+      "zh-Hant": "代表立陶宛與波蘭談判",
+      "en": "Represented Lithuania in negotiations with Poland"
+     },
+     "positionKind": "diplomat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛政府",
+      "en": "Government of Lithuania"
+     },
+     "period": {
+      "start": "1938-01-01",
+      "end": "1938-03-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1938 m. sausio–vasario mėn. – atstovavo Lietuvai derybose su Lenkija",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": null
+    },
+    {
+     "key": "agriculture-minister-1938",
+     "title": {
+      "orig": "žemės ūkio ministras",
+      "zh-Hant": "農業部長",
+      "en": "Minister of Agriculture"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛政府",
+      "en": "Government of Lithuania"
+     },
+     "period": {
+      "start": "1938-10-01",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1938 m. spalio 1 d. – žemės ūkio ministras",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫起日；迄日未寫，留空",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：農業部不屬外交、國防、財政、內政四部"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "iii-seimas-lts-list",
+     "title": {
+      "orig": "III Seimo narys（pagal Lietuvių tautininkų sąjungos sąrašą）",
+      "zh-Hant": "第三屆議會議員（立陶宛民族主義者聯盟名單）",
+      "en": "Member of the Third Seimas (Lithuanian Nationalist Union list)"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛議會",
+      "en": "Seimas of Lithuania"
+     },
+     "period": {
+      "start": "1926-06-02",
+      "end": "1927-04-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "pagal Lietuvių tautininkų sąjungos sąrašą",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "Nuo 1926 m. birželio 2 d. iki 1927 m. balandžio 12 d. – III Seimo narys",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "originalPositionKind": "legislator"
+    },
+    {
+     "key": "lts-leader-1927-1939",
+     "title": {
+      "orig": "vienas iš Lietuvių tautininkų sąjungos vadovų",
+      "zh-Hant": "立陶宛民族主義者聯盟領導人之一（1927–1939）",
+      "en": "One of the leaders of the Lithuanian Nationalist Union (1927–1939)"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛民族主義者聯盟",
+      "en": "Lithuanian Nationalist Union"
+     },
+     "period": {
+      "start": "1927-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1927–1939 m. – vienas iš Lietuvių tautininkų sąjungos vadovų",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1"
+    },
+    {
+     "key": "lts-chairman-1939",
+     "title": {
+      "orig": "Lietuvių tautinikų sąjungos pirmininkas",
+      "zh-Hant": "立陶宛民族主義者聯盟主席（1939）",
+      "en": "Chairman of the Lithuanian Nationalist Union (1939)"
+     },
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "立陶宛民族主義者聯盟",
+      "en": "Lithuanian Nationalist Union"
+     },
+     "period": {
+      "start": "1939-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "lrs-mironas",
+       "locator": "Seimas 傳記頁",
+       "quote": "1939 m. – Lietuvių tautinikų sąjungos pirmininkas",
+       "quoteLang": "lt",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:prime-minister-1938-1939",
+     "gapKind": "not_found",
+     "note": "1938-03-24～1939-03-29 的總理任期（XVIII、XIX 內閣）依規則視為已在名單 5442 任期內，不建候選；Seimas 傳記已載確切日期，供比對。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:death_date",
+     "gapKind": "not_found",
+     "note": "Seimas 傳記（A）寫死於 1953-02-18；Visuotinė lietuvių enciklopedija 寫 1953 02 17，但該條目無具名作者（未評等），不構成兩份可評等來源互相矛盾，故不標 conflict；以 A 級 Seimas 為準，需第二份 A/B 來源確認。",
+     "candidateCitations": [
+      {
+       "sourceKey": "vle-mironas",
+       "locator": "條目首段",
+       "quote": "1953 02 17 Vladimir",
+       "quoteLang": "lt",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Vladas Mironas Lietuvos ministras pirmininkas 1938 kunigas biografija（WebSearch，立陶宛文）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 vle.lt 與 lrs.lt；多為維基鏡像（不採）"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija「Vladas Mironas」",
+     "url": "https://www.vle.lt/straipsnis/vladas-mironas/",
+     "result": "unrated",
+     "note": "curl 存檔 vle-mironas；作者欄空白，無具名作者，未評等，不引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Vladas Mironas 1880–1953 Seimas signataras lrs.lt（WebSearch）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 Seimas 官方議員傳記頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Seimas III Seimo nariai: Vladas Mironas",
+     "url": "https://www.lrs.lt/pls/inter/w5_show?p_r=4165&p_d=159798&p_k=1",
+     "result": "found_A",
+     "note": "curl 存檔 lrs-mironas（windows-1257 編碼，轉文字時指定）；採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Genocid.lt「Vladas Mironas」傳記 PDF",
+     "url": "https://www.genocid.lt/UserFiles/File/Atmintinos_datos/2015/201506_mironas_biog.pdf",
+     "result": "challenge_page",
+     "note": "回傳 Just a moment 挑戰頁，不繞過"
+    }
+   ]
+  },
+  {
+   "key": "am-vratsian",
+   "bioId": "01a1c42c-601f-7207-9a5b-735b59663160",
+   "name": "Simon Vratsian",
+   "nameZh": "西蒙·弗拉齊揚",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-01-01",
+      "end": "1911-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "據亞美尼亞外交代表名錄，弗拉齊揚（1882–1969）生於梅茲薩拉村，就讀埃奇米阿津的蓋沃爾基安神學院及聖彼得堡大學；1910至1911年在卡林主編《哈拉赫》報並任教。",
+      "en": "According to the Armenian diplomatic-representatives directory, Vratsian (1882–1969) was born in the village of Metz Sala and studied at the Gevorgian Seminary in Etchmiadzin and at the University of Saint Petersburg. In 1910–1911 he edited the newspaper Harach in Karin and taught at schools there."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1882-1969թթ․",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "գ. Մեծ Սալա",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Էջմիածնի Գևորգյան ճեմարան",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Ս. Պետերբուրգի համալսարան",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1910-1911թթ. Կարինում խմբագրել է «Հառաջ» թերթը",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "եղել է Սանասարյան և Ս. Հռիփսիմյան վարժարաններում ուսուցիչ",
+       "quoteLang": "hy",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1911-01-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "編輯與民族運動活動",
+      "en": "Editor and national activist, 1911–1917"
+     },
+     "body": {
+      "zh-Hant": "名錄記載，他1911至1914年任波士頓《祖國》報編輯；1914年到梯弗里斯，投入亞美尼亞志願軍團的組建；1917年二月革命後主編《地平線》報，並當選民族委員會及外高加索議會（賽姆）成員。",
+      "en": "The directory records that in 1911–1914 he edited the newspaper Hayrenik in Boston. In 1914 he came to Tiflis and worked on forming Armenian volunteer regiments. After the February Revolution of 1917 he edited Horizon in Tiflis and was elected to the National Council and then to the Transcaucasian Seim."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1911-1914թթ. եղել է «Հայրենիք» թերթի (Բոստոն) խմբագիր",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1914թ. եկել է Թիֆլիս",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "զբաղվել հայկական կամավորական գնդերի կազմավորման գործով",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1917թ. Փետրվարյան հեղափոխությունից հետո եղել է «Հորիզոն» թերթի",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "«Հորիզոն» թերթի (Թիֆլիս) խմբագիր",
+       "quoteLang": "hy",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "ընտրվել Ազգային խորհրդի, ապա՝ նաև Անդրկովկասյան սեյմի անդամ",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1922-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "共和國時期的職務",
+      "en": "Offices in the Republic of Armenia"
+     },
+     "body": {
+      "zh-Hant": "名錄載明，1919年他任議會議員；1920年5月起任農業與勞動部長；1920年11月23日起任總理，兼任內政部長與外交部長；1920年12月2日他的政府因與俄羅斯蘇維埃聯邦社會主義共和國簽署協議而辭職；1921年二月起義期間，他當選祖國救亡委員會主席。",
+      "en": "The directory states that in 1919 he was a member of parliament; from May 1920 he was minister of agriculture and labour; from 23 November 1920 he was prime minister, also serving as minister of internal affairs and minister of foreign affairs. On 2 December 1920 his government resigned after an agreement with the Russian SFSR, and during the February 1921 uprising he was elected chairman of the Committee for the Salvation of the Fatherland."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1919թ. եղել է խորհրդարանի պատգամավոր։",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. մայիսից ՀՀ գյուղատնտեսության և աշխատանքի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. նոյեմբերի 23-ից՝ ՀՀ վարչապետ, ներքին գործերի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "արտաքին գործերի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. դեկտեմբերի 2-ին ՌԽՖՍՀ Կառավարության հետ համաձայնագրով",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Վրացյանի կառավարությունը հրաժարական է տվել",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1921թ. Փետրվարյան ապստամբության ժամանակ ընտրվել է",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Հայրենիքի փրկության կոմիտեի նախագահ",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "transcaucasian-seim-1917",
+     "title": {
+      "orig": "Ազգային խորհրդի, ապա՝ նաև Անդրկովկասյան սեյմի անդամ",
+      "zh-Hant": "民族委員會及外高加索議會成員",
+      "en": "Member of the National Council and the Transcaucasian Seim"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞美尼亞民族委員會／外高加索議會",
+      "en": "Armenian National Council / Transcaucasian Seim"
+     },
+     "period": {
+      "start": "1917-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1917թ. Փետրվարյան հեղափոխությունից հետո եղել է «Հորիզոն» թերթի",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "ընտրվել Ազգային խորհրդի, ապա՝ նաև Անդրկովկասյան սեյմի անդամ",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1917年當選，迄日未寫"
+    },
+    {
+     "key": "deputy-1919",
+     "title": {
+      "orig": "խորհրդարանի պատգամավոր",
+      "zh-Hant": "議會議員（1919）",
+      "en": "Member of parliament (1919)"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞美尼亞議會",
+      "en": "Parliament of Armenia"
+     },
+     "period": {
+      "start": "1919-01-01",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1919թ. եղել է խորհրդարանի պատգամավոր։",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1919年；未寫以何黨身分取得席位，不算黨職"
+    },
+    {
+     "key": "agriculture-labour-minister-1920",
+     "title": {
+      "orig": "ՀՀ գյուղատնտեսության և աշխատանքի նախարար",
+      "zh-Hant": "亞美尼亞農業與勞動部長",
+      "en": "Minister of Agriculture and Labour of Armenia"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞美尼亞共和國政府",
+      "en": "Government of the Republic of Armenia"
+     },
+     "period": {
+      "start": "1920-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. մայիսից ՀՀ գյուղատնտեսության և աշխատանքի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫起月；迄日未寫，留空",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：農業與勞動部不屬外交、國防、財政、內政四部"
+    },
+    {
+     "key": "interior-minister-1920",
+     "title": {
+      "orig": "ներքին գործերի նախարար",
+      "zh-Hant": "內政部長（兼任）",
+      "en": "Minister of Internal Affairs (concurrent)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞美尼亞共和國政府",
+      "en": "Government of the Republic of Armenia"
+     },
+     "period": {
+      "start": "1920-11-23",
+      "end": "1920-12-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. նոյեմբերի 23-ից՝ ՀՀ վարչապետ, ներքին գործերի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Վրացյանի կառավարությունը հրաժարական է տվել",
+       "quoteLang": "hy",
+       "evidenceNote": "迄日取政府辭職日 1920-12-02（來源只寫政府辭職）",
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "迄日取其政府辭職日，非來源直寫職務止日",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：內政部屬四部，但任期自 1920-11-23 至政府 1920-12-02 辭職僅約 9 天，不足 90 天門檻"
+    },
+    {
+     "key": "foreign-minister-1920",
+     "title": {
+      "orig": "արտաքին գործերի նախարար",
+      "zh-Hant": "外交部長（兼任）",
+      "en": "Minister of Foreign Affairs (concurrent)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "亞美尼亞共和國政府",
+      "en": "Government of the Republic of Armenia"
+     },
+     "period": {
+      "start": "1920-11-23",
+      "end": "1920-12-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1920թ. նոյեմբերի 23-ից՝ ՀՀ վարչապետ, ներքին գործերի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "արտաքին գործերի նախարար",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Վրացյանի կառավարությունը հրաժարական է տվել",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "迄日取政府辭職日；來源列於同一行職務清單",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：外交部屬四部，但任期僅約 9 天（至 1920-12-02 政府辭職），不足 90 天門檻"
+    },
+    {
+     "key": "salvation-committee-1921",
+     "title": {
+      "orig": "Հայրենիքի փրկության կոմիտեի նախագահ",
+      "zh-Hant": "祖國救亡委員會主席",
+      "en": "Chairman of the Committee for the Salvation of the Fatherland"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "祖國救亡委員會",
+      "en": "Committee for the Salvation of the Fatherland"
+     },
+     "period": {
+      "start": "1921-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "1921թ. Փետրվարյան ապստամբության ժամանակ ընտրվել է",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "despan-vratsian",
+       "locator": "Վրացյան 條",
+       "quote": "Հայրենիքի փրկության կոմիտեի նախագահ",
+       "quoteLang": "hy",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1921年二月起義期間當選，無起訖日；該委員會是否為政權性機構未寫，不猜",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "1921 年二月起義期間的祖國救亡委員會可能是起義政權的執政機構（主席或屬 R0 元首／首腦），但來源未寫其政權性質與任期，無法判定 R0 或 R5，待 A/B 來源"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:prime-minister-1920",
+     "gapKind": "not_found",
+     "note": "1920-11-23 起的總理任期依規則視為已在名單 5442 任期內，不建候選；despan.am 只寫起日，迄日僅有政府 1920-12-02 辭職，gov.am 官方總理頁遇 Radware captcha 未能取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:arf-bureau-member",
+     "gapKind": "not_found",
+     "note": "Ազդակ（ARF 報紙，未評等）稱他1914年當選 ARF 局（Բիւրո）成員，屬黨職，若成立應入 roleCandidates（R1）；已評等來源未寫，起訖日也未寫。需 A/B 來源（亞美尼亞國家檔案館、學術專書如 Hovannisian《Republic of Armenia》）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "aztag-vratsian",
+       "locator": "文章正文",
+       "quote": "ընտրուեցաւ Հ.Յ.Դ. Բիւրոյի անդամ",
+       "quoteLang": "hy",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:agriculture-labour-minister-end",
+     "gapKind": "not_found",
+     "note": "despan.am 只寫1920年5月起，未寫迄日；Ազդակ 稱至1920年10月（未評等）。需 A/B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "aztag-vratsian",
+       "locator": "文章正文",
+       "quote": "ստանձնեց աշխատանքի եւ գիւղատնտեսութեան նախարարութիւնը",
+       "quoteLang": "hy",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Simon Vratsian Prime Minister Armenia 1920 biography（WebSearch，英文）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果以維基鏡像與黨站為主，不採"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "ARF 官網 Simon Vratsian",
+     "url": "https://www.arfd.am/eng/famous_individual/simon-vratsian/",
+     "result": "unrated",
+     "note": "curl 存檔 arfd-vratsian；政黨官網無署名，未評等，不引用"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Վրացյան Սիմոն վարչապետ 1920 Հայաստանի առաջին հանրապետություն կենսագրություն（WebSearch，亞美尼亞文）",
+     "url": null,
+     "result": "found_A",
+     "note": "找到 despan.am、aniarc.am、Ազդակ 等"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "gov.am 總理頁 Simon Vratsian",
+     "url": "https://www.gov.am/en/prime-ministers/info/98/",
+     "result": "challenge_page",
+     "note": "回傳 Radware captcha，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "despan.am 亞美尼亞共和國外交代表名錄",
+     "url": "https://www.despan.am/hy/first-republic-ministers/",
+     "result": "found_A",
+     "note": "curl 存檔 despan-fr（對應 sourceKey despan-vratsian）；採用"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "aniarc.am 第一共和國總理（2018）",
+     "url": "https://www.aniarc.am/2018/05/18/first-republics-premiers/",
+     "result": "no_result",
+     "note": "curl 回傳 Not Acceptable，未取得原文"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "Ազդակ「Սիմոն Վրացեան (1882-1969)」",
+     "url": "https://www.aztagdaily.com/archives/438659",
+     "result": "unrated",
+     "note": "curl 存檔 aztag-vratsian；黨報文章，未評等，只入 gap 候選"
+    }
+   ]
+  },
+  {
+   "key": "cn-wu-tingfang",
+   "bioId": "01a1c437-b43f-7116-bd87-22313035593e",
+   "name": "Wu Tingfang",
+   "nameZh": "伍廷芳",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1842-07-09",
+      "end": "1898-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與出任駐美公使前",
+      "en": "Origins and path to the Washington legation"
+     },
+     "body": {
+      "zh-Hant": "據《民國人物傳記辭典》條目，伍廷芳生於1842年7月9日，出生於新加坡；1876年取得英國律師資格，成為首位華人大律師，1897年被任命為駐美國、西班牙與秘魯公使。",
+      "en": "According to the Biographical Dictionary of Republican China, Wu T'ing-fang was born on 9 July 1842 at Singapore. He was called to the English bar in 1876, becoming the first Chinese barrister, and in 1897 he was appointed minister to the United States, Spain and Peru."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang (9 July 1842-23 June 1922)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Although Wu T'ing-fang was born at Singapore",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "He was called to the English bar in 1876",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "becoming the first Chinese barrister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "appointed minister to the United States, Spain, and Peru in 1897",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1902-01-01",
+      "end": "1910-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "清末回國任職與再度出使",
+      "en": "Recall, offices in China and second US posting"
+     },
+     "body": {
+      "zh-Hant": "條目載明，1902年伍廷芳被召回中國；1906年初被任命為刑部侍郎；1907年重回政府任駐美公使，1909年被召回。",
+      "en": "The entry states that Wu was recalled to China in 1902, was appointed vice president of the Board of Punishments early in 1906, returned to government service in 1907 as Chinese minister to the United States, and was recalled in 1909."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "In 1902 Wu T'ing-fang was recalled to China",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Early in 1906 Wu was appointed vice president of the Board of Punishments",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "returned to government service in 1907 as Chinese minister to the United States",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "He was recalled in 1909.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1911-11-03",
+      "end": "1912-02-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "辛亥革命與司法總長",
+      "en": "The 1911 revolution and the Ministry of Justice"
+     },
+     "body": {
+      "zh-Hant": "條目寫到，1911年11月3日他召集緊急會議，成立上海革命政府；他也成為武昌中央共和政府駐上海的外交部長與外交代表，並被指定為首席談判代表；1912年1月共和國成立後，他出任司法總長。",
+      "en": "The entry says that on 3 November 1911 he convened the emergency meeting that established the Shanghai revolutionary government. He also became foreign minister and diplomatic representative in Shanghai of the central republican government at Wuhan and was designated chief delegate to negotiate a settlement. With the establishment of the republic in January 1912 he became minister of justice."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "On 3 November 1911 he convened the emergency meeting",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "that established the Shanghai revolutionary government",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "became foreign minister and diplomatic representative in Shanghai",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "of the central republican government at Wuhan",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu also was designated chief delegate to negotiate a settlement",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "With the establishment of the Chinese republic in January 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang became minister of justice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1916-11-01",
+      "end": "1917-07-09"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "段祺瑞內閣外交總長與代理總理",
+      "en": "Foreign minister under Tuan Ch'i-jui and acting premier"
+     },
+     "body": {
+      "zh-Hant": "條目載明，伍廷芳1916年11月接受段祺瑞內閣的外交總長；黎元洪於5月23日免段祺瑞職並任命伍廷芳為代理總理，五天後李經羲出任總理；7月9日馮國璋免去他的外交總長職務。",
+      "en": "The entry says Wu accepted the foreign ministership in Tuan Ch'i-jui's cabinet in November 1916. President Li Yuanhung dismissed Tuan and named Wu acting premier on 23 May (1917); five days later Li Ching-hsi became premier. On 9 July Feng Kuo-chang dismissed Wu from the foreign ministership."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "accepted the foreign ministership in the cabinet of Tuan Ch'i-jui",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Tuan Ch'i-jui (q.v.) in November 1916.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Early in 1917 Tuan Ch'i-jui encountered parliamentary opposition",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Li Yuanhung (q.v.), the president, issued an order",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "on 23 May dismissing Tuan and naming Wu acting premier",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Five days later, Li Ching-hsi became premier.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "On 9 July, Feng Kuo-chang",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "dismissed Wu T'ingfang from the foreign ministership",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1917-07-09",
+      "end": "1922-06-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "廣州政府時期與去世",
+      "en": "Canton government and death"
+     },
+     "body": {
+      "zh-Hant": "條目記載，孫中山任命伍廷芳為廣州軍政府外交總長，但他未正式就任；1918年初他成為七人政務總裁之一；1920年11月隨孫返廣州後恢復外長職務，1921年5月兼任財政總長；1922年4月孫任命他接替陳炯明；他於6月23日去世。",
+      "en": "The entry records that Sun appointed Wu minister of foreign affairs but Wu did not assume office formally. Early in 1918 he became a member of the seven-man directorate. After returning to Canton with Sun in November 1920 he resumed office as foreign minister, and in May 1921 he also became minister of finance. In April 1922 Sun appointed Wu to succeed Ch'en Chiung-ming, and Wu died on 23 June."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Sun appointed Wu minister of foreign affairs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "minister of foreign affairs in the new military government at Canton",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "but Wu did not assume office formally.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang became a member of its seven-man directorate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "In October 1920 Ch'en Chiung-ming (q.v.) drove the Kwangsi clique from Canton",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Sun returned to Canton in November, accompanied by Wu T'ing-fang",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu resumed office as foreign minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "in May 1921 he also became minister of finance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "removed Ch'en from office as governor of Kwangtung in April 1922",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "appointed Wu T'ing-fang to succeed him",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang died a week later, on 23 June.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "minister-to-us-1907",
+     "title": {
+      "orig": "Chinese minister to the United States",
+      "zh-Hant": "駐美公使（1907–1909）",
+      "en": "Chinese Minister to the United States (1907–1909)"
+     },
+     "positionKind": "diplomat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "清政府駐美公使館",
+      "en": "Qing legation in the United States"
+     },
+     "period": {
+      "start": "1907-01-01",
+      "end": "1910-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "returned to government service in 1907 as Chinese minister to the United States",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "He was recalled in 1909.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "迄日依 Q3：1909 年被召回 → 1910-01-01（year）"
+    },
+    {
+     "key": "justice-minister-1912",
+     "title": {
+      "orig": "minister of justice",
+      "zh-Hant": "司法總長（1912）",
+      "en": "Minister of Justice (1912)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國臨時政府",
+      "en": "Provisional Government of the Republic of China"
+     },
+     "period": {
+      "start": "1912-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "With the establishment of the Chinese republic in January 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang became minister of justice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1912 年 1 月起，迄日未寫",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：司法部不屬外交、國防、財政、內政四部"
+    },
+    {
+     "key": "foreign-minister-wuhan-1911",
+     "title": {
+      "orig": "foreign minister and diplomatic representative in Shanghai of the central republican government at Wuhan",
+      "zh-Hant": "武昌中央共和政府外交部長兼駐上海外交代表（1911）",
+      "en": "Foreign minister and diplomatic representative in Shanghai of the Wuhan central republican government (1911)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "武昌中央共和政府",
+      "en": "Central republican government at Wuhan"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "became foreign minister and diplomatic representative in Shanghai",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "of the central republican government at Wuhan",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1911 年 11 月武昌起義後上海革命政府成立之際，未寫起訖日",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：外交類正職，但起訖日皆未寫（NULL），且武昌政府是否屬系統內政權待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "foreign-minister-tuan-cabinet",
+     "title": {
+      "orig": "foreign ministership in the cabinet of Tuan Ch'i-jui",
+      "zh-Hant": "段祺瑞內閣外交總長（1916–1917）",
+      "en": "Foreign Minister in the Tuan Ch'i-jui cabinet (1916–1917)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國北京政府",
+      "en": "Beiyang Government of the Republic of China"
+     },
+     "period": {
+      "start": "1916-11-01",
+      "end": "1917-07-09"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "accepted the foreign ministership in the cabinet of Tuan Ch'i-jui",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Tuan Ch'i-jui (q.v.) in November 1916.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "dismissed Wu T'ingfang from the foreign ministership",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "On 9 July, Feng Kuo-chang",
+       "quoteLang": "en",
+       "evidenceNote": "年份依上下文為 1917",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Early in 1917 Tuan Ch'i-jui encountered parliamentary opposition",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "實際就任起日只寫 1916 年 11 月；迄日 9 July 為被免職日（年份依上下文）",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：外交部屬四部、正職、任期可證明約 221 天（1916-11-30～1917-07-09），但 regimeId 為 NULL，北京政府是否屬系統內政權待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "canton-directorate-1918",
+     "title": {
+      "orig": "seven-man directorate",
+      "zh-Hant": "廣州軍政府七人政務總裁",
+      "en": "Member of the seven-man directorate of the Canton government"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣州軍政府",
+      "en": "Canton military government"
+     },
+     "period": {
+      "start": "1918-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu T'ing-fang became a member of its seven-man directorate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1918 年初重組後成為成員，未寫迄日（另寫 1919 年 3 月離開廣州）",
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "七人政務總裁為廣州軍政府的集體最高領導機構，成員是否算 R0 元首（集體元首）T14 未涵蓋；來源亦未寫任期迄日，不硬判"
+    },
+    {
+     "key": "foreign-minister-canton-1920",
+     "title": {
+      "orig": "foreign minister",
+      "zh-Hant": "廣州政府外交總長（1920 年 11 月起）",
+      "en": "Foreign Minister of the Canton government (from November 1920)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣州軍政府",
+      "en": "Canton military government"
+     },
+     "period": {
+      "start": "1920-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Wu resumed office as foreign minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Sun returned to Canton in November, accompanied by Wu",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "In October 1920 Ch'en Chiung-ming (q.v.) drove the Kwangsi clique from Canton",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "起月依「孫11月返廣州，伍同行並恢復外長職務」推得（年份依上下文為 1920）；迄日未寫",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：外交類正職，但迄日未寫（NULL）無法證明 ≥90 天，且廣州政府是否屬系統內政權待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "finance-minister-1921",
+     "title": {
+      "orig": "minister of finance",
+      "zh-Hant": "財政總長（1921）",
+      "en": "Minister of Finance (1921)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣州軍政府",
+      "en": "Canton military government"
+     },
+     "period": {
+      "start": "1921-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "in May 1921 he also became minister of finance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1921 年 5 月起，迄日未寫",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：財政部屬四部、正職，但迄日未寫（NULL）無法證明 ≥90 天，且廣州政府是否屬系統內政權待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "governor-kwangtung-1922",
+     "title": {
+      "orig": "governor of Kwangtung",
+      "zh-Hant": "廣東省長（1922）",
+      "en": "Governor of Kwangtung (1922)"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "廣東省",
+      "en": "Kwangtung Province"
+     },
+     "period": {
+      "start": "1922-04-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "removed Ch'en from office as governor of Kwangtung in April 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "appointed Wu T'ing-fang to succeed him",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫孫中山任命伍廷芳接任；未寫實際就任與迄日",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：轄區內地方長官（省長），非 R2 殖民佔領長官"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "acting-premier-1917",
+     "title": {
+      "orig": "acting premier",
+      "zh-Hant": "代理總理（1917）",
+      "en": "Acting Premier (1917)"
+     },
+     "role_kind": "head_of_government",
+     "reason": "R0 代理政府首腦：黎元洪 5 月 23 日令任命伍廷芳為代理總理，五天後李經羲任總理；是否已在名單 5442 任期內待比對（短暫代理，名單外可能性高）",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國北京政府",
+      "en": "Beiyang Government of the Republic of China"
+     },
+     "period": {
+      "start": "1917-05-23",
+      "end": "1917-05-28"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "on 23 May dismissing Tuan and naming Wu acting premier",
+       "quoteLang": "en",
+       "evidenceNote": "年份由段落上下文（1917 年）；起日 5 月 23 日見引文",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Five days later, Li Ching-hsi became premier.",
+       "quoteLang": "en",
+       "evidenceNote": "迄日 1917-05-28 由「五日後」推得（推論）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enp-wu",
+       "locator": "條目正文",
+       "quote": "Early in 1917 Tuan Ch'i-jui encountered parliamentary opposition",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R0",
+     "acting": true
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:minister-of-justice-1912-end",
+     "gapKind": "not_found",
+     "note": "條目只寫 1912 年 1 月共和國成立後任司法總長，未寫迄日；需 A/B 來源（國史館、近史所檔案、臨時政府公報）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:foreign-minister-nanjing-1912",
+     "gapKind": "not_found",
+     "note": "檢索摘要稱近史所北京政府外交部職官年表的 1912 年總長為陸徵祥與梁如浩，未列伍廷芳；該 PDF 連結 404，未取得原文，不採。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:canton-foreign-minister-1917",
+     "gapKind": "not_found",
+     "note": "條目寫 1917 年孫中山任命伍廷芳為廣州軍政府外交總長，但他「未正式就任」；已寫入段落，不建職位。1918–1919 年「also serving as foreign minister」亦只有一句，無起訖日。需 A/B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "伍廷芳 外交總長 司法總長 傳記 1912 南京臨時政府（WebSearch，中文）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果為維基鏡像、近史所 PDF（404）等"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "中研院近史所檔案館 職官年表 PDF",
+     "url": "https://archives.sinica.edu.tw/wp-content/uploads/8-1-1-3.pdf",
+     "result": "no_result",
+     "note": "curl 回傳 404 頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Wu Ting-fang encyclopedia.com（WebSearch，英文）",
+     "url": null,
+     "result": "no_result",
+     "note": "無 encyclopedia.com 條目；猜測的兩個網址 curl 均 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Wu Tingfang Britannica",
+     "url": "https://www.britannica.com/biography/Wu-Tingfang",
+     "result": "challenge_page",
+     "note": "Just a moment 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "chiculture.org.hk 伍廷芳",
+     "url": "https://chiculture.org.hk/en/node/2163",
+     "result": "challenge_page",
+     "note": "Just a moment 挑戰頁，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "ctext data entity 伍廷芳",
+     "url": "https://data.ctext.org/entity/612847",
+     "result": "challenge_page",
+     "note": "Checking the security 挑戰頁，不繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "SNAC Wu, Tingfang, 1842-1922",
+     "url": "https://snaccooperative.org/view/64193982",
+     "result": "challenge_page",
+     "note": "Verifying not a bot 挑戰頁，不繞過"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Wu T'ing-fang biography（WebSearch，英文，排除維基）",
+     "url": null,
+     "result": "found_B",
+     "note": "找到 ENP-China X-Boorman"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "X-Boorman Wu Tingfang",
+     "url": "https://xboorman.enpchina.eu/biographie/wu-tingfang/",
+     "result": "found_B",
+     "note": "curl 存檔 enp-wu；Boorman 民國人物傳記辭典條目，採用（條目作者未顯示，署名為主編）"
+    }
+   ]
+  },
+  {
+   "key": "ro-antonescu",
+   "bioId": "01a1b4c2-3ec6-7305-a572-6f13398c199c",
+   "name": "Ion Antonescu",
+   "nameZh": "揚·安東內斯庫",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1934-01-01",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1940 年前的軍政職務",
+      "en": "Offices before 1940"
+     },
+     "body": {
+      "zh-Hant": "據 Lavi 署名的《猶太百科全書》條目，安東內斯庫1934年與國王卡羅爾二世爆發爭執後辭去參謀長職務；1937年底戈加與庫扎組成反猶政府時，他被任命為國防部長。",
+      "en": "According to the signed Encyclopaedia Judaica entry by Theodor Lavi, Antonescu resigned his post as chief of staff after a dispute with King Carol II in 1934. When Goga and Cuza formed an antisemitic government late in 1937, he was appointed minister of defense."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Following a dispute with King Carol ii in 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Antonescu resigned his post as chief of staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "When Goga and *Cuza formed an antisemitic government late in 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "was appointed minister of defense",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-09-04",
+      "end": "1941-01-22"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1940 年掌權與鐵衛團",
+      "en": "Taking power in 1940 and the Iron Guard"
+     },
+     "body": {
+      "zh-Hant": "條目載明，1940年9月4日他出任總理並握有獨裁權力；兩天後他迫使卡羅爾二世退位，與鐵衛團共組政府，自稱羅馬尼亞的「領袖」（conducator）；1941年1月21至22日鐵衛團藉叛亂製造屠殺猶太人事件。",
+      "en": "The entry states that on 4 September 1940 he became prime minister with dictatorial powers. Two days later he forced King Carol II to abdicate, formed a government together with the Iron Guard and called himself conducator (\"leader\") of Romania. On 21 and 22 January 1941 the Iron Guard made its revolt against him the occasion for a pogrom."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "On September 4, 1940 he became prime minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "with dictatorial powers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Two days later Antonescu forced King Carol ii to abdicate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "formed a government together with the *Iron Guard",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "called himself conducator (\"leader\") of Romania",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "On January 21 and 22, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "the Iron Guard made its revolt against Antonescu the occasion for a pogrom",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-06-22",
+      "end": "1946-06-06"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "對蘇戰爭、猶太人政策與處決",
+      "en": "The war on Russia, policy toward Jews, and execution"
+     },
+     "body": {
+      "zh-Hant": "條目稱，1941年6月22日羅馬尼亞對俄作戰後，安東內斯庫下令進行敖德薩大屠殺（1941年11月23日）；1942年秋猶太領袖與外交使節施壓，阻止了將全國猶太人驅逐至集中營；他其後尋求單獨媾和，1946年6月6日被處決。",
+      "en": "The entry says that after Romania entered the war against Russia on 22 June 1941, Antonescu ordered the Odessa massacre (23 November 1941). In autumn 1942 pressure from Jewish leaders and diplomats helped prevent the deportation of the entire Jewish population of Romania to concentration camps. He later began negotiating a separate peace and was executed on 6 June 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "After Romania entered the war against Russia on June 22, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Antonescu ordered the Odessa massacre (November 23, 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "In the autumn of 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "the Jewish leadership in Bucharest enlisted the aid of local politicians",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "neutral diplomats, and the papal nuncio, who applied pressure on Antonescu",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-11，已核對原文）",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "preventing the deportation of the entire Jewish population of Romania",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Antonescu began negotiating for a separate peace",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "executed on June 6, 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "chief-of-staff-resigned-1934",
+     "title": {
+      "orig": "chief of staff",
+      "zh-Hant": "參謀長（1934 年辭職）",
+      "en": "Chief of staff (resigned 1934)"
+     },
+     "positionKind": "military_command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "羅馬尼亞軍隊",
+      "en": "Romanian army"
+     },
+     "period": {
+      "start": null,
+      "end": "1935-01-01"
+     },
+     "startPrecision": null,
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Antonescu resigned his post as chief of staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "Following a dispute with King Carol ii in 1934",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1934 年與國王爭執後辭去參謀長，無起日；迄日依 Q3 以 1934 年 → 1935-01-01（year）",
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：只寫「chief of staff」，未明寫是否為國家級最高職（全軍參謀總長），起日 NULL，且羅馬尼亞政權是否在系統內待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "defense-minister-1937",
+     "title": {
+      "orig": "minister of defense",
+      "zh-Hant": "國防部長（1937 年底起）",
+      "en": "Minister of Defense (from late 1937)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "羅馬尼亞戈加政府",
+      "en": "Goga government of Romania"
+     },
+     "period": {
+      "start": "1937-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "When Goga and *Cuza formed an antisemitic government late in 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "enc-antonescu",
+       "locator": "條目正文",
+       "quote": "was appointed minister of defense",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫 1937 年底，迄日未寫",
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：國防部屬四部、正職，但只寫 1937 年底、迄日 NULL，無法證明 ≥90 天，且政權是否在系統內待查證",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:prime-minister-conducator-1940-1944",
+     "gapKind": "not_found",
+     "note": "1940-09-04 起的總理（Conducător）任期依規則視為已在名單 5442 任期內，不建候選；條目未寫垮台日（1944-08 政變），需 A/B 來源（羅馬尼亞國家檔案館、學術專書）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:defense-minister-1937-end",
+     "gapKind": "not_found",
+     "note": "條目只寫 1937 年底被任命為國防部長，未寫迄日、未寫起日月日；需羅馬尼亞政府／國家檔案或學術專書。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:chief-of-general-staff",
+     "gapKind": "not_found",
+     "note": "條目只寫 chief of staff（1934 年辭職），未寫確切職稱（Șeful Marelui Stat Major）與起日；需 A/B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "field:birth_death_detail",
+     "gapKind": "not_found",
+     "note": "條目只寫 1882–1946 與 1946-06-06 處決，無出生日與地點；Britannica 遇挑戰頁、USHMM 無法連線；需第二份 A/B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Ion Antonescu Conducător 1940 biography Marshal Romania Iron Guard encyclopedia（WebSearch）",
+     "url": null,
+     "result": "found_B",
+     "note": "結果多為維基鏡像（不採）；找到 Encyclopedia.com 的 Encyclopaedia Judaica 條目"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Ion Antonescu",
+     "url": "https://www.britannica.com/biography/Ion-Antonescu",
+     "result": "challenge_page",
+     "note": "Just a moment 挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopaedia Judaica「Antonescu, Ion」",
+     "url": "https://encyclopedia.com/religion/encyclopedias-almanacs-transcripts-and-maps/antonescu-iondeg",
+     "result": "found_B",
+     "note": "curl 存檔 enc-antonescu；署名 Theodor Lavi，採用"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "USHMM Holocaust Encyclopedia Ion Antonescu",
+     "url": "https://encyclopedia.ushmm.org/content/en/article/ion-antonescu",
+     "result": "no_result",
+     "note": "頁面回傳 This website is unavailable，未取得內容"
+    }
+   ]
+  }
+ ]
+}

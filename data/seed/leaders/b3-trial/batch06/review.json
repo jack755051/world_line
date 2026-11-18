@@ -1,0 +1,113 @@
+{
+ "batch": "06",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 4,
+  "editedSentences": 11,
+  "spotRefetched": 6
+ },
+ "countsNote": "returned 1＝段祺瑞整人（唯一來源降為未評等，0 段，需另覓 A／B 來源重查）。toUnverified 1＝段祺瑞「生平概略」段撤下改列 gap paragraph:life-overview 候選；deletedCitations 4＝該段 4 筆 hku-duan 引文自段落移除（原句保留為 gap candidateCitations）。schema 沒有欄位記的另外幾項：新增 29 筆引文（段落／職位引文 76 → 101），全部逐字取自研究當天已抓原文、並經審查重抓頁面比對，只用來撐住原有句子，沒有加新事實；改寫 9 筆 quote（3 筆擴成含日期／主語的同句片段、2 筆原引文截斷受詞或謂語而改取完整片段、1 筆生日改取只寫到年的句子、其餘擴成同句較長片段）；3 筆無日期引文 datePrecision 改 null；3 筆 gap conflict→not_found；1 筆 gap target 改名；3 段補 relatedRecordIds；1 個來源 url 改為條目正式網址；1 個來源降為未評等。spotRefetched：6 個來源全部重抓（皆 200），與研究當天 html 比對只有 script nonce／回應時間不同，內容一致。",
+ "people": [
+  {
+   "key": "es-franco",
+   "bioId": "01a1b48b-c890-7320-84f4-1442207f5f03",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "重抓 encyc-franco（200）：原 url /international/… 會轉址到 /history/…（頁面「Cite this article」亦為此網址），改為正式網址；條末署名 Joshua Goode，B 級合理；全部引文逐字比對到。",
+    "段1：補「Naval Administration School 關閉」「ruthless and courageous」2 筆引文，撐住原有句子。",
+    "段2：共和國成立引文沒有日期卻標 day，擴成「on 14 April 1931, the Spanish Second Republic was declared」；補「hide his true political opinions」「Popular Front government in February 1936」2 筆；「也未參與當時湧現的政變陰謀」照原文 resisted 改「也抗拒當時隨即湧現的多起軍事政變密謀」（英文同步）。",
+    "段3：「仿效希特勒與墨索里尼的領袖風格」原引文只寫 admired，改取「aped their personal styles of leadership early in his regime」；「二戰結束時西歐仍存戒心」引文擴成含「At the end of World War II」；補「kept the bloodshed continuing after the war」撐「持續鎮壓」。",
+    "gap paragraph:regime-1945-1975：note 註明是範圍外未寫、非查無。gap paragraph:1936-1939-leadership 保留（5442 兩筆 1939-03 共和國任期本批來源未涉及）。",
+    "positions 0：元首／首腦任期在 leader_records，合規（Q4）。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-duan-qirui",
+   "bioId": "01a1b51c-82f5-769f-b906-e1ae5f2acad8",
+   "verdict": "returned",
+   "paragraphs": 0,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "重抓 hku-duan（200，內容一致）；頁面 metadata 只有標題與說明文字，無作者、無書目，說明含下圍棋、養母雞不養公雞等軼事，是攝影館藏圖說，不是傳記。",
+    "來源等級：不屬 A（國家級辭典／官方頁／權威檔），也不是 B（具名作者機構百科、學術機構傳記），降為未評等（grade=null，gradeBasis 改寫）；依 Q9 不能當段落出處。",
+    "段1「生平概略」撤下，4 筆引文移為 gap paragraph:life-overview 的 candidateCitations；原 gap target「identity」（應只用於 identity_uncertain）改為 paragraph:life-overview 並併入研究者原 note（Britannica 403、ctext／1914-1918-online 挑戰頁皆未繞過）。"
+   ],
+   "returnedReasons": [
+    "沒有任何 A／B 級可核對來源：唯一取得的港大館藏說明降為未評等，0 段。需另覓 A／B 來源（例：國家級傳記辭典、具名作者學術百科）重查生平與各次組閣。"
+   ]
+  },
+  {
+   "key": "gb-minto-4th",
+   "bioId": "01a1b512-8b5a-7201-b097-0b0137dd4d94",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 0,
+   "gaps": 2,
+   "changes": [
+    "重抓 bpedia-minto（200，內容一致）；條末署名 Muhammad Ansar Ali，孟加拉亞洲學會國家百科，B 級合理。",
+    "段1：「已有軍旅與地方經驗…也在埃及與加拿大任職」原文是以軍人身分在第二次阿富汗戰爭及埃及、加拿大累積經驗，改照原文（英文同步）；「a Tory aristocrat」引文擴成同句「…came to India he was quite an experienced man.」，另補「As a member of armed forces」1 筆。",
+    "段2：正文多處無引文支撐，補 8 筆（反孟加拉分割鼓動、刺殺英國官員、僥倖未受傷、大批被捕、莫雷為印度事務大臣、由明托發起的措施、出版法重罰沒收、此法幾乎不容獨立批評）；「暗殺活動」改照原文「以刺殺英國官員為手段的革命活動」；「另提名兩名印度人」改「依他發起的措施，兩名印度人獲提名」；「批評者認為此法…」原文是條目直述，不是批評者說法，改「條目指此法…」；英文正文同步並壓到 794 字元。",
+    "段2 relatedRecordIds 補 8aa8e330（來源 1905-11～1910-11 與 5442 [1908-01-01,1910-11-23) 重疊）。",
+    "gap paragraph:canada-governor-general：已抓來源只說在加拿大有軍旅經歷，1904／1905 兩說只出自檢索摘要、沒有兩份已抓來源互相矛盾，conflict 改 not_found，note 改寫。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ot-talat",
+   "bioId": "01a1b52c-f9a5-74dc-a80f-e32ef42202f1",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "gaps": 2,
+   "changes": [
+    "重抓 ebsco-talaat、agmi-talaat（皆 200，內容一致）。EBSCO 條目具名作者 Janine Ungvarsky，B；ANI 條目具名作者 Rouben Paul Adalian，機構立場已在 gradeBasis 註明，只取生平年份與職務，維持 B。",
+    "段1：生日 1874-04-10 只有 EBSCO 摘要一處（同條 Background 只寫 1874），與庫中 1874-09-01 不一致；段落改只寫 1874 年（period 起點改 1874-01-01＋year），引文改取「Talaat Pasha was born in 1874, in the city of Edirne」，原到日引文移入 gap field:birthDate 候選；補「Young Turk movement… overthrow Sultan Abdul Hamid」「hub of Turkish revolutionary plotting」2 筆。",
+    "段2：補「After the 1908 Young Turk Revolution」「which the following year seized complete power」「The 1913 coup… triumvirate」3 筆；2 筆沒有日期的引文 datePrecision 改 null。",
+    "段3：「primary responsibility for planning and implementing」原引文截掉受詞，改取含「the Armenian Genocide」的片段；「On March 15, 1921, an Armenian member of a group called Operation Nemesis」截掉謂語，改取「Talaat walking through a Berlin park on March 15, 1921, and fatally shot him」，另補 ANI「gunned down in Berlin in 1921 by Soghomon Tehlirian」撐兇手名；補「fled to Germany」「Ottoman tribunal tried him in absentia」2 筆；遺骸引文擴成含「by Nazi Germany」；relatedRecordIds 補兩筆大維齊爾任期。",
+    "職位：內政大臣 regimeId=鄂圖曼帝國（ottoman-empire，與 selection.json 名單一致），1909 年起、迄日留空，合規；CUP 總書記補 EBSCO「In 1912, Talaat became secretary general of the CUP」，起點 1912 年有直接出處。",
+    "gap：position:grand-vizier-second-term 改 paragraph:grand-vizier-terms（首腦任期不建職位）；field:birthDate 只有一份來源與庫值不一致，conflict 改 not_found。"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ar-uriburu",
+   "bioId": "5f291e78-8724-4192-a409-482f92ccf1de",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 2,
+   "gaps": 1,
+   "changes": [
+    "重抓 encyc-uriburu（200，內容一致）；條末署名 Vicente Palermo，B 級合理。",
+    "段1：補「absorbed militarist nationalism」「served until 1914」2 筆段落引文（後者原只在職位）。",
+    "段2：補「economic crisis of 1929」「closed ranks against President Hipólito Irigoyen」「retired from active military duty」3 筆；「保守派對伊里戈延失去信心」照原文改「聯合反對」；原文「The supreme court acknowledged him as president, dissolved the congress, and declared a state of siege」主詞是最高法院，正文「他解散國會、宣布戒嚴」改為被動「國會遭解散並宣布戒嚴」，evidenceNote 註明；英文 Yrigoyen 改照原文 Irigoyen。",
+    "段2 卒年：原文「On April 29 of that year」緊接「held until 1938」，依條目標題補 1 筆「Uriburu, José Félix (1868–1932)」引文並在 evidenceNote 寫判讀；relatedRecordIds 補兩筆 1930–1932 任期。",
+    "職位：國會眾議員 1913-01-01～1915-01-01（「until 1914」依 Q3 寫下一年起日）、陸軍總監 1922 年起迄日留空，regimeId=null＋organization，合規。"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者普遍只為句子的一部分配引文（日期、事件主體、兇手名、評語等常沒有對應 quote），本批補了 29 筆；下批研究提示應要求每個子句都對到 quote。",
+  "有 quote 截掉句子的受詞或謂語（Talat 段3 兩筆），雖逐字但語意不完整，應取完整片段或改取其他句。",
+  "datePrecision 標在沒有日期的引文上（Franco 共和國成立、Talat 兩筆），應只在 quote 本身含日期時填。",
+  "conflict 用在「單一來源 vs 庫值」或「只有檢索摘要」的情形（Talat 生日、Minto 加拿大），依 batch05 慣例改 not_found；conflict 只用於兩份已抓來源互相矛盾。",
+  "無作者的館藏圖說（港大 hku-duan）不是 A／B；研究者已自行註明待審，審查降為未評等。",
+  "原文主語與史實常識不一致時（Uriburu「最高法院…解散國會」），不得替原文補主語，改被動或刪句。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

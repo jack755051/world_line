@@ -1,0 +1,4070 @@
+{
+ "batch": "b3-full-v3-batch028",
+ "researchedOn": "2026-11-12",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "gradePolicy": "ABC-2026-11-12",
+ "alignNote": "直接以對齊格式撰寫；國民政府未對到 regimeId，故無 R2–R4 角色候選；曹錕1923–24大總統任期缺起訖日，列 gap 而未建 roleCandidates；無黨職紀錄；軍職依 R5／R6 留 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id",
+ "rawDir": "/tmp/generals-bios/A/batch028/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "gpost": {
+   "title": "中華民國政府官職資料庫（依政府公報任免令，人物查詢頁）",
+   "authors": [],
+   "publisher": "國立政治大學圖書館",
+   "published_text": "2012–2025 國立政治大學；各筆日期為公報公告日（民國紀年，如 022-05-04＝民國22年5月4日）",
+   "url": "https://gpost.lib.nccu.edu.tw/view_career.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國立政治大學圖書館建置之官職資料庫，結構化收錄政府公報任免令（學術機構資料庫，B）；僅抓各人查詢頁第一頁"
+  },
+  "storm-cao": {
+   "title": "曹錕真的賄選了嗎？崇尚民主政治、用心討好議員…一窺史上最邊緣民國軍閥黯淡內幕",
+   "authors": [
+    "歷史說書人History Storyteller"
+   ],
+   "publisher": "風傳媒（風生活）",
+   "published_text": "2021-01-24",
+   "url": "https://www.storm.mg/lifestyle/3417832",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "風傳媒（具名出版機構）刊載，署名作者歷史說書人History Storyteller（授權轉載）"
+  },
+  "frus23-371": {
+   "title": "Papers Relating to the Foreign Relations of the United States, 1923, Volume I, Document 371",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1923 vol. I",
+   "url": "https://history.state.gov/historicaldocuments/frus1923v01/d371",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史學家辦公室官方外交文件彙編（政府官方頁）"
+  },
+  "frus36-559": {
+   "title": "893.00/13817: Telegram（FRUS 1936 vol. IV, Document 559）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1936 vol. IV",
+   "url": "https://history.state.gov/historicaldocuments/frus1936v04/d559",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國國務院歷史學家辦公室官方外交文件彙編（政府官方頁）"
+  },
+  "saac": {
+   "title": "浴血奮戰——檔案裡的中國抗戰（專題頁，列昆侖關檔案條目）",
+   "authors": [],
+   "publisher": "國家檔案局（中華人民共和國）",
+   "published_text": "2014-09-09",
+   "url": "https://www.saac.gov.cn/zt/2014-09/09/content_65799.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家檔案局官方專題頁，列檔案題名（政府官方頁）"
+  },
+  "cpc-kunlun": {
+   "title": "血戰昆侖關：山地攻堅獲大捷",
+   "authors": [],
+   "publisher": "人民網（中國共產黨新聞網）",
+   "published_text": "2018-12-26",
+   "url": "http://cpc.people.com.cn/BIG5/n1/2018/1226/c421684-30489136.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "人民網（具名出版機構）專題報道"
+  },
+  "cpc-du": {
+   "title": "陳官庄：見証淮海戰役的勝利",
+   "authors": [],
+   "publisher": "廣安日報／人民網鄧小平紀念網",
+   "published_text": "2013-12-09",
+   "url": "https://cpc.people.com.cn/BIG5/n/2013/1209/c69113-23788543.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "廣安日報（具名出版機構）稿，人民網轉載；內容引述陳官庄殲滅戰紀念館講解員田熠旻"
+  },
+  "sinica-chen-exp": {
+   "title": "陳誠與中國遠征軍",
+   "authors": [
+    "蘇聖雄"
+   ],
+   "publisher": "中央研究院近代史研究所（國史館修纂處助修撰）",
+   "published_text": "2017",
+   "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2017%E8%98%87%E8%81%96%E9%9B%84-%E9%99%B3%E8%AA%A0%E8%88%87%E4%B8%AD%E5%9C%8B%E9%81%A0%E5%BE%81%E8%BB%8D.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "中央研究院近代史研究所發布之學術論文，具名作者蘇聖雄"
+  },
+  "sinica-linwei": {
+   "title": "關鍵環節：第一次緬甸戰役中的林蔚及其參謀團",
+   "authors": [
+    "蘇聖雄"
+   ],
+   "publisher": "中央研究院近代史研究所集刊第113期",
+   "published_text": "民國110年9月（2021），頁77–130",
+   "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2021%E8%98%87%E8%81%96%E9%9B%84-%E9%97%9C%E9%8D%B5%E7%92%B0%E7%AF%80_%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%B7%AC%E7%94%B8%E6%88%B0%E5%BD%B9%E4%B8%AD%E7%9A%84%E6%9E%97%E8%94%9A%E5%8F%8A%E5%85%B6%E5%8F%83%E8%AC%80%E5%9C%98.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "中央研究院近代史研究所集刊學術論文，具名作者蘇聖雄"
+  },
+  "twstudy": {
+   "title": "戰後臺灣歷史年表（普及版）",
+   "authors": [],
+   "publisher": "中央研究院臺灣史研究所",
+   "published_text": "年表人物檢索頁",
+   "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "中央研究院臺灣史研究所編製之年表資料庫（學術機構資料，B）"
+  },
+  "cna-mao": {
+   "title": "王駿小說「1951全面追緝」 揭毛邦初軍購密帳內幕",
+   "authors": [
+    "邱祖胤"
+   ],
+   "publisher": "中央通訊社",
+   "published_text": "2022-05-20",
+   "url": "https://www.cna.com.tw/news/acul/202205200043.aspx",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "中央通訊社（具名通訊社）報導，記者邱祖胤署名；內容為介紹小說《1951全面追緝》"
+  },
+  "nj-shen": {
+   "title": "楚丘：山东省“游击主席”沈鸿烈",
+   "authors": [],
+   "publisher": "南京民间抗日战争博物馆（轉載《济南文史资料》2001年第2期）",
+   "published_text": "2023-11-10",
+   "url": "http://www.1937nanjing.org/kanzhanlishi/laobingkoushu/2021/0412/3416.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "南京民間抗日戰爭博物館（具名出版機構）轉載《濟南文史資料》2001年第2期文章；原文未列作者"
+  },
+  "gpost-p2": {
+   "title": "中華民國政府官職資料庫（依政府公報任免令，沈鴻烈查詢頁第2頁）",
+   "authors": [],
+   "publisher": "國立政治大學圖書館",
+   "published_text": "2012–2025 國立政治大學；各筆日期為公報公告日（民國紀年）",
+   "url": "https://gpost.lib.nccu.edu.tw/view_career.php?&name=沈鴻烈&pagenumber=20&order=default&orderype=asc&tpl=rough&page=2",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國立政治大學圖書館建置之官職資料庫（學術機構資料庫，B）；本筆為查詢結果第2頁"
+  },
+  "rotary-shen2": {
+   "title": "青島市長沈鴻烈海軍上將 -- 青島扶輪社創社理事 / Admiral Shen Hung-Lieh -- Mayor of Tsingtao",
+   "authors": [
+    "Herbert K. Lau（劉敬恒）"
+   ],
+   "publisher": "Rotary in China（扶輪社史，Rotary China Historian 文章）",
+   "published_text": "2015-02-01",
+   "url": "https://rotaryinchina.org/wp-content/uploads/2026/06/Admiral-Shen-Hung-Lieh-沈烈海上.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名作者 Herbert K. Lau（劉敬恒，Rotary China Historian）；具名出版機構 Rotary in China（扶輪社）；該頁逐段可核，與政府公報日期大致相符"
+  },
+  "exam-hist": {
+   "title": "考試院院史主題網—考試院大事紀（第一屆，民國37年7月～）",
+   "authors": [],
+   "publisher": "考試院",
+   "published_text": null,
+   "url": "https://history.exam.gov.tw/cp.aspx?n=3562&s=959",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "考試院官方院史網站，依總統令記事（政府官方頁）"
+  },
+  "mocs-quanxu": {
+   "title": "銓敘部全球資訊網—歷任部長",
+   "authors": [],
+   "publisher": "銓敘部",
+   "published_text": null,
+   "url": "https://www.mocs.gov.tw/pages/detail.aspx?Node=640&Page=1303&Index=5",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "銓敘部官方網站歷任部長表（政府官方頁）"
+  },
+  "rmw-pardon": {
+   "title": "盤點建國后被特赦的知名人物及去向【2】",
+   "authors": [],
+   "publisher": "人民網",
+   "published_text": "2015-08-26",
+   "url": "http://politics.people.com.cn/BIG5/n/2015/0826/c1001-27519978-2.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "人民網（具名出版機構、中央級媒體）刊載"
+  },
+  "drnh-hjl": {
+   "title": "中央軍參與山西剿共之探討—兼論陳誠入晉指揮始末（民國25年3月至5月）",
+   "authors": [
+    "何智霖"
+   ],
+   "publisher": "國史館",
+   "published_text": null,
+   "url": "https://www.drnh.gov.tw/var/file/3/1003/img/229663207.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者何智霖，國史館出版論文（學術機構論文，B）"
+  }
+ },
+ "people": [
+  {
+   "key": "caokun",
+   "bioId": null,
+   "name": "Cao Kun",
+   "nameZh": "曹錕",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "北洋軍職與直隸督軍",
+      "en": "Military posts and the Zhili governorship"
+     },
+     "body": {
+      "zh-Hant": "依政府公報任免紀錄，曹錕於1914年4月獲任長江上游警備總司令官，1916年8月因病辭去陸軍第三師師長，同年9月獲特任直隸督軍，1917年7月兼署直隸省省長，1920年8月特任直魯豫省巡閱使。以上日期為公報公告日。",
+      "en": "According to the government-gazette appointment records, Cao Kun was appointed Commander of Yangtze Upper-Reaches Garrison in April 1914, resigned as commander of the 3rd Division on grounds of illness in August 1916, was named Military Governor of Zhili that September, concurrently acted as Zhili provincial governor in July 1917, and was appointed Inspector-General of Zhili, Shandong and Henan in August 1920. The dates are gazette announcement dates."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "003-04-24 任 任命 長江上游警備總司令官 任命曹錕長江上游警備總司令官",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "005-08-06 免 因病辭職 陸軍第三師師長 因病辭職曹錕陸軍第三師師長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "005-09-16 任 特任 直隸督軍 特任曹錕直隸督軍",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "006-07-08 任 兼署 直隸省省長 兼署曹錕直隸省省長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "009-08-20 任 特任 直魯豫省巡閱使 特任曹錕直魯豫省巡閱使",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "1923年大總統選舉",
+      "en": "The 1923 presidential election"
+     },
+     "body": {
+      "zh-Hant": "風傳媒轉載的文章指出，第一次直奉戰爭後曹錕已是中原地區的老大，並於1923年10月5日的總統選舉中，在五百九十名議員投票中獲四百八十票；該文認為他以補發議員欠薪的方式取得好感，稱不上賄選，但這一說法有爭議。美國國務院檔案則記，當選後的曹錕總統採取調和各派領袖的政策。",
+      "en": "An article republished by Storm Media says that after the First Zhili–Fengtian War Cao Kun was the top figure of the Central Plains and that in the presidential election of 5 October 1923 he won 480 of the 590 votes cast by legislators; the article argues that he won favour by paying back owed salaries, which it says falls short of bribery, a contested view. A US State Department file records that President Tsao Kun pursued a policy of conciliating rival faction leaders."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "storm-cao",
+       "locator": "全文",
+       "quote": "第一次直奉戰爭後，曹錕已是中原地區的老大",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "storm-cao",
+       "locator": "全文",
+       "quote": "1923年10月5日舉行總統大選，總共有五百九十名議員參與了投票，其中四百八十名投給了曹錕",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "storm-cao",
+       "locator": "全文",
+       "quote": "可以說曹錕是在討好議員，但稱不上是賄選",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus23-371",
+       "locator": "Document 371 電文",
+       "quote": "a policy of conciliating leaders of rival factions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "憲法與身後追贈",
+      "en": "The constitution and posthumous honour"
+     },
+     "body": {
+      "zh-Hant": "據風傳媒轉載文章，曹錕在就職當天宣布頒行《中華民國憲法》（雙十憲法），並說他當了兩年總統後就被推翻。公報另記，他於1938年6月獲追贈陸軍一級上將。第二次直奉戰爭與去職細節，本檔未取得可引用的A、B、C級來源，見缺漏。",
+      "en": "The republished Storm Media article says that on the day he took office Cao Kun promulgated the Constitution of the Republic of China (the \"Double Tenth Constitution\") and that he was overthrown after two years as president. The gazette also records that he was posthumously granted the rank of first-class general in June 1938. No citable source on the Second Zhili–Fengtian War or his removal was obtained; see the gaps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "storm-cao",
+       "locator": "全文",
+       "quote": "在就職當天就正式宣布頒行《中華民國憲法》(雙十憲法)",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "storm-cao",
+       "locator": "全文",
+       "quote": "曹錕當了兩年總統後就被推翻",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "027-06-14 任 追贈 陸軍一級上將 追贈曹錕陸軍一級上將",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "cao-yangtze-garrison",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "長江上游警備總司令部",
+      "en": "Yangtze Upper-Reaches Garrison Command"
+     },
+     "title": {
+      "zh-Hant": "長江上游警備總司令官",
+      "en": "Commander, Yangtze Upper-Reaches Garrison",
+      "orig": "長江上游警備總司令官"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1914-04-24",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "003-04-24 任 任命 長江上游警備總司令官 任命曹錕長江上游警備總司令官",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區警備司令職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "cao-zhili-dujun",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "直隸省",
+      "en": "Zhili Province"
+     },
+     "title": {
+      "zh-Hant": "直隸督軍",
+      "en": "Military Governor of Zhili",
+      "orig": "直隸督軍"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1916-09-16",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "005-09-16 任 特任 直隸督軍 特任曹錕直隸督軍",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "省級軍政長官，屬轄區內地方長官，非國家級最高軍職；regimeId NULL。"
+    },
+    {
+     "key": "cao-zhili-acting-governor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "直隸省",
+      "en": "Zhili Province"
+     },
+     "title": {
+      "zh-Hant": "兼署直隸省省長",
+      "en": "Concurrent Acting Governor of Zhili",
+      "orig": "兼署直隸省省長"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1917-07-08",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "006-07-08 任 兼署 直隸省省長 兼署曹錕直隸省省長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "cao-inspector-zhili-lu-yu",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "直魯豫三省",
+      "en": "Zhili, Shandong and Henan"
+     },
+     "title": {
+      "zh-Hant": "直魯豫省巡閱使",
+      "en": "Inspector-General of Zhili, Shandong and Henan",
+      "orig": "直魯豫省巡閱使"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1920-08-20",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "009-08-20 任 特任 直魯豫省巡閱使 特任曹錕直魯豫省巡閱使",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "跨省巡閱使，非全軍／軍種最高軍職，亦非戰區司令；regimeId NULL。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:cao-yangtze-garrison",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；長江上游警備總司令官只見起日，已查 政大官職資料庫（第一頁）、風傳媒轉載文章；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cao-zhili-dujun",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；直隸督軍只見起日，已查 政大官職資料庫（第一頁）、風傳媒轉載文章；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cao-zhili-acting-governor",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；兼署直隸省省長只見起日，已查 政大官職資料庫（第一頁）、風傳媒轉載文章；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cao-inspector-zhili-lu-yu",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；直魯豫省巡閱使只見起日，已查 政大官職資料庫（第一頁）、風傳媒轉載文章；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cao-president",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；中華民國大總統（1923年當選、就職）。已查 風傳媒轉載文章（只寫1923-10-05選舉日，就職日未明寫）、FRUS 1923 vol. I（Document 351／371）、政大官職資料庫（第一頁）、國史館／近史所網搜；未見就職與去職起訖日。本人任期是否已在名單5442內亦未核對。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:cao-3rd-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；陸軍第三師師長只見公報1916-08-06因病辭職，未見任命日（已查政大官職資料庫第一頁）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：第二次直奉戰爭（1924）與其被囚、第一次直奉戰爭戰況，已查 風傳媒、FRUS 1923、Britannica（挑戰頁，未取得）、國史館搜尋摘要；無可抓原文可作逐字引文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "identity",
+     "gapKind": "identity_uncertain",
+     "note": "待查證：名冊國家為「中華民國-國民政府」，但曹錕主要活動期為北洋政府（1912–1928），regime 歸屬待查證；生卒與籍貫亦未取得A／B／C來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "曹錕 直系 大總統 保定 生平 1923 賄選",
+     "url": null,
+     "result": "not_relevant",
+     "note": "WebSearch 摘要多為維基與評論，不取用"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Cao Kun Britannica warlord president China 1923",
+     "url": "https://www.britannica.com/topic/history-of-China/The-early-republican-period",
+     "result": "challenge_page",
+     "note": "curl 回 Just a moment（Cloudflare），不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "FRUS 1923 Tsao Kun election",
+     "url": "https://history.state.gov/historicaldocuments/frus1923v01/d371",
+     "result": "found_A",
+     "note": "取得 1923-11 政情摘要電文"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "FRUS 1923 vol I d351",
+     "url": "https://history.state.gov/historicaldocuments/frus1923v01/d351",
+     "result": "found_A",
+     "note": "提到曹錕提名與選舉背景，未取引文"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "政大 中華民國政府官職資料庫 曹錕",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=%E6%9B%B9%E9%8C%95",
+     "result": "found_B",
+     "note": "取得公報任免紀錄（第一頁共15筆）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Kotobank 曹錕",
+     "url": "https://kotobank.jp/word/%E6%9B%B9%E9%8C%A1",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "曹錕 風傳媒 歷史說書人",
+     "url": "https://www.storm.mg/lifestyle/3417832",
+     "result": "unrated",
+     "note": "具名C級，採用；文章評論性，結論以「該文認為」處理"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "曹錕 新聞 評論（The News Lens）",
+     "url": "https://www.thenewslens.com/article/148225",
+     "result": "no_result",
+     "note": "抓回頁面無可用內文"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "曹錕 第二次直奉戰爭 論文 學術",
+     "url": null,
+     "result": "no_result",
+     "note": "只找到中國論文網與維基類條目，不取用"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "曹錕 直魯豫巡閱使 1924年 免職 直隸督軍 卸任",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋結果僅有總統任期（1923-10至1924-11）與王承斌請辭等間接資料，無曹錕各職迄日的A/B/C可引用原文"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "曹錕 直皖戰爭 第一次直奉戰爭 第二次直奉戰爭 總司令",
+     "url": null,
+     "result": "no_result",
+     "note": "僅風傳媒／新新聞等已用或評論性文章與出版社目錄，無可逐字引用的戰役敘述"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "政大官職資料庫（既有gpost快取）曹錕條",
+     "url": null,
+     "result": "no_result",
+     "note": "公報僅列任命，無免職紀錄；沒有下一任起日可作Q7推論"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "既有快取 storm-cao/kb-cao/thenewslens-cao 逐句檢索 督軍／巡閱使／戰爭",
+     "url": null,
+     "result": "no_result",
+     "note": "僅提及直奉戰爭名稱，無曹錕在戰役中的角色或各職迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "朱绍良",
+   "bioId": null,
+   "name": "待查證",
+   "nameZh": "朱紹良",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "早年軍職",
+      "en": "Early military posts"
+     },
+     "body": {
+      "zh-Hant": "據政府公報任免紀錄，朱紹良於1913年5月獲授陸軍步兵少校，1917年3月署任貴州暫編陸軍第一師參謀長，1927年7月獲特任國民政府軍事委員會委員，1928年3月任軍事委員會軍政廳廳長，同年9月另有任用。以上日期為公報公告日。",
+      "en": "According to gazette appointment records, Zhu Shaoliang was commissioned an infantry major in May 1913, acted as chief of staff of the Guizhou Provisional 1st Division in March 1917, was appointed a member of the National Government Military Commission in July 1927, became director of its Military Administration Department in March 1928 and was reassigned that September. Dates are gazette announcement dates."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "002-05-05 任 授 陸軍步兵少校 授朱紹良陸軍步兵少校",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "006-03-20 任 任命 署 貴洲暫編陸軍第一師參謀長 任命朱紹良署貴洲暫編陸軍第一師參謀長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "016-07-06 任 特任 國民政府軍事委員會委員 特任朱紹良國民政府軍事委員會委員",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-03-13 任 任命 國民政府軍事委員會軍政廳廳長 任命朱紹良國民政府軍事委員會軍政廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-09-19 免 另有任用 國民政府軍事委員會軍政廳廳長 另有任用朱紹良國民政府軍事委員會軍政廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "師長與綏靖職務",
+      "en": "Division and pacification commands"
+     },
+     "body": {
+      "zh-Hant": "1928年8月公報任命朱紹良為國民革命軍陸軍第八師師長，同年10月再次任命；1931年12月特派他為駐贛綏靖主任，1932年7月派為太湖剿匪總指揮。本檔未取得這些任內具體戰役的可引用來源，見缺漏。",
+      "en": "A gazette order of August 1928 appointed Zhu commander of the National Revolutionary Army 8th Division, with a further appointment in October; in December 1931 he was specially dispatched as Pacification Director for Jiangxi and in July 1932 named Commander-in-Chief of the Lake Tai bandit-suppression force. No citable source on specific battles during these posts was obtained; see the gaps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-08-13 任 任命 國民革命軍陸軍第八師師長 任命朱紹良國民革命軍陸軍第八師師長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-10-08 任 任命 陸軍第八師師長 任命朱紹良陸軍第八師師長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "020-12-03 任 特派 駐贛綏靖主任 特派朱紹良駐贛綏靖主任",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "021-07-16 任 派 太湖剿匪總指揮 派朱紹良太湖剿匪總指揮",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "甘肅主政與西安事變",
+      "en": "Gansu and the Xi’an Incident"
+     },
+     "body": {
+      "zh-Hant": "1933年5月公報任命朱紹良為甘肅省政府委員兼主席，同年9月兼駐甘綏靖主任；1935年4月任陸軍二級上將，同年11月免甘肅省主席。美國國務院外交電文另記，西安事變期間他的蘭州綏靖公署被奪，傳其被扣於西安。",
+      "en": "A gazette order of May 1933 appointed Zhu a member and chairman of the Gansu Provincial Government, and in September he concurrently became Pacification Director for Gansu; he became a second-class general in April 1935 and was dismissed as Gansu chairman that November. A US State Department telegram further reports that his Pacification Commissioner headquarters at Lanchow was seized and that he was detained in Sian."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-05-04 任 任命 甘肅省政府委員 兼 主席 任命朱紹良甘肅省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-09-13 任 兼 駐甘綏靖主任 兼朱紹良駐甘綏靖主任",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "024-04-03 任 任 陸軍二級上將 任朱紹良陸軍二級上將",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "024-11-02 免 免職 甘肅省政府委員 兼 主席 免職朱紹良甘肅省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus36-559",
+       "locator": "Document 559 電文",
+       "quote": "Pacification Commissioner Chu Shao-liang, who is detained in Sian",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "zhu-military-affairs-director",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府軍事委員會",
+      "en": "Military Commission of the National Government"
+     },
+     "title": {
+      "zh-Hant": "軍事委員會軍政廳廳長",
+      "en": "Director, Military Administration Department, Military Commission",
+      "orig": "軍事委員會軍政廳廳長"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1928-03-13",
+      "end": "1928-09-19"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-03-13 任 任命 國民政府軍事委員會軍政廳廳長 任命朱紹良國民政府軍事委員會軍政廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-09-19 免 另有任用 國民政府軍事委員會軍政廳廳長 另有任用朱紹良國民政府軍事委員會軍政廳廳長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "zhu-8th-division",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命軍陸軍第八師",
+      "en": "NRA 8th Division"
+     },
+     "title": {
+      "zh-Hant": "陸軍第八師師長",
+      "en": "Commander, 8th Division",
+      "orig": "陸軍第八師師長"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1928-08-13",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-08-13 任 任命 國民革命軍陸軍第八師師長 任命朱紹良國民革命軍陸軍第八師師長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "017-10-08 任 任命 陸軍第八師師長 任命朱紹良陸軍第八師師長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "師級指揮職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "zhu-jiangxi-pacification",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "江西",
+      "en": "Jiangxi"
+     },
+     "title": {
+      "zh-Hant": "駐贛綏靖主任",
+      "en": "Pacification Director for Jiangxi",
+      "orig": "駐贛綏靖主任"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1931-12-03",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "020-12-03 任 特派 駐贛綏靖主任 特派朱紹良駐贛綏靖主任",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "省級綏靖職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "zhu-taihu-suppression",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "太湖剿匪總指揮部",
+      "en": "Lake Tai Bandit-Suppression Command"
+     },
+     "title": {
+      "zh-Hant": "太湖剿匪總指揮",
+      "en": "Commander-in-Chief, Lake Tai Bandit Suppression",
+      "orig": "太湖剿匪總指揮"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1932-07-16",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "021-07-16 任 派 太湖剿匪總指揮 派朱紹良太湖剿匪總指揮",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地區剿匪指揮職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "zhu-gansu-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "甘肅省政府",
+      "en": "Gansu Provincial Government"
+     },
+     "title": {
+      "zh-Hant": "甘肅省政府委員兼主席",
+      "en": "Member and Chairman, Gansu Provincial Government",
+      "orig": "甘肅省政府委員兼主席"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1933-05-04",
+      "end": "1935-11-02"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-05-04 任 任命 甘肅省政府委員 兼 主席 任命朱紹良甘肅省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "024-11-02 免 免職 甘肅省政府委員 兼 主席 免職朱紹良甘肅省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "zhu-gansu-pacification",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "甘肅",
+      "en": "Gansu"
+     },
+     "title": {
+      "zh-Hant": "駐甘綏靖主任",
+      "en": "Pacification Director for Gansu",
+      "orig": "駐甘綏靖主任"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1933-09-13",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-09-13 任 兼 駐甘綏靖主任 兼朱紹良駐甘綏靖主任",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "省級綏靖職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:zhu-8th-division",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；第八師師長只見起日，已查 政大官職資料庫（第一頁）、美國國務院 FRUS；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:zhu-jiangxi-pacification",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；駐贛綏靖主任只見起日，已查 政大官職資料庫（第一頁）、美國國務院 FRUS；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:zhu-taihu-suppression",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；太湖剿匪總指揮只見起日，已查 政大官職資料庫（第一頁）、美國國務院 FRUS；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:zhu-gansu-pacification",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；駐甘綏靖主任只見起日，已查 政大官職資料庫（第一頁）、美國國務院 FRUS；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:zhu-8th-war-area",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第八戰區司令長官（搜尋摘要稱1939年任，但無可抓原文的A／B／C來源）。已查 政大官職資料庫（第一頁止於1936年，第二頁未抓）、中研院近史所蘇聖雄〈胡宗南與靈寶戰役〉PDF（僅在戰役敘述中稱「第八戰區司令長官朱紹良」，雙欄版面抽字不連貫，無法逐字引用、無起迄日）、常州史志頁（WAF 403）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:zhu-fujian-chairman",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；福建省政府主席（搜尋摘要稱1949-01至1949-10）、福州綏靖公署主任，未取得A／B／C可抓原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：淞滬會戰、抗戰時期戰區作戰等主要戰役，已查 政大官職資料庫、FRUS 1936、近史所論文、常州史志（403）；無可逐字引用的戰役敘述。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：三段約430字，已查官職資料庫、FRUS、近史所論文、地方志，取得的來源多為任免紀錄；人物生卒、出身等無A／B／C可抓原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "朱紹良 甘肅省主席 福建省主席 第八戰區司令長官 生平",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為維基類，不取用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "政大 中華民國政府官職資料庫 朱紹良",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=%E6%9C%B1%E7%B4%B9%E8%89%AF",
+     "result": "found_B",
+     "note": "取得公報任免紀錄第一頁共21筆"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "常州史志 朱绍良(1891—1963)",
+     "url": "https://fzg.changzhou.gov.cn/html/fzg/2016/POBKOFQN_0628/32003.html",
+     "result": "blocked_403",
+     "note": "WAF 阻擋頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "FRUS 1936 Chu Shao-liang Lanchow",
+     "url": "https://history.state.gov/historicaldocuments/frus1936v04/d559",
+     "result": "found_A",
+     "note": "取得西安事變期間電文"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "FRUS 1949 Fukien",
+     "url": "https://history.state.gov/historicaldocuments/frus1949v08/d538",
+     "result": "not_relevant",
+     "note": "內文無朱紹良"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "近史所 胡宗南與靈寶戰役 蘇聖雄",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2016%E8%98%87%E8%81%96%E9%9B%84-%E8%83%A1%E5%AE%97%E5%8D%97%E8%88%87%E9%9D%88%E5%AF%B6%E6%88%B0%E5%BD%B9_%E4%BB%A5%E8%83%A1%E5%AE%97%E5%8D%97%E5%85%88%E7%94%9F%E6%97%A5%E8%A8%98%E7%82%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E6%8E%A2%E7%A9%B6.pdf",
+     "result": "found_B",
+     "note": "已抓；僅在戰役敘述順帶提及朱紹良，抽字雙欄交錯，未引用"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "朱紹良 中國時報 胡宗南",
+     "url": "https://www.chinatimes.com/newspapers/20201111000125-260306",
+     "result": "challenge_page",
+     "note": "抓回頁面僅60字元，無內文"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Chu Shao-liang Kansu governor Eighth War Area",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果為維基與其鏡像"
+    },
+    {
+     "step": 9,
+     "sourceType": "other",
+     "query": "朱紹良 第八戰區 西北行營 國民政府公報",
+     "url": null,
+     "result": "no_result",
+     "note": "無可抓原文"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "朱紹良 第八師師長 調任 駐贛綏靖主任 免職 太湖剿匪 甘肅 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得胡平生論文提及1934年朱已任甘肅綏靖主任兼省主席，未寫各職迄日；其餘為維基類不收"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "政大官職資料庫（既有gpost快取）朱紹良條",
+     "url": null,
+     "result": "no_result",
+     "note": "八師長、駐贛綏靖、太湖剿匪、駐甘綏靖均只有任命，無免職或下一任起日明寫'轉任'"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "既有快取 FRUS 1936、sinica-linwei、cz-zhu/ct-zhu",
+     "url": null,
+     "result": "no_result",
+     "note": "無各職迄日"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "朱紹良 國防會議 1936 駐甘綏靖主任 迄 國民政府公報",
+     "url": null,
+     "result": "no_result",
+     "note": "未取得可抓原文"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "duyuming",
+   "bioId": null,
+   "name": "Du Yuming",
+   "nameZh": "杜聿明",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "昆侖關戰役",
+      "en": "The Battle of Kunlun Pass"
+     },
+     "body": {
+      "zh-Hant": "人民網報導稱，1939年11月日軍登陸並爆發桂南會戰，12月5日日軍佔領昆侖關；12月18日拂曉，第五軍軍長杜聿明以鄭洞國的榮譽第一師擔負正面主攻，另以一部兵力迂回側後，經14天戰鬥，12月31日中午日軍潰退、中國軍隊奪回昆侖關。國家檔案局專題頁亦列有杜聿明12月31日報告完全佔領昆侖關致蔣介石電。",
+      "en": "People’s Daily Online reports that Japanese forces landed in November 1939, setting off the Southern Guangxi campaign, and took Kunlun Pass on 5 December; at dawn on 18 December Fifth Army commander Du Yuming assigned Zheng Dongguo’s Honor First Division to the frontal assault while sending other forces around the flank, and after 14 days of fighting the Japanese withdrew at noon on 31 December and Chinese forces retook the pass. The State Archives Administration’s feature page also lists Du’s 31 December telegram to Chiang Kai-shek reporting full occupation of the pass."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "cpc-kunlun",
+       "locator": "全文",
+       "quote": "1939年11月15日，日軍第五師團以及台灣混成旅團首先從欽州灣企沙、龍門等地登陸",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-kunlun",
+       "locator": "全文",
+       "quote": "12月5日，日軍攻佔昆侖關",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "同段上文為1939年",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-kunlun",
+       "locator": "全文",
+       "quote": "1939年12月18日拂曉，第五軍軍長杜聿明以鄭洞國的榮譽第一師擔負昆侖關正面主攻",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-kunlun",
+       "locator": "全文",
+       "quote": "經過14天的激烈戰斗，1939年12月31日中午，日軍往九塘方向潰退，中國軍隊奪回昆侖關",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "saac",
+       "locator": "全文",
+       "quote": "1939年12月31日，第五军军长杜聿明报告完全占领昆仑关等情致蒋介石电",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "入緬作戰",
+      "en": "The Burma campaign"
+     },
+     "body": {
+      "zh-Hant": "蘇聖雄的研究指出，1942年初第五、第六、第六十六軍約10萬兵力先後入緬，組成中國遠征軍第一路，衛立煌未到任，由杜聿明以副總司令代理，4月羅卓英出任總司令。另一篇論文記，入緬作戰統一指揮機構未成立前，由第五軍杜聿明軍長統一指揮，而杜軍長仍受胡敦指揮。",
+      "en": "Su Sheng-hsiung’s study states that in early 1942 about 100,000 troops of the Fifth, Sixth and Sixty-sixth Armies entered Burma and formed the Chinese Expeditionary Force’s First Route; Wei Lihuang did not take up his post and Du Yuming, as deputy commander-in-chief, acted in his place until Luo Zhuoying became commander in April. Another paper records that, before a unified command was set up, Fifth Army commander Du exercised unified command while remaining under General Hutton."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "sinica-chen-exp",
+       "locator": "全文",
+       "quote": "1942年初遠征軍第五、第六、第六十六軍約10萬兵力先後入緬，組成中國遠征軍第一路",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinica-chen-exp",
+       "locator": "全文",
+       "quote": "以衛立煌為總司令，杜聿明為副總司令，因衛未到任，由杜聿明代理，4月，羅卓英出任總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinica-linwei",
+       "locator": "全文",
+       "quote": "由第五軍杜聿明軍長統一指揮，而杜軍長仍受胡敦指揮",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "戰後東北與淮海戰役",
+      "en": "Postwar Northeast and the Huaihai Campaign"
+     },
+     "body": {
+      "zh-Hant": "政府公報記，杜聿明於1945年10月被派為東北保安司令長官，1948年8月派為徐州剿匪總司令部副總司令，同年11月公報又派他為東北剿匪總司令副總司令。廣安日報稿稱，1948年12月淮海戰役第三階段，杜聿明、邱清泉自徐州出逃，被包圍於陳官庄，1949年1月6日解放軍發動總攻，俘獲杜聿明。",
+      "en": "The gazette records that Du Yuming was appointed Northeast Security Commander in October 1945, Deputy Commander-in-Chief of the Xuzhou bandit-suppression headquarters in August 1948, and in November 1948 Deputy Commander-in-Chief of the Northeast headquarters. A Guang’an Daily article says that in the third phase of the Huaihai Campaign in December 1948 Du and Qiu Qingquan broke out of Xuzhou and were encircled at Chenguanzhuang, and that on 6 January 1949 the PLA launched its final assault and captured Du."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "034-10-26 任 派 東北保安司令長官 派杜聿明東北保安司令長官",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "037-08-12 任 派 徐州剿匪總司令部副總司令 派杜聿明徐州剿匪總司令部副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "037-11-09 任 派 東北剿匪總司令副總司令 派杜聿明東北剿匪總司令副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-du",
+       "locator": "全文",
+       "quote": "國民黨守軍將領杜聿明、邱清泉見大勢已去，便帶領部隊從徐州出逃",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "同段開頭為1948年12月、淮海戰役第三階段",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-du",
+       "locator": "全文",
+       "quote": "被解放軍華東、華中兩大野戰軍包圍在陳官庄",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cpc-du",
+       "locator": "全文",
+       "quote": "解放軍於1949年1月6日發起總攻，激戰5天，共殲敵軍26萬余人，並俘獲了杜聿明",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "入晉剿共、被俘與特赦",
+      "en": "Shanxi campaign, capture and pardon"
+     },
+     "body": {
+      "zh-Hant": "國史館何智霖的論文記，民國25年3至5月第二十五師入山西剿共，陳誠於4月中旬仍期許該師副師長杜聿明奮勉進剿。人民網稱，杜聿明1939年11月任第5軍軍長，率部參加桂南會戰；1949年1月9日他在淮海戰役中所率各部全軍覆沒，被解放軍俘獲，1959年12月4日列為第一批特赦。",
+      "en": "A paper by He Zhilin of Academia Historica records that in March–May 1936 the 25th Division entered Shanxi for the anti-communist campaign, and that in mid-April Chen Cheng still urged the division's deputy commander Du Yuming to press on. People's Daily Online says Du became commander of the Fifth Army in November 1939 and joined the Guangxi campaign; on 9 January 1949 the forces he led were wiped out in the Huaihai Campaign and he was captured, and on 4 December 1959 he was in the first batch of pardons."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-hjl",
+       "locator": "封面標題",
+       "quote": "（民國25年3月至5月）",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-hjl",
+       "locator": "註42前段",
+       "quote": "譽有加時，陳誠仍期許該師副師長杜聿明：「今後益當奮勉進剿，愛護人民，",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "前文為4月中旬；第二十五師為最早入晉之中央軍",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmw-pardon",
+       "locator": "全文",
+       "quote": "1939年11月任第5軍軍長，率部參加桂南會戰",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmw-pardon",
+       "locator": "全文",
+       "quote": "1949年1月9日杜聿明在淮海戰役中所率各部全軍覆沒",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rmw-pardon",
+       "locator": "全文",
+       "quote": "1959年12月4日第一批被特赦。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "du-73rd-brigade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "陸軍第二十五師第七十三旅",
+      "en": "73rd Brigade, 25th Division"
+     },
+     "title": {
+      "zh-Hant": "陸軍第二十五師第七十三旅旅長",
+      "en": "Commander, 73rd Brigade, 25th Division",
+      "orig": "陸軍第二十五師第七十三旅旅長"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1933-03-11",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-03-11 任 任命 陸軍第二十五師第七十三旅旅長 任命杜聿明陸軍第二十五師第七十三旅旅長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "旅級指揮職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "du-expedition-1st-route-deputy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國遠征軍第一路",
+      "en": "Chinese Expeditionary Force, First Route"
+     },
+     "title": {
+      "zh-Hant": "中國遠征軍第一路副總司令（代理總司令）",
+      "en": "Deputy Commander-in-Chief, First Route, Chinese Expeditionary Force (acting commander)",
+      "orig": "中國遠征軍第一路副總司令（代理總司令）"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1942-05-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "sinica-chen-exp",
+       "locator": "全文",
+       "quote": "1942年初遠征軍第五、第六、第六十六軍約10萬兵力先後入緬，組成中國遠征軍第一路",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "sinica-chen-exp",
+       "locator": "全文",
+       "quote": "以衛立煌為總司令，杜聿明為副總司令，因衛未到任，由杜聿明代理，4月，羅卓英出任總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "遠征軍第一路屬方面軍級，有緬甸作戰連結，但 regimeId NULL（國民政府未對到）、僅1筆B，且職稱為副總司令代理，門檻無法證明。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "source",
+      "rank"
+     ]
+    },
+    {
+     "key": "du-northeast-security",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東北保安司令長官部",
+      "en": "Northeast Security Command"
+     },
+     "title": {
+      "zh-Hant": "東北保安司令長官",
+      "en": "Northeast Security Commander",
+      "orig": "東北保安司令長官"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-10-26",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "034-10-26 任 派 東北保安司令長官 派杜聿明東北保安司令長官",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "區域性最高司令長官類，但 regimeId NULL、無迄日、職位等級與戰役連結未由來源明寫；門檻無法證明。",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "du-xuzhou-deputy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "徐州剿匪總司令部",
+      "en": "Xuzhou Bandit-Suppression General Headquarters"
+     },
+     "title": {
+      "zh-Hant": "徐州剿匪總司令部副總司令",
+      "en": "Deputy Commander-in-Chief, Xuzhou Suppression Headquarters",
+      "orig": "徐州剿匪總司令部副總司令"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1948-08-12",
+      "end": "1948-11-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "037-08-12 任 派 徐州剿匪總司令部副總司令 派杜聿明徐州剿匪總司令部副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "037-11-09 免 另有任用 徐州剿匪總司令部副總司令 另有任用杜聿明徐州剿匪總司令部副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（副總司令），依 R5 留 positions。"
+    },
+    {
+     "key": "du-northeast-suppression-deputy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東北剿匪總司令部",
+      "en": "Northeast Bandit-Suppression General Headquarters"
+     },
+     "title": {
+      "zh-Hant": "東北剿匪總司令副總司令",
+      "en": "Deputy Commander-in-Chief, Northeast Suppression Headquarters",
+      "orig": "東北剿匪總司令副總司令"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1948-11-09",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "037-11-09 任 派 東北剿匪總司令副總司令 派杜聿明東北剿匪總司令副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（副總司令），依 R5 留 positions。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:du-73rd-brigade",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；第七十三旅旅長只見起日；國史館何智霖論文只說1936年3–5月杜聿明為第二十五師副師長，未寫旅長迄日。已查 政大官職資料庫、人民網、國史館論文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:du-northeast-security",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；東北保安司令長官只見起日1945-10-26；FRUS 1947 電報稱鄭洞國接替杜聿明為東北代理首長但無日期；A／B／C 可抓原文皆無迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:du-northeast-suppression-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；東北剿匪總司令副總司令只見起日，已查 政大官職資料庫、人民網報導；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:du-5th-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；第五軍軍長起日見人民網「1939年11月任第5軍軍長」（月），迄日未見。已查 人民網、國家檔案局、近史所論文、國史館論文、政大官職資料庫、FRUS。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:du-5th-group-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第五集團軍總司令（近史所論文提及杜聿明為第五集團軍總司令，起迄日未寫）。已查 近史所「陳誠與中國遠征軍」。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:du-xuzhou-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：公報列1948-08-12派徐州剿匪總司令部副總司令、1948-11-09另有任用並派東北剿匪副總司令，與一般敘述的先東北後徐州次序不同；僅憑公報公告日無法確認，未列為衝突（無第二份已抓來源）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "來源不足：目前4段／554字，已有指揮職（第七十三旅、遠征軍第一路、東北保安、徐州剿總副總司令）與主要戰役（昆侖關、入緬、淮海）；但第七十三旅旅長、東北保安司令長官、東北剿匪副總司令三職缺迄日，第五軍軍長、第五集團軍總司令缺起或迄日，任期僅2／5筆完整。本輪已查來源類型：官方（政大官職資料庫、國家檔案局、國史館論文、FRUS）、學術（近史所）、權威檔（NDL，無資料）、具名百科（Kotobank 無條目）、JACAR／防衛研究所（無資料）、具名C（人民網）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "杜聿明 生平 遠征軍 淮海戰役 第五軍軍長",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為部落格與評論，不取用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "政大 中華民國政府官職資料庫 杜聿明",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=%E6%9D%9C%E8%81%BF%E6%98%8E",
+     "result": "found_B",
+     "note": "取得9筆公報任免紀錄"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "杜聿明 近史所 遠征軍 蘇聖雄",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2017%E8%98%87%E8%81%96%E9%9B%84-%E9%99%B3%E8%AA%A0%E8%88%87%E4%B8%AD%E5%9C%8B%E9%81%A0%E5%BE%81%E8%BB%8D.pdf",
+     "result": "found_B",
+     "note": "取得遠征軍第一路編成與杜聿明代理"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "近史所集刊113 林蔚 參謀團",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2021%E8%98%87%E8%81%96%E9%9B%84-%E9%97%9C%E9%8D%B5%E7%92%B0%E7%AF%80_%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%B7%AC%E7%94%B8%E6%88%B0%E5%BD%B9%E4%B8%AD%E7%9A%84%E6%9E%97%E8%94%9A%E5%8F%8A%E5%85%B6%E5%8F%83%E8%AC%80%E5%9C%98.pdf",
+     "result": "found_B",
+     "note": "取得統一指揮句"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "血戰昆侖關 人民網",
+     "url": "http://cpc.people.com.cn/BIG5/n1/2018/1226/c421684-30489136.html",
+     "result": "unrated",
+     "note": "具名C級，採用"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "浴血奮戰——檔案裡的中國抗戰 國家檔案局",
+     "url": "https://www.saac.gov.cn/zt/2014-09/09/content_65799.htm",
+     "result": "found_A",
+     "note": "列檔案題名一筆"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "廣西紀檢監察網 鏖戰昆仑关",
+     "url": "https://www.gxjjw.gov.cn/mobile/article.php?articleid=108422",
+     "result": "no_result",
+     "note": "抓回0位元組"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "陳官庄 人民網 鄧小平紀念網",
+     "url": "https://cpc.people.com.cn/BIG5/n/2013/1209/c69113-23788543.html",
+     "result": "unrated",
+     "note": "具名C級，採用"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Army University Press Bjorge Moving the Enemy",
+     "url": "https://www.armyupress.army.mil/Portals/7/combat-studies-institute/csi-books/bjorge_huai.pdf",
+     "result": "blocked_403",
+     "note": "Access Denied，不繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Chinese Civil War 1947-48",
+     "url": "https://www.britannica.com/event/Chinese-Civil-War/The-tide-turns-1947-48",
+     "result": "challenge_page",
+     "note": "Cloudflare，不繞過"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "杜聿明 第五軍軍長 任命 1939 軍事委員會 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "無任命文件"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "杜聿明 1949年1月 陳官莊 被俘 東北保安司令長官 辭職 1946",
+     "url": null,
+     "result": "not_relevant",
+     "note": "多為通俗網文"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "杜聿明 世界大百科事典 コトバンク デュ・ユーミン",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Kotobank 條目"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "NDL Authorities 杜聿明 站內查詢",
+     "url": "https://id.ndl.go.jp/auth/ndlsh?searchtype=name&query=%E6%9D%9C%E8%81%BF%E6%98%8E",
+     "result": "no_result",
+     "note": "SPARQL 解析錯誤"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Kotobank 杜聿明 條目",
+     "url": "https://kotobank.jp/word/%E6%9D%9C%E8%81%BF%E6%98%8E",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "JACAR 杜聿明 站內檢索",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/listPhoto?LANG=default&BID=F2008083113214619&ID=M2008083113214644&REFCODE=C04122578100",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "防衛研究所 站內搜尋 杜聿明",
+     "url": "https://www.nids.mod.go.jp/search/?q=%E6%9D%9C%E8%81%BF%E6%98%8E",
+     "result": "no_result",
+     "note": "搜尋頁無內容"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "國史館 站內搜尋 杜聿明",
+     "url": "https://www.drnh.gov.tw/search?q=%E6%9D%9C%E8%81%BF%E6%98%8E",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Tu Yu-ming Northeast Headquarters FRUS 1946 1947",
+     "url": "https://history.state.gov/historicaldocuments/frus1947v07/d235",
+     "result": "found_A",
+     "note": "僅稱鄭洞國接替杜聿明任東北代理首長，無日期；不引"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "FRUS 1947 Wedemeyer Tu Li-Ming removal",
+     "url": "https://history.state.gov/historicaldocuments/frus1947v07/d577",
+     "result": "found_A",
+     "note": "只寫杜聿明去職，無日期；不引"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "FRUS 1946 Tu Li-ming Jehol attack",
+     "url": "https://history.state.gov/historicaldocuments/frus1946v09/d706",
+     "result": "found_A",
+     "note": "僅提及杜聿明司令部，無任期；不引"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "杜聿明 第七十三旅 副師長 國史館 何智霖 論文",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/229663207.pdf",
+     "result": "found_B",
+     "note": "1936年第二十五師副師長"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "盤點建國后被特赦的知名人物及去向 人民網",
+     "url": "http://politics.people.com.cn/BIG5/n/2015/0826/c1001-27519978-2.html",
+     "result": "unrated",
+     "note": "具名機構人民網，列 C；1939-11、被俘、特赦"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "academic",
+     "query": "蘇聖雄 1939年國軍的四次反攻 近史所 PDF",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2024蘇聖雄-戰略戰術思想的延續與轉變_1939年國軍的四次反攻.pdf",
+     "result": "found_B",
+     "note": "抓取成功，全文未見杜聿明任命日，不引"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "政大官職資料庫 杜聿明 第2、3頁",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=杜聿明&page=2",
+     "result": "found_B",
+     "note": "僅一頁9筆，無新增"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "廖耀湘 虎氣震東瀛 人民網",
+     "url": "http://dangshi.people.com.cn/BIG5/n/2015/0520/c85037-27029215.html",
+     "result": "unrated",
+     "note": "涉及第五軍編制，無杜聿明任期日，不引"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "國家檔案局 專題頁 浴血奮戰 昆侖關 電報",
+     "url": "https://www.saac.gov.cn/zt/2014-09/09/content_65801_2.htm",
+     "result": "found_A",
+     "note": "僅標題列杜聿明電報，與既有引用重複"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "杜聿明 傳略 抗日戰爭紀念網 krzzjn",
+     "url": "https://www.krzzjn.com/show-1475-85183.html",
+     "result": "not_relevant",
+     "note": "轉載彙編，來源標「將帅传略」「百度」等，無署名，不取用"
+    },
+    {
+     "step": 29,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "杜聿明 近代人物 中國文化大學 民國近代史",
+     "url": "https://digroc.pccu.edu.tw/CNH/Personage/personage.aspx?ID=0000084",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 30,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Army Center of Military History Chronology 1941–1945 PDF",
+     "url": "https://history.army.mil/Portals/143/Images/Publications/Publication%20By%20Title%20Images/C%20Pdf/CMH_Pub_11-1.pdf",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 31,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Du Yuming Britannica 杜聿明",
+     "url": "https://www.britannica.com/",
+     "result": "no_result",
+     "note": "搜尋無該人條目"
+    },
+    {
+     "step": 32,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Du Yuming 杜聿明 東北保安司令 1947 免職 日期（中文搜尋）",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅維基類或部落格呈現7月離職，不取用"
+    },
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "杜聿明 第七十三旅旅長 升任 第二十五師副師長 國史館",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基類與generals.dk（禁用）；未得旅長迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "杜聿明 東北保安司令長官 改任 衛立煌 接任 任期",
+     "url": null,
+     "result": "no_result",
+     "note": "只見東北行轅1946-08-22改制、衛立煌1948-01任東北剿總總司令等背景，未明寫杜保安司令長官迄日"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "FRUS 1946-47（既有 x_frus46-706／47-235／47-577）",
+     "url": null,
+     "result": "found_A",
+     "note": "Wedemeyer報告稱'Tu Li-Ming's removal'但無日期，無法作迄日"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "既有快取 cpc-du／rmw-pardon：杜聿明1949-01被俘",
+     "url": null,
+     "result": "found_C",
+     "note": "被俘日不等於東北剿總副總司令免職日，來源未寫免職，不採為迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "maobangchu",
+   "bioId": null,
+   "name": "Mao Bangchu",
+   "nameZh": "毛邦初",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "航空學校與考察",
+      "en": "Aviation schools and study tour"
+     },
+     "body": {
+      "zh-Hant": "政府公報記，毛邦初於1931年6月被任命為軍政部航空學校校長，1933年7月另有任用，同日任命為軍政部中央航空學校副校長；1934年6月公報派他為考察歐美各國航空特派員，1940年5月晉任空軍少將。以上日期為公報公告日。",
+      "en": "The gazette records that Mao Bangchu was appointed principal of the Ministry of War Aviation School in June 1931, reassigned in July 1933 and on the same day named deputy principal of the Ministry’s Central Aviation School; in June 1934 he was dispatched as commissioner to study aviation in Europe and America, and in May 1940 he was promoted air force major general. The dates are gazette announcement dates."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "020-06-30 任 任命 軍政部航空學校校長 任命毛邦初軍政部航空學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-17 免 另有任用 軍政部航空學校校長 另有任用毛邦初軍政部航空學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-17 任 任命 軍政部中央航空學校副校長 任命毛邦初軍政部中央航空學校副校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "023-06-11 任 派 考察歐美各國航空特派員 派毛邦初考察歐美各國航空特派員",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "029-05-25 任 晉任 空軍少將 晉任毛邦初空軍少將",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "空軍副總司令與國際民航",
+      "en": "Deputy commander of the air force and civil aviation diplomacy"
+     },
+     "body": {
+      "zh-Hant": "1944年10月公報派毛邦初為出席國際民用航空會議特命全權代表，1946年6月任命他為空軍副總司令，1947年5月又派他為出席國際民用航空永久組織成立大會代表。本檔未取得他空戰行動的可引用來源，見缺漏。",
+      "en": "In October 1944 a gazette order named Mao plenipotentiary delegate of the Republic of China to the international civil aviation conference; in June 1946 he was appointed deputy commander-in-chief of the air force, and in May 1947 he was sent as delegate to the founding assembly of the permanent international civil aviation organization. No citable source on air operations was obtained; see the gaps."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "033-10-31 任 派 中華民國出席國際民用航空會議特命全權代表 派毛邦初中華民國出席國際民用航空會議特命全權代表",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "035-06-29 任 任命 空軍副總司令 任命毛邦初空軍副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "036-05-05 任 派 中華民國出席國際民用航空永久組織成立大會代表 派毛邦初中華民國出席國際民用航空永久組織成立大會代表",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "1951年停職與毛邦初案",
+      "en": "The 1951 suspension and the Mao Bangchu affair"
+     },
+     "body": {
+      "zh-Hant": "公報記，毛邦初於1951年8月因失職抗命被免空軍副總司令；中研院臺灣史研究所年表亦記，同日蔣介石下令駐美空軍副總司令毛邦初停職處分。中央社介紹小說《1951全面追緝》時稱，毛邦初以空軍副總司令職銜派駐華府擔任空軍駐美辦事處主任，後在美國揭露軍購密帳而引發「毛邦初案」。",
+      "en": "The gazette records that Mao was dismissed as deputy commander-in-chief of the air force in August 1951 for dereliction and disobedience, and the Academia Sinica Taiwan history chronology likewise notes that on the same day Chiang Kai-shek ordered the suspension of Mao, air force deputy commander in the United States. Introducing the novel 1951 Full Pursuit, CNA says Mao was posted to Washington with the title of air force deputy commander as head of the air force office there, and exposed secret arms-procurement accounts, triggering the \"Mao Bangchu case\"."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "040-08-21 免 失職抗命 空軍副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twstudy",
+       "locator": "全文",
+       "quote": "1951 年 08 月 21 日 總統 蔣介石 下令駐美空軍副總司令毛邦初停職處分。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cna-mao",
+       "locator": "全文",
+       "quote": "毛邦初以空軍副總司令職銜駐派華府，擔任空軍駐美辦事處主任",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cna-mao",
+       "locator": "全文",
+       "quote": "這段轟動一時的「毛邦初案」",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "mao-aviation-school-principal",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "軍政部航空學校",
+      "en": "Ministry of War Aviation School"
+     },
+     "title": {
+      "zh-Hant": "軍政部航空學校校長",
+      "en": "Principal, Ministry of War Aviation School",
+      "orig": "軍政部航空學校校長"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1931-06-30",
+      "end": "1933-07-17"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "020-06-30 任 任命 軍政部航空學校校長 任命毛邦初軍政部航空學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-17 免 另有任用 軍政部航空學校校長 另有任用毛邦初軍政部航空學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長，依邊界個案留 positions（military_education）；R5。"
+    },
+    {
+     "key": "mao-central-aviation-deputy",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "軍政部中央航空學校",
+      "en": "Ministry of War Central Aviation School"
+     },
+     "title": {
+      "zh-Hant": "軍政部中央航空學校副校長",
+      "en": "Deputy Principal, Central Aviation School",
+      "orig": "軍政部中央航空學校副校長"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1933-07-17",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-17 任 任命 軍政部中央航空學校副校長 任命毛邦初軍政部中央航空學校副校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍校副校長，依邊界個案留 positions；R5。"
+    },
+    {
+     "key": "mao-icao-delegate-1944",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國際民用航空會議",
+      "en": "International Civil Aviation Conference"
+     },
+     "title": {
+      "zh-Hant": "出席國際民用航空會議特命全權代表",
+      "en": "Plenipotentiary Delegate to the International Civil Aviation Conference",
+      "orig": "出席國際民用航空會議特命全權代表"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1944-10-31",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "033-10-31 任 派 中華民國出席國際民用航空會議特命全權代表 派毛邦初中華民國出席國際民用航空會議特命全權代表",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "mao-air-force-deputy-cic",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "空軍總司令部",
+      "en": "Air Force General Headquarters"
+     },
+     "title": {
+      "zh-Hant": "空軍副總司令",
+      "en": "Deputy Commander-in-Chief, Air Force",
+      "orig": "空軍副總司令"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1946-06-29",
+      "end": "1951-08-21"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "035-06-29 任 任命 空軍副總司令 任命毛邦初空軍副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "040-08-21 免 失職抗命 空軍副總司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報載免職日；與年表停職日相同",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "副職（副總司令），依 R5 留 positions；regimeId NULL。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:mao-central-aviation-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；中央航空學校副校長只見起日，已查 政大官職資料庫（第一頁）；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:mao-icao-delegate-1944",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；出席國際民用航空會議特命全權代表只見起日，已查 政大官職資料庫（第一頁）；未見迄日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:mao-washington-office",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；空軍駐美辦事處主任（中央社介紹小說稱其以空軍副總司令職銜駐派華府任此職），起迄日皆未見。已查 中央社、政大官職資料庫、中研院臺灣史年表；另鏡週刊小說選摘、聯合報VIP文章屬小說／訂閱內容，不採。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "paragraph:battle",
+     "gapKind": "not_found",
+     "note": "來源不足：空戰行動或航空作戰指揮（例如抗戰期間空軍作戰、1942年赴美籌設辦事處）無A／B／C可抓原文；已查 中央社、政大官職資料庫、中研院年表、國史館搜尋摘要；英文維基類資料不採。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "毛邦初 空軍 航空委員會 駐美 採購 生平",
+     "url": null,
+     "result": "not_relevant",
+     "note": "維基與沙盒頁，不取用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "政大 中華民國政府官職資料庫 毛邦初",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=%E6%AF%9B%E9%82%A6%E5%88%9D",
+     "result": "found_B",
+     "note": "取得11筆公報任免紀錄"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "戰後臺灣歷史年表 毛邦初",
+     "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?page=9&People=%E8%94%A3%E4%BB%8B%E7%9F%B3",
+     "result": "found_B",
+     "note": "取得1951-08-21停職一句"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "王駿小說 1951全面追緝 中央社",
+     "url": "https://www.cna.com.tw/news/acul/202205200043.aspx",
+     "result": "unrated",
+     "note": "具名C級，採用"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "鏡週刊 1951全面追緝 選摘",
+     "url": "https://www.mirrormedia.mg/story/amp/20220421cul001",
+     "result": "not_relevant",
+     "note": "小說選摘（含虛構對話），不採"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "聯合報 叛將追緝令 毛邦初",
+     "url": "https://vip.udn.com/vip/story/121943/5380187",
+     "result": "not_relevant",
+     "note": "訂閱內容，只見摘要，不採"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "國史館 毛邦初 停職 免職",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無可抓頁面"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "Mao Pang-chu Chennault Washington purchasing",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果為維基類與書評，不取用"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "ICAO 芝加哥會議頁 icao.int/ChicagoConference/Pages/proceed.aspx 及委員會頁",
+     "url": null,
+     "result": "not_relevant",
+     "note": "會議為1944-11-01至12-07，但代表名單未列毛邦初（中國為張嘉璈），無法作為其特命全權代表迄日"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "毛邦初 中央航空學校 副校長 1934年 離職 考察歐美",
+     "url": null,
+     "result": "no_result",
+     "note": "僅維基類、航空生活目錄，未得副校長迄日"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "政大官職資料庫（既有gpost快取）毛邦初條",
+     "url": null,
+     "result": "no_result",
+     "note": "1934年派考察歐美特派員起日為公報公告日，未寫'轉任'，不足以推為副校長迄日"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "中央社 cna-mao／聯合報 udn-mao／鏡週刊 mirror-mao 既有快取",
+     "url": null,
+     "result": "no_result",
+     "note": "無相關迄日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-13"
+    }
+   ]
+  },
+  {
+   "key": "沈鴻烈",
+   "bioId": null,
+   "name": "待查證",
+   "nameZh": "沈鴻烈",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與東北艦隊",
+      "en": "Origins and the Northeast fleet"
+     },
+     "body": {
+      "zh-Hant": "據南京民間抗日戰爭博物館轉載的《濟南文史資料》文章，沈鴻烈生於1882年，1906年赴日本留學，辛亥革命時奉黎元洪之命策動長江水師反正；後經推薦由張作霖委任為江防司令兼航警處處長，又任東北艦隊司令。公報記，他於1933年7月呈請辭去東北艦隊司令。",
+      "en": "According to an article from Jinan Cultural and Historical Materials republished by the Nanjing Folk Anti-Japanese War Museum, Shen Honglie was born in 1882, went to study in Japan in 1906, and during the 1911 Revolution was ordered by Li Yuanhong to induce the Yangtze river flotilla to defect; he was later appointed river-defence commander and head of the aviation and navigation office by Zhang Zuolin, and then commander of the Northeast fleet. The gazette records that in July 1933 he asked to resign as Northeast fleet commander."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "生于一八八二年（清光绪八年）",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "于一九零六年（清光绪三十二年）去日本留学",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "黎委以“海军宣慰使”之职，命沈策动长江水师反正",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "沈被张作霖委任为江防司令兼航警处处长",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "以后又任东北舰队司令",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-05 免 呈請辭職 東北艦隊司令 呈請辭職沈鴻烈東北艦隊司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "青島市長與山東省主席",
+      "en": "Mayor of Tsingtao and governor of Shandong"
+     },
+     "body": {
+      "zh-Hant": "公報記，沈鴻烈於1932年1月獲任青島市市長；1938年1月23日任山東省政府主席，2月再兼山東全省保安司令。該文稱，山東大部分城鎮已陷日軍之手，他的省政府只能在各縣農村流動駐扎，時人稱之為「游擊主席」，並提到他曾奉命撤出青島。",
+      "en": "The gazette records that Shen was appointed mayor of Tsingtao in January 1932, chairman of the Shandong Provincial Government on 23 January 1938, and concurrently Shandong provincial security commander in February. The article says most Shandong towns were already in Japanese hands, so his provincial government could only move among county villages, earning him the nickname \"guerrilla chairman\", and notes he was ordered to withdraw from Tsingtao."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "021-01-21 任 任命 青島市市長 任命沈鴻烈青島市市長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "027-01-23 任 任命 山東省政府主席 任命沈鴻烈山東省政府主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "027-02-11 任 兼任 山東全省保安司令 兼任沈鴻烈山東全省保安司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "沈鸿烈的省政府只能在山东各县农村流动驻扎，相机袭击一下日军，所以时人称之为“游击主席”",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "直到一九三七年中日战争开始后奉命撤出青岛",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "魯南戰事與戰後職務",
+      "en": "Southern Shandong fighting and later posts"
+     },
+     "body": {
+      "zh-Hant": "該文記，1939年6月日偽軍八萬人掃蕩魯南山區，對當地抗日武裝的進攻持續了半個多月，沈鴻烈曾陷入包圍而脫險。公報記，他於1941年12月特任農林部部長，1942年1月免山東省政府主席，2月免保安司令。該文另稱他戰後出任浙江省主席，只有兩年，後調考試院銓敘部部長。",
+      "en": "The article says that in June 1939 Japanese and puppet forces of 80,000 swept the southern Shandong mountains, an offensive against the local anti-Japanese forces lasting more than half a month, and that Shen was once surrounded but escaped. The gazette records his appointment as Minister of Agriculture and Forestry in December 1941 and his release as Shandong chairman in January 1942 and as security commander in February. The article adds that after the war he served as Zhejiang chairman for only two years before moving to head the Examination Yuan’s Ministry of Personnel."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "乃迅速纠集日伪军八万人于一九三九年六月向鲁南山区扫荡",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "日军这次对鲁南山区抗日武装的进攻，持续了半个多月",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "沈鸿烈陷于日军包围之中",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "030-12-27 任 特任 農林部部長 特任沈鴻烈農林部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "031-01-09 免 另有任用 山東省政府委員 兼 主席 另有任用沈鴻烈山東省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "031-02-10 免 另有任用 山東全省保安司令 另有任用沈鴻烈山東全省保安司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "沈鸿烈作为浙江省的封疆大吏只有两年",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nj-shen",
+       "locator": "全文",
+       "quote": "调任考试院铨叙部部长",
+       "quoteLang": "zh-Hans",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "東北艦隊與戰後任職",
+      "en": "Northeast Fleet and later posts"
+     },
+     "body": {
+      "zh-Hant": "扶輪社史家劉敬恒的文章稱，1923年7月張作霖正式成立東北海防艦隊，由沈鴻烈任司令；1933年6月他辭去海軍職務。政府公報記1933年7月5日東北艦隊司令呈請辭職。文章又稱他1942年1月在重慶就任農林部長，1946年4月在杭州就任浙江省主席；公報記浙江省主席1948年6月22日呈請辭職。考試院院史記1948年7月13日總統令特任他為銓敍部部長，同年11月25日（民國38年條下）免職。",
+      "en": "A Rotary historian's article says Zhang Zuolin formally established the Northeast Sea Defense Squadron in July 1923 with Shen as commander, and that Shen resigned his naval command in June 1933. The gazette records the Northeast Fleet commander's resignation request on 5 July 1933. The article says he took office as Minister of Agriculture at Chongqing in January 1942 and as Zhejiang chairman at Hangzhou in April 1946; the gazette records the Zhejiang chairman's resignation request on 22 June 1948. The Examination Yuan chronicle records that a presidential order of 13 July 1948 appointed him Minister of Civil Service, and that he was dismissed on 25 November (listed under 1949)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "In July 1923 he formally established the Northeast Sea Defense Squadron",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "and made Shen its commander, with the rank of Rear Admiral.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "He resigned from his naval command in June 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-05 免 呈請辭職 東北艦隊司令 呈請辭職沈鴻烈東北艦隊司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "He assumed office at Chungking (Chongqing) (重慶) in January 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "he assumed office at Hangchow (Hangzhou) (杭州) in April 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "037-06-22 免 呈請辭職 浙江省政府委員 兼 主席 呈請辭職沈鴻烈浙江省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "exam-hist",
+       "locator": "民國37年條下",
+       "quote": "7月13日，總統令特任田炯錦為考選部部長；特任沈鴻烈為銓敍部部長。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "大事紀置於民國37年條下",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "exam-hist",
+       "locator": "民國38年條下",
+       "quote": "同日，總統令銓敍部長沈鴻烈准予免職。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "「同日」指11月25日（民國38年條下）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "shen-tsingtao-mayor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "青島市政府",
+      "en": "Tsingtao Municipal Government"
+     },
+     "title": {
+      "zh-Hant": "青島市市長",
+      "en": "Mayor of Tsingtao",
+      "orig": "青島市市長"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1932-01-21",
+      "end": "1945-08-16"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "021-01-21 任 任命 青島市市長 任命沈鴻烈青島市市長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "034-08-16 免 另有任用 青島市市長 另有任用沈鴻烈青島市市長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "On 21 January 1932, the Nationalist Government gave him the concurrent",
+       "quoteLang": "en",
+       "evidenceNote": "下句為 appointment of Mayor of Tsingtao；該文他處亦寫市長任期1931–1937、1931–1945，起迄與公報不一，採公報日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "shen-shandong-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "山東省政府",
+      "en": "Shandong Provincial Government"
+     },
+     "title": {
+      "zh-Hant": "山東省政府主席",
+      "en": "Chairman, Shandong Provincial Government",
+      "orig": "山東省政府主席"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1938-01-23",
+      "end": "1942-01-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "027-01-23 任 任命 山東省政府主席 任命沈鴻烈山東省政府主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "031-01-09 免 另有任用 山東省政府委員 兼 主席 另有任用沈鴻烈山東省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "shen-shandong-security",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "山東全省保安司令部",
+      "en": "Shandong Provincial Security Command"
+     },
+     "title": {
+      "zh-Hant": "山東全省保安司令",
+      "en": "Shandong Provincial Security Commander",
+      "orig": "山東全省保安司令"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-02-11",
+      "end": "1942-02-10"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "027-02-11 任 兼任 山東全省保安司令 兼任沈鴻烈山東全省保安司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "031-02-10 免 另有任用 山東全省保安司令 另有任用沈鴻烈山東全省保安司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "省級保安司令，屬轄區內地方軍職，非國家級最高軍職或戰區司令；regimeId NULL。"
+    },
+    {
+     "key": "shen-agriculture-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府農林部",
+      "en": "Ministry of Agriculture and Forestry, National Government"
+     },
+     "title": {
+      "zh-Hant": "農林部部長",
+      "en": "Minister of Agriculture and Forestry",
+      "orig": "農林部部長"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1941-12-27",
+      "end": "1944-08-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "030-12-27 任 特任 農林部部長 特任沈鴻烈農林部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "033-08-29 免 另有任用 農林部部長 另有任用沈鴻烈農林部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "He assumed office at Chungking (Chongqing) (重慶) in January 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "農林部不屬外交、國防、財政、內政四部；regimeId NULL。"
+    },
+    {
+     "key": "shen-zhejiang-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "浙江省政府",
+      "en": "Zhejiang Provincial Government"
+     },
+     "title": {
+      "zh-Hant": "浙江省政府委員兼主席",
+      "en": "Member and Chairman, Zhejiang Provincial Government",
+      "orig": "浙江省政府委員兼主席"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1946-03-27",
+      "end": "1948-06-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "035-03-27 任 任命 浙江省政府委員 兼 主席 任命沈鴻烈浙江省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "037-06-22 免 呈請辭職 浙江省政府委員 兼 主席 呈請辭職沈鴻烈浙江省政府委員兼主席",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "he assumed office at Hangchow (Hangzhou) (杭州) in April 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "shen-examination-yuan-civil-service",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "考試院銓敘部",
+      "en": "Ministry of Civil Service, Examination Yuan"
+     },
+     "title": {
+      "zh-Hant": "銓敘部部長",
+      "en": "Minister of Civil Service",
+      "orig": "銓敘部部長"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1948-07-13",
+      "end": "1949-11-25"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "exam-hist",
+       "locator": "民國37年條下",
+       "quote": "7月13日，總統令特任田炯錦為考選部部長；特任沈鴻烈為銓敍部部長。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "大事紀置於民國37年條下，年份依章節標示",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "exam-hist",
+       "locator": "民國38年條下",
+       "quote": "11月25日，總統令考試院長張伯苓呈請辭職，准予免職",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "大事紀置於民國38年條下",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "exam-hist",
+       "locator": "民國38年條下",
+       "quote": "同日，總統令銓敍部長沈鴻烈准予免職。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "「同日」指11月25日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mocs-quanxu",
+       "locator": "第7任部長",
+       "quote": "沈鴻烈 湖北天門 清光緒8年10月 民國37年7月接任，民國38年11月卸任。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "037-07-13 任 特任 銓敘部部長 特任沈鴻烈銓敘部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "038-11-25 免 呈請辭職 銓敘部部長 呈請辭職沈鴻烈銓敘部部長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "銓敘部不屬外交、國防、財政、內政四部；regimeId NULL。"
+    },
+    {
+     "key": "shen-mobilization-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國家總動員會議",
+      "en": "National General Mobilization Council"
+     },
+     "title": {
+      "zh-Hant": "國家總動員會議秘書長",
+      "en": "Secretary General, National General Mobilization Council",
+      "orig": "國家總動員會議秘書長"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1942-12-02",
+      "end": "1943-12-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "031-12-02 任 特派 國家總動員會議秘書長 特派沈鴻烈國家總動員會議秘書長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost-p2",
+       "locator": "職位紀錄列（第2頁）",
+       "quote": "032-12-29 免 呈請辭職 國家總動員會議秘書長 呈請辭職沈鴻烈國家總動員會議秘書長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "shen-northeast-fleet",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "東北艦隊",
+      "en": "Northeast Fleet"
+     },
+     "title": {
+      "zh-Hant": "東北艦隊司令",
+      "en": "Commander, Northeast Fleet",
+      "orig": "東北艦隊司令"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1923-07-01",
+      "end": "1933-07-05"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "In July 1923 he formally established the Northeast Sea Defense Squadron",
+       "quoteLang": "en",
+       "evidenceNote": "該文稱該艦隊（Northeast Sea Defense Squadron，東北海防艦隊）1923年7月成立",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "and made Shen its commander, with the rank of Rear Admiral.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gpost",
+       "locator": "職位紀錄列",
+       "quote": "022-07-05 免 呈請辭職 東北艦隊司令 呈請辭職沈鴻烈東北艦隊司令",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "公報公告日（民國紀年換算西元）；非必為實際到離職日",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "He resigned from his naval command in June 1933",
+       "quoteLang": "en",
+       "evidenceNote": "文章稱1933年6月辭海軍職；公報呈請辭職公告日為1933-07-05，取公報日",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "區域艦隊司令，非國家級最高軍職或戰區司令；regimeId NULL。"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:shen-su-lu-deputy",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；蘇魯戰區副總司令（南京民間抗日戰爭博物館轉載文稱蔣令其兼任）起迄日未寫。本輪另查近史所人物資料、國史館、FRUS 1938、搜尋引擎，皆無任命日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:shen-mobilization-secretary",
+     "gapKind": "conflict",
+     "note": "待查證：國家總動員會議秘書長迄日有歧異；政大官職資料庫第2頁列1943-12-29呈請辭職，扶輪社史文章稱1944年8月離開此職（另任考核會秘書長）。暫依公報日1943-12-29，未列為確定。",
+     "candidateCitations": [
+      {
+       "sourceKey": "rotary-shen2",
+       "locator": "全文",
+       "quote": "In August 1944 Shen left these posts to become Secretary General of the",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-12"
+    },
+    {
+     "target": "position:shen-tsingtao-mayor",
+     "gapKind": "conflict",
+     "note": "待查證：青島市長任期說法不一；政府公報1932-01-21任、1945-08-16免，扶輪社史文章他處寫1931–1937與1931–1945。暫依公報日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "沈鴻烈 海軍 青島市長 浙江省主席 生平 東北海軍",
+     "url": null,
+     "result": "not_relevant",
+     "note": "結果多為維基與網站，不取用"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "政大 中華民國政府官職資料庫 沈鴻烈",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?name=%E6%B2%88%E9%B4%BB%E7%83%88",
+     "result": "found_B",
+     "note": "取得公報任免紀錄第一頁21筆"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "沈鴻烈 游擊主席 南京民間抗日戰爭博物館",
+     "url": "http://www.1937nanjing.org/kanzhanlishi/laobingkoushu/2021/0412/3416.html",
+     "result": "unrated",
+     "note": "具名C級（轉載《濟南文史資料》），採用"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "Admiral Shen Hung-Lieh Rotary",
+     "url": "https://rotaryinchina.org/hung-lieh-shen/",
+     "result": "unrated",
+     "note": "具名機構頁；與公報起日不同，僅記入 gap，不引用"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Rotary 沈鴻烈 PDF（Herbert Lau）",
+     "url": "https://rotaryinchina.org/wp-content/uploads/2025/10/Admiral-Shen-Hung-Lieh-%E6%B2%88%E9%B4%BB%E7%83%88%E6%B5%B7%E8%BB%8D%E4%B8%8A%E5%B0%87.pdf",
+     "result": "no_result",
+     "note": "curl 取得內容非 PDF，無法抽字"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "國防部 mnd.gov.tw File 21187",
+     "url": "https://www.mnd.gov.tw/File/21187",
+     "result": "not_relevant",
+     "note": "已抓，內文未見沈鴻烈"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "沈鴻烈 國史館 近史所 論文",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無專論"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "青島市行政首長列表",
+     "url": null,
+     "result": "not_relevant",
+     "note": "維基類，不取用"
+    },
+    {
+     "step": 9,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "沈鴻烈 青島市長 1931 1937 離任 山東省政府主席 國史館 人物",
+     "url": null,
+     "result": "found_B",
+     "note": "導出扶輪社史文章；其餘多為二手"
+    },
+    {
+     "step": 10,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "沈鴻烈 農林部長 1941 1944 浙江省政府主席 1946 任命 公報",
+     "url": null,
+     "result": "no_result",
+     "note": "無相關結果"
+    },
+    {
+     "step": 11,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "沈鴻烈 シェン・ホンリエ 東北海軍 青島市長 山東省主席 コトバンク",
+     "url": null,
+     "result": "no_result",
+     "note": "無 Kotobank 條目"
+    },
+    {
+     "step": 12,
+     "round": "retry",
+     "sourceType": "authority",
+     "query": "NDL Authorities 沈鴻烈 站內查詢",
+     "url": "https://id.ndl.go.jp/auth/ndlna?searchtype=name&query=%E6%B2%88%E9%B4%BB%E7%83%88",
+     "result": "no_result",
+     "note": "回傳 SPARQL 解析錯誤，無資料"
+    },
+    {
+     "step": 13,
+     "round": "retry",
+     "sourceType": "named_encyclopedia",
+     "query": "Kotobank 沈鴻烈 條目",
+     "url": "https://kotobank.jp/word/%E6%B2%88%E9%B4%BB%E7%83%88",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 14,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "JACAR 沈鴻烈 站內檢索",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/MetSearch.cgi?DEF_XSL=default&IS_KIND=summary_normal&IS_SCH=simple&IS_STYLE=default&IS_TYPE=meta&IS_DATA=%E6%B2%88%E9%B4%BB%E7%83%88",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 15,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "世界大百科事典 沈鴻烈 青島市長 山東省政府主席 コトバンク／NDL／JACAR／防衛研",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋無沈鴻烈條目"
+    },
+    {
+     "step": 16,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "防衛研究所 站內搜尋 沈鴻烈",
+     "url": "https://www.nids.mod.go.jp/search/?q=%E6%B2%88%E9%B4%BB%E7%83%88",
+     "result": "no_result",
+     "note": "搜尋頁無內容（動態載入）"
+    },
+    {
+     "step": 17,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "歷任銓敘部部長 沈鴻烈 1948 考試院 銓敘部",
+     "url": "https://www.mocs.gov.tw/pages/detail.aspx?Node=640&Page=1303&Index=5",
+     "result": "found_A",
+     "note": "銓敘部官網歷任部長表：民國37年7月接任、38年11月卸任"
+    },
+    {
+     "step": 18,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "考試院院史主題網 大事紀 沈鴻烈",
+     "url": "https://history.exam.gov.tw/cp.aspx?n=3562&s=959",
+     "result": "found_A",
+     "note": "7月13日特任、11月25日免職"
+    },
+    {
+     "step": 19,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "銓敘部簡史 考試院80周年專刊",
+     "url": "https://www.exam.gov.tw/public/spec/papers/pdf/%E9%8A%93%E6%95%98%E9%83%A8%E7%B0%A1%E5%8F%B2.pdf",
+     "result": "found_A",
+     "note": "僅列沈鴻烈為行憲後首任部長，無日期；不另引"
+    },
+    {
+     "step": 20,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "政大官職資料庫 沈鴻烈 第2頁",
+     "url": "https://gpost.lib.nccu.edu.tw/view_career.php?&name=沈鴻烈&pagenumber=20&order=default&orderype=asc&tpl=rough&page=2",
+     "result": "found_B",
+     "note": "補齊青島市長、農林部、浙江省、銓敘部、總動員會議等免職日"
+    },
+    {
+     "step": 21,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Admiral Shen Hung-Lieh Rotary（Herbert K. Lau，2015）PDF",
+     "url": "https://rotaryinchina.org/wp-content/uploads/2026/06/Admiral-Shen-Hung-Lieh-沈烈海上.pdf",
+     "result": "unrated",
+     "note": "具名作者＋具名機構，列 C；東北海防艦隊、浙江省、農林部日期"
+    },
+    {
+     "step": 22,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "沈鴻烈 蘇魯戰區 副總司令 于學忠 總司令 1939 任命",
+     "url": null,
+     "result": "no_result",
+     "note": "無任命日"
+    },
+    {
+     "step": 23,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "沈鴻烈 東北海軍 司令 1923 近史所 人物資訊整合系統",
+     "url": "https://mhdb.mh.sinica.edu.tw/mhpeople/result.php?peopleId=gdhixjeelyxkkjy",
+     "result": "no_result",
+     "note": "僅人名索引，無生平內容"
+    },
+    {
+     "step": 24,
+     "round": "retry",
+     "sourceType": "official",
+     "query": "Shen Hung-lieh FRUS 1938 Shantung chairman",
+     "url": "https://history.state.gov/historicaldocuments/frus1938v04/d398",
+     "result": "not_relevant",
+     "note": "外交電報，無任期日期，不取用"
+    },
+    {
+     "step": 25,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "浙江省政府主席 歷任 沈鴻烈 1946 1948 接任",
+     "url": null,
+     "result": "not_relevant",
+     "note": "僅維基鏡像，不取用"
+    },
+    {
+     "step": 26,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "沈鴻烈 青島 日本 紡績 日華事変 防衛研究所 戦史",
+     "url": null,
+     "result": "no_result",
+     "note": "無相關結果"
+    },
+    {
+     "step": 27,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "Shen Hung-lieh 1938 Shantung Soviet agents friction",
+     "url": "https://history.state.gov/historicaldocuments/frus1938v03/d259",
+     "result": "not_relevant",
+     "note": "搜尋結果摘要，未取用"
+    },
+    {
+     "step": 28,
+     "round": "retry",
+     "sourceType": "other",
+     "query": "沈鴻烈 國史館 數位檔案 Admiral Shen 任免令",
+     "url": "https://nha.drnh.gov.tw/index.php?act=Archive%2Fsearch",
+     "result": "no_result",
+     "note": "動態查詢頁，無可抓文字"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,3307 @@
+{
+ "batch": "b3-full-v3-batch002",
+ "researchedOn": "2026-11-14",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "結構依 ARCHITECTURE §16.2–§16.4；直接寫 b0b0e0f 對齊格式。bioId、recordIds 取自 selection-sample.json batch 002 名單。lobid.org 為 GND 官方鏡像（引文取自 JSON 轉文字）；PDF 以 pdftotext 轉文字。regimeId 一律 null（本輪未取得政權編號）並填 organization。",
+ "alignNote": "黨職一律 de_facto_leader；以政黨身分取得的席位比照黨職；T14 R0–R6 於研究時套用；元首／首腦任期已在名單 5442，不重建；未寫庫。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch002/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "pats-bibl": {
+   "title": "Konstantin Päts. Bibliograafia（含附錄〈Konstantin Pätsi eluloost〉年表）",
+   "authors": [
+    "Sirje Madison",
+    "Kristiina Kaju",
+    "Kai Ellip（toim.）"
+   ],
+   "publisher": "MTÜ Konstantin Pätsi Muuseum／Eesti Rahvusraamatukogu／Rahvusarhiiv",
+   "published_text": "Tallinn, 2019（DIGAR 電子版）",
+   "url": "https://digar.ee/arhiiv/en/download/351100",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "愛沙尼亞國家圖書館與國家檔案館參與編製、具名編者的書目；生平年表附錄未逐項署名，保守記 B"
+  },
+  "kenk1933": {
+   "title": "Kas 1933. aasta põhiseadus lubas autoritaarset valitsemist?",
+   "authors": [
+    "Peeter Kenkmann"
+   ],
+   "publisher": "TUNA（Ajalookultuuri ajakiri）",
+   "published_text": "TUNA 2009 nr 3；Rahvusarhiiv 公開 PDF",
+   "url": "https://www.ra.ee/wp-content/uploads/2017/01/KenkmannPeeter_Kas1933_TUNA2009_3.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Tartu 大學歷史碩士、研究者）的學術期刊論文（TUNA）"
+  },
+  "kenk1937": {
+   "title": "1937. aasta põhiseadus – autoritaarse režiimi „reformimise“ katse",
+   "authors": [
+    "Peeter Kenkmann"
+   ],
+   "publisher": "TUNA（Ajalookultuuri ajakiri）",
+   "published_text": "TUNA 2013 nr 1；Rahvusarhiiv 公開 PDF",
+   "url": "https://www.ra.ee/wp-content/uploads/2017/01/KenkmannPeeter_Kenkmann_1937_P6hiseadus_TUNA2013_1.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術期刊論文（TUNA）"
+  },
+  "riigikogu-i-liikmed": {
+   "title": "I Riigikogu liikmed",
+   "authors": [],
+   "publisher": "Riigikogu（愛沙尼亞國會）",
+   "published_text": "Riigikogu 官方網站 PDF",
+   "url": "https://riigikogu.ee/wpcms/wp-content/uploads/2015/02/I_Riigikogu_liikmed.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁（議員名錄，含任期與黨團代號）"
+  },
+  "riigikogu-i-et": {
+   "title": "I Riigikogu koosseis",
+   "authors": [],
+   "publisher": "Riigikogu（愛沙尼亞國會）",
+   "published_text": "Riigikogu 官方網站（愛沙尼亞語）",
+   "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/i-riigikogu-koosseis/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁"
+  },
+  "riigikogu-i-en": {
+   "title": "1st Riigikogu",
+   "authors": [],
+   "publisher": "Riigikogu（愛沙尼亞國會）",
+   "published_text": "Riigikogu 官方網站（英語）",
+   "url": "https://www.riigikogu.ee/en/introduction-and-history/history-riigikogu/1st-riigikogu/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁"
+  },
+  "riigikogu-ak": {
+   "title": "Asutav Kogu: Juhatus ja liikmed",
+   "authors": [],
+   "publisher": "Riigikogu（愛沙尼亞國會）",
+   "published_text": "Riigikogu 官方網站",
+   "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/asutav-kogu/juhatus-ja-liikmed/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁（制憲會議議員名錄）"
+  },
+  "riigikogu-ak-main": {
+   "title": "Asutav Kogu",
+   "authors": [],
+   "publisher": "Riigikogu（愛沙尼亞國會）",
+   "published_text": "Riigikogu 官方網站",
+   "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/asutav-kogu/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國會官方頁"
+  },
+  "lobid-pats": {
+   "title": "Päts, Konstantin（GND 119114100）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "GND 權威檔 JSON",
+   "url": "https://lobid.org/gnd/119114100.json",
+   "archive_url": null,
+   "catalog_id": "GND 119114100",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，lobid.org 為官方鏡像）"
+  },
+  "db-sahm": {
+   "title": "Sahm, Heinrich Friedrich Wilhelm Martin",
+   "authors": [
+    "Martin Otto"
+   ],
+   "publisher": "Neue Deutsche Biographie（Deutsche Biographie）",
+   "published_text": "NDB 22 (2005), S. 353-355",
+   "url": "https://www.deutsche-biographie.de/gnd118750755.html",
+   "archive_url": null,
+   "catalog_id": "GND 118750755",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典（NDB，具名作者）"
+  },
+  "lobid-sahm": {
+   "title": "Sahm, Heinrich（GND 118750755）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "GND 權威檔 JSON",
+   "url": "https://lobid.org/gnd/118750755.json",
+   "archive_url": null,
+   "catalog_id": "GND 118750755",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，lobid.org 為官方鏡像）"
+  },
+  "berlin-sahm": {
+   "title": "Die Gleichschaltung 1933-1945（Bürgermeistergalerie）",
+   "authors": [],
+   "publisher": "Senatskanzlei Berlin（Der Regierende Bürgermeister）",
+   "published_text": "berlin.de 官方網站",
+   "url": "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4558.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（柏林市政府歷任市長介紹）"
+  },
+  "berlin-boess": {
+   "title": "Die Ära Böß 1921-1933（Bürgermeistergalerie；含 Dr. Heinrich Sahm 1931–1935 條）",
+   "authors": [],
+   "publisher": "Senatskanzlei Berlin（Der Regierende Bürgermeister）",
+   "published_text": "berlin.de 官方網站",
+   "url": "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4557.php",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方頁（柏林市政府歷任市長介紹）"
+  },
+  "loc-nepal": {
+   "title": "Country Profile: Nepal (November 2005)",
+   "authors": [],
+   "publisher": "Library of Congress, Federal Research Division",
+   "published_text": "Country Profile, 2005",
+   "url": "https://tile.loc.gov/storage-services/master/frd/copr/Nepal.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國會圖書館聯邦研究處（國家級研究機構）編的國別簡介，無具名作者；非尼泊爾當事機關、非傳記辭典或權威檔，審查（Opus 2026-11-15）由 A 改記 B"
+  },
+  "nr-zeittab": {
+   "title": "Zeittafel zur nepalesischen Geschichte",
+   "authors": [
+    "Karl-Heinz Krämer"
+   ],
+   "publisher": "Nepal Research（Karl-Heinz Krämer，Südasien-Institut, Universität Heidelberg）",
+   "published_text": "版本 2016-12-18",
+   "url": "https://nepalresearch.com/history/background/zeittab.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "審查（Opus 2026-11-15）降為不合格：發佈於個人網站 nepalresearch.com，依 docs/source-rules.md §2 個人網站屬 X；人物生平只收 A／B，只可作 gap 候選"
+  },
+  "nr-rev1950": {
+   "title": "The Revolution of 1950/51",
+   "authors": [
+    "Karl-Heinz Kraemer"
+   ],
+   "publisher": "Nepal Research（Karl-Heinz Kraemer，South Asia Institute, University of Heidelberg）",
+   "published_text": "最後更新 2001-05-29",
+   "url": "https://nepalresearch.com/history/background/revolution_1950.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": null,
+   "gradeBasis": "審查（Opus 2026-11-15）降為不合格：發佈於個人網站 nepalresearch.com，依 docs/source-rules.md §2 個人網站屬 X；人物生平只收 A／B，只可作 gap 候選"
+  },
+  "lobid-tribh": {
+   "title": "Tribhuvan, Nepal, König（GND 1226811078）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND，經 lobid.org 官方鏡像）",
+   "published_text": "GND 權威檔 JSON",
+   "url": "https://lobid.org/gnd/1226811078.json",
+   "archive_url": null,
+   "catalog_id": "GND 1226811078",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（GND，lobid.org 為官方鏡像）"
+  },
+  "malagodi2023": {
+   "title": "Nepal's Constitutional Foundations between Revolution and Cold War (1950–60)",
+   "authors": [
+    "Mara Malagodi"
+   ],
+   "publisher": "Law and History Review（Cambridge University Press／American Society for Legal History）",
+   "published_text": "Law and History Review 41 (2023): 273–294, doi:10.1017/S0738248022000724",
+   "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/87516947B4492A964F899ED361AF7EEA/S0738248022000724a.pdf/nepals_constitutional_foundations_between_revolution_and_cold_war_195060.pdf",
+   "archive_url": null,
+   "catalog_id": "doi:10.1017/S0738248022000724",
+   "license_code": "CC BY（開放取用）",
+   "grade": "B",
+   "gradeBasis": "具名作者（華威大學法學院）發表於學術出版社同行評審期刊的論文"
+  },
+  "bl-eap166-cat": {
+   "title": "EAP166/2/1/8 Crowning of King Tribhuvan [1907-1950]（British Library Archives and Manuscripts Catalogue）",
+   "authors": [],
+   "publisher": "British Library（Endangered Archives Programme／Madan Puraskar Pustakalaya Collection）",
+   "published_text": "British Library Archives and Manuscripts Catalogue, record 040-002743363",
+   "url": "https://searcharchives.bl.uk/catalog/040-002743363",
+   "archive_url": null,
+   "catalog_id": "EAP166/2/1/8",
+   "license_code": "CC-BY",
+   "grade": "B",
+   "gradeBasis": "大英圖書館館藏目錄的檔案說明（機構官方目錄，無具名作者；說明文字非原始檔案，保守記 B）"
+  },
+  "jagat-hssj": {
+   "title": "राणा विरुद्धको सशस्त्र क्रान्तिमा रेडियोको प्रयोग",
+   "authors": [
+    "Jagat Nepal"
+   ],
+   "publisher": "Humanities and Social Sciences Journal（NepJOL，त्रि.वि.）",
+   "published_text": "Vol. 16 No. 1-2 (2024)",
+   "url": "https://www.nepjol.info/index.php/hssj/article/view/87413",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者的學術期刊論文摘要（NepJOL）"
+  }
+ },
+ "people": [
+  {
+   "key": "ee-pats-konstantin",
+   "bioId": "01a1b4b2-2f2c-7cc8-a233-c26b6d7df1ea",
+   "name": "Konstantin Päts",
+   "nameZh": "康斯坦丁·帕茨",
+   "recordIds": [
+    "01a1aa4a-6688-769c-a9de-9880a8171cb5",
+    "01a1aa4a-6689-7551-be8b-d0f8d24cc517",
+    "01a1aa4a-668a-745d-8f00-83eb1040009e",
+    "01a1aa4a-668b-774a-817c-1bc04d6b5ad8",
+    "01a1aa4a-66ac-767d-b293-b62453579010",
+    "01a1aa4a-66b3-7b5b-a99d-5b5bd2e433e0",
+    "01a1aa4a-66b4-7203-898e-2ce478f83343",
+    "01a1aa4a-66ac-7e16-9d02-f3f00516883c",
+    "01a1aa4a-66af-70ad-95eb-299f60c8fa59",
+    "01a1aa4a-66b8-7e3e-9ab3-7ac8c058a35d",
+    "01a1aa4a-66af-7b89-ad89-90686809e314",
+    "01a1aa4a-66b9-7736-a8e3-388fd09e7ee5",
+    "01a1aa4a-66b0-7220-b719-2eeb68628bfc",
+    "01a1aa4a-66b9-7cd2-9dab-f89d5f84c0bf",
+    "01a1aa4a-6596-7ca5-b992-12d4832533ef",
+    "01a1aa4a-6597-70c5-90c1-dd235c616549",
+    "01a1aa4a-6597-73ff-ab09-ebb2f3451edd"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1874-02-23",
+      "end": "1917-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、求學與報人流亡時期",
+      "en": "Birth, studies and years as editor and exile"
+     },
+     "body": {
+      "zh-Hant": "康斯坦丁·帕茨1874年2月23日生於佩爾瑙縣塔胡蘭納教區的塔胡村。他1894至1898年就讀塔爾圖大學法學院並以優等成績畢業，取得法學候補士（cand. jur.）學位。1901至1905年他在塔林創辦報紙《Teataja》；1905至1906年因政治因素流亡瑞士伯恩附近，1906至1909年流亡芬蘭；1910至1911年被單獨囚禁於聖彼得堡的十字架監獄，1911至1916年出任《塔林報》（Tallinna Teataja）總編輯。",
+      "en": "Konstantin Päts was born on 23 February 1874 in Tahku village, Tahkuranna parish, Pärnu county. From 1894 to 1898 he studied law at the University of Tartu, graduating cum laude as cand. jur. In 1901–1905 he founded the newspaper Teataja in Tallinn; he lived as a political exile near Bern in Switzerland in 1905–1906 and in Finland in 1906–1909, was held in solitary confinement in St Petersburg's Kresty prison in 1910–1911, and was editor-in-chief of Tallinna Teataja in 1911–1916."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "23. veebruaril 1874 sündis Pärnumaal Tahkuranna vallas Tahku külas",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-pats",
+       "locator": "GND JSON",
+       "quote": "\"dateOfBirth\" : [ \"1874-02-23\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1894–1898 Tartu Ülikooli õigusteaduskonnas, mille lõpetas cum laude,",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1. j. diplom – cand. jur.",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1901–1905 asutas Tallinnas ajalehe Teataja",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1905–1906 poliitilise pagulasena Šveitsis Berni lähedal",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1906–1909 elas pagulasena Soomes",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1910–1911 Peterburi Krestõi vanglas üksikvangistuses",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1911–1916 ajalehe Tallinna Teataja peatoimetaja",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1917-01-01",
+      "end": "1920-12-21"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "獨立建國與制憲會議時期",
+      "en": "Independence and the Constituent Assembly"
+     },
+     "body": {
+      "zh-Hant": "1917年帕茨在耶爾瓦縣設立選舉團並當選議員，進入地方議會（Maanõukogu）；1917至1918年任臨時省政府（Maavalitsus）主席，1918年為拯救委員會成員，其後被捕，送進德國的拘留營五個月。1918至1919年他任臨時政府的總理兼戰爭部長（pea- ja sõjaminister），短時間也兼內政部長。制憲會議（Asutav Kogu）自1919年4月23日運作至1920年12月20日，帕茨名列議員；官方介紹並稱1919年選舉的四個主要名單之一是「帕茨領導的 Maaliit」。",
+      "en": "In 1917 Päts set up an electoral college in Järva county and was elected a deputy to the provincial assembly (Maanõukogu); in 1917–1918 he chaired the provisional provincial government (Maavalitsus), in 1918 he was a member of the Salvation Committee, and was then imprisoned and sent to a German prison camp for five months. In 1918–1919 he was prime minister and war minister of the Provisional Government (pea- ja sõjaminister) and briefly also interior minister. The Constituent Assembly (Asutav Kogu) sat from 23 April 1919 to 20 December 1920 and Päts is listed among its members; the official account also names the 'Maaliit led by Konstantin Päts' among the four main lists of the 1919 election."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "asutas Järvamaa valimiskogu ja valiti saadikuna Maanõukogusse",
+       "quoteLang": "et",
+       "evidenceNote": "年表以「1917」為該群組首行，此項屬同群組；引文本身不含年份",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1917–1918 ajutise Maavalitsuse esimees",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1918 Eestimaa Päästmise Komitee liige",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "vangistati ja saadeti viieks kuuks Saksa vangilaagrisse",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1918-1919 Ajutise Valitsuse pea- ja sõjaminister, lühikest aega ka siseminister",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-ak-main",
+       "locator": "Asutav Kogu 簡介",
+       "quote": "23. aprillist 1919 kuni 20. detsembrini 1920",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-ak",
+       "locator": "議員名錄",
+       "quote": "Konstantin Päts, 23.02.1874 Tahkuranna v, Pärnumaa – 18.01.1956",
+       "quoteLang": "et",
+       "evidenceNote": "名錄頁標題為 Juhatus ja liikmed（制憲會議）；該條目無「Alates／asemel」補選註記，故自開議起為議員（依名錄體例推得）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-ak-main",
+       "locator": "Asutav Kogu 簡介",
+       "quote": "Konstantin Pätsi juhitud Maaliit",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1920-12-20",
+      "end": "1934-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國會議員、議長與歷任國務長老",
+      "en": "Riigikogu member, Speaker and State Elder"
+     },
+     "body": {
+      "zh-Hant": "1920年帕茨以農民聯盟（Põllumeeste Kogud）名單當選第一屆國會（Riigikogu）議員，該屆國會自1920年12月20日運作；1922年11月20日至1923年6月7日他任國會議長。他先後擔任國務長老（Riigivanem）：1921至1922年、1923至1924年、1931至1932年，以及1932至1933年的跨黨派信任政府。此外，1919至1933年他也是保險股份公司「愛沙尼亞勞合」（Eesti Lloyd）的董事長。",
+      "en": "In 1920 Päts was elected to the first Riigikogu on the Farmers' Assemblies (Põllumeeste Kogud) list; that parliament sat from 20 December 1920, and from 20 November 1922 to 7 June 1923 he was its Speaker. He served as State Elder (Riigivanem) in 1921–1922, 1923–1924 and 1931–1932, and in 1932–1933 in a non-partisan confidence government. In 1919–1933 he also chaired the insurance company Eesti Lloyd."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1920 valiti I Riigikogusse Põllumeeste kogude nimekirjas",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-et",
+       "locator": "I Riigikogu 簡介",
+       "quote": "20. detsembrist 1920 kuni 30. maini 1923",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-liikmed",
+       "locator": "議員名錄 No.117",
+       "quote": "Esimees: 20.11.1922 – 07.06.1923",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1921–1922 Riigivanem",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1923–1924 Riigivanem",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1931–1932 Riigivanem",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1932–1933 Riigivanem parteideüleses usaldusvalitsuses",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1919–1933 kindlustusaktsiaseltsi “Eesti Lloyd” esimees",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1934-03-12",
+      "end": "1937-09-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1934年政變與威權統治",
+      "en": "The 1934 coup and authoritarian rule"
+     },
+     "body": {
+      "zh-Hant": "國務長老帕茨組織了1934年3月12日的政變；3月15日他與萊多納（Laidoner）宣布全國戒嚴，並以命令延後國會與國務長老的選舉。1934至1937年他以「代行國務長老職務的總理」身分治國。1937年8月17日他宣布新憲法，且未交付公民投票；同年9月3日他開始履行「Riigihoidja」職務，這個職位在新國會就位前合併了國務長老與總理的權力。",
+      "en": "State Elder Päts organised the coup of 12 March 1934; on 15 March he and Laidoner proclaimed a nationwide state of emergency, and by decree he postponed the elections of the Riigikogu and of the State Elder. In 1934–1937 he governed as 'prime minister in the duties of the State Elder'. On 17 August 1937 he proclaimed the new constitution without submitting it to a referendum, and on 3 September 1937 he took up the post of Riigihoidja, which until the new parliament began work combined the powers of State Elder and prime minister."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kenk1937",
+       "locator": "引言",
+       "quote": "riigivanem Konstantin Pätsi organiseeritud 1934. aasta 12. märtsi riigipööre",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1933",
+       "locator": "引言",
+       "quote": "12. märtsil 1934 Konstantin Pätsi poolt juhitud riigipöördele",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "15. märtsil 1934 koos J. Laidoneriga",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "kuulutas välja üleriigilise kaitseseisukorra",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "lükkas dekreediga edasi Riigikogu ja riigivanema valimised",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1934–1937 Peaminister riigivanema ülesannetes",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "17. augustil 1937 kuulutas välja uue põhiseaduse",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1937",
+       "locator": "§ Uue põhiseaduse kehtestamine",
+       "quote": "kuulutas oma otsusega põhiseaduse samal päeval välja,",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1937",
+       "locator": "§ Uue põhiseaduse kehtestamine",
+       "quote": "seda rahvahääletusele esitamata",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1937",
+       "locator": "§ Uue põhiseaduse kehtestamine",
+       "quote": "Päts asus riigihoidja ametikohustuste täitmisele 3. septembril 1937,",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1937",
+       "locator": "§ Uue põhiseaduse kehtestamine",
+       "quote": "kuni uue parlamendi töölehakkamiseni ühendas riigivanema ja peaministri",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1938-01-28",
+      "end": "1956-01-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統任期、1940年下台與晚年",
+      "en": "Presidency, the 1940 downfall and last years"
+     },
+     "body": {
+      "zh-Hant": "1938年1月28日他以命令設立愛沙尼亞科學院；1938至1940年任愛沙尼亞共和國總統，並是1938年當選的首任總統。1939年他宣布愛沙尼亞中立，並同意基地協定。1940年6月21日政變後，他在蘇聯最後通牒政府的要求下簽署大量文件，7月21日辭去總統職務，7月30日與家人被送往俄羅斯烏法。他1956年1月18日死於加里寧州的布拉舍沃（Buraševo）。",
+      "en": "On 28 January 1938 he founded the Estonian Academy of Sciences by decree; in 1938–1940 he was President of the Republic of Estonia, the first president, elected in 1938. In 1939 he declared Estonia neutral and accepted the bases agreement. After the coup of 21 June 1940 he signed a large number of documents at the demand of the ultimatum government, resigned the presidency on 21 July 1940, and on 30 July was deported with his family to Ufa in Russia. He died on 18 January 1956 at Buraševo in Kalinin oblast."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "28. jaanuaril 1938 asutas dekreediga Eesti Teaduste Akadeemia",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1938–1940 Eesti Vabariigi President",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kenk1937",
+       "locator": "結語",
+       "quote": "1938. aastal Eesti Vabariigi esimeseks presidendiks valitud Konstantin Päts",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1939 kuulutas Eesti riigi erapooletuks, nõustus baasidelepinguga",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "pärast 21. juuni riigipööret allkirjastas ultimaatumivalitsuse nõudmisel",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "21. juulil 1940 pani maha presidendi ülesanded",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "30. juulil 1940 küüditati koos perekonnaga Venemaale Ufaasse",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-liikmed",
+       "locator": "議員名錄 No.117",
+       "quote": "18.01.1956 Buraševo, Kalinini obl.",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "asutav-kogu-member",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛沙尼亞制憲會議",
+      "en": "Constituent Assembly of Estonia (Asutav Kogu)"
+     },
+     "title": {
+      "orig": "Asutava Kogu liige",
+      "zh-Hant": "制憲會議議員",
+      "en": "Member of the Constituent Assembly"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1919-04-23",
+      "end": "1920-12-20"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "riigikogu-ak",
+       "locator": "議員名錄",
+       "quote": "Konstantin Päts, 23.02.1874 Tahkuranna v, Pärnumaa – 18.01.1956",
+       "quoteLang": "et",
+       "evidenceNote": "制憲會議議員名錄；起迄日為該會議運作起訖日（見另兩筆引文），議員個人起訖日名錄無補選註記，依體例推得（推論）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-ak-main",
+       "locator": "Asutav Kogu 簡介",
+       "quote": "23. aprillist 1919 kuni 20. detsembrini 1920",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1919–1920 Asutava Kogu liige",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "議員非閣員／將領／長官，R5",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "制憲會議官方簡介稱 1919 年主要名單之一是「Konstantin Pätsi juhitud Maaliit」，但議員名錄與年表都未寫他以何名單當選；不推定為以政黨身分取得的席位"
+    },
+    {
+     "key": "riigikogu-speaker",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛沙尼亞國會（Riigikogu）",
+      "en": "Riigikogu (Estonian parliament)"
+     },
+     "title": {
+      "orig": "Esimees",
+      "zh-Hant": "國會議長",
+      "en": "Speaker of the Riigikogu"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1922-11-20",
+      "end": "1923-06-07"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "riigikogu-i-liikmed",
+       "locator": "議員名錄 No.117",
+       "quote": "Esimees: 20.11.1922 – 07.06.1923",
+       "quoteLang": "et",
+       "evidenceNote": "官方名錄列於 I Riigikogu 議員名下；DIGAR 年表同項寫 1922–1923 並標為「II Riigikogu」，屆別與官方名錄不同，日期以官方名錄為準",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1922–1923 II Riigikogu esimees",
+       "quoteLang": "et",
+       "evidenceNote": "年精度；屆別寫 II 與官方名錄（I Riigikogu）不同，見 gaps",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "國會議長非 T14 類別，R5"
+    },
+    {
+     "key": "maavalitsus-chair",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛沙尼亞臨時省政府（Ajutine Maavalitsus）",
+      "en": "Provisional Provincial Government of Estonia (Ajutine Maavalitsus)"
+     },
+     "title": {
+      "orig": "ajutise Maavalitsuse esimees",
+      "zh-Hant": "臨時省政府主席",
+      "en": "Chairman of the Provisional Provincial Government"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1917–1918 ajutise Maavalitsuse esimees",
+       "quoteLang": "et",
+       "evidenceNote": "年精度（寫 1917–1918，迄點取 1919-01-01）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Ambiguous": true,
+     "t14AmbiguousReason": "愛沙尼亞自治省臨時省政府主席：屬俄國轄下地方政府首長還是應視為首腦（R0），以及在 5442 有無對應政權，文件未涵蓋；不硬判"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "i-riigikogu-farmers-seat",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛沙尼亞國會（Riigikogu）第一屆・農民聯盟（Põllumeeste Kogud）名單",
+      "en": "1st Riigikogu, Farmers' Assemblies (Põllumeeste Kogud) list"
+     },
+     "title": {
+      "orig": "I Riigikogu liige（Põllumeeste kogude nimekirjas）",
+      "zh-Hant": "第一屆國會議員（農民聯盟名單）",
+      "en": "Member of the 1st Riigikogu (Farmers' Assemblies list)"
+     },
+     "period": {
+      "start": "1920-12-20",
+      "end": "1923-06-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1920 valiti I Riigikogusse Põllumeeste kogude nimekirjas",
+       "quoteLang": "et",
+       "evidenceNote": "來源明寫以農民聯盟名單當選",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-et",
+       "locator": "I Riigikogu 簡介",
+       "quote": "20. detsembrist 1920 kuni 30. maini 1923",
+       "quoteLang": "et",
+       "evidenceNote": "該屆國會任期；個人起迄日依該屆起訖推得（推論）；迄日兩個官方語版不同（愛語 1923-05-30、英語 1923-05-20），降為月精度",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-en",
+       "locator": "1st Riigikogu 簡介",
+       "quote": "from 20 December 1920 until 20 May 1923",
+       "quoteLang": "en",
+       "evidenceNote": "英語版寫 20 May 1923，與愛語版 30 May 1923 不同；兩者皆在 1923 年 5 月，故迄日降為月精度（迄 1923-06-01）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-liikmed",
+       "locator": "議員名錄 No.117",
+       "quote": "Konstantin Päts, 23.02.1874 Tahkuranna v., Pärnumaa – 18.01.1956",
+       "quoteLang": "et",
+       "evidenceNote": "名錄黨團代號 PK（Põllumeeste Kogud）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；DIGAR 年表明寫以 Põllumeeste kogude（農民聯盟）名單當選"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:maaliit-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；制憲會議官方簡介稱 1919 年選舉的主要名單之一是「Konstantin Pätsi juhitud Maaliit」（帕茨領導的農村聯盟），但未寫他何時起、何時止任黨領袖（黨職，R1 de_facto_leader 候選）。已查：riigikogu.ee 制憲會議簡介與議員名錄、DIGAR 年表、Kenkmann 兩篇論文；需 Maaliit／Põllumeeste Kogud 黨史（Rahvusarhiiv 或學術專書）逐字寫明職稱與任期。",
+     "candidateCitations": [
+      {
+       "sourceKey": "riigikogu-ak-main",
+       "locator": "Asutav Kogu 簡介",
+       "quote": "Konstantin Pätsi juhitud Maaliit",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:farmers-assemblies-chair",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；DIGAR 年表有「Põllumeeste Kogude auesimees 06.05.1938」（名譽主席）但未寫實際黨職任期；1930 年代政黨已被禁止，是否算黨職亦待查證。已查：DIGAR 年表、riigikogu.ee。需 Põllumeeste Kogud 黨史專書。",
+     "candidateCitations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "社會活動與榮銜",
+       "quote": "Põllumeeste Kogude auesimees 06.05.1938",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:riigikogu-speaker",
+     "gapKind": "conflict",
+     "note": "議長任期：riigikogu.ee 議員名錄（A）列於 I Riigikogu 名下，Esimees 20.11.1922–07.06.1923；DIGAR 年表（B）寫「1922–1923 II Riigikogu esimees」。日期一致，屆別（I／II）不同；已以官方名錄的日期為準，屆別未採用年表寫法。",
+     "candidateCitations": [
+      {
+       "sourceKey": "pats-bibl",
+       "locator": "Eluloost 年表",
+       "quote": "1922–1923 II Riigikogu esimees",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-liikmed",
+       "locator": "議員名錄 No.117",
+       "quote": "Esimees: 20.11.1922 – 07.06.1923",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:i-riigikogu-farmers-seat",
+     "gapKind": "conflict",
+     "note": "第一屆國會迄日：riigikogu.ee 愛語頁（A）寫至 1923-05-30，英語頁（A）寫至 1923-05-20，議員名錄議長迄 1923-06-07；個人議員終止日未逐字寫明。已降為月精度（迄 1923-06-01）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "riigikogu-i-et",
+       "locator": "I Riigikogu 簡介",
+       "quote": "20. detsembrist 1920 kuni 30. maini 1923",
+       "quoteLang": "et",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "riigikogu-i-en",
+       "locator": "1st Riigikogu 簡介",
+       "quote": "from 20 December 1920 until 20 May 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:maavalitsus-chair",
+     "gapKind": "not_found",
+     "note": "待查證：僅有年精度（1917–1918）；臨時省政府主席的確切起迄日、此職位層級（是否應列為地方首腦）及愛沙尼亞自治省在 5442 的政權對應，皆需 Rahvusarhiiv 專書（例如 Ago Pajur《Konstantin Päts: poliitiline biograafia》，DIGAR 僅限館內閱覽，本輪未取得原文）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:birthplace_name",
+     "gapKind": "not_found",
+     "note": "DIGAR 年表寫生於「Põldeotsa talu」；GND 寫出生地 Tahkuranna；Deutsche Biographie 索引頁生卒年（1874–1954、卒於 Kalinin）與 GND／DIGAR（卒 1956-01-18）不同，索引頁已不採用。尚缺第二個 A／B 來源確認出生地細節。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "paragraph:1940-1956",
+     "gapKind": "not_found",
+     "note": "1940 年後被拘禁（喀山、精神病院）等細節只在年表以條列寫到，未寫段落；需 Rahvusarhiiv 專書或 Eesti Entsüklopeedia 具名條目補充。Britannica 回 403、1914-1918-online 為 Anubis 挑戰頁（未繞過）、ISIK 網域無法解析、Eesti Entsüklopeedia 無法連線。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Konstantin Päts GND（lobid.org）",
+     "url": "https://lobid.org/gnd/119114100.json",
+     "result": "found_A",
+     "note": "取得生卒日 1874-02-23／1956-01-18、原名寫法與異寫（Pjats、Пятс、Piats）"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Päts, Konstantin Deutsche Biographie",
+     "url": "https://www.deutsche-biographie.de/119114100.html",
+     "result": "unrated",
+     "note": "僅索引頁（無 NDB 條目）；生卒年 1874–1954 與 GND 不符，不採用"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Konstantin Päts Britannica",
+     "url": "https://www.britannica.com/biography/Konstantin-Pats",
+     "result": "blocked_403",
+     "note": "curl 回 403；換他站"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Konstantin Päts 1914-1918-online",
+     "url": "https://encyclopedia.1914-1918-online.net/article/pats_konstantin",
+     "result": "challenge_page",
+     "note": "Anubis 工作量證明挑戰頁，未繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Päts Historisches Lexikon der Schweiz",
+     "url": "https://hls-dhs-dss.ch/articles/042935",
+     "result": "not_relevant",
+     "note": "HLS 條目非本人"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "Konstantin Päts ISIK Eesti biograafiline andmebaas",
+     "url": "https://isik.tlulib.ee/",
+     "result": "no_result",
+     "note": "網域無法解析（Could not resolve host）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "president.ee Konstantin Päts",
+     "url": "https://www.president.ee/en/estonian-presidents/konstantin-pats/",
+     "result": "no_result",
+     "note": "回傳與首頁相同的 SPA 殼，無個人頁內容"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "Eesti Entsüklopeedia Päts Konstantin",
+     "url": "https://entsyklopeedia.ee/artikkel/pats_konstantin",
+     "result": "no_result",
+     "note": "無法連線（port 443）"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Konstantin Päts bibliograafia eluloost（DIGAR／Rahvusraamatukogu 2019）",
+     "url": "https://digar.ee/arhiiv/en/download/351100",
+     "result": "found_B",
+     "note": "取得附錄生平年表（職位年份）；pdftotext 轉文字"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "I Riigikogu liikmed（riigikogu.ee PDF）",
+     "url": "https://riigikogu.ee/wpcms/wp-content/uploads/2015/02/I_Riigikogu_liikmed.pdf",
+     "result": "found_A",
+     "note": "議長任期 20.11.1922–07.06.1923、黨團代號 PK"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "I Riigikogu koosseis（愛語／英語）",
+     "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/i-riigikogu-koosseis/",
+     "result": "found_A",
+     "note": "愛語 1923-05-30、英語 1923-05-20，二版不同"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "Asutav Kogu juhatus ja liikmed",
+     "url": "https://www.riigikogu.ee/tutvustus-ja-ajalugu/riigikogu-ajalugu/asutav-kogu/juhatus-ja-liikmed/",
+     "result": "found_A",
+     "note": "議員名錄含帕茨；制憲會議 1919-04-23～1920-12-20"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "Kenkmann 1933 põhiseadus TUNA 2009",
+     "url": "https://www.ra.ee/wp-content/uploads/2017/01/KenkmannPeeter_Kas1933_TUNA2009_3.pdf",
+     "result": "found_B",
+     "note": "1934-03-12 政變、1934-03-15 戒嚴說明"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "Kenkmann 1937 põhiseadus TUNA 2013",
+     "url": "https://www.ra.ee/wp-content/uploads/2017/01/KenkmannPeeter_Kenkmann_1937_P6hiseadus_TUNA2013_1.pdf",
+     "result": "found_B",
+     "note": "1937-08-17 公布憲法、1937-09-03 就任 Riigihoidja"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "valitsus.ee 歷史／總理名單",
+     "url": "https://www.valitsus.ee/en/government-office/history",
+     "result": "no_result",
+     "note": "頁面 404；元首／首腦任期已在名單 5442，不重建"
+    },
+    {
+     "step": 16,
+     "sourceType": "named_encyclopedia",
+     "query": "Päts Konstantin Eesti Entsüklopeedia／ISIK／Rahvusarhiiv（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索未回傳可抓取的合格頁面；僅得 DIGAR 書目頁（Ago Pajur 傳記為館內閱覽，未取得原文）"
+    }
+   ]
+  },
+  {
+   "key": "np-tribhuvan",
+   "bioId": "01a1b4af-e4ae-7ffe-b91b-13f90ca7ea6b",
+   "name": "Tribhuvan Bir Bikram Shah",
+   "nameZh": "特里布萬",
+   "recordIds": [
+    "01a1aa96-cf95-733f-bd17-edc4333a4a0e"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1906-01-01",
+      "end": "1956-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "生卒與在位期",
+      "en": "Life dates and reign"
+     },
+     "body": {
+      "zh-Hant": "德國國家圖書館的人名權威檔記載，尼泊爾國王特里布萬（Tribhuvan）生於1906年、卒於1955年。美國國會圖書館的國別簡介說明，拉納家族的首相建立了統治至1951年的王朝，法理上的君主地位被降為儀式性，君主或被流放、或被軟禁；該簡介並把特里布萬的在位期標為1911至1955年。",
+      "en": "The German National Library's authority file records Tribhuvan, King of Nepal, as born in 1906 and dead in 1955. A Library of Congress country profile explains that the Rana dynasty of prime ministers ruled until 1951 and reduced the de jure monarchy to a ceremonial position, with monarchs either exiled or kept under house arrest, and dates Tribhuvan's reign 1911–55."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lobid-tribh",
+       "locator": "GND JSON",
+       "quote": "\"dateOfBirth\" : [ \"1906\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-tribh",
+       "locator": "GND JSON",
+       "quote": "\"dateOfDeath\" : [ \"1955\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-nepal",
+       "locator": "Rana Rule",
+       "quote": "established a dynasty of prime ministers that would rule until 1951",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-nepal",
+       "locator": "Rana Rule",
+       "quote": "The de jure monarchy was reduced to a ceremonial position",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-nepal",
+       "locator": "Rana Rule",
+       "quote": "monarchs were either exiled or kept under house arrest",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "loc-nepal",
+       "locator": "Rana Rule",
+       "quote": "King Tribhuvan (r. 1911–55) returned to power.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1911-12-11",
+      "end": "1913-02-21"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "繼位與加冕",
+      "en": "Accession and coronation"
+     },
+     "body": {
+      "zh-Hant": "英國圖書館瀕危檔案計畫的館藏目錄說明記載，特里布萬生於加德滿都，自1911年12月11日起為尼泊爾國王，直到逝世為止（1950至51年的一段期間除外）。他在父親普利特維・比爾・比克拉姆・沙阿去世後，五歲即登上王位，並於1913年2月20日在加德滿都哈努曼多卡王宮的納薩爾喬克加冕，由母親攝政。同一說明指出，首相昌德拉・舒姆舍爾（Chandra Shumsher）在加冕當時掌握全權。",
+      "en": "A British Library catalogue description records that Tribhuvan was born in Kathmandu and was King of Nepal from 11 December 1911 until his death, apart from a period in 1950–51. He ascended the throne at the age of five on the death of his father, Prithvi Bir Bikram Shah, and was crowned on 20 February 1913 at the Nasal Chowk, Hanuman Dhoka Palace in Kathmandu, with his mother acting as regent. The same description states that Maharaja Chandra Shumsher was exercising full power at the time of the crowning."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "Born in Kathmandu (Nepal's capital city)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "King of Nepal from 11 December 1911 until his death",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "he ascended to the throne at the age of five",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "upon the death of his father, King Prithvi Bir Bikram Shah",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "crowned on 20 February 1913 at the Nasal Chowk",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "Hanuman Dhoka Palace in Kathmandu",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "with his mother acting as regent",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bl-eap166-cat",
+       "locator": "Scope & Content",
+       "quote": "Sri 3 Maharaja Chandra Shumsher was exercising full fledged power",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1950-11-06",
+      "end": "1951-02-19"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1950至51年出走與復位",
+      "en": "Flight and restoration, 1950–51"
+     },
+     "body": {
+      "zh-Hant": "馬拉戈蒂（Mara Malagodi）2023年的論文記載，1950年11月6日，特里布萬國王攜全家（4歲的孫子賈南德拉除外）出宮，闖入加德滿都的印度大使館尋求庇護；四天後，印度空軍飛機把王室送往新德里。拉納政府勸返國王未成，讓王子賈南德拉登基，但印度與英國都不承認新君。德里同時進行談判，達成妥協後，國王於1951年2月15日返回加德滿都，復位標誌拉納政權正式結束；2月18日他頒布王室宣言，成立由拉納與尼泊爾大會黨代表組成的臨時政府。",
+      "en": "Mara Malagodi's 2023 article records that on 6 November 1950 King Tribhuvan and his whole family, except his four-year-old grandson Gyanendra, left the palace and entered the Indian Embassy in Kathmandu to seek sanctuary; four days later an Indian Air Force plane flew the royal family to New Delhi. After a failed attempt to persuade him to return, the Rana government crowned Prince Gyanendra, but India and the United Kingdom refused to recognise the new monarch. Negotiations took place in Delhi; after a compromise the king returned to Kathmandu on 15 February 1951, and his restoration marked the formal end of the Rana regime. On 18 February he issued a Royal Proclamation forming an interim government with Rana and Nepali Congress representatives."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "On November 6, 1950, King Tribhuvan Shah and his entire family",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "(with the exception of his 4-year-old grandson Gyanendra)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "they abruptly entered the diplomatic compound and sought sanctuary",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "Four days later, an Indian Air Force plane flew",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "After a failed attempt to persuade King Tribhuvan to return to the palace",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "the Rana government crowned Prince Gyanendra",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "both India and the United Kingdom refused to recognize the new monarch.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "negotiations took place in Delhi",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "on February 15, 1951, King Tribhuvan returned to Kathmandu",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "his restoration to the throne marked the formal end of the Rana regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "On February 18, the king issued the historic Royal Proclamation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "Revolution of 2007 BS",
+       "quote": "formed an interim government with Rana and Nepali Congress representatives",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jagat-hssj",
+       "locator": "摘要",
+       "quote": "कात्तिक २१ गते काठमाडौँ स्थित भारतीय दूतावासमा शरण लिन पुगेका राजा त्रिभुवन",
+       "quoteLang": "ne",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jagat-hssj",
+       "locator": "摘要",
+       "quote": "कात्तिक २६ गते जहाजबाट सपरिवार दिल्लीका लागि उडे",
+       "quoteLang": "ne",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1951-11-16",
+      "end": "1954-01-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "復位後的直接統治與王室宣言",
+      "en": "Direct rule and the 1954 proclamation"
+     },
+     "body": {
+      "zh-Hant": "馬拉戈蒂指出，尼泊爾大會黨的柯伊拉臘（M.P. Koirala）首屆政府任期為1951年11月16日至1952年8月14日；其後特里布萬國王於1952年8月14日至1953年6月15日直接統治。1954年1月10日，他頒布王室宣言，把王權確立為國家一切權力的來源。德國國家圖書館權威檔另載，他的出生地為加德滿都，逝世地為蘇黎世。",
+      "en": "Malagodi notes that the first Nepali Congress government under M.P. Koirala lasted from 16 November 1951 to 14 August 1952, followed by a period of direct rule by King Tribhuvan from 14 August 1952 to 15 June 1953. On 10 January 1954 he issued a Royal Proclamation establishing the crown as the source of all state authority. The German National Library authority file also records Kathmandu as his place of birth and Zürich as his place of death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "King, Parties, and Donors",
+       "quote": "(November 16, 1951–August 14, 1952)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "King, Parties, and Donors",
+       "quote": "direct rule by King Tribhuvan (August 14, 1952–June 15, 1953)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "King, Parties, and Donors",
+       "quote": "on January 10, 1954, King Tribhuvan issued a Royal Proclamation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "malagodi2023",
+       "locator": "King, Parties, and Donors",
+       "quote": "established the crown as the source of all state",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-tribh",
+       "locator": "GND JSON placeOfBirth",
+       "quote": "\"label\" : \"Kathmandu\"",
+       "quoteLang": "de",
+       "evidenceNote": "GND placeOfBirth 欄",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-tribh",
+       "locator": "GND JSON placeOfDeath",
+       "quote": "\"label\" : \"Zürich\"",
+       "quoteLang": "de",
+       "evidenceNote": "GND placeOfDeath 欄",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:1938-1951",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-15）刪除原段 2（1938–1941 人民黨運動）、原段 3（1950–51 出走印度大使館與復位）及原段 1 的 1911 繼位句：全部只出自 Krämer 的年表與專文，發佈於個人網站 nepalresearch.com，依 docs/source-rules.md §2 屬 X，人物生平只收 A／B。引文保留為候選，待 A／B 來源（學術專書、期刊、尼泊爾官方）核對後再寫。；本輪補：1950–51 年出走與復位已由 Malagodi（B）與 Jagat Nepal（B）入段 3；1938–1941 人民黨運動與國王關係仍只見個人網站，未入文。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nr-zeittab",
+       "locator": "1911 欄",
+       "quote": "11.12.1911 König Prithvi Bir Bikram stirbt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-zeittab",
+       "locator": "1911 欄",
+       "quote": "im Alter von 36 Jahren; Tribhuvan Bir Bikram Shah neuer König",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-rev1950",
+       "locator": "第 1 段",
+       "quote": "since his involvement in the conspiration of the Nepal Praja Parishad in 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-rev1950",
+       "locator": "第 2 段",
+       "quote": "he and his family fled into the Indian embassy in Kathmandu",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-rev1950",
+       "locator": "第 2 段",
+       "quote": "But surprisingly, King Tribhuvan acted himself on 6 November 1950,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-rev1950",
+       "locator": "第 6 段",
+       "quote": "On 15 February 1951, King Tribhuvan and the leading",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nr-rev1950",
+       "locator": "第 6 段",
+       "quote": "On 18 February 1951, King Tribhuvan announced Nepal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:1913-1937",
+     "gapKind": "not_found",
+     "note": "1911–1937 年間（含 1913 年加冕、攝政期）的在位細節未取得 A／B 原文：Britannica 回 403、美國國會圖書館國別研究（countrystudies.us 鏡像）回 403、海德堡 HASP 期刊為 Anubis 挑戰頁（未繞過）、British Library EAP 目錄頁回空內容。需合格專書（例如 Stiller《Nepal: Growth of a Nation》、Shaha《Modern Nepal》）或 BL EAP 館藏描述。；本輪補：1913 年加冕與昌德拉・舒姆舍爾掌權已由 BL 目錄入段 2；1914–1937 年間仍無 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:accession_date",
+     "gapKind": "not_found",
+     "note": "英國圖書館 EAP166/2/1/8 目錄說明（B）寫「King of Nepal from 11 December 1911」，與名單 1911-12-11 相符，已入段 2；但另有搜尋摘要顯示該館 EAP838 系列寫 1911-02-02，其頁面抓取回空內容，無法核對，維持待查證。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nr-zeittab",
+       "locator": "1911 欄",
+       "quote": "11.12.1911 König Prithvi Bir Bikram stirbt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": null,
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:birthdate_exact",
+     "gapKind": "not_found",
+     "note": "GND 權威檔只有出生年 1906、卒年 1955，未寫月日；已查 Britannica（403）、Deutsche Biographie 索引、LoC 國別簡介（只寫在位期）。需 A／B 來源逐字寫出生與逝世日期、地點。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:regency_1911_1913",
+     "gapKind": "not_found",
+     "note": "已解：英國圖書館 EAP166/2/1/8 目錄說明（B）寫「with his mother acting as regent」，已入段 2；攝政期的起迄日與攝政者姓名仍未見 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:1941-1950",
+     "gapKind": "not_found",
+     "note": "1941–1950 年（二戰期間至出走前）國王在位事蹟未取得 A／B 原文；已查 Treccani、Library of Congress 國別簡介、NepJOL、Cambridge Core。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:death_date_exact",
+     "gapKind": "not_found",
+     "note": "GND 權威檔只有卒年 1955 與卒地蘇黎世，未寫月日；BL 目錄寫的 1955-03-13 為括號內生卒，與前述同屬目錄說明，未採入正文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Tribhuvan Britannica",
+     "url": "https://www.britannica.com/biography/Tribhuvan",
+     "result": "blocked_403",
+     "note": "curl 回 403；改查國家／學術來源"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Rana era",
+     "url": "https://www.britannica.com/event/Rana-era",
+     "result": "blocked_403",
+     "note": "curl 回 403"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Tribhuvan Nepal König GND（lobid.org）",
+     "url": "https://lobid.org/gnd/1226811078.json",
+     "result": "found_A",
+     "note": "取得生年 1906、卒年 1955、名稱「Tribhuvan, Nepal, König」"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Library of Congress Country Profile Nepal",
+     "url": "https://tile.loc.gov/storage-services/master/frd/copr/Nepal.pdf",
+     "result": "found_A",
+     "note": "拉納統治與君主地位、Tribhuvan（r. 1911–55）1951 年復位"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "countrystudies.us/nepal（LoC Country Study 鏡像）",
+     "url": "https://countrystudies.us/nepal/15.htm",
+     "result": "blocked_403",
+     "note": "curl 回 403；鏡像本就屬轉錄本，改用 loc.gov 官方 PDF"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "loc.gov/item/93021209（Nepal country study）",
+     "url": "https://www.loc.gov/item/93021209/",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Krämer Zeittafel zur nepalesischen Geschichte",
+     "url": "https://nepalresearch.com/history/background/zeittab.pdf",
+     "result": "unrated",
+     "note": "1911 繼位、1938 人民黨、1940 事件、1950–51 事件；審查：nepalresearch.com 為個人網站（X），只作 gap 候選"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Kraemer The Revolution of 1950/51",
+     "url": "https://nepalresearch.com/history/background/revolution_1950.htm",
+     "result": "unrated",
+     "note": "1950–51 革命經過與國王角色；審查：nepalresearch.com 為個人網站（X），只作 gap 候選"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Südasien-Chronik（Heidelberg HASP）Nepal 論文",
+     "url": "https://hasp.ub.uni-heidelberg.de/journals/sasien/article/download/23870/23268/48742",
+     "result": "challenge_page",
+     "note": "Anubis 工作量證明挑戰頁，未繞過"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "nepjol Spirit of 1950（Uprety）",
+     "url": "https://www.nepjol.info/index.php/VOH/article/download/67/60",
+     "result": "not_relevant",
+     "note": "談 1950 革命社會意義，無 1911 繼位內容，未引用"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "nepjol Atharva Vijay Shumsher Rana",
+     "url": "https://nepjol.info/index.php/ija/article/download/95991/72636/276858",
+     "result": "not_relevant",
+     "note": "主題為 Vijay Shumsher，與繼位無關，未引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "official",
+     "query": "British Library EAP 館藏 Crowning of King Tribhuvan",
+     "url": "https://eap.bl.uk/archive-file/EAP166-2-1-8",
+     "result": "no_result",
+     "note": "回 HTTP 202 空內容，無法取得原文"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "Treccani Nepal storia Tribhuvana",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索未回傳 Treccani 頁面"
+    },
+    {
+     "step": 14,
+     "sourceType": "academic",
+     "query": "King Tribhuvan 1911 enthroned Praja Parishad 1940（WebSearch×3）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅得二手網站、鏡像與新聞；合格來源已採上列者"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "Tribhuvan Nepal GND 詳細欄位（placeOfBirth／placeOfDeath）",
+     "url": "https://lobid.org/gnd/1226811078.json",
+     "result": "found_A",
+     "note": "已有原文，補卒地蘇黎世、出生地加德滿都",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "BL Archives and Manuscripts Catalogue EAP166/2/1/8",
+     "url": "https://searcharchives.bl.uk/catalog/040-002743363",
+     "result": "found_B",
+     "note": "繼位日 1911-12-11、1913-02-20 加冕、母攝政、昌德拉掌權",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "BL EAP eap.bl.uk/item/EAP838-1-3-1-57",
+     "url": "https://eap.bl.uk/item/EAP838-1-3-1-57",
+     "result": "no_result",
+     "note": "HTTP 202 空內容",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "BL searcharchives 036-003939060",
+     "url": "https://searcharchives.bl.uk/catalog/036-003939060",
+     "result": "no_result",
+     "note": "逾時未取得",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "academic",
+     "query": "Cambridge Core：King Tribhuvan Indian embassy 1950 Delhi（WebSearch）",
+     "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/87516947B4492A964F899ED361AF7EEA/S0738248022000724a.pdf/nepals_constitutional_foundations_between_revolution_and_cold_war_195060.pdf",
+     "result": "found_B",
+     "note": "Malagodi 2023，OA PDF，已抓取",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "academic",
+     "query": "राजा त्रिभुवन भारतीय दूतावास शरण २००७ साल दिल्ली सम्झौता（WebSearch）",
+     "url": "https://www.nepjol.info/index.php/hssj/article/view/87413",
+     "result": "found_B",
+     "note": "Jagat Nepal，尼泊爾文摘要",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "academic",
+     "query": "राणाकालीन नेपालको राजतन्त्रः संक्षिप्त चर्चा（NepJOL）",
+     "url": "https://www.nepjol.info/index.php/hj/article/download/46221/34605",
+     "result": "not_relevant",
+     "note": "已抓取；PDF 為舊字型，文字亂碼，無法逐字引用，未採用",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "academic",
+     "query": "Tribhuvan University Journal 28691（Gita philosophy）",
+     "url": "https://www.nepjol.info/index.php/TUJ/article/download/28691/23406",
+     "result": "not_relevant",
+     "note": "已抓取；與國王無關",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "academic",
+     "query": "Patan Pragya 71178（Rana regimes）",
+     "url": "https://www.nepjol.info/index.php/pragya/article/download/71178/54269/207782",
+     "result": "not_relevant",
+     "note": "已抓取；無國王事蹟",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "academic",
+     "query": "SAGE Appadorai & Baral 1959",
+     "url": "https://journals.sagepub.com/doi/10.1177/002088175900100301",
+     "result": "blocked_403",
+     "note": "curl 回 403，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani 歷史（Nepal）",
+     "url": "https://www.treccani.it/enciclopedia/nepal/",
+     "result": "unrated",
+     "note": "無署名條目，只寫「sul trono dal 1911」，依 Q9 不採",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Tribhuvan",
+     "url": "https://www.treccani.it/enciclopedia/tribhuvan/",
+     "result": "no_result",
+     "note": "無對應條目",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Gyanendra",
+     "url": "https://encyclopedia.com/books/culture-magazines/shah-gyanendra",
+     "result": "unrated",
+     "note": "他人條目，僅旁及國王，未採用",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "national_dictionary",
+     "query": "Store norske leksikon Tribhuvan（snl.no）",
+     "url": "https://snl.no/Tribhuvan",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "national_dictionary",
+     "query": "Den Store Danske Tribhuvan（lex.dk）",
+     "url": "https://lex.dk/Tribhuvan",
+     "result": "no_result",
+     "note": "404",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "national_dictionary",
+     "query": "RAH DB~e Tribhuvan",
+     "url": "https://dbe.rah.es/busqueda?s=Tribhuvan",
+     "result": "no_result",
+     "note": "無相關條目",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "authority",
+     "query": "BnF data Tribhuvan Nepal",
+     "url": "https://data.bnf.fr/en/search?term=Tribhuvan+Nepal",
+     "result": "no_result",
+     "note": "無相關權威檔",
+     "round": "retry"
+    },
+    {
+     "step": 32,
+     "sourceType": "authority",
+     "query": "NDL 典拠 Tribhuvan",
+     "url": "https://id.ndl.go.jp/auth/ndla/?search=Tribhuvan",
+     "result": "no_result",
+     "note": "無相關典拠",
+     "round": "retry"
+    },
+    {
+     "step": 33,
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov Tribhuvan Nepal",
+     "url": "https://id.loc.gov/search/?q=Tribhuvan+Nepal",
+     "result": "not_relevant",
+     "note": "結果皆為 Tribhuvan University 相關",
+     "round": "retry"
+    },
+    {
+     "step": 34,
+     "sourceType": "official",
+     "query": "history.state.gov countries/nepal",
+     "url": "https://history.state.gov/countries/nepal",
+     "result": "not_relevant",
+     "note": "只有建交資訊，無國王生平",
+     "round": "retry"
+    },
+    {
+     "step": 35,
+     "sourceType": "national_dictionary",
+     "query": "HLS 搜尋 Tribhuvan",
+     "url": "https://hls-dhs-dss.ch/de/search/?text=Tribhuvan",
+     "result": "blocked_403",
+     "note": "403，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 36,
+     "sourceType": "named_encyclopedia",
+     "query": "Большая российская энциклопедия Трибхуван",
+     "url": "https://bigenc.ru/c/tribkhuvan-",
+     "result": "blocked_403",
+     "note": "401 未授權，未繞過",
+     "round": "retry"
+    },
+    {
+     "step": 37,
+     "sourceType": "authority",
+     "query": "DNB GND LDS 1226811078（異名）",
+     "url": "https://d-nb.info/gnd/1226811078/about/lds",
+     "result": "found_A",
+     "note": "異名含天城文 त्रिभुवन वीर विक्रम शाह",
+     "round": "retry"
+    },
+    {
+     "step": 38,
+     "sourceType": "authority",
+     "query": "lobid GND 搜尋 Tribhuvan Nepal",
+     "url": "https://lobid.org/gnd/search?q=Tribhuvan+Nepal&format=json",
+     "result": "found_A",
+     "note": "確認同一人，無別筆",
+     "round": "retry"
+    },
+    {
+     "step": 39,
+     "sourceType": "academic",
+     "query": "राजा त्रिभुवन राणा शासन राजतन्त्र नेपाल इतिहास २००७ क्रान्ति（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "結果為報章評論與 nepjol hj/46221，後者已抓",
+     "round": "retry"
+    },
+    {
+     "step": 40,
+     "sourceType": "academic",
+     "query": "त्रिभुवन वीर विक्रम शाह नेपालका राजा जीवनी（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "只得維基百科鏡像，禁用",
+     "round": "retry"
+    },
+    {
+     "step": 41,
+     "sourceType": "academic",
+     "query": "राजा त्रिभुवन वीर विक्रम शाह जीवनी जन्म राज्याभिषेक（WebSearch，限 nepjol/gov.np）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋中斷無結果",
+     "round": "retry"
+    },
+    {
+     "step": 42,
+     "sourceType": "academic",
+     "query": "त्रिभुवन प्रजापरिषद् राजा सहयोग शुक्रराज शास्त्री（WebSearch）",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋中斷無結果",
+     "round": "retry"
+    },
+    {
+     "step": 43,
+     "sourceType": "academic",
+     "query": "Praja Parishad 1940 king Cambridge／JSTOR／SAGE（WebSearch）",
+     "url": null,
+     "result": "unrated",
+     "note": "只得 SAGE 1959（403）與 Cambridge 年表目錄，未取得原文",
+     "round": "retry"
+    },
+    {
+     "step": 44,
+     "sourceType": "official",
+     "query": "Nepal 1951 Delhi compromise（WebSearch，限 history.state.gov／loc.gov／archive.org）",
+     "url": "https://tile.loc.gov/storage-services/master/frd/copr/Nepal.pdf",
+     "result": "unrated",
+     "note": "LoC 簡介已用；archive.org 全文為非 A／B 複本，未採",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "dz-sahm-heinrich",
+   "bioId": "01a1b4b2-2f1a-722b-93ed-d2ad6e6f6765",
+   "name": "Heinrich Sahm",
+   "nameZh": "海因里希·薩姆",
+   "recordIds": [
+    "01a1aa4a-b7c1-7b28-8e9f-8802af1f6649",
+    "01a1aa4a-b7d3-700a-b905-5ddac0f8f045",
+    "01a1aa4a-b7d3-72f4-990b-72ecb1c1129f",
+    "01a1aa4a-b7d1-7cae-851d-efe65a234a0f"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1877-09-12",
+      "end": "1919-03-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身、求學與地方行政歷練",
+      "en": "Birth, studies and municipal career"
+     },
+     "body": {
+      "zh-Hant": "海因里希·薩姆1877年9月12日生於安克拉姆。他1896年中學畢業後，在慕尼黑、柏林與格賴夫斯瓦爾德研讀法學與國家學；1900年通過司法見習考試，1904年通過候補文官考試。他1906年被選為馬格德堡專職市參事，1912年被選為波鴻（第二）市長；第一次世界大戰期間，1915至1918年任德國駐華沙民政當局的市政事務官。1919年2月他被選為但澤上級市長（Oberbürgermeister）。",
+      "en": "Heinrich Sahm was born in Anklam on 12 September 1877. After his Abitur in 1896 he studied law and political science in Munich, Berlin and Greifswald, passed the Referendar examination in 1900 and the Assessor examination in 1904. He was elected a salaried city councillor in Magdeburg in 1906 and (second) mayor of Bochum in 1912; during the First World War he served in 1915–18 as municipal affairs officer in the German civil administration of Warsaw. In February 1919 he was elected Oberbürgermeister of Danzig."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB 條頭",
+       "quote": "* 12.9.1877 Anklam/Peene (Landkreis Ostvorpommern)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-sahm",
+       "locator": "GND JSON",
+       "quote": "\"dateOfBirth\" : [ \"1877-09-12\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "studierte nach dem Abitur 1896 am Gymnasium zu Anklam in München,",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Berlin und Greifswald Rechts- und Staatswissenschaften.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Das Referendarexamen bestand er 1900 in Stettin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "das Assessorexamen 1904 in Berlin",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "wurde er 1906 zum hauptamtlichen Stadtrat in Magdeburg gewählt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1912 folgte die Wahl zum (zweiten) Bürgermeister in Bochum",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Während des 1. Weltkriegs war er 1915-18 Kommunalreferent",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "war er 1915-18 Kommunalreferent in der dt. Zivilverwaltung Warschaus",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Im Febr. 1919 wurde S. zum Oberbürgermeister von Danzig gewählt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1919-02-01",
+      "end": "1931-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "但澤自由市：參議院議長",
+      "en": "The Free City of Danzig: President of the Senate"
+     },
+     "body": {
+      "zh-Hant": "但澤脫離德國後仍留在受國際聯盟監督的但澤自由市，薩姆以無黨派的資產階級人士身分，在1920至1930年擔任三屆跨黨派參議院的議長。他赴國聯、與波蘭談判，並曾對蘇聯進行國事訪問，因此成為外交舞台上的行動者。1929年他禁止「鋼盔團」在但澤舉行活動；第三屆參議院於1930年被德意志民族主義者與納粹黨推翻。",
+      "en": "After Danzig was separated from the Reich, Sahm stayed in the Free City under the League of Nations and, as a non-party bourgeois politician, presided over three non-partisan Senates in 1920–30. Travel to the League of Nations, negotiations with Poland and a state visit to the Soviet Union made him an actor on the diplomatic stage. In 1929 he banned a Stahlhelm event in Danzig, and his third Senate was overthrown in 1930 by German Nationalists and National Socialists."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Auch nach der Abtrennung vom Reich blieb S. in der dem Völkerbund unterstellten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "als parteiloser Bürgerlicher",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1920-30 drei überparteilichen Senaten als Präsident vor",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Reisen zum Völkerbund",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Verhandlungen mit Polen und ein Staatsbesuch in der Sowjetunion",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "machten ihn zu einem Akteur auf der diplomatischen Bühne",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "nachdem S. 1929 eine Veranstaltung des Stahlhelm in Danzig untersagt hatte",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "wurde 1930 von Deutschnationalen und Nationalsozialisten gestürzt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Der 3. Senat S.s wurde 1930 von Deutschnationalen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-04-14",
+      "end": "1935-12-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "柏林上級市長與辭職",
+      "en": "Oberbürgermeister of Berlin and resignation"
+     },
+     "body": {
+      "zh-Hant": "薩姆1931年4月14日被選為柏林上級市長；他是納粹獨裁前最後一位柏林市長。1932年他為興登堡的第二次總統競選籌劃選戰；1933年4月加入納粹黨，納粹並派尤利烏斯·利珀特（Julius Lippert）任國家專員在他身邊，逼他辭職。1935年12月9日他辭去市長職務。",
+      "en": "On 14 April 1931 Sahm was elected Oberbürgermeister of Berlin, the last Berlin city head before the Nazi dictatorship. In 1932 he organised Hindenburg's second presidential campaign; in April 1933 he joined the NSDAP, and the Nazis put Julius Lippert at his side as state commissioner, pushing him toward resignation. He resigned on 9 December 1935."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "berlin-boess",
+       "locator": "Dr. Heinrich Sahm (1931 - 1935)",
+       "quote": "wurde am 14. April 1931 mit Dr. Heinrich Sahm das letzte Berliner Stadtoberhaupt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "berlin-boess",
+       "locator": "Dr. Heinrich Sahm (1931 - 1935)",
+       "quote": "das letzte Berliner Stadtoberhaupt vor der NS-Diktatur gewählt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1932 organisierte er den 2. Reichspräsidentenwahlkampf Paul v. Hindenburgs",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "trat er im April 1933 der NSDAP bei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Die Nationalsozialisten stellten ihm Julius Lippert",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "stellten ihm Julius Lippert (1895–1956) als Staatskommissar zur Seite",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "drängten ihn so zum Rücktritt (9.12.1935)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "berlin-sahm",
+       "locator": "Gleichschaltung 段",
+       "quote": "Am 9. Dezember 1935 trat Heinrich Sahm zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-10-04"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "駐挪威公使與逝世",
+      "en": "Envoy in Norway and death"
+     },
+     "body": {
+      "zh-Hant": "薩姆被任命為德國駐挪威公使：新德意志傳記（NDB）寫為1937年，德國國家圖書館權威檔則寫「1936至1939年駐挪威大使」，兩者年份不同。他在奧斯陸任上無視關於監視政治流亡者（包括威利·勃蘭特）的指示。他1939年10月3日死於奧斯陸；柏林市政府（Senat）2001年的理由是，他到死為止都是納粹政權駐挪威的公使。",
+      "en": "Sahm was appointed German envoy to Norway: the Neue Deutsche Biographie gives 1937, while the German National Library's authority file gives 'Botschafter in Norwegen 1936-1939', so the sources differ on the year. In Oslo he disregarded instructions about monitoring political emigrants, among them Willy Brandt. He died in Oslo on 3 October 1939; the 2001 reasoning of the Berlin Senate describes him as envoy of the Nazi regime in Norway until his death."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1937 wurde S. zum dt. Gesandten in Norwegen ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-sahm",
+       "locator": "GND JSON",
+       "quote": "Botschafter in Norwegen 1936-1939",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "über Weisungen hinsichtlich der Überwachung politischer Emigranten",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "darunter Willy Brandt, hinweg",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB 條頭",
+       "quote": "† 3.10.1939 Oslo (Norwegen)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-sahm",
+       "locator": "GND JSON",
+       "quote": "\"dateOfDeath\" : [ \"1939-10-03\" ]",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Am 21.8.2001 erkannte ihm der Senat von Berlin sein Ehrengrab ab",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "bis zu seinem Tod Gesandter des NS-Regimes in Norwegen",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "oberbuergermeister-berlin",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "柏林市政府",
+      "en": "City of Berlin"
+     },
+     "title": {
+      "orig": "Oberbürgermeister von Berlin",
+      "zh-Hant": "柏林上級市長",
+      "en": "Oberbürgermeister of Berlin"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1931-04-14",
+      "end": "1935-12-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "berlin-boess",
+       "locator": "Dr. Heinrich Sahm (1931 - 1935)",
+       "quote": "wurde am 14. April 1931 mit Dr. Heinrich Sahm das letzte Berliner Stadtoberhaupt",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "drängten ihn so zum Rücktritt (9.12.1935)",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取辭職日（NDB 與柏林市府官方頁一致）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "berlin-sahm",
+       "locator": "Gleichschaltung 段",
+       "quote": "Am 9. Dezember 1935 trat Heinrich Sahm zurück.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "市長非 T14 類別，R5"
+    },
+    {
+     "key": "gesandter-norwegen",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "德意志國駐挪威公使館",
+      "en": "German Legation in Norway (Oslo)"
+     },
+     "title": {
+      "orig": "Gesandter in Norwegen",
+      "zh-Hant": "駐挪威公使",
+      "en": "German envoy to Norway"
+     },
+     "positionKind": "diplomat",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1939-10-03"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "lobid-sahm",
+       "locator": "GND JSON",
+       "quote": "Botschafter in Norwegen 1936-1939",
+       "quoteLang": "de",
+       "evidenceNote": "GND 寫 1936–1939 且稱 Botschafter；NDB 寫 1937 任公使（見 gaps conflict），起點取較早的年份並降為年精度",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1937 wurde S. zum dt. Gesandten in Norwegen ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": "與 GND 的 1936 不同，見 gaps",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB 條頭",
+       "quote": "† 3.10.1939 Oslo (Norwegen)",
+       "quoteLang": "de",
+       "evidenceNote": "迄日取逝世日，依「在職至死亡」推得（推論）",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "bis zu seinem Tod Gesandter des NS-Regimes in Norwegen",
+       "quoteLang": "de",
+       "evidenceNote": "柏林市議會 2001 年理由引文：任公使至死",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "外交使節非四部閣員，R5"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:gesandter-norwegen",
+     "gapKind": "conflict",
+     "note": "到任年份兩個 A 來源說法不同：NDB（Martin Otto）「1937 wurde S. zum dt. Gesandten in Norwegen ernannt」；GND 權威檔「Botschafter in Norwegen 1936-1939」（且稱 Botschafter 非 Gesandter）。兩說並存，起點降為年精度並取較早的 1936；需外交部政治檔案（Akten zur deutschen auswärtigen Politik）或 Biographisches Handbuch des deutschen Auswärtigen Dienstes 逐字寫明任命與遞交國書日期。",
+     "candidateCitations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "1937 wurde S. zum dt. Gesandten in Norwegen ernannt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lobid-sahm",
+       "locator": "GND JSON",
+       "quote": "Botschafter in Norwegen 1936-1939",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:party_membership",
+     "gapKind": "conflict",
+     "note": "政黨隸屬兩個 A 來源說法不同：NDB 寫但澤時期為「parteiloser Bürgerlicher」，並於 1933 年 4 月加入 NSDAP；柏林市府官方頁寫「zunächst parteilos und dann Mitglied der DNVP」。不寫入黨職（黨員身分不是黨內職務，亦無任期）；兩說並存。",
+     "candidateCitations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "trat er im April 1933 der NSDAP bei",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "berlin-boess",
+       "locator": "Dr. Heinrich Sahm (1931 - 1935)",
+       "quote": "Sahm, zunächst parteilos und dann Mitglied der DNVP",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:oberbuergermeister-danzig",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 只寫 1919 年 2 月（月精度）被選為但澤上級市長，未寫就任與卸任日。已查：NDB、GND、柏林市府官方頁。需但澤自由市官方公報或 Ramonat／Ruhnau 等學術專書。",
+     "candidateCitations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB Biographie",
+       "quote": "Im Febr. 1919 wurde S. zum Oberbürgermeister von Danzig gewählt.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:prussian-state-council",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；NDB 授勛欄寫「preuß. Staatsrat (Juni 1933)」，僅有起點月份。需普魯士政府公報或 Bundesarchiv 檔案說明。",
+     "candidateCitations": [
+      {
+       "sourceKey": "db-sahm",
+       "locator": "NDB 授勛欄",
+       "quote": "preuß. Staatsrat (Juni 1933)",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:danzig-senate-president-dates",
+     "gapKind": "not_found",
+     "note": "名單 5442 的 Senatspräsident 任期（1920-12-07～1931-01-09）未在本輪已取得的 A／B 原文逐字出現：NDB 寫「1920-30 drei überparteilichen Senaten」，柏林市府頁寫「bis kurz vor seinem Wechsel」；本檔段落只寫到年精度。需但澤自由市議會與國聯文件。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:honorary_grave",
+     "gapKind": "not_found",
+     "note": "2001-08-21 柏林市議會撤銷名譽墓地一事，NDB 有寫（「Am 21.8.2001 erkannte ihm der Senat von Berlin sein Ehrengrab ab」），時間窗外；段 4 只引其撤銷理由中「任公使至死」一語，撤銷本身未另寫成段落。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "Heinrich Sahm GND（lobid.org）",
+     "url": "https://lobid.org/gnd/118750755.json",
+     "result": "found_A",
+     "note": "生卒日 1877-09-12／1939-10-03；「Botschafter in Norwegen 1936-1939」"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Sahm Heinrich Deutsche Biographie NDB",
+     "url": "https://www.deutsche-biographie.de/gnd118750755.html",
+     "result": "found_A",
+     "note": "NDB 22 (2005) Martin Otto 全文：生平、職位年份"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Berlin Senatskanzlei Bürgermeistergalerie Die Gleichschaltung 1933-1945",
+     "url": "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4558.php",
+     "result": "found_A",
+     "note": "柏林上級市長任期 1931-04-14、1935-12-09 辭職"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Berlin Bürgermeistergalerie Die Ära Böß",
+     "url": "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4557.php",
+     "result": "found_A",
+     "note": "審查更正：該頁含「Dr. Heinrich Sahm (1931 - 1935)」條，提供 1931-04-14 當選與「zunächst parteilos und dann Mitglied der DNVP」"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "Heinrich Sahm Britannica",
+     "url": "https://www.britannica.com/biography/Heinrich-Sahm",
+     "result": "blocked_403",
+     "note": "curl 回 403"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Heinrich Sahm Norsk biografisk leksikon／Store norske leksikon",
+     "url": null,
+     "result": "no_result",
+     "note": "檢索無 NBL／SNL 條目"
+    },
+    {
+     "step": 7,
+     "sourceType": "treaty_law",
+     "query": "Sahm Gesandter Oslo 1936 OR 1937 Beglaubigungsschreiben",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到外交檔案或國書紀錄；到任年份 NDB 1937、GND 1936，記 conflict gap"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "Sahm Heinrich Deutsche Biographie 其他條目（Familie Sahm）",
+     "url": "https://deutsche-biographie.de/pnd1030397139.html",
+     "result": "not_relevant",
+     "note": "家族索引條目，無生平，未引用"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Sahm, Heinrich DLA Marbach",
+     "url": "https://www.dla-marbach.de/en/catalogue/find/opac/id/PE00558533/",
+     "result": "no_result",
+     "note": "搜尋結果僅列出目錄頁，未抓取（索引性質）"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "Heinrich Sahm Oberbürgermeister Danzig Berlin Oslo（WebSearch×2）",
+     "url": null,
+     "result": "no_result",
+     "note": "其餘結果為百科類／鏡像網站或新聞，不合格，僅作線索未引用"
+    }
+   ]
+  }
+ ]
+}

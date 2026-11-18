@@ -1,0 +1,252 @@
+{
+ "battle": "shanghai_1937",
+ "mainPhase": {
+  "start": "1937-08-13",
+  "end": "1937-11-26",
+  "basis": "主管 2026-11-13 14:58：主期 1937-08-13 至 11-26；疆界切片 8/13 ＋主權資料實際有變的日期"
+ },
+ "leadIn": null,
+ "battleFactGrades": [
+  "A",
+  "B"
+ ],
+ "sourceFamilies": {
+  "rule": "同一來源家族只算一個獨立來源（沿用 14:03 規則）。JM-179／JM-70 為前日軍軍官為美軍撰寫之紀錄，合為 jp-monographs；JACAR 防衛研究所藏陸軍原始檔案為 jp-jacar（與前者作者群可能重疊於日軍參謀系統，但文本獨立：一為戰時檔案、一為戰後回憶）；國史館館刊兩文與國防部《海軍學術雙月刊》一文同屬中華民國官方出版、且同承國防部史政編譯局戰史脈絡，保守合為 tw-roc（待主管裁示是否拆分）。",
+  "map": {
+   "jm179": "jp-monographs",
+   "jm70": "jp-monographs",
+   "jacar-c13071346000": "jp-jacar",
+   "jacar-c11112056100": "jp-jacar",
+   "su2015": "tw-roc",
+   "chang2016": "tw-roc",
+   "mnd2017": "tw-roc",
+   "old-campaign-file": "lead-only",
+   "jacar-c11111926900": "jp-jacar",
+   "jacar-c11111935000": "jp-jacar",
+   "frus1937v03-d590": "us-frus",
+   "frus1937v03-d698": "us-frus",
+   "frus1937v03-d709": "us-frus"
+  },
+  "frusNote": "us-frus（2026-11-13 主管 20:56 找中方獨立來源）：美國國務院 FRUS 公開電報，與 tw-roc（中華民國官方／國史館脈絡）及日方家族文本獨立；評 B。",
+  "sides": {
+   "jp-jacar": "axis",
+   "jp-monographs": "axis",
+   "tw-roc": "allied",
+   "us-frus": "third"
+  },
+  "sidesNote": "來源立場（docs/source-rules.md §4、§5）：家族是哪一方的說法；third＝第三方或戰後學術。2026-11-13 依各來源的出版者填入，待考證組複核。"
+ },
+ "r8": {
+  "box": [
+   119.0,
+   29.5,
+   122.5,
+   32.5
+  ],
+  "window": [
+   "1937-08-13",
+   "1937-11-26"
+  ],
+  "focusRegimes": [
+   "republic-of-china-nationalist",
+   "empire-of-japan"
+  ],
+  "decision": "主管 2026-11-13 14:58：疆界切片取 8/13，另加主權資料實際有變的日期；R8 只用主專案主權資料，不手描；focusRegimes 於 R8 依 API 實際 slug 填",
+  "focusNote": "2026-11-13 執行者依 API 實際 slug 填；united-states-of-america 只因外框（bbox）相交被列入，非戰區內主權；API 無上海公共租界／法租界紀錄（見 gaps）"
+ },
+ "texts": {
+  "note": "tools/battles/fetch_readable.py 與 citelib.py 讀；本機文字放 .dev/battle/shanghai/（不進版控，可重建）",
+  "workDir": ".dev/battle/shanghai",
+  "readable": {
+   "jm179": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+   "jm70": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-70/JM-70.pdf",
+   "su2015": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+   "chang2016": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+   "jacar-c13071346000": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+   "mnd2017": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+   "jacar-c11112056100": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+   "jacar-c11111926900": "https://www.jacar.archives.go.jp/das/meta/C11111926900",
+   "jacar-c11111935000": "https://www.jacar.archives.go.jp/das/meta/C11111935000",
+   "frus1937v03-d590": "https://history.state.gov/historicaldocuments/frus1937v03/d590",
+   "frus1937v03-d698": "https://history.state.gov/historicaldocuments/frus1937v03/d698",
+   "frus1937v03-d709": "https://history.state.gov/historicaldocuments/frus1937v03/d709"
+  },
+  "cite": {
+   "jm179": {
+    "kind": "pdf-text",
+    "file": "rd/jm179.txt",
+    "locator": "Japanese Monograph No. 179",
+    "lang": "en"
+   },
+   "jm70": {
+    "kind": "pdf-text",
+    "file": "rd/jm70.txt",
+    "locator": "Japanese Monograph No. 70",
+    "lang": "en"
+   },
+   "su2015": {
+    "kind": "pdf-text",
+    "file": "rd/su2015.txt",
+    "locator": "蘇聖雄，《國史館館刊》46",
+    "lang": "zh-Hant"
+   },
+   "chang2016": {
+    "kind": "pdf-text",
+    "file": "rd/chang2016.txt",
+    "locator": "張鑄勳，《國史館館刊》50",
+    "lang": "zh-Hant"
+   },
+   "mnd2017": {
+    "kind": "pdf-text",
+    "file": "rd/mnd2017.txt",
+    "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4",
+    "lang": "zh-Hant"
+   },
+   "jacar-c13071346000": {
+    "kind": "single",
+    "file": "rd/jacar-c13071346000.txt",
+    "locator": "JACAR C13071346000 目錄頁「内容」欄",
+    "lang": "ja"
+   },
+   "jacar-c11112056100": {
+    "kind": "single",
+    "file": "rd/jacar-c11112056100.txt",
+    "locator": "JACAR C11112056100 目錄頁「内容」欄",
+    "lang": "ja"
+   },
+   "jacar-c11111926900": {
+    "kind": "single",
+    "file": "rd/jacar-c11111926900.txt",
+    "locator": "JACAR C11111926900 目錄頁「内容」欄",
+    "lang": "ja"
+   },
+   "jacar-c11111935000": {
+    "kind": "single",
+    "file": "rd/jacar-c11111935000.txt",
+    "locator": "JACAR C11111935000 目錄頁「内容」欄",
+    "lang": "ja"
+   },
+   "frus1937v03-d590": {
+    "kind": "single",
+    "file": "rd/frus1937v03-d590.txt",
+    "locator": "FRUS 1937, The Far East, Vol. III, Doc. 590（Gauss 致國務卿電 No. 708，1937-09-14）",
+    "lang": "en"
+   },
+   "frus1937v03-d698": {
+    "kind": "single",
+    "file": "rd/frus1937v03-d698.txt",
+    "locator": "FRUS 1937, The Far East, Vol. III, Doc. 698（Gauss 致國務卿電 No. 893，1937-10-27）",
+    "lang": "en"
+   },
+   "frus1937v03-d709": {
+    "kind": "single",
+    "file": "rd/frus1937v03-d709.txt",
+    "locator": "FRUS 1937, The Far East, Vol. III, Doc. 709（Gauss 致國務卿電 No. 920，1937-11-01）",
+    "lang": "en"
+   }
+  }
+ },
+ "labelMatch": {
+  "note": "tools/battles/match_units.py 一般化規則（shanghai_1937）。mnd2017 圖：D＝師／師團、C＝軍、B＝旅、R＝團；JM-179 圖：XX＝師團、XXXX＝軍",
+  "sideMap": {
+   "japanese": "axis",
+   "chinese": "allied"
+  },
+  "romanCorps": {},
+  "typeHints": {
+   "div": [
+    "D",
+    "師級符號"
+   ]
+  },
+  "typeSuffix": {
+   "div": [
+    "-div"
+   ]
+  }
+ },
+ "r4": {
+  "maps": [
+   "jm179-map1",
+   "mnd2017-fig4",
+   "mnd2017-fig5"
+  ],
+  "box": [
+   119.0,
+   29.5,
+   122.5,
+   32.5
+  ],
+  "dates": [
+   "1937-08-13",
+   "1937-08-23",
+   "1937-09-14",
+   "1937-10-01",
+   "1937-11-05",
+   "1937-11-13",
+   "1937-11-19",
+   "1937-11-24",
+   "1937-11-26"
+  ],
+  "dateGapNotes": {
+   "1937-08-13": "開戰日：國軍圍攻虹口、楊樹浦日軍據點（市區），出處只有據點名（八字橋、持志大學等設施），無可作頂點之城鎮",
+   "1937-08-23": "日軍吳淞、川沙口登陸日：只有登陸點，無連續戰線文字",
+   "1937-10-01": "mnd2017：左翼退守「楊涇河西岸－陳家行－蘊藻濱之線」，三者為河流與村宅級地名，依規則不作頂點",
+   "1937-11-13": "白茆口登陸日：只有登陸點",
+   "1937-11-24": "當日只有日軍追擊界線（boundary，已收文字頂點），無戰線",
+   "1937-11-26": "主期止日（吳興失陷）：出處無當日戰線"
+  },
+  "defaultGapNote": "jm179-map1、mnd2017 圖四／圖五皆未過 2 km 門檻（僅參考），圖三未配準；該日無文字頂點"
+ },
+ "rulings": {
+  "2026-11-13 16:14": {
+   "Q1": "tw-roc（su2015、chang2016、mnd2017）維持一族，不拆",
+   "Q2": "JM-179／JM-70 評 B、JACAR 評 A（sources.json 已如此）",
+   "Q3": "mnd2017 表三／表四（圖片表格）只作判讀與候選線索，不得作引文；經查目前無任何引文出自表三／表四",
+   "Q5": "白茆口登陸日欄位留空，11/13 只作候選，欄內標 OCR「]Jth」讀值不確定",
+   "Q6": "大場失守日精度記十月下旬，10/26 只作候選，不再找來源",
+   "Q7": "jm179-map1 不重讀"
+  },
+  "2026-11-13 21:24": {
+   "a": "大場鎮失守日改記 1937-10-26；只有 FRUS（us-frus）載明（JACAR 未載鎮陷落日），標待查證／單一來源；註記保留「十月下旬」",
+   "b": "閘北守軍（八百壯士）止日維持：10/30 只作候選，寫入 conflict，欄位留空",
+   "c": "波蘭 P1 9/1 標籤不處理（9/1＝戰前國界，已列缺口）",
+   "overrides": [
+    {
+     "file": "r6-site-control.json",
+     "match": {
+      "placeAsInSource": "大場鎮"
+     },
+     "set": {
+      "date": "1937-10-26",
+      "datePrecision": "day",
+      "dateCandidate": null,
+      "dateNote": "主管 2026-11-13 21:24 (a)：日期改記 10/26，唯一出處 FRUS 1937 Vol. III Doc. 698（10/27 正午電「yesterday morning」攻占大場），JACAR 只到「十月下旬」（同月下旬）、歩34 戦闘詳報未載鎮陷落日 → 待查證、單一來源；原精度「十月下旬」保留於 dateRange",
+      "confidenceRuling": {
+       "basisFamilies": [
+        "us-frus"
+       ],
+       "why": "日期只由 FRUS 支持（主管 2026-11-13 21:24 (a)）"
+      }
+     }
+    },
+    {
+     "file": "r5-engagements.json",
+     "match": {
+      "key": "zhabei-800"
+     },
+     "set": {
+      "conflict": "止日：FRUS 1937 Vol. III Doc. 709（11/1 電）稱 30 日夜守軍被逐、300 人退入英軍防線 → 10/30；su2015 未載止日，與通說不一。依主管 2026-11-13 21:24 (b)：10/30 只作候選（endCandidate），period.end 留空"
+     }
+    }
+   ]
+  }
+ },
+ "db": {
+  "sideRegimes": {
+   "axis": "empire-of-japan",
+   "allied": "republic-of-china-nationalist"
+  },
+  "note": "寫庫前準備（主管 2026-11-13 21:24）：只做 dry-run，實寫待 Tai 另行同意"
+ }
+}

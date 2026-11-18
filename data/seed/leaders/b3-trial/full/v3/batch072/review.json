@@ -1,0 +1,95 @@
+{
+ "batch": "072",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 15,
+  "addedCitations": 8,
+  "editedSentences": 8,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "gr-metaxas",
+   "bioId": "01a1b4c1-cde7-7e4c-8378-3c4b2f27e610",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 4,
+   "searchLogSteps": 41,
+   "changes": [
+    "來源 elisme-metaxas（ELISME 會員制戰略研究協會網站，作者為退役海軍中將，非學者研究或學術出版）由 B 降 C：source-rules §2「機構網站的介紹文」，人物生平不收；比照 batch006／017／092",
+    "刪 ELISME 支撐的子句：副總參謀長至 1916-06-27、1917-07-20 赴科西嘉、1922-10-12 正式從政、1935-03-18 辭不管部部長、1936-03-14 任副總理並掌三部、德梅爾齊斯死於心臟病；12 筆引文移入新 gap field:elisme_claims（候選 C）",
+    "刪 position metaxas-deputy-premier-1936（3 筆引文全為 ELISME）",
+    "段1：補 Voglis『during the dispute between Prime Minister Eleutherios Venizelos』『and King Constantine…Metaxas』支撐「the latter」＝國王君士坦丁；period 迄點依段內最後事件改 1916-01-01（year）",
+    "段2：period 改 1922-01-01（year）～1936-04-01（month）",
+    "段3：補 Voglis『when the prime minister , Constantine Demertzis (1876–1936), died』；period 起點改 1936-04-13",
+    "metaxas-chief-of-staff-1915：title.orig 原為來源未出現的希臘文，改為引文用語『chief (general staff)』；刪 ELISME 引文，僅留 Voglis（R6 rank+regime 不變）",
+    "role metaxas-freethinkers-founder：起點改 1922-01-01（year，Voglis）；刪無引文的「（黨領袖）」；R1 保留，缺迄日 gap 已有",
+    "metaxas-war-minister R6（regime）、外交部長暫代 t14Ambiguous 判斷合理；1938-11-25 名單已無『προσωρινώς』，記於 issues",
+    "抽查重抓 gslegal.gov.gr 與 Encyclopedia.com：引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ee-teemant",
+   "bioId": "01a1b4c1-cdef-7674-bd0a-199942871ee8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 12,
+   "changes": [
+    "段1：period 迄點依段內最後事件（1908 回國）由 1913-01-01 改 1909-01-01",
+    "段2與 teemant-prosecutor：補 Järvelaid『Eesti vabariigi esimese prokurörina』支撐「首任」",
+    "段4：補『nelja endise riigivanema märgukiri riigihoidja Konstantin Pätsile』（致函國家守護者帕茨）與『tõelise vabaduse juures saab Rahvuskogul olema autoriteet』（國民會議才有權威）；日期引文改為含『valimiste eel』的完整片段",
+    "制憲會議席位 partyPostAmbiguous（只寫屬農民議會黨團、未寫以黨身分當選）判斷合理，留 positions",
+    "抽查重抓 president.ee：被捕日句一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ee-tonisson",
+   "bioId": "01a1b4c1-ce04-714c-ad7b-1a484f07a3c9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 10,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 12,
+   "changes": [
+    "段3：段內寫到 1938–1940 國會議員，period 迄點由 1934-01-01 改 1941-01-01",
+    "段4：最後事件為 1941 年 7 月（據某些資料被槍決），period 迄點改 1941-08-01（month）",
+    "tonisson-keskerakond-leader：原引文只有黨名與年份、缺謂語，補『juhtis ta Eesti Rahvaerakonda (1919–1932) ja Rahvuslikku Keskerakonda』",
+    "tonisson-riigikogu-1938：引文原只有『1938-1940』，擴為『Riigivolikogu (second chamber of the Riigikogu 1938-1940) 1938-1940』",
+    "外交部長 R6（dates＋regime）與 A／B 起年 conflict gap 合規",
+    "抽查重抓 president.ee：外交部長年份句一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批實為 3 人（提示標題寫 5 人）",
+  "機構網站上非學者撰寫的傳記文章（ELISME）被研究者評 B；比照前批降 C",
+  "metaxas-foreign-minister-acting：1938-11-25 名單列外交部時已無『προσωρινώς』，暫代何時轉正職待查；仍標 t14Ambiguous",
+  "gr-metaxas check_min 未達僅因黨職候選缺迄日（已有「待查證：缺迄日」gap 與 round=retry 搜尋）",
+  "regimeId 一律 null，故四部閣員只能 R6（regime），與前批一致"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

@@ -1,0 +1,3057 @@
+{
+ "batch": "b3-full-v3-batch001",
+ "researchedOn": "2026-11-14",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦／實際掌權者與黨職（含以政黨身分取得的席位）在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。regimeId 因不連庫無法查證一律 null＋organization，R3／R4 類因此以 R6（roleGap 含 regime）留在 positions。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14）：轉錄本原件 A 記 B、合格出處優先。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch001/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "hansard-churchill": {
+   "title": "Mr Winston Churchill (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": "Historic Hansard 1803–2005, 人物頁",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國議會官方 Historic Hansard 人物頁，列議員選區與政府職位起訖（官方頁）"
+  },
+  "govuk-churchill": {
+   "title": "History of Sir Winston Churchill",
+   "authors": [],
+   "publisher": "GOV.UK（英國政府）",
+   "published_text": "Past Prime Ministers",
+   "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國政府官方網站歷任首相頁（官方頁）"
+  },
+  "gov-chancellors": {
+   "title": "Past Chancellors of the Exchequer",
+   "authors": [],
+   "publisher": "GOV.UK（英國政府）",
+   "published_text": "Past Chancellors",
+   "url": "https://www.gov.uk/government/history/past-chancellors",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國政府官方網站歷任財政大臣名單（官方頁）"
+  },
+  "nobel-churchill": {
+   "title": "Winston Churchill – Biographical",
+   "authors": [],
+   "publisher": "Nobel Foundation（NobelPrize.org）",
+   "published_text": "From Nobel Lectures, Literature 1901-1967, ed. Horst Frenz, Elsevier, Amsterdam, 1969（原載 Les Prix Nobel 1953）",
+   "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "諾貝爾基金會機構傳記，有出版書目（Nobel Lectures）；非國家級辭典，記 B"
+  },
+  "oireachtas-dv": {
+   "title": "Eamon de Valera（Members database）",
+   "authors": [],
+   "publisher": "Houses of the Oireachtas（愛爾蘭議會）",
+   "published_text": "TDs & Senators, Membership history",
+   "url": "https://www.oireachtas.ie/en/members/member/Eamon-de-Valera.D.1919-01-21",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "愛爾蘭議會官方議員資料庫頁，逐屆列黨籍、選區與職位（官方頁；年精度）"
+  },
+  "oxford-companion-dv": {
+   "title": "de Valera, Eamon",
+   "authors": [
+    "Michael Hopkinson"
+   ],
+   "publisher": "Oxford University Press（經 Encyclopedia.com 轉載）",
+   "published_text": "The Oxford Companion to British History",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/de-valera-eamon",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Michael Hopkinson）的牛津工具書條目；讀到的是 Encyclopedia.com 轉錄本，原件雖為學術出版社出版仍記 B"
+  },
+  "irish-constitution": {
+   "title": "Constitution of Ireland",
+   "authors": [],
+   "publisher": "Irish Statute Book（愛爾蘭法務總長辦公室）",
+   "published_text": "Bunreacht na hÉireann, 1937",
+   "url": "https://www.irishstatutebook.ie/eli/cons/en/html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "愛爾蘭官方法規資料庫的憲法全文（官方法令原文）"
+  },
+  "ency-ubico": {
+   "title": "Ubico y Castañeda, Jorge (1878–1946)",
+   "authors": [
+    "Kenneth J. Grieb"
+   ],
+   "publisher": "Gale / Charles Scribner's Sons（經 Encyclopedia.com 轉載）",
+   "published_text": "Encyclopedia of Latin American History and Culture",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ubico-y-castaneda-jorge-1878-1946",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者（Kenneth J. Grieb，Ubico 專書作者）的學術百科條目；讀到的是 Encyclopedia.com 轉錄本，記 B"
+  },
+  "grieb-americas1976": {
+   "title": "The Guatemalan Military and the Revolution of 1944",
+   "authors": [
+    "Kenneth J. Grieb"
+   ],
+   "publisher": "Cambridge University Press（The Americas）",
+   "published_text": "The Americas 32, no. 4 (1976): 524–543",
+   "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/47DA0AAFD25C30D0918CF26C966923C2/S0003161500071893a.pdf/div-class-title-the-guatemalan-military-and-the-revolution-of-1944-div.pdf",
+   "archive_url": null,
+   "catalog_id": "doi:10.2307/979829",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名學者的同行評審期刊論文（學術出版社）"
+  },
+  "frus-guat-intro": {
+   "title": "Introduction, Foreign Relations of the United States, 1952–1954, Guatemala",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1952–1954 Guatemala, Introduction",
+   "url": "https://history.state.gov/historicaldocuments/frus1952-54Guat/intro",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "美國國務院史料辦公室編纂的外交文書彙編導言；對瓜地馬拉而言是第三方官方出版，記 B"
+  },
+  "frus1944-d1127": {
+   "title": "Ambassador Long to the Secretary of State（FRUS 1944, vol. VII, doc. 1127）",
+   "authors": [],
+   "publisher": "U.S. Department of State, Office of the Historian",
+   "published_text": "FRUS 1944, The American Republics, vol. VII, doc. 1127",
+   "url": "https://history.state.gov/historicaldocuments/frus1944v07/d1127",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "第三方當時的官方外交紀錄（美國大使報告）經國務院史料辦公室出版，記 B"
+  }
+ },
+ "people": [
+  {
+   "key": "gb-churchill",
+   "bioId": "01a1c86e-c89b-70af-afe0-1ad0f4be2bf8",
+   "name": "Winston Churchill",
+   "nameZh": "溫斯頓·邱吉爾",
+   "recordIds": [
+    "01a1c86e-c9a8-774a-92a1-bcf284ffe54d"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1900-10-01",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "出身與入國會",
+      "en": "Origins and entry into Parliament"
+     },
+     "body": {
+      "zh-Hant": "邱吉爾是倫道夫·邱吉爾勛爵與其美籍妻子珍妮·傑羅姆之子，就讀哈羅公學與桑赫斯特軍校，短暫而多事的軍旅生涯後，於1900年成為保守黨下議院議員。議會紀錄載明他自1900年10月1日起代表奧爾德姆選區。GOV.UK 說他1904年轉投自由黨，此後十年在自由黨政府中步步高升；諾貝爾基金會的傳記稱他在二十世紀前三十年於自由黨與保守黨政府擔任過許多要職。",
+      "en": "Churchill was the son of Lord Randolph Churchill and his American wife Jennie Jerome, and was educated at Harrow and Sandhurst. After a brief but eventful army career he became a Conservative Member of Parliament in 1900; the parliamentary record shows him sitting for Oldham from 1 October 1900. GOV.UK says he defected to the Liberal Party in 1904 and spent the next decade climbing the ranks of the Liberal government, and the Nobel Foundation biography says he held many high posts in Liberal and Conservative governments in the first three decades of the century."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "the son of Lord Randolph Churchill and his American wife Jennie Jerome",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "was educated at Harrow and Sandhurst",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "After a brief but eventful career in the army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "he became a Conservative Member of Parliament in 1900",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Oldham October 1, 1900 - January 12, 1906",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第二段",
+       "quote": "before defecting to the Liberal Party in 1904",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第二段",
+       "quote": "spending the next decade climbing the ranks of the Liberal government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "He held many high posts in Liberal and Conservative governments",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "during the first three decades of the century",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1906-01-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "自由黨政府的職位與海軍部",
+      "en": "Offices in the Liberal governments and the Admiralty"
+     },
+     "body": {
+      "zh-Hant": "Hansard 人物頁依序列出他的政府職位：次官（1906–1908）、商務部大臣（1908–1910）、內政大臣（1910–1911）、海軍大臣（1911–1915）。GOV.UK 稱他任海軍大臣時發生加里波利戰役的慘敗，他因此受到嚴厲批評而辭去該職，並前往西線親自作戰。",
+      "en": "Historic Hansard lists his offices in order: Under-Secretary (1906–1908), President of the Board of Trade (1908–1910), Home Secretary (1910–1911) and First Lord of the Admiralty (1911–1915). GOV.UK says that by the time of the disastrous Gallipoli campaign he was First Lord of the Admiralty; heavily criticised, he resigned from the post and travelled to the Western Front to fight himself."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Under-Secretary 1906 - 1908 President of the Board of Trade 1908 - 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Home Secretary 1910 - 1911 First Lord of the Admiralty 1911 - 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第二段",
+       "quote": "by the time of the disastrous Gallipoli campaign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第二段",
+       "quote": "Heavily criticised for this error, he resigned from this position",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第二段",
+       "quote": "travelled to the Western Front to fight himself",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1924-10-29",
+      "end": null
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "財政大臣與在野年代",
+      "en": "Chancellor and the years out of office"
+     },
+     "body": {
+      "zh-Hant": "GOV.UK 記載他自1924年起出任財政大臣，並以爭議性的決定讓英國重回金本位；議會紀錄載明他自1924年10月29日起代表愛平選區。保守黨1929年大選失利後，他此後約十一年大多不在官位。GOV.UK 又說他獨自堅決反對印度獨立，也警告過對納粹德國的綏靖政策。",
+      "en": "GOV.UK records that he served as Chancellor of the Exchequer from 1924, when he controversially opted for Britain to re-join the Gold Standard; the parliamentary record shows him sitting for Epping from 29 October 1924. After the Tory electoral defeat in 1929 he spent much of the next eleven years out of office. GOV.UK adds that he stood alone in his firm opposition to Indian independence and warned against the appeasement of Nazi Germany."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "He served as Chancellor of the Exchequer from 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "he controversially opted for Britain to re-join the Gold Standard",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Epping October 29, 1924 - July 5, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "Following the Tory electoral defeat in 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "spent much of the next 11 years out of office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "alone in his firm opposition to Indian Independence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第三段",
+       "quote": "his warnings against the Appeasement of Nazi Germany",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-05-10",
+      "end": "1945-07-25"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰時首相",
+      "en": "Wartime Prime Minister"
+     },
+     "body": {
+      "zh-Hant": "GOV.UK 說，張伯倫辭職後，邱吉爾被選為繼任首相，領導一個全黨派聯合政府，並另自創國防大臣一職。Hansard 載明他任首相自1940年5月10日至1945年7月25日；諾貝爾基金會傳記也說他以首相兼國防大臣身分任職到1945年。他在1945年大選中敗給工黨領袖艾德禮而下台。",
+      "en": "GOV.UK says that after Chamberlain's resignation Churchill was chosen to succeed him as Prime Minister of an all-party coalition government, and that he also adopted the self-created position of Minister for Defence. Hansard records his premiership from 10 May 1940 to 25 July 1945, and the Nobel Foundation biography says he was Prime Minister and Minister of Defence until 1945. He was defeated in the 1945 general election by the Labour leader Clement Attlee."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第四段",
+       "quote": "Churchill was chosen to succeed him as Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第四段",
+       "quote": "of an all-party coalition government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第五段",
+       "quote": "who also adopted the self-created position of Minister for Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Prime Minister May 10, 1940 - July 25, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "In May, 1940, he became Prime Minister and Minister of Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "remained in office until 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "導言",
+       "quote": "defeated in the 1945 general election by the Labour leader Clement Attlee",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1945-07-05",
+      "end": "1964-10-15"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後",
+      "en": "After 1945"
+     },
+     "body": {
+      "zh-Hant": "議會紀錄載明他自1945年7月5日起改代表伍德福德選區，直到1964年10月15日；並於1951年10月26日至1955年4月5日再度出任首相。諾貝爾基金會傳記說他1955年辭職，直到1964年大選不再參選為止仍是議員。",
+      "en": "Parliament's record shows him sitting for Woodford from 5 July 1945 until 15 October 1964, and serving a second premiership from 26 October 1951 to 5 April 1955. The Nobel Foundation biography says he resigned in 1955 and remained a Member of Parliament until the general election of 1964, when he did not seek re-election."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Woodford July 5, 1945 - October 15, 1964",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Prime Minister October 26, 1951 - April 5, 1955",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "he remained a Member of Parliament until the general election of 1964",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "resigned in 1955",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "when he did not seek re-election",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "churchill-under-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Under-Secretary",
+      "zh-Hant": "次官（部門未載）",
+      "en": "Under-Secretary"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1906-01-01",
+      "end": "1909-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Under-Secretary 1906 - 1908",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依年精度寫下一年起日；Hansard 未載部門",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "次官（副職）屬 R5；且來源未載部門"
+    },
+    {
+     "key": "churchill-board-of-trade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "President of the Board of Trade",
+      "zh-Hant": "商務部大臣",
+      "en": "President of the Board of Trade"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-01-01",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "President of the Board of Trade 1908 - 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "商務部不屬外交、國防、財政、內政四部，R5"
+    },
+    {
+     "key": "churchill-home-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Home Secretary",
+      "zh-Hant": "內政大臣",
+      "en": "Home Secretary"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1910-01-01",
+      "end": "1912-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Home Secretary 1910 - 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "內政部屬四部、正職；但來源只到年，最短任期無法證明 ≥90 天（1910 年末到 1911 年初）；regimeId 亦未查（名單外不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "churchill-first-lord-1911",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "First Lord of the Admiralty",
+      "zh-Hant": "海軍大臣",
+      "en": "First Lord of the Admiralty"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1911-01-01",
+      "end": "1916-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "First Lord of the Admiralty 1911 - 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "a post which he had earlier held from 1911 to 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "單獨海軍部不屬四部，R5"
+    },
+    {
+     "key": "churchill-chancellor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Chancellor of the Exchequer",
+      "zh-Hant": "財政大臣",
+      "en": "Chancellor of the Exchequer"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1924-01-01",
+      "end": "1930-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "gov-chancellors",
+       "locator": "Past Chancellors 名單",
+       "quote": "Winston Churchill 1924 to 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職、年精度仍可證明 ≥90 天，來源 1 筆 A 已足；僅 regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "churchill-minister-defence",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Minister of Defence",
+      "zh-Hant": "國防大臣",
+      "en": "Minister of Defence"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1940-05-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "In May, 1940, he became Prime Minister and Minister of Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "remained in office until 1945",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依「任職到 1945」年精度寫下一年起日；來源未明說國防大臣職何時卸任，與首相任期並讀",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-churchill",
+       "locator": "Biography, 第五段",
+       "quote": "who also adopted the self-created position of Minister for Defence",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "國防部屬四部、正職；日期來源是 1 筆 B（Nobel），GOV.UK（A）只確認職位存在而無日期，且 regimeId 未查",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "source"
+     ]
+    },
+    {
+     "key": "churchill-mp-manchester-nw",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons of the United Kingdom"
+     },
+     "title": {
+      "orig": "Member of Parliament for Manchester North West",
+      "zh-Hant": "下議院議員（曼徹斯特西北選區）",
+      "en": "Member of Parliament for Manchester North West"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1906-01-12",
+      "end": "1908-04-24"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Manchester North West January 12, 1906 - April 24, 1908",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "churchill-mp-dundee",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons of the United Kingdom"
+     },
+     "title": {
+      "orig": "Member of Parliament for Dundee",
+      "zh-Hant": "下議院議員（鄧迪選區）",
+      "en": "Member of Parliament for Dundee"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1908-05-09",
+      "end": "1922-11-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Dundee May 9, 1908 - November 15, 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "churchill-mp-epping",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons of the United Kingdom"
+     },
+     "title": {
+      "orig": "Member of Parliament for Epping",
+      "zh-Hant": "下議院議員（愛平選區）",
+      "en": "Member of Parliament for Epping"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1924-10-29",
+      "end": "1945-07-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Epping October 29, 1924 - July 5, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "churchill-mp-woodford",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons of the United Kingdom"
+     },
+     "title": {
+      "orig": "Member of Parliament for Woodford",
+      "zh-Hant": "下議院議員（伍德福德選區）",
+      "en": "Member of Parliament for Woodford"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1945-07-05",
+      "end": "1964-10-15"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Constituencies",
+       "quote": "Woodford July 5, 1945 - October 15, 1964",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:churchill-first-lord-1939",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Nobel 傳記只寫「At the outbreak of the Second World War, he was appointed First Lord of the Admiralty」，無日期；Hansard 人物頁未列 1939–1940 職位；Gazette 站內搜尋、Churchill Archive Centre（403）、ODNB（403/500）均未取得日期。迄日同樣只知 1940 年 5 月轉任首相",
+     "candidateCitations": [
+      {
+       "sourceKey": "nobel-churchill",
+       "locator": "Biographical, 首段",
+       "quote": "he was appointed First Lord of the Admiralty",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:secretaryOfState1919",
+     "gapKind": "not_found",
+     "note": "待查證：Hansard 人物頁列「Secretary of State 1919 - 1921」與「Minister 1917 - 1917」，未載部門；未取得可說明部門與日期的 A／B 原文（ODNB、Gazette、Churchill Archive 取不到），故未建職位",
+     "candidateCitations": [
+      {
+       "sourceKey": "hansard-churchill",
+       "locator": "Offices",
+       "quote": "Secretary of State 1919 - 1921",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:officeDayDates",
+     "gapKind": "not_found",
+     "note": "待查證：Hansard、GOV.UK 與 Nobel 的職位任期多只到年；內政大臣、財政大臣、國防大臣的日期級起訖未取得。UK Parliament Commons Library 研究簡報（researchbriefings.files.parliament.uk，Cloudflare 挑戰頁）、Gazette 站內搜尋（無命中）、ODNB（403）均未能讀到，未繞過",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:partyPosts",
+     "gapKind": "not_found",
+     "note": "待查證：A／B 原文未見邱吉爾 1908–1945 黨職（如保守黨職務）明載；未建黨職候選。首相任期（1940-05-10～1945-07-26）已在 5442，不重建",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Historic Hansard 人物頁 Winston Churchill",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill",
+     "result": "found_A",
+     "note": "選區與職位起訖（含 PM 日期）"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "GOV.UK Past Prime Ministers: Winston Churchill",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+     "result": "found_A",
+     "note": "生平概述"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "GOV.UK Past Chancellors",
+     "url": "https://www.gov.uk/government/history/past-chancellors",
+     "result": "found_A",
+     "note": "Churchill 1924 to 1929"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Nobel Prize 1953 Churchill biographical",
+     "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+     "result": "found_B",
+     "note": "機構傳記"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov 搜尋 Churchill, Winston",
+     "url": "https://id.loc.gov/search/?q=Churchill%2C+Winston&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "not_relevant",
+     "note": "搜尋頁需 JS，頁面未列權威紀錄內容"
+    },
+    {
+     "step": 6,
+     "sourceType": "authority",
+     "query": "LoC 權威檔 label 查詢 Churchill, Winston, 1874-1965",
+     "url": "https://id.loc.gov/authorities/names/label/Churchill,%20Winston,%201874-1965",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "LoC authorities/names/n79055628",
+     "url": "https://id.loc.gov/authorities/names/n79055628.html",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "VIAF 搜尋 Churchill, Winston",
+     "url": "https://viaf.org/viaf/search?query=local.names%20all%20%22Churchill%2C%20Winston%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB（display 路徑）Churchill",
+     "url": "https://www.oxforddnb.com/display/10.1093/ref:odnb/9780198614128.001.0001/odnb-9780198614128-e-32413",
+     "result": "no_result",
+     "note": "HTTP 500，空回應"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB（view/article/32413）",
+     "url": "https://www.oxforddnb.com/view/article/32413",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Churchill Archive Centre 館藏頁 chu.cam.ac.uk",
+     "url": "https://www.chu.cam.ac.uk/archives/collections/churchill-papers/",
+     "result": "challenge_page",
+     "note": "Cloudflare Attention Required，未繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "churchillarchive.com 首頁（Bloomsbury／Churchill Archive Centre）",
+     "url": "https://www.churchillarchive.com/",
+     "result": "not_relevant",
+     "note": "只有產品介紹，無傳記與任期"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Winston Churchill",
+     "url": "https://www.britannica.com/biography/Winston-Churchill",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Churchill, Sir Winston Leonard Spencer",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/churchill-sir-winston-leonard-spencer-1874-1965",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 15,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Winston Churchill（People 路徑）",
+     "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/winston-churchill",
+     "result": "not_relevant",
+     "note": "只是 1940 演說節選，無任期資料"
+    },
+    {
+     "step": 16,
+     "sourceType": "treaty_law",
+     "query": "The Gazette 搜尋 Winston Spencer Churchill Prime Minister 1940",
+     "url": "https://www.thegazette.co.uk/London/issue/all-notices/notice?text=%22Winston+Spencer+Churchill%22+Prime+Minister+1940",
+     "result": "no_result",
+     "note": "404 查無此路徑"
+    },
+    {
+     "step": 17,
+     "sourceType": "treaty_law",
+     "query": "The Gazette 全站搜尋 Winston Churchill Prime Minister 1940-05～06",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Winston+Churchill+Prime+Minister&start-publish-date=1940-05-10&end-publish-date=1940-06-30&service=all-notices",
+     "result": "no_result",
+     "note": "頁面可讀但無命中"
+    },
+    {
+     "step": 18,
+     "sourceType": "treaty_law",
+     "query": "The Gazette 搜尋 Churchill 1939-09～12（First Lord）",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Winston+Spencer+Churchill&start-publish-date=1939-09-01&end-publish-date=1939-12-31&service=all-notices",
+     "result": "no_result",
+     "note": "無命中"
+    },
+    {
+     "step": 19,
+     "sourceType": "treaty_law",
+     "query": "The Gazette 搜尋 Churchill Chancellor 1924-11～12",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Churchill+Chancellor+of+the+Exchequer&start-publish-date=1924-11-01&end-publish-date=1924-12-31&service=all-notices",
+     "result": "no_result",
+     "note": "無命中"
+    },
+    {
+     "step": 20,
+     "sourceType": "treaty_law",
+     "query": "The Gazette 搜尋 Churchill Secretary of State for War 1919-01～03",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Churchill+Secretary+of+State+for+War&start-publish-date=1919-01-01&end-publish-date=1919-03-31&service=all-notices",
+     "result": "no_result",
+     "note": "無命中"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Historic Hansard 1940 年發言列表 Churchill",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/1940",
+     "result": "not_relevant",
+     "note": "只是發言列表"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "WebSearch：Winston Churchill Chancellor of the Exchequer appointed 6 November 1924 until 4 June 1929",
+     "url": null,
+     "result": "unrated",
+     "note": "找到 Commons Library 研究簡報（日期級）；曾以 curl 讀取"
+    },
+    {
+     "step": 23,
+     "sourceType": "official",
+     "query": "curl UK Parliament Commons Library 簡報 SN06662（researchbriefings.files.parliament.uk）",
+     "url": "https://researchbriefings.files.parliament.uk/documents/SN06662/SN06662.pdf",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過；故日期級任期未收"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "WebSearch：Winston Churchill Home Secretary 1910 1911 First Lord of the Admiralty 1911 1915 appointed date",
+     "url": null,
+     "result": "unrated",
+     "note": "同樣指向 Commons Library 簡報與 Hansard 年精度"
+    },
+    {
+     "step": 25,
+     "sourceType": "official",
+     "query": "UK Parliament living heritage Churchill 頁",
+     "url": "https://www.parliament.uk/about/living-heritage/transformingsociety/private-lives/relationships/collections/churchill/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "National Archives Churchill 教材頁",
+     "url": "https://www.nationalarchives.gov.uk/education/resources/winston-churchill/",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 27,
+     "sourceType": "official",
+     "query": "National Archives Discovery F256827（Churchill 紀錄創建者）",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F256827",
+     "result": "no_result",
+     "note": "HTTP 202 空回應"
+    }
+   ]
+  },
+  {
+   "key": "ie-de-valera",
+   "bioId": "01a1b4b0-6fbb-7a56-8a6b-9a671ff693cc",
+   "name": "Éamon de Valera",
+   "nameZh": "埃蒙·德·瓦萊拉",
+   "recordIds": [
+    "01a1aa4a-b7d4-76ac-873b-bd90284f99c0",
+    "01a1aa4a-b7d3-7eba-b995-68c1a0d8e6cf"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1917-01-01",
+      "end": "1919-03-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "出身與革命領袖",
+      "en": "Origins and revolutionary leadership"
+     },
+     "body": {
+      "zh-Hant": "據《牛津英國史指南》，德·瓦萊拉生於紐約，在利默里克郡長大，原本是數學教師。他是復活節起義最後倖存的指揮官；1917年初獲釋後，他領導一個廣泛的新芬黨聯盟。1919年2月他從林肯監獄脫逃，並成為愛爾蘭議會（Dáil）的主席。",
+      "en": "According to The Oxford Companion to British History, de Valera was born in New York, reared in Co. Limerick, and was originally a mathematics teacher. He was the last surviving commandant of the Easter Rising; following his release from internment in early 1917 he led a broad-based Sinn Féin coalition. He escaped from Lincoln gaol in February 1919 and became president of the Dáil."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "was born in New York",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "reared in Co. Limerick, and was originally a mathematics teacher",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "the last surviving commandant of the Easter Rising",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "Following release from internment in early 1917",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "he led a broad-based Sinn Fein coalition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "escaped from Lincoln gaol in February 1919, and became president of the Dáil",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1928-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "條約之爭與 Fianna Fáil 的成立",
+      "en": "Treaty split and Fianna Fáil"
+     },
+     "body": {
+      "zh-Hant": "德·瓦萊拉反對英愛條約，提出「對外聯繫」作替代方案，內戰結束後他在共和派中重拾領導，被關押到1924年反而對此有所助益。議會資料顯示他1922至1923年在第三屆議會屬新芬黨，1923至1927年第四屆屬共和黨，1927年第五屆起屬 Fianna Fáil。據該條目，他與新芬黨及愛爾蘭共和軍的議會缺席政策分裂，另組 Fianna Fáil，並於1927年進入議會。",
+      "en": "De Valera opposed the Anglo-Irish treaty and advanced external association as an alternative; he recovered the leadership among republicans after the civil war, helped by being imprisoned until 1924. The Oireachtas record lists him as Sinn Féin in the 3rd Dáil (1922–1923), Republican in the 4th (1923–1927) and Fianna Fáil from the 5th Dáil in 1927. The Companion says he split from Sinn Féin and the IRA and their abstentionist policy and formed Fianna Fáil, entering the Dáil in 1927."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "Opposing the Anglo-Irish treaty",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "he advanced external association as an alternative",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目",
+       "quote": "he recovered the leadership amongst republicans after the conflict",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "aided by being imprisoned until 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "3rd Dáil Period: 1922 - 1923 Party: Sinn Féin",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "4th Dáil Period: 1923 - 1927 Party: Republican",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "5th Dáil Period: 1927 - 1927 Party: Fianna Fáil",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "Splitting from Sinn Fein and the IRA and their Dáil abstentionist policy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "formed Fianna Fail Party, entering the Dáil in 1927",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1932年執政",
+      "en": "In government from 1932"
+     },
+     "body": {
+      "zh-Hant": "據《牛津英國史指南》，1932年選舉獲勝後，他推行修改條約的政策，廢除對英王的效忠宣誓，並停止向英國繳付土地年金。議會資料顯示他在第七屆議會（1932–1933）任行政委員會主席並兼外交部長；外交部長一職歷第八至第十二屆議會，最後記載是第十二屆（1944–1948）。",
+      "en": "The Companion says that after winning the 1932 election he followed a treaty reform policy, abolishing the oath of allegiance to the British crown and ceasing payment of land annuities to Britain. The Oireachtas record shows him as President of the Executive Council and Minister for External Affairs in the 7th Dáil (1932–1933), and as Minister for External Affairs across the 8th to 12th Dáil, the last entry being the 12th (1944–1948)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "After winning the 1932 election",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "he followed a treaty reform policy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "abolishing the oath of allegiance to the British crown",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "ceasing payment of land annuities to Britain",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 7th Dáil",
+       "quote": "President of the Executive Council (1932 - 1933)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 7th Dáil",
+       "quote": "Minister for External Affairs (1932 - 1933)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 8th Dáil",
+       "quote": "Minister for External Affairs (1933 - 1937)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 12th Dáil",
+       "quote": "Taoiseach (1944 - 1948) Minister for External Affairs (1944 - 1948)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Minister for External Affairs (1937 - 1938)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Minister for External Affairs (1938 - 1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Minister for External Affairs (1943 - 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1937-07-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1937年憲法與戰時",
+      "en": "The 1937 Constitution and wartime"
+     },
+     "body": {
+      "zh-Hant": "愛爾蘭憲法於1937年7月1日由人民通過，自1937年12月29日起施行，並把政府首腦稱為 Taoiseach。議會資料顯示他在第九屆議會（1937–1938）任 Taoiseach，此後一直任到第十二屆議會（1944–1948），期間1939至1940年兼任教育部長、1941年兼任地方政府與公共衛生部長。《牛津英國史指南》說1937年憲法體現他社會與文化上的保守，又說他在二戰中奉行得到民意支持的中立政策，儘管英美強烈反對。",
+      "en": "The Constitution was enacted by the people on 1 July 1937 and has been in operation since 29 December 1937; it calls the head of the Government the Taoiseach. The Oireachtas record shows de Valera as Taoiseach in the 9th Dáil (1937–1938) and thereafter through the 12th (1944–1948), also Minister for Education (1939–1940) and for Local Government and Public Health (1941). The Companion says the 1937 constitution epitomized his social and cultural conservatism and that he followed a popular neutrality policy in the Second World War despite intense British and American opposition."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "irish-constitution",
+       "locator": "卷首",
+       "quote": "Enacted by the People 1st July, 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "irish-constitution",
+       "locator": "卷首",
+       "quote": "In operation as from 29th December, 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "irish-constitution",
+       "locator": "Art. 28.5.1°",
+       "quote": "The head of the Government, or Prime Minister, shall be called,",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "irish-constitution",
+       "locator": "Art. 28.5.1°",
+       "quote": "and is in this Constitution referred to as, the Taoiseach.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 9th Dáil",
+       "quote": "Taoiseach (1937 - 1938)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 10th Dáil",
+       "quote": "Minister for Education (1939 - 1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 10th Dáil",
+       "quote": "Minister for Local Government and Public Health (1941 - 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "The constitution of 1937 epitomized his social and cultural conservatism.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "followed popular neutrality policy in the Second World War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "despite intense British and American opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Taoiseach (1938 - 1943)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Taoiseach (1943 - 1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history",
+       "quote": "Taoiseach (1944 - 1948)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "dv-external-affairs",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭政府",
+      "en": "Government of Ireland"
+     },
+     "title": {
+      "orig": "Minister for External Affairs",
+      "zh-Hant": "外交部長",
+      "en": "Minister for External Affairs"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1932-01-01",
+      "end": "1949-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 7th Dáil",
+       "quote": "Minister for External Affairs (1932 - 1933)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 12th Dáil",
+       "quote": "Minister for External Affairs (1944 - 1948)",
+       "quoteLang": "en",
+       "evidenceNote": "第七屆至第十二屆議會逐屆列外交部長；年精度，迄日取 1948 的下一年起日；僅依議會逐屆記載連接，屆間是否中斷未另有來源",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "外交部屬四部、正職、年精度仍可證明 ≥90 天，來源 1 筆 A（議會資料庫）；僅 regimeId 未查（不連庫），R3④ 政權在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "dv-education",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭政府",
+      "en": "Government of Ireland"
+     },
+     "title": {
+      "orig": "Minister for Education",
+      "zh-Hant": "教育部長",
+      "en": "Minister for Education"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 10th Dáil",
+       "quote": "Minister for Education (1939 - 1940)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "教育部不屬四部，R5"
+    },
+    {
+     "key": "dv-local-government",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭政府",
+      "en": "Government of Ireland"
+     },
+     "title": {
+      "orig": "Minister for Local Government and Public Health",
+      "zh-Hant": "地方政府與公共衛生部長",
+      "en": "Minister for Local Government and Public Health"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1941-01-01",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 10th Dáil",
+       "quote": "Minister for Local Government and Public Health (1941 - 1941)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "地方政府與公共衛生部不屬四部，R5"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "dv-td-sinn-fein",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭議會下院（Dáil Éireann）",
+      "en": "Dáil Éireann"
+     },
+     "title": {
+      "orig": "Teachta Dála (Sinn Féin)",
+      "zh-Hant": "愛爾蘭議會議員（新芬黨）",
+      "en": "Teachta Dála (Sinn Féin)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 1st Dáil",
+       "quote": "1st Dáil Period: 1919 - 1921 Party: Sinn Féin",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 2nd Dáil",
+       "quote": "2nd Dáil Period: 1921 - 1922 Party: Sinn Féin",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 3rd Dáil",
+       "quote": "3rd Dáil Period: 1922 - 1923 Party: Sinn Féin",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依年精度寫下一年起日；議會資料庫逐屆列出，第一至第三屆連續",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；第一至第三屆議會，議會資料庫明列黨為 Sinn Féin",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "dv-td-republican",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭議會下院（Dáil Éireann）",
+      "en": "Dáil Éireann"
+     },
+     "title": {
+      "orig": "Teachta Dála (Republican)",
+      "zh-Hant": "愛爾蘭議會議員（共和黨）",
+      "en": "Teachta Dála (Republican)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1928-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 4th Dáil",
+       "quote": "4th Dáil Period: 1923 - 1927 Party: Republican",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；第四屆議會，議會資料庫明列黨為 Republican",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "dv-td-fianna-fail",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "愛爾蘭議會下院（Dáil Éireann）",
+      "en": "Dáil Éireann"
+     },
+     "title": {
+      "orig": "Teachta Dála (Fianna Fáil)",
+      "zh-Hant": "愛爾蘭議會議員（Fianna Fáil）",
+      "en": "Teachta Dála (Fianna Fáil)"
+     },
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1927-01-01",
+      "end": "1949-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 5th Dáil",
+       "quote": "5th Dáil Period: 1927 - 1927 Party: Fianna Fáil",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oireachtas-dv",
+       "locator": "Membership history, 12th Dáil",
+       "quote": "12th Dáil Period: 1944 - 1948 Party: Fianna Fáil",
+       "quoteLang": "en",
+       "evidenceNote": "只寫到 1908–1945 窗涵蓋的第十二屆議會；其後屆期（第十三至十六屆）未寫入",
+       "accessedOn": "2026-11-14",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；第五至第十二屆議會，議會資料庫明列黨為 Fianna Fáil",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:dailPresidency",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；牛津條目稱 1919 年他「became president of the Dáil」（愛爾蘭共和國議會主席，名單外），但未寫起日細節與迄日；Dictionary of Irish Biography（dib.ie，sucuri 挑戰頁）、RIA 轉載（403）、UCD／DCU 檔案（403）均未取得；且此職是否為元首／首腦（regime 不在 5442）待判斷，故未建職位或候選",
+     "candidateCitations": [
+      {
+       "sourceKey": "oxford-companion-dv",
+       "locator": "條目首段",
+       "quote": "escaped from Lincoln gaol in February 1919, and became president of the Dáil",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:dayDates",
+     "gapKind": "not_found",
+     "note": "待查證：議會資料庫（A）所有職位都只到年；日期級起訖（如 1932-03-09、1937-12-29 的首腦任期、外交部長與教育部長任期）未由 A／B 原文取得。首腦任期已在 5442，不重建；Dáil 辯論頁（oireachtas.ie debates，405）、Irish Statute Book 未提供日期級任職紀錄",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:partyLeadership",
+     "gapKind": "not_found",
+     "note": "待查證：牛津條目只說他領導新芬黨聯盟（1917）並「formed Fianna Fail Party」，未寫出黨魁／主席職稱與任期；DIB 取不到，故未建黨職候選（僅建議會席位黨籍候選）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Irish Biography de Valera, Eamon",
+     "url": "https://www.dib.ie/biography/de-valera-eamon-a2594",
+     "result": "challenge_page",
+     "note": "sucuri JS 挑戰頁（HTTP 307），未繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "DIB 站內搜尋 de valera",
+     "url": "https://www.dib.ie/search?search_api_fulltext=de%20valera",
+     "result": "challenge_page",
+     "note": "同上"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Éamon de Valera Dictionary of Irish Biography Taoiseach 1937 President of the Executive Council 1932",
+     "url": null,
+     "result": "unrated",
+     "note": "DIB 全文未出現；只見 RIA 轉載摘錄與 Wikipedia 系（不使用）"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "RIA 轉載 DIB 條目 ria.ie/node/97989",
+     "url": "https://www.ria.ie/node/97989",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Oireachtas 議員頁 Eamon-de-Valera.D.1918-12-14",
+     "url": "https://www.oireachtas.ie/en/members/member/Eamon-de-Valera.D.1918-12-14/",
+     "result": "no_result",
+     "note": "404（網址日期有誤）"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Oireachtas 議員頁 Eamon-de-Valera.D.1919-01-21",
+     "url": "https://www.oireachtas.ie/en/members/member/Eamon-de-Valera.D.1919-01-21",
+     "result": "found_A",
+     "note": "逐屆黨籍、選區與職位（年精度）"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "president.ie Eamon de Valera 頁",
+     "url": "https://president.ie/the-president/eamon-devalera",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "gov.ie 歷任 Taoiseach 頁",
+     "url": "https://www.gov.ie/en/department-of-the-taoiseach/organisation-information/former-taoisigh/",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "Oireachtas 1932-03-09 Dáil 辯論頁",
+     "url": "https://www.oireachtas.ie/en/debates/debate/dail/1932-03-09/",
+     "result": "no_result",
+     "note": "HTTP 405"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "Oireachtas open data API 1932-03-09 Dáil 辯論",
+     "url": "https://api.oireachtas.ie/v1/debates?chamber_type=house&chamber_id=%2Fie%2Foireachtas%2Fhouse%2Fdail%2F6&date_start=1932-03-09&date_end=1932-03-09&limit=5",
+     "result": "no_result",
+     "note": "回傳 0 筆"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "Irish Statute Book 憲法全文",
+     "url": "https://www.irishstatutebook.ie/eli/cons/en/html",
+     "result": "found_A",
+     "note": "生效日與 Taoiseach 定義"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com：de Valera, Eamon（Oxford Companion to British History，Michael Hopkinson）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/de-valera-eamon",
+     "result": "found_B",
+     "note": "具名作者條目；轉錄本記 B"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Eamon de Valera",
+     "url": "https://www.britannica.com/biography/Eamon-de-Valera",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Enciclopedia 條目 De Valera, Eamon",
+     "url": "https://www.treccani.it/enciclopedia/eamon-de-valera/",
+     "result": "unrated",
+     "note": "條目無署名，不採（Q9）"
+    },
+    {
+     "step": 15,
+     "sourceType": "academic",
+     "query": "UCD Archives de Valera 身分說明",
+     "url": "https://www.ucd.ie/archives/collections/depositedcollections/items/collectionname,235108,en.html",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "DCU de Valera 檔案頁",
+     "url": "https://access.dcu.arkivum.net/de-valera-eamon",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "LoC id.loc.gov 搜尋 Valera, Eamon",
+     "url": "https://id.loc.gov/search/?q=Valera%2C+Eamon&q=cs%3Ahttp%3A%2F%2Fid.loc.gov%2Fauthorities%2Fnames",
+     "result": "not_relevant",
+     "note": "搜尋頁需 JS，無權威紀錄內容"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "Documents on Irish Foreign Policy（difp.ie）首頁",
+     "url": "https://www.difp.ie/",
+     "result": "not_relevant",
+     "note": "首頁無人物傳記或任期"
+    }
+   ]
+  },
+  {
+   "key": "gt-ubico",
+   "bioId": "01a1b4af-e4cc-783b-b657-f81348ad4493",
+   "name": "Jorge Ubico y Castañeda",
+   "nameZh": "豪爾赫·烏維科",
+   "recordIds": [
+    "01a1aa4a-7233-7142-b06b-e6aeecf9a1d3",
+    "01a1aa4a-7232-7f2b-a262-39aa8e8c20e9"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1878-11-10",
+      "end": "1907-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍旅",
+      "en": "Origins and military career"
+     },
+     "body": {
+      "zh-Hant": "據《拉丁美洲歷史與文化百科》，烏維科（Jorge Ubico y Castañeda）1878年11月10日生於瓜地馬拉城，在美國的學校受教育，1894年進入瓜地馬拉軍事學院，1897年從軍。他在1906年與薩爾瓦多的邊界戰爭中作戰，二十八歲前已升到上校。",
+      "en": "According to the Encyclopedia of Latin American History and Culture, Jorge Ubico y Castañeda was born on 10 November 1878 in Guatemala City and was educated at schools in the United States before entering the military academy in Guatemala in 1894. He entered the military in 1897, fought in the border war with El Salvador in 1906, and attained the rank of colonel by the age of twenty-eight."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "b. 10 November 1878",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "Born in Guatemala City, Ubico was educated at schools in the United States",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "before entering the military academy in Guatemala (1894)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "He entered the military in 1897",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "fought in the border war with El Salvador in 1906",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "attaining the rank of colonel by the age of twenty-eight",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1922-01-01",
+      "end": "1927-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "地方首長與戰爭部長",
+      "en": "State governor and minister of war"
+     },
+     "body": {
+      "zh-Hant": "條目稱烏維科曾任兩個州的州長，並從1922年起在總統奧雷利亞納（José María Orellana）手下擔任戰爭部長，直到1926年。",
+      "en": "The entry says Ubico served as governor of two states and, beginning in 1922, as minister of war under President José María Orellana until 1926."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "Ubico served as governor of two states",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "beginning in 1922, as minister of war under President José María Orellana",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "José María Orellana until 1926",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-01-01",
+      "end": "1945-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "總統與獨裁統治",
+      "en": "Presidency and personal rule"
+     },
+     "body": {
+      "zh-Hant": "條目說他在經濟大蕭條的動盪年代以一致選舉出任總統（1931–1944）。他主持高度個人化的政權，其進步黨掌控政府與立法機關，並舉行兩次無對手的公民投票使他連任。1934年的流浪法廢除債務奴役，卻改為對國家的勞動義務；他並興建了全國第一批公路與電報網。他以嚴酷手段維持秩序。Grieb 在1976年的論文中稱他的獨裁持續了十三年。",
+      "en": "The entry says he came to power as president by unanimous election in the turbulent years of the Great Depression (1931–1944). He directed a personalista regime; his Progressive Party controlled the government and the legislature and conducted two plebiscites that reelected him without opposition. The Vagrancy Law of 1934 abolished debt peonage and substituted a labor obligation to the state, and he built the nation's first highway and telegraph networks, while his regime used harsh methods to maintain internal order. In a 1976 article Grieb says his dictatorship lasted thirteen years."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目首段",
+       "quote": "president of Guatemala (1931–1944)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第三段",
+       "quote": "turbulent years of the Great Depression",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第三段",
+       "quote": "Coming to power as president by unanimous election",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第五段",
+       "quote": "Ubico directed a personalista regime",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第五段",
+       "quote": "his Progressive Party controlled all aspects of government and the legislature",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第五段",
+       "quote": "conducting two plebiscites that reelected Ubico without opposition",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第七段",
+       "quote": "The Vagrancy Law of 1934 abolished debt peonage",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第七段",
+       "quote": "substituted a labor obligation to the state",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第三段",
+       "quote": "By constructing the nation's first highway and telegraph networks",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第六段",
+       "quote": "Ubico's regime used harsh methods to maintain internal order",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-americas1976",
+       "locator": "p. 524",
+       "quote": "dictatorship for thirteen years",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-12-01",
+      "end": "1944-10-19"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "二戰與下台",
+      "en": "The Second World War and the fall"
+     },
+     "body": {
+      "zh-Hant": "據美國國務院的外交文書導言，1941年12月珍珠港遭襲時，他對日本、義大利與德國宣戰。他宣布要執政到至少1949年，引來中上階層抗議；1944年7月1日他屈服於壓力，把權力交給龐塞（Federico Ponce Vaides）領導的軍政團，而龐塞只撐了三個月。Grieb 的論文說他突然決定辭職，顯然是在6月30日認定再努力已屬徒勞；大使電報則記載國會於7月4日接受他的辭職並宣布龐塞為臨時總統。1944年10月19日初級軍官政變推翻龐塞，並把烏維科送入流亡。",
+      "en": "The Foreign Relations of the United States introduction says that when Pearl Harbor was attacked in December 1941 he declared war on Japan, Italy and Germany. When he announced he would remain in office until at least 1949, the middle and upper classes protested; on 1 July 1944 he yielded to the pressure and surrendered power to a junta led by General Federico Ponce Vaides, whose rule lasted only three months. Grieb's article says he abruptly decided to resign, having apparently concluded on 30 June that further efforts were futile, and Ambassador Long's report records that on 4 July Congress accepted his resignation and declared Ponce Provisional President. On 19 October 1944 junior officers ousted Ponce, sending Ubico into exile."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "When Pearl Harbor was attacked in December 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "he declared war on Japan, Italy, and Germany",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "Ubico announced that he would remain in office until at least 1949",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "On July 1, 1944, Ubico yielded to this pressure",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "surrendered power to a junta led by General Federico Ponce Vaides",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "Ponce lasted only 3 months",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-americas1976",
+       "locator": "p. 530",
+       "quote": "Ubico abruptly decided to resign",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "grieb-americas1976",
+       "locator": "p. 530",
+       "quote": "he apparently reached that conclusion on June 30",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1944-d1127",
+       "locator": "Dispatch, 要點 July 4",
+       "quote": "July 4 . On this date Congress accepted the resignation",
+       "quoteLang": "en",
+       "evidenceNote": "只取日期標題「July 4」；此句的受詞是前任 Presidential Designates，接受烏維科辭職見同一日下一句（審查註）",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1944-d1127",
+       "locator": "Dispatch, 要點 July 4",
+       "quote": "the resignation of President Ubico was accepted",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus1944-d1127",
+       "locator": "Dispatch, 要點 July 4",
+       "quote": "was declared Provisional President",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "On October 19, 1944, a group of junior army officers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "frus-guat-intro",
+       "locator": "Introduction",
+       "quote": "ousting Ponce and sending Ubico into exile",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "ubico-war-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "瓜地馬拉政府",
+      "en": "Government of Guatemala"
+     },
+     "title": {
+      "orig": "ministro de la Guerra (minister of war)",
+      "zh-Hant": "戰爭部長",
+      "en": "Minister of War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-01-01",
+      "end": "1927-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "beginning in 1922, as minister of war under President José María Orellana",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "José María Orellana until 1926",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依年精度寫下一年起日",
+       "accessedOn": "2026-11-14",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "戰爭部屬國防四部、正職、年精度仍可證明 ≥90 天；但只有 1 筆 B（不足 1 筆 A 或 2 筆獨立 B），且 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "source",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:ubico-governor-states",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Grieb 條目只說「governor of two states」，未寫州名與起訖日；DBE（dbe.rah.es，前端程式殼無內容）、Britannica（403）未取得，未建職位",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "position:ubico-war-minister",
+     "gapKind": "not_found",
+     "note": "待查證：戰爭部長任期只有 1 筆 B（Grieb 條目，年精度）；DBE 取不到（頁面只有 JS 程式殼）、Britannica 403；其他檢索摘要（無署名傳記網站）日期與 Grieb 不同，不合格出處不算說法衝突。需 A（DBE 或官方公報）或第二個獨立 B",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-ubico",
+       "locator": "條目第二段",
+       "quote": "José María Orellana until 1926",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:presidencyDates",
+     "gapKind": "not_found",
+     "note": "待查證：總統任期 1931-02-14～1944-07-01 已在 5442，不重建；FRUS 另載 1944-07-04 國會正式接受辭職（與 1944-07-01 交權並存，不算衝突，迄日依繼任者與名簿處理）",
+     "candidateCitations": [
+      {
+       "sourceKey": "frus1944-d1127",
+       "locator": "Dispatch, 要點 July 4",
+       "quote": "the resignation of President Ubico was accepted",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-14"
+    },
+    {
+     "target": "field:partyPosts",
+     "gapKind": "not_found",
+     "note": "待查證：Grieb 條目稱「his Progressive Party」，未明寫烏維科的黨職（黨魁／主席）與任期；未建黨職候選",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-14"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "DBE Real Academia de la Historia Ubico",
+     "url": "https://dbe.rah.es/biografias/ubico",
+     "result": "no_result",
+     "note": "回應只有「You are being redirected」程式殼，無條目文字"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "DBE biografias/12489/jorge-ubico-castaneda",
+     "url": "https://dbe.rah.es/biografias/12489/jorge-ubico-castaneda",
+     "result": "no_result",
+     "note": "同上"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "DBE 站內搜尋 ubico",
+     "url": "https://dbe.rah.es/biografias?search=ubico",
+     "result": "no_result",
+     "note": "同上"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch：Jorge Ubico Castañeda biografía dbe.rah.es",
+     "url": null,
+     "result": "no_result",
+     "note": "未找到 DBE 條目；結果多為不合格網站"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch（限 dbe.rah.es／loc.gov／history.state.gov 等）Ubico y Castañeda, Jorge Guatemala 1878 presidente biografía",
+     "url": null,
+     "result": "unrated",
+     "note": "只找到 history.state.gov 與無署名傳記網站"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Jorge Ubico",
+     "url": "https://www.britannica.com/biography/Jorge-Ubico",
+     "result": "blocked_403",
+     "note": "403"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Encyclopedia.com Ubico y Castañeda, Jorge（Kenneth J. Grieb）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ubico-y-castaneda-jorge-1878-1946",
+     "result": "found_B",
+     "note": "具名作者條目；轉錄本記 B"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Visuotinė lietuvių enciklopedija Jorge Ubico y Castañeda",
+     "url": "https://www.vle.lt/straipsnis/jorge-ubico-y-castaneda/",
+     "result": "unrated",
+     "note": "條目無署名，不採（Q9）"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "history.state.gov FRUS 1952–54 Guatemala Introduction",
+     "url": "https://history.state.gov/historicaldocuments/frus1952-54Guat/intro",
+     "result": "found_B",
+     "note": "第三方官方彙編導言"
+    },
+    {
+     "step": 10,
+     "sourceType": "official",
+     "query": "history.state.gov FRUS 1944 vol. VII doc. 1127",
+     "url": "https://history.state.gov/historicaldocuments/frus1944v07/d1127",
+     "result": "found_B",
+     "note": "大使報告：7 月 4 日辭職與臨時總統"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "history.state.gov FRUS 1944 vol. VII doc. 1134",
+     "url": "https://history.state.gov/historicaldocuments/frus1944v07/d1134",
+     "result": "not_relevant",
+     "note": "已讀，未引用"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Grieb, The Guatemalan Military and the Revolution of 1944（Cambridge Core PDF）",
+     "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/47DA0AAFD25C30D0918CF26C966923C2/S0003161500071893a.pdf/div-class-title-the-guatemalan-military-and-the-revolution-of-1944-div.pdf",
+     "result": "found_B",
+     "note": "期刊論文全文"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "WebSearch：Jorge Ubico resigned July 1 1944 Guatemala Foreign Relations of the United States",
+     "url": null,
+     "result": "found_B",
+     "note": "指向 FRUS 與 Grieb 論文"
+    },
+    {
+     "step": 14,
+     "sourceType": "named_encyclopedia",
+     "query": "WebSearch：Ubico y Castañeda Jorge ministro de la Guerra Guatemala 1922 Orellana jefe político Alta Verapaz",
+     "url": null,
+     "result": "unrated",
+     "note": "日期說法不一，多為不合格或被擋來源（Britannica 403）；不算衝突"
+    }
+   ]
+  }
+ ]
+}

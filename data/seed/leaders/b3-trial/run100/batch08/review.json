@@ -1,0 +1,139 @@
+{
+ "batch": "08",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 5,
+  "editedSentences": 4,
+  "spotRefetched": 6,
+  "searchLogShort": 2
+ },
+ "people": [
+  {
+   "key": "ec-paez-federico",
+   "bioId": "01a1b4c0-c882-7abb-bfbb-035c1632270a",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "重抓 Binns（Procesos 34）PDF：與已存 binns.pdf 位元組相同；P0／P1 8 筆引文逐字相符並人工核對子句（23 de octubre 句主語為 Enríquez Gallo，正文寫法正確）",
+    "RC0 Jefe supremo 1935-09-26–1937-11-01（R0 head_of_state）正確；終點月精度、gap 說明可能已在 5442 任期內，保留",
+    "內容未改"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 11 筆中實際搜尋查詢僅約 6 次（步驟 1、3、5、6、10、11；其餘為抓取指定網址），需 ≥8；來源類型 5 類、西文查詢 ≥2、實抓頁 ≥3 已達",
+    "建議下一步：Biblioteca Nacional del Ecuador Eugenio Espejo 權威檔；datos.bne.es／id.loc.gov「Páez, Federico, 1876-1974」異寫（Páez Chiriboga）；Registro Oficial 1935–1937 任免公告（treaty_law 類）；Asamblea Nacional del Ecuador 歷任元首頁；Persée／OpenEdition（Bulletin de l'IFEA）或 Redalyc 上 1935–1937 厄瓜多政局的具名論文"
+   ]
+  },
+  {
+   "key": "cz-bienert-richard",
+   "bioId": "01a1c3d8-18df-7e9f-a7ed-af4d1719eb8f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 2,
+   "gaps": 3,
+   "searchLogSteps": 8,
+   "changes": [
+    "重抓 BSČZ 條目：HTML 僅動態標記不同，16 筆引文全部逐字出現",
+    "P0「布拉格大學」→ 原文 české univerzitě v Praze，改為「布拉格的捷克大學」（中英）",
+    "P0 period 迄點原 1924-01-01（year），段內最後一事為 1920-05-20 任警察總監 → 改 1920-05-21（day，半開）",
+    "Q8：6 筆 quote 無日期卻標 datePrecision=day（a současně zastupoval…×2、se neúspěšně…、záhy byl…、byl odsouzen…、ke třem rokům vězení）→ 改 null",
+    "POS0 警察局長迄日係依下一職位起日推得，補 evidenceNote 註明推論",
+    "T14 逐筆核：兩筆警察 R5（police）、地方政務副首長 R5、波希米亞地方總監 R5（轄區內地方長官，非保護國最高長官）、保護國內政部長 R6（regime；月精度可證明遠超 90 天、1A）正確；政府首腦 R0、代理國家總統 R0 acting（起迄依同句推論已註明）正確",
+    "研究者把預估「薄」改「中」（1A、3 段 5 職位）合理，不適用薄人物退回；searchLog 8 筆、實搜約 5 次，建議下輪補第二來源（捷克國家圖書館權威檔、Sbírka zákonů 任免）"
+   ]
+  },
+  {
+   "key": "cn-sun-fo",
+   "bioId": "01a1b490-dcf8-7ce0-b8a6-a282d17a381a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 7,
+   "roleCandidates": 3,
+   "gaps": 4,
+   "searchLogSteps": 9,
+   "changes": [
+    "重抓立法院議政博物館小傳 PDF 並 pdftotext：16 筆引文全部逐字出現",
+    "P0 子句「孫科為孫中山之子」無 quote 支撐 → 刪子句",
+    "P1「1925年」只靠「同年…」推得、「1928年起」quote 無年份 → 補原文引文「1925年3月12日孫中山逝世」「1928年北伐成功，中國定都南京，國民政府改組」；POS1 起年同補 1925 引文",
+    "P2「孫科辭職」無 quote → 補原文引文「孫科辭職到廣州參與反蔣運動，痛批蔣介石的獨裁」",
+    "P3 period 迄點原 1974-01-01（year），段內最後一事 1973-09-03 逝世（day）→ 改 1973-09-04（day）",
+    "RC2 引文「12月出任行政院長…」含月份卻 datePrecision=null → 改 month",
+    "T14 逐筆核：中執委、青年部長 R1（Tai 12:12）、1931 行政院長 R0、財政部長 R6（dates＋regime）、鐵道部長 R5（非四部，t14Overlap 有 t14Rule/Reason）、考試院副院長 R5、市長 R5、立法院長 R5（legislator，標題無黨別）、特使 R5 皆正確",
+    "名單旗標 regionUncertain 等：實查為東亞／中華民國國民政府（南京）時期，1940–1945 在任立法院院長"
+   ]
+  },
+  {
+   "key": "ec-alfaro-eloy",
+   "bioId": "01a1b4b8-e9ce-79fb-98ad-7b8a9e583d31",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 13,
+   "changes": [
+    "重抓 Ruiz Navas（Procesos 23）PDF：與已存 proc-alf.pdf 位元組相同；5 筆引文逐字相符",
+    "P0「阿爾法羅將軍／General」：所引 quote 無 general 字樣 → 刪",
+    "P0「自波多維耶霍將請求轉往基多」：quote 未含 Portoviejo，且原文是主教轉呈「從 Portoviejo 來的」請求 → 改為「將一份請求轉呈基多」"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達（薄人物）：searchLog 13 筆中實際搜尋查詢約 5 次（步驟 1、2、5、6、11），需 ≥8；且未查任何權威檔（authority 類 0 筆）；來源類型 5 類、實抓頁 ≥3 已達",
+    "唯一 A／B 來源只涉教會關係，1906–1911 元首任期與生平皆無 A／B 支撐",
+    "建議下一步：id.loc.gov「Alfaro, Eloy, 1842-1912」與 datos.bne.es 權威檔；Biblioteca Nacional del Ecuador 權威檔；Asamblea Nacional／Presidencia 歷任總統頁（換時段重試）；Biblioteca Virtual Miguel de Cervantes 具名論文；Persée／OpenEdition（Bulletin de l'IFEA）、Redalyc／SciELO Ecuador 關於 1906–1912 自由革命的具名論文"
+   ]
+  },
+  {
+   "key": "ru-rakovsky-christian",
+   "bioId": "01a1b4c2-3eda-7fa4-bdfb-023d97b3c464",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 4,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "重抓 HLS 與 IEU：HTML 僅動態標記不同，13 筆引文全部逐字出現",
+    "P0 period 迄點原 1917-01-01，段內最後一事為 1918 入布爾什維克 → 改 1919-01-01（year）",
+    "P1／POS0／POS1：正文與職稱寫「蘇聯」大使但 quote 截掉 USSR → quote 改為原文完整片段「USSR ambassador to Britain (1923–5) and France (1925–7)」",
+    "P2「1927年12月」quote 無日期卻標 month → 該筆改 null，補原文引文「In December 1927, at the 15th congress of the Russian Communist party」",
+    "P2／POS3「蘇聯國內」左翼反對派：quote 改為含 within the USSR 的完整片段",
+    "P2 period 迄點原 1941-09-12（day），但段內只寫 1941 年遭槍決 → 改 1942-01-01（year）",
+    "RC0 中文職稱「（人民委員會主席）」無 quote 支撐 → 刪",
+    "GAP2 原標 conflict，但兩份已抓來源一致、Britannica 未抓 → 改 not_found",
+    "T14：烏克蘭政府首腦 R0、兩任大使 R5、衛生人民委員部科研機構 R5、左翼反對派領袖 partyPostAmbiguous（理由成立）皆正確",
+    "研究者把預估「厚」改「中」；searchLog 9 筆，未以西里爾字母（Раковский／Раковски／Раковський）查詢，違反斯拉夫語人物須原文字查的要求（非薄人物，未退回，建議下輪補）"
+   ]
+  }
+ ],
+ "issues": [
+  "段落 period 迄點仍多處不依段內最後一事（Bienert P0、Sun P3、Rakovsky P0／P2），本批改 4 處",
+  "Q8 再犯：無日期的 quote 標 datePrecision（Bienert 6 筆、Rakovsky 1 筆），有日期的反而漏標（Sun RC2）",
+  "子句無 quote 支撐：親屬關係（孫中山之子）、「同年」指代年份、quote 截掉 USSR／within the USSR、職稱括注（人民委員會主席）、地名（Portoviejo）、軍銜（General）；本批補 5 筆引文、改 5 筆 quote 為完整片段",
+  "薄人物 searchLog 仍未達 ≥8 次實際查詢（Páez、Alfaro 皆退回）：研究者把『抓指定網址』記成查詢步驟，實際搜尋僅 5–6 次；Alfaro 未查權威檔",
+  "conflict 誤用（Rakovsky 死亡日期：兩來源一致仍標 conflict）",
+  "非薄人物也有原文語言查詢不足：Rakovsky 無西里爾字母查詢；Sun 9 筆中 8 筆同為 official 類",
+  "IEU 載 Rakovsky 1915 年 Revolutionary Balkan Social Democratic Labor Federation 中央局成員、1918 年 Supreme Autonomous Collegium 主席，研究者未列為黨職候選／職位（前者是否算黨職待 Tai 裁決）；依規審查不新增事實，留待下輪",
+  "regimeId 全批 null（不連資料庫），Bienert 保護國內政部長、Sun 財政部長停在 R6（regime）；Páez、Bienert、Sun、Rakovsky 的 R0 候選可能已在名單 5442 任期內，recordIds 皆空，需寫庫前人工對照",
+  "Britannica、UASB repositorio、FLACSO、presidencia.gob.ec 皆為挑戰頁／WAF，依規未繞過"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

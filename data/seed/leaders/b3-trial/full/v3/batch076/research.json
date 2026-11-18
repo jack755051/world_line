@@ -1,0 +1,1859 @@
+{
+ "batch": "b3-full-v3-batch076",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式；三人的元首／首腦任期皆已在名單 5442（leader_records）不重建，故 roleCandidates 為空；regimeId 因不連庫一律 null＋organization。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md；T14 R0–R6 兩層互斥。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch076/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "dbl-fred8": {
+   "title": "Frederik 8.（Dansk Biografisk Leksikon）",
+   "authors": [
+    "Helge Larsen",
+    "N. Neergaard",
+    "Povl Eller"
+   ],
+   "publisher": "Lex（lex.dk，Dansk Biografisk Leksikon 第3版）",
+   "published_text": "Dansk Biografisk Leksikon 3. udgave 1979–84；網頁最後修訂 2024-09-12",
+   "url": "https://biografiskleksikon.lex.dk/Frederik_8.",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "丹麥國家級傳記辭典（Dansk Biografisk Leksikon），具名作者"
+  },
+  "lex-fred8": {
+   "title": "Frederik 8.（Lex）",
+   "authors": [
+    "Knud J.V. Jespersen"
+   ],
+   "publisher": "Lex（lex.dk）",
+   "published_text": "Lex 條目；作者為南丹麥大學名譽教授",
+   "url": "https://lex.dk/Frederik_8.",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名學者（Knud J.V. Jespersen，Syddansk Universitet 名譽教授）撰寫的機構百科條目"
+  },
+  "gnd-kyo": {
+   "title": "K'oseivanov, Georgi Ivanov（GND 權威記錄 1053684487，lobid.org 鏡像）",
+   "authors": [],
+   "publisher": "Deutsche Nationalbibliothek（GND），經 lobid.org 提供",
+   "published_text": "GND 權威記錄 JSON",
+   "url": "https://lobid.org/gnd/1053684487",
+   "archive_url": null,
+   "catalog_id": "GND 1053684487",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "人名權威檔（德國國家圖書館 GND）"
+  },
+  "loc-kyo": {
+   "title": "Кьосеиванов, Георги, 1884-1960（LC Name Authority File n2002109839）",
+   "authors": [],
+   "publisher": "Library of Congress（id.loc.gov）",
+   "published_text": "LCNAF 檢索結果頁（直接記錄頁遇 Cloudflare 挑戰，改用站內搜尋頁）",
+   "url": "https://id.loc.gov/search/?q=Kyoseivanov",
+   "archive_url": null,
+   "catalog_id": "LCCN n2002109839",
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "人名權威檔（美國國會圖書館 LCNAF）"
+  },
+  "bnr-kyo": {
+   "title": "Bulgaria becomes one of the fastest developing countries during Georgi Kyoseivanov's administration",
+   "authors": [
+    "Sylvia Nikolova"
+   ],
+   "publisher": "Bulgarian National Radio（Radio Bulgaria）",
+   "published_text": "Radio Bulgaria, History and religion, 2014-01-16",
+   "url": "https://bnr.bg/en/post/100287130/bulgaria-becomes-one-of-the-fastest-developing-countries-during-georgi-kyoseivanov-s-administration",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "審查改評 C（2026-11-17）：國家廣播電台 Radio Bulgaria 記者（Sylvia Nikolova）署名的紀念專文，屬新聞／通俗歷史，非具名學者或學術機構研究；比照 batch012 bbs.bt、batch016 El Peruano 先例。人物生平不收，只放 gap 候選"
+  },
+  "bta-kyo": {
+   "title": "Георги Кьосеиванов - юрист, политик и дипломат（BTA 照片檔案圖說）",
+   "authors": [],
+   "publisher": "Българска телеграфна агенция（БТА）",
+   "published_text": "BTA 照片檔案「ПАМЕТ от фотоархива на БТА」圖說，2024-01-19",
+   "url": "https://www.bta.bg/bg/galleries/archive/275015",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "無署名的檔案圖說（Q9 視為未評等）；僅放 gap 候選"
+  },
+  "ahd-tron": {
+   "title": "Manuel de Jesús Troncoso de la Concha, (Sillón C)",
+   "authors": [],
+   "publisher": "Academia Dominicana de la Historia",
+   "published_text": "學院會員頁（PDF）",
+   "url": "https://academiadominicanahistoria.org.do/wp-content/uploads/2017/07/Troncosodelaconcha.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構（多明尼加歷史學院）官方會員傳記頁；無個人署名，依機構傳記列 B"
+  },
+  "clio-tron": {
+   "title": "Doctor Don Manuel de J. Troncoso de la Concha（訃傳）",
+   "authors": [],
+   "publisher": "Academia Dominicana de la Historia（期刊 Clio）",
+   "published_text": "Clio 第 103 期（1955）頁 61–63",
+   "url": "https://catalogo.academiadominicanahistoria.org.do/opac-tmpl/files/ppcodice/Clio-1955-023-103-061-063.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術機構（多明尼加歷史學院）學報 Clio 的人物訃傳；原文為 OCR 掃描，引文取自 OCR 文字（無重音符）"
+  }
+ },
+ "people": [
+  {
+   "key": "bg-kyoseivanov",
+   "bioId": "01a1b4c1-ce79-7e0f-9923-d994d3d93f9b",
+   "name": "Georgi Kyoseivanov",
+   "nameZh": "格奧爾基·基謝伊瓦諾夫",
+   "recordIds": [
+    "01a1aa4a-5981-713e-a2db-7965f3846b8c",
+    "01a1aa4a-5981-7313-95b3-87f438920e31",
+    "01a1aa4a-5981-74d6-b160-6984b04365d2",
+    "01a1aa4a-59a9-7ee5-bbc8-494bdfb7ad94"
+   ],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1884-01-01",
+      "end": "1961-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "權威檔所載生平",
+      "en": "Life according to name authorities"
+     },
+     "body": {
+      "zh-Hant": "美國國會圖書館的人名權威檔記基謝伊瓦諾夫（Georgi Kyoseivanov）生於1884年、卒於1960年。德國國家圖書館的人名權威檔記他出生於佩什特拉（Peschtera）、卒於瑞士，並註記其身分為首相（Ministerpräsident）。",
+      "en": "The Library of Congress name authority gives Georgi Kyoseivanov's dates as 1884–1960. The German National Library authority record gives Peshtera (Peschtera) as his place of birth and Switzerland as his place of death, and notes him as prime minister (Ministerpräsident)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "loc-kyo",
+       "locator": "LCNAF n2002109839",
+       "quote": "Кьосеиванов, Георги, 1884-1960",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-kyo",
+       "locator": "placeOfBirth",
+       "quote": "Peschtera",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-kyo",
+       "locator": "placeOfDeath",
+       "quote": "Schweiz",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gnd-kyo",
+       "locator": "biographicalOrHistoricalInformation",
+       "quote": "Ministerpräsident",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:bnr-feature",
+     "gapKind": "not_found",
+     "note": "待查證：出身（佩什特拉、父母）、1906年法國法學學位、外交生涯（巴黎、羅馬、伊斯坦堡、瑞士、柏林；1926年駐雅典與布加勒斯特、1933年駐貝爾格勒公使）、1935-11-23～1940-02 首相、1937 年市議會選舉與婦女投票權、第24屆國民議會、《工業法》、1939 年辭職轉任駐瑞士公使、1944-09-09 後遭免職並流亡瑞士。原只出自 BNR 記者署名紀念專文（審查改評 C），需 A／B 來源（政府歷任首相頁、議會、國家級傳記辭典、學術專書）核對後才能寫回段落。",
+     "checkedOn": "2026-11-17",
+     "candidateCitations": [
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "第 1 段",
+       "quote": "He was born in the town of Peshtera in Southern Bulgaria.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "第 1 段",
+       "quote": "Kyoseivanov became a law graduate in France in 1906.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "第 1 段",
+       "quote": "In 1926 he became envoy in Athens and Bucharest and in 1933 in Belgrade.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "第 1 段",
+       "quote": "He became Prime Minister of Bulgaria on November 23, 1935",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "第 1 段",
+       "quote": "remained on this position until February 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "末段",
+       "quote": "At the end of 1939 Kyoseivanov resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "末段",
+       "quote": "was appointed Minister Plenipotentiary in Switzerland.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "末段",
+       "quote": "After September 9, 1944 Kyoseivanov was fired by the new communist government.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bnr-kyo",
+       "locator": "末段",
+       "quote": "He remained in exile in Switzerland and died there in 1960.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "待查證：外交部長（Министър на външните работи и изповеданията）1935-04-21～1935-11-23 與首相兼外長至 1940-02-15；駐雅典、布加勒斯特、貝爾格勒、伯尼公使各任期。A 來源（GND、LCNAF）未寫任何職位起迄；BNR 專文（審查改評 C）與無署名 BTA 圖說（未評等）雖有寫，均不可作出處，故未建 position／roleCandidate；已查 BNR、GND、LCNAF、BTA、Britannica（Cloudflare 擋）、VIAF（403）。首相任期已在名單 5442，不重建。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bta-kyo",
+       "locator": "圖說",
+       "quote": "Министър на външните работи и изповеданията (21 април-23 ноември 1935).",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bta-kyo",
+       "locator": "圖說",
+       "quote": "и изповеданията (23 ноември 1935-15 февруари 1940).",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bta-kyo",
+       "locator": "圖說",
+       "quote": "Извънреден и пълномощен министър на България в Атина (Гърция) (1929-1931).",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "bta-kyo",
+       "locator": "圖說",
+       "quote": "Пълномощен министър на България в Берн (Швейцария) (1940-13 септември 1944).",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "field:birth_date",
+     "gapKind": "not_found",
+     "note": "待查證：確切生日。BNR 專文（審查改評 C）以130週年紀念日推算，BTA 圖說寫1884-01-19（未評等）；A／B 來源只寫出生年1884。",
+     "checkedOn": "2026-11-15",
+     "candidateCitations": [
+      {
+       "sourceKey": "bta-kyo",
+       "locator": "圖說",
+       "quote": "На 19 януари 1884 г. е роден Георги Кьосеиванов",
+       "quoteLang": "bg",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "C",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：審查後僅1段／約110字。BNR 專文經審查改評 C（新聞專文），原第1–5段的 BNR 內容全部移入 gap paragraph:bnr-feature 候選；現只剩 GND、LCNAF 權威檔可證身分、生卒年、出生地、卒地與首相身分。已查 BNR、BTA、GND、LCNAF、Britannica（Cloudflare）、VIAF（403）、Treccani、Deutsche Biographie 檢索（無條目）；searchLog 無加強搜尋（round: retry）。待補國家級傳記辭典或政府／議會官方頁。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Георги Кьосеиванов министър-председател 1935 1940 биография",
+     "url": null,
+     "result": "found_B",
+     "note": "WebSearch；找到 BTA 圖說與 BNR 專文"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Georgi Kyoseivanov prime minister Bulgaria 1935 1940 foreign minister biography",
+     "url": null,
+     "result": "found_B",
+     "note": "WebSearch；結果多為索引性來源（不採）與 BNR"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "BNR / Radio Bulgaria Sylvia Nikolova Kyoseivanov",
+     "url": "https://bnr.bg/en/post/100287130/bulgaria-becomes-one-of-the-fastest-developing-countries-during-georgi-kyoseivanov-s-administration",
+     "result": "unrated",
+     "note": "curl 取得全文；具名作者；審查改評 C（記者署名新聞專文，非學者研究），只放 gap 候選"
+    },
+    {
+     "step": 4,
+     "sourceType": "other",
+     "query": "bta.bg 照片檔案 Георги Кьосеиванов",
+     "url": "https://www.bta.bg/bg/galleries/archive/275015",
+     "result": "unrated",
+     "note": "curl 取得；無署名圖說，Q9 未評等，只放 gap 候選"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Кьосеиванов Георги Държавна агенция Архиви фонд",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch；未找到 Държавна агенция Архиви 的人物頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Kjoseivanov Georgi Deutsche Biographie / Treccani / Oxford",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 無相關條目"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "lobid.org GND Kjoseivanov",
+     "url": "https://lobid.org/gnd/search?q=Kjoseivanov&format=json&size=5",
+     "result": "no_result",
+     "note": "0 筆"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "lobid.org GND Kyoseivanov Georgi",
+     "url": "https://lobid.org/gnd/1053684487.json",
+     "result": "found_A",
+     "note": "GND 1053684487：生卒1884–1960、Ministerpräsident、Peschtera、卒於 Schweiz"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "id.loc.gov Kyoseivanov",
+     "url": "https://id.loc.gov/search/?q=Kyoseivanov",
+     "result": "found_A",
+     "note": "LCNAF n2002109839：Кьосеиванов, Георги, 1884-1960"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "VIAF Kyoseivanov",
+     "url": "https://viaf.org/viaf/search?query=local.names+all+%22Kyoseivanov%22&httpAccept=application/json",
+     "result": "blocked_403",
+     "note": "403，未繞過"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Georgi Kyoseivanov",
+     "url": "https://www.britannica.com/biography/Georgi-Kyoseivanov",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Treccani Kjoseivanov",
+     "url": "https://www.treccani.it/enciclopedia/ricerca/Kjoseivanov/",
+     "result": "no_result",
+     "note": "檢索頁無對應條目"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "Deutsche Biographie Kjoseivanov",
+     "url": "https://www.deutsche-biographie.de/search?name=Kjoseivanov",
+     "result": "no_result",
+     "note": "檢索頁無對應條目"
+    },
+    {
+     "step": 14,
+     "sourceType": "other",
+     "query": "Kyoseivanov 1938 elections National Assembly Boris III university press",
+     "url": null,
+     "result": "no_result",
+     "note": "WebSearch 無學術出版社可抓頁"
+    },
+    {
+     "step": 15,
+     "sourceType": "other",
+     "query": "Кьосеиванов Георги Иванов 1884 Пещера дипломат енциклопедия",
+     "url": "https://www.blgari.eu/ArchivPDF/1505/www/1505-18-20.pdf",
+     "result": "no_result",
+     "note": "curl 回 HTTP 466，放棄；其餘結果為地方網站（未評等）"
+    }
+   ]
+  },
+  {
+   "key": "do-troncoso",
+   "bioId": "01a1b4c1-ce85-7a75-a45a-dccb5bd0b1d3",
+   "name": "Manuel de Jesús Troncoso de la Concha",
+   "nameZh": "曼努埃爾·德赫蘇斯·特龍科索·德拉孔查",
+   "recordIds": [
+    "b4dbb3b2-faa5-420b-a1d2-b6c03497335e",
+    "661c7413-cd63-4478-b1fa-5a9171f095dd"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1878-04-03",
+      "end": "1899-04-14"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與學業",
+      "en": "Birth and education"
+     },
+     "body": {
+      "zh-Hant": "曼努埃爾·德赫蘇斯·特龍科索·德拉孔查1878年4月3日生於聖多明各，父親是赫蘇斯·馬里亞·特龍科索（1855–1924）。1895年11月26日他取得學士（Bachiller）學位，並在授位典禮上代表致謝；其後修習法律，1899年4月14日取得法學學位，當時剛滿21歲。",
+      "en": "Manuel de Jesús Troncoso de la Concha was born in Santo Domingo on 3 April 1878, the son of Jesús María Troncoso (1855–1924). On 26 November 1895 he received the degree of Bachiller and gave the speech of thanks at the ceremony; he then studied law and obtained his licenciatura on 14 April 1899, just after turning twenty-one."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "生卒",
+       "quote": "Nació: Santo Domingo, 3 de abril de 1878.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "don Jesus Maria Troncoso (1855-1924).",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "hasta recibir el 26 de noviembre de 1895 el grado de Bachiller",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "pronuncio el discurso de gracias el joven Troncoso de la Concha",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "estudios de derecho hasta alcanzar la Licenciatura el 14 de abril de 1899.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "cuando acababa de cumplir vain- tiun anos.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1899-11-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "司法與早期公職",
+      "en": "Judicial and early public service"
+     },
+     "body": {
+      "zh-Hant": "1899年11月他受任為聖多明各司法區的預審法官，其後擔任第一審法院院長、共和國檢察總長、土地高等法院院長與司法部長（國務卿）。1914年他進入聖多明各大學任教，講授民法；1916年擔任制憲國民議會成員，並在1917年主持索賠委員會。",
+      "en": "In November 1899 he was appointed examining judge of the Santo Domingo judicial district and later served as president of the Court of First Instance, Attorney General of the Republic, president of the Superior Land Court and Secretary of State for Justice. In 1914 he joined the faculty of the University of Santo Domingo, where he taught civil law; in 1916 he was a member of the Constituent National Assembly, and in 1917 he presided over the Claims Commission."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "En noviem- bre de 1899 fue nombrado Juez de Instruccion del",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "Distrito Judicial de Santo Domingo; luego fue Presi-",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "dente del Tribunal de Primera Instancia, Procurador",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "General de la Republica, presidente del Tribunal Su-",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "perior de Tierras y Secretario de Estado de Jus:icia.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "cuando en 1914 entro a ser parte del cuerpo de catedraticos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "cuerpo de catedraticos de la Universidad de Santo Domingo",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "Durante ese lapso explico Derecho Civil",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "figuro como miembro de la Asamblea Nacional Constituyente de 1916",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "Presidio la Comision de Reclamaciones de 1917",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1938-01-01",
+      "end": "1942-05-18"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "副總統與總統",
+      "en": "Vice-president and president"
+     },
+     "body": {
+      "zh-Hant": "1938年他當選共和國副總統（任期1938–1940）。1940年總統哈辛托·佩納多去世後，他於3月7日接任總統，任職至1942年5月18日，之後把權力交給「人民選出」的特魯希略大元帥（Generalísimo）。",
+      "en": "In 1938 he was elected Vice-President of the Republic (1938–1940). When President Jacinto B. Peynado died in 1940 he took over the presidency on 7 March, holding it until 18 May 1942, when he handed power to Generalísimo Trujillo, described as the people's elected choice."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "ese mismo año fue nombrado vicepresidente de la República (1938-1940).",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "En 1938 fue elegido Vice-Presidente de la Republica",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "Al morir el presidente Jacinto B. Peynado, ocupó la presidencia del país",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "ocupó la presidencia del país desde el 7 de marzo de 1940",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "hasta el 18 de mayo de 1942.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "ascendio a la Primera Magistratura de la Nacion",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "traspasar el poder al elegido del pueblo: ei Generalisimo Trujillo.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-05-18",
+      "end": "1955-05-30"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "參議院議長與學術職務",
+      "en": "Senate presidency and scholarly posts"
+     },
+     "body": {
+      "zh-Hant": "卸任總統後，他出任參議院議長直至去世（歷史學院簡歷寫自1943年起，Clio 訃傳寫自1942年起）。1944年9月他當選多明尼加歷史學院院長，並連任至1955年5月30日去世；他也是多明尼加語言學院的創始成員。作品包括《聖多明各被海地佔領》（1942）。喪禮上遺體移靈參議院宮。",
+      "en": "After leaving the presidency he presided over the Senate until his death (the Academy profile says from 1943, the Clio obituary from 1942). In September 1944 he was elected president of the Academia Dominicana de la Historia, serving by re-election until his death on 30 May 1955; he was also a founding member of the Academia Dominicana de la Lengua. His works include La ocupación de Santo Domingo por Haití (1942). At his funeral the body was taken to the Senate palace."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "Luego ocupó la presidencia del Senado desde 1943 hasta 1955.",
+       "quoteLang": "es",
+       "evidenceNote": "與 Clio 訃傳的起年（1942）不同，見 conflict gap",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "se- nador por el Distrito de Santo Domingo desde 1942",
+       "quoteLang": "es",
+       "evidenceNote": "與歷史學院簡歷的起年（1943）不同，見 conflict gap",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 63 頁",
+       "quote": "a partir del 14 de se- tiembre de 1944",
+       "quoteLang": "es",
+       "evidenceNote": "與歷史學院簡歷的9月4日不同，見 conflict gap",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "Segundo presidente de la Academia: 4 de septiembre de 1944 – 30 de mayo de 1955.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 63 頁",
+       "quote": "Fundador y numerario lo fue tambien de la Aca- demia Dominicana de la Lengua",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "La ocupación de Santo Domingo por Haití (1942)",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "生卒",
+       "quote": "Falleció: Santo Domingo, 30 de mayo de 1955.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "El cadaver fue trasladado al palacio del Se- nado",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "troncoso-vice-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "多明尼加共和國",
+      "en": "Dominican Republic"
+     },
+     "title": {
+      "orig": "Vicepresidente de la República",
+      "zh-Hant": "多明尼加共和國副總統",
+      "en": "Vice-President of the Dominican Republic"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1938-01-01",
+      "end": "1940-03-07"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "ese mismo año fue nombrado vicepresidente de la República (1938-1940).",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "ocupó la presidencia del país desde el 7 de marzo de 1940",
+       "quoteLang": "es",
+       "evidenceNote": "迄日取其接任總統起日，依同一來源推得（推論）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "troncoso-senate-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "多明尼加參議院",
+      "en": "Senate of the Dominican Republic"
+     },
+     "title": {
+      "orig": "Presidente del Senado",
+      "zh-Hant": "參議院議長",
+      "en": "President of the Senate"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1955-05-30"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "Luego ocupó la presidencia del Senado desde 1943 hasta 1955.",
+       "quoteLang": "es",
+       "evidenceNote": "起年依歷史學院簡歷；Clio 訃傳寫自1942年起，見 conflict gap",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 62 頁",
+       "quote": "habiendole correspon- dido el honor de presidir la alta Camara",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 61 頁",
+       "quote": "cuya presidencia ocupaba desde hacia trece anos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "生卒",
+       "quote": "Falleció: Santo Domingo, 30 de mayo de 1955.",
+       "quoteLang": "es",
+       "evidenceNote": "迄日取卒日（兩來源皆寫任至去世）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "troncoso-academy-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "多明尼加歷史學院",
+      "en": "Academia Dominicana de la Historia"
+     },
+     "title": {
+      "orig": "Presidente de la Academia Dominicana de la Historia",
+      "zh-Hant": "多明尼加歷史學院院長",
+      "en": "President of the Dominican Academy of History"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1944-09-04",
+      "end": "1955-05-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ahd-tron",
+       "locator": "簡歷",
+       "quote": "Segundo presidente de la Academia: 4 de septiembre de 1944 – 30 de mayo de 1955.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "clio-tron",
+       "locator": "訃傳第 63 頁",
+       "quote": "hasta el dia de su muerte: 30 de mayo de 1955.",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:troncoso-senate-president",
+     "gapKind": "conflict",
+     "note": "參議院議長起年：歷史學院簡歷寫「desde 1943 hasta 1955」，Clio 1955 訃傳寫「senador ... desde 1942」並稱任議長「durante todo ese lapso」，兩份已抓來源不同；本檔採簡歷的1943（year 精度）。迄日取卒日1955-05-30。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:troncoso-academy-president",
+     "gapKind": "conflict",
+     "note": "歷史學院院長起日：簡歷寫1944年9月4日，Clio 訃傳寫「14 de setiembre de 1944」當選；兩份已抓來源不同，本檔採簡歷的1944-09-04。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "待查證：1938年聖多明各大學校長（簡歷與訃傳只寫 1938 年／任校長，未寫迄日）；內政與警察、戰爭與海軍、司法與公共教育、農工與交通等部長任期（Clio 只列部名，未寫日期）；駐華盛頓特使、1926年里約法學家會議、1928年海地談判（只寫年份、未寫起迄）；各項因缺起迄日未建 position。已查歷史學院簡歷與 Clio 訃傳、biografiasyvidas.com（無署名，未評等，不採；其寫「副總統自1933年起」與歷史學院簡歷的1938不同，不採信）。總統任期（1940-03-07～1942-05-18，head_of_state／head_of_government）已在名單 5442，不重建；簡歷寫任期與5442相符。",
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:effective_power",
+     "gapKind": "not_found",
+     "note": "待查證：特魯希略是否實質掌權。A／B 來源（歷史學院簡歷、Clio 訃傳）未明寫；僅無署名的 biografiasyvidas.com（未評等）寫「Trujillo 仍保有實權」，不採為出處。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Manuel de Jesús Troncoso de la Concha presidente 1940 1942 biografía",
+     "url": null,
+     "result": "found_B",
+     "note": "WebSearch；找到歷史學院簡歷、Clio 訃傳、biografiasyvidas、EcuRed"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "Academia Dominicana de la Historia Troncoso de la Concha (Sillón C)",
+     "url": "https://academiadominicanahistoria.org.do/wp-content/uploads/2017/07/Troncosodelaconcha.pdf",
+     "result": "found_B",
+     "note": "curl 取得 PDF，轉文字"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Clio 1955 No. 103 Troncoso de la Concha 訃傳",
+     "url": "https://catalogo.academiadominicanahistoria.org.do/opac-tmpl/files/ppcodice/Clio-1955-023-103-061-063.pdf",
+     "result": "found_B",
+     "note": "curl 取得 3 頁 PDF（掃描 OCR），pdftotext -raw 轉文字"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "biografiasyvidas.com Manuel de Jesús Troncoso",
+     "url": "https://www.biografiasyvidas.com/biografia/t/troncoso.htm",
+     "result": "unrated",
+     "note": "curl 取得；無署名，未評等，不採"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "EcuRed Manuel de Jesús Troncoso de la Concha",
+     "url": "https://www.ecured.cu/Manuel_de_Jesús_Troncoso_de_la_Concha",
+     "result": "no_result",
+     "note": "HTTP 502，未取得；EcuRed 為開放編輯百科，本就不採"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Manuel de Jesus Troncoso de la Concha",
+     "url": "https://www.britannica.com/biography/Manuel-de-Jesus-Troncoso-de-la-Concha",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，未繞過"
+    }
+   ]
+  },
+  {
+   "key": "dk-frederik-viii",
+   "bioId": "01a1b4c0-c84d-7bde-9dc9-f7aaf1b8bbf7",
+   "name": "Frederik VIII",
+   "nameZh": "腓特烈八世",
+   "recordIds": [
+    "55bbebeb-ffde-406e-9884-8a18539a3d0b"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1843-06-03",
+      "end": "1865-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年軍旅",
+      "en": "Birth and early military years"
+     },
+     "body": {
+      "zh-Hant": "腓特烈八世（Christian Frederik Vilhelm Carl）1843年6月3日生於哥本哈根的黃色宮殿，父母是後來的克里斯蒂安九世與黑森-卡塞爾的路易絲。1860年堅信禮後，他受任為步兵少尉，並在尼堡的步兵營與奈斯特韋德的龍騎兵團繼續軍事訓練；1864年戰爭期間，他隨隊在日德蘭，隸屬哈格曼-林德克龍將軍的幕僚。",
+      "en": "Frederik VIII (Christian Frederik Vilhelm Carl) was born on 3 June 1843 in the Yellow Palace in Copenhagen, the son of the future Christian IX and Louise of Hesse-Kassel. After his confirmation in 1860 he was appointed second lieutenant in the infantry and continued his military training with the 19th infantry battalion at Nyborg and the 4th dragoon regiment at Næstved; during the 1864 war he was attached to General Hegermann-Lindencrone's staff in Jutland."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "條目首句",
+       "quote": "Frederik 8., Christian Frederik Vilhelm Carl, 3.6.1843-14.5.1912, konge.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "出生地",
+       "quote": "Frederik blev født i Det gule palæ, Kbh. (Slotsk.)",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "父母",
+       "quote": "Forældre: senere Christian 9. (1818-1906) og Louise af Hessen-Kassel",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "Efter sin konfirmation 1860 udnævntes han til sekondløjtnant i infanteriet",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "fortsatte sin militære uddannelse ved 19. infanteribataljon i Nyborg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "og ved 4. dragonregiment i Næstved",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "Under krigen 1864 var han attacheret general Cai Hegermann-Lindencrones",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "Hegermann-Lindencrones stab i Jylland",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1863-11-15",
+      "end": "1895-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "王儲時期",
+      "en": "Years as crown prince"
+     },
+     "body": {
+      "zh-Hant": "1863年11月15日父親即位，腓特烈以王儲身分進入國務會議，支持父親讓石勒蘇益格、荷爾斯泰因與勞恩堡與王國維持人合的主張；普魯士攻占阿爾斯後，他認為戰爭已敗，接受了嚴苛的預備和約與最終和約，並在1864年11月12日的國務會議上對和約發言。1869年7月28日他與瑞典-挪威的路易絲在斯德哥爾摩成婚，1891年出任陸軍總監。Lex稱他當了43年王儲，幾乎被排除於影響力之外；他是議會的熱心旁聽者，並在1894年運用有限的影響力推動政治和解。",
+      "en": "When his father acceded on 15 November 1863, Frederik became a member of the Council of State as crown prince and backed his father's attempt to keep Schleswig, Holstein and Lauenburg in personal union with the kingdom; after the Prussian conquest of Als he considered the war lost accepted the harsh preliminaries and the final peace, about which he spoke in the Council of State on 12 November 1864. On 28 July 1869 he married Louise of Sweden-Norway in Stockholm, and in 1891 he became army inspector. Lex says he was crown prince for 43 years, almost wholly cut off from influence; he was a diligent listener in the Rigsdag and in 1894 used his modest influence to promote the political compromise."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "Ved faderens tronbestigelse 15.11.1863 blev Frederik som kronprins medlem af",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "støttede her faderens forsøg på at bevare Slesvig, Holsten og Lauenborg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "Efter preussernes erobring af Als anså Frederik krigen for tabt.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "Han accepterede de hårde fredspræliminarer og den endelige fred",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "om hvilken han i statsrådet 12.11.1864 sagde at",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "家庭",
+       "quote": "Gift 28.7.1869 i Stockholm med Louise af Sverige-Norge",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "早年",
+       "quote": "og blev 1891 hærinspektør",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-fred8",
+       "locator": "導言",
+       "quote": "Som kronprins gennem 43 år var Frederik næsten helt afskåret fra indflydelse",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "Han var en flittig tilhører i rigsdagen",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "den ret ubetydelige indflydelse han havde til at fremme det politiske forlig",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "王儲",
+       "quote": "forlig 1894",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1906-01-29",
+      "end": "1909-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "即位與冰島問題",
+      "en": "Accession and the Icelandic question"
+     },
+     "body": {
+      "zh-Hant": "1906年1月29日父親去世，腓特烈即位為國王，並願意作為立憲君主。他關心冰島的地位：1907年他與議員和工商代表訪問冰島，設立由冰島議會與國會代表組成的委員會；該委員會1908年提出報告，主張冰島成為與丹麥結成實質聯合的獨立國家，但方案在冰島遭否決，令國王大感失望。",
+      "en": "On the death of his father on 29 January 1906 Frederik became king, ready to be a constitutional monarch. He cared about Iceland's position: in 1907 he visited Iceland with Rigsdag members and business representatives and set up a commission of Althing and Rigsdag representatives; its 1908 report proposed that Iceland become an independent country in real union with Denmark, but the proposal was rejected in Iceland, to the king's great disappointment."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Da han ved faderens død 29.1.1906 blev konge",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "kom han med redebon vilje til at være konstitutionel monark",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "Frederik sammen med rigsdagsmænd og erhvervsrepræsentanter besøgte Island 1907",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "nedsatte han en kommission af altings- og rigsdagsrepræsentanter",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "som 1908 afgav betænkning hvorefter Island skulle være et selvstændigt land",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "i realunion med Danmark",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "men til Frederiks store skuffelse blev forslaget forkastet i Island",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1908-07-01",
+      "end": "1912-05-14"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "內閣更迭與逝世",
+      "en": "Cabinet crises and death"
+     },
+     "body": {
+      "zh-Hant": "1908年7至8月，腓特烈與王后路易絲巡遊日德蘭，由首相J.C.克里斯滕森陪同；約一個月後，前司法大臣阿爾貝蒂向警方自首並承認偽造與詐欺，內閣隨之請辭。1909年8月16日他委託霍爾斯泰因-累德堡組閣，同年10月該內閣遭人民院通過激進派不信任議程而辭職；激進派的察勒內閣任期很短，1910年選舉後克勞斯·貝恩森出任首相。1912年春他心臟病發，5月14日在漢堡街頭猝逝。",
+      "en": "In July–August 1908 Frederik and Queen Louise toured Jutland accompanied by the Council President J.C. Christensen; a month later the former justice minister P.A. Alberti gave himself up to the police and confessed to forgery and fraud, and the ministry resigned. On 16 August 1909 Frederik had Holstein-Ledreborg form a government, which resigned in October 1909 after the Folketing adopted a radical motion of no confidence; the Radical Zahle ministry sat only briefly, and after the 1910 election Klaus Berntsen became Council President. In spring 1912 he suffered a heart attack and on 14 May 1912 collapsed and died in the street in Hamburg."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Juli-august 1908 foretog Frederik og dronning Louise en rejse gennem Jylland",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "ledsaget af konseilspræsidenten",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "J.C. Christensen der var konseilspræsident 1905-08",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "men en måned senere meldte den tidligere justitsminister P.A. Alberti",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "sig til politiet og tilstod falsk og bedrageri.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "indgive ministeriets demission hvilket skete.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "kunne Frederik overdrage Holstein-Ledreborg at danne regering 16.8.1909",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Oktober 1909 vedtog folketinget en radikal mistillidsdagsorden",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "demissionerede Holstein-Ledreborg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Det radikale ministerium Zahle sad kun kort tid.",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "Frederik 8.",
+       "quote": "Ved valget 1910 forenedes de tre venstregrupper i partiet venstre",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-17",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Klaus Berntsen, som Frederik værdsatte højt, blev konseilspræsident",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "Foråret 1912 fik han et hjerteanfald",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "sank død om på gaden 14.5.1912",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dbl-fred8",
+       "locator": "國王",
+       "quote": "På hjemturen under et ophold i Hamborg",
+       "quoteLang": "da",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:positions",
+     "gapKind": "not_found",
+     "note": "待查證：陸軍總監（hærinspektør）自1891年起，DBL 只寫「1891 hærinspektør」，未寫迄日，故未建 position；已查 Dansk Biografisk Leksikon、Lex（Den Store Danske）。國王任期（DBL：1906-01-29 起、1912-05-14 止）在名單 5442（head_of_state）記為 1908-01-01～1912-05-14（時間窗起點），不重建。",
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Frederik 8. Dansk Biografisk Leksikon",
+     "url": "https://biografiskleksikon.lex.dk/Frederik_8.",
+     "result": "found_A",
+     "note": "curl 取得全文；三位具名作者"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Frederik 8. lex.dk",
+     "url": "https://lex.dk/Frederik_8.",
+     "result": "found_B",
+     "note": "curl 取得全文；作者 Knud J.V. Jespersen"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "kongehuset.dk Frederik 8.",
+     "url": "https://www.kongehuset.dk/monarkiet-i-danmark/kongerakken/frederik-8",
+     "result": "no_result",
+     "note": "HTTP 404（猜測網址），未取得內容"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Frederick VIII",
+     "url": "https://www.britannica.com/biography/Frederick-VIII",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁（Just a moment），未繞過"
+    }
+   ]
+  }
+ ]
+}

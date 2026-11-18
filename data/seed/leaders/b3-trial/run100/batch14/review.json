@@ -1,0 +1,136 @@
+{
+ "batch": "14",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "run100-v1",
+ "counts": {
+  "returned": 4,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 1,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 15,
+  "editedSentences": 1,
+  "spotRefetched": 5,
+  "searchLogShort": 4
+ },
+ "people": [
+  {
+   "key": "fi-linkomies-edwin",
+   "bioId": "01a1b538-0c28-712e-89dd-fabd7b3c5800",
+   "verdict": "returned",
+   "paragraphs": 2,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 2,
+   "searchLogSteps": 8,
+   "changes": [
+    "重抓 375humanistia.helsinki.fi 比對：生卒、獲釋／赦免句一致",
+    "段 2：原引文只支撐「受審入獄」，補引文支撐「里蒂、林科米斯及其他簽署者」與「對德協議」；原引文 datePrecision=year 但無日期 → 改 null（Q8）",
+    "國會議員 1933–1945：引文明寫他是 1933 年選舉國民聯盟黨得票最多的候選人 → 由 positions（partyPostAmbiguous）移入 roleCandidates（de_facto_leader、originalPositionKind=legislator、t14Rule=R1、Tai 12:47 理由），刪除對應 gap field:eduskunta_party_seat",
+    "黨主席候選：引文無日期卻標 datePrecision=year → 改 null；補「Prime Minister 1943–1944」引文支撐 1943 起年"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：實際查詢僅 2 次 WebSearch（step 1、5），其餘為 curl 抓頁；step 8 權威檔記為『未另行抓取』並非實查；需 ≥8 次查詢",
+    "建議下一個來源：Eduskunta kansanedustajamatrikkeli（eduskunta.fi 議員名錄，確認黨籍席位與黨主席任期）、Kansallisbiografia 以 lobid／kansalliskirjasto 權威檔（finto.fi／id.loc.gov）確認、valtioneuvosto.fi 內閣名錄的靜態版本"
+   ]
+  },
+  {
+   "key": "be-renkin-jules",
+   "bioId": "01a1b538-0c88-7898-94cb-df9b90f15959",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 8,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 5,
+   "changes": [
+    "重抓 tekst.devb.be PDF 比對：生卒、國務大臣句一致",
+    "內政部長兩段任期（段落＋2 職位）原引文「Zaken (1919-’2O en 1931-’32)」未含部名（Zaken 亦可為外交 Buitenlandse Zaken）→ 改為含「Binnen­landse」的逐字引文（原文斷字軟連字號 U+00AD 逐字保留）",
+    "鐵路郵電引文補入 Spoorwegen；首相月份引文原截掉謂語 eerste minister → 改為完整句",
+    "補引文支撐「律師與基督教民主派政治人物」",
+    "內政 1919、內政 1931、財政 1932 三筆 R6：roleGap 補 source（僅 1 份 B，未達 1A 或 2 獨立 B），t14Reason 同步"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：來源類型僅 3 種（named_encyclopedia、authority、other；需 ≥4）、searchLog 僅 5 筆、實際查詢約 1 次（需 ≥8，原文語言荷／法 ≥2）",
+    "建議下一個來源：ODIS（odis.be，比利時中介組織與人物資料庫）、Académie royale de Belgique《Biographie nationale／Nouvelle Biographie Nationale》、比利時眾議院歷屆議員名錄、step 5 未抓的 donum.uliege.be PDF；Volksgezondheid（衛生部長 1931–32）已在 DEVB 原文出現，可以同樣的軟連字號逐字引文建職位"
+   ]
+  },
+  {
+   "key": "be-spaak-paul-henri",
+   "bioId": "01a1b553-6495-7cf9-bdaa-a5a9b6aa7212",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 4,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 6,
+   "changes": [
+    "重抓 arllfb.be 比對：出生日、1938 首相句一致",
+    "郵電交通部長引文無日期卻標 year → 改 null；補「En 1935, Van Zeeland devient premier ministre」支撐 1935 與范澤蘭（段落＋職位）",
+    "外交部長 1936 R6：roleGap 補 source（僅 1 份 B）"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：來源類型僅 3 種（named_encyclopedia、academic、other；需 ≥4）、實際查詢約 2 次（需 ≥8）；預估中、實查僅 1 份 B 即停，屬停得太早",
+    "建議下一個來源：belgiumwwii.be（已抓 wwii-spaak.txt，為 CegeSoma／國家檔案館計畫，需確認作者後評等）、ODIS、比利時眾議院議員名錄、lex.dk 正確條目網址、Fondation Paul-Henri Spaak 官方傳記；需外交部長 1936–1945 確切起訖（官方內閣名錄）"
+   ]
+  },
+  {
+   "key": "cz-kramar-karel",
+   "bioId": "01a1b553-64e0-73aa-8a43-8d3e7fb89fb5",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 6,
+   "roleCandidates": 1,
+   "gaps": 4,
+   "searchLogSteps": 6,
+   "changes": [
+    "重抓 real.mtak.hu Gedeon 章節 PDF 比對：出生日、1919-07-08 倒台句一致",
+    "段 1 中文刪無引文支撐的「波希米亞東北的」「維也納」；補引文「he was elected to the Chamber of Deputies」（原 1891 引文截掉受詞；段落＋職位）",
+    "帝國議會副議長：引文無日期卻標 year → 改 null；含 1897 的完整句 82 字元超過上限無法逐字引 → 職位起日改待查證（null）",
+    "段 2 減刑引文補回主語「The new Emperor Charles I」",
+    "段 3：代表團引文無日期卻標 month → 改 null，補「in January 1919, Kramář, as Prime Minister, left Czechoslovakia」（段落＋職位）；補「as the chairperson of the government of national unity」支撐選為政府首腦；補「during the First Czechoslovak Republic until his death」支撐任議員至去世（段落＋職位）",
+    "帝國議會議員職位加 partyPostAmbiguous：已抓 vlada.gov.cz 頁寫「MP for the Young Czechs」，但該頁未列入 sources、無年份，審查不新增來源"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ad-benlloch-i-vivo",
+   "bioId": "01a1b4ae-0dad-7441-9e57-edcba0a6eb5d",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 5,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 7,
+   "changes": [
+    "重抓 publicacions.iec.cat PDF 比對：烏赫爾主教 1906–1919、1921 樞機句一致",
+    "「Nat a València」「vicari general de Segòvia」無日期卻標 year → 改 null；塞戈維亞職位補「vicari general de Segòvia (1900)」支撐起年",
+    "共同親王引文補回被截的「d’Andorra」（段落＋職位）",
+    "gap field:birth_death_dates 更正：IEC 原文其實有「(València 1864-Madrid 1926)」（無月日），原 note 稱 B 來源未見年份有誤"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：searchLog 7 筆、實際查詢約 1 次（需 ≥8 次，含西／加泰語 ≥2）；預估厚、實查僅 1 份 B 期刊短文",
+    "建議下一個來源：datos.bne.es（BNE 權威檔）、Acta Apostolicae Sedis 1919／1921（vatican.va 官方 PDF，布爾戈斯任命與樞機日期）、Bisbat d’Urgell／Govern d’Andorra 共同親王名錄、西班牙參議院檔案（403，可改查 Congreso／Senado 歷史檔案官方鏡像）"
+   ]
+  }
+ ],
+ "issues": [
+  "最低嘗試普遍未達：薄人物（含實查改判為薄的斯巴克、本略赫）多為 1–2 次 WebSearch 加數次 curl 即停，searchLog 把 curl 抓頁當成查詢；4 人退回",
+  "引文無日期卻填 datePrecision（Q8）仍普遍，本批改 7 筆",
+  "截斷引文：截掉受詞／謂語／主語（Kramář 1891、14 Nov 1918、Charles I；Renkin eerste minister；Benlloch Copríncep d’Andorra），本批補或換 15 筆",
+  "PDF 斷字：DEVB 原文軟連字號（U+00AD）使研究者改引部分字串而漏掉部名（Zaken 無法區分內政／外交）；審查改為含 U+00AD 的逐字引文，建議 verify／提示說明此情況的處理方式",
+  "R6 roleGap 漏寫 source：單一 B 來源的四部閣員都應含 source",
+  "以政黨身分取得的席位：Linkomies「聯盟黨候選人」被留在 positions 標 ambiguous，審查已移入；Kramář 的「MP for the Young Czechs」出自未列入 sources 的官網頁，待下一輪",
+  "gap note 與原文不符：Benlloch 稱 B 來源無生卒年，實際 IEC 摘要有 1864／1926"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

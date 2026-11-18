@@ -1,0 +1,92 @@
+{
+ "batch": "056",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 3,
+  "deletedParagraphs": 3,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 26,
+  "addedCitations": 6,
+  "editedSentences": 5,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "yu-petar-ii",
+   "bioId": "01a1b4b5-7239-7103-ae62-72334d324490",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 4,
+   "searchLogSteps": 8,
+   "changes": [
+    "來源 he-petar2（Hrvatska enciklopedija）降為未評等：條目無個人署名（重抓確認），依 Q9 與 source-rules X『無署名內容』不可作段落出處",
+    "原4段刪3段、改寫1段：只留 GND（A）支撐的國王身分、1923-09-06 生於 Belgrad、父 Alexander I、1970-11-03 卒；刪『遇刺身亡』（原文只寫 nakon smrti oca，無遇刺）",
+    "原 HE 引文24筆移到新 gap paragraph:he-unrated 的 candidateCitations；deathPlace 由 conflict 改 not_found（HE 未評等，不構成兩合格來源衝突，GND 寫 Denver）",
+    "抽查重抓 enciklopedija.hr 條目與 lobid GND，引文一致"
+   ],
+   "returnedReasons": [
+    "最低標準未達：刪除未評等來源後僅1段、59字（需≥3段／≥300字），無『篇幅不足：』gap，searchLog 無 round=retry 加強搜尋",
+    "唯一敘事來源 Hrvatska enciklopedija 為無署名條目（Q9 未評等）；searchLog 僅8步且第8步未執行",
+    "建議下一步：Hrvatski biografski leksikon（hbl.lzmk.hr，具名條目）、Srpski biografski rečnik（Matica srpska）、Arhiv Jugoslavije（arhivyu.gov.rs）、Službene novine Kraljevine Jugoslavije、LoC／BnF 權威檔、Encyclopedia.com 具名條目（以 Peter II Karadjordjevic／Petar II Karađorđević 原文查）"
+   ]
+  },
+  {
+   "key": "lu-reuter",
+   "bioId": "01a1b4b5-7240-7889-9d37-09a32c3f7e61",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 5,
+   "roleCandidates": 1,
+   "gaps": 4,
+   "searchLogSteps": 17,
+   "changes": [
+    "段2：『四個主要政黨的代表組成聯合內閣』補引文 un gouvernement de coalition qui comporte／des représentants des quatre principaux partis（取代截掉受詞的舊引文）",
+    "段2：『統一兩家鐵路網』補引文 une convention qui vise l’unification des réseaux",
+    "兩筆缺迄日 gap 的加強重跑說明誤混入巴拿馬來源，改為本人實際查過的來源；gap 目標 field:partyPostsBefore1908 改 field:droitePartyRole（1914 非 1908 前）",
+    "核對 R6（外交、內政總局長，roleGap=regime）、R1 黨主席、R5 議員／議長；內政迄日 1921-04-15 為政府組成表同條明寫『à partir du 15 avril 1921』，保留",
+    "抽查重抓官方 PDF（sha1 與原檔相同）與 lobid GND，引文一致",
+    "check_min 未達僅因議員、天主教人民協會主席缺迄日（已有待查證 gap 與 round=retry 紀錄），篇幅達標，沿用 batch051／061 前例不退回"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "pa-juan-d-arosemena",
+   "bioId": "01a1b4b5-7254-7d57-9973-fa50fe68b930",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 19,
+   "changes": [
+    "段2：刪後設句『來源把年份標在該屆政府而非他本人的任期』（非史實、湊字數）",
+    "段3：刪『該黨由他的弟弟阿爾努爾福協助組成』：原文 his 指涉不明（Arnulfo Arias 一般為 Harmodio 之弟），移到 gap field:nrpOrganizer 候選",
+    "兩筆缺迄日 gap 的加強重跑說明誤混入盧森堡來源，改為本人實際查過的來源",
+    "抽查重抓 Encyclopedia.com 條目，引文一致",
+    "check_min 未達僅因首席法官、科隆省長缺迄日（已有待查證 gap 與 round=retry 紀錄），篇幅307字達標，不退回"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "本批名單實為3人（提示標題寫5人）",
+  "研究者把無署名的 Hrvatska enciklopedija 評 A；依 Q9 與先前批次（024、036 研究者自評未評等）降為未評等，彼得二世因此退回",
+  "兩位薄人物 gap 的『加強重跑』說明是跨人複製的同一段文字（盧森堡與巴拿馬來源混列），已逐人改正",
+  "WebSearch 額度用盡；羅伊特、阿羅塞梅納任期缺迄日只有 gap，check_min 判未達"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 78
+ }
+}

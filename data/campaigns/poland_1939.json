@@ -1,0 +1,982 @@
+{
+ "schema": "wl-campaign/0.1-proposal",
+ "schema_note": "ARCHITECTURE.md D13 未決；主管 2026-11-04 核准沿用此格式，日後轉換；end_date exclusive",
+ "milestone": "戰役模式第一批",
+ "module": "campaigns/poland",
+ "campaign_key": "poland_1939",
+ "name_zh": "閃擊波蘭（波蘭戰役）",
+ "name_en": "Invasion of Poland 1939",
+ "start_date": "1939-09-01",
+ "end_date": "1939-10-07",
+ "end_date_inclusive": "1939-10-06",
+ "battle_scale": "short",
+ "belligerents": {
+  "allied": [
+   "波蘭"
+  ],
+  "axis": [
+   "德國",
+   "斯洛伐克（待查證）"
+  ],
+  "soviet": [
+   "蘇聯（1939-09-17 起）"
+  ]
+ },
+ "date_sources": [
+  {
+   "type": "official_history",
+   "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+   "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+   "quote": "1 Sep — Wehrmacht crosses Polish frontier"
+  },
+  {
+   "type": "official_history",
+   "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+   "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+   "quote": "the Kock force surrendered on 6 October"
+  }
+ ],
+ "phases": [
+  {
+   "phase_key": "poland_1939_p1",
+   "seq": 1,
+   "name_zh": "進攻與突破",
+   "start_date": "1939-09-01",
+   "end_date": "1939-09-07",
+   "dates_verified": true,
+   "date_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "1 Sep — Wehrmacht crosses Polish frontier"
+    },
+    {
+     "type": "official_history",
+     "citation": "Kennedy, DA Pam 20-255 (1956), Contents",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/",
+     "quote": "Chapter 6. Attack and Breakthrough ... Army Group South, 1-6 September"
+    }
+   ],
+   "summary_zh": "德軍9月1日越境，北方集團軍群3日切斷波蘭走廊，南方集團軍群渡過瓦爾塔河並攻佔琴斯托霍瓦。",
+   "summary_verified": true,
+   "summary_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "3 Sep — Army Group North cuts the Corridor and Army Group South crosses the Wartha."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "Czestochowa was taken on the morning of 3 September"
+    }
+   ],
+   "front_lines": [],
+   "front_lines_note": "Kennedy 未給出本階段具體戰線走向，待查證",
+   "attack_arrows": [
+    {
+     "from": "Mława",
+     "to": "Warszawa",
+     "from_lonlat": [
+      20.3832,
+      53.1116
+     ],
+     "to_lonlat": [
+      21.0067,
+      52.232
+     ],
+     "unit": "德軍第3軍團（I Corps、Corps Wodrig）",
+     "verified": true,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "Third Army debouched from East Prussia in a drive south on Warsaw with its I Corps and Corps Wodrig in line"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2716225",
+       "url": "https://www.openstreetmap.org/relation/2716225"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/336075",
+       "url": "https://www.openstreetmap.org/relation/336075"
+      }
+     ],
+     "note": "起點取 Mława（首戰地）；終點為目標"
+    }
+   ],
+   "strongpoints": [
+    {
+     "name": "Westerplatte",
+     "lonlat": [
+      18.67,
+      54.4093
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, way/1334328771",
+      "url": "https://www.openstreetmap.org/way/1334328771"
+     },
+     "control_changes": [
+      {
+       "date": null,
+       "controller_after": "axis",
+       "verified": false,
+       "sources": [],
+       "note": "投降日期 Kennedy 未載，待查證"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Częstochowa",
+     "lonlat": [
+      19.1132,
+      50.812
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2132438",
+      "url": "https://www.openstreetmap.org/relation/2132438"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-03",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "Czestochowa was taken on the morning of 3 September"
+        }
+       ]
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Grudziądz",
+     "lonlat": [
+      18.7619,
+      53.4725
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2597486",
+      "url": "https://www.openstreetmap.org/relation/2597486"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-04",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "Third Army reported its XXI Corps in firm control of Grudziadz on 4 September."
+        }
+       ],
+       "note": "『firm control』之報告日"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Mława",
+     "lonlat": [
+      20.3832,
+      53.1116
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2716225",
+      "url": "https://www.openstreetmap.org/relation/2716225"
+     },
+     "control_changes": [
+      {
+       "date": null,
+       "controller_after": "axis",
+       "verified": false,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "broke into the Mlawa defenses and forced the stubborn defenders to withdraw"
+        }
+       ],
+       "note": "波軍撤出日期未明（約9月3日），待查證"
+      }
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "phase_key": "poland_1939_p2",
+   "seq": 2,
+   "name_zh": "殲滅波軍主力（布祖拉／拉多姆）",
+   "start_date": "1939-09-07",
+   "end_date": "1939-09-17",
+   "dates_verified": true,
+   "date_sources": [
+    {
+     "type": "official_history",
+     "citation": "Kennedy, DA Pam 20-255 (1956), Contents",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/",
+     "quote": "7. The Destruction of the Polish Army ... Army Group South, 7-17 September"
+    }
+   ],
+   "summary_zh": "德軍於拉多姆殲滅波軍一部，並將西部波軍殘部圍困於庫特諾與華沙之間，北翼第19軍渡納雷夫河直趨布列斯特。",
+   "summary_verified": true,
+   "summary_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "11 Sep — Major Polish force destroyed at Radom."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "The remnants of the Polish armies in the west were all but encircled about Kutno and in the area between that city and Warsaw."
+    }
+   ],
+   "front_lines": [
+    {
+     "side": "german_planned_envelopment_line",
+     "vertices": [
+      "Brześć",
+      "Lwów"
+     ],
+     "polyline_lonlat": [
+      [
+       23.6852,
+       52.0938
+      ],
+      [
+       24.0316,
+       49.842
+      ]
+     ],
+     "precision": "approx",
+     "geometry_note": "德軍規劃之包圍線（非實際接觸線）；僅兩端點，Bug 河走向未描繪",
+     "verified": true,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "A natural line already existed, from Brzesc down the Bug River to Lwow, thence to the west, and south along the San River to the Polish frontier."
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/72615",
+       "url": "https://www.openstreetmap.org/relation/72615"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2032280",
+       "url": "https://www.openstreetmap.org/relation/2032280"
+      }
+     ]
+    }
+   ],
+   "attack_arrows": [
+    {
+     "from": "Wizna",
+     "to": "Brześć",
+     "from_lonlat": [
+      22.3841,
+      53.1944
+     ],
+     "to_lonlat": [
+      23.6852,
+      52.0938
+     ],
+     "unit": "德軍第19軍（第10裝甲師等）",
+     "verified": true,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "The XIX Corps' 10th Panzer Division crossed the Narew at Wizna ... On 14 September the 10th Panzer Division reported that its forward elements had reached Brzesc."
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/7087134",
+       "url": "https://www.openstreetmap.org/relation/7087134"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/72615",
+       "url": "https://www.openstreetmap.org/relation/72615"
+      }
+     ]
+    },
+    {
+     "from": "Częstochowa",
+     "to": "Radom",
+     "from_lonlat": [
+      19.1132,
+      50.812
+     ],
+     "to_lonlat": [
+      21.1542,
+      51.4023
+     ],
+     "unit": "德軍第10軍團",
+     "verified": true,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "Tenth Army was ordered to envelope the force at Radom from north and south"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2132438",
+       "url": "https://www.openstreetmap.org/relation/2132438"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2420076",
+       "url": "https://www.openstreetmap.org/relation/2420076"
+      }
+     ]
+    },
+    {
+     "from": "Kraków",
+     "to": "Lwów",
+     "from_lonlat": [
+      19.9972,
+      50.0469
+     ],
+     "to_lonlat": [
+      24.0316,
+      49.842
+     ],
+     "unit": "德軍第14軍團 XVIII Corps",
+     "verified": false,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "Lwow was completely encircled by XVIII Corps units by 14 September."
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2768921",
+       "url": "https://www.openstreetmap.org/relation/2768921"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2032280",
+       "url": "https://www.openstreetmap.org/relation/2032280"
+      }
+     ],
+     "note": "終點已核實；起點 Kraków 為推定"
+    }
+   ],
+   "strongpoints": [
+    {
+     "name": "Gdynia",
+     "lonlat": [
+      18.5403,
+      54.5165
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2723260",
+      "url": "https://www.openstreetmap.org/relation/2723260"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-14",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "on 14 September Gdynia was taken"
+        }
+       ]
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Radom",
+     "lonlat": [
+      21.1542,
+      51.4023
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2420076",
+      "url": "https://www.openstreetmap.org/relation/2420076"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-11",
+       "controller_after": "axis",
+       "verified": false,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "11 Sep — Major Polish force destroyed at Radom."
+        }
+       ],
+       "note": "『波軍被殲』≠城鎮控制變化，待查證"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Lwów",
+     "lonlat": [
+      24.0316,
+      49.842
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2032280",
+      "url": "https://www.openstreetmap.org/relation/2032280"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-14",
+       "controller_after": "contested",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "Lwow was completely encircled by XVIII Corps units by 14 September."
+        }
+       ]
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Puck",
+     "lonlat": [
+      18.4326,
+      54.7308
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2550288",
+      "url": "https://www.openstreetmap.org/relation/2550288"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-09",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "Corps Kaupisch made another important gain on 9 September when a frontier guard regiment captured the port of Puck"
+        }
+       ]
+      }
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "phase_key": "poland_1939_p3",
+   "seq": 3,
+   "name_zh": "蘇聯入侵與華沙投降",
+   "start_date": "1939-09-17",
+   "end_date": "1939-09-28",
+   "dates_verified": true,
+   "date_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "17 Sep — Red Army moves into eastern Poland."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "27 Sep — Surrender of Warsaw."
+    }
+   ],
+   "summary_zh": "9月17日紅軍進入波蘭東部，德軍止步於布格河—布列斯特—比亞韋斯托克一線並於22日將布列斯特移交紅軍，華沙於27日投降。",
+   "summary_verified": true,
+   "summary_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "directed to remain west of the line along the Bug River-Brzesc-Bialystok."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "The XIX Corps turned Brzesc over to the Red Army on 22 September"
+    }
+   ],
+   "front_lines": [
+    {
+     "side": "german_halt_line_17sep",
+     "vertices": [
+      "Białystok",
+      "Brześć"
+     ],
+     "polyline_lonlat": [
+      [
+       23.1592,
+       53.1324
+      ],
+      [
+       23.6852,
+       52.0938
+      ]
+     ],
+     "precision": "approx",
+     "geometry_note": "僅北段兩端點；Bug 河南段未描繪",
+     "verified": true,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "Army Group North was informed of the Red Army's movement into eastern Poland by OKH early on 17 September, and was directed to remain west of the line along the Bug River-Brzesc-Bialystok."
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/1429268",
+       "url": "https://www.openstreetmap.org/relation/1429268"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/72615",
+       "url": "https://www.openstreetmap.org/relation/72615"
+      }
+     ]
+    },
+    {
+     "side": "german_soviet_demarcation_20sep",
+     "vertices": [
+      "Ostrołęka",
+      "Pułtusk",
+      "Modlin",
+      "Warszawa",
+      "Dęblin",
+      "Sandomierz",
+      "Przemyśl"
+     ],
+     "polyline_lonlat": [
+      [
+       21.5669,
+       53.0843
+      ],
+      [
+       21.084,
+       52.7051
+      ],
+      [
+       20.6749,
+       52.4397
+      ],
+      [
+       21.0067,
+       52.232
+      ],
+      [
+       21.8562,
+       51.5672
+      ],
+      [
+       21.7495,
+       50.6793
+      ],
+      [
+       22.7885,
+       49.7835
+      ]
+     ],
+     "precision": "approx",
+     "geometry_note": "出處只列河名；頂點城鎮為沿河推定，未核實；自 9/20 起適用",
+     "verified": false,
+     "sources": [
+      {
+       "type": "official_history",
+       "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+       "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+       "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+       "quote": "Hitler's order to withdraw to the demarcation line of the Narew-Vistula-San Rivers was communicated to the army groups on 20 September"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2024340",
+       "url": "https://www.openstreetmap.org/relation/2024340"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2995323",
+       "url": "https://www.openstreetmap.org/relation/2995323"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, node/2147675788",
+       "url": "https://www.openstreetmap.org/node/2147675788"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/336075",
+       "url": "https://www.openstreetmap.org/relation/336075"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2979818",
+       "url": "https://www.openstreetmap.org/relation/2979818"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/2966766",
+       "url": "https://www.openstreetmap.org/relation/2966766"
+      },
+      {
+       "type": "gazetteer",
+       "citation": "OpenStreetMap Nominatim, relation/1748162",
+       "url": "https://www.openstreetmap.org/relation/1748162"
+      }
+     ]
+    }
+   ],
+   "attack_arrows": [],
+   "attack_arrows_note": "紅軍進軍路線與番號 Kennedy 未載，未建箭頭，待查證",
+   "strongpoints": [
+    {
+     "name": "Brześć",
+     "lonlat": [
+      23.6852,
+      52.0938
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/72615",
+      "url": "https://www.openstreetmap.org/relation/72615"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-17",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "17 Sep — ... The German XIX Corps captures Brzesc."
+        }
+       ]
+      },
+      {
+       "date": "1939-09-22",
+       "controller_after": "soviet",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "The XIX Corps turned Brzesc over to the Red Army on 22 September in a formal ceremony"
+        }
+       ]
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Lwów",
+     "lonlat": [
+      24.0316,
+      49.842
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2032280",
+      "url": "https://www.openstreetmap.org/relation/2032280"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-21",
+       "controller_after": "待查證",
+       "verified": false,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "21 Sep — Surrender of Lwow."
+        }
+       ],
+       "note": "出處未載向何方投降，控制方待查證"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Kutno",
+     "lonlat": [
+      19.357,
+      52.2318
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/2929612",
+      "url": "https://www.openstreetmap.org/relation/2929612"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-17",
+       "controller_after": "axis",
+       "verified": false,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "17 Sep — ... Major Polish force destroyed at Kutno."
+        }
+       ],
+       "note": "『波軍被殲』≠城鎮控制變化"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Warszawa",
+     "lonlat": [
+      21.0067,
+      52.232
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/336075",
+      "url": "https://www.openstreetmap.org/relation/336075"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-27",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "27 Sep — Surrender of Warsaw."
+        }
+       ]
+      }
+     ],
+     "verified": true
+    }
+   ]
+  },
+  {
+   "phase_key": "poland_1939_p4",
+   "seq": 4,
+   "name_zh": "最後抵抗：莫德林、海爾、科克",
+   "start_date": "1939-09-28",
+   "end_date": "1939-10-07",
+   "dates_verified": true,
+   "date_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Chronology",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-Chron.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "29 Sep — Surrender of Modlin."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "the Kock force surrendered on 6 October"
+    }
+   ],
+   "summary_zh": "莫德林於9月29日投降，海爾半島守軍10月1日請求談判，波軍最後一支主力於10月4至6日在科克作戰後投降。",
+   "summary_verified": true,
+   "summary_sources": [
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "An armistice was arranged at 0730 on 28 September and the formal surrender to Third Army's II Corps took place the following day."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "On 1 October Rear Admiral J. Unrug, commander at Hela, requested a surrender parley."
+    },
+    {
+     "type": "official_history",
+     "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+     "quote": "The last organized stand by the Polish Army was made at Kock, where heavy fighting raged from 4 to 6 October."
+    }
+   ],
+   "front_lines": [],
+   "front_lines_note": "10月1日分界線再度變更（Kennedy p.118 文字被圖版截斷），新線走向待查證",
+   "attack_arrows": [],
+   "strongpoints": [
+    {
+     "name": "Modlin",
+     "lonlat": [
+      20.6749,
+      52.4397
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, node/2147675788",
+      "url": "https://www.openstreetmap.org/node/2147675788"
+     },
+     "control_changes": [
+      {
+       "date": "1939-09-29",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "German troops entered the fortress at noon."
+        }
+       ],
+       "note": "28日07:30停火，29日正式投降"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Hel",
+     "lonlat": [
+      18.8027,
+      54.6066
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/1555429",
+      "url": "https://www.openstreetmap.org/relation/1555429"
+     },
+     "control_changes": [
+      {
+       "date": null,
+       "controller_after": "axis",
+       "verified": false,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "On 1 October Rear Admiral J. Unrug, commander at Hela, requested a surrender parley."
+        }
+       ],
+       "note": "正式投降日期待查證，不推定"
+      }
+     ],
+     "verified": true
+    },
+    {
+     "name": "Kock",
+     "lonlat": [
+      22.4478,
+      51.6384
+     ],
+     "coord_source": {
+      "type": "gazetteer",
+      "citation": "OpenStreetMap Nominatim, relation/3128125",
+      "url": "https://www.openstreetmap.org/relation/3128125"
+     },
+     "control_changes": [
+      {
+       "date": "1939-10-06",
+       "controller_after": "axis",
+       "verified": true,
+       "sources": [
+        {
+         "type": "official_history",
+         "citation": "Robert M. Kennedy, The German Campaign in Poland (1939), DA Pamphlet 20-255 (Department of the Army, 1956), Part Three",
+         "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+         "alt_url": "https://history.army.mil/html/books/104/104-20/CMH_Pub_104-20.pdf",
+         "quote": "the Kock force surrendered on 6 October"
+        }
+       ]
+      }
+     ],
+     "verified": true
+    }
+   ]
+  }
+ ]
+}

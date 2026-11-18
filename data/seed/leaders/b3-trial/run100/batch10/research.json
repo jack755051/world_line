@@ -1,0 +1,2439 @@
+{
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 對齊格式直接產出（Tai 2026-11-11 10:03 T11／T12；12:12 黨職與 role_kind；12:47 黨籍席位與 T14 R0–R6）；未建角色資料、未寫庫。",
+ "batch": "b3-run100-batch10",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "schemaNote": "b0b0e0f 對齊格式（人物／角色／經歷三層）；positions 用 positionKind、roleCandidates 用 role_kind；T14 R0–R6 與黨職規則照 Tai 2026-11-11 12:12／12:47 套用（兩層互斥）。recordIds 未提供於名單（留空）。",
+ "rawDir": "/tmp/b3run100/batch10/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "ipm-tan": {
+   "title": "孫中山、譚延闓與駐粵湘軍——湘系力量如何匯入南方革命陣營",
+   "authors": [
+    "李在全"
+   ],
+   "publisher": "澳門理工學報（澳門理工大學）",
+   "published_text": "澳門理工學報 2026 年第 2 期",
+   "url": "https://journal.ipm.edu.mo/images/journal_c/2026_2//96a1e-202602188-.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術期刊論文，具名作者李在全（中國社會科學院大學教授、近代史研究所研究員）"
+  },
+  "bcu-maniu": {
+   "title": "Maniu, Iuliu (1873-1953)",
+   "authors": [],
+   "publisher": "BCU Cluj 數位館藏（節錄自《Contribuția avocaților din Transilvania și Banat la Marea Unire》，Cluj-Napoca: Argonaut, 2018）",
+   "published_text": "Argonaut, 2018（條目無具名作者；有專書書目資訊）",
+   "url": "https://dspace.bcucluj.ro/jspui/bitstream/123456789/82613/1/Maniu_Iuliu.pdf",
+   "archive_url": null,
+   "catalog_id": "http://dspace.bcucluj.ro/handle/123456789/82613",
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：BCU Cluj 數位館藏（節錄自《Contribuția avocaților din Transilvania și Banat la Marea Unire》，Cluj-Napoca: Argonaut, 2018） → C（grade-ungraded-b3-2026-11-14，原：審查（Opus 2026-11-11）：條目與館藏頁（bcu-maniu-meta）均無具名作者或編者，僅書名／出版社／年份 → 依 Q9 視為無具名作者條目，未評等，只入 gap 候選）"
+  },
+  "gov-ro-pm": {
+   "title": "Prime Ministers in history",
+   "authors": [],
+   "publisher": "Guvernul României（羅馬尼亞政府官網）",
+   "published_text": "gov.ro 歷任總理頁",
+   "url": "https://gov.ro/en/prime-ministers-in-history",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "政府官方網站歷任總理名單"
+  },
+  "lehoucq-cr": {
+   "title": "Política, democracia y guerra civil en Costa Rica (1882-1948)",
+   "authors": [
+    "Fabrice E. Lehoucq"
+   ],
+   "publisher": "Reflexiones（Universidad de Costa Rica）",
+   "published_text": "Reflexiones（UCR 期刊），出刊年份待查",
+   "url": "https://archivo.revistas.ucr.ac.cr//index.php/reflexiones/article/download/10688/10080/15599",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學學術期刊論文，具名作者 Fabrice E. Lehoucq"
+  },
+  "perez-sv": {
+   "title": "El Ejército como reformador: La juventud militar en El Salvador, 1948-1960",
+   "authors": [
+    "Juan Manuel Pérez"
+   ],
+   "publisher": "Anuario de Estudios Centroamericanos（Universidad de Costa Rica）",
+   "published_text": "vol. 49, núm. 1, 2023",
+   "url": "https://www.redalyc.org/journal/152/15279348008/15279348008.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學學術期刊論文，具名作者 Juan Manuel Pérez（美國國會圖書館）"
+  },
+  "chanta-sv": {
+   "title": "Élites militares y masonería. El caso de El Salvador (1931-1953)",
+   "authors": [
+    "René Antonio Chanta Martínez"
+   ],
+   "publisher": "Revista de Estudios Históricos de la Masonería Latinoamericana y Caribeña（Universidad de Costa Rica）",
+   "published_text": "vol. 14, núm. 1, pp. 42-59, 2022",
+   "url": "https://www.redalyc.org/journal/3695/369572114003/html/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學學術期刊論文，具名作者 René Antonio Chanta Martínez（Universidad Don Bosco）"
+  },
+  "evl-karttunen": {
+   "title": "Armo avaa yhteyden: Suomen evankelis-luterilaisen kirkon oppikeskustelut ja käytännön ekumenia",
+   "authors": [
+    "Tomi Karttunen"
+   ],
+   "publisher": "Kirkkohallitus（芬蘭福音路德教會教會管理署），Suomen ev.-lut. kirkon julkaisuja 87",
+   "published_text": "Helsinki 2020",
+   "url": "https://evl.fi/plus/wp-content/uploads/sites/3/2023/06/Oppikeskustelut-ja-kaytannon-ekumenia_Armo-avaa-yhteyden.pdf",
+   "archive_url": null,
+   "catalog_id": "ISBN 978-951-789-667-2",
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "教會中央機構出版的研究報告，具名作者 Tomi Karttunen"
+  },
+  "ency-picado": {
+   "title": "Picado Michalski, Teodoro (1900–1960)",
+   "authors": [],
+   "publisher": "Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture）",
+   "published_text": "無署名條目",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/picado-michalski-teodoro-1900-1960",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture） → C（grade-ungraded-b3-2026-11-14，原：無具名作者的百科條目，未評等（Q9），僅作 gap 候選）"
+  },
+  "ency-castaneda": {
+   "title": "Castañeda Castro, Salvador (1888–1965)",
+   "authors": [],
+   "publisher": "Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture）",
+   "published_text": "無署名條目",
+   "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/castaneda-castro-salvador-1888-1965",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Encyclopedia.com（Gale，Encyclopedia of Latin American History and Culture） → C（grade-ungraded-b3-2026-11-14，原：無具名作者的百科條目，未評等（Q9），僅作 gap 候選）"
+  },
+  "ucr-80": {
+   "title": "LXXX aniversario de la Universidad de Costa Rica (1940-2020): antecedentes históricos de su creación",
+   "authors": [],
+   "publisher": "Universidad de Costa Rica 官網",
+   "published_text": "ucr.ac.cr 歷史頁",
+   "url": "https://www.ucr.ac.cr/acerca-u/historia-simbolos/historial-80-aniversario.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構或作者：Universidad de Costa Rica 官網 → C（grade-ungraded-b3-2026-11-14，原：機構官網歷史頁，無具名作者、非政府／議會官方頁，保守視為未評等，僅作 gap 候選）"
+  }
+ },
+ "people": [
+  {
+   "key": "sv-castaneda-castro",
+   "bioId": "01a1b533-d81e-73c2-9830-80fecd6e69f1",
+   "name": "Salvador Castañeda Castro",
+   "nameZh": "薩爾瓦多·卡斯塔涅達·卡斯特羅",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1945-01-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1945年選舉與1948年被推翻",
+      "en": "The 1945 elections and his overthrow in 1948"
+     },
+     "body": {
+      "zh-Hant": "據學者 Juan Manuel Pérez 的研究，1945年舉行的選舉中，候選人阿圖羅·羅梅羅博士被禁止參選，軍人候選人卡斯塔涅達·卡斯特羅將軍贏得這場舞弊選舉。他對國家維持強力的政治控制，並對軍隊進行改革；1948年12月14日，軍官們推翻了他。",
+      "en": "According to Juan Manuel Pérez, in the elections held in 1945 Dr. Arturo Romero was barred from running and the military candidate, General Castañeda Castro, won the fraudulent contest. He kept strong political control over the country and introduced reforms in the army; officers overthrew him on 14 December 1948."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "perez-sv",
+       "locator": "第3節（1944–45 選舉）",
+       "quote": "Cuando las elecciones se celebraron al año siguiente, 1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "perez-sv",
+       "locator": "第3節（1944–45 選舉）",
+       "quote": "al Dr. Arturo Romero se le prohibió participar",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "perez-sv",
+       "locator": "同上",
+       "quote": "el general Castaneda Castro, ganó esas elecciones fraudulentas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "perez-sv",
+       "locator": "同上",
+       "quote": "Castaneda mantuvo un fuerte control político sobre el país",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "perez-sv",
+       "locator": "同上",
+       "quote": "Castaneda Castro introdujo reformas en el Ejército",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "perez-sv",
+       "locator": "同上",
+       "quote": "Estos oficiales derrocaron a Castaneda Castro el 14 de diciembre de 1948",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "chanta-sv",
+       "locator": "結論段",
+       "quote": "Castaneda Castro, también militar, que estaba gobernando el país desde 1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "unificacion-social-democrata-party",
+     "title": {
+      "orig": "Partido Unificación Social Demócrata, del general Salvador Castaneda Castro",
+      "zh-Hant": "統一社會民主黨（卡斯塔涅達·卡斯特羅將軍的黨）",
+      "en": "Social Democratic Unification Party (of General Castañeda Castro)"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "統一社會民主黨",
+      "en": "Partido Unificación Social Demócrata"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "perez-sv",
+       "locator": "第3節（政黨）",
+       "quote": "Partido Unificación Social Demócrata, del general Salvador Castaneda Castro",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫「卡斯塔涅達·卡斯特羅將軍的政黨」，未寫他在黨內的正式職稱與起訖，不猜是否黨職",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：非 R0–R4 類別（一般經歷），留經歷層",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "來源只寫該黨屬於（del）卡斯塔涅達·卡斯特羅將軍，未明寫其黨內職務或期間，無法判定是否黨職"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:interior-minister-martinez",
+     "gapKind": "not_found",
+     "note": "Encyclopedia.com（無署名，未評等）稱其曾任 Hernández Martínez 政府內政部長（minister of the interior）、軍校校長與多省省長；已評等來源（A／B）未寫，起訖日全缺。需 A／B 來源（薩爾瓦多國會／總統府官方歷任名單、DBE 類傳記辭典、學術專書）。內政部長若屬 R3 將為 R6（dates／regime）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-castaneda",
+       "locator": "第3段",
+       "quote": "minister of the interior under General Maximiliano Hernández Martínez",
+       "quoteLang": "en",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "ency-castaneda",
+       "locator": "第3段",
+       "quote": "director of the military school",
+       "quoteLang": "en",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:president-1945-1948",
+     "gapKind": "not_found",
+     "note": "1945-03-01～1948-12-14 總統任期依規則視為已在名單 5442 任期內，不建候選；A／B 來源只明寫「1945 年起執政」與「1948-12-14 被推翻」，起日未見已評等來源；若與 leader_records 比對有缺再補。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "生卒（1888–1965 見未評等 Encyclopedia.com）、國家級傳記辭典／權威檔未取得；Britannica 403 挑戰頁。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Salvador Castañeda Castro presidente de El Salvador 1945 biografía",
+     "url": "https://www.britannica.com/biography/Salvador-Castaneda-Castro",
+     "result": "blocked_403",
+     "note": "Britannica 回傳挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Salvador Castaneda Castro biography（WebSearch）",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/castaneda-castro-salvador-1888-1965",
+     "result": "unrated",
+     "note": "已 curl 存檔 ency-castaneda；無署名條目，未評等，只入 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "general Salvador Castañeda Castro presidente 1945 1948（限學術網域）",
+     "url": "https://www.redalyc.org/journal/3695/369572114003/html/",
+     "result": "found_B",
+     "note": "Chanta Martínez 論文，已存檔 chanta-sv"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "同上",
+     "url": "https://www.redalyc.org/journal/152/15279348008/15279348008.pdf",
+     "result": "found_B",
+     "note": "Pérez 論文（Anuario de Estudios Centroamericanos 2023），已存檔 perez-sv，寫入段落"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "同上",
+     "url": "https://www.redalyc.org/journal/745/74559502005/",
+     "result": "no_result",
+     "note": "curl 回 503，無原文"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Castañeda Castro biografía asamblea.gob.sv OR presidencia.gob.sv",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋未回傳薩爾瓦多官方頁；未取得官方歷任總統頁"
+    }
+   ]
+  },
+  {
+   "key": "fi-ingman",
+   "bioId": "01a1b539-97e6-7acd-aeb0-e9dac76acfc5",
+   "name": "Lauri Ingman",
+   "nameZh": "勞里·英格曼",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1930-07-01",
+      "end": "1935-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1930年起擔任大主教",
+      "en": "Archbishop from 1930"
+     },
+     "body": {
+      "zh-Hant": "據芬蘭福音路德教會出版的研究報告，前任大主教古斯塔夫·約翰松於1930年7月去世，同年10月勞里·英格曼接任大主教，任期為1930至1934年。他生於1868年、卒於1934年；教會間的會談於1933年在他領導下展開。",
+      "en": "According to a report published by the Evangelical Lutheran Church of Finland, Archbishop Gustaf Johansson died in July 1930 and Lauri Ingman began as the new archbishop that October, serving 1930–34. He lived 1868–1934, and discussions between churches began under his leadership in 1933."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "evl-karttunen",
+       "locator": "第1章（國家委員會）",
+       "quote": "Gustaf Johansson kuoli heinäkuussa 1930",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "evl-karttunen",
+       "locator": "同上",
+       "quote": "lokakuussa uutena arkkipiispa aloitti Lauri Ingman (1930–34)",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "evl-karttunen",
+       "locator": "第 3 章",
+       "quote": "Seuraavan arkkipiispan Lauri Ingmanin (1868–1934) johdolla",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "evl-karttunen",
+       "locator": "第 3 章",
+       "quote": "keskustelut kirkkojen välillä käynnistyivät vuonna 1933",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "archbishop-1930",
+     "title": {
+      "orig": "arkkipiispa",
+      "zh-Hant": "（芬蘭福音路德教會）大主教",
+      "en": "Archbishop (Evangelical Lutheran Church of Finland)"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "芬蘭福音路德教會",
+      "en": "Evangelical Lutheran Church of Finland"
+     },
+     "period": {
+      "start": "1930-10-01",
+      "end": "1935-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "evl-karttunen",
+       "locator": "第1章（國家委員會）",
+       "quote": "lokakuussa uutena arkkipiispa aloitti Lauri Ingman (1930–34)",
+       "quoteLang": "fi",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫「1930–34」，迄年依 Q3 寫下一年起日；起月出自同句「lokakuussa（10月）」，年份由前一句（1930）承接",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：非 R0–R4 類別（一般經歷），留經歷層"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:pm-1924-1925",
+     "gapKind": "not_found",
+     "note": "第二屆內閣（1924-05-31～1925-03-31）為名單外、落在 1908–1945 的首相任期，應建 head_of_government 候選；valtioneuvosto.fi（政府官網歷任閣員頁，A）三個網址皆回 403 挑戰頁，未繞過；doria.fi 論文頁同為 403。需 A／B 來源（政府官網、Eduskunta 議員資料、Kansallisbiografia）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pm-1918-1919",
+     "gapKind": "not_found",
+     "note": "第一屆內閣（1918-11-27～1919-04-17）依規則視為名單 5442 任期，不建候選；已評等來源未取得，需比對 leader_records。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:diet-vice-speaker-1917",
+     "gapKind": "not_found",
+     "note": "1917-11-27 邦議會公告簽署人列「Lauri Ingman, Vice Chairman」（histdoc.net，私人轉載，未評等）；議會副議長（1913–14、1917–18）、議長（1918）、議員（1907–19、1922–29）、教育部長（1920–21 等）、神學教授（1916–30）皆未有 A／B 來源。需 Eduskunta／Kansallisbiografia／Uppslagsverket（後者為 JS 動態頁，curl 無正文）。；已試 https://histdoc.net/history/hall1917.html（histdoc.net 私人網站轉載，grade-ungraded-b3-2026-11-14）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "Kansallisbiografia、Eduskunta 議員頁、Uppslagsverket 條目、Britannica（403）均未取得原文；生卒僅見 Karttunen 報告括號（1868–1934）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "national_dictionary",
+     "query": "Lauri Ingman kansallisbiografia pääministeri 1918 professori arkkipiispa",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋只回 Wikipedia 鏡像與政府頁；未見 Kansallisbiografia"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Lauri Ingman",
+     "url": "https://www.britannica.com/biography/Lauri-Ingman",
+     "result": "blocked_403",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "valtioneuvosto.fi 歷任閣員頁（en）",
+     "url": "https://valtioneuvosto.fi/en/governments-and-ministers/ministers/-/min/lauri-ingman",
+     "result": "blocked_403",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "valtioneuvosto.fi 歷任閣員頁（fi）",
+     "url": "https://valtioneuvosto.fi/hallitukset-ja-ministerit/ministerit/-/min/lauri-ingman",
+     "result": "blocked_403",
+     "note": "同上"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "valtioneuvosto.fi Ingman 內閣頁",
+     "url": "https://valtioneuvosto.fi/-/03.-ingman-27.11.1918-17.4.1919-",
+     "result": "blocked_403",
+     "note": "同上"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "Uppslagsverket Finland Ingman Lauri",
+     "url": "https://uppslagsverket.fi/sv/view-103684-IngmanLauri",
+     "result": "no_result",
+     "note": "curl 取得 JS 殼頁，無條目正文"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "eduskunta.fi kansanedustajat Ingman Lauri",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋無歷屆議員頁"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Doria 論文 Konservatiivi ja murrosvuodet: Lauri Ingman（赫爾辛基大學）",
+     "url": "https://www.doria.fi/handle/10024/170164",
+     "result": "blocked_403",
+     "note": "挑戰頁"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "tandfonline Conservatives facing fascism in Finland",
+     "url": "https://www.tandfonline.com/doi/full/10.1080/03468755.2020.1816212",
+     "result": "blocked_403",
+     "note": "挑戰頁"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Runeberg Nordic Authors Ingman, Lauri",
+     "url": "https://runeberg.org/authors/ingmalau.html",
+     "result": "not_relevant",
+     "note": "只有連結頁，無傳記"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "1917 Collection of Decrees Nr 102（histdoc.net）",
+     "url": "https://histdoc.net/history/hall1917.html",
+     "result": "unrated",
+     "note": "私人轉載，未評等，入 gap 候選"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "evl.fi《Armo avaa yhteyden》（Karttunen, Kirkkohallitus 2020）",
+     "url": "https://evl.fi/plus/wp-content/uploads/sites/3/2023/06/Oppikeskustelut-ja-kaytannon-ekumenia_Armo-avaa-yhteyden.pdf",
+     "result": "found_B",
+     "note": "寫入段落與大主教職位"
+    }
+   ]
+  },
+  {
+   "key": "cn-tan-yankai",
+   "bioId": "01a1b490-dc9a-7674-9818-d28238f59f2d",
+   "name": "Tan Yankai",
+   "nameZh": "譚延闓",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1909-01-01",
+      "end": "1912-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "清末諮議局議長與湖南都督",
+      "en": "Hunan assembly speaker and military governor"
+     },
+     "body": {
+      "zh-Hant": "譚延闓是湖南茶陵人。宣統元年（1909）他出任湖南省諮議局議長，並發起組織憲友會；1911年辛亥革命爆發後，他在變亂的湖南政局中出任湖南都督。",
+      "en": "Tan Yankai was a native of Chaling, Hunan. In 1909 (Xuantong 1) he became speaker of the Hunan provincial assembly and helped found the Constitutional Friends Society; after the 1911 Revolution broke out he became military governor of Hunan amid the turmoil there."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "湖南茶陵人",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "(1909) 出任湖南省諮議局議長,發起組織憲友會",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "1911 年辛亥革命爆發後,在變亂的湖南政局中,譚延闓出任湖南都督",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1923-03-02",
+      "end": "1923-08-08"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "1923年：大本營部長與返湘",
+      "en": "1923: ministries under Sun Yat-sen and return to Hunan"
+     },
+     "body": {
+      "zh-Hant": "1923年3月2日，孫中山在廣州組建海陸軍大元帥大本營，譚延闓被任命為內政部長；任職不及兩月，5月改任建設部長。同年7月16日，孫中山任命他為湖南省長兼湘軍總司令，8月7日他抵達衡陽，就任湖南省長兼北伐討賊軍總司令。",
+      "en": "On 2 March 1923 Sun Yat-sen set up the Grand Marshal's headquarters in Guangzhou and Tan was appointed interior minister; he held it for under two months and in May became minister of construction. On 16 July Sun named him governor of Hunan and commander-in-chief of the Hunan Army, and on 7 August he reached Hengyang and took up that post."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "1923 年 3 月 2 日,孫中山在廣州組建海陸軍大元帥大本營",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "自任大元帥,統率各軍,並委任譚",
+       "quoteLang": "zh",
+       "evidenceNote": "原文 PDF 轉文字時「譚」與「延闓」之間夾雜私用區字元，兩筆引文原為同一句「並委任譚延闓為內政部長」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "延闓為內政部長",
+       "quoteLang": "zh",
+       "evidenceNote": "原文 PDF 轉文字時「譚」與「延闓」之間夾雜私用區字元，兩筆引文原為同一句「並委任譚延闓為內政部長」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "被任命為大元帥府大本營內政部長、建設部長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "部長任上不及兩月",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "5 月譚延闓改任建設部長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第二節",
+       "quote": "1923 年 7 月 16 日,孫中山任命譚延闓為湖南省長兼湘軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第二節",
+       "quote": "8 月 7 日,譚延闓抵達衡陽,就任湖南省長兼北伐討賊軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1924-01-01",
+      "end": "1926-02-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1924–1926年：國民黨中央職務與北伐聯軍",
+      "en": "1924–26: Kuomintang central posts and the Northern Expedition coalition"
+     },
+     "body": {
+      "zh-Hant": "1924年1月，譚延闓在國民黨一大上當選中央執行委員；9月任建國湘軍總司令；11月孫中山北上後，他出任北伐聯軍總司令主持北伐事務，不久兵敗贛南，北伐未果。1926年1月，他在國民黨二大上當選中央常務委員，旋代理政治委員會主席。",
+      "en": "In January 1924 Tan was elected to the Central Executive Committee at the Kuomintang's First Congress; in September he became commander-in-chief of the Jianguo Hunan Army, and after Sun went north in November he commanded the Northern Expedition coalition forces, which was defeated in southern Jiangxi. In January 1926 he was elected to the Central Standing Committee at the Second Congress and soon acted as chairman of the Political Council."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1924 年 1 月在國民黨一大上當選中央執行委員",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "9 月任建國湘軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "11 月孫中山北上後,譚出任北伐聯軍總司令主持北伐事務",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "不久兵敗贛南,北伐未果",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1926 年 1 月,在國民黨二大上當選中央常務委員",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "旋代理政治委員會主席",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1928-02-01",
+      "end": "1930-10-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1928–1930年：國民政府主席與行政院長",
+      "en": "1928–30: Chairman of the National Government and head of the Executive Yuan"
+     },
+     "body": {
+      "zh-Hant": "1928年2月，譚延闓出任南京國民政府主席，10月轉任行政院長，1930年9月病逝於南京。",
+      "en": "In February 1928 Tan became chairman of the Nanjing National Government, in October he moved to head the Executive Yuan, and he died in Nanjing in September 1930."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1928 年 2 月任南京國民政府主席",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "10 月轉任行政院長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1930 年 9 月病逝於南京",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hunan-assembly-speaker-1909",
+     "title": {
+      "orig": "湖南省諮議局議長",
+      "zh-Hant": "湖南省諮議局議長",
+      "en": "Speaker of the Hunan Provincial Assembly"
+     },
+     "positionKind": "legislator",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "湖南省諮議局",
+      "en": "Hunan Provincial Assembly"
+     },
+     "period": {
+      "start": "1909-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "(1909) 出任湖南省諮議局議長,發起組織憲友會",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫1909年出任，未寫終點",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：議長不屬四部閣員，留經歷層"
+    },
+    {
+     "key": "hunan-dudu-1911",
+     "title": {
+      "orig": "湖南都督",
+      "zh-Hant": "湖南都督",
+      "en": "Military Governor of Hunan"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "湖南省",
+      "en": "Hunan Province"
+     },
+     "period": {
+      "start": "1911-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "1911 年辛亥革命爆發後,在變亂的湖南政局中,譚延闓出任湖南都督",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "終點未寫；為轄區內地方長官",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：省級地方長官（轄區內地方長官），非最高佔領／殖民長官"
+    },
+    {
+     "key": "hunan-duzhun-beiyang",
+     "title": {
+      "orig": "湖南督軍（三次）",
+      "zh-Hant": "湖南督軍（北洋時期三次）",
+      "en": "Military Governor (Dujun) of Hunan, three times"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "湖南省",
+      "en": "Hunan Province"
+     },
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "startPrecision": null,
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "傳略段",
+       "quote": "北洋時期,他三次出任湖南督軍",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫北洋時期三次出任，無起訖日",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：省級地方長官（轄區內）"
+    },
+    {
+     "key": "interior-minister-1923",
+     "title": {
+      "orig": "內政部長（大元帥府大本營）",
+      "zh-Hant": "內政部長（海陸軍大元帥大本營）",
+      "en": "Minister of the Interior (Grand Marshal's Headquarters)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "海陸軍大元帥大本營（廣州）",
+      "en": "Grand Marshal's Headquarters, Guangzhou"
+     },
+     "period": {
+      "start": "1923-03-02",
+      "end": "1923-06-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "1923 年 3 月 2 日,孫中山在廣州組建海陸軍大元帥大本營",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "自任大元帥,統率各軍,並委任譚",
+       "quoteLang": "zh",
+       "evidenceNote": "原文 PDF 轉文字時「譚」與「延闓」之間夾雜私用區字元，兩筆引文原為同一句「並委任譚延闓為內政部長」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "延闓為內政部長",
+       "quoteLang": "zh",
+       "evidenceNote": "原文 PDF 轉文字時「譚」與「延闓」之間夾雜私用區字元，兩筆引文原為同一句「並委任譚延闓為內政部長」",
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "部長任上不及兩月",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "5 月譚延闓改任建設部長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "起日依「1923-03-02 組建大本營並委任」；迄為5月改任建設部長（月精度，依 Q3 寫下月起日）；來源明寫任職不及兩月",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：內政部長屬 R3①，但來源明寫任期不及兩月，不滿 90 天（最早迄 05-01－最晚起 03-02＝60 天），且政權待查證",
+     "t14Overlap": "cabinet"
+    },
+    {
+     "key": "construction-minister-1923",
+     "title": {
+      "orig": "建設部長（大元帥府大本營）",
+      "zh-Hant": "建設部長（大元帥府大本營）",
+      "en": "Minister of Construction (Grand Marshal's Headquarters)"
+     },
+     "positionKind": "minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "海陸軍大元帥大本營（廣州）",
+      "en": "Grand Marshal's Headquarters, Guangzhou"
+     },
+     "period": {
+      "start": "1923-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第一節",
+       "quote": "5 月譚延闓改任建設部長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "被任命為大元帥府大本營內政部長、建設部長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "終點未寫",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：建設部不屬外交／國防／財政／內政四部",
+     "t14Overlap": "cabinet"
+    },
+    {
+     "key": "hunan-governor-army-commander-1923",
+     "title": {
+      "orig": "湖南省長兼湘軍總司令",
+      "zh-Hant": "湖南省長兼湘軍總司令",
+      "en": "Governor of Hunan and Commander-in-Chief of the Hunan Army"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "湖南省",
+      "en": "Hunan Province"
+     },
+     "period": {
+      "start": "1923-07-16",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第二節",
+       "quote": "1923 年 7 月 16 日,孫中山任命譚延闓為湖南省長兼湘軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第二節",
+       "quote": "8 月 7 日,譚延闓抵達衡陽,就任湖南省長兼北伐討賊軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "起日為孫中山任命日；8月7日就任（來源稱兼北伐討賊軍總司令）；終點未寫",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：省級地方長官（轄區內），兼職之省軍總司令非國家級最高軍職"
+    },
+    {
+     "key": "jianguo-hunan-army-commander-1924",
+     "title": {
+      "orig": "建國湘軍總司令",
+      "zh-Hant": "建國湘軍總司令",
+      "en": "Commander-in-Chief of the Jianguo Hunan Army"
+     },
+     "positionKind": "military_command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "建國湘軍",
+      "en": "Jianguo Hunan Army"
+     },
+     "period": {
+      "start": "1924-09-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "9 月任建國湘軍總司令",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源寫1924年9月；終點未寫",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：類別為將領（R4），但終點 NULL（無法證明任期）、職位等級（是否國家級最高）來源未寫、政權待查證",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "northern-expedition-coalition-commander-1924",
+     "title": {
+      "orig": "北伐聯軍總司令",
+      "zh-Hant": "北伐聯軍總司令",
+      "en": "Commander-in-Chief of the Northern Expedition Coalition Forces"
+     },
+     "positionKind": "military_command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "北伐聯軍",
+      "en": "Northern Expedition Coalition Forces"
+     },
+     "period": {
+      "start": "1924-11-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "11 月孫中山北上後,譚出任北伐聯軍總司令主持北伐事務",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "不久兵敗贛南,北伐未果",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "11月孫中山北上後出任；終點與戰役日期地點未寫",
+     "t14Rule": "R6",
+     "t14Reason": "T14 R6：類別為將領（R4②戰區／方面軍司令），但終點 NULL、無「日期＋地點＋出處」戰役連結、政權待查證",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "dates",
+      "battle_link",
+      "regime"
+     ]
+    },
+    {
+     "key": "army2-commander",
+     "title": {
+      "orig": "第二軍軍長",
+      "zh-Hant": "國民革命軍第二軍軍長",
+      "en": "Commander of the Second Army"
+     },
+     "positionKind": "military_command",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命軍第二軍",
+      "en": "Second Army"
+     },
+     "period": {
+      "start": "1925-08-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第二節（國民革命軍改編）",
+       "quote": "1925 年 8 月,統一的國民革命軍初步成軍",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "第四節",
+       "quote": "建國湘軍改為第二軍,譚延闓任軍長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "審查改：原引文為顧問回憶之「組成 1 個軍，譚延闓任軍長」，未寫第二軍；改引同文「1925 年 8 月…建國湘軍改為第二軍，譚延闓任軍長」，起月依此；終點未寫",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：軍長為軍級指揮，非國家級最高軍職或戰區／方面軍司令",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "political-council-acting-chair-1926",
+     "title": {
+      "orig": "代理政治委員會主席",
+      "zh-Hant": "代理政治委員會主席",
+      "en": "Acting Chairman of the Political Council"
+     },
+     "positionKind": "other",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "（來源未明寫所屬機構）",
+      "en": "(organisation not stated in source)"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "旋代理政治委員會主席",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "來源只寫「旋代理政治委員會主席」，未寫是否為國民黨機構、起訖日",
+     "t14Rule": "R5",
+     "t14Reason": "T14 R5：非 R0–R4 類別",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "來源未寫政治委員會是否為國民黨黨內機構，不猜黨職"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "kmt-cec-1924",
+     "title": {
+      "orig": "中央執行委員",
+      "zh-Hant": "中國國民黨中央執行委員",
+      "en": "Member of the Kuomintang Central Executive Committee"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "period": {
+      "start": "1924-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1924 年 1 月在國民黨一大上當選中央執行委員",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "終點未寫",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "kmt-csc-1926",
+     "title": {
+      "orig": "中央常務委員",
+      "zh-Hant": "中國國民黨中央常務委員",
+      "en": "Member of the Kuomintang Central Standing Committee"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1926 年 1 月,在國民黨二大上當選中央常務委員",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "終點未寫",
+     "role_kind": "de_facto_leader",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "natgov-chairman-1928",
+     "title": {
+      "orig": "國民政府主席",
+      "zh-Hant": "南京國民政府主席",
+      "en": "Chairman of the National Government (Nanjing)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府（南京）",
+      "en": "National Government, Nanjing"
+     },
+     "period": {
+      "start": "1928-02-01",
+      "end": "1928-11-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "1928 年 2 月任南京國民政府主席",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "10 月轉任行政院長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "迄日依「10月轉任行政院長」（月精度，寫下月起日）",
+     "role_kind": "head_of_state",
+     "reason": "R0：來源明寫其1928年2月任南京國民政府主席（國家元首級職位；元首性質為常識判斷，來源只寫職稱與時間，請審查確認）；是否已在 5442 任期內待與 leader_records 比對",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "executive-yuan-president-1928",
+     "title": {
+      "orig": "行政院長",
+      "zh-Hant": "行政院長",
+      "en": "President of the Executive Yuan (Premier)"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府行政院",
+      "en": "Executive Yuan, National Government"
+     },
+     "period": {
+      "start": "1928-10-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "ipm-tan",
+       "locator": "摘要段",
+       "quote": "10 月轉任行政院長",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "審查改：原以 1930 年 9 月病逝推得迄日，來源未寫任至病逝，屬推論 → 迄日留空待查證",
+     "role_kind": "head_of_government",
+     "reason": "R0：來源明寫其1928年10月轉任行政院長（政府首腦職）；首腦性質為常識判斷，請審查確認；是否已在 5442 任期內待比對",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:hunan-dudu-1911",
+     "gapKind": "not_found",
+     "note": "湖南都督、三次湖南督軍的起訖日，以及湖南省長兼湘軍總司令、建國湘軍總司令、北伐聯軍總司令的終點，李在全論文未寫；需國史館／近史所人物資料等 A／B 來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:natgov-chairman-1928",
+     "gapKind": "not_found",
+     "note": "國民政府主席、行政院長之日精度起訖（Archontology 類私人彙編稱 1928-02-07～10-10、1928-10-25～1930-09-22，未評等，且未 curl 存檔，不引）需 A／B 來源；是否已在 5442 任期內待比對 leader_records。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "名單推定屬性（不明·不明／不明）實查為：東亞·中國／民國（廣州大本營→南京國民政府）／約 1909–1930；生年（1880）、卒年（1930）僅見論文「1880 ~ 1930」括號，未取得國史館、近史所、國家圖書館權威檔原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Tan Yankai Britannica",
+     "url": "https://www.britannica.com/biography/Tan-Yankai",
+     "result": "blocked_403",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "譚延闓 傳 國民政府主席 行政院長 1928 國史館 人物（WebSearch）",
+     "url": "null",
+     "result": "found_B",
+     "note": "找到澳門理工學報論文線索"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "李在全〈孫中山、譚延闓與駐粵湘軍〉澳門理工學報 2026 年第 2 期",
+     "url": "https://journal.ipm.edu.mo/images/journal_c/2026_2//96a1e-202602188-.pdf",
+     "result": "found_B",
+     "note": "curl 存檔 ipm-tan（PDF 轉文字，CJK 換行合併），寫入段落與職位"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "譚延闓 1880-1930 湖南 茶陵 傳略 近代史研究所 OR 國史館 OR 中央研究院",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋未回傳國史館、近史所頁面"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "Archontology 中華民國元首／行政院長名單（搜尋結果）",
+     "url": "https://www.archontology.org/nations/china/china-roc/00_1927_48_s.php",
+     "result": "unrated",
+     "note": "私人彙編，未評等，未 curl 存檔，不引用，僅作線索"
+    }
+   ]
+  },
+  {
+   "key": "cr-picado-michalski",
+   "bioId": "01a1b520-ef47-7ef2-8cfc-403e3a988fc3",
+   "name": "Teodoro Picado Michalski",
+   "nameZh": "特奧多羅·皮卡多·米哈爾斯基",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1944-01-01",
+      "end": "1949-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1944年當選與1948年危機",
+      "en": "The 1944 election and the 1948 crisis"
+     },
+     "body": {
+      "zh-Hant": "據學者 Fabrice E. Lehoucq 的研究，皮卡多1944年的總統選舉勝利普遍被視為卡爾德龍·瓜迪亞支持的結果。皮卡多在1945年初支持一項選舉法案，旨在消除各政治勢力製造舞弊選票的可能。1948年選舉結果顯示反對派候選人烏拉特擊敗卡爾德龍·瓜迪亞，但結果受到許多卡爾德龍派質疑，他們在1948年3月1日召開的國會會議上使烏拉特的勝利被宣告無效；其後由菲格雷斯統率的軍隊贏得內戰。",
+      "en": "According to Fabrice E. Lehoucq, Picado's presidential victory in 1944 was widely seen as the product of Calderón Guardia's support. In early 1945 Picado backed an electoral bill meant to remove the possibility of fraudulent votes by all political forces. The 1948 results showed the opposition candidate Ulate had defeated Calderón Guardia, but many Calderón supporters contested them and managed to annul Ulate's victory in the congressional session convened for 1 March 1948; the army led by Figueres later won the civil war."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "「El camino hacia el 48」節",
+       "quote": "La victoria presidencial de Picado Michalski en 1944 fue vista ampliamente",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "como producto del apoyo de Calderón Guardia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "Picado apoyó un proyecto de ley, a principios de 1945",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "cuyo fin era eliminar la posibilidad que tenían todas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "de fabricar votos fraudulentos",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "Los resultados de las elecciones de 1948 indicaron que el candidato opositor",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "Otilio Ulate Blanco, había derrotado a Calderón Guardia",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "fue cuestionado por muchos calderonistas",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "quienes lograron anular la victoria de Ulate en la sesión del Congreso",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "convocada para el primero de marzo de 1948",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "el ejército conducido por Figueres Ferrer",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "同上",
+       "quote": "ganó la guerra civil",
+       "quoteLang": "es",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:congress-president",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：Lehoucq 原文只寫 1941 年 5 月卡爾德龍·瓜迪亞及其議員「支持皮卡多出任國會議長」（apoyaron … para Presidente del Congreso），未明寫其當選或在任，起訖亦缺；原職位改待查證。需國會（Asamblea Legislativa）官方歷任議長名單或其他 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "lehoucq-cr",
+       "locator": "「El camino hacia el 48」節",
+       "quote": "apoyaron a Teodoro Picado para Presidente del Congreso",
+       "quoteLang": "es",
+       "grade": "B"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:president-1944-1948",
+     "gapKind": "not_found",
+     "note": "1944-05-08～1948 總統任期依規則視為已在名單 5442 任期內，不建候選；Lehoucq 只明寫1944年當選與1948年危機，未寫就任／離任日；需官方歷任總統頁比對。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:education-secretary-1932-1936",
+     "gapKind": "not_found",
+     "note": "公共教育部長（Secretario de Instrucción Pública，1932–36 傑米內斯任內）僅見未評等來源（Encyclopedia.com 無署名、UCR 官網歷史頁無作者）；教育部長屬 R5，留待 A／B 來源。另：1936 年當選議員、1941–44 國會議長亦未取得 A／B。",
+     "candidateCitations": [
+      {
+       "sourceKey": "ency-picado",
+       "locator": "第3段",
+       "quote": "secretary of education under President Ricardo Jiménez Oreamuno (1932–1936)",
+       "quoteLang": "en",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "ucr-80",
+       "locator": "第5節",
+       "quote": "el entonces Secretario de Instrucción Pública, Lic. Teodoro Picado Michalski",
+       "quoteLang": "es",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "名單推定年代 1940–1945 與實查（總統 1944–1948）部分不符；生卒（1900–1960）僅見未評等 Encyclopedia.com；Britannica 403；官方（presidencia／國會）歷任總統頁與 Biblioteca Nacional 權威檔未取得。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Teodoro Picado Michalski",
+     "url": "https://www.britannica.com/biography/Teodoro-Picado-Michalski",
+     "result": "blocked_403",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Teodoro Picado Michalski presidente Costa Rica 1944 biografía Asamblea Legislativa",
+     "url": "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/picado-michalski-teodoro-1900-1960",
+     "result": "unrated",
+     "note": "已 curl 存檔 ency-picado；無署名條目，只入 gap 候選"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "Picado Michalski expresidentes presidencia.go.cr OR asamblea.go.cr",
+     "url": "null",
+     "result": "no_result",
+     "note": "搜尋未回傳官方頁"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Picado Michalski 1944 Congreso ministro de Educación（限學術網域）",
+     "url": "https://archivo.revistas.ucr.ac.cr//index.php/reflexiones/article/download/10688/10080/15599",
+     "result": "found_B",
+     "note": "Lehoucq 論文，已存檔 lehoucq-cr，寫入段落與職位"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "同上",
+     "url": "https://www.ucr.ac.cr/acerca-u/historia-simbolos/historial-80-aniversario.html",
+     "result": "unrated",
+     "note": "UCR 官網歷史頁，無作者，已存檔 ucr-80，入 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "Las memorias de don Teodoro（UCR 儲存庫）",
+     "url": "https://repo8.sibdi.ucr.ac.cr/items/c2e55397-7465-4b58-936e-0d378eb29569",
+     "result": "no_result",
+     "note": "curl 無法解析主機"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "EcuRed Teodoro Picado",
+     "url": "https://www.ecured.cu/Teodoro_Picado",
+     "result": "unrated",
+     "note": "協作條目，未評等，已存檔 ecured-picado 但不引用"
+    }
+   ]
+  },
+  {
+   "key": "ro-maniu",
+   "bioId": "01a1b52c-f97f-72c3-a3ed-d8ca8b828272",
+   "name": "Iuliu Maniu",
+   "nameZh": "尤柳·馬紐",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1928-11-10",
+      "end": "1933-01-13"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "三段首相任期",
+      "en": "Three terms as prime minister"
+     },
+     "body": {
+      "zh-Hant": "羅馬尼亞政府官網列出馬紐三段首相任期：1928年11月10日至1930年1月7日、1930年6月13日至10月8日，以及1932年10月20日至1933年1月12日。",
+      "en": "The Romanian government's website lists three prime-ministerial terms for Maniu: 10 November 1928 to 7 January 1930, 13 June to 8 October 1930, and 20 October 1932 to 12 January 1933."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "Maniu 條目",
+       "quote": "10 November 1928 – 7 January 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "Maniu 條目",
+       "quote": "13 June 1930 – 8 October 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "Maniu 條目",
+       "quote": "20 October 1932 – 12 January 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [
+    {
+     "key": "pm-1930-june",
+     "title": {
+      "orig": "prim-ministru",
+      "zh-Hant": "羅馬尼亞首相",
+      "en": "Prime Minister of Romania"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "羅馬尼亞王國政府",
+      "en": "Government of Romania"
+     },
+     "period": {
+      "start": "1930-06-13",
+      "end": "1930-10-08"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "Maniu 條目",
+       "quote": "13 June 1930 – 8 October 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "名單外任期（名單年代1919–1929）；日精度照官網原值",
+     "role_kind": "head_of_government",
+     "reason": "R0：政府官網（A）明寫其 1930-06-13～10-08 任首相（Prime Minister）",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "pm-1932-1933",
+     "title": {
+      "orig": "prim-ministru",
+      "zh-Hant": "羅馬尼亞首相",
+      "en": "Prime Minister of Romania"
+     },
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "羅馬尼亞王國政府",
+      "en": "Government of Romania"
+     },
+     "period": {
+      "start": "1932-10-20",
+      "end": "1933-01-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "gov-ro-pm",
+       "locator": "Maniu 條目",
+       "quote": "20 October 1932 – 12 January 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "note": "名單外任期；日精度照官網原值",
+     "role_kind": "head_of_government",
+     "reason": "R0：政府官網（A）明寫其 1932-10-20～1933-01-12 任首相（Prime Minister）",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "paragraph:budapest-parliament-ww1",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等（無具名作者），原段落「布達佩斯議會與一戰」（1906-01-01～1919-01-01）刪除，事實改待查證。需 A／B 來源（羅馬尼亞議會／學院傳記辭典、具名作者學術專書）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "în anul 1906, Maniu alături de alți intelectuali români",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "reușesc să intre în Parlamentul de la Budapesta ca deputați",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "în luna mai 1915, Iuliu Maniu a fost încorporat în armata austro-ungară",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "comandant de baterie în regimentul 14",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "dezertează și merge la Arad",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:alba-iulia-consiliul-dirigent-1918",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等（無具名作者），原段落「1918年：阿爾巴尤利亞與執政委員會」（1918-11-14～1919-01-01）刪除，事實改待查證。需 A／B 來源（羅馬尼亞議會／學院傳記辭典、具名作者學術專書）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "La 14 noiembrie 1918 Maniu s-a întors la Arad",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "hotărârii Consiliului Național, de separare deplină de Ungaria",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "unde a fost delegat din partea cercului electoral Vințul de Jos",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Consiliul Dirigent compus din 15 membri",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Iuliu Maniu a fost ales președintele acestui guvern provizoriu",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "paragraph:party-leadership-1919-1926",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等（無具名作者），原段落「政黨領導與1926年合併」（1919-08-01～1934-01-01）刪除，事實改待查證。需 A／B 來源（羅馬尼亞議會／學院傳記辭典、具名作者學術專書）。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "În august 1919 Iuliu Maniu a preluat conducerea Partidului Național Român",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "decedase în luna februarie",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Acum schimbă și sediul acestuia de la Sibiu la Cluj",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Partidul Național Român fuzionând cu Partidul Țărănesc al lui Ion Mihalache",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "constituindu-se Partidul Național Țărănesc",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:budapest-deputy-1906",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等，原職位「布達佩斯議會議員（特蘭西瓦尼亞選區）」1906-01-01～None 改待查證；需 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "reușesc să intre în Parlamentul de la Budapesta ca deputați",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "în anul 1906, Maniu alături de alți intelectuali români",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:consiliul-dirigent-president",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等，原職位「特蘭西瓦尼亞執政委員會（Consiliul Dirigent）主席」None～None 改待查證；需 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Iuliu Maniu a fost ales președintele acestui guvern provizoriu",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Consiliul Dirigent compus din 15 membri",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pnr-leader-1919",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等，原候選角色（de_facto_leader／R1）「羅馬尼亞民族黨領導人」1919-08-01～1927-01-01 改待查證；需 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "În august 1919 Iuliu Maniu a preluat conducerea Partidului Național Român",
+       "quoteLang": "ro",
+       "grade": "C"
+      },
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Partidul Național Român fuzionând cu Partidul Țărănesc al lui Ion Mihalache",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pnt-president-1926",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等，原候選角色（de_facto_leader／R1）「民族農民黨主席」1926-01-01～1934-01-01 改待查證；需 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pnt-president-1937",
+     "gapKind": "not_found",
+     "note": "審查（Opus 2026-11-11）：唯一出處 bcu-maniu 降為未評等，原候選角色（de_facto_leader／R1）「民族農民黨主席」1937-01-01～1948-01-01 改待查證；需 A／B 來源。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "生平段",
+       "quote": "Iuliu Maniu a fost președintele acestui partid între 1926-1933 și 1937-1947",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:pm-1928-1930",
+     "gapKind": "not_found",
+     "note": "1928-11-10～1930-01-07 首相任期依規則視為已在名單 5442 任期內（名單年代 1919–1929），不建候選，已寫入段落4；與 leader_records 比對若缺再補。網路摘要曾見 1930-06-07 迄日異說，來源為未評等私人彙編，未抓原文，不判 conflict。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "position:parliament-1919-1928",
+     "gapKind": "not_found",
+     "note": "1919–1928 年間議員／黨職細節（例：民族黨主席任期迄日、1937 年後任職）、Frontul Renașterii Naționale 時期，以及羅馬尼亞國家級傳記辭典／議會官方頁未取得；Britannica（含 print 版）403。名單推定厚度「厚」實查僅取得 1 份 B 級節錄（BCU Cluj，條目無具名作者），故寫「中」。（審查註：BCU 節錄已降為未評等，現僅 gov.ro 一個 A 來源。）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11"
+    },
+    {
+     "target": "identity",
+     "gapKind": "not_found",
+     "note": "生卒（1873-01-08 Bădăcin～1953-02-05 Sighet）見 BCU 節錄標題頁；權威檔（VIAF／LoC／BNR）未另取得。",
+     "candidateCitations": [
+      {
+       "sourceKey": "bcu-maniu",
+       "locator": "標題",
+       "quote": "n. 8 ianuarie 1873, Bădăcin, jud. Sălaj",
+       "quoteLang": "ro",
+       "grade": "C"
+      }
+     ],
+     "checkedOn": "2026-11-11"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Iuliu Maniu",
+     "url": "https://www.britannica.com/biography/Iuliu-Maniu",
+     "result": "blocked_403",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica print article 362407",
+     "url": "https://www.britannica.com/print/article/362407",
+     "result": "blocked_403",
+     "note": "同上"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Iuliu Maniu biografie președinte Partidul Național Țărănesc 1926 prim-ministru 1928（WebSearch）",
+     "url": "null",
+     "result": "found_B",
+     "note": "找到 BCU Cluj 節錄線索"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "BCU Cluj Maniu, Iuliu (1873-1953) 節錄 PDF",
+     "url": "https://dspace.bcucluj.ro/jspui/bitstream/123456789/82613/1/Maniu_Iuliu.pdf",
+     "result": "found_B",
+     "note": "curl 存檔 bcu-maniu，寫入段落1–3與職位；條目無具名作者，評級保守"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "BCU Cluj 館藏頁（書目資料）",
+     "url": "https://dspace.bcucluj.ro/jspui/handle/123456789/82613",
+     "result": "found_B",
+     "note": "存檔 bcu-maniu-meta，確認出自 Argonaut 2018 專書"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Iuliu Maniu prim-ministru 1928 1930 1932（限政府／學術網域）",
+     "url": "null",
+     "result": "found_A",
+     "note": "找到 gov.ro 歷任總理頁線索"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "gov.ro Prime Ministers in history",
+     "url": "https://gov.ro/en/prime-ministers-in-history",
+     "result": "found_A",
+     "note": "curl 存檔 gov-ro-pm，寫入段落4與首相候選"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Enciclopedia României Iuliu Maniu",
+     "url": "http://enciclopediaromaniei.ro/wiki/Iuliu_Maniu",
+     "result": "unrated",
+     "note": "wiki 式線上條目，無具名作者，已存檔 encro-maniu 但不引用"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,113 @@
+{
+ "batch": "09",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 3,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 22,
+  "editedSentences": 31,
+  "spotRefetched": 6
+ },
+ "countsNote": "toUnverified＝烏維科 3 個職位（上維拉帕斯、雷塔烏萊烏政治長官、戰爭部長）改待查證移到 gaps。deletedCitations＝烏維科原以未評等 EWB（enc-ubico）為出處的段落／職位引用 22 筆全數撤下（其中 7 句改放 gap candidateCitations）；烏維科 4 段改以研究者已抓、但未列入來源的 enc-ubico2（Kenneth J. Grieb, ELAHC，B）重新引證，新增 18 筆。其他人另補 20 筆 citation（全取自已抓原文、支撐既有句子），改 7 筆 quote 以涵蓋句中年份／地點。editedSentences 只計正文句（zh／en 各算一句）；另改 3 個職位 title.orig、2 個段落標題。全部 enc 引用 locator 依 HTML <p> 順序重算為「正文第N段」（研究者段號多數錯 1–2 段）。6 個來源（含 enc-ubico2）全部以 curl（無 -k）重抓，HTTP 200，95 筆引文（含 gap 候選）全部逐字出現在重抓頁面。審前檔備份：/tmp/b3trial/batch09/research.pre-review.json、rawmap.pre-review.json。",
+ "people": [
+  {
+   "key": "pt-salazar",
+   "bioId": "01a1b4b0-6fce-7392-8b0a-241baf36d38f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "gaps": 3,
+   "changes": [
+    "來源 enc-salazar：條末署名 Antonio Costa Pinto，補 authors、published_text，gradeBasis 改為具名作者；url 補 www",
+    "段1：zh「農家」→「鄉村家庭」（原文 modest rural family，未說務農）、補「葡萄牙中部村莊」；quote 改為含 a village in central Portugal、含 He attended a seminary；補引文「in order to study law at the University of Coimbra」「Salazar left his position as deputy, and returned to his academic life」；en 對齊",
+    "段2：補引文「the political situation remained highly unstable」「but only on condition that he receive important powers over the other ministries」，對齊「見局勢仍不穩」「附帶條件」兩句",
+    "段3：原 zh「新國家的地位與總統綁在一起」、en「The New State kept…」誤讀主詞（原文是政權的軍事出身使薩拉查的地位與總統相連）→ zh／en 改寫；補引文「The military origins of the regime ensured that his position remained linked」「any of his appointed officials, including Salazar」；西班牙內戰 quote 改為含 1936；zh「靠著對同盟國的讓步」補引文「thanks mainly to the concessions it made to the Allied Powers」，en 補回此句",
+    "段4：補引文「the new international order after 1945 was decolonization」「At the beginning of the 1960s, the African nationalist movements」「which led to the outbreak of colonial wars」",
+    "職位 deputy-1921：原文「With the early dissolution of parliament in July 1921, Salazar left his position as deputy」可支撐迄日 → end=1921-08-01＋month（Q3），補 2 筆引文；title.orig「Deputado」來源未寫 → 改來源用語「deputy」",
+    "locator 全部重算（研究者段號錯 1–2 段；1968 免職句實在導言段，原標第5段）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "danzig-ziehm",
+   "bioId": "01a1b4c1-cdc3-7a47-9627-d2a41b653e5c",
+   "verdict": "pass",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "無修改。GND（lobid 官方鏡像，A）重抓與原文 sha 相同內容；4 筆引文與正文逐句相符；3 個 gap 合理。lobid JSON 內含 Wikipedia／Wikidata 連結，但未寫入研究檔"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "sk-stefan-tiso",
+   "bioId": "01a1c34f-3f09-7d5b-88a3-c14735348d79",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "段1：「總統約瑟夫·蒂索」原 quote 只到 Reverend Josef Tiso，改為含「President of the Slovak Republic」",
+    "gap field:deathDate（conflict）：candidateCitations 只列 1949 一說，補上同頁人物簡介「Stefan Tiso (1897-1959) Slovak lawyer」，兩說並列"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "do-trujillo",
+   "bioId": "01a1b488-147a-7166-9528-0f859bb609dd",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 2,
+   "gaps": 3,
+   "changes": [
+    "來源 enc-trujillo：條末署名 Kai P. Schoenhals，補 authors，gradeBasis 改為具名作者",
+    "段1：zh「1930年前後當上總統」→「到1930年已當上總統」（原文 by 1930）；1918、1924、1928 三個年份原 quote 都不含年份 → 補引文「In 1918 Trujillo, a native of San Cristóbal」「In 1924, when the National Guard was transformed」「When the National Police became the National Armed Forces in 1928」，原無年份 quote 的 datePrecision 改 null",
+    "段2：zh「1930年代初期」與原文 During the next decade（1930–1940 整個十年）不符 → 改「此後十年間」，en 對齊；1937年10月 quote 改為含月份；補引文「Upon Peynado's death in 1940」",
+    "段3：補引文「When it became clear by 1944 that the democracies would triumph」「The Dominican ruler used the start of the cold war in 1947」；en 補回 1944 局勢、1947 冷戰兩個條件",
+    "職位 2 筆：各補含年份的引文；title.orig 原為來源未寫的西文職銜 → 改來源英文用語；regimeId 維持 null（見 issues）",
+    "gap field:birthPlaceDetail 非 LeaderBioFields 欄位 → 改 field:birthPlace，note 註明原文只寫 native of San Cristóbal",
+    "locator 重算（第3段→正文第4段、第5段→正文第6段）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gt-ubico",
+   "bioId": "01a1b4af-e4cc-783b-b657-f81348ad4493",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "gaps": 6,
+   "changes": [
+    "來源 enc-ubico（Encyclopedia of World Biography）條目無具名作者 → 依 T1 B 級定義與 batch08 enc-zahir 前例改未評等（grade=null），只作 gap 候選（Q9）；原 19 筆段落引用＋3 筆職位引用全部撤下",
+    "研究者已抓 enc-ubico2（Kenneth J. Grieb, Encyclopedia of Latin American History and Culture，具名，B）但未列為來源 → 補列 sources 與 rawmap，4 段改以其重新引證（18 筆）；只保留它支撐得到的句子",
+    "段1：刪「早年即任少尉」、上維拉帕斯／雷塔烏萊烏省名與年份、國家衛生委員會（只見於 EWB）；保留生日、生地、1906 對薩爾瓦多戰爭、28 歲上校，省長改為「曾任兩個省的省長」",
+    "段2：戰爭部長年份兩說（EWB 1921–1923 vs Grieb 1922–1926）→ 正文不寫年份、記 conflict；刪 1922 第一副總統、師級上將、國庫 27 美元、「唯一候選人」（只見於 EWB）；改寫為大蕭條時經全票當選、1931–1944 任總統",
+    "段3：刪 1936／1942 修憲延任（只見於 EWB）；公路網改 Grieb「第一個公路與電報網」；流浪法後半依 Grieb 改為「改為對國家的勞動義務」；壓制異議改依 Grieb；標題改「施政」",
+    "段4：Grieb 寫政權被推翻、EWB 寫辭職和平交權 → 正文改依 Grieb（被反抗推翻、流亡美國並卒於當地，卒日 1946-06-14），刪紐奧良；標題 en 改 Overthrow and death",
+    "職位 3 筆改待查證移到 gaps：position:jefe-alta-verapaz、position:jefe-retalhuleu（not_found，A／B 來源無省名與年份）、position:minister-of-war（conflict）",
+    "gaps：刪 field:deathPlaceBurial（非 LeaderBioFields 欄位，且是歸葬不是缺漏）；新增 paragraph:first-designate-1922、field:deathPlace；paragraph:resignation-1944 note 補兩來源說法"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "等級判定前後不一：batch01／04／05 把無具名作者的 Gale EWB 評 B，batch08 與本批依「B＝具名作者的機構百科」評為未評等。本批 enc-salazar、enc-trujillo 其實條末都有署名（研究者漏看，authors 留空），研究者應先查條末署名再填 gradeBasis；舊批次的無名 EWB 是否追溯降級，需 Tai 決定",
+  "研究者已抓同一人第二個來源（enc-ubico2）卻未列入、也未比對，因而漏掉戰爭部長年份矛盾（1921–23 vs 1922–26）；已抓的原文都應列入 rawmap 並交叉核對",
+  "locator 段號普遍錯 1–2 段（與 batch08 同樣問題）；本批改以 HTML <p> 順序重算為「正文第N段」（Salazar 副標 Portuguese politician. 不計段）",
+  "quote 常只取句子中不含年份的片段，年份落在 quote 外但 datePrecision 仍標 year；本批補 20 筆／改 7 筆。研究階段應確保標 year／month／day 的 quote 本身含該日期",
+  "positions title.orig 填來源沒寫的葡／西文職銜（Deputado、Jefe de la Policía Nacional Dominicana、Comandante en jefe…），本批改為來源原文用語",
+  "gap target 用了不存在的欄位名（field:birthPlaceDetail、field:deathPlaceBurial）；target 應限 LeaderBioFields（§16.4.2）",
+  "Q5：特魯希略 1924、1928 兩個軍職落在 1908–1945、可能對得到 5442 多明尼加政權，但名單只給 recordId、不給 regimeId，不連庫無法確認，維持 null＋organization，寫庫前確認",
+  "全批每人仍只有 1 個可用 A／B 來源（GND 只有生卒年與一句簡介；OAC 為檢索輔助簡介），收錄門檻另靠 leader_records 出處"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

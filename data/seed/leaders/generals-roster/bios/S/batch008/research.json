@@ -1,0 +1,4052 @@
+{
+ "batch": "b3-full-v3-batch008",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 政權對應），故國家級／戰區級軍職與殖民長官因政權待查證為 R6，軍級／地方防務為 R5。Britannica、RAF 官網（Cloudflare）、1914-1918-online（Anubis）被擋，不繞過；Gale／NAM 無署名頁依 Q9 僅列 gap 候選。Encyclopedia.com 上的 Oxford Companion to British History 條目為具名作者（Cannon／French），列 B。Hansard 對 Gort、Brooke 的搜尋結果為同名他人，不採。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式（positionKind／role_kind／T14 R0–R6，兩層互斥）。將領 S 級 batch008，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch008/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "hans-dowding": {
+   "title": "Mr Hugh Dowding (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-hugh-dowding",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "psi-dowding": {
+   "title": "Hugh Dowding",
+   "authors": [
+    "Melvyn Willin"
+   ],
+   "publisher": "Psi Encyclopedia, Society for Psychical Research",
+   "published_text": "2024-06-19 創建，2026-09-06 更新，2026-11-11 取用",
+   "url": "https://psi-encyclopedia.spr.ac.uk/articles/hugh-dowding",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "學術學會（SPR）百科具名作者條目（B）"
+  },
+  "oc-dowding": {
+   "title": "Dowding, Hugh, 1st Baron Dowding",
+   "authors": [
+    "J. A. Cannon"
+   ],
+   "publisher": "The Oxford Companion to British History（經 Encyclopedia.com）",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/dowding-hugh-1st-baron-dowding",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Oxford 大學出版社參考書具名條目（B）"
+  },
+  "ebsco-bob": {
+   "title": "Battle of Britain",
+   "authors": [
+    "James W. Pringle",
+    "Lawrence I. Clark"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/military-history-and-science/battle-britain/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "hans-wavell": {
+   "title": "Mr Archibald Wavell (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-archibald-wavell",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "ebsco-alamein": {
+   "title": "Second Battle of El Alamein",
+   "authors": [
+    "Art Barbeau"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/history/second-battle-el-alamein/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "ebsco-egypt": {
+   "title": "Italy Invades Egypt",
+   "authors": [
+    "John P. Dunn"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/history/italy-invades-egypt/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "ebsco-tobruk": {
+   "title": "Battle of Tobruk",
+   "authors": [
+    "Bruce L. Janoff"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/military-history-and-science/battle-tobruk/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "ebsco-bengal": {
+   "title": "Famine Decimates Bengal",
+   "authors": [
+    "Roger D. Long"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/nutrition-and-dietetics/famine-decimates-bengal/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "oc-wavell": {
+   "title": "Archibald Wavell（Encyclopedia of World Biography）",
+   "authors": [],
+   "publisher": "Gale／Encyclopedia.com",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.encyclopedia.com/people/history/historians-miscellaneous-biographies/archibald-wavell",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名出版機構：Gale《Encyclopedia of World Biography》（經 Encyclopedia.com）→ C（grade-ungraded-2026-11-14，原：無具名作者條目（Q9），僅列 gap 候選）"
+  },
+  "nam-wavell": {
+   "title": "Archibald Wavell: Britain's first wartime victor",
+   "authors": [],
+   "publisher": "National Army Museum",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.nam.ac.uk/explore/archibald-wavell",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "具名機構：National Army Museum 說明頁（無署名）→ C（grade-ungraded-2026-11-14，原：無署名館藏說明頁（Q9），僅列 gap 候選）"
+  },
+  "hans-haig": {
+   "title": "Mr Douglas Haig (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament, Historic Hansard",
+   "published_text": "Historic Hansard 1803–2005 人物頁，2026-11-11 取用",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-douglas-haig",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "UK Parliament 官方歷史 Hansard 人物頁（T1 A）"
+  },
+  "snl-haig": {
+   "title": "Douglas Haig",
+   "authors": [
+    "Tim Greve"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "最後更新 2024-11-26，2026-11-11 取用",
+   "url": "https://snl.no/Douglas_Haig",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "挪威大學與非營利機構出版的百科，具名作者（B）"
+  },
+  "oc-haig": {
+   "title": "Haig, Sir Douglas, 1st Earl Haig",
+   "authors": [
+    "David French"
+   ],
+   "publisher": "The Oxford Companion to British History（經 Encyclopedia.com）",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/douglas-haig-1st-earl-haig",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Oxford 大學出版社參考書具名條目（B）"
+  },
+  "snl-gort": {
+   "title": "John Vereker",
+   "authors": [
+    "Tim Greve"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "2026-11-11 取用",
+   "url": "https://snl.no/John_Vereker",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "挪威大學與非營利機構出版的百科，具名作者（B）"
+  },
+  "ebsco-dunkirk": {
+   "title": "Evacuation of Dunkirk",
+   "authors": [
+    "Samuel K. Eddy",
+    "Donald L. Layton"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/military-history-and-science/evacuation-dunkirk/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "snl-brooke": {
+   "title": "Alan Francis Brooke",
+   "authors": [
+    "Aksel Schreiner Brakestad"
+   ],
+   "publisher": "Store norske leksikon",
+   "published_text": "最後更新 2025-02-24，2026-11-11 取用",
+   "url": "https://snl.no/Alan_Francis_Brooke",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "挪威大學與非營利機構出版的百科，具名作者（B）"
+  },
+  "ebsco-brooke": {
+   "title": "Alan Brooke, First Viscount Alanbrooke",
+   "authors": [
+    "Maxwell P. Schoenfeld"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2024，2026-11-11 取用",
+   "url": "https://www.ebsco.com/research-starters/history/alan-brooke-first-viscount-alanbrooke/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  },
+  "lex-haig": {
+   "title": "Douglas Haig",
+   "authors": [
+    "Claus Bjørn"
+   ],
+   "publisher": "Lex（Den Store Danske）",
+   "published_text": "最後修改 2024-10-03，2026-11-12 取用",
+   "url": "https://lex.dk/Douglas_Haig",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "Lex／Den Store Danske 具名作者條目（mag.art. Claus Bjørn）（B）"
+  },
+  "def-haig": {
+   "title": "Douglas Haig（Maréchal britannique）",
+   "authors": [],
+   "publisher": "Ministère des Armées（法國國防部）Les chemins de la mémoire",
+   "published_text": "2026-11-12 取用",
+   "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-e-lettre-m/douglas-haig",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "法國國防部官方「記憶之路」人物頁（A）"
+  },
+  "wm-haig": {
+   "title": "Sir Douglas Haig",
+   "authors": [],
+   "publisher": "Canadian War Museum（加拿大戰爭博物館）",
+   "published_text": "2026-11-12 取用",
+   "url": "https://www.warmuseum.ca/firstworldwar/history/people/generals/sir-douglas-haig/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "國家級博物館官方人物頁（B）"
+  },
+  "henson-haig": {
+   "title": "Douglas Haig (person4097)",
+   "authors": [],
+   "publisher": "The Henson Journals, Durham University",
+   "published_text": "2026-11-12 取用",
+   "url": "https://henson.durham.ac.uk/people/person4097",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "杜倫大學研究計畫人物註釋（B）"
+  },
+  "gaz-35305": {
+   "title": "Supplement to the London Gazette, 17 October 1941（Lord Gort 呈報，p.5934）",
+   "authors": [],
+   "publisher": "The London Gazette",
+   "published_text": "1941-10-17，2026-11-12 取用",
+   "url": "https://www.thegazette.co.uk/London/issue/35305/supplement/5934/data.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國官方公報（A）"
+  },
+  "wsc-brooke": {
+   "title": "Books, Arts & Curiosities - Alanbrooke on Churchill（書評）",
+   "authors": [
+    "Graham Robson"
+   ],
+   "publisher": "International Churchill Society, Finest Hour 110",
+   "published_text": "2026-11-12 取用",
+   "url": "https://winstonchurchill.org/publications/finest-hour/finest-hour-110/books-arts-curiosities-alanbrooke-on-churchill/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "International Churchill Society 具名作者書評（B）"
+  },
+  "ebsco-monty": {
+   "title": "Bernard Law Montgomery",
+   "authors": [
+    "Kirk Ford"
+   ],
+   "publisher": "EBSCO Research Starters",
+   "published_text": "2026-11-12 取用",
+   "url": "https://www.ebsco.com/research-starters/history/bernard-law-montgomery/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "EBSCO Research Starters 具名作者條目（B）"
+  }
+ },
+ "people": [
+  {
+   "key": "hughdowding",
+   "bioId": null,
+   "name": "Hugh Dowding",
+   "nameZh": "第一代道丁男爵休·道丁",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1882-01-01",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "休·道丁（1882—1970）生於蘇格蘭莫法特，先後就讀聖尼尼安學校與溫徹斯特公學，再入伍爾維奇的皇家軍事學院。他早年在皇家駐防炮兵於海外服役，第一次世界大戰開始時加入皇家飛行團，1915年出任第16中隊指揮官。",
+      "en": "Hugh Dowding (1882–1970) was born in Moffat, Scotland, and was educated at St Ninian’s School and Winchester College, followed by the Royal Military Academy, Woolwich. He served abroad in the Royal Garrison Artillery, joined the Royal Flying Corps at the start of the First World War, and in 1915 became commanding officer of 16 Squadron."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "(1882–1970). Air chief marshal.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "was born in Moffat, Scotland",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "educated at St Ninian’s School and Winchester College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "followed by the Royal Military Academy, Woolwich",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "He served abroad in the Royal Garrison Artillery",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "joined the Royal Flying Corps at the start of the First World War",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "becoming the commanding officer of the 16 Squadron in 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1918-01-01",
+      "end": "1940-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "轉入皇家空軍與戰鬥機司令部",
+      "en": "Royal Air Force and Fighter Command"
+     },
+     "body": {
+      "zh-Hant": "他在一戰結束時已是准將，其後轉入新成立的皇家空軍，1933年獲頒巴斯勳章爵級司令。1936年他出任戰鬥機司令部總司令，原定1939年退休，卻被要求留任。自1936年起，他便向內閣與空軍委員會陳述，下一場戰爭英國將處於守勢，因此應優先增產戰鬥機；他也強調要改善對敵機的偵測與預警。",
+      "en": "He finished the First World War as a brigadier-general and transferred to the new RAF, receiving the Knight Commander of the Order of the Bath in 1933. In 1936 he was made commander-in-chief of Fighter Command and, though due to retire in 1939, was asked to continue. From 1936 he argued to the cabinet and Air Council that Britain would be on the defensive in the next war, so fighter strength should be built up first, and he stressed better detection and early warning of enemy aircraft."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "He finished the war as brigadier-general and transferred to the new RAF.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "Knight Commander of the Order of the Bath in 1933",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "In 1936 he was made commander-in-chief of Fighter Command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "though due to retire in 1939 was asked to continue",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bob",
+       "locator": "EBSCO Research Starters「Battle of Britain」",
+       "quote": "Since 1936, Sir Hugh Dowding, head of the Fighter Command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bob",
+       "locator": "EBSCO Research Starters「Battle of Britain」",
+       "quote": "in the next war, Britain would be on the defensive",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bob",
+       "locator": "EBSCO Research Starters「Battle of Britain」",
+       "quote": "should be given to a buildup of fighter plane strength",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bob",
+       "locator": "EBSCO Research Starters「Battle of Britain」",
+       "quote": "Dowding also stressed the need for improved detection and early warning",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-05-01",
+      "end": "1940-11-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "不列顛戰役",
+      "en": "Battle of Britain"
+     },
+     "body": {
+      "zh-Hant": "1940年5月，道丁在一份言詞有力的備忘錄中懇求不要再把戰鬥機送往法國。其後的不列顛戰役主要發生在1940年7月10日至10月31日之間，他全程親自掌控。邱吉爾稱他保留七個中隊作預備隊的決定是戰爭藝術中的天才之例。",
+      "en": "In May 1940 Dowding begged, in a powerfully argued memo, that no more fighter planes be sent to France. The Battle of Britain that followed occurred primarily between 10 July and 31 October 1940, and he was in personal control throughout. Churchill called his decision to hold seven squadrons in reserve an example of genius in the art of war."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "In May 1940, in a powerfully argued memo",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "he begged that no more fighter planes be sent to France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bob",
+       "locator": "EBSCO Research Starters「Battle of Britain」",
+       "quote": "occurring primarily between July 10 and October 31, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "he was in personal control all through the Battle of",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "Churchill called his decision to hold seven squadrons in reserve",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "an example of genius in the art of war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-11-01",
+      "end": "1970-02-16"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "去職與晚年",
+      "en": "Replacement and later life"
+     },
+     "body": {
+      "zh-Hant": "1940年11月，在德國入侵的威脅被擊退之後，道丁被撤換；他於1942年自皇家空軍退役，並在1943年7月5日受封為道丁男爵。此後他把餘生投入唯靈論與反對活體解剖的運動，並於1970年2月15日去世。",
+      "en": "He was replaced in November 1940, after the German invasion threat had been defeated; he retired from the RAF in 1942 and was made Baron Dowding on 5 July 1943. He devoted the rest of his life to spiritualism and to campaigning against vivisection, and died on 15 February 1970."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "He was replaced in November 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "after the German invasion threat had been defeated",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "he retired from the RAF in 1942 and was made a peer the following year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-dowding",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Baron Dowding July 5, 1943 - February 15, 1970",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "He devoted the rest of his life to spiritualism",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "and to campaigning against vivisection",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "psi-dowding",
+       "locator": "Psi Encyclopedia（Willin）條目",
+       "quote": "Dowding died in 1970",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "dowding-fighter-command-1936-1940",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國皇家空軍戰鬥機司令部",
+      "en": "RAF Fighter Command"
+     },
+     "title": {
+      "orig": "Commander-in-chief of Fighter Command",
+      "zh-Hant": "戰鬥機司令部總司令",
+      "en": "Commander-in-Chief, Fighter Command"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1936-01-01",
+      "end": "1940-12-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "In 1936 he was made commander-in-chief of Fighter Command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "He was replaced in November 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-dowding",
+       "locator": "Oxford Companion to British History（Cannon）條目",
+       "quote": "after the German invasion threat had been defeated",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級戰鬥機司令部（軍種下屬功能司令部）總司令；來源未明寫為軍種總司令（缺 rank）、政權對應待查證，R4 門檻無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:dowding-fighter-command-1936-1940",
+     "gapKind": "not_found",
+     "note": "待查證：起日僅年精度、迄日僅月精度（1936—1940年11月）；RAF Air Power Review（raf.mod.uk）被 Cloudflare 擋，不繞過；已查：Psi Encyclopedia、Oxford Companion（Cannon）、EBSCO Battle of Britain、Hansard。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:dowding-air-member-1930",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；1930年起任空軍委員會「補給與研究」委員等職，僅見於搜尋摘要與未取得原文的 RAF Air Power Review／RAF Museum 逐字稿；已查：RAF 官網（被擋）、Psi、Oxford Companion。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Hugh Dowding Fighter Command biography Air Chief Marshal Battle of Britain 1936 1940",
+     "url": null,
+     "result": "found_B",
+     "note": "網路搜尋索引，得 Psi Encyclopedia、RAF Museum、Britannica 等線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-hugh-dowding",
+     "result": "found_A",
+     "note": "封號起訖：Baron Dowding 1943-07-05 至 1970-02-15"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Hugh Dowding",
+     "url": "https://snl.no/Hugh_Dowding",
+     "result": "no_result",
+     "note": "SNL 無此條目（404）"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Hugh Dowding",
+     "url": "https://www.britannica.com/biography/Hugh-Caswall-Tremenheere-Dowding-1st-Baron-Dowding",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "RAF Museum 戰鬥機司令部頁",
+     "url": "https://www.rafmuseum.org.uk/research/online-exhibitions/history-of-the-battle-of-britain/commander-in-chief-of-fighter-command/",
+     "result": "not_relevant",
+     "note": "抓到頁面但正文無可用於 Dowding 的句子"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Psi Encyclopedia Hugh Dowding（Melvyn Willin，SPR）",
+     "url": "https://psi-encyclopedia.spr.ac.uk/articles/hugh-dowding",
+     "result": "found_B",
+     "note": "具名作者；生平概略"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Oxford Companion to British History「Dowding」（Cannon）",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/dowding-hugh-1st-baron-dowding",
+     "result": "found_B",
+     "note": "具名作者 J. A. Cannon"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "Dowding Air Officer Commanding-in-Chief Fighter Command 1936 … 1930 研究與補給委員（限定機構網域）",
+     "url": "https://www.raf.mod.uk/what-we-do/centre-for-air-and-space-power-studies/aspr/apr-vol8-iss4-3-pdf/",
+     "result": "blocked_403",
+     "note": "Cloudflare 擋，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters Hugh Dowding／Lord Gort（搜尋）",
+     "url": "https://www.ebsco.com/research-starters/military-history-and-science/battle-britain/",
+     "result": "found_B",
+     "note": "無 Dowding 專條；「Battle of Britain」（Pringle & Clark）具名可用"
+    }
+   ],
+   "nameFixLog": [
+    {
+     "on": "2026-11-13",
+     "ord": 1,
+     "field": "body",
+     "rule": "主管 2026-11-12 10:07：段落模型音譯人名換成索引名／殘留簡體字",
+     "by": "patch_para_names.py"
+    }
+   ]
+  },
+  {
+   "key": "archibaldwavell1stearlwavell",
+   "bioId": null,
+   "name": "Archibald Wavell, 1st Earl Wavell",
+   "nameZh": "第一代韋維爾伯爵阿奇博爾德·韋維爾",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1939-01-01",
+      "end": "1940-06-11"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "中東總司令與義大利參戰",
+      "en": "Middle East command and Italy's entry"
+     },
+     "body": {
+      "zh-Hant": "韋維爾在1939至1941年間擔任英軍中東總司令。1940年6月10日義大利對英法宣戰，他手中只有約六萬三千人要防衛埃及、巴勒斯坦、外約旦與伊拉克，而義大利在利比亞的兵力遠為龐大。",
+      "en": "Wavell was commander in chief of British forces in the Middle East from 1939 to 1941. When Italy declared war on 10 June 1940, he had only some sixty-three thousand men to protect Egypt, Palestine, Trans-Jordan and Iraq, while Italy had a much larger military presence in Libya."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-alamein",
+       "locator": "EBSCO Research Starters「Second Battle of El Alamein」",
+       "quote": "(1883-1950), commander in chief of British forces in the Middle East, 1939-1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Italy declared war on France and England on June 10",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Wavell had only sixty-threee thousand men",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "while Italy had a much larger military presence in Libya",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1940-12-09",
+      "end": "1941-02-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "指南針行動與東非攻勢",
+      "en": "Operation Compass and East Africa"
+     },
+     "body": {
+      "zh-Hant": "1940年12月9日英軍發動「指南針行動」，奧康納所部在拂曉突襲尼貝瓦的設防營地，步兵、裝甲與砲兵配合井然。1941年2月6日至9日的貝達福姆戰役使義大利第十軍告終。同時，韋維爾在義屬東非的攻勢於1941年1月19日展開；他的部隊在1940與1941年間把義軍逐出利比亞與衣索比亞。",
+      "en": "Operation Compass began on 9 December 1940, when O’Connor’s men hit the fortified camp at Nibeiwa at daybreak with artillery, armor and infantry attacking in perfect order. The battle of Beda Fomm, fought hard between 6 and 9 February 1941, ended the Italian Tenth Army. Wavell’s offensive into Italian East Africa began on 19 January 1941, and his forces drove the Italians out of Libya and Ethiopia in 1940–1941."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Dubbed Operation Compass, the British attack began on December 9.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Hitting the Nibeiwa fortified camp at daybreak",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "O’Connor’s men produced a textbook example for the combined arms attack",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Artillery, armor, and infantry attacked in perfect order",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "Despite hard fighting between February 6 and 9, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "this battle marked the end of the Tenth Army",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "which began on January 19, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-alamein",
+       "locator": "EBSCO Research Starters「Second Battle of El Alamein」",
+       "quote": "drove them out of Libya and Ethiopia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1941-03-01",
+      "end": "1941-10-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "希臘遠征、戰斧行動與去職",
+      "en": "Greece, Battleaxe and replacement"
+     },
+     "body": {
+      "zh-Hant": "邱吉爾命令韋維爾組成遠征軍援助希臘人，並在1941年3月下令增派英軍赴希臘。五月中旬，韋維爾在邱吉爾支持下策劃「戰斧行動」，企圖突破到托布魯克，卻被隆美爾輕易擊退，損失逾半裝甲。夏季期間，他被奧金萊克取代。",
+      "en": "Churchill ordered Wavell to form an expeditionary force to aid the Greeks and in March 1941 ordered more British forces sent to Greece. In mid-May Wavell, backed by Churchill, planned Operation Battleaxe to break through to Tobruk; Rommel easily repulsed him and destroyed more than half the British armor. During the summer Wavell was replaced by Claude Auchinleck."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "ordered Wavell to form an expeditionary force to aid the Greeks",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-egypt",
+       "locator": "EBSCO Research Starters「Italy Invades Egypt」",
+       "quote": "ordering more British forces dispatched to Greece in March, 1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-tobruk",
+       "locator": "EBSCO Research Starters「Battle of Tobruk」",
+       "quote": "Wavell planned Operation Battleaxe in mid-May",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-tobruk",
+       "locator": "EBSCO Research Starters「Battle of Tobruk」",
+       "quote": "Rommel easily repulsed Wavell and destroyed more than half the British armor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-tobruk",
+       "locator": "EBSCO Research Starters「Battle of Tobruk」",
+       "quote": "During the summer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-tobruk",
+       "locator": "EBSCO Research Starters「Battle of Tobruk」",
+       "quote": "Wavell was replaced by British general Claude Auchinleck",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1943-01-01",
+      "end": "1950-05-25"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "印度總督與晚年",
+      "en": "Viceroy of India and later years"
+     },
+     "body": {
+      "zh-Hant": "韋維爾自1943年起任印度總督，任期至1947年。孟加拉大饑荒期間，他前往孟加拉並展開積極行動以減輕災情。1943年7月22日他受封韋維爾子爵，1947年5月1日晉為伯爵，1950年5月24日去世。",
+      "en": "From 1943 Wavell was viceroy of India, until 1947. During the Bengal famine he travelled to Bengal and began a vigorous effort to mitigate its effects. He became Viscount Wavell on 22 July 1943 and Earl Wavell on 1 May 1947, and died on 24 May 1950."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-bengal",
+       "locator": "EBSCO Research Starters「Famine Decimates Bengal」",
+       "quote": "viscount, and viceroy of India, 1943-1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bengal",
+       "locator": "EBSCO Research Starters「Famine Decimates Bengal」",
+       "quote": "The viceroy of India, Archibald Wavell, traveled to Bengal",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-bengal",
+       "locator": "EBSCO Research Starters「Famine Decimates Bengal」",
+       "quote": "began a vigorous effort to mitigate the effects of the famine",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-wavell",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Viscount Wavell July 22, 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-wavell",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Earl Wavell May 1, 1947 - May 24, 1950",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "wavell-middle-east-1939-1941",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國中東司令部",
+      "en": "British Middle East Command"
+     },
+     "title": {
+      "orig": "Commander in chief of British forces in the Middle East",
+      "zh-Hant": "中東英軍總司令",
+      "en": "Commander-in-Chief, Middle East"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1942-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ebsco-alamein",
+       "locator": "EBSCO Research Starters「Second Battle of El Alamein」",
+       "quote": "(1883-1950), commander in chief of British forces in the Middle East, 1939-1941",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級總司令，有日期、地點與具名戰役（指南針行動等）連結，但職位等級未明寫為國家級最高軍職、政權對應待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "wavell-viceroy-india-1943-1947",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英屬印度政府",
+      "en": "Government of British India"
+     },
+     "title": {
+      "orig": "Viceroy of India",
+      "zh-Hant": "印度總督",
+      "en": "Viceroy of India"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1943-01-01",
+      "end": "1948-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ebsco-bengal",
+       "locator": "EBSCO Research Starters「Famine Decimates Bengal」",
+       "quote": "viscount, and viceroy of India, 1943-1947",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "印度總督為轄區最高行政長官，起迄僅年精度，且英屬印度政權對應（regimeId）待查證，R2 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:wavell-india-1941",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日（印度總司令 1941—1943，另有1942年西南太平洋盟軍司令／ABDA）；Gale 條目（Encyclopedia of World Biography，無署名，Q9 僅列候選）與 NAM 頁（無署名）僅有概述；已查：EBSCO 三篇、NAM、Gale。",
+     "candidateCitations": [
+      {
+       "sourceKey": "oc-wavell",
+       "locator": "Gale 條目（無署名）",
+       "quote": "Wavell, in turn, assumed Auchinleck's position as commander in chief in India.",
+       "quoteLang": "en",
+       "evidenceNote": "無具名作者條目，依 Q9 僅列候選",
+       "accessedOn": "2026-11-11",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-wavell",
+       "locator": "Gale 條目（無署名）",
+       "quote": "he became allied commander of the Southwest Pacific",
+       "quoteLang": "en",
+       "evidenceNote": "無具名作者條目，依 Q9 僅列候選",
+       "accessedOn": "2026-11-11",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:wavell-middle-east-1939-1941",
+     "gapKind": "not_found",
+     "note": "待查證：起迄僅年精度（1939—1941）；NAM 頁（無署名）稱1939年任中東司令部、1940年2月職稱改為中東總司令，但無署名，不採；Britannica 被 Cloudflare 擋；已查：EBSCO（Barbeau、Dunn、Janoff）、NAM、Gale、Hansard。",
+     "candidateCitations": [
+      {
+       "sourceKey": "nam-wavell",
+       "locator": "NAM 頁（無署名）",
+       "quote": "His title changed to Commander-in-Chief Middle East.",
+       "quoteLang": "en",
+       "evidenceNote": "無具名作者條目，依 Q9 僅列候選",
+       "accessedOn": "2026-11-11",
+       "grade": "C",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:wavell-viceroy-india-1943-1947",
+     "gapKind": "not_found",
+     "note": "待查證：起迄僅年精度；EBSCO（Long）書目標題含「15 June 1943」，但為書名不作任職日期引文；已查：EBSCO、Gale、Hansard。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Wavell Commander-in-Chief Middle East 1939 1941 Viceroy of India 1943 Archibald Wavell biography",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引，得 NAM、Encyclopedia.com、IWM、TNA 線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-archibald-wavell",
+     "result": "found_A",
+     "note": "封號：Viscount 1943-07-22、Earl 1947-05-01，卒1950-05-24"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Archibald Wavell",
+     "url": "https://snl.no/Archibald_Wavell",
+     "result": "no_result",
+     "note": "導向泛稱頁，無 Wavell 專條"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Archibald Wavell",
+     "url": "https://www.britannica.com/biography/Archibald-Percival-Wavell-1st-earl-Wavell",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "National Army Museum Archibald Wavell",
+     "url": "https://www.nam.ac.uk/explore/archibald-wavell",
+     "result": "unrated",
+     "note": "無署名館藏頁，僅列 gap 候選"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com Wavell（Gale）",
+     "url": "https://www.encyclopedia.com/people/history/historians-miscellaneous-biographies/archibald-wavell",
+     "result": "unrated",
+     "note": "Gale 條目無署名"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "TNA Discovery Wavell Viceroy 文件",
+     "url": "https://discovery.nationalarchives.gov.uk/details/r/0c20f092-db89-486a-814b-2d47ffda6a16",
+     "result": "no_result",
+     "note": "JavaScript 頁，抓取回空檔"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "EBSCO Research Starters Archibald Wavell（搜尋）",
+     "url": null,
+     "result": "no_result",
+     "note": "無專條；改用提及 Wavell 的具名條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "EBSCO「Italy Invades Egypt」（Dunn）",
+     "url": "https://www.ebsco.com/research-starters/history/italy-invades-egypt/",
+     "result": "found_B",
+     "note": "具名；指南針行動與東非"
+    },
+    {
+     "step": 10,
+     "sourceType": "academic",
+     "query": "EBSCO「Battle of Tobruk」（Janoff）",
+     "url": "https://www.ebsco.com/research-starters/military-history-and-science/battle-tobruk/",
+     "result": "found_B",
+     "note": "戰斧行動與去職"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "EBSCO「Famine Decimates Bengal」（Long）",
+     "url": "https://www.ebsco.com/research-starters/nutrition-and-dietetics/famine-decimates-bengal/",
+     "result": "found_B",
+     "note": "印度總督、封爵"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "EBSCO「Second Battle of El Alamein」（Barbeau）",
+     "url": "https://www.ebsco.com/research-starters/history/second-battle-el-alamein/",
+     "result": "found_B",
+     "note": "中東總司令 1939–1941"
+    }
+   ]
+  },
+  {
+   "key": "douglashaig1stearlhaig",
+   "bioId": null,
+   "name": "Douglas Haig, 1st Earl Haig",
+   "nameZh": "第一代黑格伯爵道格拉斯·黑格",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1861-06-19",
+      "end": "1914-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與戰前聲望",
+      "en": "Origins and pre-war reputation"
+     },
+     "body": {
+      "zh-Hant": "道格拉斯·黑格1861年6月19日生於蘇格蘭愛丁堡，是英國軍官。1914年之前，他已被公認為同代最傑出的軍人之一。",
+      "en": "Douglas Haig was born in Edinburgh, Scotland, on 19 June 1861, a British officer. Before 1914 he was recognised as one of the outstanding soldiers of his generation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "19. juni 1861, Edinburgh, Skottland, Storbritannia",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Douglas Haig var en britisk offiser.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "Before 1914 Haig was recognized as one of the outstanding soldiers",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1898-01-01",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "戰前軍旅",
+      "en": "Pre-war service"
+     },
+     "body": {
+      "zh-Hant": "黑格是騎兵軍官，1898年在蘇丹服役，也參加了南非的波耳戰爭，其後到1912年主要在印度任職。法國國防部的人物頁另記，他於1906年出任陸軍部軍事訓練處長，成為英軍最年輕的少將。",
+      "en": "Haig was a cavalryman who served in the Sudan in 1898 and in the Boer War, and afterwards until 1912 mainly in India. The French Ministry of the Armed Forces page adds that in 1906 he became Director of Military Training at the War Office, the youngest major-general in the British army."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "Haig var kavalerist og gjorde tjeneste i Sudan i 1898",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "Boerkrigen og derefter indtil 1912 fortrinsvis i Indien",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "plus jeune Major-General de l'armée britannique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "nommé directeur de Formation Militaire en 1906",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1915-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "1914年的第一軍",
+      "en": "I Corps in 1914"
+     },
+     "body": {
+      "zh-Hant": "1914年，黑格出任英國遠征軍第一軍軍長，部隊在法國與比利時作戰，據法國國防部人物頁，他在蒙斯與伊普爾的戰鬥中表現出色。",
+      "en": "In 1914 Haig took command of I Corps of the British Expeditionary Force, which fought in France and Belgium; the French Ministry of the Armed Forces page says he distinguished himself in the fighting at Mons and Ypres."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "(BEFs) 1. armékorps i Frankrig",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "Corps d'Armée de la BEF en France et en Belgique",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "où il s'illustre au cours des combats de Mons et d'Ypres",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "I 1914 blev han chef for British Expeditionary Force",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1915-12-01",
+      "end": "1918-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "接掌駐法英軍與索姆河、阿拉斯、法蘭德斯戰役",
+      "en": "Command in France: Somme, Arras and Flanders"
+     },
+     "body": {
+      "zh-Hant": "1915年12月，黑格接替約翰·弗倫奇，出任駐法英軍總司令。他指揮了1916年的索姆河攻勢，以及1917年的阿拉斯與法蘭德斯攻勢，這些戰役以傷亡慘重著稱，並被列為英國史上代價最高也最具爭議的戰役。黑格於1917年晉升陸軍元帥。",
+      "en": "In December 1915 Haig replaced Sir John French as commander-in-chief of the British armies in France. He led the bloody offensives at the Somme in 1916 and at Arras and in Flanders in 1917, which were among the most costly and controversial battles in British history. He became a field marshal in 1917."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "I desember 1915 ble Haig sjef for de britiske armeene i Frankrike",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "In December 1915 he replaced Sir John",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Han ledet de blodige offensivene ved",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Somme i 1916",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Arras og i Flandern i 1917",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "He fought two of the most costly and controversial battles in British history",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Haig ble feltmarskalk i 1917",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1918-08-01",
+      "end": "1918-12-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "1918年最後攻勢與評價",
+      "en": "The 1918 campaign and assessment"
+     },
+     "body": {
+      "zh-Hant": "1918年8月至11月，黑格發動的戰役終於擊潰德軍的抵抗，被認為比索姆河與帕森達勒的戰役成功得多；在戰爭的最後階段，這些行動是在法國元帥福煦的最高指揮之下進行。對黑格的評價仍充滿爭議，他在大眾心目中的形象是冷酷的屠夫。",
+      "en": "The campaign Haig waged between August and November 1918 finally broke the German army’s resistance and was far more successful than the Somme or Passchendaele; in the closing phase the operations were under the supreme command of the French marshal Ferdinand Foch. Haig remains a figure of great controversy, and his popular image is that of a callous butcher."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "the far more successful campaign he waged between August and November 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "which finally broke the German army's resistance",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "ved krigens sluttfase i 1918",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "under franske marskalk Ferdinand Fochs overkommando",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "third Ypres ( Passchendaele , 1917)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "Haig remains a figure of great controversy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "his popular image remains that of a callous butcher",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 6,
+     "period": {
+      "start": "1919-01-01",
+      "end": "1928-01-31"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰後與封爵",
+      "en": "Post-war career and peerage"
+     },
+     "body": {
+      "zh-Hant": "戰後，黑格在1919至1920年間擔任英國本土的最高指揮官。他在1919年9月29日受封黑格伯爵，1928年1月29日在倫敦去世。",
+      "en": "After the war Haig was commander-in-chief in Britain in 1919–1920. He became Earl Haig on 29 September 1919 and died in London on 29 January 1928."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Etter krigen var han øverstkommanderende i Storbritannia i 1919–1920",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hans-haig",
+       "locator": "Historic Hansard 人物頁",
+       "quote": "Earl Haig September 29, 1919 - January 30, 1928",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "29. januar 1928, London",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "haig-commander-in-chief-france-1915",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（駐法英軍）",
+      "en": "British armies in France"
+     },
+     "title": {
+      "orig": "Sjef for de britiske armeene i Frankrike",
+      "zh-Hant": "駐法英軍總司令",
+      "en": "Commander-in-Chief, British armies in France"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1915-12-01",
+      "end": "1920-01-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "I desember 1915 ble Haig sjef for de britiske armeene i Frankrike",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "oc-haig",
+       "locator": "Oxford Companion to British History（David French）條目",
+       "quote": "In December 1915 he replaced Sir John",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "il prend la tête de la BEF élargie en décembre 1915",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wm-haig",
+       "locator": "Canadian War Museum「Sir Douglas Haig」",
+       "quote": "Haig commanded the British Expeditionary Force from December 1915 to 1919.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "henson-haig",
+       "locator": "Henson Journals「Douglas Haig」",
+       "quote": "commander-in-chief of the British Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級總司令，有索姆河等戰役連結；起訖日已有來源（1915-12 至 1919，年精度可證明天數），但政權對應待查證（缺 regime），R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "haig-home-forces-1919-1920",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國本土陸軍",
+      "en": "British Home Forces"
+     },
+     "title": {
+      "orig": "Øverstkommanderende i Storbritannia",
+      "zh-Hant": "英國本土最高指揮官",
+      "en": "Commander-in-Chief in Britain"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1919-01-01",
+      "end": "1921-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-haig",
+       "locator": "SNL「Douglas Haig」（Tim Greve）",
+       "quote": "Etter krigen var han øverstkommanderende i Storbritannia i 1919–1920",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "henson-haig",
+       "locator": "Henson Journals「Douglas Haig」",
+       "quote": "commander-in-chief, home forces, 1919-20",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "I 1919-1920 var Haig øverstkommanderende for den britiske hær.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國內駐軍最高指揮，職位等級未明寫為國家級最高軍職（缺 rank）、年精度且政權對應待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:haig-home-forces-1919-1920",
+     "gapKind": "conflict",
+     "note": "本土軍總司令迄日：SNL（Greve）、Lex（Bjørn）、Henson Journals 均寫 1919–1920；法國國防部 Chemins de mémoire 頁寫「jusqu'à sa mise à la retraite en 1921」。暫依 1919–1920（迄 1921-01-01，年精度）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [
+      {
+       "sourceKey": "def-haig",
+       "locator": "法國國防部 Chemins de mémoire「Douglas Haig」",
+       "quote": "jusqu'à sa mise à la retraite en 1921",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "lex-haig",
+       "locator": "Lex「Douglas Haig」（Claus Bjørn）",
+       "quote": "I 1919-1920 var Haig øverstkommanderende for den britiske hær.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "paragraph:first-army-1914-15",
+     "gapKind": "not_found",
+     "note": "待查證：1914年底至1915年12月出任第一軍司令的確切起迄日；已取原文的 A／B 來源（Lex、法國國防部、Canadian War Museum、Henson Journals、London Gazette 1915-04-14 增刊）未明寫任命日；TNA Discovery、NLS 頁（JavaScript／405）無法取得，Britannica 與 1914-1918-online 被擋，不繞過。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Haig Douglas 1st Earl Haig field marshal Oxford Companion to British History",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引，得 Encyclopedia.com、1914-1918-online、TNA 線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-douglas-haig",
+     "result": "found_A",
+     "note": "生卒與封號日期"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Douglas Haig（Tim Greve）",
+     "url": "https://snl.no/Douglas_Haig",
+     "result": "found_B",
+     "note": "具名作者；任職年份"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Douglas Haig",
+     "url": "https://www.britannica.com/biography/Douglas-Haig-1st-Earl-Haig",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "1914-1918-online Haig, Douglas（Sheffield）",
+     "url": "https://encyclopedia.1914-1918-online.net/article/haig-douglas/",
+     "result": "challenge_page",
+     "note": "Anubis 挑戰頁，不繞過"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Oxford Companion to British History「Haig」（David French）",
+     "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/douglas-haig-1st-earl-haig",
+     "result": "found_B",
+     "note": "具名作者 David French"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "National Library of Scotland Great War 頁 Douglas Haig",
+     "url": "https://digital.nls.uk/great-war/general/douglas-haig.html",
+     "result": "challenge_page",
+     "note": "CAPTCHA 挑戰頁，不繞過；搜尋摘要稱1919年4月任本土軍總司令，未取得原文，不採"
+    },
+    {
+     "step": 8,
+     "sourceType": "official",
+     "query": "IWM Field Marshal Sir Douglas Haig",
+     "url": "https://www.iwm.org.uk/history/field-marshal-sir-douglas-haig",
+     "result": "challenge_page",
+     "note": "挑戰頁，不繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "TNA Discovery Haig 創作者記錄",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F256905",
+     "result": "no_result",
+     "note": "JavaScript 頁，回空檔"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "encyclopedia.com 教育雜誌「Douglas Haig」",
+     "url": "https://www.encyclopedia.com/history/educational-magazines/douglas-haig",
+     "result": "unrated",
+     "note": "無署名，未採用"
+    },
+    {
+     "step": 11,
+     "sourceType": "official",
+     "query": "Douglas Haig British Expeditionary Force December 1915 April 1919 Home Forces 1919 1920 biography",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引，得 Chemins de mémoire、NLS、Henson 線索",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "Хейг Дуглас Большая российская энциклопедия главнокомандующий британскими войсками во Франции",
+     "url": "https://znanierussia.ru/articles/%D0%A5%D0%B5%D0%B9%D0%B3,_%D0%94%D1%83%D0%B3%D0%BB%D0%B0%D1%81",
+     "result": "unrated",
+     "note": "BRE 全文鏡像無署名，不採；curl 取得但不引用",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "other",
+     "query": "ダグラス・ヘイグ イギリス遠征軍司令官 1915年12月 1919年 元帥 本国軍司令官",
+     "url": null,
+     "result": "no_result",
+     "note": "日文來源只得報紙／部落格，未得 A／B",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "Douglas Haig 1861-1928 Oxford DNB commander-in-chief home forces 1919-1920 First Army",
+     "url": null,
+     "result": "no_result",
+     "note": "ODNB 僅得書目（Prior & Wilson），公開摘要不可得",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "Haig First Army 1914 1915 Loos Neuve Chapelle I Corps Mons Ypres",
+     "url": null,
+     "result": "found_A",
+     "note": "得 London Gazette 1915-04-14 增刊（issue 29128 p.3674）",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "official",
+     "query": "https://thegazette.co.uk/London/issue/29128/supplement/3674/data.pdf",
+     "url": "https://thegazette.co.uk/London/issue/29128/supplement/3674/data.pdf",
+     "result": "not_relevant",
+     "note": "curl 取得 PDF；談 Neuve Chapelle，未寫 Haig 任命日，不引用",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "other",
+     "query": "Haig Arras Passchendaele Cambrai 1918 Amiens museum",
+     "url": null,
+     "result": "unrated",
+     "note": "只得部落格與教學站",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "official",
+     "query": "Earl Haig Hansard House of Lords 1919 Commander-in-Chief Home Forces",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1919/nov/12/earl-haig",
+     "result": "found_A",
+     "note": "Hansard 1919-11-12 僅記封爵引介，無本土軍任期",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "official",
+     "query": "https://api.parliament.uk/historic-hansard/lords/1928/feb/08/tributes-to-the-late-earl-haig",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1928/feb/08/tributes-to-the-late-earl-haig",
+     "result": "not_relevant",
+     "note": "curl 取得；悼詞不含任期，不引用",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "national_dictionary",
+     "query": "Haig Douglas Biografie Oberbefehlshaber britische Expeditionsarmee Deutsche Biographie",
+     "url": null,
+     "result": "no_result",
+     "note": "Deutsche Biographie 無條目",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "other",
+     "query": "道格拉斯·黑格 英國遠征軍總司令 1915年12月 索姆河 帕森達勒 元帥 本土軍總司令",
+     "url": null,
+     "result": "no_result",
+     "note": "中文僅得維基與 AI 鏡像，不採",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "named_encyclopedia",
+     "query": "Haig Douglas Treccani enciclopedia maresciallo britannico",
+     "url": null,
+     "result": "no_result",
+     "note": "Treccani 無結果；得 1914-1918-online（被擋）",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "Haig Douglas Real Academia de la Historia Diccionario Biográfico mariscal",
+     "url": null,
+     "result": "no_result",
+     "note": "DB~e 無條目；biografiasyvidas 無署名不採",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "official",
+     "query": "Haig 1920 Home Forces post abolished Haig retired 1921 Hansard",
+     "url": "https://henson.durham.ac.uk/people/person4097",
+     "result": "found_B",
+     "note": "Henson Journals：home forces 1919-20（curl 取得）",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "national_dictionary",
+     "query": "Haig Douglas Encyclopaedia Britannica 1922 supplement Dictionary of National Biography",
+     "url": null,
+     "result": "no_result",
+     "note": "無可用公開摘要",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "official",
+     "query": "Douglas Haig Académie chemins de mémoire maréchal Haig commandant en chef décembre 1915",
+     "url": "https://www.defense.gouv.fr/chemins-memoire/histoire-memoires/personnalites/personnalites-lettre-e-lettre-m/douglas-haig",
+     "result": "found_A",
+     "note": "法國國防部人物頁（curl 取得），可引 1914 第一軍、1915-12、1921 退休",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "named_encyclopedia",
+     "query": "lex.dk Douglas Haig（Claus Bjørn）",
+     "url": "https://lex.dk/Douglas_Haig",
+     "result": "found_B",
+     "note": "curl 取得；具名作者 B",
+     "round": "retry"
+    },
+    {
+     "step": 28,
+     "sourceType": "named_encyclopedia",
+     "query": "Canadian War Museum Sir Douglas Haig",
+     "url": "https://www.warmuseum.ca/firstworldwar/history/people/generals/sir-douglas-haig/",
+     "result": "found_B",
+     "note": "curl 取得；BEF 1915-12 至 1919",
+     "round": "retry"
+    },
+    {
+     "step": 29,
+     "sourceType": "other",
+     "query": "NatWest Group heritage Douglas Haig",
+     "url": "https://www.natwestgroup.com/heritage/people/douglas-haig.html",
+     "result": "unrated",
+     "note": "企業遺產頁無署名，不採",
+     "round": "retry"
+    },
+    {
+     "step": 30,
+     "sourceType": "other",
+     "query": "Vikidia／VLE／Universalis Haig",
+     "url": "https://www.vle.lt/straipsnis/douglas-haig/",
+     "result": "unrated",
+     "note": "curl 取得 VLE、Universalis；作者標示不明，不採為出處",
+     "round": "retry"
+    },
+    {
+     "step": 31,
+     "sourceType": "official",
+     "query": "National Library of Scotland / TNA Discovery Haig",
+     "url": "https://digital.nls.uk/great-war/general/douglas-haig.html",
+     "result": "blocked_403",
+     "note": "NLS 405、TNA 202 空頁，無法取得，不繞過",
+     "round": "retry"
+    }
+   ]
+  },
+  {
+   "key": "johnvereker6thviscountgort",
+   "bioId": null,
+   "name": "John Vereker, 6th Viscount Gort",
+   "nameZh": "第六代戈特子爵約翰·維里克",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1886-07-10",
+      "end": "1946-04-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "概略",
+      "en": "Overview"
+     },
+     "body": {
+      "zh-Hant": "第六代戈特子爵約翰·維里克1886年7月10日生於倫敦，是一名英國軍官，1943年獲任命為陸軍元帥，1946年3月31日在倫敦南華克去世。",
+      "en": "John Vereker, 6th Viscount Gort, was born in London on 10 July 1886. A British officer, he was appointed field marshal in 1943 and died in Southwark on 31 March 1946."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "10. juli 1886, London",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "John Vereker var en britisk",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "utnevnt til feltmarskalk i 1943",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "31. mars 1946, Southwark",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1937-01-01",
+      "end": "1940-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "帝國總參謀長與英國遠征軍",
+      "en": "Imperial General Staff and the BEF"
+     },
+     "body": {
+      "zh-Hant": "戈特（全名約翰·斯坦迪什·薩蒂斯·普倫德加斯特·維里克，1886—1946）1937至1939年擔任英帝國總參謀長。第二次世界大戰期間，他在1939至1940年間統率英國的整個野戰軍，即英國遠征軍。",
+      "en": "From 1937 to 1939 Gort (John Standish Surtees Prendergast Vereker, 1886–1946) was head of the British Imperial General Staff. In the Second World War he commanded the entire British field army, the British Expeditionary Force, from 1939 to 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "Fra 1937 til 1939 var han sjef for det britiske imperiets generalstab.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "sjef for den samlede britiske feltarmé fra 1939 til 1940",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "General Lord Gort, the commander in chief of the British Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "(John Standish Surtees Prendergast Vereker; 1886–1946)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1940-05-19",
+      "end": "1940-05-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "敦克爾克撤退",
+      "en": "The Dunkirk evacuation"
+     },
+     "body": {
+      "zh-Hant": "德軍迅速推進使戈特深感不安；早在5月19日，他就通知英國政府，他正考慮把所部九個師撤往英吉利海峽沿岸以便可能的撤離。他領導了艱難的敦克爾克撤退戰役。",
+      "en": "The German advance seriously alarmed Gort: as early as 19 May he informed the British government that he was considering withdrawing his nine divisions to the English Channel for possible evacuation. He led the difficult evacuation from Dunkirk."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "had seriously alarmed General Lord Gort",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "as early as May 19, he informed the British government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "withdrawing his nine divisions to the English Channel for possible evacuation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "Han ledet den vanskelige evakuering av Dunkerque",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1942-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "馬爾他與巴勒斯坦",
+      "en": "Malta and Palestine"
+     },
+     "body": {
+      "zh-Hant": "1942至1943年，戈特領導馬爾他抵禦德義聯軍頻繁的空襲。1944至1945年，他擔任巴勒斯坦與外約旦的高級專員。",
+      "en": "In 1942–1943 Gort led the defence of Malta against the numerous German-Italian air attacks. In 1944–1945 he was High Commissioner for Palestine and Transjordan."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "ledet han forsvaret mot de tallrike tysk-italienske flyangrep på Malta",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "Fra 1944 til 1945 var han overkommissær for Palestina og Transjordania",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "gort-cigs-1937-1939",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍（帝國總參謀部）",
+      "en": "British Army (Imperial General Staff)"
+     },
+     "title": {
+      "orig": "Sjef for det britiske imperiets generalstab",
+      "zh-Hant": "英帝國總參謀長",
+      "en": "Chief of the Imperial General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1937-01-01",
+      "end": "1940-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "Fra 1937 til 1939 var han sjef for det britiske imperiets generalstab.",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級參謀總長職，標題明寫帝國總參謀長，但政權對應（regimeId）待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "gort-bef-1939-1940",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍",
+      "en": "British Expeditionary Force"
+     },
+     "title": {
+      "orig": "Sjef for den samlede britiske feltarmé",
+      "zh-Hant": "英國遠征軍（野戰軍）總司令",
+      "en": "Commander-in-Chief, British Expeditionary Force"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-01-01",
+      "end": "1941-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "sjef for den samlede britiske feltarmé fra 1939 til 1940",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-dunkirk",
+       "locator": "EBSCO Research Starters「Evacuation of Dunkirk」",
+       "quote": "General Lord Gort, the commander in chief of the British Expeditionary Force",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "戰區級總司令，有5月19日與敦克爾克的戰役連結，但等級未明寫為國家級最高軍職（缺 rank）、政權對應待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    },
+    {
+     "key": "gort-malta-defence-1942-1943",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "馬爾他英軍",
+      "en": "British forces in Malta"
+     },
+     "title": {
+      "orig": "Ledet forsvaret på Malta",
+      "zh-Hant": "馬爾他防務領導人",
+      "en": "Head of Malta's defence"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1942-01-01",
+      "end": "1944-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "ledet han forsvaret mot de tallrike tysk-italienske flyangrep på Malta",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "地方要塞防務，非國家級最高軍職，亦非戰區／方面軍司令（R5）"
+    },
+    {
+     "key": "gort-high-commissioner-palestine-1944-1945",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "巴勒斯坦與外約旦英國託管政府",
+      "en": "British administration of Palestine and Transjordan"
+     },
+     "title": {
+      "orig": "Overkommissær for Palestina og Transjordania",
+      "zh-Hant": "巴勒斯坦與外約旦高級專員",
+      "en": "High Commissioner for Palestine and Transjordan"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1944-01-01",
+      "end": "1946-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "snl-gort",
+       "locator": "SNL「John Vereker」（Tim Greve）",
+       "quote": "Fra 1944 til 1945 var han overkommissær for Palestina og Transjordania",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "occupation_colonial",
+     "t14Rule": "R6",
+     "t14Reason": "託管地最高行政長官，年精度，政權對應（regimeId）待查證，R2 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "colonial_governor",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:gort-inspector-home-forces",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；SNL（Greve）只寫敦克爾克之後曾任英國本土陸軍視察官，無年份；已查：SNL、EBSCO Dunkirk。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:gort-governor-gibraltar-malta",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日與迄日；IWM 戰爭紀念館登記頁（無署名，已被擋，僅見搜尋摘要）稱任直布羅陀（1941—1942）與馬爾他（1942—1944）總督，來源不足，未採；已查：SNL、EBSCO、IWM（擋）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:early",
+     "gapKind": "not_found",
+     "note": "待查證：1937年前（一戰維多利亞十字勳章、戰間期任職）經歷；已查來源皆未寫；Britannica 被擋，Hansard 人物頁為同名之另一人（1790—1865）不採。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Gort Viscount John Vereker field marshal CIGS BEF 1939 1940 Malta governor",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引，得 IWM、TNA、EBSCO 線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-john-vereker",
+     "result": "not_relevant",
+     "note": "頁面為1790—1865年之第二代子爵，非本人，不採"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon John Vereker（Tim Greve）",
+     "url": "https://snl.no/John_Vereker",
+     "result": "found_B",
+     "note": "具名作者；各任期年份"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica John Standish Surtees Prendergast Vereker",
+     "url": "https://www.britannica.com/biography/John-Standish-Surtees-Prendergast-Vereker-6th-Viscount-Gort",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "TNA Discovery Vereker 創作者記錄",
+     "url": "https://discovery.nationalarchives.gov.uk/details/c/F42485",
+     "result": "no_result",
+     "note": "JavaScript 頁，回空檔"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "IWM 戰爭紀念館登記 Field Marshall Lord Gort",
+     "url": "https://www.iwm.org.uk/memorials/item/memorial/11826",
+     "result": "challenge_page",
+     "note": "挑戰頁；僅見搜尋摘要"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "EBSCO Research Starters Evacuation of Dunkirk（Eddy & Layton）",
+     "url": "https://www.ebsco.com/research-starters/military-history-and-science/evacuation-dunkirk/",
+     "result": "found_B",
+     "note": "具名；5月19日撤退考慮"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters 專條 John Vereker Gort",
+     "url": "https://www.ebsco.com/research-starters/history/john-vereker-gort",
+     "result": "no_result",
+     "note": "頁面不存在"
+    }
+   ]
+  },
+  {
+   "key": "alanbrooke1stviscountalanbrooke",
+   "bioId": null,
+   "name": "Alan Brooke, 1st Viscount Alanbrooke",
+   "nameZh": "艾倫·布魯克",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1883-07-23",
+      "end": "1910-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與早年",
+      "en": "Origins and early career"
+     },
+     "body": {
+      "zh-Hant": "艾倫·布魯克1883年7月23日生於法國，雙親屬於愛爾蘭的新教統治階層。他進入伍爾維奇皇家軍事學院，1902年受任皇家野戰炮兵軍官，1909年獲准轉入皇家騎炮兵。",
+      "en": "Alan Brooke was born in France on 23 July 1883; both his parents belonged to the Protestant Ascendancy class in Ireland. He entered the Royal Military Academy, Woolwich, was commissioned in the Royal Field Artillery in 1902 and in 1909 was accepted into the Royal Horse Artillery."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "snl-brooke",
+       "locator": "SNL「Alan Francis Brooke」（Aksel Schreiner Brakestad）",
+       "quote": "23. juli 1883, Bragnieres-de-Bigorre, Frankrike",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Both of his parents belonged to the Protestant Ascendancy class in Ireland",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "entered the Royal Military Academy, Woolwich",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "into which he was commissioned in 1902",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "In 1909, he was accepted into the prestigious Royal Horse Artillery",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1914-01-01",
+      "end": "1930-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "一戰與戰間期",
+      "en": "The First World War and the interwar years"
+     },
+     "body": {
+      "zh-Hant": "一戰期間，布魯克在法國主戰線服役，炮兵指揮被評為傑出；大戰結束時，他已獲傑出服務勳章及其加杖。1919年他入選戰後第一期參謀學院課程，1929年出任炮兵學校校長。",
+      "en": "During the First World War Brooke served on the main front in France, where his handling of artillery was rated outstanding, and by the war's end he had won the Distinguished Service Order and bar. He was selected for the first postwar Army Staff College course in 1919 and was appointed Commandant of the School of Artillery in 1929."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "During World War I, Brooke served on the main front in France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "His work in handling artillery was rated outstanding",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "awarded the Distinguished Service Order and bar",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "He was selected for the first postwar Army Staff College course in 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "He was appointed Commandant of the School of Artillery in 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-08-01",
+      "end": "1940-07-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "第二軍與敦克爾克",
+      "en": "Second Corps and Dunkirk"
+     },
+     "body": {
+      "zh-Hant": "1939年8月，布魯克受任南方司令部總司令，開戰後該司令部改組為英國遠征軍第二軍；同年9月他指揮其中一個軍。1940年德軍攻勢使英軍退向敦克爾克，布魯克指揮第二軍在艱難的退入敦克爾克防線期間表現出色，隨後被派去在索姆河以南重建新的遠征軍，並力主撤出留在法國的英軍，約十四萬英軍在這第二次撤離中返國。",
+      "en": "In August 1939 Brooke was appointed commander in chief, Southern Command, which on the outbreak of war became the Second Army Corps of the British Expeditionary Force; in September 1939 he commanded one of the two British corps in France. In 1940 he commanded the corps with distinction during the difficult withdrawal into the Dunkirk perimeter, was then asked to build up a new BEF south of the Somme, and urged the withdrawal of the remaining British troops; nearly 140,000 got home in this second evacuation."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "In August, 1939, he was appointed commander in chief, Southern Command",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "transformed on the outbreak of war into the Second Army Corps",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-brooke",
+       "locator": "SNL「Alan Francis Brooke」（Aksel Schreiner Brakestad）",
+       "quote": "I september 1939 var han sjef for det ene av de to britiske armékorps i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Brooke commanded the Second Army Corps with distinction",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "difficult withdrawal into the Dunkirk perimeter",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "asked to build up a new BEF south of the Somme",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "He urged withdrawal of what British troops remained in France",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "nearly 140,000 British troops got back home in this second evacuation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1940-07-01",
+      "end": "1942-04-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "本土防衛與帝國總參謀長",
+      "en": "Home Forces and Chief of the Imperial General Staff"
+     },
+     "body": {
+      "zh-Hant": "1940年7月，布魯克出任本土軍總司令，負責擊敗預期中的德國入侵，但入侵並未發生。1941年底，邱吉爾請他接任帝國總參謀長；1942年3月，他又成為參謀長委員會主席，實際上成為英國最主要的軍事發言人。",
+      "en": "In July 1940 Brooke was appointed commander in chief of the home forces to defeat the anticipated German invasion of England, which never came. In late 1941 Churchill asked him to become Chief of the Imperial General Staff, and in March 1942 he became chair of the Chiefs of Staff Committee, in effect Britain's leading military spokesman."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "In July, 1940, Brooke was appointed commander in chief of the home forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "defeating the anticipated German invasion of England",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "It never came",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Churchill asked Brooke to become Chief of the Imperial General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "In March, 1942, Brooke became chair of the Chiefs of Staff Committee",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Brooke became Great Britain’s leading military spokesperson",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1942-04-01",
+      "end": "1963-06-18"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "戰略、晉升與晚年",
+      "en": "Strategy, honours and later life"
+     },
+     "body": {
+      "zh-Hant": "布魯克主張先在北非與義大利削弱德軍，再登陸西北歐；盟軍於1942年底進入西北非，1943年攻入西西里與義大利，1944年6月才在西北歐登陸。邱吉爾1943年初曾許諾由他指揮登陸西北歐，但最終必須由美國人出任統帥。他1944年晉升陸軍元帥，1945年封男爵，1946年封子爵。他於1963年6月17日在漢普郡去世。",
+      "en": "Brooke favoured weakening the German army in Africa and Italy before landing in northwest Europe: Anglo-American forces entered northwest Africa in late 1942, invaded Sicily and Italy in 1943 and landed in northwest Europe in June 1944. Churchill had promised him the invasion command in early 1943, but an American commander proved inevitable. Brooke was raised to field marshal in 1944, created Baron Alanbrooke in 1945 and Viscount Alanbrooke in 1946, and died in Hampshire on 17 June 1963."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Anglo-American forces entered northwest Africa in late 1942",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "invaded Sicily and then Italy in 1943",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "landed in northwest Europe only in June, 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Churchill in early 1943 had promised him command of the invasion",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Brooke was raised to the rank of field marshal in 1944",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "created Baron Alanbrooke in 1945 and Viscount Alanbrooke in 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "He died at his home in Hartley Wintney, Hampshire, on June 17, 1963",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "brooke-second-corps-1939-1940",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國遠征軍（法國戰場）",
+      "en": "British Expeditionary Force (France)"
+     },
+     "title": {
+      "orig": "Sjef for det ene av de to britiske armékorps i Frankrike",
+      "zh-Hant": "英國遠征軍第二軍軍長",
+      "en": "Commander, II Corps, BEF"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1939-09-01",
+      "end": "1940-07-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "snl-brooke",
+       "locator": "SNL「Alan Francis Brooke」（Aksel Schreiner Brakestad）",
+       "quote": "I september 1939 var han sjef for det ene av de to britiske armékorps i",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Brooke commanded the Second Army Corps with distinction",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "gaz-35305",
+       "locator": "London Gazette 1941-10-17 增刊 p.5934（Gort 呈報）",
+       "quote": "of my three Corps. Lieut.-Generals Sir Alan",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke」（Schoenfeld）",
+       "quote": "He turned over command of his corps on the beach at La Panne",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一職務（1940年7月任本土軍總司令）起月推得（推論）；來源未寫交出日期。",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職、亦非戰區／方面軍司令，R4 不成立（R5）"
+    },
+    {
+     "key": "brooke-home-forces-1940",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國本土軍",
+      "en": "British Home Forces"
+     },
+     "title": {
+      "orig": "Commander in chief of the home forces",
+      "zh-Hant": "本土軍總司令",
+      "en": "Commander-in-Chief, Home Forces"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1940-07-01",
+      "end": "1941-12-25"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "In July, 1940, Brooke was appointed commander in chief of the home forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-brooke",
+       "locator": "SNL「Alan Francis Brooke」（Aksel Schreiner Brakestad）",
+       "quote": "hjemmestyrker i 1940",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wsc-brooke",
+       "locator": "International Churchill Society, Finest Hour 110（Graham Robson 書評）",
+       "quote": "From Christmas Day 1941 until Churchill was booted out",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依下一職務（帝國總參謀長）起日推得（推論）；本土軍後任交接日未取得。",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "本土防衛總司令，起日月精度、迄日依下一職推得、等級未明寫（缺 rank）、政權對應待查證，R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "rank",
+      "regime"
+     ]
+    },
+    {
+     "key": "brooke-cigs-1941",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國陸軍（帝國總參謀部）",
+      "en": "British Army (Imperial General Staff)"
+     },
+     "title": {
+      "orig": "Chief of the Imperial General Staff",
+      "zh-Hant": "帝國總參謀長",
+      "en": "Chief of the Imperial General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-12-25",
+      "end": "1947-01-01"
+     },
+     "startPrecision": "day",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "ebsco-brooke",
+       "locator": "EBSCO Research Starters「Alan Brooke, First Viscount Alanbrooke」（Schoenfeld）",
+       "quote": "Churchill asked Brooke to become Chief of the Imperial General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "snl-brooke",
+       "locator": "SNL「Alan Francis Brooke」（Aksel Schreiner Brakestad）",
+       "quote": "fra 1941 utnevnt til generalstabssjef",
+       "quoteLang": "no",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-11",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "wsc-brooke",
+       "locator": "International Churchill Society, Finest Hour 110（Graham Robson 書評）",
+       "quote": "From Christmas Day 1941 until Churchill was booted out",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-monty",
+       "locator": "EBSCO Research Starters「Bernard Law Montgomery」（Ford）",
+       "quote": "a post he held until February, 1946",
+       "quoteLang": "en",
+       "evidenceNote": "該句主語為蒙哥馬利的德國佔領區職務；同源接句寫其接任布魯克為帝國總參謀長，據此只能證明布魯克迄日不晚於1946年，故迄日以年精度記。",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "ebsco-monty",
+       "locator": "EBSCO Research Starters「Bernard Law Montgomery」（Ford）",
+       "quote": "when he succeeded General Alan Brooke as chief of the Imperial General Staff",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "general",
+     "t14Rule": "R6",
+     "t14Reason": "國家級參謀總長職，標題明寫；起日已有（1941-12-25）、迄日年精度（1946），但政權對應待查證（缺 regime），R4 無法證明（R6）",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "field:recordIds",
+     "gapKind": "not_found",
+     "note": "本批名單 recordIds 為空（bioId=null）；不連庫，留空待主管補",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:brooke-cigs-1941",
+     "gapKind": "conflict",
+     "note": "帝國總參謀長迄日：EBSCO（Ford，蒙哥馬利條）寫蒙哥馬利1946年2月接任；未評等的 generals.dk 與 historyofwar.org 皆寫迄1946-06-25。兩者月份不一致，且後者不可當出處，故迄日以年精度（1946）記，待 A／B 來源（London Gazette 任命公告、ODNB、Britannica 被擋）確認日期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": [
+      {
+       "sourceKey": "ebsco-monty",
+       "locator": "EBSCO Research Starters「Bernard Law Montgomery」（Ford）",
+       "quote": "a post he held until February, 1946",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "target": "position:brooke-second-corps-1939-1940",
+     "gapKind": "not_found",
+     "note": "待查證：二軍軍長確切交出日期（來源只寫在拉潘訥海灘交出指揮權，迄日依下一職推得）；起日1939-09 月精度；已查：London Gazette 1941-10-17（Gort 呈報）、EBSCO、SNL、Oxford Companion；KCL Liddell Hart（403）、Britannica（403）被擋。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-12",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "other",
+     "query": "Alanbrooke Alan Brooke Chief of the Imperial General Staff 1941 1946 Home Forces biography",
+     "url": null,
+     "result": "found_B",
+     "note": "搜尋索引，得 EBSCO、Encyclopedia.com、NAM 線索"
+    },
+    {
+     "step": 2,
+     "sourceType": "national_dictionary",
+     "query": "Hansard 人物頁",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-alan-brooke",
+     "result": "not_relevant",
+     "note": "頁面為生於1932年之另一人，不採"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "Store norske leksikon Alan Francis Brooke（Brakestad）",
+     "url": "https://snl.no/Alan_Francis_Brooke",
+     "result": "found_B",
+     "note": "具名作者；生卒與職位年份"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica Alan Francis Brooke",
+     "url": "https://www.britannica.com/biography/Alan-Francis-Brooke-1st-Viscount-Alanbrooke",
+     "result": "challenge_page",
+     "note": "Cloudflare 挑戰頁，不繞過"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters Alan Brooke, First Viscount Alanbrooke（Schoenfeld）",
+     "url": "https://www.ebsco.com/research-starters/history/alan-brooke-first-viscount-alanbrooke/",
+     "result": "found_B",
+     "note": "具名作者；全文生平"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Oxford Companion to British History「Alanbrooke」（Cannon）",
+     "url": "https://www.encyclopedia.com/people/history/british-and-irish-history-biographies/alan-francis-brooke-1st-viscount-alanbrooke",
+     "result": "found_B",
+     "note": "具名作者 John Cannon 的簡條；同頁另有無署名 Gale 長條不採"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters 專條 alan-brooke（無尾斜線網址）",
+     "url": "https://www.ebsco.com/research-starters/history/alan-brooke",
+     "result": "no_result",
+     "note": "頁面不存在，改用含 first-viscount 的網址"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "EBSCO Research Starters Bernard Law Montgomery（Ford，查 CIGS 交接日）",
+     "url": "https://www.ebsco.com/research-starters/history/bernard-law-montgomery/",
+     "result": "not_relevant",
+     "note": "已抓原文，未寫繼任 CIGS 日期；搜尋摘要稱1946年1至2月交接，未取得原文，不採"
+    },
+    {
+     "step": 9,
+     "sourceType": "official",
+     "query": "National Army Museum Alanbrooke 紀念",
+     "url": "https://www.nam.ac.uk/whats-on/legacy-field-marshal-lord-alanbrooke",
+     "result": "unrated",
+     "note": "未抓取；搜尋摘要無署名，未採"
+    },
+    {
+     "step": 10,
+     "sourceType": "national_dictionary",
+     "query": "Alan Brooke Viscount Alanbrooke Dictionary of Irish Biography CIGS 1941 1946",
+     "url": null,
+     "result": "no_result",
+     "note": "DIB 無條目；得 Ulster 傳記站（403）",
+     "round": "retry"
+    },
+    {
+     "step": 11,
+     "sourceType": "academic",
+     "query": "Alanbrooke Papers Liddell Hart Centre King's College London biography CIGS",
+     "url": "https://archives.kingscollections.org/index.php/alanbrooke",
+     "result": "blocked_403",
+     "note": "KCL 檔案頁 403，不繞過",
+     "round": "retry"
+    },
+    {
+     "step": 12,
+     "sourceType": "other",
+     "query": "Brooke Chief of the Imperial General Staff until June 1946 succeeded by Montgomery",
+     "url": null,
+     "result": "found_B",
+     "note": "得 EBSCO Montgomery（Ford）：1946年2月接任布魯克",
+     "round": "retry"
+    },
+    {
+     "step": 13,
+     "sourceType": "named_encyclopedia",
+     "query": "艾倫·布魯克 帝國總參謀長 1941 1946 子爵 陸軍元帥 生平",
+     "url": null,
+     "result": "no_result",
+     "note": "中文僅得維基鏡像、豆瓣，不採",
+     "round": "retry"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "Alan Brooke Alanbrooke Generalstabschef Deutsche Biographie lexikon",
+     "url": null,
+     "result": "no_result",
+     "note": "Deutsche Biographie 無條目",
+     "round": "retry"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "Viscount Alanbrooke Historic Hansard people House of Lords 1946",
+     "url": "https://api.parliament.uk/historic-hansard/lords/1946/feb/27/viscount-alanbrooke",
+     "result": "found_A",
+     "note": "Hansard 1946-02-27 僅記封子爵引介（curl 取得），無任期",
+     "round": "retry"
+    },
+    {
+     "step": 16,
+     "sourceType": "other",
+     "query": "アラン・ブルック 帝国参謀総長 1941年 1946年 元帥 イギリス陸軍",
+     "url": null,
+     "result": "no_result",
+     "note": "日文僅得 Britannica 鏡像與 UC Press 書介",
+     "round": "retry"
+    },
+    {
+     "step": 17,
+     "sourceType": "named_encyclopedia",
+     "query": "Alan Brooke maréchal britannique chef d'état-major impérial Universalis Larousse",
+     "url": "https://www.larousse.fr/encyclopedie/personnage/Alanbrooke/104521",
+     "result": "blocked_403",
+     "note": "Larousse curl 回 502，無法取得",
+     "round": "retry"
+    },
+    {
+     "step": 18,
+     "sourceType": "named_encyclopedia",
+     "query": "Брук Алан Френсис фельдмаршал начальник имперского генерального штаба энциклопедия",
+     "url": null,
+     "result": "no_result",
+     "note": "俄文無百科條目",
+     "round": "retry"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "Alanbrooke lex.dk nbl.snl.no treccani Brooke feltmarskal generalstabschef",
+     "url": null,
+     "result": "no_result",
+     "note": "無新增北歐／義大利條目",
+     "round": "retry"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "Alan Brooke Treccani enciclopedia Alanbrooke feldmaresciallo",
+     "url": null,
+     "result": "no_result",
+     "note": "Treccani 無條目；VLE 條目作者不明",
+     "round": "retry"
+    },
+    {
+     "step": 21,
+     "sourceType": "official",
+     "query": "Alan Francis Brooke Australian War Memorial National Army Museum Home Forces 1940",
+     "url": "https://www.awm.gov.au/collection/C29407",
+     "result": "not_relevant",
+     "note": "AWM 圖說（curl 取得）無日期，不引用",
+     "round": "retry"
+    },
+    {
+     "step": 22,
+     "sourceType": "official",
+     "query": "Brooke II Corps Dunkirk 1940 Gort despatch London Gazette",
+     "url": "https://www.thegazette.co.uk/London/issue/35305/supplement/5934/data.pdf",
+     "result": "found_A",
+     "note": "London Gazette 1941-10-17 Gort 呈報（curl 取得）：三軍長之一 Sir Alan Brooke",
+     "round": "retry"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "Brooke Alan Francis Oxford DNB doi ref:odnb abstract",
+     "url": null,
+     "result": "no_result",
+     "note": "ODNB 公開摘要不可得",
+     "round": "retry"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "Alanbrooke Brooke Bagnères-de-Bigorre 1883 data.bnf.fr id.loc.gov viaf",
+     "url": null,
+     "result": "no_result",
+     "note": "權威檔僅得 SNAC／TNA 名稱記錄，無任期",
+     "round": "retry"
+    },
+    {
+     "step": 25,
+     "sourceType": "other",
+     "query": "generals.dk Brooke Alan Francis（任期表）",
+     "url": "https://generals.dk/general/Brooke/Alan_Francis/Great_Britain.html",
+     "result": "unrated",
+     "note": "私人彙編；只作 gap 候選：CIGS 1941-12-25–1946-06-25",
+     "round": "retry"
+    },
+    {
+     "step": 26,
+     "sourceType": "other",
+     "query": "winstonchurchill.org Alanbrooke on Churchill（Robson 書評）",
+     "url": "https://winstonchurchill.org/publications/finest-hour/finest-hour-110/books-arts-curiosities-alanbrooke-on-churchill/",
+     "result": "found_B",
+     "note": "curl 取得；CIGS 起日「Christmas Day 1941」",
+     "round": "retry"
+    },
+    {
+     "step": 27,
+     "sourceType": "other",
+     "query": "Encyclopedia.com／NHMF／Spartacus／AIM25 Brooke",
+     "url": "https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/alan-francis-brooke",
+     "result": "unrated",
+     "note": "curl 取得多頁；無署名或無任期，不採",
+     "round": "retry"
+    }
+   ]
+  }
+ ]
+}

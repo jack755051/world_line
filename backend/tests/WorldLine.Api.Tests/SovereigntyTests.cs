@@ -106,6 +106,89 @@ public sealed class SovereigntyTests(PostGisFixture fx)
         Assert.Equal(0, p.GetProperty("endEvent").GetProperty("citations").GetArrayLength());
     }
 
+    [Fact] // 可信程度門檻（docs/source-rules.md §5）：未評等或單一 B → pending；一筆 A，或兩個獨立家族的 B → verified；同一家族的兩個 B 只算一個
+    public async Task Event_verification_follows_source_grade_and_independent_families()
+    {
+        var k = new ApiTestKit(fx);
+        var hu = await k.Regime("hungary-grades");
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var ungraded = await k.Source(kind: "official_record", title: "ungraded", grade: "");
+        var b1 = await k.Source(kind: "peer_reviewed", title: "b1", grade: "B", family: "fam-1");
+        var b1b = await k.Source(kind: "peer_reviewed", title: "b1b", grade: "B", family: "fam-1");
+        var b2 = await k.Source(kind: "peer_reviewed", title: "b2", grade: "B", family: "fam-2");
+        var a = await k.Source(kind: "official_record", title: "a", grade: "A");
+        object C(Guid s) => new { sourceId = s, locator = "p. 1", evidenceNote = "n" };
+        async Task<string?> V(string from, string to, params object[] cites)
+        {
+            var ev = await Event(k, from, cites);
+            var id = await k.Id(await Post(k, Body(hu, ohm, from, to, startEvent: ev)));
+            return (await FeatureOn(k, from, id))!.Value.GetProperty("properties").GetProperty("startEvent").GetProperty("verification").GetString();
+        }
+        Assert.Equal("pending", await V("1921-01-01", "1921-02-01", C(ungraded)));
+        Assert.Equal("pending", await V("1921-02-01", "1921-03-01", C(b1)));
+        Assert.Equal("pending", await V("1921-03-01", "1921-04-01", C(b1), C(b1b)));
+        Assert.Equal("verified", await V("1921-04-01", "1921-05-01", C(b1), C(b2)));
+        Assert.Equal("verified", await V("1921-05-01", "1921-06-01", C(a)));
+
+        // 等級記在每筆引文上：整冊未評等（或是 B），但被引用的那一份文件評為 A → verified；引文等級優先於整冊等級
+        object CG(Guid s, string g) => new { sourceId = s, locator = "Doc. 7", evidenceNote = "n", grade = g, gradeBasis = "當事國自己的照會" };
+        Assert.Equal("verified", await V("1921-08-01", "1921-09-01", CG(ungraded, "A")));
+        Assert.Equal("verified", await V("1921-09-01", "1921-10-01", CG(b1, "A")));
+        Assert.Equal("pending", await V("1921-10-01", "1921-11-01", CG(a, "B")));
+
+        // 國界本身的可信程度：只有資料集、沒有起始事件 → needs_check／dataset_only；起始事件已查證 → verified
+        var bare = await k.Id(await Post(k, Body(hu, ohm, "1921-06-01", "1921-07-01")));
+        var bp = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
+        Assert.Equal("needs_check", bp.GetProperty("confidence").GetString());
+        Assert.Equal("dataset_only", bp.GetProperty("confidenceBasis").GetString());
+        // 來歷（sovereignty_record_links）：接續前一筆、形狀相同的紀錄沿用前一筆的可信程度；baseline 另有自己的原因
+        var first = await k.Id(await Post(k, Body(hu, ohm, "1922-01-01", "1922-06-01", startEvent: await Event(k, "1922-01-01", C(a)))));
+        var second = await k.Id(await Post(k, Body(hu, ohm, "1922-06-01", "1922-09-01")));
+        var third = await k.Id(await Post(k, Body(hu, ohm, "1922-09-01", "1923-01-01")));
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{second}', 'continuation', '{first}'), ('{third}', 'continuation', '{second}'), ('{bare}', 'baseline', NULL); UPDATE sovereignty_record_links SET retracted_at = now(), retraction_reason = 't' WHERE record_id = '{bare}'; INSERT INTO sovereignty_record_links (record_id, kind, start_date_precision) VALUES ('{bare}', 'baseline', 'year')", c);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        var p3 = (await FeatureOn(k, "1922-10-01", third))!.Value.GetProperty("properties");
+        Assert.Equal("verified", p3.GetProperty("confidence").GetString());
+        Assert.Equal("start_event_one_a", p3.GetProperty("confidenceBasis").GetString());
+        var bp2 = (await FeatureOn(k, "1921-06-01", bare))!.Value.GetProperty("properties");
+        Assert.Equal("baseline", bp2.GetProperty("confidenceBasis").GetString());
+        Assert.Equal("year", bp2.GetProperty("startDatePrecision").GetString()); // 起始日只確定到年
+        // beyond_source：形狀沿用前一筆，但前一筆的出處撐不到這一段 → 不沿用前一筆的已查證；再往後接續它的也一樣
+        var fourth = await k.Id(await Post(k, Body(hu, ohm, "1923-01-01", "1923-06-01")));
+        var fifth = await k.Id(await Post(k, Body(hu, ohm, "1923-06-01", "1924-01-01")));
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            await using var cmd = new NpgsqlCommand($"INSERT INTO sovereignty_record_links (record_id, kind, continues_record_id) VALUES ('{fourth}', 'beyond_source', '{third}'), ('{fifth}', 'continuation', '{fourth}')", c);
+            await cmd.ExecuteNonQueryAsync();
+        }
+        foreach (var rec in new[] { (fourth, "1923-02-01"), (fifth, "1923-07-01") })
+        {
+            var pb = (await FeatureOn(k, rec.Item2, rec.Item1))!.Value.GetProperty("properties");
+            Assert.Equal("needs_check", pb.GetProperty("confidence").GetString());
+            Assert.Equal("beyond_source", pb.GetProperty("confidenceBasis").GetString());
+        }
+
+        // 國界本身的引文：期初既有的紀錄沒有事件可補，附一筆 A 級的地圖集圖版 → verified；資料集不能當出處
+        var atlas = await k.Source(kind: "atlas_map", title: "Atlas 1907", grade: "A");
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{bare}/citations",
+            new { sourceId = ohm, locator = "x", evidenceNote = "n", grade = "A", gradeBasis = "b" }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-records/{bare}/citations",
+            new { sourceId = atlas, locator = "Plate 12", evidenceNote = "圖版所繪疆界與此紀錄相符", grade = "A", gradeBasis = "當時出版的地圖集" }), HttpStatusCode.Created);
+        var bc = (await FeatureOn(k, "1921-06-15", bare))!.Value.GetProperty("properties");
+        Assert.Equal("verified", bc.GetProperty("confidence").GetString());
+        Assert.Equal("record_citation_one_a", bc.GetProperty("confidenceBasis").GetString());
+        Assert.Equal("Plate 12", bc.GetProperty("recordCitations")[0].GetProperty("locator").GetString());
+
+        var evA = await Event(k, "1921-07-01", C(a));
+        var good = await k.Id(await Post(k, Body(hu, ohm, "1921-07-01", "1921-08-01", startEvent: evA)));
+        Assert.Equal("verified", (await FeatureOn(k, "1921-07-01", good))!.Value.GetProperty("properties").GetProperty("confidence").GetString());
+    }
+
     [Fact] // 政權優先於陣營：陣營只作補充（有切片才帶），不影響回傳的要素
     public async Task Camp_is_only_a_supplement()
     {
@@ -218,5 +301,69 @@ public sealed class SovereigntyTests(PostGisFixture fx)
             $"INSERT INTO sovereignty_records (regime_id, geom, valid_period, layer_status, geometry_source_id, geometry_locator, geometry_license) " +
             $"SELECT regime_id, geom, daterange('1940-01-01','1941-01-01'), layer_status, geometry_source_id, 'y', geometry_license FROM sovereignty_records WHERE id = '{id}'"));
         Assert.Equal(PostgresErrorCodes.ExclusionViolation, ex.SqlState);
+    }
+
+    /// <summary>
+    /// 主權爭議（憲法 R6、I3）：兩個政權的紀錄可以重疊；用一筆爭議把各方主張串起來，兩邊的紀錄都帶出這筆爭議。
+    /// 查無出處的一方只記主張、不接紀錄。只能撤回，不可修改。
+    /// </summary>
+    [Fact]
+    public async Task Disputes_link_competing_claims_and_show_on_each_record()
+    {
+        var k = new ApiTestKit(fx);
+        var ohm = await k.Source(kind: "dataset", license: "cc0", title: "OpenHistoricalMap");
+        var ca = await k.Regime("claimant-a"); var nf = await k.Regime("claimant-b"); var third = await k.Regime("claimant-c");
+        var ra = await k.Id(await Post(k, Body(ca, ohm, "1908-01-01", "1927-03-01", ApiTestKit.Square(10, 48, 2))));
+        var rb = await k.Id(await Post(k, Body(nf, ohm, "1908-01-01", "1927-03-01", ApiTestKit.Square(11, 48, 2))));   // 與 ra 重疊
+        object Claim(Guid regime, Guid? record, bool? effective = null) => new
+        {
+            claimantRegimeId = regime, recordId = record, effective,
+            position = new Dictionary<string, string> { ["zh-Hant"] = "主張整個內陸", ["en"] = "Claims the whole interior" },
+        };
+        var summary = new Dictionary<string, string> { ["zh-Hant"] = "內陸歸屬未定", ["en"] = "Interior undetermined" };
+        // 至少兩方；recordId 必須是主張方自己的紀錄；不能全部都沒有紀錄
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-one", summary, claims = new[] { Claim(ca, ra) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-wrong", summary, claims = new[] { Claim(ca, rb), Claim(nf, ra) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = "d-none", summary, claims = new[] { Claim(ca, null), Claim(nf, null) } }), HttpStatusCode.BadRequest);
+        var id = await k.Id(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes",
+            new { slug = $"interior-{k.Tag}", summary, claims = new[] { Claim(ca, ra, true), Claim(nf, rb), Claim(third, null) } }));
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"interior-{k.Tag}", summary, claims = new[] { Claim(ca, ra), Claim(nf, rb) } }), HttpStatusCode.Conflict);
+
+        foreach (var rec in new[] { ra, rb })
+        {
+            var d = (await FeatureOn(k, "1910-01-01", rec))!.Value.GetProperty("properties").GetProperty("disputes");
+            Assert.Equal(1, d.GetArrayLength());
+            Assert.StartsWith("interior-", d[0].GetProperty("slug").GetString());
+            Assert.Equal("contested", d[0].GetProperty("kind").GetString());   // 沒指定＝爭奪同一塊地
+            var claims = d[0].GetProperty("claims").EnumerateArray().ToList();
+            Assert.Equal(new[] { "claimant-a", "claimant-b", "claimant-c" }, claims.Select(c => c.GetProperty("claimantRegimeSlug").GetString()![..10]).ToArray());
+            Assert.True(claims[0].GetProperty("effective").GetBoolean());
+            Assert.Equal(JsonValueKind.Null, claims[2].GetProperty("recordId").ValueKind);   // 查無出處的一方沒有畫範圍
+        }
+
+        await using (var c = new NpgsqlConnection(fx.ConnectionString))
+        {
+            await c.OpenAsync();
+            foreach (var sql in new[] { $"UPDATE sovereignty_disputes SET slug = 'x' WHERE id = '{id}'", $"DELETE FROM sovereignty_dispute_claims WHERE dispute_id = '{id}'", $"UPDATE sovereignty_dispute_claims SET effective = false WHERE dispute_id = '{id}'" })
+            {
+                await using var cmd = new NpgsqlCommand(sql, c);
+                await Assert.ThrowsAsync<PostgresException>(() => cmd.ExecuteNonQueryAsync());
+            }
+        }
+        // 地圖上的爭議範圍＝兩方主張紀錄重疊的部分（ra：10–12、rb：11–13 → 11–12）
+        var map = await ApiTestKit.Body(await k.R.GetAsync("/api/v1/sovereignty/dispute-zones?date=1910-01-01"));
+        var zone = map.GetProperty("data").GetProperty("featureCollection").GetProperty("features").EnumerateArray().Single(z => z.GetProperty("properties").GetProperty("disputeId").GetGuid() == id);
+        Assert.Equal(2, zone.GetProperty("properties").GetProperty("claimantRegimeSlugs").GetArrayLength());
+        var xs = zone.GetProperty("geometry").GetProperty("coordinates")[0][0].EnumerateArray().Select(pt => pt[0].GetDouble()).ToList();
+        Assert.Equal(11, xs.Min(), 3); Assert.Equal(12, xs.Max(), 3);
+
+        // 宗主權與實際治理並存：kind = layered；其他值不收
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"bad-{k.Tag}", kind = "x", summary, claims = new[] { Claim(ca, ra), Claim(third, null) } }), HttpStatusCode.BadRequest);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync("/api/v1/sovereignty-disputes", new { slug = $"layered-{k.Tag}", kind = "layered", summary, claims = new[] { Claim(ca, ra), Claim(third, null) } }), HttpStatusCode.Created);
+        var kinds = (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").EnumerateArray().Select(x => x.GetProperty("kind").GetString()).OrderBy(x => x).ToArray();
+        Assert.Equal(new[] { "contested", "layered" }, kinds);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.OK);
+        await ApiTestKit.Expect(await k.W.PostAsJsonAsync($"/api/v1/sovereignty-disputes/{id}/retraction", new { reason = "重寫" }), HttpStatusCode.Conflict);
+        Assert.Equal(1, (await FeatureOn(k, "1910-01-01", ra))!.Value.GetProperty("properties").GetProperty("disputes").GetArrayLength());   // 只剩 layered 那一筆
     }
 }

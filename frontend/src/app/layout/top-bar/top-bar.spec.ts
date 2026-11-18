@@ -31,7 +31,7 @@ describe('TopBar：實際控制／主權切換', () => {
     expect(el.querySelector('[data-testid="axis-toggle"]')?.getAttribute('data-axis')).toBe('sovereignty');
   });
 
-  it('切換時選取底塊用 motion 滑動', async () => {
+  it('切換時選取底塊滑動：只動 transform（x＋scaleX），不 tween width（§17.5）', async () => {
     const { fixture, calls } = setup(false);
     await fixture.whenStable();
     expect(calls.length).toBe(0); // 第一次直接到位
@@ -39,7 +39,7 @@ describe('TopBar：實際控制／主權切換', () => {
     await fixture.whenStable();
     expect(calls.length).toBe(1);
     expect((calls[0].el as HTMLElement).dataset['testid']).toBe('axis-toggle-thumb');
-    expect(Object.keys(calls[0].kf)).toContain('transform');
+    expect(Object.keys(calls[0].kf).sort()).toEqual(['scaleX', 'x']);
   });
 
   it('prefers-reduced-motion：不播動畫，底塊直接到位', async () => {
@@ -50,5 +50,46 @@ describe('TopBar：實際控制／主權切換', () => {
     expect(calls.length).toBe(0);
     const thumb = (fixture.nativeElement as HTMLElement).querySelector<HTMLElement>('[data-testid="axis-toggle-thumb"]')!;
     expect(thumb.style.transform).toMatch(/^translateX\(/);
+  });
+});
+
+describe('TopBar：§12 手機精簡版', () => {
+  it('只放 World Line、ISO 日期（H1）、⋯ 選單；選單裡有檢視、語言、陣營外框、圖例', async () => {
+    const { fixture } = setup(true);
+    fixture.componentRef.setInput('compact', true);
+    fixture.componentRef.setInput('bp', 'xs');
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
+    const q = (id: string) => el.querySelector<HTMLElement>(`[data-testid="${id}"]`);
+    expect(q('topbar')?.getAttribute('data-compact')).toBe('true');
+    expect(q('topbar-date')?.textContent?.trim()).toBe('1939-10-15');
+    expect(q('axis-toggle')).toBeNull();
+    let picks = 0;
+    let legends = 0;
+    let camps = 0;
+    fixture.componentInstance.datePick.subscribe(() => picks++);
+    fixture.componentInstance.legendToggle.subscribe(() => legends++);
+    fixture.componentInstance.campsToggle.subscribe(() => camps++);
+    q('topbar-date')!.click();
+    expect(picks).toBe(1);
+    q('topbar-menu-button')!.click();
+    await fixture.whenStable();
+    expect(q('axis-toggle')).not.toBeNull();
+    expect(q('lang-toggle-en')).not.toBeNull();
+    q('camp-layer-toggle')!.click();
+    expect(camps).toBe(1);
+    q('topbar-menu-legend')!.click();
+    await fixture.whenStable();
+    expect(legends).toBe(1);
+    expect(q('topbar-menu')).toBeNull();
+  });
+
+  it('頁首顯示版本號，連到版本資訊頁', async () => {
+    const fixture = TestBed.createComponent(TopBar);
+    fixture.componentRef.setInput('date', '1940-06-01');
+    await fixture.whenStable();
+    const a = (fixture.nativeElement as HTMLElement).querySelector('[data-testid="topbar-version"]') as HTMLAnchorElement | null;
+    expect(a?.textContent?.trim()).toMatch(/^v\d+\.\d+\.\d+$/); // 只寫版本號，不帶提交編號
+    expect(a?.getAttribute('href')).toBe('version');
   });
 });

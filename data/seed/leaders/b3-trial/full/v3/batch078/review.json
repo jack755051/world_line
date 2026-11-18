@@ -1,0 +1,35 @@
+{
+ "batch": "078", "reviewedOn": "2026-11-17", "reviewer": "opus", "researcher": "sonnet", "promptVersion": "full-v3",
+ "counts": {"returned": 0, "toUnverified": 0, "deletedParagraphs": 0, "deletedPositions": 0, "deletedRoleCandidates": 0, "movedToRoleCandidates": 0, "movedToPositions": 0, "deletedCitations": 3, "addedCitations": 20, "editedSentences": 7, "spotRefetched": 3, "searchLogShort": 0},
+ "people": [
+  {"key": "ve-perez-juan-bautista", "bioId": "66db022a-d04e-423e-b906-6aa5e7fa48f8", "verdict": "pass_with_changes", "paragraphs": 4, "positions": 1, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 12,
+   "changes": [
+    "重抓 Polar 辭典比對一致",
+    "段2 英文「he declined」原文無此說，改為「在議員堅持下戈麥斯提名佩雷斯」並補引文 Ante la insistencia de los legisladores；驅逐巴倫西亞主教補引文",
+    "段3 刪「戈麥斯重掌大權」子句（無引文）；「1931年6月」補月精度引文；國會指責引文無日期，datePrecision 改 null；1936 被驅逐補引文",
+    "段1 period 迄點依 Q3 改 1930-01-01；段3 迄點改 1950-01-01"
+   ], "returnedReasons": []},
+  {"key": "nl-de-geer-dirk-jan", "bioId": "01a1b4c0-c87a-7e26-8eff-6bdc69e14333", "verdict": "pass_with_changes", "paragraphs": 5, "positions": 5, "roleCandidates": 8, "gaps": 4, "searchLogSteps": 11,
+   "changes": [
+    "重抓 BWN 比對一致",
+    "截斷引文補全：「…minister van」→「…minister van Financiën werd」（段2、geer-finance-1921）、「…tevens weer」→「…tevens weer bekleedde」（geer-finance-1939）；De Nederlander 兩段引文合併",
+    "段1 補 Parlement.com 學位引文",
+    "段2 「因海軍法案爭議退出內閣」改為傳記所稱抗議恢復審議艦隊法草案而辭職，補引文",
+    "段4 英文「German invasion」無引文，改寫；period 起點改 1933-11-29（段內首事）",
+    "段5 「終審駁回上訴後仍維持原判」改寫為特別法庭 1947-05-23 判決、特別上訴法院 1947-10-29 判一年緩刑，補 Parlement.com 引文；頭銜剝奪日 1947-11-12"
+   ], "returnedReasons": []},
+  {"key": "lu-guillaume-iv", "bioId": "01a1b4c0-c88e-7c02-9f85-01f69872ddbf", "verdict": "pass_with_changes", "paragraphs": 3, "positions": 0, "roleCandidates": 0, "gaps": 3, "searchLogSteps": 10,
+   "changes": [
+    "重抓 monarchie.lu 比對一致",
+    "段1 補引文：威斯巴登近郊、1866、家族被迫離開、加入奧地利軍隊；士官學校引文原含 month 精度卻無日期，改取含 In September 1867 的原句；軍官考試引文補「officer's exam」；「流亡」改「被迫離開故地」；period 迄點依 Q3 改 1885-01-01",
+    "段2 補 1884、婚事爭議、天主教身分引文；period 迄點改 1893-06-21（段內最後日期）",
+    "段3 「1907年他修改家族公約」：原文 1907 是堂親主張繼承權之年，修約年份未寫，刪「1907年」；補修約、長女繼承、1905 中風、議會代表團引文；兩段切開的 chd 引文合併為一句"
+   ], "returnedReasons": []}
+ ],
+ "issues": [
+  "De Geer：Parlement.com 另列未收的黨職（lid partijbestuur CHU 1918、CHU-commissie voor de sociale wetgeving 1918-09～1918-11-02、lid hoofdbestuur CHU 1933-09～1933-11、lijsttrekker CHU 1933／1937）及 minister van Algemene Zaken ad interim 1939-08-10～1940-09-03、ondervoorzitter van de ministerraad 1929–1933；審查不新增，留待下一輪",
+  "fractievoorzitter CHU 維持 partyPostAmbiguous（與 batch053/064 處理一致），議會黨團主席是否算黨職待主管裁定",
+  "roleCandidates regimeId 一律 null（研究者不連庫），寫庫前需補"
+ ],
+ "verify": {"ok": true, "rawChecked": true, "quoteMax": 80}
+}

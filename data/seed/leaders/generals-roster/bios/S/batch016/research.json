@@ -1,0 +1,3702 @@
+{
+ "batch": "b3-full-v3-batch016",
+ "researchedOn": "2026-11-11",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接依 b0b0e0f 對齊格式撰寫；regimeId 一律 NULL（未查 5442 對應），故閣員與國家級軍職為 R6（roleGap 含 regime）、師團級以下與窗外職位為 R5。未使用 Wikipedia／維基鏡像／百度。名單屬性（國家／軍種／軍階）與實查無不符處；蔣中正之「待查證」軍階，實查為國民革命軍總司令／軍事委員會委員長（軍階未載）。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions／roleCandidates）、§16.4；sources 以 sourceKey 對應；b0b0e0f 對齊格式。將領 S 級 batch016，v3 最低標準。",
+ "rawDir": "/tmp/generals-bios/S/batch016/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "nids-news201702": {
+   "title": "NIDS NEWS 2017年2月号「史料紹介コーナー 畑俊六」",
+   "authors": [],
+   "publisher": "防衛省防衛研究所",
+   "published_text": "NIDS NEWS 2017年2月号",
+   "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201702.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "防衛省防衛研究所（国家機関）の史料紹介（A）"
+  },
+  "kantei036": {
+   "title": "第36代 阿部信行｜歴代内閣｜首相官邸ホームページ",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": null,
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/036.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "首相官邸（政府機関）の歴代内閣頁（A）"
+  },
+  "kantei037": {
+   "title": "第37代 米内光政｜歴代内閣｜首相官邸ホームページ",
+   "authors": [],
+   "publisher": "首相官邸",
+   "published_text": null,
+   "url": "https://www.kantei.go.jp/jp/rekidainaikaku/037.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "首相官邸（政府機関）の歴代内閣頁（A）"
+  },
+  "kb-hata": {
+   "title": "畑俊六（日本大百科全書(ニッポニカ)、小田部雄次）",
+   "authors": [
+    "小田部雄次"
+   ],
+   "publisher": "小学館／コトバンク",
+   "published_text": "日本大百科全書(ニッポニカ)",
+   "url": "https://kotobank.jp/word/畑俊六",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（小田部雄次）の日本大百科全書条目（B）"
+  },
+  "kunai-kiyo065": {
+   "title": "資料紹介「閑院宮載仁親王日記」大正十年（前半）（「載仁親王日記」発見の経緯について）",
+   "authors": [],
+   "publisher": "宮内庁書陵部",
+   "published_text": "書陵部紀要 第65号",
+   "url": "https://shoryobu.kunaicho.go.jp/Publication/PDF/000/kiyo065a098.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "宮内庁書陵部（政府機関）の紀要（A）"
+  },
+  "kunai-kiyo067": {
+   "title": "資料紹介「閑院宮載仁親王日記」大正九年",
+   "authors": [],
+   "publisher": "宮内庁書陵部",
+   "published_text": "書陵部紀要 第67号",
+   "url": "https://shoryobu.kunaicho.go.jp/Publication/PDF/000/kiyo067a091.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "宮内庁書陵部（政府機関）の紀要（A）"
+  },
+  "jacar-armystaff": {
+   "title": "参謀本部（大本営陸軍部）の主要職務の歴任者（昭和15年10月～昭和16年12月）",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": "日米開戦 参考資料",
+   "url": "https://jacar.go.jp/nichibei/reference/armystaff.html",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の職務歴任者表（A）"
+  },
+  "jacar-kanin": {
+   "title": "閑院宮載仁親王（アジ歴 辞書検索）",
+   "authors": [],
+   "publisher": "アジア歴史資料センター（国立公文書館）",
+   "published_text": null,
+   "url": "https://www.jacar.archives.go.jp/das/term/00001480",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "国立公文書館アジア歴史資料センター（政府機関）の用語辞書（A）"
+  },
+  "kb-kan-house-heibon": {
+   "title": "閑院宮（改訂新版 世界大百科事典、武部敏夫）",
+   "authors": [
+    "武部敏夫"
+   ],
+   "publisher": "平凡社／コトバンク",
+   "published_text": "改訂新版 世界大百科事典",
+   "url": "https://kotobank.jp/word/閑院宮",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（武部敏夫）の世界大百科事典条目（B）"
+  },
+  "kb-kan-house-nipponica": {
+   "title": "閑院宮（日本大百科全書(ニッポニカ)、林亮勝）",
+   "authors": [
+    "林亮勝"
+   ],
+   "publisher": "小学館／コトバンク",
+   "published_text": "日本大百科全書(ニッポニカ)",
+   "url": "https://kotobank.jp/word/閑院宮",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（林亮勝）の日本大百科全書条目（B）"
+  },
+  "kb-li-nipponica": {
+   "title": "李宗仁（日本大百科全書(ニッポニカ)、加藤祐三）",
+   "authors": [
+    "加藤祐三"
+   ],
+   "publisher": "小学館／コトバンク",
+   "published_text": "日本大百科全書(ニッポニカ)",
+   "url": "https://kotobank.jp/word/李宗仁",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（加藤祐三）の日本大百科全書条目（B）"
+  },
+  "kb-li-heibon": {
+   "title": "李宗仁（改訂新版 世界大百科事典、森時彦）",
+   "authors": [
+    "森時彦"
+   ],
+   "publisher": "平凡社／コトバンク",
+   "published_text": "改訂新版 世界大百科事典",
+   "url": "https://kotobank.jp/word/李宗仁",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（森時彦）の世界大百科事典条目（B）"
+  },
+  "twht-li": {
+   "title": "戰後臺灣歷史年表（李宗仁）",
+   "authors": [],
+   "publisher": "中央研究院人文社會科學研究中心（臺灣史研究）",
+   "published_text": null,
+   "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?People=%E6%9D%8E%E5%AE%97%E4%BB%81",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "中央研究院（國家級學術機關）的歷史年表資料庫，逐條記日期（A）"
+  },
+  "drnh-zong002": {
+   "title": "蔣中正總統文物（國史館現藏重要檔案文物史料概述）壹、小傳",
+   "authors": [],
+   "publisher": "國史館",
+   "published_text": null,
+   "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國史館（政府機關）的館藏概述（A）"
+  },
+  "kb-bai-nipponica": {
+   "title": "白崇禧（日本大百科全書(ニッポニカ)、加藤祐三）",
+   "authors": [
+    "加藤祐三"
+   ],
+   "publisher": "小学館／コトバンク",
+   "published_text": "日本大百科全書(ニッポニカ)",
+   "url": "https://kotobank.jp/word/白崇禧",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（加藤祐三）の日本大百科全書条目（B）"
+  },
+  "mnd-ministers": {
+   "title": "歷任部長（中文頁）",
+   "authors": [],
+   "publisher": "中華民國國防部",
+   "published_text": null,
+   "url": "https://www.mnd.gov.tw/About/FormerMinisters",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國防部（政府機關）官網（A）"
+  },
+  "mnd-ministers-en": {
+   "title": "歷任部長（英文版頁面）",
+   "authors": [],
+   "publisher": "中華民國國防部",
+   "published_text": null,
+   "url": "https://www.mnd.gov.tw/en/informationservices/publication/70181",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國防部（政府機關）官網（A）"
+  },
+  "mnd-bai-ebook": {
+   "title": "北伐名將白崇禧先生訪問紀錄電子書",
+   "authors": [],
+   "publisher": "中華民國國防部",
+   "published_text": null,
+   "url": "https://www.mnd.gov.tw/en/informationservices/publication/72322",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國防部（政府機關）官網（A）"
+  },
+  "drnh-bai-sym": {
+   "title": "「白崇禧將軍與民國」學術座談會紀要（國史研究通訊第二期）",
+   "authors": [],
+   "publisher": "國史館",
+   "published_text": "國史研究通訊 第2期",
+   "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/188425982.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "國史館（政府機關）出版品（A）"
+  },
+  "twht-bai": {
+   "title": "戰後臺灣歷史年表（白崇禧）",
+   "authors": [],
+   "publisher": "中央研究院人文社會科學研究中心（臺灣史研究）",
+   "published_text": null,
+   "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?People=%E7%99%BD%E5%B4%87%E7%A6%A7",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "中央研究院（國家級學術機關）的歷史年表資料庫（A）"
+  },
+  "kb-chiang-heibon": {
+   "title": "蔣介石（改訂新版 世界大百科事典、石田米子）",
+   "authors": [
+    "石田米子"
+   ],
+   "publisher": "平凡社／コトバンク",
+   "published_text": "改訂新版 世界大百科事典",
+   "url": "https://kotobank.jp/word/蔣介石",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名執筆者（石田米子）の世界大百科事典条目（B）"
+  },
+  "president-chiang": {
+   "title": "第1~5任 蔣總統中正先生（行憲後歷任總統）",
+   "authors": [],
+   "publisher": "中華民國總統府",
+   "published_text": null,
+   "url": "https://www.president.gov.tw/Page/83",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "總統府（政府機關）官網（A）"
+  },
+  "rf-da-hata-shokumu": {
+   "title": "元帥陸軍大将畑俊六外十二名職務ノ件（任免裁可書・昭和十九年・任免巻二百六十五）",
+   "authors": [],
+   "publisher": "国立公文書館",
+   "published_text": "昭和19年11月22日",
+   "url": "https://www.digital.archives.go.jp/item/3249433",
+   "archive_url": null,
+   "catalog_id": "任Ｂ03864100-01500",
+   "license_code": "CC0",
+   "grade": "A",
+   "gradeBasis": "国立公文書館（日本政府機関）所蔵の内閣任免裁可書目録",
+   "addedAt": "2026-11-12T22:08:19+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-kb-kanin": {
+   "title": "閑院宮載仁（20世紀日本人名事典、日外アソシエーツ）",
+   "authors": [],
+   "publisher": "日外アソシエーツ（コトバンク掲載）",
+   "published_text": "20世紀日本人名事典 2004年刊",
+   "url": "https://kotobank.jp/word/%E9%96%91%E9%99%A2%E5%AE%AE%E8%BC%89%E4%BB%81-3236900",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名出版社の人名事典（日外アソシエーツ）",
+   "addedAt": "2026-11-12T22:08:19+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-kb-li-mypedia": {
+   "title": "李宗仁（百科事典マイペディア、平凡社）",
+   "authors": [],
+   "publisher": "株式会社平凡社（コトバンク掲載）",
+   "published_text": "百科事典マイペディア",
+   "url": "https://kotobank.jp/word/%E6%9D%8E%E5%AE%97%E4%BB%81-148834",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名出版社（平凡社）の百科事典",
+   "addedAt": "2026-11-12T22:08:19+08:00",
+   "addedBy": "refill-2026-11-12"
+  },
+  "rf-mh-suseng-houqin": {
+   "title": "改革與困境：國軍後勤補給制度的變革（1944-1946）",
+   "authors": [
+    "蘇聖雄"
+   ],
+   "publisher": "中央研究院近代史研究所",
+   "published_text": "近代史研究所集刊第107期，民國109年3月，頁95-147",
+   "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2020%E8%98%87%E8%81%96%E9%9B%84-%E6%94%B9%E9%9D%A9%E8%88%87%E5%9B%B0%E5%A2%83_%E5%9C%8B%E8%BB%8D%E5%BE%8C%E5%8B%A4%E8%A3%9C%E7%B5%A6%E5%88%B6%E5%BA%A6%E7%9A%84%E8%AE%8A%E9%9D%A9_1944-1946.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "C",
+   "gradeBasis": "中央研究院近代史研究所集刊所載學術論文，具名作者蘇聖雄",
+   "addedAt": "2026-11-12T22:08:19+08:00",
+   "addedBy": "refill-2026-11-12"
+  }
+ },
+ "people": [
+  {
+   "key": "shunrokuhata",
+   "bioId": null,
+   "name": "Shunroku Hata",
+   "nameZh": "畑俊六",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1879-01-01",
+      "end": "1938-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與軍歷",
+      "en": "Background and career to 1937"
+     },
+     "body": {
+      "zh-Hant": "畑俊六（1879–1962）出生於東京，是陸軍士官學校第12期，並畢業於陸軍大學校。1900年11月自士官學校畢業後，他歷任第14師團長、航空本部長、台灣軍司令官與教育總監等要職，1937年晉升陸軍大將。",
+      "en": "Hata Shunroku (1879–1962) was born in Tokyo, a graduate of the 12th class of the Army Officers School and of the Army War College. After graduating in November 1900 he held posts including commander of the 14th Division, chief of the Army Air Headquarters, commander of the Taiwan Army and Inspector General of Military Training, and became a full general in 1937."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "（1879―1962）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "陸軍軍人。東京生まれ。陸軍士官学校12期。陸軍大学校卒業。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "畑俊六大将は、明治 33 年 11 月、陸軍士官学校（12 期）を卒業後、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "第 14 師団長、航空本部長、台湾軍司令官、教育総監などの要職を務め",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1937年（昭和12）大将となる。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1938-02-14",
+      "end": "1938-11-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "中支那派遣軍與徐州、武漢作戰",
+      "en": "Central China Expeditionary Army: Xuzhou and Wuhan"
+     },
+     "body": {
+      "zh-Hant": "1938年2月14日，畑俊六就任新編成的中支那派遣軍司令官，當時日中戰事已由華北波及華中。他在任不足一年，指導了1938年4月至6月的徐州會戰，以及同年6月至10月的武漢攻略作戰。",
+      "en": "On 14 February 1938 Hata took command of the newly formed Central China Expeditionary Army, when the fighting had spread from North China to Central China. In less than a year in command he directed the Battle of Xuzhou (April–June 1938) and the Wuhan offensive (June–October 1938)."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "昭和 13 年 2 月 14 日、新たに編成された中支那派遣軍の司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "ず、逐次戦面は拡大して中支方面にも波及し、全面的な戦争状態となっ",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "畑軍司令官は、その在任一年足らずの間に、徐州会戦（昭和",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "13 年 4 月～6 月）と武漢攻略作戦（同年 6 月～10 月）を指導します。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1938年中支派遣軍司令官として武漢作戦を指揮。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1939-08-30",
+      "end": "1940-07-22"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "陸軍大臣與米內內閣倒台",
+      "en": "Army Minister and the fall of the Yonai cabinet"
+     },
+     "body": {
+      "zh-Hant": "中支那派遣軍司令官之後，畑俊六出任阿部內閣與米內內閣的陸軍大臣。首相官邸資料顯示阿部內閣於1939年8月30日成立，米內內閣的在職期間至1940年7月22日。1940年他為推動近衛新體制而單獨辭職，米內內閣因此倒台。",
+      "en": "After commanding in Central China, Hata served as Army Minister in the Abe and Yonai cabinets. The Prime Minister's Office records the Abe cabinet as formed on 30 August 1939 and the Yonai cabinet as in office until 22 July 1940. In 1940 he resigned alone to establish the Konoe new order, which brought down the Yonai cabinet."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "中支那派遣軍司令官のあと、阿部内閣、米内内閣の陸軍大臣を務めた",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei036",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "昭和14年8月30日成立",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei036",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "畑 俊六",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei037",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "～昭和15年7月22日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1940年近衛(このえ)新体制樹立のため単独辞職して米内内閣を倒した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1941-01-01",
+      "end": "1959-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "支那派遣軍、第2總軍與戰後",
+      "en": "China Expeditionary Army, Second General Army and after the war"
+     },
+     "body": {
+      "zh-Hant": "1941年畑俊六出任支那派遣軍總司令官，1944年晉升元帥。1945年4月7日，他就任負責防衛西日本的第2總軍司令官，直到終戰。戰後他在遠東國際軍事審判被判終身刑，1954年因病假釋，1958年獲赦免。",
+      "en": "In 1941 Hata became commander-in-chief of the China Expeditionary Army and in 1944 was made a field marshal. On 7 April 1945 he took command of the Second General Army, responsible for the defence of western Japan, and remained there until the end of the war. After the war the International Military Tribunal for the Far East sentenced him to life imprisonment; he was released on parole in 1954 owing to illness and pardoned in 1958."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1941年支那(しな)派遣軍総司令官。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1944年元帥。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "畑大将は、支那派遣軍総司令官などを経て、昭和 20 年 4 月 7 日、西日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "本の防衛を担任する第 2 総軍司令官に就任、終戦を迎えます。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "敗戦後、極東国際軍事裁判でA級戦犯として終身刑の判決を受ける。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1954年（昭和29）病気のため仮出所し1958年赦免。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "hata-central-china-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍中支那派遣軍",
+      "en": "Central China Expeditionary Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "中支那派遣軍司令官",
+      "zh-Hant": "中支那派遣軍司令官",
+      "en": "Commander, Central China Expeditionary Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-02-14",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "昭和 13 年 2 月 14 日、新たに編成された中支那派遣軍の司令官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為戰區／方面軍司令（R4）；有徐州會戰、武漢攻略作戰連結（NIDS），但政權 regimeId 未對應、迄日查不到，門檻無法證明",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates"
+     ]
+    },
+    {
+     "key": "hata-army-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍省（阿部內閣、米內內閣）",
+      "en": "Army Ministry, Japan (Abe and Yonai cabinets)"
+     },
+     "title": {
+      "orig": "陸軍大臣",
+      "zh-Hant": "陸軍大臣",
+      "en": "Minister of the Army"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1939-08-30",
+      "end": "1940-07-22"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kantei036",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "昭和14年8月30日成立",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿（內閣成立日）推得（推論）：以阿部內閣成立日作為起日；閣僚名簿未列個別就任日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei036",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "畑 俊六",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei037",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "畑 俊六",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kantei037",
+       "locator": "首相官邸 歴代内閣 閣僚名簿",
+       "quote": "～昭和15年7月22日",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：米內內閣在職至該日，次一內閣（第2次近衞）於同日成立；畑於該內閣任陸相至此",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "四部閣員（國防／陸軍）正職，期間可證明 ≥90 天，但 regimeId 未對應（政權待查證），無法證明門檻",
+     "t14Overlap": "cabinet",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "hata-china-expeditionary-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍支那派遣軍",
+      "en": "China Expeditionary Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "支那派遣軍総司令官",
+      "zh-Hant": "支那派遣軍總司令官",
+      "en": "Commander-in-Chief, China Expeditionary Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1941-01-01",
+      "end": "1944-11-22"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kb-hata",
+       "locator": "日本大百科全書(ニッポニカ)「畑俊六」",
+       "quote": "1941年支那(しな)派遣軍総司令官。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-da-hata-shokumu",
+       "locator": "国立公文書館デジタルアーカイブ 任免裁可書 件名・年月日",
+       "quote": "元帥陸軍大将畑俊六外十二名職務ノ件",
+       "quoteLang": "ja",
+       "evidenceNote": "任免裁可書の件名。支那派遣軍総司令官の交代と同日付であることから離任日を推定（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-da-hata-shokumu",
+       "locator": "同 年月日欄",
+       "quote": "昭和19年11月22日",
+       "quoteLang": "ja",
+       "evidenceNote": "同上（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為戰區／方面軍司令（R4）；regimeId 未對應、迄日查不到、職位等級與戰役連結來源未明寫",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "hata-second-general-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍第2總軍",
+      "en": "Second General Army, Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "第2総軍司令官",
+      "zh-Hant": "第2總軍司令官",
+      "en": "Commander, Second General Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1945-04-07",
+      "end": null
+     },
+     "startPrecision": "day",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "nids-news201702",
+       "locator": "防衛研究所 NIDS NEWS 2017年2月号「史料紹介コーナー」畑俊六",
+       "quote": "畑大将は、支那派遣軍総司令官などを経て、昭和 20 年 4 月 7 日、西日",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為方面軍司令（R4）；來源僅說擔任至終戰，迄日未明寫，regimeId 未對應，缺戰役連結",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "battle_link"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:hata-central-china-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查防衛研究所 NIDS NEWS 2017年2月号（僅載就任日昭和13年2月14日）、日本大百科全書(ニッポニカ)（僅載1938年），均未寫離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:hata-second-general-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；防衛研究所 NIDS NEWS 2017年2月号只寫「終戦を迎えます」，未載解任日，不推論。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:hata-pre1938-posts",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第14師團長、航空本部長、台灣軍司令官、教育總監僅見於防衛研究所 NIDS NEWS 2017年2月号的職稱列舉，沒有任期日期，故不寫入 positions；尚需 NDL 憲政資料室、JACAR 人事資料等 A 級來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：1941–1944年支那派遣軍總司令官期間與1945年第2總軍期間的具體作戰，以及1913–1937年各師團長任期，A／B 來源未取得可逐字引用的內容，正文未寫。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "畑俊六 元帥 陸軍大臣 教育総監 支那派遣軍総司令官 略歴 ndl.go.jp portrait",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201702.pdf",
+     "result": "found_A",
+     "note": "WebSearch 命中 NIDS NEWS 2017年2月号；curl 取得並轉文字"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "防衛研究所 史料のなかの軍人たち siryo_1–70 逐頁掃描",
+     "url": "https://www.nids.mod.go.jp/military_archives/siryo/siryo_35.html",
+     "result": "no_result",
+     "note": "70 頁中無畑俊六"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "NDL 近代日本人の肖像 Military-Officer 類別頁掃描",
+     "url": "https://www.ndl.go.jp/portrait/category/Military-Officer",
+     "result": "no_result",
+     "note": "僅 53 名，無畑俊六"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "首相官邸 歴代内閣 第36代阿部信行、第37代米内光政、第38代第2次近衞",
+     "url": "https://www.kantei.go.jp/jp/rekidainaikaku/036.html",
+     "result": "found_A",
+     "note": "curl；閣僚名簿陸軍大臣 畑俊六，成立日與在職期間"
+    },
+    {
+     "step": 5,
+     "sourceType": "named_encyclopedia",
+     "query": "畑俊六 Kotobank（日本大百科全書 小田部雄次）",
+     "url": "https://kotobank.jp/word/畑俊六",
+     "result": "found_B",
+     "note": "curl 取得"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "JACAR 辞書 陸軍大臣",
+     "url": "https://www.jacar.archives.go.jp/das/term-en/00002346",
+     "result": "not_relevant",
+     "note": "僅列初代與戰時數任，未載畑俊六"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "アジア歴史資料センター 用語解説 支那派遣軍 総司令官 畑俊六",
+     "url": "https://www.jacar.archives.go.jp/das/term/",
+     "result": "no_result",
+     "note": "WebSearch 兩次未得畑在任期間之 A／B 頁"
+    },
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "畑俊六 支那派遣軍総司令官 昭和19年11月 離任",
+     "url": "https://www.digital.archives.go.jp/item/3249433",
+     "result": "found_A",
+     "note": "任免裁可書 昭和19年11月22日「元帥陸軍大将畑俊六外十二名職務ノ件」。件名は職務ノ件のみで支那派遣軍の明記なし"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "第2総軍 解散 畑俊六 昭和20年11月 JACAR",
+     "url": "https://www.jacar.archives.go.jp/aj/meta/term/00000678",
+     "result": "no_result",
+     "note": "404"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "JACAR グロッサリー 支那派遣軍 司令官",
+     "url": "https://www.jacar.go.jp/glossary/term/0100-0040-0080-0010-0010-0020.html",
+     "result": "not_relevant",
+     "note": "第6方面軍の頁で畑の任期なし"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "中支那派遣軍 司令官 畑俊六 後任 昭和13年 退任",
+     "url": "https://www.nids.mod.go.jp/military_archives/news/2017/201702.pdf",
+     "result": "not_relevant",
+     "note": "既存 NIDS NEWS に退任日なし"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "中支那派遣軍 解消 畑俊六 軍事参議官 侍従武官長 日付",
+     "url": "null",
+     "result": "no_result",
+     "note": "検索結果に合格来源なし"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:hata-china-expeditionary-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查防衛研究所 NIDS NEWS 2017年2月号（只說「支那派遣軍総司令官などを経て」）、日本大百科全書(ニッポニカ)（只載1941年任總司令官），均未載離任日；起日僅年精度。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "princekaninkotohito",
+   "bioId": null,
+   "name": "Prince Kan'in Kotohito",
+   "nameZh": "閒院宮載仁親王",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1865-09-01",
+      "end": "1879-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出生與閑院宮繼承",
+      "en": "Birth and succession to the Kan'in house"
+     },
+     "body": {
+      "zh-Hant": "閑院宮載仁親王於慶應元年（1865年）9月22日誕生，是伏見宮邦家親王的第十四男子，幼名易宮。1872年（明治5年）他繼承四親王家之一的閑院宮，十一年獲賜載仁之名並受親王宣下。",
+      "en": "Prince Kan'in Kotohito was born on 22 September 1865, the fourteenth son of Prince Fushimi-no-miya Kuniie, with the childhood name Yasu-no-miya. In 1872 he succeeded to the Kan'in house, one of the four shinnō houses, and in the eleventh year (of Meiji) was given the name Kotohito and the rank of imperial prince."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "まず、載仁親王の経歴を見てみよう。親王は慶応元年（一八六五）九月二",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "十二日、伏見宮邦家親王の第十四男子として誕生、幼名は易宮と称した。明",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "治五年（一八七二）四親王家の一つである閑院宮を相続し、十一年、載仁の",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "名を賜り、親王宣下を受けた。十年陸軍幼年学校に入校。十五年九月、同校",
+       "quoteLang": "ja",
+       "evidenceNote": "年號は前文の明治5年に続く表記で、明治11年（1878）と読む（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-kan-house-heibon",
+       "locator": "世界大百科事典「閑院宮」",
+       "quote": "愛仁親王に後嗣がなく，1872年（明治5）勅旨により載仁親王が伏見宮より入って第6代を継承した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1882-09-01",
+      "end": "1913-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "留法與日清、日露戰爭",
+      "en": "Study in France, the Sino-Japanese and Russo-Japanese wars"
+     },
+     "body": {
+      "zh-Hant": "載仁親王自陸軍幼年學校畢業後，於1882年9月獲准自費赴法留學，十月十二日由橫濱啟程。他在法國入讀聖西爾陸軍士官學校與索米爾騎兵學校，後來因日清戰爭以第一軍司令部附出征，日露戰爭時出征並任陸軍中將，其後歷任第一師團長、近衛師團長，大正元年任陸軍大將、軍事參議官。",
+      "en": "After graduating from the Army Cadet School, Prince Kotohito was permitted in September 1882 to study in France at his own expense and left Yokohama on 12 October. He entered the Saint-Cyr military academy and the Saumur cavalry school, went to the front attached to the First Army headquarters in the Sino-Japanese War, served in the Russo-Japanese War as a lieutenant general, then commanded the 1st Division and the Imperial Guard Division, and in the first year of Taishō became a full general and military councillor."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "名を賜り、親王宣下を受けた。十年陸軍幼年学校に入校。十五年九月、同校",
+       "quoteLang": "ja",
+       "evidenceNote": "年號は前文の明治5年に続く表記で、明治15年（1882）と読む（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "卒業に際し、自費でのフランス留学を願い出て許され、十月十二日横浜を出",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "サンシール陸軍士官学校入校",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "同校卒業。陸軍騎兵少尉。ソミュール騎兵学校入校",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "日清戦争に際し第一軍司令部附として出征",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "日露戦争に出征。陸軍中将",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "第一師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "近衛師団長",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "陸軍大将。軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "大正元年",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1919-12-01",
+      "end": "1940-10-03"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "元帥與參謀總長",
+      "en": "Field marshal and Chief of the General Staff"
+     },
+     "body": {
+      "zh-Hant": "載仁親王於1919年12月列入元帥府，1921年（大正10年）隨皇太子裕仁親王赴歐洲巡遊。昭和6年他出任參謀總長，在任期間涵蓋滿洲事變到支那事變的時期；陸軍參謀本部資料顯示，杉山元自1940年10月3日起擔任參謀總長。",
+      "en": "Prince Kotohito was placed on the Board of Field Marshals in December 1919 and in 1921 accompanied Crown Prince Hirohito on his tour of Europe. He became Chief of the General Staff in the sixth year of Shōwa (1931), serving through the period from the Manchurian Incident to the China Incident; a staff-roster page of the Army General Staff records Sugiyama Hajime as Chief of the General Staff from 3 October 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo067",
+       "locator": "宮内庁書陵部紀要第67号 資料紹介「閑院宮載仁親王日記」大正九年",
+       "quote": "前年十二月には元帥府に列せられるという身位上に大きな",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "大正十年に皇太子海外巡遊の随伴を勤めた理由として注目すべきは、日本",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "皇太子欧洲御巡遊に随伴",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "6年 参謀総長（〜 年）",
+       "quoteLang": "ja",
+       "evidenceNote": "年表の「昭和元年」以下の行に属する「6年」と読む（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "満州事変から支那事変にかけての時期に参謀総長を勤め",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-armystaff",
+       "locator": "アジ歴「参謀本部（大本営陸軍部）の主要職務の歴任者」",
+       "quote": "杉山元（昭和１５年１０月３日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "日清、日露戰役的從軍",
+      "en": "Service in the Sino-Japanese and Russo-Japanese war campaigns"
+     },
+     "body": {
+      "zh-Hant": "載仁親王的年表記載，在日清戰役（日清戰爭）之際，他以第一軍司令部附的身分出征；日露戰爭時再度出征，並升任陸軍中將。《20世紀日本人名事典》則記他明治34年任騎兵第2旅團長，之後從軍日露戰爭，其後歷任第1師團長、近衛師團長，大正元年升陸軍大將並任軍事參議官。",
+      "en": "His chronology records that at the time of the Sino-Japanese War campaign he went to the front attached to the First Army headquarters, and that he served again in the Russo-Japanese War, being promoted lieutenant general. A biographical dictionary adds that he became commander of the 2nd Cavalry Brigade in 1901, served in the Russo-Japanese War, then commanded the 1st Division and the Imperial Guard Division, and in 1912 became a full general and Military Councillor."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 載仁親王年表",
+       "quote": "日清戦争に際し第一軍司令部附として出征",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "同 年表",
+       "quote": "日露戦争に出征。陸軍中将",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-kb-kanin",
+       "locator": "コトバンク 20世紀日本人名事典「閑院宮載仁」",
+       "quote": "34年騎兵第2旅団長。日露戦争に従軍、その後第1師団長近衛師団長から大正元年大将、軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    }
+   ],
+   "positions": [
+    {
+     "key": "kanin-military-councillor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍",
+      "en": "Imperial Japanese Army"
+     },
+     "title": {
+      "orig": "軍事参議官",
+      "zh-Hant": "軍事參議官",
+      "en": "Military Councillor"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1912-01-01",
+      "end": "1931-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "大正元年 陸軍大将。軍事参議官",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-kb-kanin",
+       "locator": "コトバンク 20世紀日本人名事典「閑院宮載仁」",
+       "quote": "昭和6〜15年参謀総長を務めた",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：参謀総長の起年（昭和6年）を軍事参議官の終点とした",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍事參議官為諮詢性質，非四部閣員亦非國家級最高軍職（R5）"
+    },
+    {
+     "key": "kanin-chief-general-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "日本陸軍參謀本部",
+      "en": "Army General Staff Office, Japan"
+     },
+     "title": {
+      "orig": "参謀総長",
+      "zh-Hant": "參謀總長",
+      "en": "Chief of the Army General Staff"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1940-10-03"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "kunai-kiyo065",
+       "locator": "宮内庁書陵部紀要第65号 資料紹介「閑院宮載仁親王日記」大正十年（前半）",
+       "quote": "6年 参謀総長（〜 年）",
+       "quoteLang": "ja",
+       "evidenceNote": "年表の「昭和元年」以下の行に属する「6年」と読む（推論）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "jacar-armystaff",
+       "locator": "アジ歴「参謀本部（大本営陸軍部）の主要職務の歴任者」",
+       "quote": "杉山元（昭和１５年１０月３日～昭和１９年２月２１日）",
+       "quoteLang": "ja",
+       "evidenceNote": "依名簿下一任起日推得（推論）：以杉山元就任參謀總長之日作為前任迄日",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為國家級軍職（參謀總長，R4）；regimeId 未對應，且來源未明寫該職為全軍最高職等級，門檻無法證明",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "rank"
+     ]
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:kanin-divisions",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；第一師團長、近衛師團長僅見於宮內庁書陵部紀要第65號年表的職稱列舉（年欄在文字抽取時與職稱分離，無法逐字對應年份），故不寫入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:kanin-chief-general-staff",
+     "gapKind": "not_found",
+     "note": "待查證：起日僅年精度（昭和6年）；已查宮內庁書陵部紀要、JACAR 辭典、NDL 檢索（皇族参謀総長の復活，僅書誌、館內限定）；A／B 來源均未逐字載明就任日（其他來源載1931-12-23，但屬未評等的彙編，未採用）。迄日依杉山元就任日推論。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：日清、日露戰爭期間的具體戰役、日期與任職細節，宮內庁書陵部紀要僅有職稱列舉，A／B 來源未找到可逐字引用的戰史記述，正文僅以戰爭名稱帶過。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "閑院宮載仁親王 参謀総長 近代日本人の肖像 国立国会図書館",
+     "url": "https://www.ndl.go.jp/portrait/category/Military-Officer",
+     "result": "no_result",
+     "note": "Military-Officer 類別 53 名中無此人"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "閑院宮載仁親王 参謀総長 在任 防衛研究所 OR 国立公文書館 OR アジ歴",
+     "url": "https://www.jacar.archives.go.jp/das/term/00001480",
+     "result": "found_A",
+     "note": "JACAR 辭典條目（無任期日）"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "宮内庁書陵部 閑院宮載仁親王日記 紀要（第65・67号）",
+     "url": "https://shoryobu.kunaicho.go.jp/Publication/PDF/000/kiyo065a098.pdf",
+     "result": "found_A",
+     "note": "curl PDF；含經歷年表"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "JACAR 辞書 参謀総長",
+     "url": "https://www.jacar.archives.go.jp/das/term/00001786",
+     "result": "not_relevant",
+     "note": "無任期資料"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "JACAR 参謀本部主要職務の歴任者（杉山元 昭和15年10月3日）",
+     "url": "https://jacar.go.jp/nichibei/reference/armystaff.html",
+     "result": "found_A",
+     "note": "curl（取自 batch015 同頁）"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "閑院宮 Kotobank（世界大百科 武部敏夫、日本大百科全書 林亮勝）",
+     "url": "https://kotobank.jp/word/閑院宮",
+     "result": "found_B",
+     "note": "curl"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "閑院宮載仁親王 Kotobank",
+     "url": "https://kotobank.jp/word/閑院宮載仁親王",
+     "result": "unrated",
+     "note": "僅 講談社 日本人名大辭典+Plus（無具名作者）；日外アソシエーツ 20世紀日本人名事典（無具名）→ 不採用"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "NDLサーチ 皇族参謀総長の復活（柴田紳一）",
+     "url": "https://ndlsearch.ndl.go.jp/books/R000000004-I7146084",
+     "result": "found_A",
+     "note": "僅書誌，全文館內限定，未能取得原文"
+    },
+    {
+     "step": 1,
+     "sourceType": "named_encyclopedia",
+     "query": "閑院宮載仁 20世紀日本人名事典",
+     "url": "https://kotobank.jp/word/%E9%96%91%E9%99%A2%E5%AE%AE%E8%BC%89%E4%BB%81-3236900",
+     "result": "found_B",
+     "note": "軍事参議官は大正元年、参謀総長は昭和6年とあり、軍事参議官の終点は参謀総長の起年から推定。具体的な戦役名・日付は載らず"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "閑院宮載仁親王 軍事参議官 昭和6年 国立公文書館 任免",
+     "url": "null",
+     "result": "no_result",
+     "note": "合格来源なし（維基系のみ）"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "NIDS 東アジア軍事史 閑院宮 参謀総長",
+     "url": "https://www.nids.mod.go.jp/publication/militaryhistory_research/mh_tokushu/eastasia_military_history/pdf/emh01_14.pdf",
+     "result": "not_relevant",
+     "note": "親王の日清・日露戦役の具体記述を確認せず"
+    }
+   ],
+   "nameZhOrig": "闲院宫载仁亲王",
+   "resolvedGaps": [
+    {
+     "target": "position:kanin-military-councillor",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查宮內庁書陵部紀要第65號（年表只列「陸軍大將。軍事參議官」於大正元年，未列迄日）、JACAR 辭典（僅分類「元帥／三長官／軍事参議官（陸軍）」）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "lizongren",
+   "bioId": null,
+   "name": "Li Zongren",
+   "nameZh": "李宗仁",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1890-01-01",
+      "end": "1937-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身、北伐與廣西割據",
+      "en": "Origins, the Northern Expedition and the Guangxi base"
+     },
+     "body": {
+      "zh-Hant": "李宗仁（1890–1969）生於廣西省臨桂縣，畢業於廣西陸軍學堂。1926年他隨北伐加入國民革命軍，任第7軍軍長。北伐完成後蔣介石任命他為武漢政治分會主席與第4集團軍總司令，但1929年起兩人對立，他與白崇禧在廣西割據八年。",
+      "en": "Li Zongren (1890–1969) was born in Linguei county, Guangxi, and graduated from the Guangxi Army School. In 1926 he joined the National Revolutionary Army in the Northern Expedition as commander of the 7th Army. After the expedition Chiang Kai-shek appointed him chairman of the Wuhan Political Council and commander of the 4th Group Army, but from 1929 the two were at odds and he held Guangxi with Bai Chongxi for eight years."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-li-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「李宗仁」",
+       "quote": "広西省臨桂県生まれ。広西陸軍学堂を卒業。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "生没年：1890-1969",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "1926年国民革命軍第7軍軍長として北伐に参加。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "北伐完成後，蔣介石により武漢政治分会主席，第4集団軍総司令に任命されたが，",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "29年以降蔣介石と対立し，",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "白崇禧（1893-1966）とともに広西軍閥の頭目として8年間割拠した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1937-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "抗日戰爭中的第五戰區",
+      "en": "The Fifth War Zone in the war against Japan"
+     },
+     "body": {
+      "zh-Hant": "1937年起的日中戰爭中，李宗仁與蔣介石和解並協助抗日，擔任第五戰區總司令。1945年以後，他又任華北戰區司令長官，指揮國共內戰。",
+      "en": "In the war with Japan from 1937 Li Zongren was reconciled with Chiang Kai-shek, cooperated in the resistance and served as commander-in-chief of the Fifth War Zone. After 1945 he also served as commander of the North China theatre and directed operations in the civil war."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-li-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「李宗仁」",
+       "quote": "1937年からの日中戦争で抗日戦線に協力、第五戦区総司令。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "日中戦争では蔣介石と和解し，第5戦区総司令として従軍。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "45年以後も華北戦区司令長官を務め，国共内戦を指揮した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1948-05-20",
+      "end": "1965-07-20"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "副總統、代總統與流亡",
+      "en": "Vice-president, acting president and exile"
+     },
+     "body": {
+      "zh-Hant": "1948年5月20日，蔣介石與李宗仁就任第一任總統、副總統。1949年1月21日蔣引退，李宗仁代行職權，與共產黨交涉但決裂，同年12月5日他飛往美國。1950年3月蔣復行視事，1954年3月10日國民大會投票罷免副總統李宗仁，1965年7月20日他回到中國大陸。",
+      "en": "On 20 May 1948 Chiang Kai-shek and Li Zongren took office as the first president and vice-president. When Chiang stepped down on 21 January 1949 Li exercised the presidential powers and negotiated with the Communists without success, and on 5 December 1949 he flew to the United States. Chiang resumed office in March 1950, the National Assembly voted on 10 March 1954 to remove vice-president Li, and on 20 July 1965 he returned to mainland China."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1948 年 05 月 20 日蔣介石、李宗仁就任中華民國政府第一任總統、副總統。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1949 年 01 月 21 日總統蔣介石引退，副總統李宗仁代行職權。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-li-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「李宗仁」",
+       "quote": "共産党との交渉にあたったが決裂してアメリカに亡命した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1949 年 12 月 05 日代總統李宗仁飛美。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1950 年 3 月復行視事，",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1954 年 03 月 10 日國民大會投票彈劾副總統李宗仁，出席者1486名中有1，403名同意罷免。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1965 年 07 月 20 日李宗仁從美國回歸中國大陸。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "北伐與台兒莊戰役",
+      "en": "The Northern Expedition and the Battle of Taierzhuang"
+     },
+     "body": {
+      "zh-Hant": "李宗仁在1926年起的北伐中擔任國民革命軍第7軍軍長參加北伐，據《百科事典マイペディア》，北伐時他任第3路軍總指揮兼第7軍長。日中戰爭期間，他任安徽省主席與第5戰區總司令，並在台兒莊戰役中取得大勝。",
+      "en": "Li Zongren took part in the Northern Expedition from 1926 as commander of the 7th Army, and a Japanese encyclopedia says he was general commander of the 3rd Route Army as well. During the war with Japan he was governor of Anhui and commander-in-chief of the Fifth War Zone, winning a major victory at Taierzhuang."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "1926年国民革命軍第7軍軍長として北伐に参加。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-kb-li-mypedia",
+       "locator": "コトバンク 百科事典マイペディア「李宗仁」",
+       "quote": "北伐では第３路軍総指揮兼第７軍長。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-kb-li-mypedia",
+       "locator": "同",
+       "quote": "日中戦争では安徽省主席，第５戦区総司令として台児荘で大勝利を得た。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 4
+    }
+   ],
+   "positions": [
+    {
+     "key": "li-7th-army",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命軍第7軍",
+      "en": "7th Army, National Revolutionary Army"
+     },
+     "title": {
+      "orig": "第7軍軍長",
+      "zh-Hant": "第7軍軍長",
+      "en": "Commander, 7th Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kb-li-heibon",
+       "locator": "改訂新版 世界大百科事典「李宗仁」",
+       "quote": "1926年国民革命軍第7軍軍長として北伐に参加。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍級指揮官，非國家級最高軍職亦非戰區／方面軍司令（R5）",
+     "t14Overlap": "general"
+    },
+    {
+     "key": "li-vice-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國政府",
+      "en": "Government of the Republic of China"
+     },
+     "title": {
+      "orig": "副總統",
+      "zh-Hant": "副總統",
+      "en": "Vice President"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1948-05-20",
+      "end": "1954-03-10"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1948 年 05 月 20 日蔣介石、李宗仁就任中華民國政府第一任總統、副總統。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-li",
+       "locator": "戰後臺灣歷史年表（李宗仁）",
+       "quote": "1954 年 03 月 10 日國民大會投票彈劾副總統李宗仁，出席者1486名中有1，403名同意罷免。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "以國民大會罷免投票日作為迄日（來源未另載生效日）",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "副總統非元首／首腦／四部閣員，且任期在 1908–1945 時間窗外（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:li-7th-army",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；已查世界大百科事典（森時彦）、日本大百科全書（加藤祐三），僅載1926年北伐任第7軍軍長，未載離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:li-fifth-war-zone",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；日本大百科全書、世界大百科事典僅寫「日中戦争では…第五戦区総司令」，沒有任命日；另查澎湃新聞（非 A／B，僅供線索：1937-10-12 任命）未採用。需國史館、近史所 A 級來源。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:li-north-china-theatre",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；世界大百科事典僅寫「45年以後も華北戦区司令長官を務め」，無任期起迄日，不寫入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：第五戰區期間的具體戰役（如徐州會戰、台兒莊）與日期，A／B 來源未取得可逐字引用的戰史內容，正文僅寫「第五戰區總司令」。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "李宗仁 代總統 第五戰區司令長官 國史館 OR 總統府 OR 近史所",
+     "url": "https://www.president.gov.tw/Page/83",
+     "result": "no_result",
+     "note": "WebSearch 未直接命中官方人物頁；總統府頁僅有蔣中正"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "總統府 行憲後歷任總統與副總統 頁掃描（Page 81–95）",
+     "url": "https://www.president.gov.tw/Page/81",
+     "result": "no_result",
+     "note": "未見李宗仁副總統頁"
+    },
+    {
+     "step": 3,
+     "sourceType": "named_encyclopedia",
+     "query": "李宗仁 Kotobank（日本大百科全書 加藤祐三；世界大百科 森時彦）",
+     "url": "https://kotobank.jp/word/李宗仁",
+     "result": "found_B",
+     "note": "curl"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "戰後臺灣歷史年表 李宗仁（中研院）",
+     "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?People=李宗仁",
+     "result": "found_A",
+     "note": "curl；18 筆逐日事件"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "國史館 蔣中正總統文物小傳（復行視事 1950-03）",
+     "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+     "result": "found_A",
+     "note": "curl PDF"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "李宗仁 副總統 代總統 民國38年1月21日 第五戰區（限官方網域）",
+     "url": "https://www.drnh.gov.tw/p/404-1003-1020.php",
+     "result": "blocked_403",
+     "note": "curl 取得空頁；改用中研院年表"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "近史所人名權威檢索系統（archdtsu.mh.sinica.edu.tw）",
+     "url": "http://archdtsu.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "curl 無法解析主機"
+    },
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "李宗仁 第七軍軍長 北伐 任期 迄 國史館 近史所",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/176661585.pdf",
+     "result": "not_relevant",
+     "note": "兩湖事變論文只述1929年3月免職討伐，未逐字寫第七軍長離任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "named_encyclopedia",
+     "query": "李宗仁 コトバンク マイペディア／ブリタニカ",
+     "url": "https://kotobank.jp/word/%E6%9D%8E%E5%AE%97%E4%BB%81-148834",
+     "result": "found_B",
+     "note": "第7軍長の終点日なし（北伐完成後に第4集団軍総司令とのみ）"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "李宗仁 第七軍 軍長 改編 1929 年表",
+     "url": "null",
+     "result": "no_result",
+     "note": "合格来源なし"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "近史所人名權威檢索系統 李宗仁",
+     "url": "https://archdtsu.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "名称解決できず"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "baichongxi",
+   "bioId": null,
+   "name": "Bai Chongxi",
+   "nameZh": "白崇禧",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1893-01-01",
+      "end": "1929-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與北伐、廣西派",
+      "en": "Origins, the Northern Expedition and the Guangxi clique"
+     },
+     "body": {
+      "zh-Hant": "白崇禧（1893–1966）為廣西桂林人，1916年畢業於保定軍官學校。1926年他任國民革命軍總司令部參謀長，次年（1927年）北伐時任東路軍前敵總指揮。1928年起，他與李宗仁等鞏固廣西派的地盤，並與蔣介石對立。",
+      "en": "Bai Chongxi (1893–1966) was from Guilin in Guangxi and graduated from the Baoding Military Academy in 1916. In 1926 he became chief of staff of the National Revolutionary Army headquarters and in 1927, in the Northern Expedition, commander at the front of the Eastern Route Army. From 1928 he consolidated the Guangxi clique's base with Li Zongren and others and was at odds with Chiang Kai-shek."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mnd-bai-ebook",
+       "locator": "國防部「北伐名將白崇禧先生訪問紀錄電子書」",
+       "quote": "陸軍一級上將白崇禧(1893-1966)，廣西桂林人，",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1916年に保定軍官学校を卒業して軍役につき、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1926年国民革命軍総司令部参謀長に就任、翌1927年からの北伐では東路軍前敵総指揮。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1928年以来、李宗仁(りそうじん)らと広西派の地盤を固め、蒋介石(しょうかいせき)と対立、",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1930-01-01",
+      "end": "1938-12-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "反蔣、抗戰與桂南會戰",
+      "en": "Opposition to Chiang, the war with Japan and the southern Guangxi campaign"
+     },
+     "body": {
+      "zh-Hant": "1930年白崇禧參加反蔣運動，妥協後於1931年成為國民黨第4期中央執行委員。盧溝橋事變發生後他飛赴中央，就任軍事委員會副參謀總長。1938年11月，他出任桂林行營主任，指揮桂南會戰，一度攻下崑崙關，但日軍增援後崑崙關再度失守。",
+      "en": "In 1930 Bai joined the anti-Chiang movement and, after a compromise, became a member of the Fourth Central Executive Committee of the Kuomintang in 1931. After the Marco Polo Bridge Incident he flew to the capital and became deputy chief of the General Staff of the Military Affairs Commission. In November 1938 he became director of the Guilin Field Headquarters and directed the southern Guangxi campaign, at one point taking Kunlun Pass before it fell again once Japan sent reinforcements."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1930年には反蒋運動に参加、妥協が成立して1931年には国民党第4期中央執行委員。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "重要戰役。盧溝橋事變發生後，白崇禧飛赴",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "就任軍事委員會副參謀總長。李君山指出白",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "1938 年 11 月，白崇禧",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "出任桂林行營主任，並指揮桂南會戰，曾一",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "度攻下崑崙關，惟日方調遣大軍增援，崑崙",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1946-05-31",
+      "end": "1951-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國防部長、二二八與赴台",
+      "en": "Defence Minister, the 228 Incident and Taiwan"
+     },
+     "body": {
+      "zh-Hant": "白崇禧自1946年起任國防部長，國防部中文頁面載明任期為民國35年5月31日至37年5月31日。1947年3月11日國民政府派他赴台處理二二八事件，3月17日他抵台。他在1949年任華中軍政長官，敗退後轉往台灣，1950年起任國民黨中央委員。",
+      "en": "From 1946 Bai Chongxi was Minister of National Defense; the ministry's Chinese-language page gives his term as 31 May 1946 to 31 May 1948. On 11 March 1947 the National Government sent him to Taiwan to handle the 228 Incident and he arrived on 17 March. He became Central China military governor in 1949, withdrew to Taiwan after defeat and from 1950 was a member of the Kuomintang Central Committee."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "mnd-ministers",
+       "locator": "國防部 歷任部長（中文頁）",
+       "quote": "第一任部長 白崇禧 民國35年5月31日~民國37年5月31日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-bai",
+       "locator": "戰後臺灣歷史年表（白崇禧）",
+       "quote": "1947 年 03 月 11 日國民政府發表派遣國防部長白崇禧至台灣處理二二八事件。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "twht-bai",
+       "locator": "戰後臺灣歷史年表（白崇禧）",
+       "quote": "1947 年 03 月 17 日國防部長白崇禧攜同蔣經國抵台。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "戦後の1946年国防部長、1949年華中軍政長官などを歴任。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "人民解放軍に敗退して台湾に逃れ、1950年以来、国民党中央委員などを歴任した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "bai-nra-hq-chief-of-staff",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命軍總司令部",
+      "en": "National Revolutionary Army Headquarters"
+     },
+     "title": {
+      "orig": "国民革命軍総司令部参謀長",
+      "zh-Hant": "國民革命軍總司令部參謀長",
+      "en": "Chief of Staff, NRA General Headquarters"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1926-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1926年国民革命軍総司令部参謀長に就任、翌1927年からの北伐では東路軍前敵総指揮。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別可能為國家級參謀職（R4）；regimeId 未對應、迄日查不到、來源未明寫該職為全軍最高參謀職",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "rank"
+     ]
+    },
+    {
+     "key": "bai-guilin-field-hq",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "軍事委員會桂林行營",
+      "en": "Guilin Field Headquarters, Military Affairs Commission"
+     },
+     "title": {
+      "orig": "桂林行營主任",
+      "zh-Hant": "桂林行營主任",
+      "en": "Director, Guilin Field Headquarters"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1938-11-01",
+      "end": "1940-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "1938 年 11 月，白崇禧",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-bai-sym",
+       "locator": "國史研究通訊第二期「白崇禧將軍與民國」學術座談會紀要",
+       "quote": "出任桂林行營主任，並指揮桂南會戰，曾一",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "rf-mh-suseng-houqin",
+       "locator": "近史所集刊第107期 蘇聖雄 頁95-147 後勤制度沿革",
+       "quote": "1940 年 5 月，兩行營撤銷",
+       "quoteLang": "zh",
+       "evidenceNote": "桂林行營於1940年5月撤銷，據此推定其主任任期終點（推論；原文未點名白崇禧）",
+       "accessedOn": "2026-11-12",
+       "grade": "C",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為戰區／方面軍司令（R4）；桂南會戰連結來源未載日期與地點之外的完整日期、regimeId 未對應、迄日查不到",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "battle_link"
+     ]
+    },
+    {
+     "key": "bai-defense-minister",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國國防部",
+      "en": "Ministry of National Defense, Republic of China"
+     },
+     "title": {
+      "orig": "國防部長",
+      "zh-Hant": "國防部長",
+      "en": "Minister of National Defense"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1946-05-31",
+      "end": "1948-05-31"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "mnd-ministers",
+       "locator": "國防部 歷任部長（中文頁）",
+       "quote": "第一任部長 白崇禧 民國35年5月31日~民國37年5月31日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "mnd-ministers-en",
+       "locator": "國防部 歷任部長（英文版頁面）",
+       "quote": "[第一任部長] 白崇禧 35.05.23~37.06.03",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": "與中文頁面日期不一致，見 conflict gap",
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "四部閣員（國防）正職，任期 >90 天；但中文頁與英文頁起訖日互相矛盾、regimeId 未對應，門檻無法證明",
+     "t14Overlap": "cabinet",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime",
+      "dates"
+     ]
+    },
+    {
+     "key": "bai-central-china-governor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "華中軍政長官公署",
+      "en": "Central China Military and Political Headquarters"
+     },
+     "title": {
+      "orig": "華中軍政長官",
+      "zh-Hant": "華中軍政長官",
+      "en": "Central China Military Governor"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1949-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "戦後の1946年国防部長、1949年華中軍政長官などを歴任。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "轄區內軍政長官，非佔領／殖民地最高長官亦非四部閣員；且任期在 1908–1945 時間窗外（R5）"
+    },
+    {
+     "key": "bai-kmt-central-committee-1950",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "title": {
+      "orig": "国民党中央委員",
+      "zh-Hant": "國民黨中央委員",
+      "en": "Member, Kuomintang Central Committee"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1950-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "人民解放軍に敗退して台湾に逃れ、1950年以来、国民党中央委員などを歴任した。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "黨職（R1）但任期起於1950年，在 1908–1945 時間窗外，故依「窗外一律 R5」留在 positions"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "bai-kmt-4th-cec",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中國國民黨",
+      "en": "Kuomintang"
+     },
+     "title": {
+      "orig": "国民党第4期中央執行委員",
+      "zh-Hant": "國民黨第4期中央執行委員",
+      "en": "Member, 4th Central Executive Committee, Kuomintang"
+     },
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1931-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "kb-bai-nipponica",
+       "locator": "日本大百科全書(ニッポニカ)「白崇禧」",
+       "quote": "1930年には反蒋運動に参加、妥協が成立して1931年には国民党第4期中央執行委員。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R1",
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader（國民黨中央執行委員為黨職）"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:bai-kmt-4th-cec",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；日本大百科全書（加藤祐三）只寫「1931年には国民党第4期中央執行委員」，未載任期終點；未查到國民黨第4屆中執委任期的 A／B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bai-nra-hq-chief-of-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；日本大百科全書、國防部訪問紀錄電子書均只寫1926年任參謀長／副參謀長，無離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bai-deputy-chief-general-staff",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；國史館座談會紀要只寫「盧溝橋事變發生後…就任軍事委員會副參謀總長」，未載任命日期（年月日皆無），不寫入 positions。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bai-central-china-governor",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；日本大百科全書只寫「1949年華中軍政長官」，國防部訪問紀錄電子書未載任期。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:bai-defense-minister",
+     "gapKind": "conflict",
+     "note": "conflict：國防部官網中文頁載白崇禧任期民國35年5月31日～37年5月31日，同站英文版頁面載35.05.23～37.06.03；兩份已抓來源互相矛盾，正文與 positions 採中文頁，未裁定。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:wartime-role",
+     "gapKind": "conflict",
+     "note": "conflict：日本大百科全書（加藤祐三）寫「日中戦争ではむしろ沈黙し」，國史館座談會紀要則載白崇禧於盧溝橋事變後任軍事委員會副參謀總長、1938年任桂林行營主任並指揮桂南會戰；兩份已抓來源對其抗戰期間角色描述不一致，正文採國史館紀要所載具體職務，未採「沈黙」說法。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：北伐東路軍作戰與桂南會戰的具體日期與戰果，僅有國史館座談會紀要的概述，其他 A／B 來源未取得可逐字引用的戰史內容。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "白崇禧 國防部長 參謀總長 副總參謀長 國史館 人物傳",
+     "url": "https://www.mnd.gov.tw/About/FormerMinisters",
+     "result": "found_A",
+     "note": "WebSearch 後 curl 國防部歷任部長頁"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "白崇禧 國防部長 民國35年 國防部 歷任部長（英文頁）",
+     "url": "https://www.mnd.gov.tw/en/informationservices/publication/70181",
+     "result": "found_A",
+     "note": "英文頁日期與中文頁不同"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "國防部 北伐名將白崇禧先生訪問紀錄電子書",
+     "url": "https://www.mnd.gov.tw/en/informationservices/publication/72322",
+     "result": "found_A",
+     "note": "curl"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "國史館 「白崇禧將軍與民國」學術座談會紀要",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/188425982.pdf",
+     "result": "found_A",
+     "note": "curl PDF"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "戰後臺灣歷史年表 白崇禧（中研院）",
+     "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?People=白崇禧",
+     "result": "found_A",
+     "note": "curl；二二八事件相關6筆"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "白崇禧 Kotobank（日本大百科全書 加藤祐三）",
+     "url": "https://kotobank.jp/word/白崇禧",
+     "result": "found_B",
+     "note": "curl"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "近史所人名權威檢索系統",
+     "url": "http://archdtsu.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "curl 無法解析主機"
+    },
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "桂林行營 撤銷 白崇禧 主任",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2020%E8%98%87%E8%81%96%E9%9B%84-%E6%94%B9%E9%9D%A9%E8%88%87%E5%9B%B0%E5%A2%83_%E5%9C%8B%E8%BB%8D%E5%BE%8C%E5%8B%A4%E8%A3%9C%E7%B5%A6%E5%88%B6%E5%BA%A6%E7%9A%84%E8%AE%8A%E9%9D%A9_1944-1946.pdf",
+     "result": "found_C",
+     "note": "1940年5月兩行營撤銷"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "蘇聖雄 國史館數位檔案檢索系統之運用─以行營研究為例",
+     "url": "https://www.mh.sinica.edu.tw/FileUpload/719/2012%E8%98%87%E8%81%96%E9%9B%84-%E5%9C%8B%E5%8F%B2%E9%A4%A8%E6%95%B8%E4%BD%8D%E6%AA%94%E6%A1%88%E6%AA%A2%E7%B4%A2%E7%B3%BB%E7%B5%B1%E4%B9%8B%E9%81%8B%E7%94%A8_%E4%BB%A5%E3%80%8C%E8%A1%8C%E7%87%9F%E3%80%8D%E7%A0%94%E7%A9%B6%E7%82%BA%E4%BE%8B.pdf",
+     "result": "not_relevant",
+     "note": "行營主任表為版面文字，桂林行營白崇禧任期不明"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "白崇禧 國民革命軍總司令部參謀長 1926 離任 華中軍政長官 1949 免職 國民黨中央委員 任期",
+     "url": "null",
+     "result": "no_result",
+     "note": "其餘4職（總部參謀長、華中軍政長官、中央委員1950、第4期中執委）無合格迄日來源"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "白崇禧 國史館 近史所 人物傳 年表",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/188425982.pdf",
+     "result": "not_relevant",
+     "note": "既存座談會紀要無離任日"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "白崇禧 Kotobank 日本大百科全書",
+     "url": "https://kotobank.jp/",
+     "result": "not_relevant",
+     "note": "既存只見起年"
+    }
+   ],
+   "resolvedGaps": [
+    {
+     "target": "position:bai-guilin-field-hq",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館座談會紀要只寫1938年11月出任桂林行營主任，未載離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": [],
+     "resolvedOn": "2026-11-12",
+     "resolvedBy": "refill-2026-11-12"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  },
+  {
+   "key": "chiangkai-shek",
+   "bioId": "01a1b490-dcc7-76dc-82d7-da76fb59d7d2",
+   "name": "Chiang Kai-shek",
+   "nameZh": "蔣中正",
+   "recordIds": [],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1887-01-01",
+      "end": "1925-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與黃埔軍校",
+      "en": "Origins and the Whampoa Academy"
+     },
+     "body": {
+      "zh-Hant": "蔣中正，字介石，1887年生於浙江奉化，青年赴日本學習軍事，畢業於振武學校。辛亥革命時他協助陳其美，陳去世後直接追隨孫中山。1923年受命為大元帥行營參謀長，1924年擔任黃埔陸軍軍官學校校長。",
+      "en": "Chiang Kai-shek, courtesy name Jieshi, was born in 1887 in Fenghua, Zhejiang. As a young man he went to Japan to study military affairs and graduated from the Shinbu Gakko. During the 1911 Revolution he assisted Chen Qimei and, after Chen's death, followed Sun Yat-sen directly. In 1923 he was appointed chief of staff of the generalissimo's field headquarters and in 1924 became principal of the Whampoa Military Academy."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "蔣中正，字介石，1887 年生於浙江奉化。幼年受私塾教育，學習",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "青年赴日本學習軍事，畢業於振武學校",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "辛亥革命時助陳",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "其美革命，陳去世後直接追隨孫中山",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1923 年受",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "命為大元帥行營參謀長。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1924 年擔任黃埔陸軍軍官學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1926-03-01",
+      "end": "1932-01-01"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "北伐與國民政府主席",
+      "en": "The Northern Expedition and the National Government chairmanship"
+     },
+     "body": {
+      "zh-Hant": "1926年3月中山艦事件之後，蔣中正逐漸掌握國民政府的軍事全權；同年7月就任國民革命軍總司令，發動北伐。1928年年底他就任國民政府主席。1930年爆發中原大戰，以蔣勝利告終；九一八事變後，他為促進團結辭任國府主席，離京歸鄉。",
+      "en": "After the Zhongshan gunboat incident in March 1926 Chiang gradually took full military authority in the National Government; in July of that year he became commander-in-chief of the National Revolutionary Army and launched the Northern Expedition. At the end of 1928 he became chairman of the National Government. The Central Plains War of 1930 ended in his victory, and after the Mukden Incident he resigned the chairmanship to promote unity and left the capital."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "年 3 月中山艦事件之後，漸掌國民政府軍事全權。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1926 年 7 月， 蔣 就 任 國 民 革 命 軍 總 司 令， 發 動 北 伐。1928 年 一",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "統中國，年底就任國民政府主席。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "發中原大戰，以蔣勝利告終",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "年九一八事變後，蔣為促進團結，辭任國府主席，離京歸鄉。1932 年",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1932-01-01",
+      "end": "1946-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "軍事委員會委員長與抗日戰爭",
+      "en": "Chairman of the Military Affairs Commission and the war against Japan"
+     },
+     "body": {
+      "zh-Hant": "1932年一二八事變，日軍侵襲上海，蔣中正復出擔任軍事委員會委員長。1936年12月西安事變，他遭張學良、楊虎城挾持，協商後安然返京。1937年7月7日盧溝橋事變後中日全面戰爭爆發，蔣組建統帥部擘劃戰略、指揮軍事，1945年獲得最後勝利。",
+      "en": "In 1932, when Japan attacked Shanghai in the January 28 Incident, Chiang returned to office as chairman of the Military Affairs Commission. In December 1936 he was seized by Zhang Xueliang and Yang Hucheng in the Xi'an Incident and returned to Nanjing safely after negotiations. After the Marco Polo Bridge Incident of 7 July 1937 full-scale war broke out; Chiang organized a supreme command to plan strategy and direct operations, and victory was won in 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "一二八事變，日軍侵襲上海，蔣復出擔任軍事委員會委員長，其對內積",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "極剿共，對外備戰抗日。1936 年 12 月西安事變，蔣遭地方軍事領袖張",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "學良、楊虎城挾持，經過協商，安然返京，惟政府剿共基本停止。1937",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "年 7 月 7 日盧溝橋事變，中日全面戰爭爆發，蔣組建統帥部擘劃戰略、",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "指揮軍事，並爭取外交援助，於 1945 年獲得最後勝利。",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1948-04-01",
+      "end": "1975-04-05"
+     },
+     "periodStartPrecision": "month",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "行憲後總統與台灣時期",
+      "en": "Constitutional presidency and the Taiwan years"
+     },
+     "body": {
+      "zh-Hant": "1948年4月，第一屆國民大會選舉蔣中正為行憲後首任總統，他於5月20日就職。1949年初下野，1950年3月復行視事。總統府資料載明他的任期為1948年5月20日至1975年4月5日，國史館資料則記他於1975年4月5日病逝臺北。",
+      "en": "In April 1948 the first National Assembly elected Chiang the first president under the constitution and he took office on 20 May. He stepped down in early 1949 and resumed office in March 1950. The Office of the President records his term as 20 May 1948 to 5 April 1975, and the Academia Historica records that he died in Taipei on 5 April 1975."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1948 年 4 月，第一屆國民大會選舉蔣為行憲後首任總統，其於 5",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1950 年 3 月復行視事，發動中國國民黨的改造，壓抑國內反對勢力，",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "president-chiang",
+       "locator": "中華民國總統府 行憲後歷任總統 蔣總統中正先生",
+       "quote": "民國 37 年 5 月 20 日至 64 年 4 月 5 日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "president-chiang",
+       "locator": "中華民國總統府 行憲後歷任總統 蔣總統中正先生",
+       "quote": "1948.05.20-1975.04.05",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1975 年 4 月 5 日清明節，病逝臺北，享壽 89 歲，靈柩暫厝桃園大",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "北伐戰役與對內對外作戰",
+      "en": "The Northern Expedition and later campaigns"
+     },
+     "body": {
+      "zh-Hant": "1926年7月，蔣中正就任國民革命軍總司令並下達北伐令，率軍北上進行反軍閥戰爭。1929至1930年各地軍閥發動反蔣戰爭，他予以鎮壓，之後展開對共產黨革命根據地的大規模包圍攻擊。1937年國共合作的抗日戰爭開始，1938年武漢失守後，他以重慶為根據地。",
+      "en": "In July 1926 Chiang Kai-shek took office as commander-in-chief of the National Revolutionary Army and issued the order for the Northern Expedition, a campaign against the warlords. He put down the anti-Chiang wars of 1929-30 and then launched large-scale encirclement campaigns against the Communist base areas. The war of resistance began in 1937 under the Kuomintang-Communist cooperation, and after the fall of Wuhan in 1938 he based himself at Chongqing."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "president-chiang",
+       "locator": "總統府 行憲後歷任總統 第1~5任 蔣總統中正先生",
+       "quote": "15年7月就任國民革命軍總司令，率軍北伐",
+       "quoteLang": "zh",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-chiang-heibon",
+       "locator": "改訂新版 世界大百科事典「蔣介石」",
+       "quote": "26年7月北伐令を発し，反軍閥戦争のために北上",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-chiang-heibon",
+       "locator": "同",
+       "quote": "29-30年，これに反発する各地の軍閥の反蔣戦争が起こった。",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-chiang-heibon",
+       "locator": "同",
+       "quote": "共産党の指導する革命根拠地への大規模な包囲攻撃を開始し",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-chiang-heibon",
+       "locator": "同",
+       "quote": "37年国共合作による抗日戦争が始まるが，38年武漢失守後は重慶を本拠に",
+       "quoteLang": "ja",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 5
+    }
+   ],
+   "positions": [
+    {
+     "key": "chiang-whampoa-commandant",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "黃埔陸軍軍官學校",
+      "en": "Whampoa Military Academy"
+     },
+     "title": {
+      "orig": "黃埔陸軍軍官學校校長",
+      "zh-Hant": "黃埔陸軍軍官學校校長",
+      "en": "Principal, Whampoa Military Academy"
+     },
+     "positionKind": "military_education",
+     "period": {
+      "start": "1924-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1924 年擔任黃埔陸軍軍官學校校長",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "軍校校長屬 T14 §4 邊界個案（military_education），R5",
+     "t14Overlap": "general",
+     "originalPositionKind": "military_command"
+    },
+    {
+     "key": "chiang-nra-commander",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民革命軍",
+      "en": "National Revolutionary Army"
+     },
+     "title": {
+      "orig": "國民革命軍總司令",
+      "zh-Hant": "國民革命軍總司令",
+      "en": "Commander-in-Chief, National Revolutionary Army"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1926-07-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "1926 年 7 月， 蔣 就 任 國 民 革 命 軍 總 司 令， 發 動 北 伐。1928 年 一",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為國家級／方面軍司令（R4）；北伐有連結，但 regimeId 未對應、迄日查不到、職位等級未明寫",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "rank"
+     ]
+    },
+    {
+     "key": "chiang-military-affairs-commission",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "國民政府軍事委員會",
+      "en": "Military Affairs Commission, National Government"
+     },
+     "title": {
+      "orig": "軍事委員會委員長",
+      "zh-Hant": "軍事委員會委員長",
+      "en": "Chairman, Military Affairs Commission"
+     },
+     "positionKind": "military_command",
+     "period": {
+      "start": "1932-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "drnh-zong002",
+       "locator": "國史館《蔣中正總統文物》小傳",
+       "quote": "一二八事變，日軍侵襲上海，蔣復出擔任軍事委員會委員長，其對內積",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kb-chiang-heibon",
+       "locator": "改訂新版 世界大百科事典「蔣介石」",
+       "quote": "28年南京国民政府成立後，国民政府軍事委員長，中央政治会議主席となり，",
+       "quoteLang": "ja",
+       "evidenceNote": "世界大百科事典記1928年任軍事委員長，國史館記1932年復出任軍事委員會委員長；起日採後者（復出）",
+       "accessedOn": "2026-11-12",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R6",
+     "t14Reason": "類別為國家級軍職（R4）；regimeId 未對應、迄日查不到、職位等級未於引文明寫為全軍最高職",
+     "t14Overlap": "general",
+     "roleEligible": true,
+     "roleEligibleKind": "military_commander",
+     "roleGap": [
+      "regime",
+      "dates",
+      "rank"
+     ]
+    },
+    {
+     "key": "chiang-president-1948",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "中華民國政府",
+      "en": "Government of the Republic of China"
+     },
+     "title": {
+      "orig": "中華民國總統",
+      "zh-Hant": "中華民國總統",
+      "en": "President of the Republic of China"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1948-05-20",
+      "end": "1975-04-05"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "president-chiang",
+       "locator": "中華民國總統府 行憲後歷任總統 蔣總統中正先生",
+       "quote": "民國 37 年 5 月 20 日至 64 年 4 月 5 日",
+       "quoteLang": "zh-Hant",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-12",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Rule": "R5",
+     "t14Reason": "總統任期（1948–1975）在 1908–1945 時間窗外（R5）"
+    }
+   ],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:chiang-whampoa-commandant",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館《蔣中正總統文物》小傳、世界大百科事典（石田米子）只寫1924年任黃埔軍校校長，未載離任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:chiang-nra-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館小傳寫1926年7月就任國民革命軍總司令，世界大百科事典同；兩者均未載卸任日。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:chiang-military-affairs-commission",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；國史館小傳只載1932年復出任軍事委員會委員長，未載卸任日；起日僅年精度。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:chiang-kmt-zongcai",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；中國國民黨總裁一職（黨職，應為 de_facto_leader 候選）在已抓的國史館小傳、總統府頁、世界大百科事典（石田米子）中都沒有明確的任命日期（世界大百科只寫「その後も国民党総裁」），故不寫入 roleCandidates。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "position:chiang-kmt-cec-chairman",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；世界大百科事典（石田米子）寫1926年3月事件後「国民党中央執行委主席」等要職到手，未載任命日與卸任日，故不寫入 roleCandidates。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:nationalgov-chairman",
+     "gapKind": "not_found",
+     "note": "待查證：國民政府主席任期（1928年底—1931年；1943年再任）只能在正文以年精度敘述，起迄具體日期（A／B 原文）未取得；此元首任期預期已在 leader_records，不建候選。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    },
+    {
+     "target": "paragraph:battles",
+     "gapKind": "not_found",
+     "note": "來源不足：北伐、中原大戰、抗日戰爭中的具體會戰（如淞滬、武漢）日期與地點，國史館小傳僅作概述，正文只寫事件名稱。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-11",
+     "citations": []
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "蔣中正 國民政府主席 軍事委員會委員長 國民黨總裁 任期 國史館（限官方網域）",
+     "url": "https://www.president.gov.tw/Page/83",
+     "result": "found_A",
+     "note": "WebSearch 命中總統府頁與國史館 PDF"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "總統府 第1~5任 蔣總統中正先生",
+     "url": "https://www.president.gov.tw/Page/83",
+     "result": "found_A",
+     "note": "curl；任期 1948.05.20–1975.04.05"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "國史館 蔣中正總統文物 壹、小傳",
+     "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+     "result": "found_A",
+     "note": "curl PDF"
+    },
+    {
+     "step": 4,
+     "sourceType": "named_encyclopedia",
+     "query": "蔣介石 Kotobank（世界大百科事典 石田米子）",
+     "url": "https://kotobank.jp/word/蔣介石",
+     "result": "found_B",
+     "note": "curl"
+    },
+    {
+     "step": 5,
+     "sourceType": "authority",
+     "query": "近史所人名權威檢索系統（蔣中正）",
+     "url": "http://archdtsu.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "curl 無法解析主機"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "國史館 關鍵的1949 蔣中正的引退與復出",
+     "url": "https://www.drnh.gov.tw/p/404-1003-1020.php",
+     "result": "blocked_403",
+     "note": "curl 取得空頁，未採用"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "戰後臺灣歷史年表（中研院，李宗仁頁交叉）",
+     "url": "https://twstudy.iis.sinica.edu.tw/Twht/General/MPeopleTwht.php?People=李宗仁",
+     "result": "found_A",
+     "note": "僅作交叉參考，未引蔣專條"
+    },
+    {
+     "step": 1,
+     "sourceType": "academic",
+     "query": "蔣中正 黃埔軍校校長 國民革命軍總司令 軍事委員會委員長 卸任 年表",
+     "url": "https://www.president.gov.tw/Page/83",
+     "result": "not_relevant",
+     "note": "既存來源均無卸任日"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "近史所人名權威檢索系統 蔣中正",
+     "url": "https://archdtsu.mh.sinica.edu.tw/",
+     "result": "no_result",
+     "note": "主機無法解析"
+    },
+    {
+     "step": 3,
+     "sourceType": "other",
+     "query": "蔣中正 軍事委員會 1946 改組 國防部 委員長 迄",
+     "url": "null",
+     "result": "no_result",
+     "note": "僅見維基類來源，不收"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "國史館 蔣中正總統文物 小傳",
+     "url": "https://ahonline.drnh.gov.tw/docs/zong/002.pdf",
+     "result": "not_relevant",
+     "note": "既存小傳只載起日"
+    }
+   ],
+   "refill": [
+    {
+     "run": "refill-2026-11-12",
+     "on": "2026-11-12"
+    }
+   ]
+  }
+ ]
+}

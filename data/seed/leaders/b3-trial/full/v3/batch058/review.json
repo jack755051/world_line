@@ -1,0 +1,89 @@
+{
+ "batch": "058",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 1,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 3,
+  "addedCitations": 4,
+  "editedSentences": 3,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "de-ebert",
+   "bioId": "01a19f15-3595-7b5d-be3d-2927e74658ea",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "段2／候選 spd-chair：LeMO 引文「20. September: Nach dem Tod August Bebels wird Ebert」截掉謂語，改為同段原文「in Jena gemeinsam mit Hugo Haase zum Parteivorsitzenden gewählt」（datePrecision 改 null，日期由 NDB 引文支撐）",
+    "段2：LeMO 引文「11. Januar: Nach dem Rücktritt Haases wird Ebert」截掉謂語，改為「Nach dem Rücktritt Haases wird Ebert neben Philipp Scheidemann Vorsitzender」（datePrecision 改 null）",
+    "段3：「Bildung des Rats…」引文不含日期卻標 day，改 null；新增 LeMO「10. November: Bildung des Rats der Volksbeauftragten」支撐 11月10日",
+    "段3：「奧伯斯特陸軍指揮部」為 Oberste 誤音譯，改「最高陸軍指揮部」",
+    "段4：period 迄點依半開區間由 1925-02-28 改 1925-03-01（與段2、段3一致）",
+    "抽查重抓 LeMO 頁，引文吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "be-leopold-iii",
+   "bioId": "01a1b4b5-726f-7411-951b-6698dc2eecea",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 9,
+   "changes": [
+    "職位 duke-of-brabant：原 citations 無「Duke of Brabant」字樣，補入已抓原文「Leopold became the Duke of Brabant」",
+    "段4：新增「The King did not return immediately to Belgium.」支撐「他沒有立即回國」子句",
+    "段4：7月22日返國、放棄王位兩筆引文不含年份，locator 改 Timeline 1950／1951 並在 evidenceNote 註明年份取自年表標題",
+    "段4：period 迄點依半開區間由 1983-09-25 改 1983-09-26",
+    "抽查重抓 monarchie.be 頁，引文吻合"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "sk-tiso",
+   "bioId": "01a1b4b5-727f-7662-942f-23b047aa30f8",
+   "verdict": "pass_with_changes",
+   "paragraphs": 2,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 27,
+   "changes": [
+    "刪段3：LoC 立目句只重述第2段「國家總統」且屬目錄描述，依 6c 刪除；出生地（GND placeOfBirthAsLiteral）併入段1並補引文",
+    "段2：period 1939-03-14～1945-04-05 無任何引文支撐（衛生部長在此之前），改為 null",
+    "篇幅不足 gap 更新為 2 段；未達最低標準但有 篇幅不足 gap 與 round=retry 加強搜尋（4 類來源、多站被 Cloudflare／Anubis／Bot Detection 擋），不退回",
+    "loc-tiso 保留於 sources／rawmap（searchLog 引用），已無段落引用",
+    "抽查重抓 lobid GND JSON，吻合"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "LeMO／monarchie.be 年表引文常以日期開頭截斷句子，需確認謂語完整，且年份只在年表標題時要在 evidenceNote 說明",
+  "艾伯特 SPD 黨主席團書記（1905 起）與議會黨團主席（1916 起）只有起日，研究者寫成 gap 未建 roleCandidates；依最低標準應建候選＋缺迄日 gap，審查不新增紀錄，留待主管決定（黨團主席是否算黨職亦待裁）",
+  "蒂索僅 1 筆可寫內容的 A 來源；WebSearch 額度用盡，斯洛伐克語原文查詢未執行，建議下一輪查 Slovenský biografický slovník、Beliana 站內搜尋、ÚPN、NRSR 歷屆議員資料",
+  "利奧波德 1940-05-28 至 1951 是否仍在位的問題已列 gap 待主管裁決"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

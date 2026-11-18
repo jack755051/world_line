@@ -1,0 +1,87 @@
+{
+ "batch": "014",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 6,
+  "editedSentences": 0,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cu-garcia-menocal",
+   "bioId": "01a1b4b2-2fa1-7642-b678-9a6756430e66",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 6,
+   "searchLogSteps": 24,
+   "changes": [
+    "段3：Cayuela 引文「tra la dura represión…」開頭為斷字殘片（demues-tra），改為完整片段「la dura represión que ejerció contra el levantamiento de los liberales」",
+    "段2：「轉而經營大型製糖廠」的謂語原無引文，補 Cayuela 原文已抓片段「se dedicó de lleno a asentar su fortuna en torno a la gestión」",
+    "抽查重抓 encyclopedia.com Sumnall 條目（200），引文逐字相符",
+    "最低標準：段數／字數達標，任期完整度未達（助理戰爭部長缺迄日、警察局長／保守黨領袖／少將缺起日），已有待查證 gap、篇幅不足 gap 與 retry 搜尋紀錄，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ir-reza-shah",
+   "bioId": "01a1b4b2-2faf-7405-999a-8394816e968b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 1,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 22,
+   "changes": [
+    "段1：「卡尚地區」原無引文支撐，補 Halfond 原文片段「a campaign against tribal warlords in the Kāshān region」",
+    "段2：「政變後」獲 Sardar-e Sipah 頭銜原只引頭銜，改為含「After the coup」的完整句片段",
+    "段3：刪除與另一筆重複的 Cronin 引文（a number of radical, centralizing reforms were introduced）",
+    "抽查重抓 Cronin（encyclopedia.com）與 Halfond（EBSCO）兩頁（200），引文逐字相符",
+    "首相候選迄日 1925-10-31 依名簿下一任起日推得（推論），evidenceNote 與 gap 已註明，保留；戰爭部長起日兩份已抓來源矛盾，conflict gap 合理",
+    "最低標準：段數／字數達標，哥薩克指揮職缺迄日已有 gap；篇幅不足 gap 與 retry 紀錄齊全，保留"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "yu-alexander-i",
+   "bioId": "01a1b4b0-6fdc-7afb-851d-e50467396b67",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 1,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "段1：補 Randi 原文片段「e frequentò quella scuola superiore militare」「A., che aveva 15 anni, andò egli pure a Belgrado」，支撐就讀軍校與前往貝爾格萊德子句",
+    "段3：「在世界大戰中」改引含「Nella guerra mondiale」的完整片段；補「insieme col padre e col governo serbo」支撐隨父王與政府撤退",
+    "段4：補「con mezzi costituzionali」片段支撐以憲政手段化解危機",
+    "抽查重抓 Treccani Randi 條目（200），引文逐字相符",
+    "1914 攝政 R0 候選迄日 1918-12-01 依名簿推得並註明；第一軍指揮缺起日留 gap（R6 類別），合理"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引日期或名詞片段，漏引支撐子句謂語／時間狀語（如「政變後」「世界大戰中」「轉而經營」），本輪以原文已抓片段補齊或改引",
+  "引文開頭出現跨行斷字殘片（tra la…），verify.py 只做子字串比對抓不到",
+  "本批 3 人（提示寫 5 人，名單實為 3 人）；regimeId 一律 null（未連庫）"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

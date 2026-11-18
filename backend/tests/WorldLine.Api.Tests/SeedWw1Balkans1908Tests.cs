@@ -79,7 +79,7 @@ public sealed class SeedWw1Balkans1908Tests(PostGisFixture fx)
         var s0 = d0.Values.Select(Slug).ToHashSet();
         Assert.Contains("principality-of-montenegro", s0);
         Assert.DoesNotContain("kingdom-of-montenegro", s0);
-        Assert.Equal("verified", d0[ids["SOV_AH"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d0[ids["SOV_AH"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
         Assert.Contains(ids["SOV_OT_A"], d0.Keys);
 
         // 1913-01-01：阿爾巴尼亞臨時政府（非主權）、義屬多德卡尼斯（非主權）、利比亞已歸義大利
@@ -99,7 +99,7 @@ public sealed class SeedWw1Balkans1908Tests(PostGisFixture fx)
         Assert.Contains(ids["SOV_GR_B"], d3.Keys);
         Assert.DoesNotContain(ids["SOV_LONDON"], d3.Keys);
         Assert.DoesNotContain("cretan-state", d3.Values.Select(Slug));
-        Assert.Equal("verified", d3[ids["SOV_RS_B"]].GetProperty("startEvent").GetProperty("verification").GetString());
+        Assert.Equal("pending", d3[ids["SOV_RS_B"]].GetProperty("startEvent").GetProperty("verification").GetString()); // 有引文，但資料建置檔的來源尚未評等 → 待查證（docs/source-rules.md §5）
 
         // 1914-07-28：奧匈—塞爾維亞衝突（開放迄日）
         var raw = await (await k.R.GetAsync("/api/v1/conflicts?date=1914-07-28")).Content.ReadAsStringAsync();

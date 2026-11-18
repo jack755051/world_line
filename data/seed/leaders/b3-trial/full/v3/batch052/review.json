@@ -1,0 +1,82 @@
+{
+ "batch": "052",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 1,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 10,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "lu-marie-adelaide",
+   "bioId": "01a1b4b8-e9f8-718e-bb90-78aa7c61b53a",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 9,
+   "changes": [
+    "段1：「宗教信念左右了許多決定」改為「影響了她身為君主的決定」（來源無『許多』）",
+    "段2：補 7 筆原文已抓引文支撐未引用子句（1912 大公去世、教育法內容、初期遲疑、艾辛堅持、1915 年、Differdange／Hollerich 兩處、清一色右派閣員）",
+    "段2：「after six months of regency」「refused to approve…mayors」引文不含日期，datePrecision 改 null",
+    "段3：補 2 筆引文（巴伐利亞王儲、加深疑慮）",
+    "抽查重抓 monarchie.lu 傳記頁，引文一致"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "su-rykov",
+   "bioId": "01a1b492-3eeb-776c-999b-232cadba71b3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 4,
+   "roleCandidates": 2,
+   "gaps": 5,
+   "searchLogSteps": 12,
+   "changes": [
+    "段2：刪「布爾什維克」（GND 只寫 Mitglied des Zentralkomitees）並改寫成不把中央委員與人民委員會副主席繫於 1917 年（與既有缺起日 gap 一致）",
+    "抽查重抓 lobid GND 與 Treccani Enciclopedia Italiana 條目，引文一致；R5／R6／R1 判定核過無誤"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ni-sacasa",
+   "bioId": "01a1b4b8-e9fe-7b8d-aa49-6164057490dc",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 6,
+   "changes": [
+    "positions 副總統（1926）移到 gaps：來源只寫 1926 年聯合政府時任副總統，無就任／去職日，起日不可證（引文改放 candidateCitations）",
+    "段2：補引文「because of his ties with the Liberal Party」",
+    "抽查重抓 Encyclopedia.com 條目，引文一致"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者常只引名詞片語而漏引子句中的事實（日期、內容、程度詞），本批補引原文已抓句子",
+  "不含日期的引文誤填 datePrecision",
+  "WebSearch 額度用盡；三人皆 ≥3 段，未觸發 0 段最低嘗試，但第二來源不足已記 gaps"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

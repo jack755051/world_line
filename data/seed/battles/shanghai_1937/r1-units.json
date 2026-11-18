@@ -1,0 +1,2962 @@
+{
+ "schema": "battle-data/0.1 r1",
+ "researchedOn": "2026-11-13",
+ "gradePolicy": "AB-only (C only in leads)",
+ "sideNote": "side：axis＝日本；allied＝中華民國（1937 年尚無同盟國／軸心之分，沿用展示頁陣營代碼）",
+ "echelonNote": "army_group＝中支那方面軍、戰區、左翼／中央／右翼作戰軍；army＝日軍「軍」與國軍「集團軍」；corps＝國軍「軍」；detachment＝日軍支隊；海軍只到艦隊與陸戰隊",
+ "units": [
+  {
+   "unitKey": "jp-ccaa",
+   "nameOrig": "中支那方面軍（Central China Area Army）",
+   "nameZh": "華中方面軍",
+   "echelon": "army_group",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-11-07",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JM-179：11/7 臨時編成，統轄上海派遣軍與第十軍（戰鬥序列 12/1 才下達）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 16 頁",
+     "quote": "On 7 November, the Central Authorities organized the Central China Area",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "日文原名中支那方面軍；中文通行譯名，待審"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（jp-monographs）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "jp-sea",
+   "nameOrig": "上海派遣軍（Shanghai Expeditionary Army）",
+   "nameZh": "上海派遣軍",
+   "echelon": "army",
+   "parentKey": "jp-ccaa",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-08-23",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；8/15 下令編成；8/23 登陸為本戰役在場起日；11/7 起隸中支那方面軍（之前直屬中央統帥部）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 14 頁",
+     "quote": "the Shanghai Expeditionary Army landed at the",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c13071346000",
+     "locator": "JACAR C13071346000 目錄頁「内容」欄",
+     "quote": "上海派遣軍ハ八月二十三日川沙鎮",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C13071346000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "15日日軍大本營下令編成上海派遣軍，以松井石根大將為司令官",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "上海派遣軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（jp-jacar、jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-10-army",
+   "nameOrig": "第十軍（10th Army）",
+   "nameZh": "第十軍",
+   "echelon": "army",
+   "parentKey": "jp-ccaa",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-11-05",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；10/20 下令編成；11/5 杭州灣（金山衛）登陸為在場起日。JACAR 翻刻作「金出衛」照錄",
+   "citations": [
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "昭和十二年十月二十日第十軍ノ戦闘序列ヲ令セラル",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "五日午前三時三十分金出衛城南方予定泊地ニ投錨ヲ完了セリ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "20日下達臨參命令第119號，命編組第十軍增援上海",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第十軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-3-div",
+   "nameOrig": "第三師団（3d Division）",
+   "nameZh": "第三師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-08-23",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 12 頁",
+     "quote": "the main force of which consisted ot the 3d and",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "準備以第十一師團（欠）及第三師團為基幹",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "23日晨日軍第3、11師團各以一部分別",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第三師團"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-11-div",
+   "nameOrig": "第十一師団（11th Division）",
+   "nameZh": "第十一師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-08-23",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 13 頁",
+     "quote": "(minus the Amaya Detachment)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "準備以第十一師團（欠）及第三師團為基幹",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "23日晨日軍第3、11師團各以一部分別",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第十一師團"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-9-div",
+   "nameOrig": "第九師団（9th Division）",
+   "nameZh": "第九師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JM-179 寫 9/11 自日本增援抵達；chang2016 寫 9/11 為臨參命令第九十九號下令日——起日兩說不一，留空（見 gaps）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "from Japan to reinforce the Shanghai Expeditionary Army: 9th Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 29 頁",
+     "quote": "增派第九、第十三及第101等3個師團增援上海",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "其第3、9、11師團及重籐旅團",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第九（師團）"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-13-div",
+   "nameOrig": "第十三師団（13th Division）",
+   "nameZh": "第十三師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JM-179 寫 9/11 自日本增援抵達；chang2016 寫 9/11 為臨參命令第九十九號下令日——起日兩說不一，留空（見 gaps）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "from Japan to reinforce the Shanghai Expeditionary Army: 9th Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 29 頁",
+     "quote": "增派第九、第十三及第101等3個師團增援上海",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "師團、第101師團及戰車聯隊、重砲兵聯隊",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第十三（師團）"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-101-div",
+   "nameOrig": "第百一師団（101st Division）",
+   "nameZh": "第一〇一師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JM-179 寫 9/11 自日本增援抵達；chang2016 寫 9/11 為臨參命令第九十九號下令日——起日兩說不一，留空（見 gaps）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "from Japan to reinforce the Shanghai Expeditionary Army: 9th Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 29 頁",
+     "quote": "增派第九、第十三及第101等3個師團增援上海",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "師團、第101師團及戰車聯隊、重砲兵聯隊",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "chang2016 作「第101」、mnd2017 作「第101師團」；中文數字寫法為執行者統一，待審"
+    }
+   },
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "jp-16-div",
+   "nameOrig": "第十六師団（16th Division）",
+   "nameZh": "第十六師團",
+   "echelon": "division",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；10/30 隸上海派遣軍；白茆口登陸日 JM-179 文字 OCR 損壞（「]Jth」），JM-179 Map No. 1 圖上「13 NOV」標註屬地圖判讀；起日留空，11/13 只作候選",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 15 頁",
+     "quote": "The 16th Division was assigned to the Shanghai Expeditionary Army on 30 October ",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "另從華北調用第十六師團受上海派遣軍之指揮",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "以新增之第16師配屬重藤旅團於白茆",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第十六師團"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "startCandidate": {
+    "value": "1937-11-13",
+    "status": "candidate",
+    "basis": "JM-179 OCR「]Jth」＋Map No. 1 圖上「13 NOV」（地圖未過 2 km，僅參考）"
+   },
+   "startUncertain": "OCR 讀值不確定：JM-179 原文「landed on the ]Jth」之「]Jth」讀作 13th 未經人工核對原掃描（主管 2026-11-13 16:14 Q5：欄位留空，11/13 只作候選）",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-6-div",
+   "nameOrig": "第六師団（6th Division）",
+   "nameZh": "第六師團",
+   "echelon": "division",
+   "parentKey": "jp-10-army",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-11-05",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "八口浦ニ於テ北支那方面ヨリ転用セラレタル第六師団及国崎支隊等ヲ掌握シ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "由華北調用第六師團及第五師團的一部（國崎支隊）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第六師團"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-18-div",
+   "nameOrig": "第十八師団（18th Division）",
+   "nameZh": "第十八師團",
+   "echelon": "division",
+   "parentKey": "jp-10-army",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-11-05",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "五島ニ於テ第十八師団ヲ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "由滿洲調用第十八師團",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "第十八師團"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-114-div",
+   "nameOrig": "第百十四師団（114th Division）",
+   "nameZh": "第一一四師團",
+   "echelon": "division",
+   "parentKey": "jp-10-army",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JACAR 翻刻「第百十四属国」照錄（應為師団之誤植）；只載 10/30 大阪出發追及主力，登陸日未載（起日空）",
+   "citations": [
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "第百十四属国ハ三十日大阪出発軍主力ニ追及ス",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "動員第114師團等",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "chang2016 作「第114師團」；中文數字寫法為執行者統一，待審"
+    }
+   },
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "jp-kunisaki-det",
+   "nameOrig": "国崎支隊（Kunisaki Detachment）",
+   "nameZh": "國崎支隊",
+   "echelon": "detachment",
+   "parentKey": "jp-10-army",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-11-05",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；第五師團之一部（chang2016）；JM-179 註：主力為步兵第九旅團",
+   "citations": [
+    {
+     "sourceKey": "jacar-c11112056100",
+     "locator": "JACAR C11112056100 目錄頁「内容」欄",
+     "quote": "八口浦ニ於テ北支那方面ヨリ転用セラレタル第六師団及国崎支隊等ヲ掌握シ",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11112056100",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 30 頁",
+     "quote": "由華北調用第六師團及第五師團的一部（國崎支隊）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "國崎支隊"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-jacar、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-shigeto-det",
+   "nameOrig": "重藤支隊（Shigeto Detachment）",
+   "nameZh": "重藤支隊",
+   "echelon": "detachment",
+   "parentKey": "jp-sea",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；JM-179 註：9/7 配屬上海派遣軍（OCR「7 Septenb er」），臺灣守備隊編成；抵達日未載（起日空）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 17 頁",
+     "quote": "was commanded by Lt Gen Chiaki Shigeto",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "其第3、9、11師團及重籐旅團",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "jacar-c11111935000",
+     "locator": "JACAR C11111935000 目錄頁「内容」欄",
+     "quote": "（二）重藤兵団（重藤少将ノ指揮スル歩兵第三聯隊",
+     "quoteLang": "ja",
+     "url": "https://www.jacar.archives.go.jp/das/meta/C11111935000",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 作「重籐旅團」、圖上作「重藤」；JM-179 作 Detachment，取支隊，待審"
+    }
+   },
+   "confidence": {
+    "level": "verified",
+    "why": "3 個獨立 A/B 來源家族（jp-jacar、jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-jacar",
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "jp-amaya-det",
+   "nameOrig": "天谷支隊（Amaya Detachment）",
+   "nameZh": "天谷支隊",
+   "echelon": "detachment",
+   "parentKey": "jp-11-div",
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-09-02",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；原屬第十一師團，8/15 先派大連；9/1 令歸建（JM-179）",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 13 頁",
+     "quote": "(minus the Amaya Detachment)",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 28 頁",
+     "quote": "9月2日，另從青島增援的天谷支隊從海路抵達吳淞外海",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "chang2016",
+     "asInSource": "天谷支隊"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "jp-shanghai-snlf",
+   "nameOrig": "上海海軍特別陸戦隊（Shanghai Special Naval Landing Force）",
+   "nameZh": "上海海軍特別陸戰隊",
+   "echelon": "naval_infantry",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "jm179",
+     "locator": "Japanese Monograph No. 179，PDF 第 12 頁",
+     "quote": "the Naval Special Landing",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/Japan/Monos/pdfs/JM-179/JM-179.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 28 頁",
+     "quote": "日軍兵力集結在其海軍司令部附近的特別陸戰隊不足5,000名",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "chang2016 作「特別陸戰隊」；冠「上海海軍」為執行者補，待審"
+    }
+   },
+   "confidence": {
+    "level": "verified",
+    "why": "2 個獨立 A/B 來源家族（jp-monographs、tw-roc）",
+    "singleSource": false,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "jp-monographs",
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "jp-3rd-fleet",
+   "nameOrig": "第三艦隊（3rd Fleet）",
+   "nameZh": "第三艦隊",
+   "echelon": "fleet",
+   "parentKey": null,
+   "side": "axis",
+   "nation": "jp",
+   "regimeSlug": "empire-of-japan",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 22 頁",
+     "quote": "其第三艦隊司令官長谷川清中將",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 16 頁",
+     "quote": "日本第三艦隊並駛集黃浦江",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第三艦隊"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有對手方的說法（tw-roc）：對手方出處不能單獨成立",
+    "singleSource": true,
+    "opposingOnly": true,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-3rd-war-zone",
+   "nameOrig": "第三戰區",
+   "nameZh": "第三戰區",
+   "echelon": "army_group",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；8/20 第四號訓令（chang2016）；戰區成立日未明載（起日空）",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 20 頁",
+     "quote": "顧祝同就任第三戰區副司令長官",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 28 頁",
+     "quote": "另頒第四號訓令，對第三戰區（華東）的指導方針",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第三戰區"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-left-wing",
+   "nameOrig": "左翼軍",
+   "nameZh": "左翼軍",
+   "echelon": "army_group",
+   "parentKey": "cn-3rd-war-zone",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 25 頁",
+     "quote": "〈對左翼軍各將領訓話〉（1937年10月29日）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "中央與左翼軍被迫向",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "左翼軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-central",
+   "nameOrig": "中央軍",
+   "nameZh": "中央作戰軍",
+   "echelon": "army_group",
+   "parentKey": "cn-3rd-war-zone",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "張治中集團軍(中央軍)",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 作「中央軍」；為免與「中央軍（嫡系）」混淆加「作戰」，待審"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-right-wing",
+   "nameOrig": "右翼軍",
+   "nameZh": "右翼軍",
+   "echelon": "army_group",
+   "parentKey": "cn-3rd-war-zone",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "以張發奎集團軍(右翼軍)任杭州灣北",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "mnd2017",
+     "asInSource": "右翼軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-9-ag",
+   "nameOrig": "第九集團軍",
+   "nameZh": "第九集團軍",
+   "echelon": "army",
+   "parentKey": "cn-central",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；8/13 夜軍委會令；隸中央軍據 mnd2017「張治中集團軍(中央軍)」",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 19 頁",
+     "quote": "令第九集團軍（淞滬警備軍隊改編者）於明十四日拂曉開始攻擊虹口、楊樹浦",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "第9集團軍專責上海市區之作戰",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第九集團軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-15-ag",
+   "nameOrig": "第十五集團軍",
+   "nameZh": "第十五集團軍",
+   "echelon": "army",
+   "parentKey": "cn-left-wing",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；隸左翼軍據 mnd2017「陳誠集團軍(左翼軍)」敘述（該句在雙欄 PDF 中斷行，未取為引文）",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 22 頁",
+     "quote": "表陳為第三戰區前敵總指揮兼第十五集團軍總司令",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "吳淞鎮以北歸新編之第15集團軍負責",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第十五集團軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-19-ag",
+   "nameOrig": "第十九集團軍",
+   "nameZh": "第十九集團軍",
+   "echelon": "army",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "第9、19兩集團軍所屬部隊於10日始沿",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 作「19（集團軍）」；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-21-ag",
+   "nameOrig": "第二十一集團軍",
+   "nameZh": "第二十一集團軍",
+   "echelon": "army",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "21集團軍固守瀏河鎮至嘉定一線",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 作「第21集團軍」；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-songhu-garrison",
+   "nameOrig": "淞滬警備司令部",
+   "nameZh": "淞滬警備司令部",
+   "echelon": "hq",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "淞滬警備司令楊虎所指揮之上海市保安總團",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "su2015 作「淞滬警備司令」（職稱）；機關名為執行者補，待審"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-18-corps",
+   "nameOrig": "第十八軍",
+   "nameZh": "第十八軍",
+   "echelon": "corps",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；su2015 列下轄 11、14、67、98 師；chang2016 寫「十一、十四、六十師」（疑脫字），見 gaps；上級出處未載",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第十八軍（下轄第十一師、第十四師、第六十七師、第九十八師）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "第十八軍羅卓英部第十一、十四、六十師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第十八軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-39-corps",
+   "nameOrig": "第三十九軍",
+   "nameZh": "第三十九軍",
+   "echelon": "corps",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第39軍之第56師及江蘇保安團",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 作「第39軍」；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-78-corps",
+   "nameOrig": "第七十八軍",
+   "nameZh": "第七十八軍",
+   "echelon": "corps",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 31 頁",
+     "quote": "第七十八軍軍長宋希濂",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第七十八軍"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-36-div",
+   "nameOrig": "第三十六師",
+   "nameZh": "第三十六師",
+   "echelon": "division",
+   "parentKey": "cn-78-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-14",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；限 8/14 到達；隸第七十八軍出處未明言（依宋希濂兼任推定，待查）",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "蔣復電令第三十六師提前開赴上海，限14日到達目的地",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第三十六師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-87-div",
+   "nameOrig": "第八十七師",
+   "nameZh": "第八十七師",
+   "echelon": "division",
+   "parentKey": "cn-9-ag",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "京滬警備司令張治中所指揮之第八十七、八十八兩個師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第87師一部進駐吳淞鎮、劉家宅及舊市政府",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第八十七師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-88-div",
+   "nameOrig": "第八十八師",
+   "nameZh": "第八十八師",
+   "echelon": "division",
+   "parentKey": "cn-9-ag",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "京滬警備司令張治中所指揮之第八十七、八十八兩個師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第88師向東推進",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第八十八師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-56-div",
+   "nameOrig": "第五十六師",
+   "nameZh": "第五十六師",
+   "echelon": "division",
+   "parentKey": "cn-39-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；chang2016 同句作「蚌埠之第五師」，與 su2015 不一（見 gaps）",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 17 頁",
+     "quote": "並命駐蚌埠之第五十六師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第39軍之第56師及江蘇保安團",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第五十六師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-57-div",
+   "nameOrig": "第五十七師",
+   "nameZh": "第五十七師",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第57師由嘉興向龍華前進",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 用阿拉伯數字；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-98-div",
+   "nameOrig": "第九十八師",
+   "nameZh": "第九十八師",
+   "echelon": "division",
+   "parentKey": "cn-18-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第十八軍（下轄第十一師、第十四師、第六十七師、第九十八師）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "第98師於12日由漢口向淞滬地區船運",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第九十八師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-11-div",
+   "nameOrig": "第十一師",
+   "nameZh": "第十一師",
+   "echelon": "division",
+   "parentKey": "cn-18-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第十八軍（下轄第十一師、第十四師、第六十七師、第九十八師）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "第十八軍羅卓英部第十一、十四、六十師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第十一師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-14-div",
+   "nameOrig": "第十四師",
+   "nameZh": "第十四師",
+   "echelon": "division",
+   "parentKey": "cn-18-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第十八軍（下轄第十一師、第十四師、第六十七師、第九十八師）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "chang2016",
+     "locator": "張鑄勳，《國史館館刊》50，PDF 第 24 頁",
+     "quote": "第十八軍羅卓英部第十一、十四、六十師",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/33/43.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第十四師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-67-div",
+   "nameOrig": "第六十七師",
+   "nameZh": "第六十七師",
+   "echelon": "division",
+   "parentKey": "cn-18-corps",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "第十八軍（下轄第十一師、第十四師、第六十七師、第九十八師）",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "第六十七師"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "unitKey": "cn-63-div",
+   "nameOrig": "第六十三師",
+   "nameZh": "第六十三師",
+   "echelon": "division",
+   "parentKey": "cn-right-wing",
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；金山衛正面僅一師（mnd2017 該句雙欄斷行，只取「63師防守」）；隸右翼軍為推定",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 19 頁",
+     "quote": "63師防守",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 用阿拉伯數字；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-107-div",
+   "nameOrig": "第一〇七師",
+   "nameZh": "第一〇七師",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 12 頁",
+     "quote": "8日，日軍擊退107師",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 用阿拉伯數字；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-40-div",
+   "nameOrig": "第四十師",
+   "nameZh": "第四十師",
+   "echelon": "division",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": null,
+    "end": null,
+    "startPrecision": null,
+    "endPrecision": null,
+    "startBasis": "empty-no-source",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null；11/13 白茆口方面",
+   "citations": [
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 14 頁",
+     "quote": "13日日軍擊破任江防之第40師",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "executor-translation",
+     "note": "mnd2017 用阿拉伯數字；中文數字為執行者統一"
+    }
+   },
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   },
+   "nameZhStatus": "unreviewed"
+  },
+  {
+   "unitKey": "cn-ind-20-bde",
+   "nameOrig": "獨立第二十旅",
+   "nameZh": "獨立第二十旅",
+   "echelon": "brigade",
+   "parentKey": null,
+   "side": "allied",
+   "nation": "cn",
+   "regimeSlug": "republic-of-china-nationalist",
+   "period": {
+    "start": "1937-08-13",
+    "end": null,
+    "startPrecision": "day",
+    "endPrecision": null,
+    "startBasis": "default-main-phase-start",
+    "endBasis": "empty-no-source"
+   },
+   "periodNote": "起訖為本戰役主期（1937-08-13～11-26）內有出處的在場範圍，非單位編成／解編日；起日沒有出處者取主期起日（欄位內另標）或留空，止日未見出處者填 null",
+   "citations": [
+    {
+     "sourceKey": "su2015",
+     "locator": "蘇聖雄，《國史館館刊》46，PDF 第 21 頁",
+     "quote": "獨立第二十旅",
+     "quoteLang": "zh-Hant",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "mnd2017",
+     "locator": "張琪閔、蕭新民，《海軍學術雙月刊》51:4，PDF 第 7 頁",
+     "quote": "獨立第20旅於12日晚進駐南翔鎮",
+     "quoteLang": "zh-Hant",
+     "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+     "accessedOn": "2026-11-13",
+     "grade": "B",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "leads": [],
+   "status": "sourced",
+   "note": "",
+   "field_sources": {
+    "nameZh": {
+     "basis": "source-text",
+     "sourceKey": "su2015",
+     "asInSource": "獨立第二十旅"
+    }
+   },
+   "nameZhStatus": "from-source",
+   "confidence": {
+    "level": "needs-check",
+    "why": "只有一個獨立 B 級來源家族（tw-roc）",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "tw-roc"
+    ],
+    "effectiveGrade": "B",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ]
+}

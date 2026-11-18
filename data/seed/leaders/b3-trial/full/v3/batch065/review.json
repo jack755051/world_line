@@ -1,0 +1,88 @@
+{
+ "batch": "065",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 1,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 1,
+  "addedCitations": 8,
+  "editedSentences": 6,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cr-gonzalez-flores",
+   "bioId": "01a1b4bb-07a9-7f47-bb1d-b913b38ae622",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 1,
+   "gaps": 5,
+   "searchLogSteps": 10,
+   "changes": [
+    "第2段議員引文補全「por la provincia de Heredia」以支撐省份子句（段落與候選角色兩處）",
+    "第2段刪「期間」推論字樣、補抵押銀行提案引文；「各方簽了協議」改為引文所寫「蒂諾科與共和黨人促成的協議於1914年4月28日達成」",
+    "第3段補「the suffering of the poor」引文（原 quote 截斷，『窮人』無支撐）",
+    "蒂諾科案律師 positionKind judicial→other（非司法職）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "se-lindman",
+   "bioId": "01a1b4bf-60f2-74e4-829d-0f209fb93efa",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 4,
+   "gaps": 5,
+   "searchLogSteps": 7,
+   "changes": [
+    "上、下議院議員兩筆：Lex（具名 B）明寫代表右派黨 Högern 取得席位，依 Tai 12:47 由 positions（partyPostAmbiguous）移入 roleCandidates（de_facto_leader，R1，originalPositionKind=legislator），各補 Lex 引文",
+    "下議院起年 SBL 1912 vs Lex 1911，新增 conflict gap（role:lindman-ak-member）",
+    "右派黨團領袖候選：organization 原混入全國選舉人聯盟（AVF），改為下議院右派黨團；刪除不支撐此職的 AVF 引文",
+    "第3段 period 迄點依段內最後一件事（1935年6月）改為 1935-07-01（month）",
+    "第4段合併一事引文改為含「1935」的逐字片段（原 quote 無日期卻標 year 精度）",
+    "死亡日 gap note 刪去不實的「正文註明矛盾」"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "es-alcala-zamora",
+   "bioId": "01a1b4bf-6119-7cd5-8b47-85c8557e0be2",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 2,
+   "roleCandidates": 0,
+   "gaps": 7,
+   "searchLogSteps": 9,
+   "changes": [
+    "第1段年齡子句（十七歲、二十二歲）補逐字引文",
+    "第3段刪「被議會」（引文未含 por las Cortes）；皇家語言學院引文原截斷，補全至「en el cuarto intento」",
+    "第4段補「fallecía en el exilio」引文以支撐『流亡中』",
+    "戰爭部長 gap 刪除無出處的「1922-12-07～1923-09」日期",
+    "議員 gap 更正：RACMYP（B）已寫1906年起任 La Carolina 議員，原 note 稱無 A／B 來源不實"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把來源明寫以政黨身分取得的席位標為 partyPostAmbiguous（因另一來源未寫黨籍）；規則是任一合格來源明寫即算黨職",
+  "多處引文截斷到失去支撐子句所需的字詞（省份、the poor、intento）",
+  "gap note 出現無已抓原文支撐的日期與敘述",
+  "抽查重抓 4 頁（SBL、SINABI、Museo Nacional、RACMYP PDF），內容與快取一致"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

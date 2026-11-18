@@ -1,0 +1,612 @@
+{
+ "mapKey": "usma-europe-06",
+ "meta": {
+  "mapDate": "1939-09-14",
+  "dateNote": "圖題 Operations, 1-14 September 1939：箭頭與包圍圈為 9/1–9/14 期間累積，非單一時刻態勢",
+  "source": {
+   "type": "military_academy_atlas",
+   "grade": "B",
+   "citation": "USMA Department of History, Atlas of the Second World War: Europe and the Mediterranean, Map 6 'POLAND, 1939 — Campaign in Poland, 1939: Operations, 1-14 September 1939'",
+   "url": "https://s3.amazonaws.com/usma-media/inline-images/academics/academic_departments/history/WWII%20Europe%20Med/WWIIEurope06.jpg",
+   "license": "美國聯邦政府著作（USMA），公有領域"
+  },
+  "method": "第一次判讀（本代理人）：以 tools/battles/mapgrid.swift 裁出 1000×700 原生解析度（1:1）並疊 50 px 格線，目視讀城鎮空心圓圓心（誤差約 ±3 px）；再以 tools/battles/ringfind.swift 自動偵測空心圓，於人工種子 ±7 px 內精修圓心（tools/battles/cp_refine.py）。經緯度取自 OSM Nominatim（osm-places.json 的 cp: 鍵）。圖比例：比例尺 0–100 km 約 260 px，約 0.385 km/px。"
+ },
+ "points": {
+  "Hel": {
+   "px": [
+    1952,
+    460
+   ],
+   "osm": "cp:Hel"
+  },
+  "Gdynia": {
+   "px": [
+    1904,
+    525
+   ],
+   "osm": "cp:Gdynia"
+  },
+  "Danzig": {
+   "px": [
+    1976,
+    581
+   ],
+   "osm": "cp:Danzig"
+  },
+  "Königsberg": {
+   "px": [
+    2352,
+    436
+   ],
+   "osm": "cp:Königsberg"
+  },
+  "Dirschau": {
+   "px": [
+    1932,
+    724
+   ],
+   "osm": "cp:Dirschau"
+  },
+  "Marienwerder": {
+   "px": [
+    1956,
+    822
+   ],
+   "osm": "cp:Marienwerder"
+  },
+  "Graudenz": {
+   "px": [
+    1930,
+    926
+   ],
+   "osm": "cp:Graudenz"
+  },
+  "Chełmno": {
+   "px": [
+    1858,
+    972
+   ],
+   "osm": "cp:Chełmno"
+  },
+  "Osterode": {
+   "px": [
+    2263,
+    852
+   ],
+   "osm": "cp:Osterode"
+  },
+  "Allenstein": {
+   "px": [
+    2390,
+    819
+   ],
+   "osm": "cp:Allenstein"
+  },
+  "Neidenburg": {
+   "px": [
+    2369,
+    973
+   ],
+   "osm": "cp:Neidenburg"
+  },
+  "Rastenburg": {
+   "px": [
+    2589,
+    690
+   ],
+   "osm": "cp:Rastenburg"
+  },
+  "Lötzen": {
+   "px": [
+    2675,
+    747
+   ],
+   "osm": "cp:Lötzen"
+  },
+  "Willenberg": {
+   "px": [
+    2456,
+    960
+   ],
+   "osm": "cp:Willenberg"
+  },
+  "Grodno": {
+   "px": [
+    3203,
+    770
+   ],
+   "osm": "cp:Grodno"
+  },
+  "Szczuczyn": {
+   "px": [
+    3448,
+    797
+   ],
+   "osm": "cp:Szczuczyn"
+  },
+  "Bialystok": {
+   "px": [
+    3021,
+    1118
+   ],
+   "osm": "cp:Bialystok"
+  },
+  "Przasnysz": {
+   "px": [
+    2471,
+    1127
+   ],
+   "osm": "cp:Przasnysz"
+  },
+  "Ciechanow": {
+   "px": [
+    2428,
+    1196
+   ],
+   "osm": "cp:Ciechanow"
+  },
+  "Różan": {
+   "px": [
+    2630,
+    1188
+   ],
+   "osm": "cp:Różan"
+  },
+  "Pultusk": {
+   "px": [
+    2537,
+    1292
+   ],
+   "osm": "cp:Pultusk"
+  },
+  "Wyszkow": {
+   "px": [
+    2640,
+    1342
+   ],
+   "osm": "cp:Wyszkow"
+  },
+  "Płock": {
+   "px": [
+    2215,
+    1355
+   ],
+   "osm": "cp:Płock"
+  },
+  "Kutno": {
+   "px": [
+    2127,
+    1442
+   ],
+   "osm": "cp:Kutno"
+  },
+  "Kampinos": {
+   "px": [
+    2352,
+    1470
+   ],
+   "osm": "cp:Kampinos"
+  },
+  "Warsaw": {
+   "px": [
+    2527,
+    1475
+   ],
+   "osm": "cp:Warsaw"
+  },
+  "Siedlce": {
+   "px": [
+    2878,
+    1457
+   ],
+   "osm": "cp:Siedlce"
+  },
+  "Łowicz": {
+   "px": [
+    2249,
+    1540
+   ],
+   "osm": "cp:Łowicz"
+  },
+  "Ozorków": {
+   "px": [
+    2118,
+    1573
+   ],
+   "osm": "cp:Ozorków"
+  },
+  "Stryków": {
+   "px": [
+    2185,
+    1606
+   ],
+   "osm": "cp:Stryków"
+  },
+  "Brzeziny": {
+   "px": [
+    2220,
+    1627
+   ],
+   "osm": "cp:Brzeziny"
+  },
+  "Lodz": {
+   "px": [
+    2158,
+    1657
+   ],
+   "osm": "cp:Lodz"
+  },
+  "Tomaszow Mazowiecki": {
+   "px": [
+    2332,
+    1688
+   ],
+   "osm": "cp:Tomaszow Mazowiecki"
+  },
+  "Kock": {
+   "px": [
+    2932,
+    1674
+   ],
+   "osm": "cp:Kock"
+  },
+  "Deblin": {
+   "px": [
+    2663,
+    1776
+   ],
+   "osm": "cp:Deblin"
+  },
+  "Toruń": {
+   "px": [
+    1922,
+    1135
+   ],
+   "osm": "cp:Toruń"
+  },
+  "Poznan": {
+   "px": [
+    1492,
+    1385
+   ],
+   "osm": "cp:Poznan"
+  },
+  "Glogau": {
+   "px": [
+    1233,
+    1652
+   ],
+   "osm": "cp:Glogau"
+  },
+  "Kalisz": {
+   "px": [
+    1772,
+    1651
+   ],
+   "osm": "cp:Kalisz"
+  },
+  "Trebnitz": {
+   "px": [
+    1451,
+    1770
+   ],
+   "osm": "cp:Trebnitz"
+  },
+  "Piotrków": {
+   "px": [
+    2228,
+    1808
+   ],
+   "osm": "cp:Piotrków"
+  },
+  "Radomsko": {
+   "px": [
+    2173,
+    1920
+   ],
+   "osm": "cp:Radomsko"
+  },
+  "Radom": {
+   "px": [
+    2535,
+    1800
+   ],
+   "osm": "cp:Radom"
+  },
+  "Zwoleń": {
+   "px": [
+    2614,
+    1805
+   ],
+   "osm": "cp:Zwoleń"
+  },
+  "Puławy": {
+   "px": [
+    2672,
+    1803
+   ],
+   "osm": "cp:Puławy"
+  },
+  "Kielce": {
+   "px": [
+    2481,
+    2030
+   ],
+   "osm": "cp:Kielce"
+  },
+  "Chęciny": {
+   "px": [
+    2437,
+    2068
+   ],
+   "osm": "cp:Chęciny"
+  },
+  "Annopol": {
+   "px": [
+    2737,
+    2020
+   ],
+   "osm": "cp:Annopol"
+  },
+  "Krasnik": {
+   "px": [
+    2814,
+    2020
+   ],
+   "osm": "cp:Krasnik"
+  },
+  "Sandomierz": {
+   "px": [
+    2686,
+    2132
+   ],
+   "osm": "cp:Sandomierz"
+  },
+  "Czestochowa": {
+   "px": [
+    2069,
+    2074
+   ],
+   "osm": "cp:Czestochowa"
+  },
+  "Cracow": {
+   "px": [
+    2230,
+    2377
+   ],
+   "osm": "cp:Cracow"
+  },
+  "Debica": {
+   "px": [
+    2650,
+    2406
+   ],
+   "osm": "cp:Debica"
+  },
+  "Tarnow": {
+   "px": [
+    2537,
+    2432
+   ],
+   "osm": "cp:Tarnow"
+  },
+  "Breslau": {
+   "px": [
+    1491,
+    1886
+   ],
+   "osm": "cp:Breslau"
+  },
+  "Kreuzberg": {
+   "px": [
+    1761,
+    2009
+   ],
+   "osm": "cp:Kreuzberg"
+  },
+  "Oppeln": {
+   "px": [
+    1664,
+    2158
+   ],
+   "osm": "cp:Oppeln"
+  },
+  "Neisse": {
+   "px": [
+    1482,
+    2203
+   ],
+   "osm": "cp:Neisse"
+  },
+  "Gleiwitz": {
+   "px": [
+    1886,
+    2281
+   ],
+   "osm": "cp:Gleiwitz"
+  },
+  "Wlodawa": {
+   "px": [
+    3166,
+    1763
+   ],
+   "osm": "cp:Wlodawa"
+  },
+  "Chelm": {
+   "px": [
+    3211,
+    1915
+   ],
+   "osm": "cp:Chelm"
+  },
+  "Zamosc": {
+   "px": [
+    3101,
+    2090
+   ],
+   "osm": "cp:Zamosc"
+  },
+  "Bilgoraj": {
+   "px": [
+    3019,
+    2191
+   ],
+   "osm": "cp:Bilgoraj"
+  },
+  "Tomaszow Lubelski": {
+   "px": [
+    3230,
+    2244
+   ],
+   "osm": "cp:Tomaszow Lubelski"
+  },
+  "Sokal": {
+   "px": [
+    3391,
+    2216
+   ],
+   "osm": "cp:Sokal"
+  },
+  "Rawa Ruska": {
+   "px": [
+    3258,
+    2337
+   ],
+   "osm": "cp:Rawa Ruska"
+  },
+  "Kovno": {
+   "px": [
+    3188,
+    306
+   ],
+   "osm": "cp:Kovno"
+  },
+  "Lyck": {
+   "px": [
+    2836,
+    761
+   ],
+   "osm": "cp:Lyck"
+  },
+  "Johannisburg": {
+   "px": [
+    2724,
+    852
+   ],
+   "osm": "cp:Johannisburg"
+  },
+  "Jaroslaw": {
+   "px": [
+    3011,
+    2455
+   ],
+   "osm": "cp:Jaroslaw"
+  },
+  "Przemysl": {
+   "px": [
+    3017,
+    2530
+   ],
+   "osm": "cp:Przemysl"
+  },
+  "Sanok": {
+   "px": [
+    2846,
+    2596
+   ],
+   "osm": "cp:Sanok"
+  },
+  "Sambor": {
+   "px": [
+    3165,
+    2603
+   ],
+   "osm": "cp:Sambor"
+  },
+  "Lwow": {
+   "px": [
+    3331,
+    2485
+   ],
+   "osm": "cp:Lwow"
+  },
+  "Stanisław": {
+   "px": [
+    3582,
+    2857
+   ],
+   "osm": "cp:Stanisław (city)"
+  },
+  "Kolberg": {
+   "px": [
+    1208,
+    617
+   ],
+   "osm": "cp:Kolberg"
+  },
+  "Stettin": {
+   "px": [
+    833,
+    839
+   ],
+   "osm": "cp:Stettin"
+  },
+  "Bad Polzin": {
+   "px": [
+    1305,
+    803
+   ],
+   "osm": "cp:Bad Polzin"
+  },
+  "Bütow": {
+   "px": [
+    1653,
+    626
+   ],
+   "osm": "cp:Bütow"
+  },
+  "Schlochau": {
+   "px": [
+    1581,
+    867
+   ],
+   "osm": "cp:Schlochau"
+  },
+  "Chojnice": {
+   "px": [
+    1649,
+    866
+   ],
+   "osm": "cp:Chojnice"
+  },
+  "Jastrow": {
+   "px": [
+    1428,
+    927
+   ],
+   "osm": "cp:Jastrow"
+  },
+  "Schneidemühl": {
+   "px": [
+    1418,
+    1027
+   ],
+   "osm": "cp:Schneidemühl"
+  },
+  "Nakło": {
+   "px": [
+    1603,
+    1053
+   ],
+   "osm": "cp:Nakło"
+  },
+  "Bydgoszcz": {
+   "px": [
+    1701,
+    1052
+   ],
+   "osm": "cp:Bydgoszcz"
+  }
+ }
+}

@@ -1,0 +1,123 @@
+{
+ "batch": "02",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedCitations": 1,
+  "editedSentences": 16,
+  "spotRefetched": 7
+ },
+ "extraCounts": {
+  "addedCitations": 21,
+  "periodFixes": 5,
+  "movedCitations": 1,
+  "note": "addedCitations：只為段落中已有、但原引文未涵蓋的事實補引文；每筆都是審查者親自從已抓原文逐字取出（未新增任何事實）。movedCitations：近衛巴黎和會引文隨句子從段1移到段2。"
+ },
+ "people": [
+  {
+   "key": "su-stalin",
+   "bioId": "01a1b492-3efd-7d05-8a70-3f38fdf9d599",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 3,
+   "gaps": 2,
+   "changes": [
+    "段1：生年 1878 與 gap field:birthDate（conflict 1878／1879）自相矛盾 → 正文刪去生年，段落起點改為 null（精度 null）；『Gori, Tiflis, 1878 - Mosca 1953』引文從段落移到該 gap 的 candidateCitations（算刪引用 1），gap note 改寫並註明 1879 說法出自未列入 sources 的 Encyclopedia.com、未評等",
+    "段1：刪『其後多次流放西伯利亞』——段內沒有引文；且原文三次流放是 1904 年之後的事（最後一次 1913–17），原句放在 1904 年前，時序錯誤",
+    "段1：『翌年被學院開除』原引文未涵蓋 → 補引文 ciò che un anno più tardi gli valse l'espulsione dal seminario",
+    "段1：1912『被選入』中央委員會 → 『進入』（原文 fu chiamato a far parte，沒有選舉的意思）",
+    "段2：補兩筆引文（crescente controllo sull'apparato…；annientò ogni forma di opposizione interna），撐起『控制黨與國家機器』『肅清反對派』兩句；中文同步微調",
+    "段3：原句『蘇聯戰勝後，他出席德黑蘭、雅爾達、波茨坦會議』時序錯（德黑蘭 1943、雅爾達 1945-02 都在戰勝之前；原文是說勝利帶來的國際聲望體現於出席這些會議）→ 改寫；『在東歐建立共產政權』改成被動句（原文 instaurazione…di regimi comunisti 沒說是他建立）；刪『冷戰形成』；補三筆引文（未能避免侵略、戰略角色有爭議、國際聲望）",
+    "抽查重抓 treccani-stalin：與原抓檔 sha256 相同"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "jp-konoe-fumimaro",
+   "bioId": "e8e4a14e-09b9-40a2-99b5-153deca6b12b",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 4,
+   "gaps": 2,
+   "changes": [
+    "段1：巴黎和會（1919）超出段1期間（迄 1916-01-01）→ 該句連同 NDL 引文移到段2（NDL 解說的敘述順序在 1916 與 1931 之間）",
+    "段1：『生於東京』原無引文 → 補 NDL 引文『出身地 東京都』",
+    "段1：京都帝大就學年份來源未寫，原迄日 1916-01-01 沒有依據 → 迄日改 null（精度 null）",
+    "段2：期間迄日 1939-01-01 → 1941-01-01（段內寫到樞密院議長 1939–40，依 Q3）",
+    "段2：刪正文裡的來源比對說明句（1931 vs 1933），改成括號『就任年份來源不一，見缺漏』；衝突已記在 gap position:konoe-peers-vice",
+    "段3：『曾試圖推動日美接近』→『也主張日美接近』（原文 assertore = 主張者）",
+    "regimeId 01a191c9-…（大日本帝國）核對與 selection.json 名單 records 的 regimeId 一致",
+    "抽查重抓 ndl-konoe：與原抓檔 sha256 相同"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cn-jia-deyao",
+   "bioId": "01a1c406-24d5-7dc1-9bb0-21533fb0fd28",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 5,
+   "changes": [
+    "『前任總理許世英』→『總理 Hsu』：FRUS 只寫 Premier Hsu，中文全名沒有來源",
+    "『顏惠慶』→『W. W. Yen』：同上，FRUS 只有拼音",
+    "『對應賈德耀』→『推定為賈德耀』，與 gap identity（identity_uncertain）一致",
+    "抽查重抓 frus26 d635：與原抓檔 sha256 相同；引文確認在原抓文字中"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ye-yahya-hamid-al-din",
+   "bioId": "01a1b4b5-fa07-7891-b5f8-6b36cbc96506",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "gaps": 3,
+   "changes": [
+    "『奧斯曼帝國於1918年解體』『1940年代中期人口主要部分反對其統治』兩句原無對應引文 → 各補一筆 LC 引文（The Ottoman Empire was dissolved in 1918；by the mid-1940s major elements of the population opposed his rule）",
+    "期間迄日 1948-02-18（day，半開，對應 2 月 17 日遇刺）正確",
+    "抽查重抓 frus-yahya 與 lc-yemen（PDF）：都與原抓檔 sha256 相同；Britannica 403 未繞過，正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mx-cardenas-lazaro",
+   "bioId": "01a1aa4a-da74-748f-aea8-7d3802bce69c",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 6,
+   "gaps": 4,
+   "changes": [
+    "段1：出生地、1913 年、『反抗韋爾塔軍事政權』原無引文 → 補 3 筆 Knight 引文",
+    "段2：『靠卡列斯庇護升遷』『請假』『內政部長』原無引文 → 補 3 筆",
+    "段3：起點 1934-12-01（month）沒有引文支撐（引文只到年）→ 改 1934-01-01（year）",
+    "段3：1935–36、動員工會農民、村社分配、英美石油公司、譴責法西斯侵略各句原無引文 → 補 6 筆；三筆舊引文的 locator 從 POLITICAL CAREER 更正為 NATIONALIZATION OF INDUSTRIES（原文實際所在小節）",
+    "段4：正文寫到 1970-10-19 逝世，但期間迄日 1946-01-01 → 改 1970-10-20（day，半開）",
+    "Encyclopedia.com 條目作者 Alan Knight 已在原文署名行核實，B 級合理",
+    "regimeId 01a1a24e-81c2-…（墨西哥）核對與 selection.json 名單 records 一致",
+    "抽查重抓 encyc-cardenas：HTML 動態部分不同，19 筆舊引文都在重抓頁面中逐字出現；treccani-cardenas sha256 相同"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "最常見：引文只撐住句子的一部分（日期有、事件本身沒有，或反過來）。這批補了 21 筆，都是原文同一句或相鄰句、已抓原文裡現成的文字；下一批研究者寫正文時應逐句對照引文。",
+  "段落期間沒有涵蓋正文內容：近衛段1巴黎和會、近衛段2樞密院、卡德納斯段4逝世；另有起迄點精度比引文還細（卡德納斯段3 用 month）。",
+  "把英文拼音直接對成中文全名（Hsu→許世英、W. W. Yen→顏惠慶）而來源沒寫中文名，屬推定，不可寫成事實。",
+  "正文與 gap 矛盾：史達林正文寫生年 1878，同時 gap 記 conflict；依規則矛盾值要留空。",
+  "時序改寫錯誤：史達林段3 把德黑蘭、雅爾達寫成戰勝之後。",
+  "Treccani 線上百科條目未署名，研究者評 B『待確認』；審查者以國家級機構百科接受 B，gradeBasis 已改。若 Tai 認為 B 必須具名作者，三個 treccani 來源要降級，史達林會只剩未評等來源（整人需重查）。",
+  "未改、留給 Tai：卡德納斯職位 title.orig／organization.en 的西文名稱（secretario de Guerra y Marina、ministro de Gobernación、Secretaría de la Defensa Nacional）不是來源原文用字，是研究者給的標籤；葉海亞 gap field:deathDate 是拿名簿值 1948-01-01 跟 FRUS 比，名簿不是來源，是否改名簿另議；regimeId 的填法不一致（同屬貴族院，議長有填、副議長和公爵議員沒填），Q5 允許，但寫入前可統一。",
+  "史達林生年的 1879 說法來自 encyc-stalin（原文已抓，但沒列入 sources），所以只寫在 gap note，沒放進 candidateCitations（放進去 verify 會因為缺來源而失敗）。"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 74
+ }
+}

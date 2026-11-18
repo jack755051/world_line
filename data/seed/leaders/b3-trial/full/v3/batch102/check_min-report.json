@@ -1,0 +1,69 @@
+{
+ "rule": "zh paragraphs>=3, zh chars>=300, every position/role start+end",
+ "people": [
+  {
+   "key": "mx-madero",
+   "name": "Francisco I. Madero",
+   "paragraphs": 4,
+   "zhChars": 494,
+   "terms": 1,
+   "termsFull": 1,
+   "termsFlagged": 0,
+   "termsMissing": 0,
+   "termCoverage": 1.0,
+   "meetsMinimum": true,
+   "documentedShortfall": false,
+   "startGapsInGaps": 1,
+   "openTerms": [],
+   "verdict": "OK"
+  },
+  {
+   "key": "bg-tsankov",
+   "name": "Alexander Tsankov",
+   "paragraphs": 4,
+   "zhChars": 547,
+   "terms": 1,
+   "termsFull": 1,
+   "termsFlagged": 0,
+   "termsMissing": 0,
+   "termCoverage": 1.0,
+   "meetsMinimum": true,
+   "documentedShortfall": false,
+   "startGapsInGaps": 3,
+   "openTerms": [],
+   "verdict": "OK"
+  },
+  {
+   "key": "cl-figueroa",
+   "name": "Emiliano Figueroa Larraín",
+   "paragraphs": 5,
+   "zhChars": 631,
+   "terms": 9,
+   "termsFull": 7,
+   "termsFlagged": 2,
+   "termsMissing": 0,
+   "termCoverage": 0.778,
+   "meetsMinimum": false,
+   "documentedShortfall": false,
+   "startGapsInGaps": 2,
+   "openTerms": [
+    {
+     "kind": "position",
+     "key": "figueroa-ambassador-peru",
+     "missing": "end",
+     "flagged": true
+    },
+    {
+     "kind": "position",
+     "key": "figueroa-banco-central",
+     "missing": "end",
+     "flagged": true
+    }
+   ],
+   "verdict": "已標註缺迄日"
+  }
+ ],
+ "failingKeys": [
+  "cl-figueroa"
+ ]
+}

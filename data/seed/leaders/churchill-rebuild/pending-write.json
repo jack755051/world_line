@@ -1,0 +1,407 @@
+{
+ "status": "pending — 未寫庫；Tai 2026-11-11 10:13 已核准內容與寫入本機開發庫 5052（試跑、備份後才寫，不 push）",
+ "decisions": {
+  "decidedBy": "Tai 2026-11-11 10:13（Asia/Taipei，經 World Line 主管轉達）：6 項全照史料考證建議",
+  "items": [
+   {
+    "no": 1,
+    "item": "任期拆筆",
+    "decision": "只建一筆 [1940-05-10,1945-07-26)，不拆 1945-05-23 看守內閣；拆點記待查證"
+   },
+   {
+    "no": 2,
+    "item": "職銜",
+    "decision": "Prime Minister（照 Hansard）"
+   },
+   {
+    "no": 3,
+    "item": "黨派",
+    "decision": "Conservative；evidenceNote 註明只代表首相任內黨籍"
+   },
+   {
+    "no": 4,
+    "item": "卒地",
+    "decision": "這次不寫，記在 research.json unverified；不寫任何 death_place SQL（超出計畫）"
+   },
+   {
+    "no": 5,
+    "item": "b3-sample 連結",
+    "decision": "寫庫後另開 commit 補 b3-sample 邱吉爾 bioId／relatedRecordIds；寫入第一、二階段都不改 b3-sample"
+   },
+   {
+    "no": 6,
+    "item": "nameZh／wikidataQid／照片",
+    "decision": "nameZh 無出處保留；wikidataQid 與照片 null"
+   }
+  ]
+ },
+ "target": {
+  "api": "http://127.0.0.1:5052/api/v1",
+  "db": "worldline_borders_dev（5442）"
+ },
+ "step1_sources": [
+  {
+   "sourceKey": "govuk-churchill",
+   "request": {
+    "sourceKind": "official_history",
+    "title": "Sir Winston Churchill — History of Sir Winston Churchill (Past Prime Ministers)",
+    "publisher": "GOV.UK (Prime Minister's Office, 10 Downing Street)",
+    "url": "https://www.gov.uk/government/history/past-prime-ministers/winston-churchill",
+    "licenseCode": null
+   }
+  },
+  {
+   "sourceKey": "hansard-churchill",
+   "request": {
+    "sourceKind": "official_record",
+    "title": "Mr Winston Churchill (Hansard 1803–2005, People)",
+    "publisher": "UK Parliament (Historic Hansard)",
+    "url": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/index.html",
+    "licenseCode": null
+   }
+  },
+  {
+   "sourceKey": "nobel-churchill",
+   "request": {
+    "sourceKind": "official_history",
+    "title": "Winston Churchill – Biographical (Nobel Prize in Literature 1953)",
+    "publisher": "Nobel Foundation (NobelPrize.org)",
+    "url": "https://www.nobelprize.org/prizes/literature/1953/churchill/biographical/",
+    "licenseCode": null
+   }
+  }
+ ],
+ "step2_leaderBio": {
+  "request": {
+   "name": "Winston Churchill",
+   "nameZh": "溫斯頓·邱吉爾",
+   "isTest": false,
+   "birthDate": "1874-11-30",
+   "birthDatePrecision": "day",
+   "deathDate": "1965-01-24",
+   "deathDatePrecision": "day",
+   "birthPlace": {
+    "zh-Hant": "牛津郡布倫亨宮",
+    "en": "Blenheim Palace, Oxfordshire"
+   },
+   "party": {
+    "zh-Hant": "保守黨",
+    "en": "Conservative Party"
+   },
+   "summary": {
+    "zh-Hant": "英國保守黨政治人物，1940年至1945年及1951年至1955年兩度出任首相；1965年逝世並獲國葬。",
+    "en": "British Conservative politician who served twice as Prime Minister, 1940–1945 and 1951–1955; he died in 1965 and was given a state funeral."
+   },
+   "citations": [
+    {
+     "field": "name",
+     "sourceId": "<step1:hansard-churchill>",
+     "locator": "Page heading",
+     "evidenceNote": "Mr Winston Churchill",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "birthDate",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Fact box: Born",
+     "evidenceNote": "30 November 1874, Blenheim Palace, Oxfordshire",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "deathDate",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Fact box: Died",
+     "evidenceNote": "24 January 1965, London",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "deathDate",
+     "sourceId": "<step1:hansard-churchill>",
+     "locator": "Life dates under name",
+     "evidenceNote": "1874 - January 24, 1965",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "deathDate",
+     "sourceId": "<step1:nobel-churchill>",
+     "locator": "Closing line of biography",
+     "evidenceNote": "Winston Churchill died on January 24, 1965.",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "birthPlace",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Fact box: Born",
+     "evidenceNote": "30 November 1874, Blenheim Palace, Oxfordshire",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "party",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Subtitle under page heading",
+     "evidenceNote": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "party",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Fact box: Political party",
+     "evidenceNote": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "summary",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Subtitle under page heading",
+     "evidenceNote": "Conservative 1940 to 1945, 1951 to 1955",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "summary",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Fact box: Dates in office",
+     "evidenceNote": "1940 to 1945, 1951 to 1955",
+     "accessedOn": "2026-11-11"
+    },
+    {
+     "field": "summary",
+     "sourceId": "<step1:govuk-churchill>",
+     "locator": "Biography, last paragraph",
+     "evidenceNote": "Churchill died in 1965, and was honoured with a state funeral.",
+     "accessedOn": "2026-11-11"
+    }
+   ]
+  }
+ },
+ "step3_leaderRecord": {
+  "request": {
+   "regimeId": "01a18e71-cba5-7726-90e3-9b90ab344afd",
+   "name": "Winston Churchill",
+   "nameZh": "溫斯頓·邱吉爾",
+   "role": "head_of_government",
+   "title": "Prime Minister",
+   "validFrom": "1940-05-10",
+   "validTo": "1945-07-26",
+   "source": "UK Parliament, Historic Hansard, «Mr Winston Churchill», Offices: Prime Minister, May 10, 1940 - July 25, 1945（另見 GOV.UK Past Prime Ministers：1940 to 1945）",
+   "sourceUrl": "https://api.parliament.uk/historic-hansard/people/mr-winston-churchill/index.html",
+   "verified": true,
+   "personId": "<step2:bioId>"
+  },
+  "originalEndDate": "1945-07-26",
+  "originalEndNote": "原始卸任日 1945-07-26（Hansard 閉區間最後在任日 July 25, 1945 → 半開終點 1945-07-26）；早於地圖範圍終點 1945-10-01，不需截斷"
+ },
+ "step4_sql": {
+  "leader_bio_field_citations_update": [
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "name",
+     "source_id": "<step1:hansard-churchill>",
+     "locator": "Page heading",
+     "evidence_note": "Mr Winston Churchill"
+    },
+    "set": {
+     "quote": "Mr Winston Churchill",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "birthDate",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Fact box: Born",
+     "evidence_note": "30 November 1874, Blenheim Palace, Oxfordshire"
+    },
+    "set": {
+     "quote": "30 November 1874, Blenheim Palace, Oxfordshire",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": "day",
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "deathDate",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Fact box: Died",
+     "evidence_note": "24 January 1965, London"
+    },
+    "set": {
+     "quote": "24 January 1965, London",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": "day",
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "deathDate",
+     "source_id": "<step1:hansard-churchill>",
+     "locator": "Life dates under name",
+     "evidence_note": "1874 - January 24, 1965"
+    },
+    "set": {
+     "quote": "1874 - January 24, 1965",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": "day",
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "deathDate",
+     "source_id": "<step1:nobel-churchill>",
+     "locator": "Closing line of biography",
+     "evidence_note": "Winston Churchill died on January 24, 1965."
+    },
+    "set": {
+     "quote": "Winston Churchill died on January 24, 1965.",
+     "quote_lang": "en",
+     "grade": "B",
+     "date_precision": "day",
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "birthPlace",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Fact box: Born",
+     "evidence_note": "30 November 1874, Blenheim Palace, Oxfordshire"
+    },
+    "set": {
+     "quote": "30 November 1874, Blenheim Palace, Oxfordshire",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "party",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Subtitle under page heading",
+     "evidence_note": "來源把保守黨限定在兩次首相任期（1940–45、1951–55）；同頁傳記另述 1904 年轉入自由黨、戰間期再回保守黨，故此值只代表首相任內黨籍，不代表一生（Tai 2026-11-11 10:13 決定）"
+    },
+    "set": {
+     "quote": "Conservative 1940 to 1945, 1951 to 1955",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "party",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Fact box: Political party",
+     "evidence_note": "Fact box 只寫 Conservative；此值只代表首相任內黨籍（1940–45、1951–55），不代表一生（1904 轉自由黨、戰間期回保守黨；Tai 2026-11-11 10:13 決定）"
+    },
+    "set": {
+     "quote": "Conservative",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "summary",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Subtitle under page heading",
+     "evidence_note": "Conservative 1940 to 1945, 1951 to 1955"
+    },
+    "set": {
+     "quote": "Conservative 1940 to 1945, 1951 to 1955",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "summary",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Fact box: Dates in office",
+     "evidence_note": "1940 to 1945, 1951 to 1955"
+    },
+    "set": {
+     "quote": "1940 to 1945, 1951 to 1955",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   },
+   {
+    "match": {
+     "bio_id": "<step2:bioId>",
+     "field": "summary",
+     "source_id": "<step1:govuk-churchill>",
+     "locator": "Biography, last paragraph",
+     "evidence_note": "Churchill died in 1965, and was honoured with a state funeral."
+    },
+    "set": {
+     "quote": "Churchill died in 1965, and was honoured with a state funeral.",
+     "quote_lang": "en",
+     "grade": "A",
+     "date_precision": null,
+     "policy_version": "bio-2026-11-v0"
+    }
+   }
+  ],
+  "leader_record_citations_insert": [
+   {
+    "record_id": "<step3:recordId>",
+    "source_id": "<step1:hansard-churchill>",
+    "locator": "Offices: Prime Minister (first entry)",
+    "quote": "May 10, 1940 - July 25, 1945",
+    "quote_lang": "en",
+    "evidence_note": "Hansard 寫閉區間（含 7 月 25 日）；依半開區間存為 [1940-05-10,1945-07-26)",
+    "accessed_on": "2026-11-11",
+    "grade": "A",
+    "date_precision": "day",
+    "policy_version": "bio-2026-11-v0"
+   },
+   {
+    "record_id": "<step3:recordId>",
+    "source_id": "<step1:govuk-churchill>",
+    "locator": "Fact box: Dates in office",
+    "quote": "1940 to 1945, 1951 to 1955",
+    "quote_lang": "en",
+    "evidence_note": "只支撐到年；1951–55 屬範圍外任期，依 Q4 不建紀錄",
+    "accessed_on": "2026-11-11",
+    "grade": "A",
+    "date_precision": "year",
+    "policy_version": "bio-2026-11-v0"
+   }
+  ]
+ },
+ "doNotTouch": {
+  "retractedTestBios": [
+   "01a19efa-758c-718a-b1ec-27916469f239",
+   "01a19ef6-b466-7e2e-94e1-8ec3c0e5ac10",
+   "01a19ef9-1c0b-781a-911b-adc230abbeaf"
+  ],
+  "retractedRecord": "01a19efa-769a-7615-9705-89c66d803905"
+ }
+}

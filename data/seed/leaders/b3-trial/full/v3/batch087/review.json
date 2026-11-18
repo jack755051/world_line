@@ -1,0 +1,92 @@
+{
+ "batch": "087",
+ "reviewedOn": "2026-11-17",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 2,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 2,
+  "movedToPositions": 0,
+  "deletedCitations": 2,
+  "addedCitations": 22,
+  "editedSentences": 2,
+  "spotRefetched": 4,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "pl-skladkowski-felicjan",
+   "bioId": "01a1b512-33f0-78e8-90e2-b87fd3162691",
+   "verdict": "pass_with_changes",
+   "paragraphs": 6,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 5,
+   "searchLogSteps": 33,
+   "changes": [
+    "華沙政府專員迄日 1926-10-02 係由接任內政部長推得（非名簿下一任起日，違 Q7）→ 改 null，刪該筆 Adamczyk 十月引文；gap field:warsawCommissionerEnd 改 target=position:…、note 以「待查證：缺迄日」開頭",
+    "第二軍政部副部長迄日 1936-05-16 係由出任總理推得 → 改 null，刪「premiera, zupełnie nieświadomy…」引文（無日期卻標 day）；gap 改 position:…「待查證：缺迄日」",
+    "內政部長迄日由 1931-07-01（month）改 1931-06-02（day），補 Adamczyk「2 czerwca 1931 r.…złożył dymisję」「z funkcji m inistra spraw wewnętrznych」；roleGap 由 [source,dates] 改 [source]（起迄日齊、扣中斷仍 ≥90 天）",
+    "「Jeszcze w czasie przewrotu majowego」datePrecision month→null（Q8）；「14 V 1926 r.」在書評出現兩次（一處講離婚），改為「wydany 14 V 1926 r. rozkaz rozpędzenia komunistycznego wiecu w Warszawie」",
+    "引文擴充：「…lekarskim Uniwersytetu Warszawskiego.」「2 października 1926 r.…」「tego samego dnia został powołany…」「…komunistycznej demonstracji na placu Bankowym」",
+    "補引文：獨立後、站在畢蘇斯基一邊、經奧爾利奇-德雷熱爾任命、1939 年 9 月戰爭爆發、蘇聯入侵、喀爾巴阡旅於巴勒斯坦、GND 1885",
+    "段落 period 迄點改半開：第3段 1926-05-22、第4段 1935-09-09（原 1936-05-16 超出段內最後事件）、第5段 1939-10-01、第6段 1962-09-01"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "lv-celmins-hugo",
+   "bioId": "01a1b512-33f9-7fe7-a52f-dd33e865fad3",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 6,
+   "roleCandidates": 4,
+   "gaps": 4,
+   "searchLogSteps": 28,
+   "changes": [
+    "國家百科明寫「no Latviešu zemnieku savienības」取得的人民議會（1919-10-06）與制憲議會（1920-05）席位原只在正文、未進 roleCandidates → 依 Tai 12:47 薩拉查裁決以既有引文移入 roleCandidates（de_facto_leader、R1、originalPositionKind=legislator），迄日來源未載，各加「待查證：缺迄日」gap",
+    "所有 day 精度終點原寫成含當日（來源日期）→ 改半開 +1 天：農業部長 1921-06-19、1925-03-06，教育部長 1924-01-27，里加市長 1935-09-02，外交部長 1925-12-24、1931-03-27（與 5442 終點一致）；段落 period 同步改",
+    "第2段 period 迄點 1920-06-12 → 1935-01-01（段內最後事件為 1922–1934 議員）",
+    "第3段刪評語句「國家總理府的歷屆內閣名單與國家百科的記載相符」",
+    "補引文：《Baltijas Lauksaimnieks》刊名、撰寫博士論文、臨時政府武裝部隊、第1獨立拉脫維亞旅、荷蘭與駐柏林、列福爾托沃監獄",
+    "thickness 薄→中（實查有 2 A＋2 B）；外交部長兩筆 R3 保留（regimeId 不連庫暫 null，寫庫前補），reason 加註"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "mn-dogsom-dansranbilegiin",
+   "bioId": "01a1b512-3402-731c-96e4-afdef54c4750",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 17,
+   "changes": [
+    "第4段「Amur and Dogsum…attempted」標 year 但 quote 無日期 → 擴為「In 1936, Amur and Dogsum…」；「…bogus」擴為「…bogus LHÜMBE CASE」",
+    "第4段「大清洗的最後階段」無引文支撐 → 改寫為「該書大清洗條目記載」，補「together with the last 1921 revolutionaries Losal…」",
+    "第4段 period 1936-03-22（庫值，引文無此日）～1941-07-28 改 1936-01-01～1942-01-01（year）",
+    "補引文：創立官員派／東庫倫集團、波格達汗蓋章、「Seven delegates…」、Batsaikhan「who served as Chairman of the Presidium…」；GND 引文擴為「post-Revolution political figure…」",
+    "最低嘗試達標（5 類來源、蒙古語查詢 2 次、實抓 ≥3 頁）；Atwood 取自 archive.org items 上傳的 PDF（非 Wayback），維持 B 並在 issues 註記"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "研究者把 day 精度的來源迄日直接當終點（含當日），未依半開區間 +1 天；本批已逐筆修正，其他批次可能有同樣問題",
+  "以「接任下一個職務」推得前職迄日不屬 Q7（名簿下一任起日），應寫「待查證：缺迄日」gap",
+  "regimeId 不連庫一律 null：Celmiņš 外交部長維持 R3（比照 batch065/077/078/083），Wojciechowski（086）同類卻為 R6 roleGap=regime，兩種做法並存，寫庫前需統一",
+  "GND／Batsaikhan 圖說對 Dogsom 的英文說明措辭幾乎相同，疑同源，不能算兩份獨立來源",
+  "check_min 把「缺迄日已標 gap」算未達（Składkowski 2 筆、Celmiņš 2 筆），依 6c 規則屬已標註，不 returned"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 80
+ }
+}

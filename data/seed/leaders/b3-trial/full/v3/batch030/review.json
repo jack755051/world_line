@@ -1,0 +1,88 @@
+{
+ "batch": "030",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 2,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 0,
+  "editedSentences": 3,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "at-miklas",
+   "bioId": "01a1b4ae-0dc5-7363-96b2-d2d8c5a3b16e",
+   "verdict": "pass_with_changes",
+   "paragraphs": 5,
+   "positions": 3,
+   "roleCandidates": 1,
+   "gaps": 1,
+   "searchLogSteps": 21,
+   "changes": [
+    "第3段 period.start 1919-01-01 改 1918-01-01（段內含制憲國民議會 1918/19）",
+    "重抓 NDB sfz63315 比對引文一致；53 筆引文逐子句核對無缺",
+    "眾議院議席（基督教社會黨代表）R1 候選缺迄日，已有「待查證：缺迄日」gap；次官 R5 正確"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "bo-saavedra",
+   "bioId": "01a1b4b5-f9c5-7e2d-8143-9726b212ece7",
+   "verdict": "returned",
+   "paragraphs": 4,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "第1段刪「玻利維亞的」／', Bolivia'（GND placeOfBirth 只寫 Sorata）",
+    "篇幅不足 gap 字數更新為 181",
+    "重抓 lobid GND 105709482X 比對一致"
+   ],
+   "returnedReasons": [
+    "最低標準未達：中文 181 字＜300，篇幅不足 gap 存在但 searchLog 無 round=retry 加強搜尋",
+    "原文語言（西班牙文）查詢實際執行不足 2 次（WebSearch 未執行）",
+    "建議下一步：datos.bne.es 權威檔、data.bnf.fr、historia-hispanica.rah.es DB~e 條目、玻利維亞 Asamblea Legislativa Plurinacional 圖書館／Gaceta Oficial、Memoria Chilena（智利國家圖書館）"
+   ]
+  },
+  {
+   "key": "ot-mehmed-v",
+   "bioId": "01a1b4b5-f9d1-7697-bcaa-ae34054b2b95",
+   "verdict": "returned",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 13,
+   "changes": [
+    "第3段改寫，不替 GND 歷史資訊欄補「奧斯曼」主語、刪無據的「隨後」",
+    "篇幅不足 gap 字數更新為 205",
+    "重抓 lobid GND 124832946 比對一致"
+   ],
+   "returnedReasons": [
+    "最低標準未達：中文 205 字＜300，篇幅不足 gap 存在但 searchLog 無 round=retry 加強搜尋",
+    "原文語言（土耳其文）查詢實際執行不足（WebSearch 未執行）",
+    "建議下一步：id.loc.gov 名稱權威、data.bnf.fr、TBMM 或 Devlet Arşivleri Başkanlığı 官方頁、Encyclopaedia of Islam（Brill）公開摘要、TDV İslâm Ansiklopedisi（非挑戰頁時重試）"
+   ]
+  }
+ ],
+ "issues": [
+  "研究 session 因 WebSearch 額度用盡未做 retry 加強搜尋，薄人物兩人只能依 GND 權威檔寫作",
+  "raw 目錄有多個未入 rawmap 的抓取檔（403/404/Anubis/首頁），經檢查無可用 A／B 內容"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 75
+ }
+}

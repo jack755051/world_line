@@ -1,0 +1,104 @@
+{
+ "_placeholder": "SOV_RA_RU_19201014",
+ "_post": "/api/v1/sovereignty-records",
+ "_geometryFrom": "SOV_RA_RU_19201014",
+ "_meta": {
+  "segOf": "RU_1920-10-14",
+  "area_deg2": 3101.6605
+ },
+ "body": {
+  "regimeId": "01a19333-9b70-701d-a1e4-464af7aff56c",
+  "geometry": null,
+  "validPeriod": {
+   "start": "1920-10-14",
+   "end": "1920-11-17"
+  },
+  "layerStatus": "de_jure",
+  "geometrySourceId": "01a193a2-bd0c-7ea4-981f-995e1dd2a667",
+  "geometryLocator": "relation/2959040 v28 − 白俄羅斯 − 南俄政府 − 亞塞拜然（完整，不受東經 60 度框裁切）",
+  "geometryLicense": "cc_by",
+  "attribution": "OCHA／HDX COD-AB Ukraine（OHM 線段標示 CC BY 4.0）; OHM 線段標示 CC BY 4.0、未註明原始來源（待查）",
+  "startEventId": null,
+  "endEventId": "01a193a3-2589-79ed-a6fe-175765562403",
+  "ohmRelationId": 2959040,
+  "ohmVersion": 28,
+  "ohmFetchedAt": "2026-10-31T19:39:17Z",
+  "ohmStartRaw": "1920-10-14",
+  "ohmEndRaw": "1921-08-14",
+  "provenance": {
+   "ohmFixme": "needs source for boundary lines",
+   "coastline": "01a18e71-c977-7a2c-afe3-cb56ea3ec9fa",
+   "derivation": "relation/2959040 v28 − 白俄羅斯 − 南俄政府 − 亞塞拜然",
+   "derivedFrom": [
+    "relation/2959040 v28",
+    "relation/2848186 v17",
+    "relation/2854270 v10",
+    "relation/2697987 v15"
+   ],
+   "trialWindow": "俄國與亞洲鄰國 1908-10-05～1937-07-07（russia-asia-1908-1937）",
+   "ohmChangeset": 277898,
+   "ohmTimestamp": "2026-10-23T19:50:32Z",
+   "licenseReview": "osm_derived_ways",
+   "ohmAdminLevel": "2",
+   "memberWayLicense": {
+    "hdx_ukr": 3,
+    "cc_by_unknown": 10,
+    "untagged(OHM CC0)": 716
+   },
+   "ohmRelationSource": null,
+   "osmDerivedWayCount": 1,
+   "replaces": "01a193a3-3182-7eb9-8fc7-89ce50dd764b",
+   "unclip": {
+    "batch": "russia-asia-1908-1937",
+    "frameRemoved": "box(-20,15,60,72)",
+    "method": "框內幾何沿用原紀錄（換版段：新版框內幾何扣除原紀錄已扣掉的部分）；框外取同一 OHM 版本全球重組（Natural Earth 10m 陸地裁切；海岸簡化 0.02°，與鄰國陸界 0.05° 內用 0.0005° 原幾何）",
+    "ohmVersionChange": null,
+    "arcticIslandsPatch": null,
+    "boundaryBasis": [
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 12，pp. 74–84（1860-11-02/14 北京續增條約，第 1～3 條）",
+      "evidenceNote": "俄中東段邊界：黑龍江、烏蘇里江、興凱湖至圖們江；西段劃界原則。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 29，pp. 211–221（1881-02-12/24 聖彼得堡條約〔伊犁條約〕）",
+      "evidenceNote": "伊犁地區歸還中國、俄中西段邊界調整。"
+     },
+     {
+      "sourceId": "{{SRC_EICHELMANN1887}}",
+      "locator": "ч. I, с. 383–386（1881-12-09/21 裏海以東劃界專約；頁碼待查證）",
+      "evidenceNote": "俄國與波斯在裏海以東（阿特列克河至捷詹）的邊界。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 37，pp. 264–266（1885-08-29/09-10 俄英阿富汗劃界協定）",
+      "evidenceNote": "俄屬中亞與阿富汗西北段邊界。"
+     },
+     {
+      "sourceId": "{{SRC_SBORNIK1952}}",
+      "locator": "№ 41，pp. 284–286（1895-02-27/03-11 俄英帕米爾勢力範圍劃分協定）",
+      "evidenceNote": "帕米爾地區俄、阿邊界（噴赤河），瓦罕走廊。"
+     }
+    ],
+    "cutAgainst": {
+     "higherPriority": [
+      "bukharan-peoples-soviet-republic",
+      "khorezm-peoples-soviet-republic"
+     ],
+     "sliversRemoved": [
+      "bogd-khanate-of-mongolia",
+      "democratic-republic-of-georgia",
+      "far-eastern-republic",
+      "first-republic-of-armenia",
+      "ukrainian-ssr-1919"
+     ]
+    }
+   }
+  },
+  "note": {
+   "zh-Hant": "依 OHM 俄羅斯蘇維埃共和國各版本（框外部分裁掉）；內戰期間白軍控制區只畫南俄政府（1920），其餘未畫（待查證）。扣掉同期：白俄羅斯、南俄政府、亞塞拜然。（2026-11-01 修正：補回東經 60 度以東的幾何。）",
+   "en": "Per OHM RSFSR versions; White-held areas other than South Russia (1920) not drawn (pending). Minus: SOV_BY_SSR, SOV_SOUTH_RUSSIA, SOV_AZ_SSR_A. (Fixed 2026-11-01: geometry east of 60°E restored.)"
+  }
+ }
+}

@@ -1,0 +1,1036 @@
+{
+ "source": {
+  "type": "secondary_map",
+  "grade": "B",
+  "citation": "張琪閔、蕭新民，〈從孫子兵法「虛實」觀點淺談1937年淞滬會戰〉，《海軍學術雙月刊》51:4（2017），圖五；資料來源：蔣緯國，《國民革命戰史第三部：抗日禦侮－第五卷》（黎明，1979），附圖12",
+  "url": "https://navy.mnd.gov.tw/Files/Paper/3-%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95%E8%99%9B%E5%AF%A6.pdf",
+  "license": "中華民國國防部期刊轉載圖；僅存檔供研究判讀，不再散布"
+ },
+ "mapKey": "mnd2017-fig5",
+ "mapDate": "1937-11-08",
+ "method": "第一次判讀（本代理人）：pdfimages 抽出內嵌圖（646×729）。mapgrid.swift 3 倍裁圖讀城鎮圓圈種子，再以 tools/battles/ringfind.swift（r 2–6）偵測圓心，取種子 ±10 px 內最高分者（方法於本圖配準前決定）。圖上比例尺標「0 1 2 3（公里）」與實際範圍（瀏河至乍浦約 100 km）不符，不採用。經緯度依 georef.config.json lonlatRule。",
+ "threshold": {
+  "rule": "留一法 95 百分位 ≤ 2 km（主管 2026-11-13 12:05，沿用）",
+  "loo_p95_km": 3.12,
+  "p95Passes": false,
+  "passes": false,
+  "referenceOnly": false,
+  "referenceOnlyReasons": [],
+  "controlPointExclusions": [
+   {
+    "name": "上海市、奉賢",
+    "reason": "方形縣治／市符號；奉賢 1937 縣治位置與今區治不同，上海市為面（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "北站",
+    "reason": "火車站（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "紀黃廟",
+    "reason": "設施（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "孫家角、西家濱、斜塘港、馬家橋、葉市渡、金絲娘橋",
+    "reason": "村宅級／水道／橋（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "金山縣城",
+    "reason": "1937 金山縣治（朱涇）與圖上位置、今 OSM 物件無法唯一對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "南橋鎮（?）",
+    "reason": "圖上字跡無法確認（規則：地名須可辨）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "吳淞、廣福、南翔、北新涇鎮",
+    "reason": "OSM 無 place 節點（同 fig4 判定，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "安亭鎮、石湖蕩、葉榭鎮、亭林鎮、柘林城、漕涇",
+    "reason": "OSM 只查得車站／公車站／用地，無 place 節點（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "西新市鎮",
+    "reason": "OSM 查無對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "興塔鎮",
+    "reason": "OSM 只查得高速交流道（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "全公亭",
+    "reason": "OSM 查無對應（規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "獨山",
+    "reason": "OSM 只有合併後之獨山港鎮行政區，鎮治非舊獨山（名稱不對應，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   },
+   {
+    "name": "閔行",
+    "reason": "OSM 閔行區 admin_centre 為今區治（莘莊一帶），非 1937 閔行鎮（名稱不對應，規則）",
+    "decidedBeforeResiduals": true,
+    "note": "判讀後依 georef.config.json controlPointRule 排除（寫入時尚未跑本圖任何配準）"
+   }
+  ],
+  "use": "僅供參考：不得用於部隊位置或前線頂點"
+ },
+ "georef": {
+  "tool": "tools/battles/georef.py",
+  "model": "二次多項式（經、緯度各一）",
+  "control_points": 17,
+  "residual_median_km": 0.76,
+  "loo_median_km": 1.39,
+  "loo_p95_km": 3.12,
+  "loo_max_km": 3.32,
+  "suspect_control_points": [],
+  "frame_km": 1.0
+ },
+ "precision_m": 4100,
+ "precisionNote": "留一法 95 百分位 3.1 km ＋ 標註框誤差 1 km；位置為部隊符號／標註框中心，非司令部精確位置",
+ "control_points": {
+  "瀏河鎮": {
+   "px": [
+    300.0,
+    54.2
+   ],
+   "lonlat": [
+    121.2721644,
+    31.5165429
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244083523
+   },
+   "lonlatBasis": "OSM relation 7802777 的 admin_centre 成員（place=town，浏河镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.93
+  },
+  "太倉": {
+   "px": [
+    206.2,
+    99.8
+   ],
+   "lonlat": [
+    121.1264772,
+    31.4590371
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081745
+   },
+   "lonlatBasis": "OSM relation 4591593 的 admin_centre 成員（place=city，太仓市）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.12
+  },
+  "崑山": {
+   "px": [
+    125.5,
+    143.0
+   ],
+   "lonlat": [
+    120.9764683,
+    31.3869323
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2703828715
+   },
+   "lonlatBasis": "OSM relation 4591878 的 admin_centre 成員（place=city，昆山市）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 2.45
+  },
+  "嘉定": {
+   "px": [
+    290.8,
+    150.1
+   ],
+   "lonlat": [
+    121.2462737,
+    31.3862271
+   ],
+   "osm": {
+    "type": "node",
+    "id": 6547128322
+   },
+   "lonlatBasis": "OSM relation 17000644 的 label 成員（place=suburb，嘉定镇街道）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.27
+  },
+  "羅店鎮": {
+   "px": [
+    347.4,
+    123.5
+   ],
+   "lonlat": [
+    121.3358844,
+    31.4124961
+   ],
+   "osm": {
+    "type": "node",
+    "id": 9060567629
+   },
+   "lonlatBasis": "Nominatim place 節點：罗店, 罗店镇, 宝山区, 上海市, 201908, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.11
+  },
+  "大場": {
+   "px": [
+    380.3,
+    207.7
+   ],
+   "lonlat": [
+    121.4122977,
+    31.2886709
+   ],
+   "osm": {
+    "type": "node",
+    "id": 2684732951
+   },
+   "lonlatBasis": "OSM relation 3532288 的 admin_centre 成員（place=town，大场镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 3.07
+  },
+  "華漕鎮": {
+   "px": [
+    330.7,
+    263.5
+   ],
+   "lonlat": [
+    121.3207354,
+    31.2254821
+   ],
+   "osm": {
+    "type": "node",
+    "id": 11127466633
+   },
+   "lonlatBasis": "Nominatim place 節點：华漕, 华漕镇, 闵行区, 上海市, 201803, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.77
+  },
+  "青浦": {
+   "px": [
+    205.5,
+    319.0
+   ],
+   "lonlat": [
+    121.1194575,
+    31.1520314
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081496
+   },
+   "lonlatBasis": "OSM relation 3292760 的 label 成員（place=city，青浦区）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.77
+  },
+  "松江": {
+   "px": [
+    281.8,
+    422.7
+   ],
+   "lonlat": [
+    121.2232077,
+    31.0344052
+   ],
+   "osm": {
+    "type": "node",
+    "id": 244081858
+   },
+   "lonlatBasis": "OSM relation 3293722 的 label 成員（place=city，松江区）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；松江畫成大橢圓內小圓",
+   "loo_km": 3.32
+  },
+  "松隱鎮": {
+   "px": [
+    274.6,
+    512.2
+   ],
+   "lonlat": [
+    121.236254,
+    30.8967171
+   ],
+   "osm": {
+    "type": "node",
+    "id": 9060508654
+   },
+   "lonlatBasis": "Nominatim place 節點：松隐, 亭林镇, 金山区, 上海市, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；紅色雙圈",
+   "loo_km": 0.89
+  },
+  "新埭鎮": {
+   "px": [
+    201.7,
+    559.3
+   ],
+   "lonlat": [
+    121.0766332,
+    30.8216959
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3500217987
+   },
+   "lonlatBasis": "OSM relation 19101231 的 label 成員（place=town，新埭镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.71
+  },
+  "張堰鎮": {
+   "px": [
+    300.4,
+    574.2
+   ],
+   "lonlat": [
+    121.293652,
+    30.8038616
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3459328517
+   },
+   "lonlatBasis": "OSM relation 18058388 的 label 成員（place=town，张堰镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 2.08
+  },
+  "廣陳鎮": {
+   "px": [
+    216.8,
+    609.2
+   ],
+   "lonlat": [
+    121.1298589,
+    30.7522542
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582775863
+   },
+   "lonlatBasis": "OSM relation 19101232 的 label 成員（place=town，广陈镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；紅色雙圈",
+   "loo_km": 1.75
+  },
+  "新倉鎮": {
+   "px": [
+    253.2,
+    624.8
+   ],
+   "lonlat": [
+    121.185666,
+    30.724604
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582794196
+   },
+   "lonlatBasis": "OSM relation 19101233 的 label 成員（place=town，新仓镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.18
+  },
+  "金山衛": {
+   "px": [
+    321.8,
+    628.7
+   ],
+   "lonlat": [
+    121.3131763,
+    30.7275685
+   ],
+   "osm": {
+    "type": "node",
+    "id": 4194619391
+   },
+   "lonlatBasis": "OSM relation 18058384 的 label 成員（place=town，金山卫镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 0.34
+  },
+  "金山咀": {
+   "px": [
+    354.3,
+    622.7
+   ],
+   "lonlat": [
+    121.3681877,
+    30.7340435
+   ],
+   "osm": {
+    "type": "node",
+    "id": 5903602724
+   },
+   "lonlatBasis": "Nominatim place 節點：金山嘴, 金山区, 上海市, 200540, 中国",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）；今名金山嘴",
+   "loo_km": 1.55
+  },
+  "乍浦鎮": {
+   "px": [
+    210.6,
+    709.4
+   ],
+   "lonlat": [
+    121.091069,
+    30.6059668
+   ],
+   "osm": {
+    "type": "node",
+    "id": 3582801190
+   },
+   "lonlatBasis": "OSM relation 19101236 的 label 成員（place=town，乍浦镇）",
+   "note": "ringfind 偵測圓心（人工種子 ±10 px 內最高分）",
+   "loo_km": 1.39
+  }
+ },
+ "features": [
+  {
+   "label": "67C",
+   "px": [
+    281.0,
+    406.0
+   ],
+   "echelon": "corps",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "67C",
+    "reason": null,
+    "distPx": 0.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "第六十七軍不在 R1",
+   "lonlat": [
+    121.2416,
+    31.0428
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "26D",
+   "px": [
+    252.0,
+    436.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "medium",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "26D",
+    "reason": null,
+    "distPx": 3.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "26 號師（div）不在 R1 名冊",
+   "lonlat": [
+    121.1893,
+    31.001
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "107D",
+   "px": [
+    346.0,
+    418.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": "cn-107-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "107D",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "107 號師，兵種依標註（div）",
+   "lonlat": [
+    121.3549,
+    31.0179
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "62D",
+   "px": [
+    390.0,
+    414.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；與閔行並書",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "62D",
+    "reason": null,
+    "distPx": 6.1
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "62 號師（div）不在 R1 名冊",
+   "lonlat": [
+    121.4291,
+    31.0113
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "18D(-)",
+   "px": [
+    309.0,
+    545.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍",
+   "confidence": "high",
+   "unitKey": "jp-18-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "18D(-)",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "18 號師，兵種依標註（div）",
+   "lonlat": [
+    121.2917,
+    30.8474
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "6D(-)",
+   "px": [
+    264.0,
+    581.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍",
+   "confidence": "high",
+   "unitKey": "jp-6-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "6D(-)",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "6 號師，兵種依標註（div）",
+   "lonlat": [
+    121.2075,
+    30.797
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "6D",
+   "px": [
+    314.0,
+    682.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍；登陸箭頭",
+   "confidence": "high",
+   "unitKey": "jp-6-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "6D",
+    "reason": null,
+    "distPx": 2.8
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "6 號師，兵種依標註（div）",
+   "lonlat": [
+    121.3008,
+    30.653
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "114D",
+   "px": [
+    307.0,
+    699.0
+   ],
+   "echelon": "division",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍；登陸箭頭",
+   "confidence": "high",
+   "unitKey": "jp-114-div",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "114D",
+    "reason": null,
+    "distPx": 6.1
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "114 號師，兵種依標註（div）",
+   "lonlat": [
+    121.2872,
+    30.629
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "1R",
+   "px": [
+    358.0,
+    673.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "1R",
+    "reason": null,
+    "distPx": 2.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.3836,
+    30.6609
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "2R",
+   "px": [
+    382.0,
+    670.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "japanese",
+   "note": "紅色＝日軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "2R",
+    "reason": null,
+    "distPx": 1.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.4278,
+    30.6602
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "63D",
+   "px": [
+    273.0,
+    637.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；前書「1個連」",
+   "confidence": "high",
+   "unitKey": "cn-63-div",
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "1個連63D",
+    "reason": "兩次判讀文字不同",
+    "distPx": 7.1
+   },
+   "unitKeyStatus": "待查證",
+   "unitKeyBasis": "63 號師，兵種依標註（div）；兩次判讀標註文字不一致，降為待查證",
+   "lonlat": [
+    121.2231,
+    30.7175
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "373D",
+   "px": [
+    322.0,
+    598.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；前書「2個連」；番號存疑（或為團）",
+   "confidence": "medium",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "2個連/373D",
+    "reason": null,
+    "distPx": 20.2,
+    "note": "一方只抄部分文字",
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 20 px（> 容差 10 px）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "373 號師（div）不在 R1 名冊",
+   "lonlat": [
+    121.3157,
+    30.7717
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "62D",
+   "px": [
+    170.0,
+    566.0
+   ],
+   "echelon": "division",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；下書「補充營」",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "62D補充營378R",
+    "reason": null,
+    "distPx": 19.7,
+    "note": "一方只抄部分文字",
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 20 px（> 容差 10 px）"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "62 號師（div）不在 R1 名冊",
+   "lonlat": [
+    121.027,
+    30.8018
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "378R",
+   "px": [
+    170.0,
+    586.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.0253,
+    30.7728
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "378R",
+   "px": [
+    227.0,
+    675.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "378R",
+    "reason": null,
+    "distPx": 4.1
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.1318,
+    30.6575
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "322B",
+   "px": [
+    230.0,
+    441.0
+   ],
+   "echelon": "brigade",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": "322B-324B",
+    "reason": "兩次判讀文字不同",
+    "distPx": 5.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.149,
+    30.9924
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "324B",
+   "px": [
+    230.0,
+    452.0
+   ],
+   "echelon": "brigade",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "待查證",
+    "reading2Label": null,
+    "reason": "第二次判讀在附近沒有讀到標註"
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.1486,
+    30.9769
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "368R/62D",
+   "px": [
+    348.0,
+    475.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "368R/62D",
+    "reason": null,
+    "distPx": 1.4
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.3602,
+    30.9393
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "186B",
+   "px": [
+    372.0,
+    499.0
+   ],
+   "echelon": "brigade",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "186B",
+    "reason": null,
+    "distPx": 5.4
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "brigade：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.4029,
+    30.9006
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "367R/62D",
+   "px": [
+    343.0,
+    515.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "367R/62D",
+    "reason": null,
+    "distPx": 5.0
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.3525,
+    30.8849
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "367R/184B",
+   "px": [
+    447.0,
+    517.0
+   ],
+   "echelon": "regiment",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍",
+   "confidence": "high",
+   "unitKey": null,
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "367R/184B",
+    "reason": null,
+    "distPx": 2.2
+   },
+   "unitKeyStatus": "unmatched",
+   "unitKeyBasis": "regiment：低於 R1 名冊層級或非正規編組",
+   "lonlat": [
+    121.5324,
+    30.8491
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "左翼作戰軍",
+   "px": [
+    282.0,
+    150.0
+   ],
+   "echelon": "army_group",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；直書",
+   "confidence": "high",
+   "unitKey": "cn-left-wing",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "左翼作戰軍",
+    "reason": null,
+    "distPx": 5.4
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：左翼（作戰）軍",
+   "lonlat": [
+    121.2422,
+    31.3902
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  },
+  {
+   "label": "右翼作戰軍",
+   "px": [
+    290.0,
+    355.0
+   ],
+   "echelon": "army_group",
+   "sideGuess": "chinese",
+   "note": "藍色＝國軍；直書",
+   "confidence": "medium",
+   "unitKey": "cn-right-wing",
+   "labelCheck": {
+    "status": "agree",
+    "reading2Label": "右翼作戰軍",
+    "reason": null,
+    "distPx": 10.4,
+    "pxCheck": "待查證",
+    "pxNote": "兩次判讀位置差 10 px（> 容差 10 px）"
+   },
+   "unitKeyStatus": "matched",
+   "unitKeyBasis": "名稱別名：右翼（作戰）軍",
+   "lonlat": [
+    121.2574,
+    31.1124
+   ],
+   "estimate": "推估",
+   "basis": "map-digitized",
+   "usable": false
+  }
+ ],
+ "lines": [],
+ "unresolved": []
+}

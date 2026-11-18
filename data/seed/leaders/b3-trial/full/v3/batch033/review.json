@@ -1,0 +1,83 @@
+{
+ "batch": "033",
+ "reviewedOn": "2026-11-15",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v3",
+ "counts": {
+  "returned": 0,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 6,
+  "editedSentences": 1,
+  "spotRefetched": 3,
+  "searchLogShort": 0
+ },
+ "people": [
+  {
+   "key": "cl-ibanez",
+   "bioId": "da37ca58-d3f6-4c23-8a54-d1ecb070b9c0",
+   "verdict": "pass_with_changes",
+   "paragraphs": 4,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "段2補 BCN 引文三筆支撐「軍刀喧嘩」、議員津貼案反對、敲擊佩劍子句（ruido de sables／dieta parlamentaria／golpearon sus sables）",
+    "段2「Se integró al Comité Militar」換成含「formado por algunos de los oficiales」的完整片段，支撐「由軍官組成」",
+    "段2補 BCN Introducción 引文「durante los gobiernos de … Alessandri Palma y … Figueroa Larraín」支撐兩任政府子句",
+    "段2與 position ibanez-interior-minister-1927 各補「asumió, en paralelo, la cartera de Interior」，原引文未含內政職稱",
+    "重抓 BCN 頁比對，引文逐字吻合；戰爭部 R6（regime）、內政部 R5（57天）判斷核可"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "cu-gomez",
+   "bioId": "01a1aa4a-e5ec-799c-ad88-a5f71dad7f94",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 3,
+   "searchLogSteps": 11,
+   "changes": [
+    "段1 period.end 1906-01-01→1922-01-01（段內提及1921年去世，依 Q3 迄點）",
+    "段2「精明而善於權謀」改「精明而機敏」（原文 astute and clever，無權謀義）",
+    "重抓 Encyclopedia.com（Sumnall）比對，引文逐字吻合；最低嘗試達標"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gt-chacon",
+   "bioId": "01a1b4b5-f9ed-72cf-bcce-a1ace61bdde9",
+   "verdict": "pass_with_changes",
+   "paragraphs": 3,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 10,
+   "changes": [
+    "gap field:presidencyDates 更正：作者誤寫「Sumnall／Kit」→「Kit」；「未寫入段落日期」與段2實際內容不符，改寫為段落依該來源寫1926-09-27、不據以改庫值",
+    "重抓 Encyclopedia.com（Kit）比對，引文逐字吻合；最低嘗試達標"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "RAWDIR 有多個未列入 rawmap／searchLog 的抓取檔（hist-cuba、enc-ibanez、byv-*、memchile-95529 等）；未被引用，不影響出處，但 searchLog 未完整記錄 hist-cuba（history.state.gov）抓取",
+  "regimeId 因不連庫一律 null，四部閣員一律 R6（roleGap=regime），與既有批次做法一致",
+  "Ibáñez 的伊基克警察局長（1919起）、騎兵學校校長（1921起）缺迄日卻留在 gap 未建 positions；依最低標準可建 position＋「待查證：缺迄日」gap，審查不新增，留待下一輪",
+  "Chacón 段3 period.start=1927-01-01（year）無日期引文支撐，屬段落期間估寫，未改"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 79
+ }
+}

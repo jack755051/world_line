@@ -1,0 +1,495 @@
+{
+ "schema": "battle-data/0.1 r4",
+ "rule": "地圖頂點只取留一 95 百分位 ≤ 門檻的圖；文字頂點一律推估",
+ "fronts": [
+  {
+   "date": "1939-10-01",
+   "dateNote": "Kennedy p.118–119：10/1 OKH 通知南方集團軍群分界線再次變更",
+   "lineKey": "de-su-demarcation-1939-10-01",
+   "lineKind": "boundary",
+   "side": "de|su",
+   "label": "德蘇分界線（10/1 變更後）",
+   "vertices": [
+    {
+     "lonlat": [
+      21.57484,
+      53.07796
+     ],
+     "px": null,
+     "nearPlace": "Ostrołęka",
+     "osm": {
+      "type": "relation",
+      "id": 3049008
+     },
+     "vertexNote": "原文 to Ostroleka；取 OSM 城鎮中心"
+    },
+    {
+     "lonlat": [
+      21.89764,
+      52.80004
+     ],
+     "px": null,
+     "nearPlace": "Ostrów Mazowiecka",
+     "osm": {
+      "type": "relation",
+      "id": 2995317
+     },
+     "vertexNote": "原文 past Ostrow Mazowiecka；取 OSM 城鎮中心"
+    }
+   ],
+   "basis": "text",
+   "estimate": "推估",
+   "method": "文字頂點：只取原文明確點名的城鎮（OSM Nominatim 中心點）；Pisa／Narew 河段、布格河、Tomaszów 以東某點、San 河至斯洛伐克邊界等河段未數位化",
+   "precision_m": null,
+   "precisionNote": "城鎮中心代替河線，誤差可達數公里；線段只覆蓋全線北端一小段",
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "Pisia and Narew Eivers to Ostroleka, thence past Ostrow Mazowiecka to the Bug",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 119 (HyperWar Campaign-III.html)",
+     "quote": "south along the latter to a point east of Tomaszow, west to the San",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "Kennedy 原文 Eivers 為 Rivers 之掃描錯字，引文照錄",
+   "confidence": {
+    "level": "needs-check",
+    "why": "一筆 A 級出處（us-army-dapam）；位置／線形為推估",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "status": "待查證",
+   "inference": "文字推定",
+   "method": "文字推定（text-inferred）：只取原文點名的到達城鎮，取 OSM 城鎮中心，依北→南以直線相連；河名（無渡河點）不取點",
+   "precision_m": null,
+   "precisionNote": "點與點之間為直線，不代表實際戰線走向；誤差可達數十公里。僅供示意，待查證",
+   "date": "1939-09-05",
+   "dateNote": "9/5–9/6 原文到達點（±1 天）",
+   "lineKey": "de-advance-1939-09-05-text",
+   "lineKind": "front",
+   "side": "de",
+   "label": "德軍前鋒（9/5 前後，文字推定）",
+   "vertices": [
+    {
+     "lonlat": [
+      18.76189,
+      53.47251
+     ],
+     "px": null,
+     "nearPlace": "Grudziądz",
+     "osm": {
+      "type": "relation",
+      "id": 2723261
+     },
+     "vertexNote": "原文 southeast of Grudziadz on 6 September（第 3、4 軍團會合）"
+    },
+    {
+     "lonlat": [
+      19.99715,
+      50.04694
+     ],
+     "px": null,
+     "nearPlace": "Kraków",
+     "osm": {
+      "type": "relation",
+      "id": 2768921
+     },
+     "vertexNote": "原文 Cracow had been taken（9/6）"
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 94 (HyperWar Campaign-III.html)",
+     "quote": "Fourth Armies southeast of Grudziadz on 6 September,",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 87 (HyperWar Campaign-III.html)",
+     "quote": "Cracow had been taken and remanants of the Cracow Army at Radom",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "另 Tenth Army units were across the Pilica by 5 September（只有河名，未取點）",
+   "confidence": {
+    "level": "needs-check",
+    "why": "一筆 A 級出處（us-army-dapam）；位置／線形為推估",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "status": "待查證",
+   "inference": "文字推定",
+   "method": "文字推定（text-inferred）：只取原文點名的到達城鎮，取 OSM 城鎮中心，依北→南以直線相連；河名（無渡河點）不取點",
+   "precision_m": null,
+   "precisionNote": "點與點之間為直線，不代表實際戰線走向；誤差可達數十公里。僅供示意，待查證",
+   "date": "1939-09-10",
+   "dateNote": "9/10 原文到達點",
+   "lineKey": "de-advance-1939-09-10-text",
+   "lineKind": "front",
+   "side": "de",
+   "label": "德軍前鋒（9/10，文字推定）",
+   "vertices": [
+    {
+     "lonlat": [
+      22.24117,
+      52.98552
+     ],
+     "px": null,
+     "nearPlace": "Zambrów",
+     "osm": {
+      "type": "relation",
+      "id": 3091168
+     },
+     "vertexNote": "原文 of Zambrow on 10 September"
+    },
+    {
+     "lonlat": [
+      22.77497,
+      49.78227
+     ],
+     "px": null,
+     "nearPlace": "Przemyśl",
+     "osm": {
+      "type": "relation",
+      "id": 2632581
+     },
+     "vertexNote": "原文 crossed the San north and south of Przemysl（9/10）"
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 95 (HyperWar Campaign-III.html)",
+     "quote": "of Zambrow on 10 September. Units of the 10th Panzer Division",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 106 (HyperWar Campaign-III.html)",
+     "quote": "Fourteenth Army right crossed the San north and south of Przemysl,",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "兩端點之間（Vistula 中段、華沙周邊）原文無 9/10 具名點；Corps Wodrig 渡 Bug 河只有河名",
+   "confidence": {
+    "level": "needs-check",
+    "why": "一筆 A 級出處（us-army-dapam）；位置／線形為推估",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  },
+  {
+   "basis": "text",
+   "estimate": "推估",
+   "status": "待查證",
+   "inference": "文字推定",
+   "method": "文字推定（text-inferred）：只取原文點名的到達城鎮，取 OSM 城鎮中心，依北→南以直線相連；河名（無渡河點）不取點",
+   "precision_m": null,
+   "precisionNote": "點與點之間為直線，不代表實際戰線走向；誤差可達數十公里。僅供示意，待查證",
+   "date": "1939-09-17",
+   "dateNote": "9/17 原文到達點",
+   "lineKey": "de-advance-1939-09-17-text",
+   "lineKind": "front",
+   "side": "de",
+   "label": "德軍前鋒（9/17，文字推定）",
+   "vertices": [
+    {
+     "lonlat": [
+      23.15917,
+      53.1324
+     ],
+     "px": null,
+     "nearPlace": "Białystok",
+     "osm": {
+      "type": "relation",
+      "id": 1429268
+     },
+     "vertexNote": "原文 XXI Corps in the Bialystok area"
+    },
+    {
+     "lonlat": [
+      23.68519,
+      52.09375
+     ],
+     "px": null,
+     "nearPlace": "Brześć",
+     "osm": {
+      "type": "relation",
+      "id": 72615
+     },
+     "vertexNote": "原文 XIX Corps in the Brzesc region"
+    },
+    {
+     "lonlat": [
+      22.5701,
+      51.25056
+     ],
+     "px": null,
+     "nearPlace": "Lublin",
+     "osm": {
+      "type": "relation",
+      "id": 2206549
+     },
+     "vertexNote": "原文 Lublin was entered on 17 September"
+    },
+    {
+     "lonlat": [
+      22.72093,
+      50.54248
+     ],
+     "px": null,
+     "nearPlace": "Biłgoraj",
+     "osm": {
+      "type": "relation",
+      "id": 2810391
+     },
+     "vertexNote": "原文 Bilgoraj was taken（同段，日期未單獨寫明）"
+    }
+   ],
+   "citations": [
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 99 (HyperWar Campaign-III.html)",
+     "quote": "Units of the XXI Corps in the Bialystok area and a motorized",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 99 (HyperWar Campaign-III.html)",
+     "quote": "division of XIX Corps in the Brzesc region had already advanced",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 106 (HyperWar Campaign-III.html)",
+     "quote": "though stiff fighting continued southeast of the city, and Lublin",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    },
+    {
+     "sourceKey": "kennedy-dapam-20-255",
+     "locator": "p. 106 (HyperWar Campaign-III.html)",
+     "quote": "On Tenth Army's eastern front, meanwhile, Bilgoraj was taken",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "accessedOn": "2026-11-13",
+     "grade": "A",
+     "quoteCheck": {
+      "status": "verbatim",
+      "checkedOn": "2026-11-13",
+      "tool": "tools/battles/verify_quotes.py"
+     }
+    }
+   ],
+   "readNote": "蘇軍 9/17 前鋒只有 IPN 圖說 Mołodeczno 一點，不成線；Kutno、Warsaw 為波軍被圍區，不列入前線",
+   "confidence": {
+    "level": "needs-check",
+    "why": "一筆 A 級出處（us-army-dapam）；位置／線形為推估",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "us-army-dapam"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ],
+ "excludedMaps": [
+  {
+   "mapKey": "kennedy-map-7",
+   "loo_p95_km": 12.67,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "kennedy-map-8",
+   "loo_p95_km": 25.71,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "kennedy-map-9",
+   "loo_p95_km": 7.51,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "kennedy-map-10",
+   "loo_p95_km": 6.83,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "usma-europe-04",
+   "loo_p95_km": 21.09,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "usma-europe-05",
+   "loo_p95_km": 25.76,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "usma-europe-06",
+   "loo_p95_km": 19.91,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "usma-europe-07",
+   "loo_p95_km": 20.02,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  },
+  {
+   "mapKey": "okh-355-luftgau",
+   "loo_p95_km": 1.77,
+   "reason": "留一 95 百分位超過 2 km 門檻，僅供參考，不取前線頂點"
+  }
+ ],
+ "gapsByDate": [
+  {
+   "date": "1939-09-01",
+   "reason": "9/1 起始態勢＝開戰時國界，見 R8 疆界切片；文字只有 Danzig 一點，不另畫前線（文字推定，主管 20:22）"
+  },
+  {
+   "date": "1939-09-03",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-06",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-08",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-12",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-14",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-20",
+   "reason": "Kennedy p.118：9/20 下令撤至 Narew–Vistula–San 河線，原文只有河名、無點名城鎮，未數位化"
+  },
+  {
+   "date": "1939-09-22",
+   "reason": "Kennedy 四張圖、USMA 04–07 未過 2 km 門檻；OKH д.355 依主管 15:33 裁示僅參考（且無地面前線）。只能用文字頂點（推估）；該日無文字頂點"
+  },
+  {
+   "date": "1939-09-28",
+   "reason": "文字推定：9/28 原文只有被圍區（Modlin、Warsaw 9/27）與 Narew–Vistula–San 河名分界線，無具名到達點，不成線"
+  },
+  {
+   "date": "1939-10-01",
+   "reason": "10/1 只有德蘇分界線北端 Ostrołęka–Ostrów Mazowiecka 一段（文字推定）；另 Hela 10/1 請降為被圍區"
+  },
+  {
+   "date": "1939-10-06",
+   "reason": "文字推定：10/6 原文只有 Kock／Lublin 投降，無德蘇分界線具名點；10/1 分界線見 de-su-demarcation-1939-10-01"
+  }
+ ]
+}

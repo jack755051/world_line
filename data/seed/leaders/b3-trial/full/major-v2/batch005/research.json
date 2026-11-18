@@ -1,0 +1,3525 @@
+{
+ "batch": "b3-full-major-v2-batch005",
+ "researchedOn": "2026-11-15",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式（人物／角色／經歷三層）：經歷層 positionKind；元首／首腦與黨職（含以政黨身分取得的席位）在 roleCandidates（role_kind）；T14 R0–R6 兩層互斥；Tai 2026-11-11 12:12／12:47。",
+ "schemaNote": "結構依 ARCHITECTURE §16.2（paragraphs）、§16.3（positions）、§16.4.1（citation 欄位）、§16.4.2（gaps）；sources 以 sourceKey 對應 source_id；來源規則依 docs/source-rules.md（2026-11-13／14）。regimeId 因不連庫一律 null＋organization，R3 閣員因此以 R6（roleGap 含 regime）留在 positions；黨職與以政黨身分取得的席位在 roleCandidates（de_facto_leader）。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-major/batch005/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "hansard-lg": {
+   "title": "Mr David Lloyd George (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": "Historic Hansard 1803–2005, 人物頁",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-david-lloyd-george",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國議會官方 Historic Hansard 人物頁，列選區與政府職位起訖"
+  },
+  "govuk-lg": {
+   "title": "History of David Lloyd George - GOV.UK",
+   "authors": [],
+   "publisher": "UK Government (GOV.UK)",
+   "published_text": "Past Prime Ministers",
+   "url": "https://www.gov.uk/government/history/past-prime-ministers/david-lloyd-george",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國政府官方歷任首相頁"
+  },
+  "dwb-lg": {
+   "title": "LLOYD GEORGE, DAVID (1863 - 1945), the first Earl Lloyd-George of Dwyfor, statesman",
+   "authors": [
+    "Edward Morgan Humphreys"
+   ],
+   "publisher": "National Library of Wales",
+   "published_text": "Dictionary of Welsh Biography, 2001",
+   "url": "https://biography.wales/article/s2-LLOY-DAV-1863",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "威爾斯國家圖書館威爾斯傳記辭典（國家級傳記辭典），作者 Edward Morgan Humphreys"
+  },
+  "hansard-nc": {
+   "title": "Mr Neville Chamberlain (Hansard)",
+   "authors": [],
+   "publisher": "UK Parliament",
+   "published_text": "Historic Hansard 1803–2005, 人物頁",
+   "url": "https://api.parliament.uk/historic-hansard/people/mr-neville-chamberlain",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國議會官方 Historic Hansard 人物頁，列選區與政府職位起訖"
+  },
+  "govuk-nc": {
+   "title": "History of Neville Chamberlain - GOV.UK",
+   "authors": [],
+   "publisher": "UK Government (GOV.UK)",
+   "published_text": "Past Prime Ministers",
+   "url": "https://www.gov.uk/government/history/past-prime-ministers/neville-chamberlain",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "英國政府官方歷任首相頁"
+  },
+  "cadbury-nc": {
+   "title": "Chamberlain Family Guide",
+   "authors": [],
+   "publisher": "Cadbury Research Library, University of Birmingham",
+   "published_text": "Subject resource guide, last updated July 2016",
+   "url": "https://www.birmingham.ac.uk/facilities/cadbury/documents/subject-resource-guides/chamberlain-family-guide.pdf",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "大學館藏機構（張伯倫文件保管處）的研究指南，含張伯倫傳記；機構編寫，非政府官方頁，記 B"
+  },
+  "nobel-wilson": {
+   "title": "Woodrow Wilson – Biographical",
+   "authors": [],
+   "publisher": "Nobel Foundation (NobelPrize.org)",
+   "published_text": "Nobel Peace Prize 1919, Biographical",
+   "url": "https://www.nobelprize.org/prizes/peace/1919/wilson/biographical/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "諾貝爾基金會的得主傳記（機構編寫，沿用前批 Churchill 同類來源評 B）"
+  },
+  "miller-wilson-brief": {
+   "title": "Woodrow Wilson: Life in Brief",
+   "authors": [
+    "Saladin Ambar"
+   ],
+   "publisher": "Miller Center, University of Virginia",
+   "published_text": "Miller Center, Woodrow Wilson essays",
+   "url": "https://millercenter.org/president/wilson/life-in-brief",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "維吉尼亞大學 Miller Center 具名專文（Saladin Ambar）"
+  },
+  "miller-wilson-before": {
+   "title": "Woodrow Wilson: Life Before the Presidency",
+   "authors": [
+    "Saladin Ambar"
+   ],
+   "publisher": "Miller Center, University of Virginia",
+   "published_text": "Miller Center, Woodrow Wilson essays",
+   "url": "https://millercenter.org/president/wilson/life-before-the-presidency",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "維吉尼亞大學 Miller Center 具名專文（Saladin Ambar）"
+  },
+  "miller-wilson-main": {
+   "title": "Woodrow Wilson | Miller Center",
+   "authors": [],
+   "publisher": "Miller Center, University of Virginia",
+   "published_text": "Miller Center, Woodrow Wilson (Fast Facts)",
+   "url": "https://millercenter.org/president/woodrow-wilson",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "維吉尼亞大學 Miller Center 總統頁 Fast Facts"
+  },
+  "whitehouse-wilson": {
+   "title": "Woodrow Wilson (White House archive)",
+   "authors": [],
+   "publisher": "The White House (Biden White House archive)",
+   "published_text": "The Presidents, Woodrow Wilson",
+   "url": "https://bidenwhitehouse.archives.gov/about-the-white-house/presidents/woodrow-wilson/",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "A",
+   "gradeBasis": "美國白宮官方歷任總統頁（存檔站；傳記由 White House Historical Association 提供）"
+  }
+ },
+ "people": [
+  {
+   "key": "gb-lloyd-george",
+   "bioId": "01a19f15-33c3-7fff-a8d9-5521e842fb87",
+   "name": "David Lloyd George",
+   "nameZh": "大衛·勞合·喬治",
+   "recordIds": [
+    "01a19ec8-76bc-7c42-beca-4119f91c0805"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1863-01-17",
+      "end": "1890-04-11"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "出身與入國會",
+      "en": "Origins and entry into Parliament"
+     },
+     "body": {
+      "zh-Hant": "勞合·喬治1863年1月17日生於曼徹斯特，1864年父親過世後，母親帶著孩子遷往蘭斯圖姆杜伊，與其兄弟理查·勞合同住。他1885年在克里基厄斯開始執業當律師，1888年11月獲提名為卡納芬自治市鎮的自由黨預定候選人，並在1890年4月10日的大選中當選。GOV.UK 說他1890年當選自由黨議員時年僅27歲，也是唯一以威爾斯語為母語的首相。",
+      "en": "Lloyd George was born in Manchester on 17 January 1863. After his father died in 1864 his mother took the children to Llanystumdwy to live with her brother Richard Lloyd. He began practice as a solicitor at Criccieth in 1885, was adopted in November 1888 as prospective Liberal candidate for the Caernarfon Boroughs, and was returned at the general election of 10 April 1890. GOV.UK says he was elected Liberal MP at 27 and is the only Prime Minister whose first language was Welsh."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "Born 5, New York Place, Manchester, 17 January 1863",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "On his father's death in Pembrokeshire in 1864",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "his mother moved with her children to Llanystumdwy",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "to live with her brother, Richard Lloyd (1834 - 1917)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "Beginning practice as a solicitor in Cricieth in 1885",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "he was adopted prospective Liberal candidate for the Caern. Boroughs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "In November 1888",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 首段",
+       "quote": "general election, 1890 (10 April)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-lg",
+       "locator": "Biography",
+       "quote": "he was elected Liberal MP for Caernarvon, aged 27",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-lg",
+       "locator": "Interesting facts",
+       "quote": "He is the only Prime Minister to have spoken Welsh as his first language.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1905-01-01",
+      "end": "1916-06-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "month",
+     "heading": {
+      "zh-Hant": "貿易委員會、財政與軍需",
+      "en": "Board of Trade, the Treasury and Munitions"
+     },
+     "body": {
+      "zh-Hant": "1905年自由黨上台，他出任貿易委員會主席並入閣；1908年4月阿斯奎斯接任首相，他接任財政大臣。1909年他提出首份預算，被形容為現代最具爭議的預算，上議院否決後促成1911年議會法通過。1914年8月對德宣戰時，他以財政大臣身分負責穩定國家財政；1915年5月第一屆聯合政府成立，他改任軍需大臣；1916年5月基奇納過世後，他被任命為陸軍大臣。",
+      "en": "When the Liberals came to power in 1905 he became President of the Board of Trade with a seat in the Cabinet; in April 1908, when Asquith became Prime Minister, he succeeded him as Chancellor of the Exchequer. His first Budget in 1909 was described as the most controversial of modern times, and its rejection by the Lords led to the 1911 Parliament Act. When war was declared in August 1914 he had to stabilise the finances; in May 1915 he became Minister of Munitions, and after Kitchener died in May 1916 he was appointed Secretary for War."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第二段",
+       "quote": "When the Liberals came into power in 1905",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第二段",
+       "quote": "he became President of the Board of Trade with a seat in the Cabinet",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "In April 1908, when H. H. Asquith became Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "Lloyd George succeeded him as Chancellor of the Exchequer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "In 1909 he introduced his first Budget",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "described as the most controversial budget of modern times",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "Its rejection by the Lords led to the passing of the Parliament Act in 1911",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "When war with Germany was declared in August 1914",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "had the task of stabilising the country's finances in difficult circumstances",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In May 1915, on the formation of the first Coalition Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "he became Minister of Munitions",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "On the death of Lord Kitchener, Secretary for War, in May 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "Lloyd George was appointed his successor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1916-12-06",
+      "end": "1922-10-23"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "首相任期",
+      "en": "Premiership"
+     },
+     "body": {
+      "zh-Hant": "1916年12月阿斯奎斯辭職，勞合·喬治出任首相；議會紀錄載明他自1916年12月6日起任首相，至1922年10月22日止。任內他確立了盟軍的統一指揮，1918年停戰後以聯合政府首腦身分贏得345席的多數，1919年1月18日和會開幕時，他是三位最受矚目的人物之一。GOV.UK 說他1919年簽署凡爾賽條約。1921年12月他促成愛爾蘭條約通過；1922年10月聯合政府中的保守黨議員退出，他隨即辭職。",
+      "en": "In December 1916 Asquith resigned and Lloyd George became Prime Minister; Hansard gives 6 December 1916 to 22 October 1922. He established unity of command of the Allied forces, won a majority of 345 as head of the Coalition after the 1918 Armistice, and was one of the three most prominent figures when the Peace Conference opened on 18 January 1919. GOV.UK says he signed the Treaty of Versailles in 1919. He carried the Irish Treaty through in December 1921 and resigned in October 1922 when the Conservative members of the Coalition left."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In December 1916 Asquith resigned and Lloyd George became Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "Prime Minister December 6, 1916 - October 22, 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "the establishment of unity of command of the allied forces",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In 1918, after the Armistice",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "returned to power as head of the Coalition Govt. with a majority of 345",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "On 18 January 1919, the Peace Conference opened",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "with Lloyd George as one of its three most prominent figures",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-lg",
+       "locator": "Biography",
+       "quote": "In 1919 he signed the Treaty of Versailles",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In December 1921 he succeeded in carrying the Irish Treaty through",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In October 1922 the Conservative members of the Coalition Government resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "Lloyd George resigned",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1922-10-23",
+      "end": "1945-03-27"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "在野歲月與晚年",
+      "en": "Years out of office and later life"
+     },
+     "body": {
+      "zh-Hant": "辭職後他仍活躍於政壇，卻未再擔任官職。1926年他啟動自由黨工業調查，1934年1月在班戈發表演說，提出重建國家繁榮的「新政」；1933至1936年間他撰寫《戰爭回憶錄》，1936年8月訪問德國並會晤希特勒。1939年戰爭爆發後他未參與指揮，仍留任下議院議員，直到1945年1月辭去議席並受封伯爵；他於1945年3月26日在家中去世。",
+      "en": "After resigning he stayed politically active but never again held office. In 1926 he set in train the Liberal Industrial Enquiry, in January 1934 he outlined his New Deal policy at Bangor, from 1933 to 1936 he wrote his War Memoirs, and in August 1936 he visited Germany and met Hitler. When war came in 1939 he took no part in its direction, remained an MP until January 1945, when he resigned his seat and was granted an earldom, and died at home on 26 March 1945."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "he remained politically active for some years, he never again held office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In 1926 he set in train the Liberal Industrial Enquiry",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In January 1934, in a speech at Bangor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "審查補",
+       "quote": "he outlined his programme for re-establishing national prosperity",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "審查補",
+       "quote": "the ' New Deal ' policy",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "From 1933 to 1936 he wrote his War Memoirs",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In August 1936, he visited Germany and met Hitler",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "When war came in 1939 he took no part in its direction",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "remained a member of the House of Commons till January 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "when he resigned his seat and was granted an earldom",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "where he died 26 March 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "lg-board-of-trade",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "President of the Board of Trade",
+      "zh-Hant": "貿易委員會主席",
+      "en": "President of the Board of Trade"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1905-01-01",
+      "end": "1908-05-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第二段",
+       "quote": "When the Liberals came into power in 1905",
+       "quoteLang": "en",
+       "evidenceNote": "起日取年精度",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "President of the Board of Trade 1905 - 1908",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "In April 1908, when H. H. Asquith became Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依月精度寫下一月起日；DWB 說他同月接任財政大臣",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "貿易委員會主席不屬外交、國防／陸軍、財政、內政四部"
+    },
+    {
+     "key": "lg-chancellor-1908",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Chancellor of the Exchequer",
+      "zh-Hant": "財政大臣",
+      "en": "Chancellor of the Exchequer"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1908-04-01",
+      "end": "1915-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "In April 1908, when H. H. Asquith became Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第三段",
+       "quote": "Lloyd George succeeded him as Chancellor of the Exchequer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "Chancellor of the Exchequer 1908 - 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In May 1915, on the formation of the first Coalition Government",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取接任軍需大臣的月份（月精度，寫下一月起日）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職，任期可證明 ≥90 天；但 regimeId 未查（不連庫），政權是否在系統中無法證明",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "lg-munitions",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Minister of Munitions",
+      "zh-Hant": "軍需大臣",
+      "en": "Minister of Munitions"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1915-05-01",
+      "end": "1916-06-01"
+     },
+     "startPrecision": "month",
+     "endPrecision": "month",
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "In May 1915, on the formation of the first Coalition Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "Minister of Munitions 1915 - 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "On the death of Lord Kitchener, Secretary for War, in May 1916",
+       "quoteLang": "en",
+       "evidenceNote": "迄日取接任陸軍大臣的月份（月精度，寫下一月起日）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "軍需部不屬四部"
+    },
+    {
+     "key": "lg-war-secretary",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Secretary of State for War",
+      "zh-Hant": "陸軍大臣（戰爭大臣）",
+      "en": "Secretary of State for War"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1916-05-01",
+      "end": "1916-12-06"
+     },
+     "startPrecision": "month",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "On the death of Lord Kitchener, Secretary for War, in May 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "Secretary of State for War 1916 - 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Offices",
+       "quote": "Prime Minister December 6, 1916 - October 22, 1922",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依他接任首相的起日推得（推論）；Hansard 未另載陸軍大臣迄日",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "戰爭（陸軍）部屬四部、正職，月精度起日到 12-06 可證明 ≥90 天；但 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "lg-mp-caernarvon",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons"
+     },
+     "title": {
+      "orig": "Liberal MP for Caernarvon District of Boroughs",
+      "zh-Hant": "卡納芬自治市鎮選區議員（自由黨）",
+      "en": "Liberal MP for Caernarvon District of Boroughs"
+     },
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1890-04-10",
+      "end": "1945-01-12"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "govuk-lg",
+       "locator": "Biography",
+       "quote": "he was elected Liberal MP for Caernarvon, aged 27",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Constituencies",
+       "quote": "Caernarvon District of Boroughs April 10, 1890 - December 14, 1918",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Constituencies",
+       "quote": "Caernarvon District of Boroughs December 14, 1918 - November 15, 1922",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Constituencies",
+       "quote": "Caernarvon District of Boroughs November 15, 1922 - December 6, 1923",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-lg",
+       "locator": "Constituencies",
+       "quote": "Caernarvon District of Boroughs December 6, 1923 - January 12, 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "dwb-lg",
+       "locator": "Biography, 第四段",
+       "quote": "remained a member of the House of Commons till January 1945",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:liberalPartyLeadership",
+     "gapKind": "not_found",
+     "note": "待查證：已取得的 A／B 原文（Hansard、GOV.UK、DWB）未見勞合·喬治 1926 年起擔任自由黨黨魁的起訖日；Oxford DNB 公開頁 403、Britannica 403，未建黨魁候選",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:londonGazetteAppointments",
+     "gapKind": "not_found",
+     "note": "待查證：London Gazette 站內搜尋僅回傳無關通告（未見勞合·喬治 1908、1915、1916 任命公告原文），無法補日精度；Hansard 與 DWB 只到月或年",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:primeMinisterStartDay",
+     "gapKind": "not_found",
+     "note": "待查證：Hansard 寫首相任期自 1916-12-06 起，名單（5442）為 1916-12-07；兩者僅差一日，且 DWB／GOV.UK 只到月份，未取得第二份有日的 A／B 來源；首相任期已在 5442，不重建",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Historic Hansard 人物頁 David Lloyd George",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-david-lloyd-george",
+     "result": "found_A",
+     "note": "選區與職位起訖（含首相日期）；curl 200"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "GOV.UK Past Prime Ministers: David Lloyd George",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers/david-lloyd-george",
+     "result": "found_A",
+     "note": "生平概述；curl 200"
+    },
+    {
+     "step": 3,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Welsh Biography: Lloyd George（猜測網址 s-LLOY-GEO-1863）",
+     "url": "https://biography.wales/article/s-LLOY-GEO-1863",
+     "result": "no_result",
+     "note": "curl 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Welsh Biography（猜測網址 s2-LLOY-GEO-1863）",
+     "url": "https://biography.wales/article/s2-LLOY-GEO-1863",
+     "result": "no_result",
+     "note": "curl 404"
+    },
+    {
+     "step": 5,
+     "sourceType": "national_dictionary",
+     "query": "Dictionary of Welsh Biography（猜測網址 s-LLOY-DAV-1863）",
+     "url": "https://biography.wales/article/s-LLOY-DAV-1863",
+     "result": "no_result",
+     "note": "curl 404"
+    },
+    {
+     "step": 6,
+     "sourceType": "national_dictionary",
+     "query": "WebSearch: David Lloyd George Dictionary of Welsh Biography biography.wales",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋結果給出正確網址 s2-LLOY-DAV-1863"
+    },
+    {
+     "step": 7,
+     "sourceType": "national_dictionary",
+     "query": "DWB 正確網址 s2-LLOY-DAV-1863",
+     "url": "https://biography.wales/article/s2-LLOY-DAV-1863",
+     "result": "found_A",
+     "note": "curl 200；E. M. Humphreys 作，含 1905、1908、1915、1916 任命與 1945 辭議席"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "National Library of Wales Welsh Political Archive: David Lloyd George",
+     "url": "https://www.library.wales/welshpoliticalarchive/david-lloyd-george",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 9,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB 站內搜尋 David Lloyd George",
+     "url": "https://www.oxforddnb.com/search?q=David+Lloyd+George",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica: David Lloyd George",
+     "url": "https://www.britannica.com/biography/David-Lloyd-George",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "VIAF 59148536（DWB 頁所列）",
+     "url": "https://viaf.org/viaf/59148536/",
+     "result": "blocked_403",
+     "note": "curl 403，放棄；DWB 頁列此 VIAF 號碼"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "lobid.org GND 搜尋 Lloyd George David",
+     "url": "https://lobid.org/gnd/search?q=Lloyd+George+David&format=json",
+     "result": "not_relevant",
+     "note": "curl 200，僅身分線索，無職位資料"
+    },
+    {
+     "step": 13,
+     "sourceType": "treaty_law",
+     "query": "London Gazette 搜尋 David Lloyd George Chancellor of the Exchequer",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=David+Lloyd+George+Chancellor+of+the+Exchequer",
+     "result": "not_relevant",
+     "note": "curl 200，搜尋結果頁只列片段，未見任命公告（審查：London Gazette 屬政府公報，來源類型改 treaty_law）"
+    },
+    {
+     "step": 14,
+     "sourceType": "treaty_law",
+     "query": "London Gazette Issue 28150（猜測公告）",
+     "url": "https://www.thegazette.co.uk/London/issue/28150",
+     "result": "not_relevant",
+     "note": "curl 200，內容未對到勞合·喬治任命，未使用（審查：London Gazette 屬政府公報，來源類型改 treaty_law）"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "WebSearch: Neville/ Lloyd George 相關 GOV.UK 史頁（交叉比對首相日期）",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers",
+     "result": "found_A",
+     "note": "歷任首相總覽頁；curl 200，僅作索引"
+    }
+   ]
+  },
+  {
+   "key": "gb-chamberlain-neville",
+   "bioId": "01a19f15-3507-788a-9d61-83862bf96e28",
+   "name": "Neville Chamberlain",
+   "nameZh": "內維爾·張伯倫",
+   "recordIds": [
+    "01a19eb7-b33e-788a-be1e-de6d70bbcaae"
+   ],
+   "thickness": "厚",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1869-03-18",
+      "end": "1916-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與地方政壇",
+      "en": "Origins and Birmingham career"
+     },
+     "body": {
+      "zh-Hant": "張伯倫1869年3月18日生於伯明罕，是約瑟夫·張伯倫最小的兒子，同父異母的兄長奧斯丁曾任財政大臣；他就讀拉格比公學與伯明罕的梅森學院。21歲時他前往巴哈馬管理一座兩萬英畝的莊園，Cadbury 研究圖書館載明他1890至1897年經營當地的劍麻種植園。回到伯明罕後成為重要製造業者，1911年當選市議員，1915年出任市長。",
+      "en": "Neville Chamberlain was born in Birmingham on 18 March 1869, the youngest son of Joseph Chamberlain and half-brother of Austen, a Chancellor of the Exchequer; he was educated at Rugby and Mason College. At 21 he went to the Bahamas to manage a 20,000-acre estate, and the Cadbury Research Library records that he managed the family sisal plantation there in 1890-1897. Back in Birmingham he became a leading manufacturer, was elected a councillor in 1911 and became Lord Mayor in 1915."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Born",
+       "quote": "18 March 1869, Birmingham",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "being the youngest son of Joseph Chamberlain, a Victorian Cabinet minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "the half-brother of Austen, a Chancellor of the Exchequer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "He was educated at Rugby and Mason College, Birmingham",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "When he was 21 Chamberlain left for the Bahamas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "to manage a 20,000 acre estate",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He managed the family sisal plantation at Andros in the Bahamas, 1890-1897",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "he became a leading manufacturer in Birmingham",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "where he was elected a councillor in 1911 and Lord Mayor in 1915",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1916-01-01",
+      "end": "1931-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "國民服務部與保守黨議員",
+      "en": "National Service, MP and ministries"
+     },
+     "body": {
+      "zh-Hant": "1916年勞合·喬治任命他為國民服務部總監，但兩人之間的個人嫌隙使他不到一年就辭職。GOV.UK 記他1918年當選伯明罕拉德伍德選區的保守黨議員，並拒絕在聯合政府中服務於勞合·喬治之下。1922年他在博納·勞政府出任郵政大臣；議會紀錄載明他1923年任財政大臣、1923至1929年任衛生大臣。Cadbury 研究圖書館說他在1930年被任命為保守黨主席，並協助整頓保守黨中央辦公室。",
+      "en": "In 1916 Lloyd George appointed Chamberlain Director General of National Service, but personal bitterness between them led to his resignation within a year. GOV.UK says that in 1918 he was elected Conservative MP for Ladywood and refused to serve under Lloyd George in the coalition. In 1922 he became Postmaster General under Bonar Law; Hansard lists him as Chancellor of the Exchequer in 1923 and Minister of Health 1923-1929. The Cadbury Research Library says he was appointed chairman of the Conservative Party in 1930 and helped reorganise Conservative Central Office."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "appointed him Director General of the Department of National Service",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He was appointed Director General of National Service by Lloyd George in 1916",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "personal bitterness between them led to his resignation within a year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1918 Chamberlain was elected Conservative MP for Ladywood",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "but refused to serve under Lloyd George in coalition government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1922 he became Postmaster General under Andrew Bonar Law",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Chancellor of the Exchequer 1923 - 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Minister of Health 1923 - 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He was appointed chairman of the Conservative Party in the 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "helped to reorganise Conservative Central Office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1931-01-01",
+      "end": "1937-05-29"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "財政大臣與接任首相",
+      "en": "Chancellor and succession as Prime Minister"
+     },
+     "body": {
+      "zh-Hant": "1931年麥克唐納的國民政府任命他為財政大臣，鮑德溫其後也繼續留用他。議會紀錄載明他1931至1937年任財政大臣；經濟危機期間，他在1932年透過進口關稅法案實現其父的保護主義抱負。1937年5月他接替鮑德溫出任首相，議會紀錄記為5月28日，GOV.UK 說他同時獲選為保守黨黨魁。",
+      "en": "In 1931 Ramsay MacDonald made him Chancellor in his National Government and Baldwin kept him on. Hansard lists him as Chancellor of the Exchequer 1931-1937, and in the economic crisis he passed the Import Duties Bill in 1932, achieving his father's protectionist aims. In May 1937 he succeeded Baldwin as Prime Minister (28 May in Hansard), and GOV.UK says he was also elected Conservative leader."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1931 Ramsay MacDonald made him Chancellor in his national government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "Stanley Baldwin retained him in turn",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Chancellor of the Exchequer 1931 - 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "審查補",
+       "quote": "During the economic crisis, he achieved his father’s protectionist ambitions",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "by passing the Import Duties Bill in 1932",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In May 1937 he succeeded Baldwin as Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Prime Minister May 28, 1937 - May 9, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "and was elected Conservative leader",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1937-05-28",
+      "end": "1940-11-10"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "首相任期與去世",
+      "en": "Premiership and death"
+     },
+     "body": {
+      "zh-Hant": "首相任內他致力於幾乎不惜代價恢復和平。1938年他在慕尼黑會見希特勒，雙方達成英德不再交戰的協議，他返國後宣稱「我相信這是我們這個時代的和平」。隔年希特勒佔領布拉格，波蘭被入侵後，他在1939年9月3日宣戰。1940年5月，英國解放挪威的行動失敗後他辭職，議會紀錄記他任期止於5月9日。他隨後罹患腸癌，1940年11月9日在漢普郡赫克菲爾德去世。",
+      "en": "As Prime Minister he was dedicated to restoring peace at almost any price. He met Hitler at Munich in 1938 and on his return declared \"I believe it is peace for our time\". Hitler occupied Prague the following year, and after the invasion of Poland Chamberlain declared war on 3 September 1939. He resigned in May 1940 after the failure of the British efforts to liberate Norway; Hansard ends his term on 9 May. Bowel cancer struck soon after, and he died at Heckfield, Hampshire, on 9 November 1940."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Prime Minister May 28, 1937 - May 9, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "審查補",
+       "quote": "was dedicated to restoring peace at almost any price",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "He met German chancellor Adolf Hitler in Munich 1938",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "審查補",
+       "quote": "an agreement that Britain and Germany would never again go to war",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "I believe it is peace for our time",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "Hitler occupied Prague the following year",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "審查補",
+       "quote": "The invasion of Poland forced Chamberlain’s hand",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "he declared war on 3 September, 1939",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "he resigned in May 1940 after the failure of the British efforts",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "審查補",
+       "quote": "the failure of the British efforts to liberate Norway",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "Bowel cancer struck soon after his resignation",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Died",
+       "quote": "9 November 1940, Heckfield, Hampshire",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "nc-dg-national-service",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Director General of National Service",
+      "zh-Hant": "國民服務部總監",
+      "en": "Director General of National Service"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1916-01-01",
+      "end": "1918-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He was appointed Director General of National Service by Lloyd George in 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "but resigned the following year",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依「次年辭職」取 1917，年精度寫下一年起日",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "nc-postmaster-general",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Postmaster-General",
+      "zh-Hant": "郵政大臣",
+      "en": "Postmaster General"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1922-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Postmaster-General 1922 - 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1922 he became Postmaster General under Andrew Bonar Law",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "郵政部不屬四部"
+    },
+    {
+     "key": "nc-paymaster-general",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Paymaster-General",
+      "zh-Hant": "主計長",
+      "en": "Paymaster General"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1924-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Paymaster-General 1923 - 1923",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "主計長不屬四部"
+    },
+    {
+     "key": "nc-health-1923",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Minister of Health",
+      "zh-Hant": "衛生大臣",
+      "en": "Minister of Health"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1930-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Minister of Health 1923 - 1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "Minister of Health, 1923 and 1924-1929",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "衛生部不屬四部"
+    },
+    {
+     "key": "nc-chancellor-1923",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Chancellor of the Exchequer",
+      "zh-Hant": "財政大臣",
+      "en": "Chancellor of the Exchequer"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1923-01-01",
+      "end": "1925-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Chancellor of the Exchequer 1923 - 1924",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "Chancellor of the Exchequer, 1923 and 1931-1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職；但來源只到年，起 1923 迄 1924，最短任期無法證明 ≥90 天；regimeId 亦未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "dates",
+      "regime"
+     ]
+    },
+    {
+     "key": "nc-health-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Minister of Health",
+      "zh-Hant": "衛生大臣",
+      "en": "Minister of Health"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1932-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Minister of Health 1931 - 1931",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R5",
+     "t14Reason": "衛生部不屬四部"
+    },
+    {
+     "key": "nc-chancellor-1931",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國政府",
+      "en": "Government of the United Kingdom"
+     },
+     "title": {
+      "orig": "Chancellor of the Exchequer",
+      "zh-Hant": "財政大臣",
+      "en": "Chancellor of the Exchequer"
+     },
+     "positionKind": "minister",
+     "period": {
+      "start": "1931-01-01",
+      "end": "1937-05-28"
+     },
+     "startPrecision": "year",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Chancellor of the Exchequer 1931 - 1937",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1931 Ramsay MacDonald made him Chancellor",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Offices",
+       "quote": "Prime Minister May 28, 1937 - May 9, 1940",
+       "quoteLang": "en",
+       "evidenceNote": "迄日依他接任首相的起日推得（推論）；Hansard 只寫財政大臣至 1937 年",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Overlap": "cabinet",
+     "t14Rule": "R6",
+     "t14Reason": "財政部屬四部、正職，1931 起至 1937-05-28 可證明 ≥90 天；但 regimeId 未查（不連庫）",
+     "roleEligible": true,
+     "roleEligibleKind": "cabinet_minister",
+     "roleGap": [
+      "regime"
+     ]
+    },
+    {
+     "key": "nc-mp-edgbaston",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons"
+     },
+     "title": {
+      "orig": "MP for Birmingham Edgbaston",
+      "zh-Hant": "伯明罕埃奇巴斯頓選區議員",
+      "en": "MP for Birmingham Edgbaston"
+     },
+     "positionKind": "legislator",
+     "period": {
+      "start": "1929-05-30",
+      "end": "1940-11-09"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "t14Rule": "R5",
+     "partyPostAmbiguous": true,
+     "partyPostAmbiguousReason": "Hansard 未標黨籍；Cadbury 只寫 1929 年轉到 Edgbaston（transferred），未明寫以何黨身分當選；審查自原 Ladywood／Edgbaston 合併席位拆出",
+     "citations": [
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Constituencies",
+       "quote": "Birmingham Edgbaston May 30, 1929 - November 9, 1940",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "and transferred to Birmingham Edgbaston in 1929",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "t14Reason": "議員不屬 R0–R4 類別；未明寫以政黨身分當選，不算 R1"
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "nc-mp-ladywood",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "英國下議院",
+      "en": "House of Commons"
+     },
+     "title": {
+      "orig": "Conservative MP for Birmingham Ladywood",
+      "zh-Hant": "伯明罕拉德伍德選區議員（保守黨）",
+      "en": "Conservative MP for Birmingham Ladywood"
+     },
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "legislator",
+     "period": {
+      "start": "1918-12-14",
+      "end": "1929-05-30"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In 1918 Chamberlain was elected Conservative MP for Ladywood",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Constituencies",
+       "quote": "Birmingham Ladywood December 14, 1918 - November 15, 1922",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "hansard-nc",
+       "locator": "Constituencies",
+       "quote": "Birmingham Ladywood November 15, 1922 - May 30, 1929",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:47：以政黨身分取得的席位比照黨職（依薩拉查 1921 議員裁決）；黨籍標示 GOV.UK 作保守黨、Cadbury 作 Liberal Unionist，皆明寫以政黨身分當選（見 field:partyLabel1918）",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "nc-conservative-chairman",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "保守黨",
+      "en": "Conservative Party"
+     },
+     "title": {
+      "orig": "Chairman of the Conservative Party",
+      "zh-Hant": "保守黨主席",
+      "en": "Chairman of the Conservative Party"
+     },
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1930-01-01",
+      "end": null
+     },
+     "startPrecision": "year",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He was appointed chairman of the Conservative Party in the 1930",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    },
+    {
+     "key": "nc-conservative-leader",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "保守黨",
+      "en": "Conservative Party"
+     },
+     "title": {
+      "orig": "Conservative leader",
+      "zh-Hant": "保守黨黨魁",
+      "en": "Leader of the Conservative Party"
+     },
+     "role_kind": "de_facto_leader",
+     "originalPositionKind": "party",
+     "period": {
+      "start": "1937-05-01",
+      "end": null
+     },
+     "startPrecision": "month",
+     "endPrecision": null,
+     "citations": [
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "In May 1937 he succeeded Baldwin as Prime Minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "month",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "govuk-nc",
+       "locator": "Biography",
+       "quote": "and was elected Conservative leader",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "Tai 2026-11-11 12:12：黨職一律算 de_facto_leader",
+     "t14Rule": "R1"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "position:nc-conservative-chairman",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；Cadbury 研究圖書館指南只寫「1930 年被任命為保守黨主席」，無迄日；Hansard、GOV.UK 未載；Oxford DNB 403、Britannica 403，Archives Hub 逾時，未取得迄日來源",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "position:nc-conservative-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；GOV.UK 只寫 1937 年 5 月接任首相並獲選保守黨黨魁，未寫何時卸任黨魁；英國下議院圖書館簡報 SN01366（researchbriefings.files.parliament.uk）curl 403 挑戰頁，不繞過；其他已查：Hansard、Cadbury 指南",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:partyLabel1918",
+     "gapKind": "conflict",
+     "note": "GOV.UK 寫 1918 年當選「保守黨」拉德伍德議員，Cadbury 指南寫「Liberal Unionist」議員；兩份已抓來源對黨籍標示不同，未能判定哪一個是當時選舉的正式黨籍；角色候選依 GOV.UK 標「保守黨」，待查證",
+     "candidateCitations": [
+      {
+       "sourceKey": "cadbury-nc",
+       "locator": "Neville Chamberlain",
+       "quote": "He was elected Liberal Unionist MP for Birmingham Ladywood in",
+       "quoteLang": "en"
+      }
+     ],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:londonGazetteAppointments",
+     "gapKind": "not_found",
+     "note": "待查證：London Gazette 站內搜尋只回傳片段（1931-11-09 樞密院、1937 年任命等），無法逐字取得任命日期；Hansard 與 GOV.UK 只到年或月",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:primeMinisterEndDay",
+     "gapKind": "not_found",
+     "note": "待查證：Hansard 寫首相任期止於 1940-05-09，名單（5442）為 1940-05-10；差一日，無第二份有日的 A／B 來源；首相任期已在 5442，不重建",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "role:nc-conservative-chairman",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；支持起日的合格來源（Cadbury Research Library, University of ）未寫卸任日，不推論。補記 2026-11-17（寫庫前補缺口標註，Tai 同意）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-17"
+    },
+    {
+     "target": "role:nc-conservative-leader",
+     "gapKind": "not_found",
+     "note": "待查證：缺迄日；支持起日的合格來源（UK Government (GOV.UK)）未寫卸任日，不推論。補記 2026-11-17（寫庫前補缺口標註，Tai 同意）",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-17"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Historic Hansard 人物頁 Neville Chamberlain",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-neville-chamberlain",
+     "result": "found_A",
+     "note": "選區與職位起訖；curl 200"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "GOV.UK Past Prime Ministers: Neville Chamberlain",
+     "url": "https://www.gov.uk/government/history/past-prime-ministers/neville-chamberlain",
+     "result": "found_A",
+     "note": "生平概述；curl 200"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Cadbury Research Library Chamberlain Papers 頁（猜測網址）",
+     "url": "https://www.birmingham.ac.uk/libraries/cadbury/chamberlain-papers",
+     "result": "no_result",
+     "note": "curl 404"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "WebSearch: Neville Chamberlain Conservative leader Cadbury Research Library Chamberlain Papers",
+     "url": null,
+     "result": "found_B",
+     "note": "得到 Cadbury 指南網址與 Archives Hub 條目"
+    },
+    {
+     "step": 5,
+     "sourceType": "academic",
+     "query": "Cadbury Research Library 檔案館首頁",
+     "url": "https://www.birmingham.ac.uk/facilities/cadbury/archives/index.aspx",
+     "result": "not_relevant",
+     "note": "curl 200，僅導覽頁"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "Cadbury Chamberlain Family Guide（PDF）",
+     "url": "https://www.birmingham.ac.uk/facilities/cadbury/documents/subject-resource-guides/chamberlain-family-guide.pdf",
+     "result": "found_B",
+     "note": "curl 200，pdftotext；含 Neville 傳記與職位年份"
+    },
+    {
+     "step": 7,
+     "sourceType": "academic",
+     "query": "Archives Hub: Papers of Neville Chamberlain",
+     "url": "https://archiveshub.ac.uk/search/archives/1283a653-c7a9-3087-b2cf-7f55c2b70b6d",
+     "result": "no_result",
+     "note": "curl 逾時（兩次）"
+    },
+    {
+     "step": 8,
+     "sourceType": "national_dictionary",
+     "query": "Oxford DNB 站內搜尋 Neville Chamberlain",
+     "url": "https://www.oxforddnb.com/search?q=Neville+Chamberlain",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Britannica: Neville Chamberlain",
+     "url": "https://www.britannica.com/biography/Neville-Chamberlain",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "VIAF（Chamberlain）",
+     "url": "https://viaf.org/viaf/59877491/",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 11,
+     "sourceType": "treaty_law",
+     "query": "London Gazette 搜尋 Neville Chamberlain Prime Minister",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Neville+Chamberlain+Prime+Minister",
+     "result": "not_relevant",
+     "note": "curl 200，只有片段，無完整任命日期（審查：London Gazette 屬政府公報，來源類型改 treaty_law）"
+    },
+    {
+     "step": 12,
+     "sourceType": "treaty_law",
+     "query": "London Gazette 搜尋 Neville Chamberlain Chancellor of the Exchequer",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=Neville+Chamberlain+Chancellor+of+the+Exchequer",
+     "result": "not_relevant",
+     "note": "curl 200，片段（1931-11-09 樞密院）被截斷，未使用（審查：London Gazette 屬政府公報，來源類型改 treaty_law）"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "Historic Hansard 1937 年發言索引",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-neville-chamberlain/1937",
+     "result": "not_relevant",
+     "note": "curl 200，只列發言"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "WebSearch: Chamberlain resigned Conservative leader October 1940",
+     "url": null,
+     "result": "found_A",
+     "note": "搜尋顯示英國下議院圖書館簡報 SN01366 與 GOV.UK"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "House of Commons Library SN01366 Leadership elections: Conservative Party",
+     "url": "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+     "result": "blocked_403",
+     "note": "curl 403 挑戰頁，不繞過；黨魁迄日因此待查證"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "WebSearch: Chamberlain Chairman of the Conservative Party 1930 1931",
+     "url": null,
+     "result": "unrated",
+     "note": "只得到 Cardiff／Oxford 論文摘要（說 1931 年由 Stonehaven 接任），未抓原文，不當出處"
+    }
+   ]
+  },
+  {
+   "key": "us-wilson",
+   "bioId": "01a1b48b-c814-7f78-bba8-753c5a5ea41f",
+   "name": "Woodrow Wilson",
+   "nameZh": "伍德羅·威爾遜",
+   "recordIds": [
+    "01a19ebb-178f-775b-96ea-cd2ca4933aaa",
+    "01a19ebb-1797-79bb-abbc-0d6fdaa33c5e"
+   ],
+   "thickness": "中",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": "1856-12-28",
+      "end": "1902-01-01"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與學術養成",
+      "en": "Origins and academic training"
+     },
+     "body": {
+      "zh-Hant": "威爾遜1856年12月28日生於維吉尼亞州斯湯頓，父親是長老會牧師。他在普林斯頓大學就讀三年，1879年取得學士學位，其後進入維吉尼亞大學法學院，並在喬治亞州亞特蘭大執業一年。他再進約翰·霍普金斯大學研讀歷史與政治學，1886年取得博士學位，1885年出版《國會政府》。他曾在布林莫爾學院任教三年、在衛斯理大學任教兩年，之後加入普林斯頓教職。",
+      "en": "Wilson was born in Staunton, Virginia, on 28 December 1856, the son of a Presbyterian minister. He spent three years at Princeton, receiving his baccalaureate in 1879, then attended the University of Virginia law school and practised law for a year in Atlanta, Georgia. He entered Johns Hopkins University as a graduate student in history and political science, published Congressional Government in 1885 and earned his PhD in 1886. He taught three years at Bryn Mawr and two years at Wesleyan before joining the Princeton faculty."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 首段",
+       "quote": "(December 28, 1856-February 3, 1924) was born in Staunton, Virginia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 首段",
+       "quote": "Since his father was a Presbyterian minister",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 首段",
+       "quote": "three at Princeton University where he received a baccalaureate degree in 1879",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第二段",
+       "quote": "After graduating from the Law School of the University of Virginia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第二段",
+       "quote": "he practiced law for a year in Atlanta, Georgia",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-wilson-before",
+       "locator": "審查補",
+       "quote": "as a graduate student in history and political science",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-wilson-before",
+       "locator": "Passion for Education and Scholarship",
+       "quote": "He earned his PhD in 1886.",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第二段",
+       "quote": "In 1885 he published Congressional Government",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第三段",
+       "quote": "Wilson taught for three years at Bryn Mawr College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第三段",
+       "quote": "for two years at Wesleyan College",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第三段",
+       "quote": "Before joining the faculty of Princeton University",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1902-01-01",
+      "end": "1913-03-05"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "普林斯頓校長與新澤西州長",
+      "en": "Princeton president and Governor of New Jersey"
+     },
+     "body": {
+      "zh-Hant": "1902至1910年他擔任普林斯頓大學校長，因主張改革教育而廣為人知；之後轉入政界，1911至1913年出任新澤西州長，再度以改革者形象受到矚目。1912年總統選舉中，塔夫脫與老羅斯福分裂了共和黨選票，威爾遜因此當選；他推動「新自由」改革，包括調整關稅與修訂銀行體系。1913年3月4日就任總統。",
+      "en": "He was president of Princeton University from 1902 to 1910 and became widely known for his ideas on reforming education. He then entered politics and was governor of New Jersey from 1911 to 1913, again distinguishing himself as a reformer. In the 1912 presidential election Taft and Theodore Roosevelt split the Republican vote and Wilson won; he set about the New Freedom reforms, including changing the tariff and revising the banking system. He was inaugurated on 4 March 1913."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "As president of Princeton University from 1902 to 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "Wilson became widely known for his ideas on reforming education",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "as governor of the State of New Jersey from 1911 to 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "distinguished himself once again as a reformer",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第五段",
+       "quote": "Wilson won the presidential election of 1912",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第五段",
+       "quote": "when William Howard Taft and Theodore Roosevelt split the Republican vote",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "審查補",
+       "quote": "the reforms he had outlined in his book The New Freedom",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第五段",
+       "quote": "the changing of the tariff, the revising of the banking system",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-wilson-main",
+       "locator": "Fast Facts",
+       "quote": "Inauguration Date March 4, 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 3,
+     "period": {
+      "start": "1913-03-04",
+      "end": "1917-04-07"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "總統首任與參戰",
+      "en": "First term and entry into the war"
+     },
+     "body": {
+      "zh-Hant": "威爾遜是美國第28任總統。第一次世界大戰初期，他決心保持中立，向交戰雙方提出調停卻遭拒；1916年選民受「他讓我們置身戰外」口號影響，讓他連任。1917年情勢轉變，1月31日德國宣布無限制潛艇戰，他在4月2日向國會正式請求宣戰，4月6日國會批准。",
+      "en": "Wilson was the 28th President. In the early days of the First World War he was determined to stay neutral and offered mediation to both sides, but was rebuffed; in 1916 the electorate, reacting to the slogan \"He kept us out of war\", re-elected him. In 1917 the issue of freedom of the seas forced a change: Germany announced unrestricted submarine warfare on 31 January, Wilson made the formal request for a declaration of war on 2 April, and Congress granted it on 6 April."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "whitehouse-wilson",
+       "locator": "Biography, 首段",
+       "quote": "was the 28th President of the United States (1913-1921)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "In the early days of World War I, Wilson was determined to maintain neutrality",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "he offered mediation to both sides but was rebuffed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "The American electorate in 1916",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "He kept us out of war",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "reelected Wilson to the presidency",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "However, in 1917 the issue of freedom of the seas",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "On January 31 Germany announced that",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "審查補",
+       "quote": "«unrestricted submarine warfare» was already started",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "on April 2 he made the formal request to Congress",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第六段",
+       "quote": "and on April 6 the Congress granted it",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "ord": 4,
+     "period": {
+      "start": "1918-01-08",
+      "end": "1924-02-04"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "和會、中風與晚年",
+      "en": "Peace conference, stroke and last years"
+     },
+     "body": {
+      "zh-Hant": "1918年1月8日他向國會提出「十四點」和平原則。1919年在凡爾賽召開的和會上，他促成國際聯盟盟約通過，但美國參議院拒絕批准加入聯盟；他在1919年獲諾貝爾和平獎。1919年9月25日在科羅拉多州普韋布洛演說後，他倒下並在一週後腦出血，仍完成了餘下十七個月任期，任期於1921年3月4日結束；1924年2月3日去世。",
+      "en": "On 8 January 1918 he addressed Congress on the Fourteen Points. At the 1919 Peace Conference at Versailles he secured the adoption of the Covenant of the League of Nations, but the Senate declined to approve American acceptance; he received the 1919 Nobel Peace Prize. After a speech at Pueblo, Colorado, on 25 September 1919 he collapsed and a week later suffered a cerebral haemorrhage, yet completed the remaining seventeen months of his term, which ended on 4 March 1921; he died on 3 February 1924."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第七段",
+       "quote": "His speech to Congress on January 8, 1918, on the «Fourteen Points»",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "審查補",
+       "quote": "when the 1919 Peace Conference assembled in Versailles",
+       "quoteLang": "en",
+       "evidenceNote": "審查補引文（Opus 2026-11-15，取自已抓原文）",
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第八段",
+       "quote": "he did secure the adoption of the Covenant of the League of Nations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第八段",
+       "quote": "the Senate declined to approve American acceptance of the League of Nations",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Page title",
+       "quote": "Nobel Peace Prize 1919",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第九段",
+       "quote": "After a speech in Pueblo, Colorado, on September 25, 1919, he collapsed",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第九段",
+       "quote": "a week later suffered a cerebral haemorrhage",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第九段",
+       "quote": "He completed the remaining seventeen months of his term of office",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-wilson-main",
+       "locator": "Fast Facts",
+       "quote": "Date Ended March 4, 1921",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 首段",
+       "quote": "(December 28, 1856-February 3, 1924)",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [
+    {
+     "key": "wilson-princeton-president",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "普林斯頓大學",
+      "en": "Princeton University"
+     },
+     "title": {
+      "orig": "President of Princeton University",
+      "zh-Hant": "普林斯頓大學校長",
+      "en": "President of Princeton University"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1902-01-01",
+      "end": "1911-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "As president of Princeton University from 1902 to 1910",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "miller-wilson-brief",
+       "locator": "Life in Brief",
+       "quote": "Wilson was elected president of Princeton in 1902",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    },
+    {
+     "key": "wilson-nj-governor",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "新澤西州政府",
+      "en": "State of New Jersey"
+     },
+     "title": {
+      "orig": "Governor of New Jersey",
+      "zh-Hant": "新澤西州州長",
+      "en": "Governor of New Jersey"
+     },
+     "positionKind": "other",
+     "period": {
+      "start": "1911-01-01",
+      "end": "1914-01-01"
+     },
+     "startPrecision": "year",
+     "endPrecision": "year",
+     "citations": [
+      {
+       "sourceKey": "nobel-wilson",
+       "locator": "Biographical, 第四段",
+       "quote": "as governor of the State of New Jersey from 1911 to 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "roleCandidates": [
+    {
+     "key": "wilson-hos-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國政府",
+      "en": "Government of the United States"
+     },
+     "title": {
+      "orig": "President of the United States",
+      "zh-Hant": "美國總統（國家元首）",
+      "en": "President of the United States (head of state)"
+     },
+     "role_kind": "head_of_state",
+     "period": {
+      "start": "1913-03-04",
+      "end": "1914-07-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "miller-wilson-main",
+       "locator": "Fast Facts",
+       "quote": "Inauguration Date March 4, 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whitehouse-wilson",
+       "locator": "Biography, 首段",
+       "quote": "was the 28th President of the United States (1913-1921)",
+       "quoteLang": "en",
+       "evidenceNote": "迄日 1914-07-29 為名單（5442）同一人任期的起日，依名單推得（推論）；來源只寫總統任期 1913–1921",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "美國總統（來源明寫 1913-03-04 就任）；名單（5442）只收 1914-07-29 起的任期，1913-03-04～1914-07-29 為名單外任期，依規則寫候選",
+     "t14Rule": "R0"
+    },
+    {
+     "key": "wilson-hog-1913",
+     "regimeId": null,
+     "organization": {
+      "zh-Hant": "美國政府",
+      "en": "Government of the United States"
+     },
+     "title": {
+      "orig": "President of the United States",
+      "zh-Hant": "美國總統（政府首腦）",
+      "en": "President of the United States (head of government)"
+     },
+     "role_kind": "head_of_government",
+     "period": {
+      "start": "1913-03-04",
+      "end": "1914-07-29"
+     },
+     "startPrecision": "day",
+     "endPrecision": "day",
+     "citations": [
+      {
+       "sourceKey": "miller-wilson-main",
+       "locator": "Fast Facts",
+       "quote": "Inauguration Date March 4, 1913",
+       "quoteLang": "en",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-15",
+       "grade": "B",
+       "datePrecision": "day",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "whitehouse-wilson",
+       "locator": "Biography, 首段",
+       "quote": "was the 28th President of the United States (1913-1921)",
+       "quoteLang": "en",
+       "evidenceNote": "迄日 1914-07-29 為名單（5442）同一人任期的起日，依名單推得（推論）；來源只寫總統任期 1913–1921",
+       "accessedOn": "2026-11-15",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "reason": "美國總統（來源明寫 1913-03-04 就任）；名單（5442）只收 1914-07-29 起的任期，1913-03-04～1914-07-29 為名單外任期，依規則寫候選",
+     "t14Rule": "R0"
+    }
+   ],
+   "gaps": [
+    {
+     "target": "field:historyStateGov",
+     "gapKind": "not_found",
+     "note": "待查證：history.state.gov 威爾遜人物頁網址（departmenthistory/people/wilson-woodrow 等）皆 404，未取得國務院歷史辦公室資料；威爾遜曾任總統（兼任政府首腦），總統任期 1914-07-29～1921-03-04 已在 5442",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:princetonPresidentList",
+     "gapKind": "not_found",
+     "note": "待查證：Princeton University 校長名錄網址 403（不繞過）；校長任期只有 Nobel 與 Miller 兩份來源的年精度",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:njGovernorRoster",
+     "gapKind": "not_found",
+     "note": "待查證：NGA 與 NJ 州檔案館的州長名錄網址 404；州長任期只有 Nobel 的年精度（1911–1913），無日期；Miller 寫 1910 年獲提名參選",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "field:presidencyStart1913",
+     "gapKind": "not_found",
+     "note": "名單（5442）總統任期起 1914-07-29，來源明寫 1913-03-04 就任；已建 1913-03-04～1914-07-29 的候選（迄日為推論），是否採用待審查",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-15"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "whitehouse.gov 歷任總統頁 woodrow-wilson",
+     "url": "https://www.whitehouse.gov/about-the-white-house/presidents/woodrow-wilson/",
+     "result": "no_result",
+     "note": "curl 404（現行站已無此頁；另試無尾斜線版本亦 404）"
+    },
+    {
+     "step": 2,
+     "sourceType": "official",
+     "query": "WebSearch: whitehouse presidents Woodrow Wilson 存檔",
+     "url": null,
+     "result": "found_A",
+     "note": "得到 Biden White House 存檔站網址"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "bidenwhitehouse.archives.gov 威爾遜頁",
+     "url": "https://bidenwhitehouse.archives.gov/about-the-white-house/presidents/woodrow-wilson/",
+     "result": "found_A",
+     "note": "curl 200"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "history.state.gov people/wilson-woodrow",
+     "url": "https://history.state.gov/departmenthistory/people/wilson-woodrow",
+     "result": "no_result",
+     "note": "curl 404（重試三次、另試 principals 路徑，皆 404）"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "WebSearch: history.state.gov Woodrow Wilson President",
+     "url": null,
+     "result": "no_result",
+     "note": "搜尋未回 history.state.gov 頁面"
+    },
+    {
+     "step": 6,
+     "sourceType": "named_encyclopedia",
+     "query": "Miller Center 威爾遜總統頁",
+     "url": "https://millercenter.org/president/woodrow-wilson",
+     "result": "found_B",
+     "note": "Fast Facts；curl 200"
+    },
+    {
+     "step": 7,
+     "sourceType": "named_encyclopedia",
+     "query": "Miller Center Life in Brief",
+     "url": "https://millercenter.org/president/wilson/life-in-brief",
+     "result": "found_B",
+     "note": "Saladin Ambar 作；curl 200"
+    },
+    {
+     "step": 8,
+     "sourceType": "named_encyclopedia",
+     "query": "Miller Center Life Before the Presidency",
+     "url": "https://millercenter.org/president/wilson/life-before-the-presidency",
+     "result": "found_B",
+     "note": "Saladin Ambar 作；curl 200"
+    },
+    {
+     "step": 9,
+     "sourceType": "named_encyclopedia",
+     "query": "Miller Center Campaigns and Elections / Foreign Affairs / Domestic Affairs",
+     "url": "https://millercenter.org/president/wilson/campaigns-and-elections",
+     "result": "not_relevant",
+     "note": "curl 200（另 foreign-affairs、domestic-affairs），已抓取但本批未引用"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "Nobel Peace Prize 1919 Wilson Biographical",
+     "url": "https://www.nobelprize.org/prizes/peace/1919/wilson/biographical/",
+     "result": "found_B",
+     "note": "curl 200"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "Nobel 1919 Wilson Facts / Speed read",
+     "url": "https://www.nobelprize.org/prizes/peace/1919/wilson/facts/",
+     "result": "not_relevant",
+     "note": "facts 200（重複內容）、speed-read 404"
+    },
+    {
+     "step": 12,
+     "sourceType": "academic",
+     "query": "Woodrow Wilson Presidential Library 傳記頁（presidentwilsonhouse.org、woodrowwilsonhouse.org）",
+     "url": "https://www.woodrowwilsonhouse.org/woodrow-wilson-biography",
+     "result": "no_result",
+     "note": "一個網域無法解析、一個 HTTP 406"
+    },
+    {
+     "step": 13,
+     "sourceType": "academic",
+     "query": "Princeton University 校長名錄",
+     "url": "https://www.princeton.edu/about/history/presidents",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "NGA 州長資料 Woodrow Wilson",
+     "url": "https://www.nga.org/governor/woodrow-wilson/",
+     "result": "no_result",
+     "note": "curl 404（兩種網址）"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "New Jersey State Archives 州長 Wilson",
+     "url": "https://www.nj.gov/state/archives/govs-wilson.html",
+     "result": "no_result",
+     "note": "curl 404"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "LoC Name Authority（id.loc.gov Wilson, Woodrow；三個猜測號碼）",
+     "url": "https://id.loc.gov/authorities/names/n79047633.html",
+     "result": "blocked_403",
+     "note": "curl 403，放棄"
+    },
+    {
+     "step": 17,
+     "sourceType": "official",
+     "query": "UK Historic Hansard 威爾遜人物頁（確認無此人）",
+     "url": "https://api.parliament.uk/historic-hansard/people/mr-woodrow-wilson",
+     "result": "not_relevant",
+     "note": "curl 404，非英國議員"
+    },
+    {
+     "step": 18,
+     "sourceType": "treaty_law",
+     "query": "London Gazette 搜尋 President Wilson",
+     "url": "https://www.thegazette.co.uk/all-notices/notice?text=President+Wilson+United+States",
+     "result": "not_relevant",
+     "note": "curl 200，與本人任期無關（審查：London Gazette 屬政府公報，來源類型改 treaty_law；與美國總統任期關聯低）"
+    }
+   ]
+  }
+ ]
+}

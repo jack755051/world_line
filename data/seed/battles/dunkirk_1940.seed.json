@@ -1,0 +1,2957 @@
+{
+  "schema": "wl-battle-seed/0.2",
+  "generated_from": {
+    "web": {
+      "path": "frontend/public/campaigns/dunkirk_1940.json",
+      "schema": "wl-campaign-web/0.1",
+      "sha256": "072f237476e8fb3039ddd5d5de424e60733692e045367d3f247d3571c4ac564a"
+    },
+    "research": {
+      "path": "data/seed/battles/dunkirk_1940.research.json",
+      "schema": "dynamo-research/0.1（seed 提案，未入庫）",
+      "sha256": "a7cc516f22a12671455827c08e75b38eb47cf5144bb7f7b04d5bb7221d0ec9f3",
+      "researched_on": "2026-11-11"
+    },
+    "raw_sha256": {
+      "ellis-11": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+      "ellis-12": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+      "ellis-13": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+      "ellis-14": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+      "ellis-15": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+      "ellis-16": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+      "ramsay": "e43d24cf35e33899e0343a9fcf379174d32ede3946eaddc5d8b18123422650b1"
+    }
+  },
+  "slug": "dunkirk_1940",
+  "determination": {
+    "constitution": "憲法 §6 戰役三條件",
+    "conclusion": "battle：敦克爾克橋頭堡戰役（1940-05-26～06-04）；發電機行動為子事件（parent_event_id），不是階段",
+    "conditions": {
+      "belligerents": "A 級出處：英、法、比（至 1940-05-28）、德（見 participants）",
+      "objective": "A 級出處（見 profile.citations.objective）",
+      "period_and_area": "A 級出處（見 event.citations）"
+    },
+    "name_note": "Ellis 與 Ramsay 均未用 'Battle of Dunkirk' 一詞；戰役名稱的 A／B 出處待查證（名稱不影響 §6 判定）",
+    "decided_by": "Tai 2026-11-11 13:47（併入考證、橋頭堡戰役、六階段、A 級引文）"
+  },
+  "event": {
+    "id": "13e64e5e-ee32-557b-8650-fd1ba12961e5",
+    "event_kind": "battle",
+    "occurred": {
+      "start": "1940-05-26",
+      "end": "1940-06-05"
+    },
+    "occurred_end_inclusive": "1940-06-04",
+    "date_precision": "day",
+    "status": "pending",
+    "eligible_for_verified": true,
+    "citations": [
+      {
+        "source_key": "src-ramsay",
+        "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+        "locator": "Despatch §1, p. 3295 col. 1",
+        "quote": "between 26th May and 4th June, 1940.",
+        "quote_len": 36,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ramsay",
+          "raw_sha256": "e43d24cf35e33899e0343a9fcf379174d32ede3946eaddc5d8b18123422650b1",
+          "found": true,
+          "page_from_raw": null
+        },
+        "origin": "research",
+        "date_precision": "day"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+        "locator": "ch. XI, p. 182",
+        "quote": "on this Sunday evening, May the 26th, shortly before seven o'clock",
+        "quote_len": 66,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-11",
+          "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+          "found": true,
+          "page_from_raw": 182
+        },
+        "origin": "research",
+        "date_precision": "day",
+        "evidence_note": "同句：海軍部發出 'Operation Dynamo is to commence'"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+        "locator": "ch. XI 標題, p. 171",
+        "quote": "THE DECISION TO EVACUATE 26th May, 1940",
+        "quote_len": 39,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-11",
+          "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+          "found": true,
+          "page_from_raw": 171
+        },
+        "origin": "research",
+        "date_precision": "day"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+        "locator": "ch. XVI, p. 246",
+        "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+        "quote_len": 68,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-16",
+          "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+          "found": true,
+          "page_from_raw": 246
+        },
+        "origin": "research",
+        "date_precision": "day"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+        "locator": "ch. XVI, p. 246",
+        "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+        "quote_len": 77,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-16",
+          "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+          "found": true,
+          "page_from_raw": 246
+        },
+        "origin": "research",
+        "date_precision": "day"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+        "locator": "ch. XI, p. 178",
+        "quote": "the whole perimeter to be held extended for about thirty miles.",
+        "quote_len": 63,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-11",
+          "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+          "found": true,
+          "page_from_raw": 178
+        },
+        "origin": "research",
+        "date_precision": "day"
+      },
+      {
+        "source_key": "src-ellis",
+        "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+        "locator": "ch. XII, p. 187",
+        "quote": "occupied a line which followed canals from Mardick through Spycker to Bergues",
+        "quote_len": 77,
+        "quote_lang": "en",
+        "accessed_on": "2026-11-11",
+        "grade": "A",
+        "verification": "verbatim",
+        "verbatim_check": {
+          "raw": "ellis-12",
+          "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+          "found": true,
+          "page_from_raw": 187
+        },
+        "origin": "research",
+        "date_precision": "day"
+      }
+    ]
+  },
+  "sub_events": [
+    {
+      "id": "bfd6a981-7648-5455-b797-a4c03473f1c9",
+      "key": "operation-dynamo",
+      "parent_event_id": "13e64e5e-ee32-557b-8650-fd1ba12961e5",
+      "name": {
+        "zh-Hant": "發電機行動",
+        "en": "Operation Dynamo"
+      },
+      "event_kind": "operation",
+      "event_kind_note": "Tai 2026-11-11 14:52 決定 event_kind 值域新增 operation（migration BattleEventKindOperation，只寫檔）；考證輸入作「operation（子事件）」。",
+      "occurred": {
+        "start": "1940-05-26",
+        "end": "1940-06-05"
+      },
+      "date_precision": "day",
+      "status": "pending",
+      "citations": [
+        {
+          "source_key": "src-ramsay",
+          "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+          "locator": "Despatch §1, p. 3295 col. 1",
+          "quote": "report on Operation \" Dynamo \",",
+          "quote_len": 31,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ramsay",
+            "raw_sha256": "e43d24cf35e33899e0343a9fcf379174d32ede3946eaddc5d8b18123422650b1",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ramsay",
+          "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+          "locator": "Despatch §1, p. 3295 col. 1",
+          "quote": "between 26th May and 4th June, 1940.",
+          "quote_len": 36,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ramsay",
+            "raw_sha256": "e43d24cf35e33899e0343a9fcf379174d32ede3946eaddc5d8b18123422650b1",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 182",
+          "quote": "'Operation Dynamo is to commence'",
+          "quote_len": 33,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 182
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 246",
+          "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+          "quote_len": 77,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 246
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "evidence_note": "同句前文寫 June the 4th"
+        }
+      ]
+    }
+  ],
+  "participants": [
+    {
+      "regime_slug": "deutsches-reich",
+      "role": "belligerent",
+      "side_camp_hint": "axis",
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV, p. 217",
+          "quote": "the attack designed to annihilate the enemy forces still encircled",
+          "quote_len": 66,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 217
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "德方（German Diary，Ellis 英譯引述）"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 243",
+          "quote": "Throughout the day waves of aircraft attacked troops assembled for embarkation",
+          "quote_len": 78,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 243
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "德方（German Air Ministry situation report，Ellis 英譯引述）"
+        }
+      ]
+    },
+    {
+      "regime_slug": "french-third-republic",
+      "role": "belligerent",
+      "side_camp_hint": "allied",
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 178",
+          "quote": "for the French were to hold the sector west of this line.",
+          "quote_len": 57,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 178
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 246",
+          "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+          "quote_len": 68,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 246
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    },
+    {
+      "regime_slug": "kingdom-of-belgium",
+      "role": "belligerent",
+      "side_camp_hint": "allied",
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 199",
+          "quote": "the King of the Belgians had accepted defeat",
+          "quote_len": 44,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 199
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "evidence_note": "同句前文作 'By midnight on May the 278th'（轉錄錯字，章題為 27th May）"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 199",
+          "quote": "the Belgian Army had been ordered to cease fire",
+          "quote_len": 47,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 199
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ],
+      "until_exclusive": "1940-05-28",
+      "until_note": "比軍 5/27 午夜停火；半開終點 1940-05-28"
+    },
+    {
+      "regime_slug": "united-kingdom",
+      "role": "belligerent",
+      "side_camp_hint": "allied",
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 180",
+          "quote": "appointed to take command of British troops in the Dunkirk bridgehead",
+          "quote_len": 69,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 180
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    }
+  ],
+  "profile": {
+    "event_id": "13e64e5e-ee32-557b-8650-fd1ba12961e5",
+    "slug": "dunkirk_1940",
+    "name": {
+      "zh-Hant": "敦克爾克橋頭堡戰役",
+      "en": "Battle of Dunkirk bridgehead"
+    },
+    "name_verification": "pending",
+    "name_note": "Tai 2026-11-11 13:47 指定名稱；Ellis 與 Ramsay 均未用 'Battle of Dunkirk' 一詞；戰役名稱的 A／B 出處待查證（名稱不影響 §6 判定）",
+    "objective": {
+      "zh-Hant": "同盟國：守住掩護敦克爾克的橋頭堡，以便自敦克爾克港與海灘撤出部隊；德國：殲滅被圍於敦克爾克以南、東南之敵軍並奪取該地區"
+    },
+    "objective_kind": "place",
+    "objective_kind_note": "分類（place/line/regime）不是史實；Tai 2026-11-11 14:52 確認填 place",
+    "control_change": {
+      "zh-Hant": "周界逐步縮小（5/31 夜放棄東段，6/1–6/3 退至 Dunkirk–Furnes 運河線），6/4 上午 9 時殘餘法軍投降，敦克爾克落入德軍控制"
+    },
+    "area_text": {
+      "zh-Hant": "敦克爾克橋頭堡：沿運河線自 Mardyck 經 Spycker、Bergues、Furnes 至 Nieuport，全長約 30 英里；含敦克爾克港與以東海灘"
+    },
+    "outcome_kind": null,
+    "outcome_text": null,
+    "conflict_record_id": null,
+    "theater_area": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              1.7038,
+              50.3816
+            ],
+            [
+              3.2135,
+              50.3816
+            ],
+            [
+              3.2135,
+              51.297799999999995
+            ],
+            [
+              1.7038,
+              51.297799999999995
+            ],
+            [
+              1.7038,
+              50.3816
+            ]
+          ]
+        ]
+      ]
+    },
+    "theater_area_basis": "derived（由前端 JSON bounds 外框產生，非出處；需依 Ellis 圖重畫）",
+    "status": "pending",
+    "citations": {
+      "objective": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 172（Blanchard 第 30 號作戰命令英譯）",
+          "quote": "so as to form a bridgehead covering Dunkirk in breadth.",
+          "quote_len": 55,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 172
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "法方作戰命令"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 172（同上）",
+          "quote": "This bridgehead will be held with no thought of retreat.",
+          "quote_len": 56,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 172
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "法方作戰命令"
+        },
+        {
+          "source_key": "src-ramsay",
+          "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+          "locator": "Despatch §1（撤退本身＝發電機行動，見子事件）",
+          "quote": "between 26th May and 4th June, 1940.",
+          "quote_len": 36,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ramsay",
+            "raw_sha256": "e43d24cf35e33899e0343a9fcf379174d32ede3946eaddc5d8b18123422650b1",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV, p. 217",
+          "quote": "the attack designed to annihilate the enemy forces still encircled",
+          "quote_len": 66,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 217
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "德方"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV, p. 217（同句）",
+          "quote": "in the area south and south-east of Dunkirk",
+          "quote_len": 43,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 217
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "perspective": "德方"
+        }
+      ],
+      "control_change": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 236",
+          "quote": "During the night the eastern sector of the bridgehead was abandoned",
+          "quote_len": 67,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 236
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "evidence_note": "5/31 夜"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 245",
+          "quote": "their defence was forced back to the line of the Dunkirk–Furnes Canal",
+          "quote_len": 69,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 245
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 246",
+          "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+          "quote_len": 68,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 246
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ],
+      "theater_area": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI, p. 178",
+          "quote": "the whole perimeter to be held extended for about thirty miles.",
+          "quote_len": 63,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 178
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 187",
+          "quote": "occupied a line which followed canals from Mardick through Spycker to Bergues",
+          "quote_len": 77,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 187
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ],
+      "name": []
+    }
+  },
+  "phases": [
+    {
+      "id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "seq": 1,
+      "name": {
+        "zh-Hant": "決定撤退、發電機行動啟動與周界編成",
+        "en": null
+      },
+      "period": {
+        "start": "1940-05-26",
+        "end": "1940-05-28"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [
+        "Ellis Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182（HyperWar maps/UK-NWE-Flanders-5.jpg）",
+        "Ellis Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200（maps/UK-NWE-Flanders-6.jpg）"
+      ],
+      "map_status": "source_map_listed",
+      "map_note": null,
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-11.html",
+          "locator": "ch. XI 標題, p. 171",
+          "quote": "THE DECISION TO EVACUATE 26th May, 1940",
+          "quote_len": 39,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-11",
+            "raw_sha256": "7c67433e783999b180b6d5405c9397094b03a4bd0bc3300b0d6975faa4554349",
+            "found": true,
+            "page_from_raw": 171
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII 標題, p. 183",
+          "quote": "DUNKIRK, BETHUNE AND YPRES 27th May, 1940",
+          "quote_len": 41,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 183
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 199",
+          "quote": "the Belgian Army had been ordered to cease fire",
+          "quote_len": 47,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 199
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    },
+    {
+      "id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "seq": 2,
+      "name": {
+        "zh-Hant": "比軍投降後撤向海岸",
+        "en": null
+      },
+      "period": {
+        "start": "1940-05-28",
+        "end": "1940-05-29"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [
+        "Ellis Situation Map 'The Withdrawal to the Coast', facing p. 202（maps/UK-NWE-Flanders-7.jpg）",
+        "Ellis Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214（maps/UK-NWE-Flanders-8.jpg）"
+      ],
+      "map_status": "source_map_listed",
+      "map_note": null,
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+          "locator": "ch. XIII 標題, p. 201",
+          "quote": "AFTER THE BELGIAN SURRENDER 28th May, 1940",
+          "quote_len": 42,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-13",
+            "raw_sha256": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+            "found": true,
+            "page_from_raw": 201
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    },
+    {
+      "id": "e615a3ba-589d-533b-8527-13af02e958fa",
+      "seq": 3,
+      "name": {
+        "zh-Hant": "最後撤入橋頭堡",
+        "en": null
+      },
+      "period": {
+        "start": "1940-05-29",
+        "end": "1940-05-30"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [
+        "Ellis Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224（maps/UK-NWE-Flanders-9.jpg）"
+      ],
+      "map_status": "source_map_listed",
+      "map_note": null,
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV 標題, p. 215",
+          "quote": "THE FINAL WITHDRAWAL 29th May, 1940",
+          "quote_len": 35,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 215
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    },
+    {
+      "id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "seq": 4,
+      "name": {
+        "zh-Hant": "橋頭堡防禦",
+        "en": null
+      },
+      "period": {
+        "start": "1940-05-30",
+        "end": "1940-06-01"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [
+        "Ellis Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238（maps/UK-NWE-Flanders-10.jpg）"
+      ],
+      "map_status": "source_map_listed",
+      "map_note": null,
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV 標題, p. 225",
+          "quote": "THE DEFENCE OF THE BRIDGEHEAD 30th May and 31st May, 1940",
+          "quote_len": 57,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 225
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 225",
+          "quote": "By midday on the 30th practically all our retiring forces",
+          "quote_len": 57,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 225
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 236",
+          "quote": "During the night the eastern sector of the bridgehead was abandoned",
+          "quote_len": 67,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 236
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    },
+    {
+      "id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "seq": 5,
+      "name": {
+        "zh-Hant": "縮小周界與英軍最後撤離",
+        "en": null
+      },
+      "period": {
+        "start": "1940-06-01",
+        "end": "1940-06-03"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [
+        "Ellis Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（maps/UK-NWE-Flanders-11.jpg）"
+      ],
+      "map_status": "source_map_listed",
+      "map_note": null,
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI 標題, p. 239",
+          "quote": "LAST DAYS AT DUNKIRK 1st June to 4th June, 1940",
+          "quote_len": 47,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 239
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 240",
+          "quote": "the existing British front should be held till midnight of the 1st",
+          "quote_len": 66,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 240
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 245",
+          "quote": "there were no more British troops to be brought away",
+          "quote_len": 52,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 245
+          },
+          "origin": "research",
+          "date_precision": "day",
+          "evidence_note": "指 6/2–6/3 夜，同段後句 'In the early hours of the 3rd'"
+        }
+      ]
+    },
+    {
+      "id": "468824e4-0752-569c-bf18-37884a9e3d51",
+      "seq": 6,
+      "name": {
+        "zh-Hant": "法軍後衛與敦克爾克陷落",
+        "en": null
+      },
+      "period": {
+        "start": "1940-06-03",
+        "end": "1940-06-05"
+      },
+      "start_precision": "day",
+      "end_precision": "day",
+      "summary": null,
+      "source_maps": [],
+      "map_status": "pending",
+      "map_note": "待查證：Ellis 無 6/2–6/4 situation map；候選 USMA 'Campaign in the West, Situation 4 June 1940'（見 mapSources）",
+      "status": "pending",
+      "eligible_for_verified": true,
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 245",
+          "quote": "their defence was forced back to the line of the Dunkirk–Furnes Canal",
+          "quote_len": 69,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 245
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 246",
+          "quote": "French troops surrendered at nine o'clock that morning, June the 4th",
+          "quote_len": 68,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 246
+          },
+          "origin": "research",
+          "date_precision": "day"
+        },
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 246",
+          "quote": "Operation Dynamo was officially ended by an Admiralty message timed 2.23 p.m.",
+          "quote_len": 77,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 246
+          },
+          "origin": "research",
+          "date_precision": "day"
+        }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "72b0f955-4db1-57e3-9a0f-c4e8a224cbc1",
+      "feature_key": "dunkirk_1940_p1-front-0",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "front",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2496,
+            51.0204
+          ],
+          [
+            2.323,
+            50.9684
+          ],
+          [
+            2.4325,
+            50.9684
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/4656706",
+            "url": "https://www.openstreetmap.org/relation/4656706"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139278",
+            "url": "https://www.openstreetmap.org/relation/139278"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139259",
+            "url": "https://www.openstreetmap.org/relation/139259"
+          }
+        ],
+        "note": "頂點為出處明載之地名（座標取自 OSM），頂點間以直線連接，屬近似；非依原圖描繪",
+        "precision": "approx",
+        "side": "allied_west_flank",
+        "vertices": "Mardyck – Spycker – Bergues"
+      },
+      "geom_basis": "source_text",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 187",
+          "quote": "occupied a line which followed canals from Mardick through Spycker to Bergues",
+          "quote_len": 77,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 187
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "5c81c6ae-139d-55e3-8d0f-68954e2fd6b3",
+      "feature_key": "dunkirk_1940_p2-front-0",
+      "web_phase": 2,
+      "phase_seq": 2,
+      "phase_id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "feature_kind": "front",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2496,
+            51.0204
+          ],
+          [
+            2.323,
+            50.9684
+          ],
+          [
+            2.4325,
+            50.9684
+          ],
+          [
+            2.6621,
+            51.0724
+          ],
+          [
+            2.6993,
+            51.1013
+          ],
+          [
+            2.7517,
+            51.1294
+          ],
+          [
+            2.7157,
+            51.1478
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/4656706",
+            "url": "https://www.openstreetmap.org/relation/4656706"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139278",
+            "url": "https://www.openstreetmap.org/relation/139278"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139259",
+            "url": "https://www.openstreetmap.org/relation/139259"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1516302",
+            "url": "https://www.openstreetmap.org/relation/1516302"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/2148467",
+            "url": "https://www.openstreetmap.org/relation/2148467"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1292926",
+            "url": "https://www.openstreetmap.org/relation/1292926"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, node/61337572",
+            "url": "https://www.openstreetmap.org/node/61337572"
+          }
+        ],
+        "note": "頂點為出處明載之地名（座標取自 OSM），頂點間以直線連接，屬近似；非依原圖描繪",
+        "precision": "approx",
+        "side": "allied_perimeter",
+        "vertices": "Mardyck – Spycker – Bergues – Veurne – Wulpen – Nieuwpoort – Nieuwpoort-Bad"
+      },
+      "geom_basis": "source_text",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+          "locator": "ch. XIII, p. 211",
+          "quote": "perimeter from Dunkirk through Bergues to Warhem",
+          "quote_len": 48,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-13",
+            "raw_sha256": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+            "found": true,
+            "page_from_raw": 211
+          },
+          "origin": "web-json",
+          "truncated_from": "III Corps ... perimeter from Dunkirk through Bergues to Warhem ... The 4th Division took over the same night the front from Wulpen to Nieuport Bains.",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 13"
+        }
+      ]
+    },
+    {
+      "id": "6ab90047-2cdc-5952-9ff7-792d3c178ef0",
+      "feature_key": "dunkirk_1940_p3-front-0",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "front",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2496,
+            51.0204
+          ],
+          [
+            2.323,
+            50.9684
+          ],
+          [
+            2.4325,
+            50.9684
+          ],
+          [
+            2.6501,
+            51.0433
+          ],
+          [
+            2.6621,
+            51.0724
+          ],
+          [
+            2.6993,
+            51.1013
+          ],
+          [
+            2.7517,
+            51.1294
+          ],
+          [
+            2.7157,
+            51.1478
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/4656706",
+            "url": "https://www.openstreetmap.org/relation/4656706"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139278",
+            "url": "https://www.openstreetmap.org/relation/139278"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139259",
+            "url": "https://www.openstreetmap.org/relation/139259"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/2242979",
+            "url": "https://www.openstreetmap.org/relation/2242979"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1516302",
+            "url": "https://www.openstreetmap.org/relation/1516302"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/2148467",
+            "url": "https://www.openstreetmap.org/relation/2148467"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1292926",
+            "url": "https://www.openstreetmap.org/relation/1292926"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, node/61337572",
+            "url": "https://www.openstreetmap.org/node/61337572"
+          }
+        ],
+        "note": "頂點為出處明載之地名（座標取自 OSM），頂點間以直線連接，屬近似；非依原圖描繪",
+        "precision": "approx",
+        "side": "allied_perimeter",
+        "vertices": "Mardyck – Spycker – Bergues – Bulskamp – Veurne – Wulpen – Nieuwpoort – Nieuwpoort-Bad"
+      },
+      "geom_basis": "source_text",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 225",
+          "quote": "II Corps for the eastern half from the frontier to the sea at Nieuport.",
+          "quote_len": 71,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 225
+          },
+          "origin": "web-json",
+          "truncated_from": "I Corps ... from Dunkirk to the French frontier; II Corps for the eastern half from the frontier to the sea at Nieuport.",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 15"
+        }
+      ]
+    },
+    {
+      "id": "fe5fe353-ed6d-58e1-8c2a-c7a150bd83ca",
+      "feature_key": "dunkirk_1940_p4-front-0",
+      "web_phase": 4,
+      "phase_seq": 5,
+      "phase_id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "feature_kind": "front",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2496,
+            51.0204
+          ],
+          [
+            2.323,
+            50.9684
+          ],
+          [
+            2.4325,
+            50.9684
+          ],
+          [
+            2.5863,
+            50.9809
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/4656706",
+            "url": "https://www.openstreetmap.org/relation/4656706"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139278",
+            "url": "https://www.openstreetmap.org/relation/139278"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139259",
+            "url": "https://www.openstreetmap.org/relation/139259"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139236",
+            "url": "https://www.openstreetmap.org/relation/139236"
+          }
+        ],
+        "note": "頂點為出處明載之地名（座標取自 OSM），頂點間以直線連接，屬近似；非依原圖描繪",
+        "precision": "approx",
+        "side": "allied_perimeter_forward",
+        "vertices": "Mardyck – Spycker – Bergues – Hondschoote"
+      },
+      "geom_basis": "source_text",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 239",
+          "quote": "their forces joining up with the British on the Bergues Canal",
+          "quote_len": 61,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 239
+          },
+          "origin": "web-json",
+          "truncated_from": "their forces joining up with the British on the Bergues Canal ... British defence of the Bergues–Furnes Canal",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+        }
+      ]
+    },
+    {
+      "id": "c612298a-dcf7-541e-9b9b-3c64f1417a1a",
+      "feature_key": "dunkirk_1940_p4-front-1",
+      "web_phase": 4,
+      "phase_seq": 5,
+      "phase_id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "feature_kind": "front",
+      "side_camp": "unknown",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4325,
+            50.9684
+          ],
+          [
+            2.485,
+            51.0205
+          ],
+          [
+            2.5264,
+            51.0519
+          ],
+          [
+            2.5245,
+            51.071
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139259",
+            "url": "https://www.openstreetmap.org/relation/139259"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139641",
+            "url": "https://www.openstreetmap.org/relation/139641"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/5815685",
+            "url": "https://www.openstreetmap.org/relation/5815685"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139676",
+            "url": "https://www.openstreetmap.org/relation/139676"
+          }
+        ],
+        "note": "頂點為出處明載之地名（座標取自 OSM），頂點間以直線連接，屬近似；非依原圖描繪",
+        "precision": "approx",
+        "side": "french_intermediate_line",
+        "vertices": "Bergues – Uxem – Ghyvelde – Bray-Dunes"
+      },
+      "geom_basis": "source_text",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 239",
+          "quote": "which is called above the intermediate line.",
+          "quote_len": 44,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 239
+          },
+          "origin": "web-json",
+          "truncated_from": "a front ... running roughly from Bergues, through Uxem and Ghyvelde to Basse Plaine and from there by the French frontier to the sea—which is called above the intermediate line.",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+        }
+      ]
+    },
+    {
+      "id": "efc7f3b3-5412-50e1-8ff1-384233eccaf6",
+      "feature_key": "dunkirk_1940_p1-arrow-0",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2534,
+            50.7516
+          ],
+          [
+            2.8259,
+            50.7829
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Saint-Omer",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/94401",
+            "url": "https://www.openstreetmap.org/relation/94401"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1169019",
+            "url": "https://www.openstreetmap.org/relation/1169019"
+          }
+        ],
+        "note": "箭頭終點取 Kemmel 為目標，非實際到達點",
+        "to": "Kemmel",
+        "unit": "德軍 A 集團軍群 Kleist 裝甲集群",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 187",
+          "quote": "There they sought to break through to the Poperinghe–Kemmel line",
+          "quote_len": 64,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 187
+          },
+          "origin": "web-json",
+          "truncated_from": "their main attack was further south from St Omer to Robecq. There they sought to break through to the Poperinghe–Kemmel line",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "00046c13-17e1-53b6-b83f-7c04fc212f9a",
+      "feature_key": "dunkirk_1940_p1-arrow-1",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            3.0066,
+            50.7653
+          ],
+          [
+            2.8259,
+            50.7829
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Comines",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/59971",
+            "url": "https://www.openstreetmap.org/relation/59971"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1169019",
+            "url": "https://www.openstreetmap.org/relation/1169019"
+          }
+        ],
+        "note": "目標，非實際到達點",
+        "to": "Kemmel",
+        "unit": "德軍 B 集團軍群第6軍團（三個師）",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 194",
+          "quote": "three enemy divisions—the northern claw of the German pincer movement",
+          "quote_len": 69,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 194
+          },
+          "origin": "web-json",
+          "truncated_from": "three enemy divisions—the northern claw of the German pincer movement, sought to break through to Kemmel",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "bdd839fd-0c32-5d2a-ac65-761fbb34ecd5",
+      "feature_key": "dunkirk_1940_p1-arrow-2",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.8047,
+            50.5316
+          ],
+          [
+            3.0635,
+            50.6366
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "La Bassée",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/58055",
+            "url": "https://www.openstreetmap.org/relation/58055"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/58404",
+            "url": "https://www.openstreetmap.org/relation/58404"
+          }
+        ],
+        "note": "起點取 La Bassée 代表 Béthune–La Bassée 一帶",
+        "to": "Lille",
+        "unit": "德軍 Hoth 集群",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII",
+          "quote": "Hoth Group, starting from the Béthune–La Bassée area, also struck north-east towards Armentières–Lille",
+          "quote_len": 102,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": null,
+          "verification": "pending",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": false,
+            "page_from_raw": null
+          },
+          "origin": "web-json",
+          "pending_reason": "原引文 102 字超過 80，且 raw 原文中找不到逐字相符的子句",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "362cb93d-0de4-5c5d-a210-d644ce0aa1d1",
+      "feature_key": "dunkirk_1940_p2-arrow-0",
+      "web_phase": 2,
+      "phase_seq": 2,
+      "phase_id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.8647,
+            51.0333
+          ],
+          [
+            2.7517,
+            51.1294
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Diksmuide",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1292925",
+            "url": "https://www.openstreetmap.org/relation/1292925"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1292926",
+            "url": "https://www.openstreetmap.org/relation/1292926"
+          }
+        ],
+        "note": "起點 Diksmuide 與部隊番號為推定，未核實；終點已核實",
+        "to": "Nieuwpoort",
+        "unit": "德軍（比軍投降後沿海岸推進之部隊，番號待查）",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+          "locator": "ch. XIII",
+          "quote": "advanced troops of the enemy reached the perimeter between Nieuport and the sea coast",
+          "quote_len": 85,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": null,
+          "verification": "pending",
+          "verbatim_check": {
+            "raw": "ellis-13",
+            "raw_sha256": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "web-json",
+          "pending_reason": "原引文 85 字超過 80，截不出 raw 逐字存在的子句",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 13"
+        }
+      ]
+    },
+    {
+      "id": "ee6c1faf-b79c-5053-9f91-b2ecbe66a96b",
+      "feature_key": "dunkirk_1940_p3-arrow-0",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.7517,
+            51.1294
+          ],
+          [
+            2.5924,
+            51.0988
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Nieuwpoort",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1292926",
+            "url": "https://www.openstreetmap.org/relation/1292926"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1516156",
+            "url": "https://www.openstreetmap.org/relation/1516156"
+          }
+        ],
+        "note": "攻擊方向與部隊番號未核實；僅攻擊地點已核實",
+        "to": "De Panne",
+        "unit": "德軍（番號待查）",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 235",
+          "quote": "in the 4th Division sector at Nieuport, the enemy attacked heavily",
+          "quote_len": 66,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 235
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 15"
+        }
+      ]
+    },
+    {
+      "id": "03c5b6f1-3aa0-502c-9509-8ad212a86ac5",
+      "feature_key": "dunkirk_1940_p3-arrow-1",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.6621,
+            51.0724
+          ],
+          [
+            2.5924,
+            51.0988
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Veurne",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1516302",
+            "url": "https://www.openstreetmap.org/relation/1516302"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/1516156",
+            "url": "https://www.openstreetmap.org/relation/1516156"
+          }
+        ],
+        "note": "同上",
+        "to": "De Panne",
+        "unit": "德軍（番號待查）",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 226",
+          "quote": "they tried to cross the canal just north of Furnes",
+          "quote_len": 50,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 226
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 15"
+        }
+      ]
+    },
+    {
+      "id": "5a812e4f-a34a-5262-8696-c33e32e0e903",
+      "feature_key": "dunkirk_1940_p4-arrow-0",
+      "web_phase": 4,
+      "phase_seq": 5,
+      "phase_id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "feature_kind": "arrow",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4485,
+            50.973
+          ],
+          [
+            2.4576,
+            51.0157
+          ]
+        ]
+      },
+      "label": null,
+      "props": {
+        "from": "Hoymille",
+        "geometry_refs": [
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139256",
+            "url": "https://www.openstreetmap.org/relation/139256"
+          },
+          {
+            "citation": "OpenStreetMap Nominatim, relation/139630",
+            "url": "https://www.openstreetmap.org/relation/139630"
+          }
+        ],
+        "note": "終點 Teteghem 為推定方向，未核實",
+        "to": "Teteghem",
+        "unit": "德軍（番號待查）",
+        "unit_note": "待查證：部隊番號沿用前端 JSON，未逐字對照出處（Tai 2026-11-11 13:47：保留、標待查證）",
+        "verification": "pending"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI",
+          "quote": "At Hoymille the attack penetrated the front held by a company of the 2nd Warwickshire",
+          "quote_len": 85,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": null,
+          "verification": "pending",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "web-json",
+          "pending_reason": "原引文 85 字超過 80，截不出 raw 逐字存在的子句",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+        }
+      ]
+    },
+    {
+      "id": "7d2a860f-5934-5df4-aea0-13ca57b045b8",
+      "feature_key": "dunkirk_1940_p1-site-0",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "site",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          1.8538,
+          50.9525
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "axis",
+        "date": "1940-05-26",
+        "name": "Calais",
+        "note": "Ellis 記為 26 日晚落入德軍"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 197",
+          "quote": "Calais had been in enemy hands since the previous evening",
+          "quote_len": 57,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 197
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "07ee4ff3-8623-5fae-ac48-66a13cc1c43d",
+      "feature_key": "dunkirk_1940_p1-site-1",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "site",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.1273,
+          50.9871
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "axis",
+        "name": "Gravelines",
+        "note": "法軍於1940-05-27夜撤出（已核實）；德軍進入日期待查證，不推定"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 187",
+          "quote": "During the night they withdrew from Gravelines",
+          "quote_len": 46,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 187
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "a305f25d-b3c5-53bc-b54e-c0990b095df6",
+      "feature_key": "dunkirk_1940_p1-site-2",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "site",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.4868,
+          50.8
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "allied",
+        "date": "1940-05-27",
+        "name": "Cassel",
+        "note": "27日守住（英第48師145旅）"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 188",
+          "quote": "They had failed to take the town",
+          "quote_len": 32,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 188
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "f6af65d6-d457-5b23-a047-a970337e3e4c",
+      "feature_key": "dunkirk_1940_p1-site-3",
+      "web_phase": 1,
+      "phase_seq": 1,
+      "phase_id": "9bc56340-cc28-5f66-8a92-adeb5745f8ac",
+      "feature_kind": "site",
+      "side_camp": "contested",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.536,
+          50.7226
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "contested",
+        "date": "1940-05-27",
+        "name": "Hazebrouck"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-12.html",
+          "locator": "ch. XII, p. 188",
+          "quote": "held out in a 'keep' in the centre of the town, isolated and surrounded",
+          "quote_len": 71,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-12",
+            "raw_sha256": "fd398b60d9fe768cd9336253712b86b8ba440203ced2d47cb772bd38bed1ec82",
+            "found": true,
+            "page_from_raw": 188
+          },
+          "origin": "web-json",
+          "truncated_from": "battalion headquarters ... held out in a 'keep' in the centre of the town, isolated and surrounded",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 12"
+        }
+      ]
+    },
+    {
+      "id": "7caa8738-6d04-5abd-81c8-f343422d05fc",
+      "feature_key": "dunkirk_1940_p2-site-0",
+      "web_phase": 2,
+      "phase_seq": 2,
+      "phase_id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "feature_kind": "site",
+      "side_camp": "contested",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.7517,
+          51.1294
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "contested",
+        "date": "1940-05-28",
+        "name": "Nieuwpoort"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+          "locator": "ch. XIII",
+          "quote": "capturing and holding an undestroyed bridge and a small bridgehead in the town of Nieuport",
+          "quote_len": 90,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": null,
+          "verification": "pending",
+          "verbatim_check": {
+            "raw": "ellis-13",
+            "raw_sha256": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "web-json",
+          "pending_reason": "原引文 90 字超過 80，截不出 raw 逐字存在的子句",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 13"
+        }
+      ]
+    },
+    {
+      "id": "726eee5b-d771-5a10-8c5f-b27931886bae",
+      "feature_key": "dunkirk_1940_p2-site-1",
+      "web_phase": 2,
+      "phase_seq": 2,
+      "phase_id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "feature_kind": "site",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.4868,
+          50.8
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "axis",
+        "date": "1940-05-29",
+        "name": "Cassel",
+        "note": "29日入夜英軍守備隊撤離；德軍佔領時間未逐時記載"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV, p. 215",
+          "quote": "the enemy was across their line of march",
+          "quote_len": 40,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 215
+          },
+          "origin": "web-json",
+          "truncated_from": "when night fell and the garrison set out, the enemy was across their line of march",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 14"
+        }
+      ]
+    },
+    {
+      "id": "ac78106d-a379-57e7-95fa-c85d1fb3e391",
+      "feature_key": "dunkirk_1940_p2-site-2",
+      "web_phase": 2,
+      "phase_seq": 2,
+      "phase_id": "a0aebece-4e2d-5237-8d85-5ddb8ce932e6",
+      "feature_kind": "site",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.5924,
+          51.0988
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "allied",
+        "date": "1940-05-28",
+        "name": "De Panne",
+        "note": "英遠征軍總部所在"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-13.html",
+          "locator": "ch. XIII, p. 204",
+          "quote": "on the 28th were established at La Panne in the Dunkirk bridgehead",
+          "quote_len": 66,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-13",
+            "raw_sha256": "35e6cac20855f52455b352e4a09e62f03a1e4a4126a7891351583436fe299f61",
+            "found": true,
+            "page_from_raw": 204
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 13"
+        }
+      ]
+    },
+    {
+      "id": "99a49fdb-7fa3-5769-8c7b-7fb6502c3cd6",
+      "feature_key": "dunkirk_1940_p3-site-0",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "site",
+      "side_camp": "contested",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.7517,
+          51.1294
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "contested",
+        "date": "1940-05-31",
+        "name": "Nieuwpoort"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV",
+          "quote": "There had been fighting all day at Nieuport and while attack and counter-attack had led to no great change",
+          "quote_len": 106,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": null,
+          "verification": "pending",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": null
+          },
+          "origin": "web-json",
+          "pending_reason": "原引文 106 字超過 80，截不出 raw 逐字存在的子句",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 15"
+        }
+      ]
+    },
+    {
+      "id": "13666c09-e5c9-596b-a7be-5c9e592a6d01",
+      "feature_key": "dunkirk_1940_p3-site-1",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "site",
+      "side_camp": "allied",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.5924,
+          51.0988
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "allied",
+        "date": "1940-05-31",
+        "name": "De Panne",
+        "note": "31日夜撤離；德軍佔領日期未核實"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+          "locator": "ch. XV, p. 237",
+          "quote": "about 6,000 men remaining at La Panne should march to Dunkirk",
+          "quote_len": 61,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-15",
+            "raw_sha256": "19e3019011be00071259796e1c7430708612bf693a9a55c029f68566424299b8",
+            "found": true,
+            "page_from_raw": 237
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 15"
+        }
+      ]
+    },
+    {
+      "id": "042f6510-3623-5fc9-9246-f0419ec38762",
+      "feature_key": "dunkirk_1940_p3-site-2",
+      "web_phase": 3,
+      "phase_seq": 4,
+      "phase_id": "3b85d949-8e72-575b-b3a7-47012764c35f",
+      "feature_kind": "site",
+      "side_camp": "contested",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.6621,
+          51.0724
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "contested",
+        "date": "1940-05-31",
+        "name": "Veurne"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": true
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-14.html",
+          "locator": "ch. XIV, p. 218",
+          "quote": "the enemy had indeed reached the canal on the eastern outskirts of Furnes",
+          "quote_len": 73,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-14",
+            "raw_sha256": "7c1b4e88eaa09840e55b0f9be7c6bfa4c8a42d85f3f7e2e30159a50a42c02757",
+            "found": true,
+            "page_from_raw": 218
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 14"
+        }
+      ]
+    },
+    {
+      "id": "9681f2ee-dcf8-57bb-ae03-a01b406dc359",
+      "feature_key": "dunkirk_1940_p4-site-0",
+      "web_phase": 4,
+      "phase_seq": 5,
+      "phase_id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "feature_kind": "site",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.4325,
+          50.9684
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "axis",
+        "name": "Bergues",
+        "note": "德軍完全佔領貝爾格日期待查證"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "無任何出處（前端 JSON 即無 citation）",
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": []
+    },
+    {
+      "id": "6f3b1c76-81cb-518f-8b2e-1bbd4b3a68a7",
+      "feature_key": "dunkirk_1940_p4-site-1",
+      "web_phase": 4,
+      "phase_seq": 5,
+      "phase_id": "79da8c00-ac43-5aae-9b65-c5daa78eb50f",
+      "feature_kind": "site",
+      "side_camp": "axis",
+      "side_regime_slug": null,
+      "geom": {
+        "type": "Point",
+        "coordinates": [
+          2.4485,
+          50.973
+        ]
+      },
+      "label": null,
+      "props": {
+        "controller": "axis",
+        "date": "1940-06-01",
+        "name": "Hoymille",
+        "note": "突破≠佔領；控制方變化待查證"
+      },
+      "geom_basis": "derived",
+      "status": "pending",
+      "json_flags": {
+        "verified": false
+      },
+      "pending_reasons": [
+        "幾何為推估（derived），需以出處圖重畫"
+      ],
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 242",
+          "quote": "At Hoymille the attack penetrated the front",
+          "quote_len": 43,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 242
+          },
+          "origin": "web-json",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+        }
+      ]
+    }
+  ],
+  "units": [],
+  "unit_candidates": [
+    "德軍 A 集團軍群 Kleist 裝甲集群",
+    "德軍 B 集團軍群第6軍團（三個師）",
+    "德軍 Hoth 集群",
+    "德軍（比軍投降後沿海岸推進之部隊，番號待查）",
+    "德軍（番號待查）"
+  ],
+  "deferred": {
+    "features": [
+      {
+        "id": "dab98194-af1f-559d-a284-253121a3c79d",
+        "feature_key": "dunkirk_1940_p5-site-0",
+        "web_phase": 5,
+        "phase_seq": null,
+        "phase_id": null,
+        "feature_kind": "site",
+        "side_camp": "axis",
+        "side_regime_slug": null,
+        "geom": {
+          "type": "Point",
+          "coordinates": [
+            2.3773,
+            51.0348
+          ]
+        },
+        "label": null,
+        "props": {
+          "controller": "axis",
+          "date": "1940-06-04",
+          "name": "Dunkerque"
+        },
+        "geom_basis": "derived",
+        "status": "pending",
+        "json_flags": {
+          "verified": true
+        },
+        "pending_reasons": [
+          "幾何為推估（derived），需以出處圖重畫"
+        ],
+        "citations": [
+          {
+            "source_key": "src-ellis",
+            "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+            "locator": "ch. XVI, p. 246",
+            "quote": "the remaining French troops surrendered at nine o'clock that morning",
+            "quote_len": 68,
+            "quote_lang": "en",
+            "accessed_on": "2026-11-11",
+            "grade": "A",
+            "verification": "verbatim",
+            "verbatim_check": {
+              "raw": "ellis-16",
+              "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+              "found": true,
+              "page_from_raw": 246
+            },
+            "origin": "web-json",
+            "truncated_from": "the remaining French troops surrendered at nine o'clock that morning, June the 4th",
+            "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+          }
+        ],
+        "deferred_reason": "新 P6 沒有戰線圖（Ellis 無 6/2–6/4 situation map）→ 不配地圖要素（Tai 2026-11-11 13:47）"
+      },
+      {
+        "id": "cd318730-1d75-57c9-bde1-a8b3db97a804",
+        "feature_key": "dunkirk_1940_p5-site-1",
+        "web_phase": 5,
+        "phase_seq": null,
+        "phase_id": null,
+        "feature_kind": "site",
+        "side_camp": "axis",
+        "side_regime_slug": null,
+        "geom": {
+          "type": "Point",
+          "coordinates": [
+            2.3985,
+            51.0467
+          ]
+        },
+        "label": null,
+        "props": {
+          "controller": "axis",
+          "name": "Malo-les-Bains",
+          "note": "日期待查證"
+        },
+        "geom_basis": "derived",
+        "status": "pending",
+        "json_flags": {
+          "verified": false
+        },
+        "pending_reasons": [
+          "無任何出處（前端 JSON 即無 citation）",
+          "幾何為推估（derived），需以出處圖重畫"
+        ],
+        "citations": [],
+        "deferred_reason": "新 P6 沒有戰線圖（Ellis 無 6/2–6/4 situation map）→ 不配地圖要素（Tai 2026-11-11 13:47）"
+      }
+    ],
+    "totals": {
+      "evacuated_dynamo": 338226,
+      "perspective": "英方數字（英國官方戰史 Ellis 所載；非各方共同統計）",
+      "citations": [
+        {
+          "source_key": "src-ellis",
+          "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-16.html",
+          "locator": "ch. XVI, p. 247",
+          "quote": "When the operation ended 338,226 had been evacuated",
+          "quote_len": 51,
+          "quote_lang": "en",
+          "accessed_on": "2026-11-11",
+          "grade": "A",
+          "verification": "verbatim",
+          "verbatim_check": {
+            "raw": "ellis-16",
+            "raw_sha256": "fdd3b2ca382308a531ac19041d35440894a4cb6f7e0093dc311b0aa74b883811",
+            "found": true,
+            "page_from_raw": 247
+          },
+          "origin": "web-json",
+          "truncated_from": "When the operation ended 338,226 had been evacuated—308,888 of them in the ships under Admiral Ramsay's orders.",
+          "web_citation": "L.F. Ellis, The War in France and Flanders 1939–1940 (HMSO, 1953), ch. 16"
+        }
+      ],
+      "note": "battle_figures 屬 C3；metric 值域目前沒有 evacuated，C3 時再議，不在 C1 入庫"
+    },
+    "map_sources": [
+      {
+        "source": "Ellis（A）situation maps",
+        "items": [
+          "Ellis Situation Map 'Situation on the evening of 26th May, 1940', facing p. 182（HyperWar maps/UK-NWE-Flanders-5.jpg）",
+          "Ellis Situation Map 'Situation on the evening of 27th May, 1940', facing p. 200（maps/UK-NWE-Flanders-6.jpg）",
+          "Ellis Situation Map 'The Withdrawal to the Coast', facing p. 202（maps/UK-NWE-Flanders-7.jpg）",
+          "Ellis Situation Map 'Situation on the evening of 28th May, 1940', facing p. 214（maps/UK-NWE-Flanders-8.jpg）",
+          "Ellis Situation Map 'Situation on the evening of 29th May, 1940', facing p. 224（maps/UK-NWE-Flanders-9.jpg）",
+          "Ellis Situation Map 'Situation on the evening of 30th May, 1940', facing p. 238（maps/UK-NWE-Flanders-10.jpg）",
+          "Ellis Situation Map 'Situation on the evening of 1st June, 1940', facing p. 244（maps/UK-NWE-Flanders-11.jpg）"
+        ],
+        "verified": "圖檔 HTTP 200 已取得；圖號＝facing page，見 ellis-index 目錄 'SITUATION MAPS'"
+      },
+      {
+        "source": "Ellis（A）sketch maps",
+        "items": [
+          "'Sea Routes from Dunkirk', p. 185（maps/UK-NWE-Flanders-xii.jpg）",
+          "'Dunkirk Harbour', p. 222（maps/UK-NWE-Flanders-xiii.jpg）",
+          "'German Situation Map--24th May, 1940', inside back cover（maps/UK-NWE-Flanders-14.jpg）"
+        ]
+      },
+      {
+        "source": "USMA Department of History, Campaign Atlas WWII European Theater（官方軍校戰史地圖；等級建議 B，待決）",
+        "items": [
+          "'Campaign in the West, Situation 4 June 1940'（https://dhc.westpoint.edu/wp-content/uploads/sites/6/2025/01/WWIIEurope13.jpg；dhc.westpoint.edu/atlases 清單）"
+        ],
+        "verified": "清單頁已取得；圖檔本次 TLS 錯誤未下載，內容待核對；1980 年印刷版 Campaign atlas to the Second World War（LoC 81601304）圖號待查"
+      }
+    ]
+  },
+  "gaps": [
+    {
+      "target": "field:name",
+      "kind": "not_found",
+      "note": "'Battle of Dunkirk' 名稱的 A／B 出處"
+    },
+    {
+      "target": "regime:deutsches-reich objective",
+      "kind": "partial",
+      "note": "德方目標只有 Ellis 英譯引述德方日誌；德國官方戰史（Das Deutsche Reich und der Zweite Weltkrieg Bd. 2）未取得"
+    },
+    {
+      "target": "phase:6 map",
+      "kind": "not_found",
+      "note": "6/2–6/4 戰線圖；USMA 4 June 圖待核對"
+    },
+    {
+      "target": "field:end time",
+      "kind": "note",
+      "note": "6/4 法軍 09:00 投降與 14:23 海軍部結束訊號；精度取 day"
+    },
+    {
+      "target": "source:ramsay narrative",
+      "kind": "not_fetched",
+      "note": "Ramsay 報告逐日敘述（p. 3296 起）與 Appendix 未逐頁取用"
+    },
+    {
+      "target": "source:B 級",
+      "kind": "blocked",
+      "note": "Britannica 'Dunkirk evacuation' 403／逾時，未繞過；本案 A 級已滿足門檻，B 級僅備援"
+    },
+    {
+      "target": "source:ellis edition",
+      "kind": "conflict",
+      "note": "出版年 1953 vs HyperWar 封面 1954"
+    },
+    {
+      "target": "phase:3 map",
+      "kind": "not_found",
+      "note": "前端舊圖形沒有對應 5/29–5/30 的要素；Ellis 29 May situation map 已列，待依圖重畫"
+    },
+    {
+      "target": "feature:dunkirk_1940_p4-site-0",
+      "kind": "not_found",
+      "note": "Bergues：無出處，德軍完全佔領日期待查證"
+    },
+    {
+      "target": "feature:dunkirk_1940_p5-site-1",
+      "kind": "not_found",
+      "note": "Malo-les-Bains：無出處，日期待查證"
+    },
+    {
+      "target": "unit:arrows",
+      "kind": "not_found",
+      "note": "箭頭部隊番號未逐字對照出處"
+    }
+  ],
+  "sources": [
+    {
+      "key": "src-ellis",
+      "id": "b49c1621-5461-5602-b2c3-3d602d696131",
+      "source_kind": "official_history",
+      "title": "L. F. Ellis, The War in France and Flanders 1939–1940 (History of the Second World War, UK Military Series, ed. J. R. M. Butler)",
+      "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/index.html",
+      "publisher": "HMSO",
+      "grade": "A",
+      "grade_basis": "英國官方戰史（§19.4.2 A：官方檔案含軍方戰史）；以 HyperWar 逐頁轉錄（頁碼標記 --NNN--）取用",
+      "transcription": "HMSO（HyperWar Foundation 轉錄）",
+      "note": "HyperWar 封面頁作 LONDON 1954；前端 JSON 作 1953，出版年待核對（初版 1953）",
+      "publication_year": null,
+      "publication_year_conflict": {
+        "values": [
+          "1953",
+          "1954"
+        ],
+        "note": "前端 JSON 作 1953（初版）；HyperWar 封面頁作 LONDON 1954。依考證輸入：出版年待核對，未決前不填。"
+      }
+    },
+    {
+      "key": "src-ramsay",
+      "id": "69589319-e05d-53db-8cc0-8807f524c71b",
+      "source_kind": "official_record",
+      "title": "Vice-Admiral Sir Bertram H. Ramsay, 'The Evacuation of the Allied Armies from Dunkirk and Neighbouring Beaches' (despatch dated 18 June 1940), Supplement to The London Gazette no. 38017, 17 July 1947",
+      "url": "https://www.thegazette.co.uk/London/issue/38017/supplement/3295",
+      "publisher": "The London Gazette",
+      "grade": "A",
+      "grade_basis": "英國海軍作戰指揮官向海軍部提交之官方報告，刊於官方公報",
+      "transcription": "The London Gazette（官方公報）",
+      "note": "引文取自公報 PDF（data.pdf）OCR 文字，僅取 OCR 無誤之片段"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+ "batch": "003",
+ "reviewedOn": "2026-11-11",
+ "reviewer": "opus",
+ "researcher": "sonnet",
+ "promptVersion": "full-v1（=run100-v1）",
+ "counts": {
+  "returned": 1,
+  "toUnverified": 0,
+  "deletedParagraphs": 0,
+  "deletedPositions": 0,
+  "deletedRoleCandidates": 0,
+  "movedToRoleCandidates": 0,
+  "movedToPositions": 0,
+  "deletedCitations": 0,
+  "addedCitations": 4,
+  "editedSentences": 0,
+  "spotRefetched": 5,
+  "searchLogShort": 1
+ },
+ "people": [
+  {
+   "key": "at-franz-joseph-i",
+   "bioId": "01a1b4b5-f9d8-7310-b964-ed7578856680",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 5,
+   "changes": [
+    "P1：「叔父斐迪南一世」子句原引文不含 Onkel，補引文 ndb-fj「seinem geistig schwachen Onkel Ferdinand I. auf dem Thron」",
+    "P1：「奧地利皇帝」原引文無職稱，補引文 ndb-fj「Kaiser von Österreich」（Beruf/Funktion）",
+    "gap paragraph:1 note 更正：已抓 ebsco-fj 其實有 1914 年 6 月塞拉耶佛刺殺句，原寫「未找到可逐字引用的句子」不正確；未替它補段",
+    "重抓 deutsche-biographie gnd118535013（200，引文仍在）",
+    "名單政權「共和制」與 NDB『Kaiser von Österreich』不符，研究者已記 gap field:regime，同意"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "ru-nicholas-ii",
+   "bioId": "01a1b4b5-f9bc-7f2f-90ba-f2af428ba89c",
+   "verdict": "returned",
+   "paragraphs": 1,
+   "positions": 0,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 6,
+   "changes": [
+    "gap paragraph:1 note 加註退回原因與建議來源",
+    "重抓 lobid GND 11873492X JSON（200，引文仍在）",
+    "段落引文 7 筆逐條核對：皆逐字見於 gnd-nik.txt，子句均有支撐"
+   ],
+   "returnedReasons": [
+    "最低嘗試未達：缺查詢次數（searchLog 6 步，<8 次）",
+    "最低嘗試未達：缺原文語言查詢（0 次俄文查詢，需 ≥2 次，例：Николай II Александрович）",
+    "建議下一步：Большая российская энциклопедия（bigenc.ru／old.bigenc.ru，具名條目）、Президентская библиотека（prlib.ru）、id.loc.gov／VIAF 權威檔；Britannica 403、1914-1918-online Anubis 均未繞過，合規"
+   ]
+  },
+  {
+   "key": "gb-lloyd-george",
+   "bioId": "01a19f15-33c3-7fff-a8d9-5521e842fb87",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 3,
+   "roleCandidates": 2,
+   "gaps": 4,
+   "searchLogSteps": 3,
+   "changes": [
+    "候選 llg-commons-liberal（1890 下議院議員〔自由黨〕，Salazar 規則 R1）：迄日 NULL，與 1908–1945 時間窗交集無法由引文證明，加 t14Ambiguous＋理由，待 Tai 確認",
+    "新增 gap position:llg-liberal-leader（1926 起黨魁迄日未明寫；不由「1929 Ende der politischen Laufbahn」推論）",
+    "T14 檢查：財政大臣 R6〔regime〕、戰爭大臣 R6〔dates, regime〕、軍需大臣 R5、黨魁 R1，判斷正確；年精度天數計算正確",
+    "GND 內部兩處寫法不一（「1915 Munitions-, 1916 Kriegsminister」vs「1915 Kriegs- und Munitionsminister」），同一來源，不構成 conflict；EBSCO 寫 1916 年 6 月基欽納死後接任戰爭大臣，與段落一致",
+    "重抓 ebsco-llg（200，引文仍在）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "gb-neville-chamberlain",
+   "bioId": "01a19f15-3507-788a-9d61-83862bf96e28",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 3,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 3,
+   "changes": [
+    "P1：「生於伯明罕」原引文只寫家族在伯明罕（born into 在引文外），補引文 gnd-nch placeOfBirth「Birmingham」",
+    "P1：「接任首相」原引文「assumed the office」不含首相，補引文 gnd-nch「Brit. Politiker; von 1937 bis 1940 Premierminister」(year)",
+    "T14 檢查：衛生大臣兩段 R5、財政大臣 R6〔dates, regime〕，正確",
+    "重抓 ebsco-nch（200，引文仍在）"
+   ],
+   "returnedReasons": []
+  },
+  {
+   "key": "us-woodrow-wilson",
+   "bioId": "01a1b48b-c814-7f78-bba8-753c5a5ea41f",
+   "verdict": "pass_with_changes",
+   "paragraphs": 1,
+   "positions": 1,
+   "roleCandidates": 0,
+   "gaps": 2,
+   "searchLogSteps": 3,
+   "changes": [
+    "職位 wil-nj-governor：GND 職稱「Demokratischer Gouverneur」＋EBSCO「Democratic nomination for the governorship」，屬以黨提名取得的行政職、不是議會席位；不硬判為黨職，加 partyPostAmbiguous＋理由，待 Tai 裁決",
+    "gap field:dateOfDeath conflict（GND 1924-02-04 vs EBSCO 1924-02-03）：兩份已抓原文都核到，conflict 用法正確",
+    "重抓 ebsco-wil（200，引文仍在，含 February 3, 1924）"
+   ],
+   "returnedReasons": []
+  }
+ ],
+ "issues": [
+  "引文支撐：有 2 處子句的關鍵詞在引文外（FJ『Onkel』、NCH『born into』『prime minister』），verify.py 抓不到；審查從已抓原文補了 4 筆引文",
+  "覆蓋偏薄：研究者只用了 GND＋EBSCO（FJ 另用 NDB），每人只寫 1 段；FJ 的 NDB 全文與 EBSCO 的 1908–1916 內容都沒用到。不違規，但下一輪可以從已抓原文補段",
+  "LLG／NCH／WIL 的 searchLog 只有 3 步，沒查 ODNB、Miller Center、白宮官網這類 A 級官方頁；這三人不是薄人物，不適用最低嘗試，只記錄",
+  "Salazar 規則的邊界有兩類待 Tai 裁決：①起點在窗外、迄日 NULL 的黨籍席位（LLG 1890）②以黨提名當選的行政職（Wilson 民主黨州長）。審查都標了 ambiguous，沒有硬判",
+  "名單推定屬性跟實查不符：FJ 名單寫『共和制』，實際是帝制；LLG／NCH／WIL 的地區、政權都標『不明』，實查是英國（LLG、NCH）、美國（WIL），名單屬性要修",
+  "EBSCO Research Starters（具名作者）沿用 batch002 的暫定做法評為 B，仍待 Tai 確認",
+  "raw 目錄裡 brit-nik.html（403）、w14-nik.txt（Anubis 挑戰頁）、dbio-nik.txt（索引頁）、ebsco-nik.txt（404）、t.html 都沒被引用，沒有繞過，不影響結果",
+  "跟 batch002 一樣，本次以 PROMPT_research.md 內嵌的規則逐條核對；ARCHITECTURE §16、T14_RECOMMENDATION.md 原文沒有全文重讀"
+ ],
+ "verify": {
+  "ok": true,
+  "rawChecked": true,
+  "quoteMax": 77
+ }
+}

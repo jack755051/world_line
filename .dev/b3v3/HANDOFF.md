@@ -77,3 +77,11 @@ python3 -I tools/b3v3/run_chunk.py dry-run \
 - 研究 agent 會把單人檔 `rawMap` 寫成字串 `"rawmap.json"`。合併程式會改成物件；提示詞仍要求寫物件。
 - 審查不要為了「這是推論」就拿掉已寫上的迄日。佩納因此從達標變成已標註缺迄日。
 - 每人證據切片 `people/<bioId>.evidence.json` 的 `claims` 以段、職位、候選角色、gap 為單位：`where` 與 `text` 只寫一次，`citations` 逐筆含 `index`、`quote`、`sourceKey`、`grade`、`verify`（`ok`、`normOffset` 或 `reason`）。`checkMin`、`verifyErrors` 仍在檔案頂層。整批 `evidence-pack.json` 同形，`failedClaimIndexes` 是沒過的單位索引。
+
+## 低成本流程試跑（2026-11-18，batch123 兩人）
+
+- 新工具：`prefilter.py`、`person_draft.py`、`person_patch.py`、`run_loop.py`、`session_cost.py`；`agent_specs.py` 重寫成精簡提示。測試 49 個全過。
+- 每人 token（舊基準 1.56M）：Ramek 研究 71K＋審查 43K＝114K，4 段／441 字、check_min OK。若槻禮次郎 第一次 116K（含 haiku 12K）但只有 182 字（篇幅不足）。
+- 若槻的問題：索引用 en 搜漢字名找不到人（已改 ja＋zh）；權威檔命中被算成「夠寫」而沒跑 haiku（已改成只算有傳記敘述的來源）。修正後重跑（`.dev/b3v3/run/pilot2-out`，不在正式 batch123）研究 120K＋審查 46K，259 字仍篇幅不足；審查到 6 輪上限，留下 3 處沒引文的子句。
+- 日本人物缺好的 A／B 傳記頁（kantei、NDL 肖像頁很短；kotobank 未評級）。這類人可能要放寬補查或改用 retry。
+

@@ -1,6 +1,6 @@
 ---
 name: b3v3-run
-description: 便宜地跑或續跑 B3 v3 人物生平。主 session 用 Sonnet，Python 做計畫與檢查，Sonnet 補缺欄或審查一個人，只有 verify 報錯或重跑後仍未達才升 Opus。
+description: 便宜地跑或續跑 B3 v3 人物生平。run_loop.py 用 Python 預查、計畫與檢查，Sonnet 研究與審查一個人，只有審查後 verify 仍有錯才升 Opus。
 ---
 
 # B3 v3 便宜續跑
@@ -9,7 +9,26 @@ description: 便宜地跑或續跑 B3 v3 人物生平。主 session 用 Sonnet�
 
 交接現況在 `.dev/b3v3/HANDOFF.md`。第四段剩餘清單是 `.dev/b3v3/partial/chunk4-remaining.json`。
 
-## 主 session
+## 低成本迴圈（建議）
+
+不用主 session 調度，直接在 repo 跑：
+
+```bash
+cd /Users/jack755051/Project/private/world_line-battle-demo
+nohup python3 -u tools/b3v3/run_loop.py --chunk <NN> [--people <bioId,...>] \
+  --state .dev/b3v3/run/loop-state.json --spec-out .dev/b3v3/run/loop-spec.json \
+  --log-dir ~/wl-b3v3-runs/loop > ~/wl-b3v3-runs/loop/loop.out 2>&1 &
+python3 tools/b3v3/session_cost.py --journal ~/wl-b3v3-runs/loop/journal.jsonl   # 每個 agent 的 token
+```
+
+- 研究前 `prefilter.py` 先用索引（Wikidata 只當索引，不當出處）、LoC、lobid 找權威檔／傳記辭典網址，抓頁、挑含人名段落，寫 `people/<bioId>.snippets.md`、`.prefilter.json`。其他批抓過的網址複製原文，不重抓。
+- 有傳記敘述的命中來源少於 2 個或段落少於 2500 字時，先跑一次 haiku（只 WebSearch，回網址），再預查一次。
+- 研究 agent 只寫 `people/<bioId>.draft.json`，用 `person_draft.py check` 自檢；Python 組回原格式的單人檔。審查只讀證據切片，用 `person_patch.py` 改欄位，用 `person_draft.py review-done` 收尾。
+- 每次啟動都固定模型、`--max-turns`、精簡工具與系統提示（不載 MCP、slash 指令）：研究 sonnet 11 輪、補欄 sonnet 9、審查 sonnet 6、升級 opus 6、找網址 haiku 4。
+- 網路錯誤（ENOTFOUND 等）連 3 次或 DNS 連 3 分鐘失敗就殺掉，等網路回來再重開；額度用完等 20 分鐘。
+- 要停：`touch ~/wl-b3v3-runs/loop/STOP`。
+
+## 主 session（舊流程）
 
 ```bash
 cd /Users/jack755051/Project/private/world_line-battle-demo
@@ -61,7 +80,7 @@ python3 -I tools/b3v3/run_chunk.py next \
 | 計畫、抽單人檔、合併、verify、check_min、證據切片 | `tools/b3v3/run_chunk.py`（Python，不耗模型） |
 | 研究、只補缺的欄位 | Sonnet，一人一個 agent |
 | 審查 | 預設 Sonnet，一人一個 agent，只讀自己的 `people/<bioId>.evidence.json` |
-| 升 Opus | 該人的 verify 有錯，或補欄之後 check_min 仍是「未達」 |
+| 升 Opus | Sonnet 審查改完後該人的 verify 仍有錯（只此一種） |
 
 模型可以改：`--research-model`、`--retry-model`、`--review-model`、`--escalate-model`。預設是 sonnet、sonnet、sonnet、opus。
 

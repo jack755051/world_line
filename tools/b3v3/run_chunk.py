@@ -13,6 +13,13 @@ workflow 腳本不讀檔、不跑 python。
 
     python3 -I tools/b3v3/run_chunk.py next ...同上
     python3 -I tools/b3v3/run_chunk.py show-prompt --spec .dev/b3v3/run/next-spec.json --id retry:094:<bioId>
+
+2026-11-18 節流改版：
+- 審查一律先用 --review-model（預設 sonnet）。Sonnet 審查後該人 verify 仍有錯，才多一個
+  escalate 階段，用 --escalate-model（預設 opus）只修那些錯。check_min「未達」不再直接升 Opus。
+- --people 只跑指定 bioId（試跑用）。批次裡還沒研究的人會單獨排研究，不會因為批裡已有 research.json 就被略過。
+- show-prompt 會把預查段落（研究）或證據切片（審查）接在提示詞後面，agent 不必另外讀檔。
+- 實際啟動 agent（固定模型、輪數上限、工具、斷網快速失敗）用 tools/b3v3/run_loop.py。
 """
 import argparse
 import contextlib
@@ -61,6 +68,30 @@ def chunked(items, size):
     return [items[index:index + size] for index in range(0, len(items), size)]
 
 
+def filter_people(items, people):
+    """--people：每批只留指定 bioId（試跑用）。沒有指定的人整批略過。"""
+    if not people:
+        return items
+    want = set(people)
+    out = []
+    for batch in items:
+        kept = [person for person in batch["people"] if person["bioId"] in want]
+        if not kept:
+            continue
+        batch = dict(batch)
+        batch["people"] = kept
+        batch["details"] = [d for d in batch.get("details") or [] if d.get("bioId") in want]
+        batch["shortfall"] = [d for d in batch.get("shortfall") or [] if d.get("bioId") in want]
+        batch["retrySkipped"] = [d for d in batch.get("retrySkipped") or [] if d.get("bioId") in want]
+        retry = dict(batch.get("retry") or {"mode": "none", "people": []})
+        retry["people"] = [d for d in retry.get("people") or [] if d.get("bioId") in want]
+        batch["retry"] = retry
+        if batch.get("researchPeople") is not None:
+            batch["researchPeople"] = [bio for bio in batch["researchPeople"] if bio in want]
+        out.append(batch)
+    return out
+
+
 def make_plan(cfg):
     chunk = [part.strip() for part in (cfg.chunk or "").split(",") if part.strip()]
     if cfg.resume:
@@ -75,6 +106,8 @@ def make_plan(cfg):
             cfg.repo, cfg.prompt_dir, cfg.out_root, cfg.raw_root, chunk, cfg.force_research,
         )
         skipped = []
+    people = [part.strip() for part in (getattr(cfg, "people", None) or "").split(",") if part.strip()]
+    items = filter_people(items, people)
     if cfg.limit is not None:
         if cfg.limit < 0:
             raise SystemExit("--limit 不可為負")
@@ -97,17 +130,37 @@ def agent_record(kind, phase, model, batch, person, prompt, schema):
         "batchId": batch["batchId"],
         "fields": [field["field"] for field in (person.get("missingFields") or [])],
         "reviewReason": person.get("reviewReason"),
+        "line": person.get("line"),
+        "specPath": batch.get("specPath"),
         "prompt": prompt,
         "schema": schema,
         "doneMarker": specs.done_path(batch, person),
     }
 
 
+def marker_stage(path):
+    path = Path(path)
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+    if data.get("ok") is not True:
+        return None
+    return data.get("stage")
+
+
 def all_agents(plan_doc, cfg):
-    grouped = {"research": [], "retry": [], "review": []}
+    grouped = {"research": [], "retry": [], "review": [], "escalate": []}
+    spec_ref = display_path(cfg.repo, spec_path_of(cfg))
     for batch in plan_doc["batches"]:
+        batch = dict(batch, specPath=spec_ref)
         if batch.get("research"):
+            only = batch.get("researchPeople")
             for person in batch["people"]:
+                if only is not None and person["bioId"] not in only:
+                    continue
                 grouped["research"].append(agent_record(
                     "research", "Research", cfg.research_model, batch, person,
                     specs.research_prompt(batch, person, cfg.repo), specs.RETURN_SCHEMA,
@@ -125,11 +178,17 @@ def all_agents(plan_doc, cfg):
             extra = by_bio.get(person["bioId"]) or {}
             detail["shortfallFlag"] = bool(extra.get("shortfallFlag"))
             detail["reviewReason"] = extra.get("reviewReason") or "OK"
-            model = cfg.escalate_model if extra.get("escalate") else cfg.review_model
+            # 審查一律先用便宜的模型。Sonnet 審查（含它做的欄位修正）之後 verify 仍有錯，才升階。
             grouped["review"].append(agent_record(
-                "review", "Review", model, batch, detail,
+                "review", "Review", cfg.review_model, batch, detail,
                 specs.review_prompt(batch, detail, cfg.repo), specs.REVIEW_SCHEMA,
             ))
+            stage = marker_stage(specs.done_path(batch, person))
+            if stage == "review" and extra.get("verifyErrorCount"):
+                grouped["escalate"].append(agent_record(
+                    "escalate", "Escalate", cfg.escalate_model, batch, detail,
+                    specs.review_prompt(batch, detail, cfg.repo, escalate=True), specs.REVIEW_SCHEMA,
+                ))
     return grouped
 
 
@@ -150,7 +209,7 @@ def save_state(path, state):
     path.write_text(dump(state), encoding="utf-8")
 
 
-STAGE_ORDER = {"research": 0, "retry": 1, "review": 2}
+STAGE_ORDER = {"research": 0, "retry": 1, "review": 2, "escalate": 3}
 
 
 def marker_done(agent):
@@ -179,7 +238,7 @@ def pending_groups(grouped, state):
 
 
 def active_phase(grouped):
-    for phase in ("research", "retry", "review"):
+    for phase in ("research", "retry", "review", "escalate"):
         if grouped[phase]:
             return phase
     return None
@@ -214,7 +273,7 @@ def display_path(repo, path):
 
 def dry_run_payload(plan_doc, grouped, concurrency):
     waves = []
-    for phase in ("research", "retry", "review"):
+    for phase in ("research", "retry", "review", "escalate"):
         parts = chunked(grouped[phase], concurrency)
         for index, wave in enumerate(parts, 1):
             waves.append({
@@ -232,6 +291,7 @@ def dry_run_payload(plan_doc, grouped, concurrency):
         "researchAgents": len(grouped["research"]),
         "retryAgents": len(grouped["retry"]),
         "reviewAgents": len(grouped["review"]),
+        "escalateAgents": len(grouped["escalate"]),
         "reviewModels": review_models,
         "retryModels": dict(Counter(agent["model"] for agent in grouped["retry"])),
         "shortfallPeople": sum(len(batch.get("shortfall") or []) for batch in plan_doc["batches"]),
@@ -254,7 +314,7 @@ def format_dry_run(plan_doc, grouped, concurrency):
     ]
     if payload["skipped"]:
         lines.append("略過 " + "、".join(payload["skipped"]))
-    labels = {"research": "研究", "retry": "重跑", "review": "審查"}
+    labels = {"research": "研究", "retry": "重跑", "review": "審查", "escalate": "升階審查"}
     for phase, label in labels.items():
         agents = grouped[phase]
         parts = chunked(agents, concurrency)
@@ -314,7 +374,7 @@ def prepare_files(agents):
         out = Path(agent["outDir"])
         people = out / "people"
         people.mkdir(parents=True, exist_ok=True)
-        if agent["kind"] == "research":
+        if agent["kind"] in ("research", "discover"):
             Path(agent["rawDir"]).mkdir(parents=True, exist_ok=True)
             continue
         research = out / "research.json"
@@ -322,7 +382,7 @@ def prepare_files(agents):
             raise SystemExit(f"batch{agent['batch']} 沒有 research.json，不能{agent['kind']}")
         person_file = people / f"{agent['bioId']}.json"
         quiet_call(merge.extract, research, agent["bioId"], person_file)
-        if agent["kind"] != "review":
+        if agent["kind"] not in ("review", "escalate"):
             continue
         if agent["outDir"] not in packs:
             packs[agent["outDir"]] = evidence.build(research)
@@ -352,6 +412,7 @@ def prepare_files(agents):
                 "openTerms": row.get("openTerms") or [],
             },
             "verifyErrors": errors,
+            "paths": evidence.unit_paths(person),
             "claims": claims,
         }
         (people / f"{agent['bioId']}.evidence.json").write_text(dump(doc), encoding="utf-8")
@@ -424,7 +485,7 @@ def finish_spec(spec, cfg, plan_doc):
         if checked.returncode != 0:
             raise SystemExit(f"check_min batch{nn} 失敗 {(checked.stderr or checked.stdout).strip()[:200]}")
         review_done = ""
-        if agents[0]["kind"] == "review" and nn in batches:
+        if agents[0]["kind"] in ("review", "escalate") and nn in batches:
             if assemble_review(batches[nn]):
                 review_done = " review.json"
         status = "ok" if verified.returncode == 0 else "fail"
@@ -575,6 +636,33 @@ def cmd_next(cfg):
     return cmd_prepare(cfg, state)
 
 
+ATTACH_LIMIT = 24000
+
+
+def attachment(agent):
+    """研究附預查段落，審查附證據切片。檔案不存在就不附（agent 依提示詞自己讀）。"""
+    if not agent.get("outDir") or not agent.get("bioId"):
+        return ""
+    people = Path(agent["outDir"]) / "people"
+    if agent.get("kind") == "research":
+        path, label = people / f"{agent['bioId']}.snippets.md", "預查段落"
+    elif agent.get("kind") in ("review", "escalate"):
+        path, label = people / f"{agent['bioId']}.evidence.json", "證據切片"
+    else:
+        return ""
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8")
+    if agent.get("kind") != "research":
+        try:
+            text = json.dumps(json.loads(text), ensure_ascii=False, separators=(",", ":"))
+        except json.JSONDecodeError:
+            pass
+    if len(text) > ATTACH_LIMIT:
+        text = text[:ATTACH_LIMIT] + "\n…[截斷；其餘用 lookup]"
+    return f"\n---{label}（{path.name}）---\n{text}\n---end---\n"
+
+
 def cmd_show_prompt(spec_file, agent_id):
     data = json.loads(Path(spec_file).read_text(encoding="utf-8"))
     for agent in data.get("agents") or []:
@@ -582,6 +670,7 @@ def cmd_show_prompt(spec_file, agent_id):
             sys.stdout.write(agent.get("prompt") or "")
             if not (agent.get("prompt") or "").endswith("\n"):
                 sys.stdout.write("\n")
+            sys.stdout.write(attachment(agent))
             return 0
     sys.stderr.write(f"spec 裡沒有 {agent_id}\n")
     return 1
@@ -601,6 +690,7 @@ def build_parser():
         command.add_argument("--raw-root", required=True)
         command.add_argument("--resume")
         command.add_argument("--chunk")
+        command.add_argument("--people", help="只跑這些 bioId（逗號分隔，試跑用）")
         command.add_argument("--limit", type=int)
         command.add_argument("--force-research", action="store_true")
         command.add_argument("--concurrency", type=int, default=3)

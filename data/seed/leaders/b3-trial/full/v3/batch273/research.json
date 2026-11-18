@@ -1,0 +1,192 @@
+{
+ "batch": "b3-full-v3-batch273",
+ "researchedOn": "2026-11-18",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "單人檔，格式對齊 b0b0e0f；0 段，全部寫 gap",
+ "schemaNote": "sources 為空（無可引用 A/B 原文）；rawMap 僅列已抓檔，供下一輪參考",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch273/raw",
+ "rawMap": "rawmap.json",
+ "sources": {},
+ "people": [
+  {
+   "key": "cn-wang-jingjiu",
+   "bioId": "01a1edaf-2a1d-70b8-9947-5dd19ebcd8a4",
+   "name": "Wang Jingjiu",
+   "nameZh": "王敬久",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 0 段／0 字。已查權威檔（LoC 無法確認同一人、VIAF 403）、官方（國史館 su2015 PDF 文字亂碼、drnh 搜尋 400、近史所空內容）、學術（民國近代史 403、Askew 論文文字層無法逐字引用）、同鄉會資料庫 403。下一輪需可抓取文字的 A/B 來源（國史館人物傳記、近史所、《民國人物大辭典》、出版社專書）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-18"
+    },
+    {
+     "target": "identity",
+     "gapKind": "identity_uncertain",
+     "note": "未取得 A/B 原文確認：1937 年任第八十七師師長（戰役側線索，二手網站稱 1932 年 8 月接任、1937 年 9 月兼第七十一軍軍長、10 月免師長，說法不一），故不寫任何職位或任期。生卒年二手說法亦不一（1902／1903）。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-18"
+    },
+    {
+     "target": "position:cn-87-div-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；已查 su2015（文字亂碼）、民國近代史（403）、同鄉會（403）、LoC／VIAF，無可引原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-18"
+    },
+    {
+     "target": "position:cn-71-corps-commander",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；同上，僅二手網站線索，無 A/B 原文。",
+     "candidateCitations": [],
+     "checkedOn": "2026-11-18"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "authority",
+     "query": "LoC Name Authority 王敬久／Wang Jingjiu",
+     "url": "https://id.loc.gov/search/?q=Wang+Jingjiu",
+     "result": "not_relevant",
+     "note": "僅得 nr91016386「王经久」(1990s 建檔)，無生卒與職務，無法確認同一人，未採用"
+    },
+    {
+     "step": 2,
+     "sourceType": "authority",
+     "query": "VIAF Wang Jingjiu",
+     "url": "https://viaf.org/viaf/search",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 3,
+     "sourceType": "official",
+     "query": "drnh 國史館 搜尋 王敬久",
+     "url": "https://www.drnh.gov.tw/search",
+     "result": "no_result",
+     "note": "HTTP 400，放棄"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "中研院近史所 mhdb 王敬久",
+     "url": "https://mhdb.mh.sinica.edu.tw/search",
+     "result": "no_result",
+     "note": "空內容"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "su2015 國史館 PDF（戰役側出發網址）",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "result": "unrated",
+     "note": "已抓；PDF 文字層為亂碼，lookup 王敬久 無命中，無法逐字引用"
+    },
+    {
+     "step": 6,
+     "sourceType": "academic",
+     "query": "民國近代史 digroc.pccu.edu.tw 王敬久",
+     "url": "https://digroc.pccu.edu.tw/CNH/Personage/personage.aspx?ID=0001246",
+     "result": "blocked_403",
+     "note": "403，放棄"
+    },
+    {
+     "step": 7,
+     "sourceType": "other",
+     "query": "台灣大陸同鄉會文獻資料庫 王敬久將軍事略／年譜",
+     "url": "https://www.tongxianghuicn.com/article/818281.jhtml?libId=688",
+     "result": "blocked_403",
+     "note": "兩頁皆 403，放棄；且屬無具名作者資料庫，評等未定"
+    },
+    {
+     "step": 8,
+     "sourceType": "other",
+     "query": "抗日戰爭紀念網 王敬久",
+     "url": "https://www.krzzjn.com/show-1802-82637.html",
+     "result": "unrated",
+     "note": "已抓；無作者彙編網站，只能當索引，不作出處"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Askew Defending Nanking（Sino-Japanese Studies）",
+     "url": "https://www.chinajapan.org/articles/15/askew15.148-173.pdf",
+     "result": "no_result",
+     "note": "已抓；PDF 文字層字母間夾空白，lookup 無法命中，無法逐字引用"
+    },
+    {
+     "step": 10,
+     "sourceType": "named_encyclopedia",
+     "query": "搜尋：王敬久 第八十七師 淞滬會戰 國史館（標準）",
+     "url": null,
+     "result": "no_result",
+     "note": "結果僅 Wikipedia 鏡像／generals.dk／百科網站，未用"
+    },
+    {
+     "step": 11,
+     "sourceType": "named_encyclopedia",
+     "query": "搜尋：王敬久 1893 江蘇銅山 …（標準）",
+     "url": null,
+     "result": "no_result",
+     "note": "同上"
+    },
+    {
+     "step": 12,
+     "sourceType": "named_encyclopedia",
+     "query": "搜尋：Wang Jingjiu 87th Division commander（標準）",
+     "url": null,
+     "result": "no_result",
+     "note": "同上"
+    },
+    {
+     "step": 13,
+     "sourceType": "national_dictionary",
+     "query": "搜尋：王敬久 人物傳記 國史館 OR 近史所 OR 國防部（extended）",
+     "url": null,
+     "result": "no_result",
+     "note": "未得官方傳記頁"
+    },
+    {
+     "step": 14,
+     "sourceType": "official",
+     "query": "搜尋：王敬久 第八十七師師長 八一三 檔案（extended）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅二手網站"
+    },
+    {
+     "step": 15,
+     "sourceType": "official",
+     "query": "搜尋：王敬久 檔案 國史館（限 drnh／sinica／ncl 網域）",
+     "url": null,
+     "result": "no_result",
+     "note": "僅檔案平台入口，無王敬久條目"
+    },
+    {
+     "step": 16,
+     "sourceType": "academic",
+     "query": "搜尋：Wang Ching-chiu 87th Division（排除 wiki）",
+     "url": null,
+     "result": "no_result",
+     "note": "得 Askew 論文與 dokumen.pub 書籍轉載；後者非官方出處未採"
+    },
+    {
+     "step": 17,
+     "sourceType": "academic",
+     "query": "搜尋：Wang Jingjiu Shanghai 87th Division university press（排除 wiki）",
+     "url": null,
+     "result": "no_result",
+     "note": "無學術出版社頁"
+    }
+   ]
+  }
+ ]
+}

@@ -95,6 +95,30 @@ def decide_research(out_dir, force):
     return True, None
 
 
+def unresearched(out_dir, people):
+    """批裡已有 research.json，但名單上還有人不在裡面（例如試跑只做了部分人）。回傳這些人的 bioId。"""
+    path = Path(out_dir) / "research.json"
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+    have = {person.get("bioId") for person in data.get("people") or []}
+    return [person["bioId"] for person in people if person["bioId"] not in have]
+
+
+def decide_research_people(out_dir, people, force):
+    """(要不要研究, 略過理由, 只研究哪些 bioId；None 表示全批)。"""
+    research, reason = decide_research(out_dir, force)
+    if research:
+        return True, None, None
+    missing = unresearched(out_dir, people)
+    if missing:
+        return True, None, missing
+    return False, reason, None
+
+
 def load_check_min():
     spec = importlib.util.spec_from_file_location("b3_check_min", CHECK_MIN)
     module = importlib.util.module_from_spec(spec)
@@ -286,7 +310,8 @@ def annotate(paths, prompt_people, retry_mode):
             "documentedShortfall": info["documentedShortfall"],
             "shortfallFlag": info["shortfallFlag"],
             "verifyErrorCount": len(own_errors),
-            "escalate": bool(own_errors) or info["verdict"] == "未達",
+            # 只表示「現在 verify 有錯」。模型由 run_chunk 決定：先 Sonnet 審查，審查後仍有錯才升階。
+            "escalate": bool(own_errors),
             "reviewReason": review_reason(info["verdict"], len(own_errors)),
         })
         details.append(detail)
@@ -352,10 +377,12 @@ def match_retry(paths, people, names, failing_keys):
     return chosen
 
 
-def describe(nn, paths, people, research, reason, retry, review, recheck, details, shortfall, retry_skipped):
+def describe(nn, paths, people, research, reason, retry, review, recheck, details, shortfall, retry_skipped,
+             research_people=None):
     item = dict(paths)
     item.update({
         "research": research,
+        "researchPeople": research_people,
         "skipResearchReason": reason,
         "retry": retry,
         "review": review,
@@ -387,13 +414,13 @@ def from_chunk(repo, prompt_dir, out_root, raw_root, chunk, force):
     for nn in chunk:
         paths = batch_paths(repo, prompt_dir, out_root, raw_root, nn)
         people = load_people(paths)
-        research, reason = decide_research(paths["outDir"], force)
+        research, reason, only = decide_research_people(paths["outDir"], people, force)
         details, retry, shortfall = annotate(paths, people, "none" if research else "list")
         if research:
             retry = {"mode": "auto", "people": []}
         items.append(describe(
             nn, paths, people, research, reason, retry, True, False, details, shortfall,
-            _skipped_retry(details, retry["mode"]),
+            _skipped_retry(details, retry["mode"]), only,
         ))
     return items
 
@@ -414,7 +441,7 @@ def from_resume(repo, prompt_dir, out_root, raw_root, resume_path, chunk, force)
         seen.add(nn)
         paths = batch_paths(repo, prompt_dir, out_root, raw_root, nn)
         people = load_people(paths)
-        research, reason = decide_research(paths["outDir"], force)
+        research, reason, only = decide_research_people(paths["outDir"], people, force)
         if nn in retry_done:
             retry_mode = "none"
         if research and retry_mode == "list":
@@ -424,7 +451,7 @@ def from_resume(repo, prompt_dir, out_root, raw_root, resume_path, chunk, force)
             retry = {"mode": "auto", "people": []}
         ordered.append(describe(
             nn, paths, people, research, reason, retry, review, recheck, details, shortfall,
-            _skipped_retry(details, retry["mode"]),
+            _skipped_retry(details, retry["mode"]), only,
         ))
 
     for nn in data.get("needs_research") or []:

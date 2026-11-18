@@ -2,11 +2,13 @@
 """B3 v3 省 token 工具的離線測試。不連外網。"""
 import importlib.util
 import json
+import re
 import subprocess
 import sys
 import tempfile
 import threading
 import unittest
+import time
 import zlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -919,6 +921,9 @@ class DriverTests(unittest.TestCase):
         self.assertIn("citations", review)
         self.assertIn("checkMin", review)
         self.assertIn("text 只寫一次", review)
+        self.assertNotIn("/tmp/review.md", review)
+        self.assertIn("person_patch.py", review)
+        self.assertIn("review-done", review)
 
     def test_dry_run_skips_flagged_ends_and_keeps_models(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -951,12 +956,28 @@ class DriverTests(unittest.TestCase):
                 for wave in data["waves"] if wave["phase"] == "review"
                 for agent in wave["agents"]
             }
-            self.assertEqual(review_models[("094", "Flagged End")], "sonnet")
-            self.assertEqual(review_models[("094", "Short Flagged")], "sonnet")
-            self.assertEqual(review_models[("094", "Open End")], "opus")
-            self.assertEqual(review_models[("095", "Ok Person")], "opus")
+            # 審查一律先 Sonnet（含 verify 有錯、check_min 未達的人）；Opus 只在 Sonnet 審查後仍有錯時出現。
+            self.assertEqual(set(review_models.values()), {"sonnet"})
+            self.assertEqual(data["escalateAgents"], 0)
             self.assertNotIn("Flagged End", [agent["name"] for agent in data["retryPeople"]])
             self.assertNotIn("prompt", json.dumps(data["waves"][0]["agents"][0]))
+            # 095 的 Ok Person 審查做完（agent-done stage=review），verify 仍有錯 → 只有他升 Opus。
+            people_dir = root / "out" / "batch095" / "people"
+            people_dir.mkdir(parents=True)
+            (people_dir / "bio-ok.agent-done.json").write_text(
+                json.dumps({"stage": "review", "bioId": "bio-ok", "ok": True}), encoding="utf-8")
+            again = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run",
+                 "--repo", str(root), "--prompt-dir", "prompts", "--out-root", "out", "--raw-root", "raw",
+                 "--resume", "remaining.json", "--concurrency", "3", "--json"],
+                capture_output=True, text=True, cwd=root,
+            )
+            self.assertEqual(again.returncode, 0, again.stderr)
+            later = json.loads(again.stdout)
+            self.assertEqual(later["escalateAgents"], 1)
+            escalated = [agent for wave in later["waves"] if wave["phase"] == "escalate" for agent in wave["agents"]]
+            self.assertEqual([(a["name"], a["model"]) for a in escalated], [("Ok Person", "opus")])
+            self.assertNotIn("Ok Person", [a["name"] for w in later["waves"] if w["phase"] == "review" for a in w["agents"]])
 
     def test_show_prompt_prints_only_that_agent(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -1043,6 +1064,444 @@ class DriverTests(unittest.TestCase):
                 self.assertEqual(cite["verify"], {"ok": None, "reason": "這台機器沒有原文快取，不要依這格改引文"})
                 self.assertIn("quote", cite)
                 self.assertIn("grade", cite)
+
+
+
+
+prefilter = load("prefilter", TOOLS / "prefilter.py")
+draft_mod = load("person_draft", TOOLS / "person_draft.py")
+patch_mod = load("person_patch", TOOLS / "person_patch.py")
+specs_mod = load("agent_specs", TOOLS / "agent_specs.py")
+loop_mod = load("run_loop", TOOLS / "run_loop.py")
+cost_mod = load("session_cost", TOOLS / "session_cost.py")
+
+RAMEK_LINE = ("魯道夫·拉梅克｜Rudolf Ramek｜bio-ramek｜federal-state-of-austria｜首任 1924-11-20｜薄（離線推定）｜"
+              "federal-state-of-austria head_of_government「Bundeskanzler」1924-11-20～1926-10-20"
+              "（recordId 01a1aa4a-a0bc-76d1-999e-fd43d3dd18df）")
+RAMEK_TEXT = (
+    "Navigation Home Suche\n" + "x " * 400 +
+    "\nRamek, Rudolf (1881-1941), Politiker. Geb. Teschen, 12. 4. 1881; gest. Salzburg, 24. 7. 1941.\n"
+    "Ramek war vom 20. November 1924 bis 20. Oktober 1926 Bundeskanzler der Republik Österreich.\n"
+    + "y " * 600 + "\nAutor: Max Mustermann\n"
+)
+
+
+class FakeHttp:
+    def __init__(self, entities=None):
+        self.calls = 0
+        self.urls = []
+        self.entities = entities or {}
+
+    def wait(self, url):
+        self.urls.append(("wait", url))
+
+    def get_json(self, url):
+        self.calls += 1
+        self.urls.append(("json", url))
+        if "wbsearchentities" in url:
+            return {"search": [{"id": "Q1"}, {"id": "Q2"}]}
+        if "wbgetentities" in url and "props=claims&" in url:
+            return {"entities": {
+                "P227": {"claims": {"P1630": [{"mainsnak": {"datavalue": {"value": "https://www.deutsche-biographie.de/pnd$1.html"}}}]}},
+                "P9999": {"claims": {"P1630": [{"mainsnak": {"datavalue": {"value": "https://example.blogspot.com/$1"}}}]}},
+            }}
+        if "wbgetentities" in url:
+            return {"entities": self.entities}
+        return None
+
+
+def _human(label, born, died, ext=None):
+    claims = {
+        "P31": [{"mainsnak": {"datavalue": {"value": {"id": "Q5"}}}}],
+        "P569": [{"mainsnak": {"datavalue": {"value": {"time": f"+{born}-01-01T00:00:00Z"}}}}],
+        "P570": [{"mainsnak": {"datavalue": {"value": {"time": f"+{died}-01-01T00:00:00Z"}}}}],
+    }
+    for pid, value in (ext or {}).items():
+        claims[pid] = [{"mainsnak": {"datatype": "external-id", "datavalue": {"value": value}}}]
+    return {"labels": {"de": {"value": label}}, "aliases": {}, "claims": claims}
+
+
+def _agent(root, kind="research", bio="bio-ramek", nn="123"):
+    out = root / "out" / f"batch{nn}"
+    raw = root / "raw" / f"batch{nn}" / "raw"
+    return {
+        "id": f"{kind}:{nn}:{bio}", "kind": kind, "model": "sonnet", "batch": nn, "bioId": bio,
+        "name": "Rudolf Ramek", "line": RAMEK_LINE, "outDir": str(out), "rawDir": str(raw),
+        "batchId": f"b3-full-v3-batch{nn}", "doneMarker": str(out / "people" / f"{bio}.agent-done.json"),
+    }
+
+
+class PrefilterTests(unittest.TestCase):
+    def test_name_variants_keep_inverted_surname_before_aliases(self):
+        info = {"name": "Rudolf Ramek", "nameZh": "魯道夫·拉梅克"}
+        aliases = ["Rudolf Ramek", "رودلف رامك", "Рудольф Рамек", "ルドルフ・ラメク", "a1", "a2", "a3", "a4", "a5", "a6"]
+        names = prefilter.name_variants(info, aliases)
+        self.assertIn("Ramek, Rudolf", names)
+        self.assertIn("Ramek", names)
+        self.assertNotIn("Рудольф Рамек", names)
+
+    def test_canonical_url_and_treccani_grade(self):
+        self.assertEqual(prefilter.canonical_url("https://www.deutsche-biographie.de/126762589.html#indexcontent"),
+                         "https://www.deutsche-biographie.de/pnd126762589.html")
+        self.assertEqual(prefilter.host_info("https://www.treccani.it/enciclopedia/rudolf-ramek")["grade"], "B")
+        self.assertEqual(prefilter.host_info(
+            "https://www.treccani.it/enciclopedia/x_(Dizionario-Biografico)/")["grade"], "A")
+
+    def test_cjk_name_searched_in_ja_and_zh(self):
+        seen = []
+
+        class FakeHttp:
+            calls = 0
+
+            def get_json(self, url):
+                seen.append(url)
+                return {}
+
+        prefilter.index_lookup(FakeHttp(), {"name": "若槻禮次郎", "nameZh": "若槻禮次郎", "years": ["1926"]})
+        langs = sorted(re.search(r"language=(\w+)", url).group(1) for url in seen)
+        self.assertEqual(langs, ["ja", "zh"])
+
+    def test_parse_line_and_names(self):
+        info = prefilter.parse_line(RAMEK_LINE, "bio-ramek")
+        self.assertEqual(info["name"], "Rudolf Ramek")
+        self.assertEqual(info["nameZh"], "魯道夫·拉梅克")
+        self.assertEqual(info["titles"], ["Bundeskanzler"])
+        self.assertIn("1924", info["years"])
+        self.assertNotIn("0001", "".join(info["years"]))
+        self.assertEqual(info["recordIds"], ["01a1aa4a-a0bc-76d1-999e-fd43d3dd18df"])
+        self.assertIn("Ramek", prefilter.name_variants(info))
+        wakatsuki = prefilter.parse_line("若槻禮次郎（臨時兼任）｜若槻禮次郎｜bio-w｜empire-of-japan｜首任 1926-01-28", "bio-w")
+        self.assertEqual(wakatsuki["nameZh"], "若槻禮次郎")
+        self.assertIn("若槻", prefilter.name_variants(wakatsuki))
+
+    def test_snippets_need_the_name_and_rank_years(self):
+        names = ["Rudolf Ramek", "Ramek"]
+        picked = prefilter.select_snippets(RAMEK_TEXT, names, ["1924", "Bundeskanzler"])
+        joined = " ".join(snippet for _, snippet in picked)
+        self.assertIn("Bundeskanzler", joined)
+        self.assertIn("Autor: Max Mustermann", joined)
+        self.assertLess(len(joined), len(RAMEK_TEXT))
+        self.assertEqual(prefilter.select_snippets("nothing about him", names, ["1924"]), [])
+        # 段落是原文的逐字片段：verify 的空白正規化後必是子字串
+        norm_text = verify.norm(RAMEK_TEXT)
+        for _, snippet in picked:
+            self.assertIn(verify.norm(snippet), norm_text)
+
+    def test_blocked_hosts(self):
+        self.assertTrue(prefilter.blocked_host("https://de.wikipedia.org/wiki/Rudolf_Ramek"))
+        self.assertTrue(prefilter.blocked_host("https://www.wikidata.org/wiki/Q1"))
+        self.assertTrue(prefilter.blocked_host("https://foo.blogspot.com/x"))
+        self.assertIsNone(prefilter.blocked_host("https://www.biographien.ac.at/oebl/x"))
+        self.assertEqual(prefilter.host_info("https://www.biographien.ac.at/oebl/x")["grade"], "A")
+
+    def test_pick_person_rejects_wrong_era(self):
+        info = prefilter.parse_line(RAMEK_LINE, "bio-ramek")
+        entities = {"Q1": _human("Rudolf Ramek", 1950, 2010), "Q2": _human("Rudolf Ramek", 1881, 1941)}
+        self.assertEqual(prefilter.pick_person(entities, info), "Q2")
+        self.assertIsNone(prefilter.pick_person({"Q1": _human("Rudolf Ramek", 1950, 2010)}, info))
+
+    def test_run_fetches_whitelist_only_and_never_refetches(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agent = _agent(root)
+            http = FakeHttp({"Q2": _human("Rudolf Ramek", 1881, 1941, {"P227": "118597930", "P9999": "x"})})
+            fetched = []
+
+            def fake_fetch(rawdir, rawmap, key, url, keywords, max_chars):
+                fetched.append(url)
+                Path(rawdir, f"{key}.txt").write_text(RAMEK_TEXT, encoding="utf-8")
+                fetch.update_rawmap(rawmap, key, f"{key}.txt")
+                return f"RESULT=fetched\nsourceKey={key}\n"
+
+            summary = prefilter.run(agent, http=http, fetcher=fake_fetch, today="2026-11-18")
+            self.assertEqual(summary["relevant"], 1)
+            self.assertEqual(fetched, ["https://www.deutsche-biographie.de/pnd118597930.html"])
+            people = Path(agent["outDir"]) / "people"
+            md = (people / "bio-ramek.snippets.md").read_text(encoding="utf-8")
+            self.assertIn("Bundeskanzler", md)
+            self.assertNotIn("wikidata", md.lower())
+            self.assertNotIn("blogspot", md)
+            pre = json.loads((people / "bio-ramek.prefilter.json").read_text(encoding="utf-8"))
+            self.assertNotIn("wikidata.org", json.dumps(pre["searchLog"]))
+            self.assertEqual(pre["person"]["key"], "rudolf-ramek")
+            # 第二次（例如補了網址）不重抓已存的頁，也不再做索引查詢
+            calls = http.calls
+            prefilter.run(agent, http=http, fetcher=fake_fetch, today="2026-11-18")
+            self.assertEqual(len(fetched), 1)
+            self.assertEqual(http.calls, calls)
+
+    def test_offline_run_skips_network(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent = _agent(Path(tmp))
+
+            def boom(*args, **kwargs):
+                raise AssertionError("offline 不可抓")
+
+            http = prefilter.Http(Path(tmp) / "idx", offline=True)
+            summary = prefilter.run(agent, offline=True, extra_urls=["https://www.biographien.ac.at/x"],
+                                    http=http, fetcher=boom)
+            self.assertEqual(summary["relevant"], 0)
+            self.assertEqual(http.calls, 0)
+
+
+def _write_draft_fixture(root, quote="Ramek war vom 20. November 1924 bis 20. Oktober 1926 Bundeskanzler"):
+    agent = _agent(root)
+    raw = Path(agent["rawDir"])
+    raw.mkdir(parents=True)
+    (raw / "oebl-ramek.txt").write_text(RAMEK_TEXT, encoding="utf-8")
+    out = Path(agent["outDir"])
+    people = out / "people"
+    people.mkdir(parents=True)
+    (out / "rawmap.json").write_text('{"oebl-ramek": "oebl-ramek.txt"}\n', encoding="utf-8")
+    (people / "bio-ramek.prefilter.json").write_text(json.dumps({
+        "person": {"key": "rudolf-ramek", "name": "Rudolf Ramek", "nameZh": "魯道夫·拉梅克", "recordIds": ["r1"]},
+        "sources": {"oebl-ramek": {"url": "https://www.biographien.ac.at/oebl/x", "suggestedGrade": "A",
+                                    "label": "Österreichisches Biographisches Lexikon", "title": "Ramek, Rudolf",
+                                    "accessedOn": "2026-11-18"}},
+        "searchLog": [{"step": 1, "sourceType": "authority", "query": "q", "url": None, "result": "unrated", "note": "n"}],
+    }, ensure_ascii=False), encoding="utf-8")
+    body = "拉梅克於1924年11月20日至1926年10月20日任奧地利聯邦總理。" * 3
+    draft = {
+        "thickness": "薄",
+        "sources": {"oebl-ramek": {"authors": ["Max Mustermann"], "gradeBasis": "ÖBL 具名作者"}},
+        "paragraphs": [{
+            "ord": i, "period": {"start": "1924-11-20", "end": "1926-10-20"},
+            "periodStartPrecision": "day", "periodEndPrecision": "day",
+            "heading": {"zh-Hant": "總理", "en": "Chancellor"},
+            "body": {"zh-Hant": body, "en": "Ramek was chancellor."},
+            "citations": [{"sourceKey": "oebl-ramek", "quote": quote, "quoteLang": "de", "datePrecision": "day"}],
+        } for i in (1, 2, 3)],
+        "positions": [], "roleCandidates": [],
+        "gaps": [{"target": "role:ramek-chancellor", "gapKind": "not_found", "note": "不重建：名單 5442 已有"}],
+        "searchLog": [{"sourceType": "other", "query": "extra", "url": None, "result": "no_result", "note": "x"}],
+    }
+    (people / "bio-ramek.draft.json").write_text(json.dumps(draft, ensure_ascii=False), encoding="utf-8")
+    spec = root / "spec.json"
+    spec.write_text(json.dumps({"agents": [agent, dict(agent, id="review:123:bio-ramek", kind="review")]}), encoding="utf-8")
+    return agent, spec
+
+
+class DraftTests(unittest.TestCase):
+    def test_assemble_keeps_person_file_format_and_passes_verify(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec = _write_draft_fixture(Path(tmp))
+            out = io_capture(lambda: draft_mod.cmd_check(str(spec), agent["id"], done=True, today="2026-11-18"))
+            self.assertIn("SELFCHECK ok", out)
+            self.assertIn("CHECKMIN OK", out)
+            person_file = Path(agent["outDir"]) / "people" / "bio-ramek.json"
+            doc = json.loads(person_file.read_text(encoding="utf-8"))
+            self.assertEqual(set(doc), {"person", "sources", "rawMap", "researchedOn", "policyVersion",
+                                        "alignedTo", "alignNote", "schemaNote"})
+            self.assertIsInstance(doc["rawMap"], dict)
+            self.assertEqual(doc["rawMap"], {"oebl-ramek": "oebl-ramek.txt"})
+            cite = doc["person"]["paragraphs"][0]["citations"][0]
+            self.assertEqual(cite["grade"], "A")
+            self.assertEqual(cite["accessedOn"], "2026-11-18")
+            self.assertTrue(cite["locator"].startswith("正文"))
+            self.assertEqual([s["step"] for s in doc["person"]["searchLog"]], [1, 2])
+            self.assertEqual(doc["sources"]["oebl-ramek"]["authors"], ["Max Mustermann"])
+            marker = json.loads((Path(agent["outDir"]) / "people" / "bio-ramek.agent-done.json").read_text())
+            self.assertEqual((marker["stage"], marker["ok"]), ("research", True))
+            # 合併後與原本流程相同：merge_people 收得下這個單人檔
+            io_capture(lambda: merge.merge(agent["outDir"], agent["rawDir"], agent["batchId"], ["bio-ramek"]))
+            self.assertTrue((Path(agent["outDir"]) / "research.json").exists())
+
+    def test_check_reports_quote_not_in_raw(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec = _write_draft_fixture(Path(tmp), quote="Ramek war ein erfundener Satz")
+            out = io_capture(lambda: draft_mod.cmd_check(str(spec), agent["id"], today="2026-11-18"))
+            self.assertIn("SELFCHECK fail", out)
+            self.assertIn("引文未逐字出現", out)
+            self.assertFalse((Path(agent["outDir"]) / "people" / "bio-ramek.agent-done.json").exists())
+
+    def test_review_done_writes_note_and_marker(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec = _write_draft_fixture(Path(tmp))
+            io_capture(lambda: draft_mod.cmd_check(str(spec), agent["id"], today="2026-11-18"))
+            out = io_capture(lambda: draft_mod.cmd_review_done(str(spec), "review:123:bio-ramek", "pass", "ok", '["無"]'))
+            self.assertIn("REVIEW_DONE pass verify錯誤 0", out)
+            people = Path(agent["outDir"]) / "people"
+            self.assertEqual(json.loads((people / "bio-ramek.review.json").read_text())["verdict"], "pass")
+            self.assertEqual(json.loads((people / "bio-ramek.agent-done.json").read_text())["stage"], "review")
+
+    def test_person_patch_paths(self):
+        doc = {"person": {"paragraphs": [{"citations": [{"quote": "a"}, {"quote": "b"}]}], "gaps": []}}
+        patch_mod.apply(doc, "set", "person.paragraphs[0].citations[1].quote", "c")
+        patch_mod.apply(doc, "del", "person.paragraphs[0].citations[0]")
+        patch_mod.apply(doc, "append", "person.gaps", {"target": "identity"})
+        self.assertEqual(patch_mod.apply(doc, "get", "person.paragraphs[0].citations"), [{"quote": "c"}])
+        self.assertEqual(doc["person"]["gaps"], [{"target": "identity"}])
+        with self.assertRaises(SystemExit):
+            patch_mod.apply(doc, "get", "person.positions[0]")
+
+
+def io_capture(func):
+    import contextlib
+    import io as _io
+    buffer = _io.StringIO()
+    with contextlib.redirect_stdout(buffer):
+        func()
+    return buffer.getvalue()
+
+
+class LeanPromptTests(unittest.TestCase):
+    def _batch(self):
+        return {"nn": "123", "outDir": "/repo/out/batch123", "rawDir": "/raw/batch123/raw",
+                "researchPrompt": "/repo/.dev/b3v3/prompts/research-123.md", "reviewPrompt": "/repo/review-123.md",
+                "specPath": ".dev/b3v3/run/pilot-spec.json"}
+
+    def test_research_prompt_is_compact_and_self_contained(self):
+        person = {"bioId": "bio-ramek", "line": RAMEK_LINE, "name": "Rudolf Ramek", "nameZh": "拉梅克"}
+        text = specs_mod.research_prompt(self._batch(), person, "/repo")
+        self.assertLess(len(text.encode("utf-8")), 9000)
+        self.assertNotIn("research-123.md", text)
+        self.assertIn("bio-ramek.draft.json", text)
+        self.assertIn("person_draft.py check --spec .dev/b3v3/run/pilot-spec.json --id research:123:bio-ramek", text)
+        self.assertIn("WebSearch 最多 2 次", text)
+        self.assertNotIn("至少 8 次", text)
+
+    def test_review_prompt_reads_only_the_slice(self):
+        person = {"bioId": "bio", "line": "某人", "name": "某人"}
+        text = specs_mod.review_prompt(self._batch(), person, "/repo")
+        self.assertLess(len(text.encode("utf-8")), 6000)
+        self.assertNotIn("review-123.md", text)
+        self.assertIn("不要讀單人檔全文", text)
+        self.assertIn("review-done --spec .dev/b3v3/run/pilot-spec.json --id review:123:bio", text)
+        esc = specs_mod.review_prompt(self._batch(), person, "/repo", escalate=True)
+        self.assertIn("--id escalate:123:bio", esc)
+
+    def test_every_launch_pins_model_turns_and_tools(self):
+        base = {"outDir": "/repo/out/batch123", "bioId": "bio", "model": None}
+        expect = {"research": ("sonnet", 11), "retry": ("sonnet", 9), "review": ("sonnet", 6),
+                  "escalate": ("opus", 6), "discover": ("haiku", 4)}
+        for kind, (model, turns) in expect.items():
+            profile = specs_mod.launch_profile(dict(base, kind=kind), "/repo")
+            self.assertEqual((profile["model"], profile["maxTurns"]), (model, turns), kind)
+            cmd = loop_mod.build_command(dict(base, kind=kind), "p", "sid", profile, "n")
+            for flag in ("--model", "--max-turns", "--tools", "--allowedTools", "--strict-mcp-config",
+                         "--system-prompt", "--session-id"):
+                self.assertIn(flag, cmd)
+            self.assertEqual(cmd[cmd.index("--permission-mode") + 1], "dontAsk")
+            self.assertEqual(cmd[cmd.index("--model") + 1], model)
+        research = specs_mod.launch_profile(dict(base, kind="research"), "/repo")
+        self.assertIn("Write(out/batch123/people/bio.draft.json)", research["allowed"])
+        self.assertNotIn("Bash", [rule for rule in research["allowed"] if rule == "Bash"])
+
+    def test_show_prompt_attaches_snippets(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            agent = _agent(root)
+            people = Path(agent["outDir"]) / "people"
+            people.mkdir(parents=True)
+            (people / "bio-ramek.snippets.md").write_text("@12: Ramek war Bundeskanzler\n", encoding="utf-8")
+            spec = root / "spec.json"
+            spec.write_text(json.dumps({"agents": [dict(agent, prompt="任務\n")]}), encoding="utf-8")
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "show-prompt", "--spec", str(spec), "--id", agent["id"]],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertIn("任務", proc.stdout)
+            self.assertIn("Ramek war Bundeskanzler", proc.stdout)
+
+
+class PartialBatchTests(unittest.TestCase):
+    def test_unresearched_people_get_their_own_research(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            prompts = root / "prompts"
+            prompts.mkdir()
+            people = [_fixture_person("a", "Person A", "bio-a", []), _fixture_person("b", "Person B", "bio-b", [])]
+            _write_prompt(prompts, "123", people)
+            _write_batch(root / "out", "123", people[:1])
+            items = plan.from_chunk(str(root), "prompts", "out", "raw", ["123"], False)
+            self.assertTrue(items[0]["research"])
+            self.assertEqual(items[0]["researchPeople"], ["bio-b"])
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run", "--repo", str(root),
+                 "--prompt-dir", "prompts", "--out-root", "out", "--raw-root", "raw", "--chunk", "123",
+                 "--concurrency", "1", "--json"],
+                capture_output=True, text=True, cwd=root,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            data = json.loads(proc.stdout)
+            self.assertEqual([a["name"] for w in data["waves"] if w["phase"] == "research" for a in w["agents"]], ["Person B"])
+            only = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "run_chunk.py"), "dry-run", "--repo", str(root),
+                 "--prompt-dir", "prompts", "--out-root", "out", "--raw-root", "raw", "--chunk", "123",
+                 "--people", "bio-a", "--concurrency", "1", "--json"],
+                capture_output=True, text=True, cwd=root,
+            )
+            self.assertEqual(only.returncode, 0, only.stderr)
+            self.assertEqual(json.loads(only.stdout)["researchAgents"], 0)
+
+
+class LoopTests(unittest.TestCase):
+    def test_discover_only_when_thin(self):
+        self.assertFalse(loop_mod.needs_discover({"relevant": 6, "narrative": 4, "snippetChars": 12769}))
+        self.assertTrue(loop_mod.needs_discover({"relevant": 2, "narrative": 1, "snippetChars": 2912}))
+        self.assertTrue(loop_mod.needs_discover({"relevant": 3, "narrative": 3, "snippetChars": 900}))
+
+    def test_research_marker_does_not_count_for_review(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            marker = Path(tmp) / "x.agent-done.json"
+            marker.write_text(json.dumps({"ok": True, "bioId": "b1", "stage": "research"}), encoding="utf-8")
+            review = {"doneMarker": str(marker), "bioId": "b1", "kind": "review"}
+            research = dict(review, kind="research")
+            self.assertTrue(loop_mod.marker_ok(research))
+            self.assertFalse(loop_mod.marker_ok(review))
+            marker.write_text(json.dumps({"ok": True, "bioId": "b1", "stage": "review"}), encoding="utf-8")
+            self.assertTrue(loop_mod.marker_ok(review))
+
+    def _journal(self, tmp):
+        return loop_mod.Journal(Path(tmp) / "logs")
+
+    def test_network_errors_kill_fast(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            journal = self._journal(tmp)
+            log = journal.dir / "a.jsonl"
+            script = ("import time,sys\n"
+                      "for i in range(3):\n"
+                      "    print('{\"type\":\"system\",\"subtype\":\"api_retry\",\"error\":\"getaddrinfo ENOTFOUND api.anthropic.com\"}', flush=True)\n"
+                      "time.sleep(60)\n")
+            with log.open("ab") as fh:
+                proc = subprocess.Popen([sys.executable, "-c", script], stdout=fh, stderr=subprocess.STDOUT,
+                                        start_new_session=True)
+                started = time.time()
+                outcome, rc = loop_mod.watch(proc, log, 300, journal, "a", dns_probe=lambda: True)
+            self.assertEqual(outcome, "network")
+            self.assertLess(time.time() - started, 40)
+
+    def test_dns_outage_kills_without_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            journal = self._journal(tmp)
+            log = journal.dir / "b.jsonl"
+            old = (loop_mod.DNS_EVERY_SECONDS, loop_mod.POLL_SECONDS)
+            loop_mod.DNS_EVERY_SECONDS, loop_mod.POLL_SECONDS = 0, 0.05
+            try:
+                with log.open("ab") as fh:
+                    proc = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(60)"], stdout=fh,
+                                            start_new_session=True)
+                    outcome, _ = loop_mod.watch(proc, log, 300, journal, "b", dns_probe=lambda: False)
+            finally:
+                loop_mod.DNS_EVERY_SECONDS, loop_mod.POLL_SECONDS = old
+            self.assertEqual(outcome, "network")
+
+    def test_parse_urls_and_session_cost(self):
+        self.assertEqual(loop_mod.parse_urls('ok {"urls":["https://a.test/x","ftp://no"]}'), ["https://a.test/x"])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "s.jsonl"
+            usage = {"input_tokens": 2, "cache_creation_input_tokens": 100, "cache_read_input_tokens": 1000, "output_tokens": 10}
+            lines = [
+                {"type": "assistant", "message": {"id": "m1", "model": "claude-sonnet", "usage": usage}},
+                {"type": "assistant", "message": {"id": "m1", "model": "claude-sonnet", "usage": usage}},
+                {"type": "assistant", "message": {"id": "m2", "model": "claude-sonnet", "usage": usage}},
+            ]
+            path.write_text("\n".join(json.dumps(x) for x in lines), encoding="utf-8")
+            row = cost_mod.session_usage(path)
+            self.assertEqual(row["calls"], 2)
+            self.assertEqual(row["total"], 2 * 1112)
+            self.assertEqual(row["maxContext"], 1102)
 
 
 if __name__ == "__main__":

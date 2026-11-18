@@ -1,0 +1,171 @@
+{
+ "batch": "b3-full-v3-batch275",
+ "researchedOn": "2026-11-18",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "依 ARCHITECTURE.md b0b0e0f 對齊格式直接撰寫；T14 R0–R6 研究時套用。",
+ "schemaNote": "單人檔：person、sources、rawMap、researchedOn、policyVersion、alignedTo。",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch275/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "isaacs1938": {
+   "title": "The Tragedy of the Chinese Revolution, ch. 8 The Prodigal's Return",
+   "authors": [
+    "Harold R. Isaacs"
+   ],
+   "publisher": "Secker & Warburg（marxists.org 轉錄）",
+   "published_text": "1938",
+   "url": "https://www.marxists.org/history/etol/writers/isaacs/1938/tcr/ch08.htm",
+   "archive_url": null,
+   "catalog_id": null,
+   "license_code": null,
+   "grade": "B",
+   "gradeBasis": "具名作者專書，經第三方轉錄本，A 記 B 之同一處理"
+  }
+ },
+ "people": [
+  {
+   "key": "cn-yang-hu",
+   "bioId": "01a1edaf-2a1d-70b8-9947-5dd344d14015",
+   "name": "Yang Hu",
+   "nameZh": "楊虎",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "ord": 1,
+     "period": {
+      "start": null,
+      "end": null
+     },
+     "periodStartPrecision": null,
+     "periodEndPrecision": null,
+     "heading": {
+      "zh-Hant": "蔣介石幕僚與上海行動",
+      "en": "Staff officer of Chiang Kai-shek"
+     },
+     "body": {
+      "zh-Hant": "哈羅德·艾薩克斯的著作寫到，楊虎是蔣介石的幕僚軍官之一，被派去主持行動。",
+      "en": "Harold Isaacs writes that Yang Hu, one of Chiang's staff officers, was put in charge of operations."
+     },
+     "relatedRecordIds": [],
+     "citations": [
+      {
+       "sourceKey": "isaacs1938",
+       "locator": "ch.8 The Prodigal's Return",
+       "quote": "Yang Hu, one of Chiang’s staff officers, was put in charge of operations.",
+       "quoteLang": "en",
+       "evidenceNote": "內文未註明年份；上下文為 1927 年初反工會行動（日期不入 quote）",
+       "accessedOn": "2026-11-18",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": null,
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ]
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "position:songhu-garrison",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；淞滬警備司令任期（戰役側線索 1937）。已查國史館 su2015 PDF、政大 nccu2016 PDF（文字層亂碼，lookup 無命中）、Isaacs、FRUS 1937 v3（無命中）；generals.dk 為未評等來源，只可作候選，不可引。"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 1 段、約 35 字；已查來源類型：官方（國史館）、學術（政大、Cambridge 期刊）、專書轉錄（Isaacs）、官方文件彙編（FRUS）。需可抽取文字的國史館／近史所人物資料或學術專書。"
+    },
+    {
+     "target": "identity",
+     "gapKind": "identity_uncertain",
+     "note": "生卒（檢索摘要稱 1889–1966）、籍貫、監察委員任期等無 A／B 可抓原文，未寫入；勿與楊虎城混淆。Isaacs 的 Yang Hu 與淞滬警備司令是否同一人，原文未明說，僅依姓名推定。"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "楊虎 淞滬警備司令 1937 國史館 人物",
+     "url": "https://www.drnh.gov.tw/var/file/3/1003/img/10/175698954.pdf",
+     "result": "no_result",
+     "note": "已抓；PDF 文字層亂碼，無命中"
+    },
+    {
+     "step": 2,
+     "sourceType": "academic",
+     "query": "楊虎 淞滬警備司令 政大 決策與指揮權",
+     "url": "https://history.nccu.edu.tw/upload/24/publication_file/316/淞滬會戰期間的決策與指揮權之問題.pdf",
+     "result": "no_result",
+     "note": "已抓；文字層亂碼，無命中"
+    },
+    {
+     "step": 3,
+     "sourceType": "academic",
+     "query": "Yang Hu Shanghai garrison commander 1937 Green Gang",
+     "url": "https://www.marxists.org/history/etol/writers/isaacs/1938/tcr/ch08.htm",
+     "result": "found_B",
+     "note": "Isaacs 專書轉錄，一句提及"
+    },
+    {
+     "step": 4,
+     "sourceType": "academic",
+     "query": "Tu Yueh-sheng political biography Yang Hu",
+     "url": "https://cambridge.org/core/journals/journal-of-asian-studies/article/tu-yuehsheng-18881951-a-tentative-political-biography/D78809C2BA2C9DB176DB2780A162D595",
+     "result": "not_relevant",
+     "note": "僅摘要頁，無命中"
+    },
+    {
+     "step": 5,
+     "sourceType": "other",
+     "query": "楊虎 1889 1966 陝西 上海警備司令 監察委員",
+     "url": "https://generals.dk/general/Yang_Hu/_/China.html",
+     "result": "unrated",
+     "note": "未評等，只作線索"
+    },
+    {
+     "step": 6,
+     "sourceType": "other",
+     "query": "楊虎 上海市警備司令 1937年8月 免職",
+     "url": null,
+     "result": "no_result",
+     "note": "無相關"
+    },
+    {
+     "step": 7,
+     "sourceType": "authority",
+     "query": "楊虎 民國人物 國史館 近史所 國家圖書館",
+     "url": null,
+     "result": "no_result",
+     "note": "只得楊虎城與 generals.dk"
+    },
+    {
+     "step": 8,
+     "sourceType": "academic",
+     "query": "Yang Hu Songhu Garrison Command Brian Martin",
+     "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/CAFA97276F36D4961939A58361C9B0FC/S0145553222000426a.pdf/taming_violence_the_shanghai_green_gang_and_its_selflegitimation_claims_in_the_early_twentieth_century.pdf",
+     "result": "not_relevant",
+     "note": "已抓，無命中"
+    },
+    {
+     "step": 9,
+     "sourceType": "treaty_law",
+     "query": "Yang Hu Songhu garrison FRUS 1937",
+     "url": "https://history.state.gov/historicaldocuments/frus1937v03/ch1subch3?start=121",
+     "result": "not_relevant",
+     "note": "已抓，無命中"
+    },
+    {
+     "step": 10,
+     "sourceType": "other",
+     "query": "Government Gangsters Green Gang 1927-1937",
+     "url": "https://digitalcc.coloradocollege.edu/record/3350/files/Goverment_Gangsters_The_Green_Gang_and_the_Guomindang_1927-1937_PDF.pdf",
+     "result": "unrated",
+     "note": "大學部論文，不收"
+    }
+   ]
+  }
+ ]
+}

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""組 B3 v3 研究／補欄／審查 agent 的提示詞。提示詞由 run_chunk.py 寫進 spec，不進主 session。"""
+"""組 B3 v3 研究／補欄／審查 agent 的提示詞與啟動設定。提示詞由 run_chunk.py 寫進 spec，不進主 session。
+
+2026-11-18 節流改版：
+- 提示詞自足、只有幾 KB。agent 不再讀 research-NN.md／review-NN.md 規則檔（約 30KB）。
+- 研究前由 prefilter.py 做查詢、抓取與段落篩選；agent 主要只寫草稿 JSON，Python 組單人檔並自檢。
+- 審查只讀證據切片，改檔用 person_patch.py 局部修改，不讀單人檔全文。
+- launch_profile() 固定每一種 agent 的模型、輪數上限、工具與允許的指令。
+"""
 import re
 
 RETURN_SCHEMA = {
@@ -42,14 +49,79 @@ RAWMAP_RULE = (
     "不可以寫成字串 \"rawmap.json\"。那一行只屬於 research.json 頂層。"
 )
 
+SYSTEM_PROMPT = (
+    "你是 World Line B3 v3 人物生平資料的工作者。工作目錄是 repo 根目錄。"
+    "只用任務列出的指令與檔案；指令照原樣執行，不要加 cd、管線、heredoc 或其他程式。"
+    "不要讀任務沒有指定的檔。不要 git、不要寫資料庫、不要呼叫 5052 API、不要繞過 Cloudflare／Anubis／403、不要用 Wayback。"
+    "回覆極短，不要貼引文或頁面。"
+)
+
+SOURCE_RULE = (
+    "來源：段落／職位／角色的出處只能 A 或 B。A＝國家級傳記辭典、政府／議會／國家圖書館官方頁、人名權威檔；"
+    "B＝具名作者的機構百科、學術機構傳記、學術出版品。無具名作者的百科條目、無作者館藏圖說是未評等，"
+    "私人彙編（rulers.org、archontology.org 類）是 X：都只能當 C 放 gap 的 candidateCitations。"
+    "第三方轉錄官方文件記 B。預查的「建議等級」只依網域，要看頁面確認（Treccani 百科條目 B、DBI A；"
+    "Britannica、コトバンク要具名執筆者）。不用、也不寫任何 Wikipedia／Wikidata／百度網址。"
+)
+
+QUOTE_RULE = (
+    "quote：從預查段落或 lookup 輸出逐字複製（空白可不同），NFC ≤80 字，一句完整語意片段，"
+    "不跨「@」段、不含省略號、不轉述、不翻譯。同一來源可多筆。datePrecision 只在 quote 本身含日期時填 day／month／year，否則 null。"
+)
+
+WRITE_RULE = (
+    "段落：zh-Hant 至少 3 段、合計至少 300 字（來源夠時）；每段 zh ≤400 字、en ≤800 字元，en 與 zh 對應。"
+    "每個事實子句（日期、地點、人名、職稱、評語）都要對得到該段某筆 quote；對不到就拆段或刪句，不可編造、不可用常識或空話湊字。"
+    "精度：day 寫原日期；month／year 起點寫該單位第一天，終點寫下一單位第一天（到 1911 年 → 1912-01-01、year）；"
+    "日期 null 時精度也 null。段落 period 迄點依段內最後一件事。"
+    "盡力後仍不夠 3 段／300 字：照實寫，加 gap target=paragraph:length、gapKind=not_found，note 以「篇幅不足：」開頭，寫段數／字數與查過的來源類型。"
+)
+
+TERM_RULE = (
+    "任期：positions／roleCandidates 每筆都要 period.start、period.end 與含該日期的 quote。"
+    "迄日查不到：照寫 start，加 gap target=position:<key>（角色 role:<key>）、gapKind=not_found，note 以「待查證：缺迄日；」開頭並寫查過的來源。"
+    "起日查不到：不建該筆，寫同格式 gap（「待查證：缺起日；」）。以名簿下一任起日推得的迄日，evidenceNote 要寫「依名簿下一任起日推得（推論）」。"
+    "名單裡 5442 已有的元首／首腦任期不要重建（可寫 gap note「不重建：…」）；1908–1945 以外的元首／首腦任期只寫正文。"
+    "regimeId 一律 null，organization 寫中英。conflict 只用於兩份已抓來源互相矛盾。"
+)
+
+T14_RULE = (
+    "T14（兩層互斥，依序第一條命中就停）：R0 元首／首腦／攝政／代理 → roleCandidates head_of_state|head_of_government（代理加 acting:true）。"
+    "R1 所有黨職，以及職稱或引文明寫以某黨身分取得的席位 → roleCandidates de_facto_leader，reason 寫「Tai 2026-11-11 12:12：黨職一律算 de_facto_leader」"
+    "（席位另加 originalPositionKind，例 legislator）；不明確是否黨職 → 留 positions 加 partyPostAmbiguous:true 與 partyPostAmbiguousReason。"
+    "R2 佔領／殖民轄區最高行政長官且可證明 ≥30 天 → occupation_administrator|colonial_governor。"
+    "R3 外交、國防／陸軍／戰爭、財政、內政四部的正職閣員且可證明 ≥90 天 → cabinet_minister。"
+    "R4 國家級最高軍職（職位等級要引文明寫），或戰區／方面軍司令且有日期＋地點＋出處的戰役連結 → military_commander。"
+    "R5 其他（副職、次官、非四部閣員、議員、地方長官、軍校、警察、時間窗外）→ positions，t14Rule:\"R5\"、t14Reason。"
+    "R6 類別符合 R2–R4 但門檻證明不了（端點缺、精度不夠、來源不足 1A 或 2 獨立 B、缺戰役連結、等級沒明寫）→ positions，"
+    "t14Rule:\"R6\"、roleEligible:true、roleEligibleKind、roleGap（dates|source|regime|battle_link|rank）、t14Reason。"
+    "閣員／將領／佔領殖民長官留在 positions 時加 t14Overlap（cabinet|general|occupation_colonial）。roleCandidates 要有 reason 與 t14Rule（R0–R4）。"
+    "時間窗＝與 1908–1945 有交集。positionKind 只能是 minister、legislator、military_command、diplomat、judicial、other、police、military_education。"
+)
+
+DRAFT_SHAPE = (
+    '{"thickness":"厚|中|薄",'
+    '"sources":{"<sourceKey>":{"grade":"A|B|C","gradeBasis":"為何是此等級","authors":["具名作者"],"title":"…","publisher":"…"}},'
+    '"paragraphs":[{"ord":1,"period":{"start":"1875-01-01","end":"1900-01-01"},"periodStartPrecision":"year","periodEndPrecision":"year",'
+    '"heading":{"zh-Hant":"…","en":"…"},"body":{"zh-Hant":"…","en":"…"},'
+    '"citations":[{"sourceKey":"…","quote":"逐字片段","quoteLang":"de","datePrecision":null}]}],'
+    '"positions":[{"key":"…","regimeId":null,"organization":{"zh-Hant":"…","en":"…"},"title":{"orig":"…","zh-Hant":"…","en":"…"},'
+    '"positionKind":"minister","period":{"start":"…","end":"…"},"startPrecision":"day","endPrecision":"day",'
+    '"t14Overlap":"cabinet","t14Rule":"R5","t14Reason":"…","citations":[]}],'
+    '"roleCandidates":[{"key":"…","role_kind":"cabinet_minister","t14Rule":"R3","reason":"…","organization":{},"title":{},'
+    '"period":{},"startPrecision":"day","endPrecision":"day","citations":[]}],'
+    '"gaps":[{"target":"position:<key>|role:<key>|paragraph:length|identity","gapKind":"not_found|conflict|identity_uncertain","note":"…","candidateCitations":[]}],'
+    '"searchLog":[]}'
+)
+
 
 def rules(repo):
     return (
-        f"工作目錄：{repo}。只寫任務指定的單人檔、agent-done 與 RAWDIR。"
+        f"工作目錄：{repo}。只寫任務指定的檔。"
         "不要 git add／commit／push，不要寫任何資料庫，不要呼叫 5052 API，"
         "不要繞過 Cloudflare／Anubis／403，不要用 Wayback 代替被擋的頁。"
         "不要 Read、cat、head 整份 raw 原文，不要把整頁貼進上下文。"
-        "已在 raw 目錄（快取於 ~/wl-source-cache/b3full-v3）的 sourceKey 不要重抓；先 status，再用 lookup。"
+        "已在 raw 目錄（快取於 ~/wl-source-cache/b3full-v3）的 sourceKey 不要重抓。"
     )
 
 
@@ -84,6 +156,29 @@ def review_note_path(batch, person):
     return f"{batch['outDir']}/people/{person['bioId']}.review.json"
 
 
+def draft_path(batch, person):
+    return f"{batch['outDir']}/people/{person['bioId']}.draft.json"
+
+
+def snippets_path(batch, person):
+    return f"{batch['outDir']}/people/{person['bioId']}.snippets.md"
+
+
+def spec_ref(batch):
+    return batch.get("specPath") or "<SPEC>"
+
+
+def agent_id(kind, batch, person):
+    return f"{kind}:{batch['nn']}:{person['bioId']}"
+
+
+def fetch_cmd(batch, sub="fetch"):
+    base = f"python3 -I tools/b3v3/fetch_source.py {sub} --rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json"
+    if sub == "fetch":
+        return base + " --source-key <新key> --url <url> --keywords '<姓名|年份>'"
+    return base + " --source-key <key> --keywords '<原文片段>'"
+
+
 def done_line(batch, person, stage):
     return (
         "做完後寫 "
@@ -94,25 +189,36 @@ def done_line(batch, person, stage):
 
 
 def research_prompt(batch, person, repo):
+    aid = agent_id("research", batch, person)
+    check = f"python3 -I tools/b3v3/person_draft.py check --spec {spec_ref(batch)} --id {aid}"
     return "\n".join([
-        "你只研究一個人，開一個全新的研究。不要研究提示詞裡的其他人。",
+        "你只研究一個人，寫一份草稿 JSON。不要研究其他人。",
         f"人物：{person['line']}",
         f"bioId：{person['bioId']}",
-        f"只寫這個檔：{person_path(batch, person)}",
-        "內容是一個 JSON 物件：person、sources、rawMap、researchedOn、"
-        "policyVersion（bio-2026-11-v0）、alignedTo（b0b0e0f）、alignNote、schemaNote。"
-        f"不要寫 {batch['outDir']}/research.json。",
-        RAWMAP_RULE,
-        f"規則檔（格式、來源分級、Q1–Q10、T14、最低 8 次查詢／4 種來源類型／原文語言檢索都要做）：{batch['researchPrompt']}",
-        "抓取與引文不要照規則檔裡舊的 curl／整檔 Read。一律：",
-        f"python3 -I tools/b3v3/fetch_source.py status --rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json",
-        "已有的 sourceKey 不要重抓。新頁：",
-        "python3 -I tools/b3v3/fetch_source.py fetch "
-        f"--rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json "
-        f"--source-key <sourceKey> --url <url> --keywords '{keyword_hint(person)}'",
-        "抄 quote 只用 lookup，關鍵字改成你要的原文片段。WebFetch 只用於發現網址。",
-        "不要跑 verify.py 或 check_min.py。回覆不要貼引文或頁面。",
-        done_line(batch, person, "research"),
+        f"預查段落：{snippets_path(batch, person)}。內容附在本訊息最後；沒附才 Read 這個檔一次。",
+        f"只寫這個檔：{draft_path(batch, person)}（用 Write；之後用 Edit 修）。"
+        "不要讀 research.json、規則檔、其他批或 raw 全文。單人檔與 rawMap 由 Python 組。",
+        "步驟（工具呼叫合計最多 10 次）：",
+        "1. 依預查段落寫草稿。",
+        f"2. 跑 {check}",
+        "3. 有錯就 Edit 草稿再 check，最多 2 次。",
+        f"4. 最後跑 {check} --done（還有錯也要跑，審查會接手）。",
+        "預查段落裡沒有任何 A／B 來源談到此人、或不夠寫最低篇幅（3 段／300 字）時，必須先補查再寫草稿，"
+        "不能直接標篇幅不足；夠寫就不要補查。補查上限："
+        "WebSearch 最多 2 次、fetch 最多 3 頁，每次都寫進 draft.searchLog"
+        "（{\"sourceType\":\"…\",\"query\":\"…\",\"url\":\"…或null\",\"result\":\"found_A|found_B|unrated|not_relevant|blocked_403|challenge_page|no_result\",\"note\":\"…\"}）：",
+        fetch_cmd(batch),
+        "抓到的新來源在 draft.sources.<key> 寫 url、title、authors、publisher、grade、gradeBasis。"
+        "403／挑戰頁就放棄、記 searchLog。查原文片段：" + fetch_cmd(batch, "lookup"),
+        "草稿格式（accessedOn、grade、policyVersion、locator、rawMap、頂層欄位與預查 searchLog 由 Python 補；"
+        "sources 只寫要改的欄位，至少確認 grade 與 gradeBasis）：",
+        DRAFT_SHAPE,
+        SOURCE_RULE,
+        QUOTE_RULE,
+        WRITE_RULE,
+        TERM_RULE,
+        T14_RULE,
+        "回覆一行：段數／字數／來源數／未解問題（60 字內）。",
         rules(repo),
     ])
 
@@ -120,56 +226,132 @@ def research_prompt(batch, person, repo):
 def retry_prompt(batch, person, repo):
     fields = person.get("missingFields") or []
     listed = "\n".join(f"- {field['field']}：{field['detail']}" for field in fields) or "- （沒有列出欄位就不要改）"
+    aid = agent_id("retry", batch, person)
+    patch = f"python3 -I tools/b3v3/person_patch.py <get|set|del|append> --file {person_path(batch, person)} --path <路徑> [--json '<JSON>']"
     return "\n".join([
         "只補這個人缺的欄位。不要重做整份研究，不要改本批其他人，不要為了湊字數加段。",
         f"人物：{person['line']}",
         f"bioId：{person['bioId']}",
-        f"規則檔（來源分級、Q1–Q10 仍適用；本任務的範圍優先於規則檔裡的整份重跑）：{batch['retryPrompt']}",
-        f"只讀這一份：{person_path(batch, person)}。不要讀整份 research.json，不要讀 raw 原文。",
-        "改完覆寫同一個單人檔。",
         "這次只補這些欄位：",
         listed,
         "缺起日或缺迄日：只找這個日期。找到就填上並附帶日期的引文；找不到就保留或寫上"
         "「待查證：缺起日」或「待查證：缺迄日」gap。",
         "缺引文或引文空白：只補該筆 quote，quote 必須來自 lookup。",
         DATE_RULE,
-        "不要追求 15 次查詢或 6 個新頁。searchLog 只記這次實際查的步驟，標 \"round\": \"field-retry\"。",
-        f"抓取：python3 -I tools/b3v3/fetch_source.py status --rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json",
-        f"已有的 sourceKey 不要重抓。新頁與 lookup 都用 fetch_source.py。建議關鍵字：{keyword_hint(person)}",
+        "不要追求 15 次查詢或 6 個新頁：WebSearch 最多 1 次、新頁最多 2 頁。searchLog 只記這次實際查的步驟，標 \"round\": \"field-retry\"。",
+        f"讀改單人檔只用局部指令（路徑例：person.positions[0].period.end）：{patch}",
+        f"查原文：{fetch_cmd(batch, 'lookup')}",
+        f"抓新頁：{fetch_cmd(batch)}（已有的 sourceKey 不要重抓；建議關鍵字：{keyword_hint(person)}）",
         RAWMAP_RULE,
-        "不要跑 verify.py 或 check_min.py。回覆不要貼頁面。",
-        done_line(batch, person, "retry"),
+        QUOTE_RULE,
+        f"最後跑 python3 -I tools/b3v3/person_draft.py check --spec {spec_ref(batch)} --id {aid} --done（它會寫 agent-done）。",
+        "工具呼叫合計最多 8 次。",
         rules(repo),
     ])
 
 
-def review_prompt(batch, person, repo):
+def review_prompt(batch, person, repo, escalate=False):
+    kind = "escalate" if escalate else "review"
+    aid = agent_id(kind, batch, person)
+    patch = f"python3 -I tools/b3v3/person_patch.py <get|set|del|append> --file {person_path(batch, person)} --path <路徑> [--json '<JSON>']"
     lines = [
         "你是審查者，只審一個人。",
         f"人物：{person.get('line') or person.get('name')}",
         f"bioId：{person['bioId']}",
-        f"規則檔 {batch['reviewPrompt']} 的來源分級、T14、最低標準、Q1–Q10 仍適用；本任務的範圍優先。",
         "上次審查被中斷，請重查這個人。" if batch.get("recheck") else f"審查 batch{batch['nn']} 的這個人。",
     ]
+    if escalate:
+        lines.append("前一輪 Sonnet 審查後 verify 仍有錯（見 verifyErrors）。只修這些錯，其他維持。")
     if person.get("shortfallFlag"):
         lines.append("這個人標記為篇幅不足。不要為了湊字數重寫或加段。審查既有內容，verdict 寫「篇幅不足」。")
     lines.extend([
-        DATE_RULE,
-        f"只讀這兩個檔：{person_path(batch, person)} 與 {evidence_path(batch, person)}。",
+        f"證據切片：{evidence_path(batch, person)}。內容附在本訊息最後；沒附才 Read 這個檔一次。"
+        "不要讀單人檔全文、research.json、evidence-pack.json、raw 或規則檔。",
         "證據切片的 claims 以段、職位、候選角色、gap 為單位（where 如「段1」「職位 <key>」）："
         "每個單位的 text 只寫一次，citations 逐筆含 index、quote、sourceKey、grade、verify"
-        "（ok、normOffset 或 reason）。同檔還有 checkMin 與 verifyErrors。"
-        "不要讀整份 research.json，不要讀整份 evidence-pack.json，不要讀 raw。",
-        "逐字引文以證據切片 citations[].verify 為準。全人最多 1 次抽查重抓，而且只能：",
-        "python3 -I tools/b3v3/fetch_source.py fetch "
-        f"--rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json "
-        "--source-key <sourceKey> --url <url> --keywords '<詞>'",
-        "已有的 sourceKey 不要重抓。",
-        f"要改內容就覆寫 {person_path(batch, person)}。",
-        f"另寫 {review_note_path(batch, person)} ，內容是 "
-        '{"bioId":"...","verdict":"pass|pass_with_changes|returned|篇幅不足","changes":[],"note":"..."}。',
-        "不要跑 verify.py 或 check_min.py。不要寫整份 review.json（驅動程式會合併）。回覆不要貼頁面。",
-        done_line(batch, person, "review"),
+        "（ok、normOffset 或 reason）。同檔還有 checkMin、verifyErrors，以及 paths（每個單位在單人檔裡的路徑）。",
+        "審查重點：1. verifyErrors 與 verify.ok=false 的引文：改成原文裡逐字的短片段（用 lookup 找），找不到就刪掉那筆引文和它支撐的子句。"
+        "2. 每個事實子句都要對得到該單位的 quote，對不到就刪子句。3. 段落／職位／角色只收 A／B。"
+        "4. T14 歸類與必填欄位（t14Rule／t14Reason、R6 的 roleEligible／roleGap、黨職在 roleCandidates）。"
+        "不要新增來源沒寫的事實。searchLog 前段是 Python 預查（索引、權威檔、候選頁），不要因查詢次數退件。",
+        DATE_RULE,
+        f"看或改一小塊：{patch}",
+        f"查原文：{fetch_cmd(batch, 'lookup')}（已有的 sourceKey 不要重抓）",
+        f"結束（一定要跑，沒有要改也直接跑）：python3 -I tools/b3v3/person_draft.py review-done --spec {spec_ref(batch)} --id {aid} "
+        "--verdict <pass|pass_with_changes|returned|篇幅不足> --note '<60 字內；改了起迄日要寫理由>' --changes '[\"改了什麼\"]'",
+        "它會寫 review 記錄與 agent-done，並印出改完後的 verify 錯誤數。不要寫整份 review.json（驅動程式會合併）。",
+        "工具呼叫合計最多 5 次。",
         rules(repo),
     ])
     return "\n".join(lines)
+
+
+def _rel(repo, path):
+    path = str(path)
+    repo = str(repo).rstrip("/")
+    if path.startswith(repo + "/"):
+        return path[len(repo) + 1:]
+    return "/" + path if not path.startswith("/") else "/" + path
+
+
+def launch_profile(agent, repo):
+    """每種 agent 的固定啟動設定：模型、輪數上限、工具、允許的指令（dontAsk：清單外一律拒絕）。"""
+    kind = agent["kind"]
+    people = _rel(repo, f"{agent['outDir']}/people")
+    bio = agent["bioId"]
+    fetch_all = "Bash(python3 -I tools/b3v3/fetch_source.py:*)"
+    lookup = "Bash(python3 -I tools/b3v3/fetch_source.py lookup:*)"
+    patch = "Bash(python3 -I tools/b3v3/person_patch.py:*)"
+    if kind == "research":
+        draft = f"{people}/{bio}.draft.json"
+        return {
+            "model": agent.get("model") or "sonnet",
+            "maxTurns": 11,
+            "tools": "Bash,Read,Write,Edit,WebSearch",
+            "allowed": [
+                "Bash(python3 -I tools/b3v3/person_draft.py check:*)", fetch_all,
+                f"Write({draft})", f"Edit({draft})", f"Read({people}/{bio}.*)", "WebSearch",
+            ],
+            "timeoutSeconds": 25 * 60,
+        }
+    if kind == "retry":
+        return {
+            "model": agent.get("model") or "sonnet",
+            "maxTurns": 9,
+            "tools": "Bash,Read,WebSearch",
+            "allowed": [
+                "Bash(python3 -I tools/b3v3/person_draft.py check:*)", fetch_all, patch,
+                f"Read({people}/{bio}.evidence.json)", "WebSearch",
+            ],
+            "timeoutSeconds": 15 * 60,
+        }
+    if kind in ("review", "escalate"):
+        return {
+            "model": agent.get("model") or ("opus" if kind == "escalate" else "sonnet"),
+            "maxTurns": 6,
+            "tools": "Bash,Read",
+            "allowed": [
+                "Bash(python3 -I tools/b3v3/person_draft.py review-done:*)", lookup, patch,
+                f"Read({people}/{bio}.evidence.json)",
+            ],
+            "timeoutSeconds": 12 * 60,
+        }
+    if kind == "discover":
+        return {
+            "model": agent.get("model") or "haiku",
+            "maxTurns": 4,
+            "tools": "WebSearch",
+            "allowed": ["WebSearch"],
+            "timeoutSeconds": 6 * 60,
+        }
+    raise ValueError(f"未知 agent 種類 {kind}")
+
+
+def discover_prompt(agent):
+    return "\n".join([
+        "只找網址，不要寫檔。人物：" + (agent.get("line") or agent.get("name") or ""),
+        "用 WebSearch 最多 3 次，找這個人的合格生平來源頁：國家級傳記辭典、政府／議會／國家圖書館官方頁、人名權威檔、"
+        "具名作者的機構百科或學術傳記。原文語言姓名至少查 1 次。",
+        "不要 Wikipedia、Wikidata、百度、任何 wiki、部落格、論壇、私人彙編（rulers.org、archontology 等）。",
+        "最後只回一行 JSON：{\"urls\":[\"https://…\"]}，最多 6 個，最可能有生平與任期日期的排前面。",
+    ])

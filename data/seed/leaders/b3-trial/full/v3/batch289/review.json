@@ -1,0 +1,21 @@
+{
+ "batch": "289",
+ "reviewedOn": "2026-11-18",
+ "partial": false,
+ "people": [
+  {
+   "bioId": "01a1edaf-2a1d-70b8-9947-5de18f94d23d",
+   "verdict": "pass_with_changes",
+   "changes": [
+    "positions 四筆精度鍵 periodStartPrecision／periodEndPrecision 改為 startPrecision／endPrecision（verify 讀職位精度的欄位名；原本報『期間端點與精度不一致』）",
+    "段1：刪正文『IPN 另一頁拼作 Szyling』（ipn-104909h 未列入 sources、無 citation；拼寫差異仍留在 gap）",
+    "段1：引文 'jako przestępca polityczny' 延伸為 'jako przestępca polityczny, mimo cenzusu naukowego'（已用 lookup 在 ipn-225051h 核對），撐住『即使有學歷』子句；英文補 despite his education",
+    "段1：period 迄點 1906 → 1912（年），涵蓋正文所述1905年起服役兩年與1910–1912年學業",
+    "段3：Kennedy 引文延伸為 'Brig. Gen. A. Szylling, assigned seven infantry divisions and a cavalry brigade'（79字，已核對）；刪『防守克拉科夫地區』子句（原文 Cracow 在換頁後，不與引文相連），『指揮』改『被配屬』",
+    "段3：新增 ipn-suleja-wrzesien-1939 引文 'zmuszone zostały do opuszczenia śląskiego obszaru warownego'（已用 lookup 核對，緊接原 9月2日引文），撐住『撤出西里西亞築壘區』子句",
+    "gap paragraph:identity：刪『死亡地僅見未評等來源』的錯誤說法（ipn-225051h 已寫 zm. 17 czerwca 1971 w Montrealu）"
+   ],
+   "note": "所有引文在證據切片皆 verify ok；新增／延伸的 3 筆引文以 fetch_source.py lookup 在既有 raw 核對逐字出現，未重抓。Kraków 集團軍司令迄日維持 null（gap 已以『待查證：缺迄日』開頭，1939-09-20 起被俘非解職明文），T14 R6／roleEligible military_commander 與 roleGap 合理；團長、師屬步兵指揮官、師長 R5 正確。來源分級：IPN 兩頁 A、Kennedy HyperWar 轉錄 B，合理。中文 4 段約 600 字，達最低篇幅。未跑 verify.py。"
+  }
+ ]
+}

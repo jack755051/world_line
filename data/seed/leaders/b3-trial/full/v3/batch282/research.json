@@ -1,0 +1,171 @@
+{
+ "batch": "b3-full-v3-batch282",
+ "researchedOn": "2026-11-18",
+ "policyVersion": "bio-2026-11-v0",
+ "alignedTo": "b0b0e0f",
+ "alignNote": "直接寫 b0b0e0f 對齊格式",
+ "schemaNote": "單人檔；positions／roleCandidates 為空；gaps 列未解項",
+ "rawDir": "/Users/jack755051/wl-source-cache/b3full-v3/batch282/raw",
+ "rawMap": "rawmap.json",
+ "sources": {
+  "kennedy-dapam-20-255": {
+   "title": "The German Campaign in Poland (1939)",
+   "authors": [
+    "Robert M. Kennedy"
+   ],
+   "publisher": "Department of the Army, DA Pam 20-255 (HyperWar 轉錄)",
+   "published_text": "1956",
+   "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+   "archive_url": null,
+   "catalog_id": "DA Pam 20-255",
+   "license_code": "public-domain-us-gov",
+   "grade": "B",
+   "gradeBasis": "美國陸軍官方出版 DA Pam 20-255 原件為 A；此為 HyperWar 第三方轉錄本，依現行來源規則記 B"
+  }
+ },
+ "people": [
+  {
+   "key": "de-gienanth-curt",
+   "bioId": "01a1edaf-2a1d-70b8-9947-5dda2fdb70a2",
+   "name": "Gienanth",
+   "nameZh": "吉南特",
+   "recordIds": [],
+   "thickness": "薄",
+   "paragraphs": [
+    {
+     "key": "p1",
+     "period": {
+      "start": "1939-09-01",
+      "end": null
+     },
+     "body": {
+      "zh-Hant": "1939年9月波蘭戰役期間，德軍以邊境指揮部的營、第62步兵師的一個團及第252步兵師部分單位組成特遣群，稱為吉南特群（Group Gienanth），負責防衛南方集團軍群暴露的左翼。來源只提到此群之名，未寫其指揮官全名與任期。",
+      "en": "During the September 1939 Polish campaign, German frontier-command battalions, a regiment of the 62d Infantry Division and elements of the 252d Infantry Division were formed into a task force called Group Gienanth, responsible for defending Army Group South's exposed left flank. The source gives only the group's name, not its commander's full name or tenure."
+     },
+     "citations": [
+      {
+       "sourceKey": "kennedy-dapam-20-255",
+       "locator": "Part Three, Chapter 6, Army Group South 1-6 September",
+       "quote": "organized into a task force known as Group Gienanth",
+       "quoteLang": "en",
+       "evidenceNote": "來源只稱 Group Gienanth，未寫指揮官全名與日期",
+       "accessedOn": "2026-11-18",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": "Group Gienanth 為特遣群",
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "kennedy-dapam-20-255",
+       "locator": "Part Three, Chapter 6, Army Group South 1-6 September",
+       "quote": "responsibility for the defense of Army Group South's exposed left flank",
+       "quoteLang": "en",
+       "evidenceNote": "來源只寫該群任務，未寫指揮官個人",
+       "accessedOn": "2026-11-18",
+       "grade": "B",
+       "datePrecision": null,
+       "claimSpan": "防衛南方集團軍群暴露左翼",
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "ord": 1,
+     "periodStartPrecision": "month",
+     "periodEndPrecision": null
+    }
+   ],
+   "positions": [],
+   "roleCandidates": [],
+   "gaps": [
+    {
+     "target": "identity",
+     "gapKind": "identity_uncertain",
+     "note": "待查證：A/B 來源僅稱 Group Gienanth；私人彙編（generals.dk 等，X，不可引）指 Curt Ludwig Freiherr von Gienanth（1876–1961，General der Kavallerie），未經 A/B 證實。已查 Kennedy DA Pam 20-255、Deutsche Biographie、GND、Bundesarchiv Tessin、DDB（挑戰頁）。需 Bundesarchiv／Bradley《Die Generale des Heeres》類來源。"
+    },
+    {
+     "target": "position:gienanth-group-command",
+     "gapKind": "not_found",
+     "note": "待查證：缺起日；Group Gienanth 指揮官任期無 A/B 原文，已查來源同上。"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：目前 1 段、約 100 字；已查官方（US Army）、權威檔、國家級傳記辭典、Bundesarchiv，DDB 被擋。"
+    }
+   ],
+   "searchLog": [
+    {
+     "step": 1,
+     "sourceType": "official",
+     "query": "Kennedy DA Pam 20-255 Campaign-III Gienanth",
+     "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
+     "result": "found_A",
+     "note": "只稱 Group Gienanth，無全名"
+    },
+    {
+     "step": 2,
+     "sourceType": "other",
+     "query": "Curt Freiherr von Gienanth General Wehrkreis XII 1939 Gruppe Gienanth",
+     "url": null,
+     "result": "unrated",
+     "note": "僅得 generals.dk／gmic／tracesofwar 等私人彙編（X）：Curt Ludwig Freiherr von Gienanth 1876–1961，只能當線索不入檔"
+    },
+    {
+     "step": 3,
+     "sourceType": "authority",
+     "query": "Gienanth Curt Deutsche Biographie GND 1876",
+     "url": null,
+     "result": "no_result",
+     "note": "Deutsche Biographie 僅有另一人 Ludwig von Gienanth(1767–1848)；查無 GND 1876–1961 條目"
+    },
+    {
+     "step": 4,
+     "sourceType": "official",
+     "query": "Gienanth Wehrkreis XII Grenzkommandeur Saarpfalz 1939 Polenfeldzug",
+     "url": null,
+     "result": "no_result",
+     "note": "無 A/B 命中"
+    },
+    {
+     "step": 5,
+     "sourceType": "official",
+     "query": "Gienanth Eisenberg Pfalz 1876 1961 Heidelberg General der Kavallerie Biographie",
+     "url": null,
+     "result": "unrated",
+     "note": "只有私人彙編"
+    },
+    {
+     "step": 6,
+     "sourceType": "official",
+     "query": "Gienanth Höheres Kommando XXXVI Generalkommando Gienanth 1939 1940",
+     "url": "https://www.deutsche-digitale-bibliothek.de/item/SZI7JTI34UCNKLFK2X2ZTF7VT6Y2ZN5B",
+     "result": "challenge_page",
+     "note": "DDB／archivportal-d 挑戰頁，放棄；未繞過"
+    },
+    {
+     "step": 7,
+     "sourceType": "official",
+     "query": "Gienanth Bundesarchiv Tessin Verbände und Truppen Bd 16",
+     "url": "https://www.bundesarchiv.de/assets/bundesarchiv/de/Downloads/Tessin/Bd_16-4_ocr.pdf",
+     "result": "no_result",
+     "note": "抓取 Bd16-1/2/4，文字層亂碼，Gienanth 無命中"
+    },
+    {
+     "step": 8,
+     "sourceType": "authority",
+     "query": "Gienanth Kurt Ludwig GND d-nb.info lobid.org",
+     "url": null,
+     "result": "no_result",
+     "note": "無權威檔條目"
+    },
+    {
+     "step": 9,
+     "sourceType": "academic",
+     "query": "Gienanth Poland 1939 Eighth Army Group Gienanth commander",
+     "url": null,
+     "result": "unrated",
+     "note": "僅有 wiki 類索引頁，不可引"
+    }
+   ]
+  }
+ ]
+}

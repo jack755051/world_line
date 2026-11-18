@@ -1,0 +1,20 @@
+{
+ "batch": "277",
+ "reviewedOn": "2026-11-18",
+ "partial": false,
+ "people": [
+  {
+   "bioId": "01a1edaf-2a1d-70b8-9947-5dd5865b0b18",
+   "verdict": "pass_with_changes",
+   "changes": [
+    "5 筆職位的 periodStartPrecision／periodEndPrecision 改為 verify 要求的 startPrecision／endPrecision 鍵（修正「期間端點與精度不一致」×5）",
+    "ministeramt、wehrmachtamt 兩筆 R5 補 t14Reason（部內幕僚職，非四部正職閣員或部隊指揮）",
+    "gap target person:identity 改為 identity",
+    "段3與 hgsued 的 LeMO 死亡引文改為含日期的逐字片段「17. Januar: Walter von Reichenau stirbt, nachdem er einen Schlaganfall erlitten」，另加同條逐字「im Flugzeug auf dem Weg nach Lemberg」支撐「在飛機上」；evidenceNote 註明迄日 1942-01-18 為死亡日次日（半開區間）",
+    "段3：「進入低地國家」無引文支撐，依 LeMO「Im Frankreichfeldzug」改為「1940年法國戰役中」；「南方集團軍群中最強」改為引文所述「三個軍團中最強」",
+    "段3與職位 10a：10. Armee 譯名統一為「第10軍團」（與第6軍團一致，避免與軍級混淆）；Generaloberst 由「上將」改「大將」"
+   ],
+   "note": "37 筆引文 verify 全 ok；來源 NDB(A)、LeMO(B，具名作者)、Kennedy DA Pam 20-255(HyperWar 轉錄，A 記 B) 分級合理。四筆職位缺迄日均已有「待查證：缺迄日」gap，未改原日期；hgsued 迄日依 LeMO 死亡日推得。中文 3 段 367 字，達最低標準。T14：hg4／10a／hgsued 為 R6 且 roleGap 已列；未重抓任何來源。未跑 verify.py，依任務規定交由驅動程式。"
+  }
+ ]
+}

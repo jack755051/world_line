@@ -60,6 +60,19 @@ def iter_units(person):
             yield f"gap {gap.get('target')}", claim_text("gap", gap), cites
 
 
+def unit_paths(person, prefix="person"):
+    """每個段落／職位／候選角色／gap 在單人檔裡的路徑，給審查用 person_patch.py 局部修改。"""
+    out = []
+    for index, para in enumerate(person.get("paragraphs") or []):
+        out.append({"where": f"段{para.get('ord')}", "path": f"{prefix}.paragraphs[{index}]"})
+    for kind, field in (("職位", "positions"), ("候選角色", "roleCandidates")):
+        for index, item in enumerate(person.get(field) or []):
+            out.append({"where": f"{kind} {item.get('key')}", "path": f"{prefix}.{field}[{index}]"})
+    for index, gap in enumerate(person.get("gaps") or []):
+        out.append({"where": f"gap {gap.get('target')}", "path": f"{prefix}.gaps[{index}]"})
+    return out
+
+
 def iter_citations(person):
     for where, text, cites in iter_units(person):
         for index, cite in enumerate(cites):

@@ -333,7 +333,8 @@ def prepare_files(agents):
         claims = sliced["claims"]
         if not raw_ok:
             for claim in claims:
-                claim["verify"] = {"ok": None, "reason": "這台機器沒有原文快取，不要依這格改引文"}
+                for cite in claim.get("citations") or []:
+                    cite["verify"] = {"ok": None, "reason": "這台機器沒有原文快取，不要依這格改引文"}
         data = json.loads(research.read_text(encoding="utf-8"))
         row = next(item for item in check_min.report_for(data)["people"] if item["key"] == person.get("key"))
         errors = plan.errors_for_person(plan.load_verify_errors(out), person)

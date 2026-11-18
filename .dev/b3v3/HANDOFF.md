@@ -75,3 +75,4 @@ python3 -I tools/b3v3/run_chunk.py dry-run \
 - 篇幅不足的人整份重跑補不出字（Averescu、Uriburu）。這種人直接送審。
 - 研究 agent 會把單人檔 `rawMap` 寫成字串 `"rawmap.json"`。合併程式會改成物件；提示詞仍要求寫物件。
 - 審查不要為了「這是推論」就拿掉已寫上的迄日。佩納因此從達標變成已標註缺迄日。
+- 每人證據切片 `people/<bioId>.evidence.json` 的 `claims` 以段、職位、候選角色、gap 為單位：`where` 與 `text` 只寫一次，`citations` 逐筆含 `index`、`quote`、`sourceKey`、`grade`、`verify`（`ok`、`normOffset` 或 `reason`）。`checkMin`、`verifyErrors` 仍在檔案頂層。整批 `evidence-pack.json` 同形，`failedClaimIndexes` 是沒過的單位索引。

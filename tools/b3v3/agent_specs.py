@@ -156,8 +156,11 @@ def review_prompt(batch, person, repo):
     lines.extend([
         DATE_RULE,
         f"只讀這兩個檔：{person_path(batch, person)} 與 {evidence_path(batch, person)}。",
-        "證據切片裡有這個人的 claim、check_min 判定、verify 錯誤。不要讀整份 research.json，不要讀整份 evidence-pack.json，不要讀 raw。",
-        "逐字引文以證據切片的 verify 為準。全人最多 1 次抽查重抓，而且只能：",
+        "證據切片的 claims 以段、職位、候選角色、gap 為單位（where 如「段1」「職位 <key>」）："
+        "每個單位的 text 只寫一次，citations 逐筆含 index、quote、sourceKey、grade、verify"
+        "（ok、normOffset 或 reason）。同檔還有 checkMin 與 verifyErrors。"
+        "不要讀整份 research.json，不要讀整份 evidence-pack.json，不要讀 raw。",
+        "逐字引文以證據切片 citations[].verify 為準。全人最多 1 次抽查重抓，而且只能：",
         "python3 -I tools/b3v3/fetch_source.py fetch "
         f"--rawdir {batch['rawDir']} --rawmap {batch['outDir']}/rawmap.json "
         "--source-key <sourceKey> --url <url> --keywords '<詞>'",

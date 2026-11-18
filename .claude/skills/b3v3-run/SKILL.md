@@ -60,10 +60,14 @@ python3 -I tools/b3v3/run_chunk.py next \
 | --- | --- |
 | 計畫、抽單人檔、合併、verify、check_min、證據切片 | `tools/b3v3/run_chunk.py`（Python，不耗模型） |
 | 研究、只補缺的欄位 | Sonnet，一人一個 agent |
-| 審查 | 預設 Sonnet，一人一個 agent，只讀自己的證據切片 |
+| 審查 | 預設 Sonnet，一人一個 agent，只讀自己的 `people/<bioId>.evidence.json` |
 | 升 Opus | 該人的 verify 有錯，或補欄之後 check_min 仍是「未達」 |
 
 模型可以改：`--research-model`、`--retry-model`、`--review-model`、`--escalate-model`。預設是 sonnet、sonnet、sonnet、opus。
+
+## 證據切片
+
+`run_chunk.py` 為每個審查對象寫 `people/<bioId>.evidence.json`。`claims` 的一筆是一個主張單位（段落、職位、候選角色或 gap）。`where` 是 `段<ord>`、`職位 <key>`、`候選角色 <key>` 或 `gap <target>`，不再附 `c0`、`c1`。`text` 只寫一次。`citations` 逐筆含 `index`、`quote`、`sourceKey`、`grade`、`verify`（`ok`、`normOffset`，沒過則有 `reason`）。同檔頂層保留 `checkMin`、`verifyErrors`。整批 `evidence-pack.json` 用同一形狀，另有 `claimCount`（單位數）、`citationCount`（引文數）、`failedClaimIndexes`（有引文沒過的單位在 `claims` 裡的索引）。
 
 ## 重跑與篇幅不足
 

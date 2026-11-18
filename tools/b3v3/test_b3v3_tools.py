@@ -180,7 +180,9 @@ class MergeEvidenceTests(unittest.TestCase):
             self.assertIn("minister  of war", person["person"]["paragraphs"][0]["citations"][0]["quote"])
             pack = evidence.build(research)
             self.assertEqual(pack["failedClaimIndexes"], [])
-            self.assertTrue(pack["claims"][0]["verify"]["ok"])
+            self.assertEqual(pack["claims"][0]["where"], "段1")
+            self.assertEqual(len(pack["claims"][0]["citations"]), 1)
+            self.assertTrue(pack["claims"][0]["citations"][0]["verify"]["ok"])
             # 壞引文要同時被 verify.py 與證據包標出
             data = json.loads(research.read_text(encoding="utf-8"))
             data["people"][0]["paragraphs"][0]["citations"][0]["quote"] = "not in the source at all"
@@ -194,6 +196,9 @@ class MergeEvidenceTests(unittest.TestCase):
             self.assertTrue(any("未逐字" in error for error in errors))
             pack = evidence.build(research)
             self.assertEqual(pack["failedClaimIndexes"], [0])
+            self.assertFalse(pack["claims"][0]["citations"][0]["verify"]["ok"])
+            self.assertEqual(pack["claims"][0]["citations"][0]["verify"]["reason"], "引文未逐字出現")
+            self.assertIsNone(pack["claims"][0]["citations"][0]["verify"]["normOffset"])
             extracted = people / "again.json"
             merge.extract(research, "bio-1", extracted)
             self.assertEqual(json.loads(extracted.read_text(encoding="utf-8"))["person"]["bioId"], "bio-1")
@@ -243,6 +248,234 @@ class MergeEvidenceTests(unittest.TestCase):
             self.assertFalse((root / "check-min.json").exists())
             report = json.loads((root / "check_min-report.json").read_text(encoding="utf-8"))
             self.assertEqual(report["failingKeys"], ["p"])
+
+    def test_paragraph_with_many_cites_is_one_unit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            raw = root / "raw"
+            raw.mkdir()
+            (raw / "src.txt").write_text(
+                "He was minister of war in 1907 and left in 1909.",
+                encoding="utf-8",
+            )
+            (root / "rawmap.json").write_text(
+                json.dumps({"src": "src.txt", "nofile": "nofile.txt"}),
+                encoding="utf-8",
+            )
+            paragraph = "他在一九〇七年任陸軍部長，一九〇九年離職。"
+            research = {
+                "batch": "b3-full-v3-batcht",
+                "rawDir": str(raw),
+                "rawMap": "rawmap.json",
+                "people": [
+                    {
+                        "key": "p", "bioId": "bio-1", "name": "某人",
+                        "paragraphs": [
+                            {
+                                "ord": 1,
+                                "body": {"zh-Hant": paragraph},
+                                "citations": [
+                                    {"sourceKey": "src", "quote": "minister of war in 1907", "grade": "B"},
+                                    {"sourceKey": "src", "quote": "not in the source", "grade": "A"},
+                                    {"sourceKey": "nofile", "quote": "minister of war", "grade": "B"},
+                                    {"sourceKey": "unknown", "quote": "minister of war", "grade": "C"},
+                                ],
+                            },
+                            {
+                                "ord": 2,
+                                "body": {"zh-Hant": "第二段只有一筆。"},
+                                "citations": [
+                                    {"sourceKey": "src", "quote": "left in 1909", "grade": "B"},
+                                ],
+                            },
+                        ],
+                        "positions": [{
+                            "key": "job",
+                            "title": {"zh-Hant": "陸軍部長"},
+                            "organization": {"zh-Hant": "陸軍部"},
+                            "period": {"start": "1907-01-01", "end": "1909-01-01"},
+                            "citations": [
+                                {"sourceKey": "src", "quote": "minister of war", "grade": "B"},
+                                {"sourceKey": "src", "quote": "left in 1909", "grade": "B"},
+                            ],
+                        }],
+                        "roleCandidates": [{
+                            "key": "role-1",
+                            "title": {"zh-Hant": "首相"},
+                            "period": {"start": "1908-01-01", "end": "1909-01-01"},
+                            "citations": [
+                                {"sourceKey": "src", "quote": "in 1907", "grade": "A"},
+                                {"sourceKey": "src", "quote": "in 1909", "grade": "A"},
+                            ],
+                        }],
+                        "gaps": [
+                            {
+                                "target": "position:x",
+                                "note": "待查證：缺迄日 A",
+                                "candidateCitations": [
+                                    {"sourceKey": "src", "quote": "minister of war", "grade": "B"},
+                                ],
+                            },
+                            {
+                                "target": "position:x",
+                                "note": "待查證：缺迄日 B",
+                                "candidateCitations": [
+                                    {"sourceKey": "src", "quote": "left in 1909", "grade": "B"},
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        "key": "q", "bioId": "bio-2", "name": "別人",
+                        "paragraphs": [{
+                            "ord": 1,
+                            "body": {"zh-Hant": "另一個人。"},
+                            "citations": [{"sourceKey": "src", "quote": "left in 1909", "grade": "B"}],
+                        }],
+                        "positions": [], "roleCandidates": [], "gaps": [],
+                    },
+                ],
+            }
+            path = root / "research.json"
+            path.write_text(json.dumps(research, ensure_ascii=False), encoding="utf-8")
+            pack = evidence.build(path)
+            units = [claim for claim in pack["claims"] if claim["personKey"] == "p"]
+            paragraph_unit = units[0]
+            self.assertEqual(paragraph_unit["where"], "段1")
+            self.assertEqual(paragraph_unit["text"], paragraph)
+            self.assertEqual(len(paragraph_unit["citations"]), 4)
+            self.assertEqual(json.dumps(paragraph_unit, ensure_ascii=False).count(paragraph), 1)
+            indexes = [cite["index"] for cite in paragraph_unit["citations"]]
+            self.assertEqual(indexes, [0, 1, 2, 3])
+            hit, miss, absent, unloaded = paragraph_unit["citations"]
+            self.assertEqual(hit["quote"], "minister of war in 1907")
+            self.assertEqual(hit["sourceKey"], "src")
+            self.assertEqual(hit["grade"], "B")
+            self.assertTrue(hit["verify"]["ok"])
+            self.assertIsInstance(hit["verify"]["normOffset"], int)
+            self.assertEqual(miss["grade"], "A")
+            self.assertFalse(miss["verify"]["ok"])
+            self.assertIsNone(miss["verify"]["normOffset"])
+            self.assertEqual(miss["verify"]["reason"], "引文未逐字出現")
+            self.assertEqual(absent["verify"], {"ok": False, "reason": "原文檔不存在"})
+            self.assertEqual(unloaded["verify"], {"ok": False, "reason": "沒有載入此 sourceKey 的原文"})
+            self.assertEqual(units[1]["where"], "段2")
+            self.assertEqual(len(units[1]["citations"]), 1)
+            position = next(claim for claim in units if claim["where"] == "職位 job")
+            self.assertEqual(len(position["citations"]), 2)
+            self.assertEqual(json.dumps(position, ensure_ascii=False).count("陸軍部長"), 1)
+            self.assertTrue(all(cite["verify"]["ok"] for cite in position["citations"]))
+            role = next(claim for claim in units if claim["where"] == "候選角色 role-1")
+            self.assertEqual([cite["index"] for cite in role["citations"]], [0, 1])
+            gaps = [claim for claim in units if claim["where"] == "gap position:x"]
+            self.assertEqual([claim["text"] for claim in gaps], ["待查證：缺迄日 A", "待查證：缺迄日 B"])
+            self.assertEqual(pack["claimCount"], len(pack["claims"]))
+            self.assertEqual(pack["citationCount"], 4 + 1 + 2 + 2 + 1 + 1 + 1)
+            self.assertEqual(pack["failedClaimIndexes"], [0])
+            sliced = evidence.slice_person(pack, "p")
+            self.assertEqual(sliced["personKey"], "p")
+            self.assertEqual(sliced["claimCount"], len(units))
+            self.assertEqual(sliced["citationCount"], 11)
+            self.assertEqual(sliced["failedClaimIndexes"], [0])
+            self.assertTrue(all(claim["personKey"] == "p" for claim in sliced["claims"]))
+            other = evidence.slice_person(pack, "q")
+            self.assertEqual(other["failedClaimIndexes"], [])
+            self.assertEqual(other["citationCount"], 1)
+            proc = subprocess.run(
+                [sys.executable, "-I", str(TOOLS / "evidence_pack.py"), str(path),
+                 "--out", str(root / "evidence-pack.json"), "--person", "bio-2"],
+                capture_output=True, text=True,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertIn("claims=1", proc.stdout)
+            self.assertIn("citations=1", proc.stdout)
+            written = json.loads((root / "evidence-pack.json").read_text(encoding="utf-8"))
+            self.assertEqual(written["claims"][0]["personKey"], "q")
+            self.assertEqual(written["claimCount"], 1)
+            self.assertIn("citationCount", written)
+            self.assertIn("quoteCheck", written)
+
+    def test_batch094_grouped_pack_is_smaller(self):
+        path = REPO / "data/seed/leaders/b3-trial/full/v3/batch094/research.json"
+        pack = evidence.build(path)
+        multi = [claim for claim in pack["claims"] if len(claim.get("citations") or []) > 1]
+        self.assertTrue(multi)
+        sample = max(multi, key=lambda claim: len(claim["citations"]))
+        blob = json.dumps(sample, ensure_ascii=False)
+        self.assertEqual(blob.count(json.dumps(sample["text"], ensure_ascii=False)), 1)
+        old = _flat_pack(pack)
+        before = _dump_bytes(old)
+        after = _dump_bytes(pack)
+        self.assertLess(after, before)
+        by_person = {}
+        for claim in pack["claims"]:
+            by_person.setdefault(claim["personKey"], []).append(claim)
+        person_before = person_after = 0
+        biggest = None
+        for key, claims in by_person.items():
+            new_n = _dump_bytes(claims)
+            old_claims = []
+            for unit in claims:
+                for cite in unit["citations"]:
+                    old_claims.append({
+                        "personKey": unit["personKey"],
+                        "personName": unit["personName"],
+                        "where": f"{unit['where']} c{cite['index']}",
+                        "text": unit["text"],
+                        "quote": cite["quote"],
+                        "sourceKey": cite["sourceKey"],
+                        "grade": cite["grade"],
+                        "verify": cite["verify"],
+                    })
+            old_n = _dump_bytes(old_claims)
+            person_before += old_n
+            person_after += new_n
+            saved = old_n - new_n
+            if biggest is None or saved > biggest[0]:
+                biggest = (saved, key, old_n, new_n, len(claims), sum(len(c["citations"]) for c in claims))
+        self.assertLess(person_after, person_before)
+        print(
+            f"SIZE batch094 evidence-pack.json before={before} after={after} "
+            f"saved={before - after} claims={pack['claimCount']} citations={pack['citationCount']}"
+        )
+        print(
+            f"SIZE batch094 per-person claims before={person_before} after={person_after} "
+            f"saved={person_before - person_after} largest={biggest[1]} "
+            f"before={biggest[2]} after={biggest[3]} units={biggest[4]} citations={biggest[5]}"
+        )
+
+
+def _dump_bytes(data):
+    return len((json.dumps(data, ensure_ascii=False, indent=1) + "\n").encode("utf-8"))
+
+
+def _flat_pack(pack):
+    """舊版證據包：每筆引文重複整段 text。用來跟分組後的位元組比較。"""
+    claims = []
+    failed = []
+    for unit in pack["claims"]:
+        for cite in unit["citations"]:
+            if not (cite.get("verify") or {}).get("ok"):
+                failed.append(len(claims))
+            claims.append({
+                "personKey": unit["personKey"],
+                "personName": unit["personName"],
+                "where": f"{unit['where']} c{cite['index']}",
+                "text": unit["text"],
+                "quote": cite["quote"],
+                "sourceKey": cite["sourceKey"],
+                "grade": cite["grade"],
+                "verify": cite["verify"],
+            })
+    return {
+        "batch": pack["batch"],
+        "generatedBy": pack["generatedBy"],
+        "quoteCheck": pack["quoteCheck"],
+        "verifyReport": pack["verifyReport"],
+        "claimCount": len(claims),
+        "failedClaimIndexes": failed,
+        "claims": claims,
+    }
 
 
 class PlanTests(unittest.TestCase):
@@ -313,8 +546,14 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(notes, [])
         review = (REPO / ".dev/b3v3/prompts/review-096.md").read_text(encoding="utf-8")
         self.assertIn("evidence-pack.json", review)
+        self.assertIn("每個 claim 單位寫一次 text", review)
+        self.assertIn("該 claim 單位只寫一次的 text", review)
+        self.assertNotIn("每筆 claim 的段落文字", review)
         self.assertNotIn("每人至少抽 1 個來源重抓", review)
         self.assertNotIn("raw/*.txt", review)
+        again, notes = patch.patch_text("review-096.md", review)
+        self.assertEqual(again, review)
+        self.assertEqual(notes, [])
 
 
 class CheckMinVerdictTests(unittest.TestCase):
@@ -401,6 +640,9 @@ class DriverTests(unittest.TestCase):
         self.assertIn("篇幅不足", review)
         self.assertIn("佩納", review)
         self.assertIn(".evidence.json", review)
+        self.assertIn("citations", review)
+        self.assertIn("checkMin", review)
+        self.assertIn("text 只寫一次", review)
 
     def test_dry_run_chunk4_models_and_counts(self):
         proc = subprocess.run(
@@ -442,6 +684,76 @@ class DriverTests(unittest.TestCase):
             self.assertEqual(proc.returncode, 0, proc.stderr)
             self.assertIn("role:hodza-sns-1906.end", proc.stdout)
             self.assertNotIn("不要印這段", proc.stdout)
+
+    def test_evidence_file_keeps_check_min_and_marks_missing_raw(self):
+        run_chunk = load("run_chunk", TOOLS / "run_chunk.py")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            out = root / "batch"
+            out.mkdir()
+            raw = root / "raw"
+            raw.mkdir()
+            (raw / "src.txt").write_text("minister of war in 1907 and left in 1909.", encoding="utf-8")
+            empty = root / "empty"
+            empty.mkdir()
+            paragraph = "他在一九〇七年任陸軍部長，一九〇九年離職，並留任到次年。"
+            research = {
+                "batch": "b3-full-v3-batcht",
+                "rawDir": str(raw),
+                "rawMap": "rawmap.json",
+                "people": [{
+                    "key": "p", "bioId": "bio-1", "name": "某人",
+                    "paragraphs": [{
+                        "ord": 1,
+                        "body": {"zh-Hant": paragraph},
+                        "citations": [
+                            {"sourceKey": "src", "quote": "minister of war in 1907", "grade": "B"},
+                            {"sourceKey": "src", "quote": "left in 1909", "grade": "A"},
+                        ],
+                    }],
+                    "positions": [], "roleCandidates": [], "gaps": [],
+                }],
+            }
+            (out / "research.json").write_text(json.dumps(research, ensure_ascii=False), encoding="utf-8")
+            (out / "rawmap.json").write_text('{"src": "src.txt"}\n', encoding="utf-8")
+            (out / "verify-report.json").write_text(
+                json.dumps({"ok": False, "errors": ["p 引文未逐字出現"]}),
+                encoding="utf-8",
+            )
+            agent = {
+                "kind": "review", "outDir": str(out), "rawDir": str(raw),
+                "bioId": "bio-1", "batch": "t",
+            }
+            run_chunk.prepare_files([agent])
+            evidence_path = out / "people" / "bio-1.evidence.json"
+            doc = json.loads(evidence_path.read_text(encoding="utf-8"))
+            self.assertEqual(doc["bioId"], "bio-1")
+            self.assertTrue(doc["rawLoaded"])
+            self.assertEqual(set(doc["checkMin"]), {
+                "verdict", "paragraphs", "zhChars", "meetsMinimum", "documentedShortfall", "openTerms",
+            })
+            self.assertEqual(doc["verifyErrors"], ["p 引文未逐字出現"])
+            self.assertEqual(len(doc["claims"]), 1)
+            self.assertEqual(doc["claims"][0]["where"], "段1")
+            self.assertEqual(doc["claims"][0]["text"], paragraph)
+            self.assertEqual(len(doc["claims"][0]["citations"]), 2)
+            self.assertEqual(evidence_path.read_text(encoding="utf-8").count(paragraph), 1)
+            self.assertTrue(all(cite["verify"]["ok"] for cite in doc["claims"][0]["citations"]))
+            self.assertEqual(
+                [cite["quote"] for cite in doc["claims"][0]["citations"]],
+                ["minister of war in 1907", "left in 1909"],
+            )
+            agent["rawDir"] = str(empty)
+            run_chunk.prepare_files([agent])
+            marked = json.loads(evidence_path.read_text(encoding="utf-8"))
+            self.assertFalse(marked["rawLoaded"])
+            self.assertEqual(marked["checkMin"]["verdict"], doc["checkMin"]["verdict"])
+            self.assertEqual(marked["verifyErrors"], doc["verifyErrors"])
+            self.assertEqual(evidence_path.read_text(encoding="utf-8").count(paragraph), 1)
+            for cite in marked["claims"][0]["citations"]:
+                self.assertEqual(cite["verify"], {"ok": None, "reason": "這台機器沒有原文快取，不要依這格改引文"})
+                self.assertIn("quote", cite)
+                self.assertIn("grade", cite)
 
 
 if __name__ == "__main__":

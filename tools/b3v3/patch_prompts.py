@@ -124,19 +124,34 @@ def patch_text(name, text):
         text = insert_banner(text, f"""{MARKER}
 只重跑任務點名的人。抓取與 quote 一律用 `tools/b3v3/fetch_source.py`（先 status，已有的 sourceKey 不要重抓；fetch 只印命中段落；lookup 查片段）。禁止 Read／cat 整份 raw，禁止把整頁貼進上下文。WebFetch 只用於發現網址。不要跑 check_min.py（工作流會寫 `check_min-report.json`）。若任務要你寫單人檔，覆寫 `{outdir}/people/<bioId>.json`，不要重寫整份 research.json。最低搜尋量、來源分級、原文語言查詢、不用 `-k`、不用 Wayback、403 就放棄，全部仍適用。""")
     else:
-        text, n = re.subn(r"、原文 `[^`]+`。", "、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。", text, count=1)
+        pack_line = (
+            "、以及同目錄的 `evidence-pack.json`"
+            "（每個 claim 單位的 text 只寫一次，citations 逐筆含 index、quote、sourceKey、grade、verify）。"
+            "不要 Read／cat 整份 raw 原文。"
+        )
+        text = text.replace(
+            "、以及同目錄的 `evidence-pack.json`（每筆 claim 含段落文字、quote、sourceKey、verify 結果）。不要 Read／cat 整份 raw 原文。",
+            pack_line,
+        )
+        text, n = re.subn(r"、原文 `[^`]+`。", pack_line, text, count=1)
         if n == 0 and "evidence-pack.json" not in text:
             notes.append("review-sources-line-missing")
         text = text.replace(
             "每人至少抽 1 個來源重抓比對",
             "全批最多 1 次抽查重抓，而且只能呼叫 tools/b3v3/fetch_source.py（只看它印出的短摘）",
         )
+        support = "仍須用該 claim 單位只寫一次的 text 判斷 quote 是否支撐該句"
         text = text.replace(
             "不能只信 verify.py：再人工比對引文與它支撐的句子",
-            "逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；仍須用證據包裡的段落文字判斷 quote 是否支撐該句",
+            "逐字是否在原文以 verify.py 與 evidence-pack 的 verify 為準，不要打開 raw 對子字串；" + support,
+        )
+        text = text.replace("仍須用證據包裡的段落文字判斷 quote 是否支撐該句", support)
+        text = text.replace(
+            "（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果）",
+            "（工作流已產生：每個 claim 單位寫一次 text，其下 citations 逐筆含 index、quote、sourceKey、grade、verify）",
         )
         text = insert_banner(text, f"""{MARKER}
-逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每筆 claim 的段落文字、quote、sourceKey、verify 結果），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。""")
+逐字引文以 verify.py 為準。先讀同目錄 `evidence-pack.json`（工作流已產生：每個 claim 單位寫一次 text，其下 citations 逐筆含 index、quote、sourceKey、grade、verify），不要整批重讀 raw、不要重抓網頁。全批最多 1 次 spot refetch，且必須走 fetch_source.py。不要跑 check_min.py；最低標準看同目錄 `check_min-report.json`。來源分級、T14、Q1–Q10、最低嘗試仍然要查。""")
     return text, notes
 
 

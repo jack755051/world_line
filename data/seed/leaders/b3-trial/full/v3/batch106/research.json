@@ -705,6 +705,15 @@
      "url": "https://amp.eng.kavkaz-uzel.eu/articles/417",
      "result": "unrated",
      "note": "新聞網站人物欄，無作者與書目，不用"
+    },
+    {
+     "step": 11,
+     "round": "field-retry",
+     "sourceType": "national_dictionary",
+     "query": "已存原文（ge-chk、gnd-chkheidze、lobid-chk、tsu160、tsu434、kavkaz）內找杜馬任期終點與 Seim 終點",
+     "url": null,
+     "result": "not_found",
+     "note": "已存原文均無杜馬議員或外高加索議會主席迄日；維持待查證：缺迄日 gap，不用未評等頁補"
     }
    ]
   },
@@ -1458,9 +1467,23 @@
    "gaps": [
     {
      "target": "position:madsen-landbrugsraad",
-     "gapKind": "not_found",
-     "note": "待查證：缺迄日；DBL 寫1919年當選農業理事會主席、1920年「Kort efter」辭去主席職務，未寫日期；Lex 摘要未提。已查 DBL、Lex（Den Store Danske）、丹麥農業部歷任部長頁、GND(lobid)。",
-     "checkedOn": "2026-11-15"
+     "gapKind": "conflict",
+     "note": "待查證：缺迄日；DBL（A）寫1920年復活節後「Kort efter nedlagde han sine formandshverv」再入閣（1920-05-04），未寫日期；Lex（B）寫「i 1919-1933 præsident for Landbrugsraadet」，與 DBL 不一致，B 級不足以覆蓋 A 級，故迄日保持 null。",
+     "checkedOn": "2026-11-18",
+     "candidateCitations": [
+      {
+       "sourceKey": "dbl-madsen",
+       "locator": "第3段",
+       "quote": "Kort efter nedlagde han sine formandshverv",
+       "quoteLang": "da"
+      },
+      {
+       "sourceKey": "snl-madsen",
+       "locator": "Karriere",
+       "quote": "i 1919-1933 præsident for Landbrugsraadet",
+       "quoteLang": "da"
+      }
+     ]
     },
     {
      "target": "position:madsen-agriculture-1920",
@@ -1567,6 +1590,15 @@
      "url": null,
      "result": "no_result",
      "note": "僅出現在檢索結果，未抓取"
+    },
+    {
+     "step": 10,
+     "round": "field-retry",
+     "sourceType": "named_encyclopedia",
+     "query": "重讀已抓 snl-madsen、dbl-madsen 找農業理事會迄日",
+     "url": null,
+     "result": "found_B",
+     "note": "Lex 寫1919-1933，與 DBL 1920 辭任相衝突；迄日維持 null 並記 gap"
     }
    ]
   },

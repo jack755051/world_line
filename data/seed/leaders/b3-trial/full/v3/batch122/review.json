@@ -1,0 +1,49 @@
+{
+ "batch": "122",
+ "reviewedOn": "2026-11-18",
+ "partial": false,
+ "people": [
+  {
+   "bioId": "01a1b52a-61d4-79cb-80c0-2c8c9fb12cc3",
+   "verdict": "pass_with_changes",
+   "changes": [
+    "段3 c7、職位 schober-interpol-president c1：datePrecision「專文」非法，改 null",
+    "段5 c2 與 gap position:schober-vienna-police cand1：引文超過 80 字，縮成原文子字串「Regierung Seipel am 31. Mai 1922 wieder die Leitung der Polizeidirektion」",
+    "段6：period 起迄同日（起>=迄），迄日改半開 1927-07-16；刪「誤判形勢、安全部署不足」（無引文）；改寫委員會句並補 wgw-justiz／wgw-schober3 引文 8 筆（日期、塞佩爾授權、騎警、2011–2013、主要責任等）",
+    "職位 schober-vicechancellor-1930、schober-vienna-police、schober-interpol-president：補 t14Reason（皆 R5）；副總理補 t14Overlap=cabinet",
+    "段4、段7：原文誤稱「維也納歷史館」，實為 hdgoe（奧地利歷史之家），已改；段4 布賴斯基句刪無引文支撐的 1922-01-26 日期；段4 補 hdgoe 引文 2 筆（基社黨與德意志民族派組成、以無黨派閣員為主）",
+    "段7：刪「作為外交部長」（NDB 引文未寫；1930 海牙會議時他是總理）；補 hdgoe 引文「a conservative and German National majority in parliament」",
+    "段9：刪「可觀成績」「恩德爾與布雷施內閣」「亦兼外交部長」（無引文，與段8重複）；補 wgw-schober3 引文 3 筆（人事爭執、1930-11-09 選舉、民族自由派陣營）",
+    "段2：補 wgw-schober3 引文 2 筆；刪「資產階級政黨中」（引文斷在 bei 之後，未能核對）",
+    "段5：補 wgw-schober3 引文 3 筆（基社黨支持、Anschlussverbot 與大德意志派、選他為主席並以維也納為常設地）",
+    "段3：「申陰案」改「沙滕多夫（布爾根蘭）陪審團審判」",
+    "datePrecision 只在引文含日期時填：段2 c3、段4 bmi-beamte c6、段5 c1、段6 c0、段7 hdgoe c3/c4、段8 c0、段9 c1 改 null"
+   ],
+   "note": "未重抓（0 次）；新增引文皆以 fetch_source.py lookup 在已快取的 wgw-schober3／wgw-justiz／hdgoe-schober 原文核對過逐字片段。起迄日未改成 null；警察總監迄日分歧（NDB 1929 對國會 1932）維持原 conflict gap；IKPK 主席缺迄日維持「待查證：缺迄日」gap。中文合計約 1692 字、9 段。checkMin 的 meetsMinimum=false 只因 IKPK 主席缺迄日（已有 gap 標註）。"
+  },
+  {
+   "bioId": "01a1b490-dd0c-7191-8336-0ad1e9b2a66d",
+   "verdict": "篇幅不足",
+   "changes": [
+    "段5 c0 datePrecision 由非法值 none 改為 null",
+    "職位 kung-bank-of-china-governor 補 t14Reason（R5）",
+    "gap target person:birth 改為 field:birthDate（合法格式）",
+    "gap target position:kung-kmt-cec 改為 role:kung-kmt-cec（該項是候選角色，以便 openTerms 對上缺迄日 gap）",
+    "段3 院長任期 1938-01～1939-11 加歸屬『歐柏林學院的傳記稱』，避免與段4 A 級官網 1939-12-11 迄日並陳為事實"
+   ],
+   "note": "全部 23 筆引文 verify ok，未重抓。篇幅不足（5 段約 535 字），gap 已記搜尋範圍，未湊字。院長任期 1938-01-01～1939-12-11 有 A 級行政院官網支撐，維持。kmt-cec 迄日缺，已有『待查證：缺迄日』gap，維持 null。留意：段3 與職位寫『中國銀行總裁』（胡佛、歐柏林原文 Bank of China），段5 國史館館刊寫『中央銀行總裁』，史實上孔祥熙 1933–45 為中央銀行總裁，依現有來源未改，建議後續查證。"
+  },
+  {
+   "bioId": "01a1b52a-61e2-745d-9de5-b2018a26eeee",
+   "verdict": "pass_with_changes",
+   "changes": [
+    "positions mosquera-senate-vp、mosquera-uce-rector 補 t14Reason（R5：立法職／學術行政職，不在 T14 門檻）",
+    "段4 與候選角色 mosquera-director-supremo-plr 的引文由「siendo director supremo del Partido Liberal Radical」延長為原文連續的「En 1938, siendo director supremo del Partido Liberal Radical」，使 datePrecision=year 有含日期引文（已用 lookup 核對）",
+    "段4 引文「la Asamblea Constituyente lo designó presidente constitucional」不含日期，datePrecision 改 null",
+    "gap target person:birth-year 改 field:birth_year；role:mosquera-president（無此角色）改 field:death_date",
+    "sources 補 an-ejercito1220、uce-pinoteca（grade null，只作 gap 候選），消除未知來源錯誤"
+   ],
+   "note": "逐段核對：所有引文 verify ok，用 lookup 核對上下文：段4 內閣句（integró en su gabinete…Galo Plaza）、段6 過渡條款（según otra norma transitoria）、uce-autonomia 的「este mandatario」指 Mosquera、uce-anales8273 摘要點名 Mosquera，皆支撐。來源 A/B 分級合理；未用 Wikipedia。黨職兩筆在 roleCandidates（R1，Tai 12:12）；director supremo 迄日缺，原有「待查證：缺迄日」gap，維持 null，未改其他日期。中文 6 段 652 字，搜尋紀錄 34 步含 retry，達最低嘗試。未重抓任何來源（spotRefetched=0）。"
+  }
+ ]
+}

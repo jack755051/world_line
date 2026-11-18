@@ -930,16 +930,16 @@
     {
      "target": "role:mueller-spd-chair-1919",
      "gapKind": "not_found",
-     "note": "待查證：缺迄日；NDB 與 LeMO 只寫1919年與韋爾斯共同當選黨主席，未寫卸任年月；已查 NDB（Deutsche Biographie）、LeMO、GND 三來源",
+     "note": "待查證：缺迄日；NDB 只寫1919年艾伯特當選總統後改選兩位黨主席、由米勒與韋爾斯當選並「fortan」共同領導，LeMO 只寫1919年當選，GND 無此職；已抓 A／B 來源皆未寫卸任年月。de.wikipedia 寫至1928年，但屬禁用網域，不收為候選",
      "candidateCitations": [],
-     "checkedOn": "2026-11-17"
+     "checkedOn": "2026-11-18"
     },
     {
      "target": "role:mueller-spd-vorstand-1906",
      "gapKind": "not_found",
-     "note": "待查證：缺迄日；NDB 與 LeMO 只寫1906年當選黨執行委員會，未寫離任年月；已查 NDB、LeMO、GND",
+     "note": "待查證：缺迄日；NDB、LeMO、GND、de.wikipedia 皆只寫1906年當選黨執行委員會，未寫離任年月",
      "candidateCitations": [],
-     "checkedOn": "2026-11-17"
+     "checkedOn": "2026-11-18"
     },
     {
      "target": "position:mueller-foreign-minister-1919",
@@ -1048,6 +1048,15 @@
      "url": null,
      "result": "no_result",
      "note": "WebSearch 額度用盡，未執行；黨主席迄日因此未查得"
+    },
+    {
+     "step": 9,
+     "round": "field-retry",
+     "sourceType": "named_encyclopedia",
+     "query": "de.wikipedia Hermann Müller 黨主席迄日",
+     "url": null,
+     "result": "found_C",
+     "note": "「Bis 1928」黨主席；黨執行委員會迄日仍無（C 級維基網域，未收為來源）"
     }
    ]
   },
@@ -1074,8 +1083,8 @@
       "en": "Birth, death and places"
      },
      "body": {
-      "zh-Hant": "伊萬·洛吉諾維奇·戈列梅金（Ivan Logginovich Goremykin；德文權威檔寫作 Goremykin, Ivan Logginovič）1839年11月8日出生，出生地為諾夫哥羅德。他於1917年12月24日在索契去世。",
-      "en": "Ivan Logginovich Goremykin (Goremykin, Ivan Logginovič in the German authority file) was born on 8 November 1839; Deutsche Biographie gives Novgorod as his birthplace. He died in Sochi on 24 December 1917."
+      "zh-Hant": "伊萬·洛吉諾維奇·戈列梅金（Ivan Logginovich Goremykin）1839年11月8日出生，出生地為諾夫哥羅德。他於1917年12月24日在索契去世。",
+      "en": "Ivan Logginovich Goremykin was born on 8 November 1839; Deutsche Biographie gives Novgorod as his birthplace. He died in Sochi on 24 December 1917."
      },
      "relatedRecordIds": [],
      "citations": [
@@ -1142,8 +1151,8 @@
       "en": "Occupations and offices"
      },
      "body": {
-      "zh-Hant": "GND權威檔將戈列梅金的職業標為政治人物、內政部長與參議員（Senator），並記他為部長會議主席（Ministerpräsident；Ministerratsvorsitzender）。Deutsche Biographie的人名索引頁也列出俄羅斯內政部長、部長會議主席、內政部長、政治人物與參議員等職能。",
-      "en": "The GND authority file gives Goremykin's occupations as politician, Interior Minister and senator, and notes him as chairman of the Council of Ministers (Ministerpräsident; Ministerratsvorsitzender). The Deutsche Biographie index page likewise lists the functions Russian Interior Minister, Prime Minister, Interior Minister, politician and senator."
+      "zh-Hant": "GND權威檔將戈列梅金的職業標為內政部長與參議員（Senator），並記他為部長會議主席（Ministerpräsident；Ministerratsvorsitzender）。Deutsche Biographie的人名索引頁也稱他為俄羅斯內政部長，並列為政治人物。",
+      "en": "The GND authority file gives Goremykin's occupations as Interior Minister and senator, and notes him as chairman of the Council of Ministers (Ministerpräsident; Ministerratsvorsitzender). The Deutsche Biographie index page likewise calls him a Russian Interior Minister and lists him as a politician."
      },
      "relatedRecordIds": [],
      "citations": [
@@ -1348,8 +1357,8 @@
       "en": "Birth and origin"
      },
      "body": {
-      "zh-Hant": "寺內正毅（てらうち まさたけ）出身於山口縣，生年月日依首相官邸頁記為嘉永5年2月5日；德國國家圖書館的GND權威檔記他生於1852年、卒於1919年，職業標籤含政治人物、政府首腦與陸軍元帥（Generalfeldmarschall）。",
-      "en": "Terauchi Masatake came from Yamaguchi Prefecture; the Prime Minister's Office page gives his date of birth as Kaei 5, 2nd month, 5th day. The German National Library's GND authority file records him as born in 1852 and died in 1919, with occupation labels including politician, head of government and field marshal (Generalfeldmarschall)."
+      "zh-Hant": "寺內正毅（てらうち まさたけ）出身於山口縣，生年月日依首相官邸頁記為嘉永5年2月5日；德國國家圖書館的GND權威檔記他生於1852年、卒於1919年，職業標籤含陸軍元帥（Generalfeldmarschall）。",
+      "en": "Terauchi Masatake came from Yamaguchi Prefecture; the Prime Minister's Office page gives his date of birth as Kaei 5, 2nd month, 5th day. The German National Library's GND authority file records him as born in 1852 and died in 1919, with an occupation label of field marshal (Generalfeldmarschall)."
      },
      "relatedRecordIds": [],
      "citations": [
@@ -1460,8 +1469,8 @@
       "en": "Prime Minister"
      },
      "body": {
-      "zh-Hant": "據首相官邸「歷代內閣」頁，寺內正毅是第18代內閣總理大臣，就任時64歲，在職期間為大正5年10月9日至大正7年9月29日，共721日。內閣成立時他同時臨時兼任外務大臣，並兼任大藏大臣；GND另記他在1918年推動西伯利亞出兵的準備。",
-      "en": "According to the Prime Minister's Office \"Successive Cabinets\" page, Terauchi was the 18th Prime Minister, aged 64 on taking office, serving from 9 October Taisho 5 to 29 September Taisho 7 (721 days). In his cabinet he also held the foreign portfolio as a temporary concurrent post and the finance portfolio concurrently; the GND adds that in 1918 he prepared the Siberian Intervention."
+      "zh-Hant": "據首相官邸「歷代內閣」頁，寺內正毅是第18代內閣總理大臣，就任時64歲，在職期間為大正5年10月9日至大正7年9月29日，共721日。內閣成立時他同時臨時兼任外務大臣，並兼任大藏大臣。",
+      "en": "According to the Prime Minister's Office \"Successive Cabinets\" page, Terauchi was the 18th Prime Minister, aged 64 on taking office, serving from 9 October Taisho 5 to 29 September Taisho 7 (721 days). In his cabinet he also held the foreign portfolio as a temporary concurrent post and the finance portfolio concurrently."
      },
      "relatedRecordIds": [],
      "citations": [

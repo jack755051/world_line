@@ -66,7 +66,7 @@ body:not(.tour) #interp{display:none}
 .ob.sel,.er.sel{background:var(--acc-bg);box-shadow:inset 2px 0 0 var(--acc)}
 .er i,.el i,.wp i{font-style:normal;flex:none;width:34px;color:var(--ink2);font-size:12px;font-variant-numeric:tabular-nums}
 .er.i3 span{font-family:var(--serif);font-weight:900;font-size:14.5px}.er.i1 span{color:var(--ink2)}
-.er.post{opacity:.45}.er.now{background:var(--wash)}.er.now i{color:var(--acc);font-weight:700}
+.er.post{opacity:.45}.er.now i{color:var(--acc);font-weight:700;position:relative}.er.now i::before{content:'';position:absolute;left:-7px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--acc)}
 
 /* ---------- 地圖 ---------- */
 #map-wrap{grid-column:2;grid-row:1;position:relative;overflow:hidden;min-height:0;background:#d6e1e7}
@@ -357,7 +357,7 @@ body.tour #now{max-height:56%}
 .claims h4{margin:0 0 6px;display:flex;align-items:center;gap:8px;font-size:12.5px}
 .cl{display:grid;grid-template-columns:auto auto 1fr;gap:2px 8px;align-items:baseline;padding:4px 0;border-top:1px dashed var(--line);font-size:12px}
 .cl i{font-style:normal;color:var(--ink2);font-size:11px}.cl b{font-family:var(--serif);font-size:15px}.cl span{color:var(--ink2)}
-.np.src{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.6}.np.src i{display:block;font-style:normal;color:var(--ink3);font-size:11px}
+.np.src{display:block;margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);font-size:12.5px;line-height:1.6}.np.src cite{display:block;margin-top:4px;font-style:normal;color:var(--ink3);font-size:11px}
 #banner small{display:block;margin-top:3px;font-size:11px;letter-spacing:0;color:#8a4310;opacity:.85}
 .sw-srcsite{width:10px!important;height:10px!important;transform:rotate(45deg);background:var(--axis)!important;border:1.5px solid var(--ink)!important;border-radius:0!important;margin:0 5px 0 3px}
 .sw-srcarrow{height:0!important;border:0!important;border-top:3px solid var(--ink)!important;background:none!important}
@@ -391,13 +391,46 @@ details.rs{margin:8px 0 0;border-top:1px solid rgba(60,50,30,.14);padding-top:6p
 details.rs>summary{cursor:pointer;font-size:12px;font-weight:600;color:#4b4436;list-style:none}
 details.rs>summary::before{content:'▸ ';color:#a2977f}
 details.rs[open]>summary::before{content:'▾ '}
-.tp{display:grid;grid-template-columns:auto auto 1fr;gap:2px 8px;align-items:baseline;font-size:12px;padding:4px 0;border-bottom:1px dotted rgba(60,50,30,.14)}
+.tp{font-size:12px;padding:8px 0;border-bottom:1px dotted rgba(60,50,30,.14)}
+.tph{display:flex;align-items:center;gap:8px}
 .tp b{font-variant-numeric:tabular-nums}
 .tp i{font-style:normal;color:#7a7264}
-.tp q{grid-column:1/-1;font-size:11px;color:#7a7264;quotes:'「' '」'}
+.tph em{margin-left:auto;font-style:normal;font-size:10.5px;padding:1px 6px;border-radius:3px;background:#ebe8e2;color:#6b6258;white-space:nowrap}
+.tph em.on{background:#e3efe2;color:#2d6a31}
+.tpp{margin:3px 0 0;font-size:13px;font-weight:600;line-height:1.4}
+.tp q{display:block;margin:5px 0 0;padding-left:8px;border-left:2px solid rgba(60,50,30,.18);font-size:11.5px;line-height:1.5;color:#7a7264;quotes:'「' '」'}
+.tp small{display:block;margin:3px 0 0 10px;font-size:10.5px;color:#a2977f}
+.cf u{text-decoration:none;font-weight:400;opacity:.8;margin-right:3px}
+.orgt{display:flex;flex-direction:column;gap:6px}.orgt>div{display:flex;align-items:center;gap:6px}.orgt b{color:var(--ink3);font-weight:400}
+.ul.self{display:inline-flex;align-items:center;cursor:default}.ul.self.axis{background:var(--axis-bg)}.ul.self.allied{background:var(--allied-bg)}.ul.self.third{background:var(--third-bg)}
+.obg{position:relative}.obg>.tg{position:absolute;left:0;top:0;width:20px;height:30px;padding:0;background:none;border:0;font-size:14px;line-height:30px;color:var(--ink2);z-index:1;cursor:pointer}
+.obg>.tg:hover{color:var(--ink)}
+.ob span em{font-style:normal;font-size:11px;color:var(--ink3);margin-left:6px}
 
 /* 正式頁模式：回主地圖的連結 */
 #app-back{flex:none;align-self:center;display:inline-flex;align-items:center;height:32px;padding:0 10px;border:1px solid var(--line,#d9d3c7);border-radius:8px;background:#fff;color:var(--ink,#26201c);font-size:13px;text-decoration:none;white-space:nowrap}
 #app-back:hover{border-color:var(--ink,#26201c)}
 .cf-schematic{background:#e6e3f1!important;color:#4a3f7a!important}
 .sw-schem{height:8px!important;width:26px!important;flex:none!important;border:0!important;background:repeating-linear-gradient(90deg,rgba(184,64,47,.5) 0 3px,transparent 3px 7px)!important}
+
+/* 清單列之間留間距；進行中的圓點不壓到選取的左側線 */
+.ob-list .er,.ob-list .ob{margin:2px 0}.ob-list .er{padding-left:16px}.er.now i::before{left:-10px}
+/* 章節＝史料階段 */
+.chp{margin:2px 0 2px 3px;border-left:2px solid var(--line)}
+.chp.past{border-left-color:var(--ink3)}.chp.past .chh strong,.chp.past .chh i{color:var(--ink3)}
+.chh{display:flex;gap:10px;align-items:baseline;width:100%;padding:8px 10px 8px 12px;background:none;border:0;border-radius:0 6px 6px 0;text-align:left}
+.chh:hover{background:var(--wash)}
+.chh i{font-style:normal;flex:none;width:74px;white-space:nowrap;font-size:12px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.chh strong{font-size:13.5px;font-weight:600;line-height:1.4}
+.chp.on{margin:8px 0 8px 3px;border-left:3px solid var(--acc);border-radius:0 8px 8px 0;background:var(--acc-bg)}
+.chp.on .chh{display:block;padding:12px 14px 0}.chp.on .chh:hover{background:none}
+.chp.on .chh i{display:block;width:auto;margin-bottom:4px;color:var(--acc);font-weight:700}
+.chp.on .chh strong{display:block;font-family:var(--serif);font-weight:900;font-size:19px;line-height:1.3}
+.chb{padding:0 14px 14px}
+.chb p{margin:10px 0 0}
+.chs{font-size:13px;line-height:1.7;color:var(--ink)}.chs.none{color:var(--ink2);font-size:12.5px}
+.chm{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;font-size:11.5px;color:var(--ink2)}.chm>span{flex:none;color:var(--ink3)}.chm cite{font-style:italic;flex:1 1 100%}
+.chd{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.chd button{height:24px;padding:0 9px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:12px;font-variant-numeric:tabular-nums}
+.chd button:hover{border-color:var(--acc)}.chd button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.chn{padding-top:9px;border-top:1px dashed var(--line);font-size:11.5px;line-height:1.6;color:var(--ink2)}.chn span{margin-right:6px;color:var(--ink3)}

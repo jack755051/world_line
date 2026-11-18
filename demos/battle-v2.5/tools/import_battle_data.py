@@ -108,8 +108,9 @@ for d in kdates:
     ph = next((p for p in phases if p['from'] == d), None); cur = [p for p in phases if p['from'] <= d <= p['to']]
     m = mark_map.get(d); c = cam(d)
     title = ph['name_zh'] if ph else (f"{int(d[5:7])}/{int(d[8:])} 傍晚態勢" if m else (cur[-1]['name_zh'] if cur else ''))
-    line = first_sentence(ph.get('summary_zh')) if ph and ph.get('summary_zh') else (f"部隊位置讀自 {len(m['features'])} 個圖上標註（{m['source']['citation'].split(', Situation Map ')[-1]}）。" if m else '')
-    keyframes.append({'date': d, 'camera': c, 'event_zh': title, 'event_en': '', 'major': bool(ph), 'focus': ['places', 'engagements'], 'focus_units': [], 'places': VIEW['places'][c], 'event_line': line})
+    line = first_sentence(ph.get('summary_zh')) if ph and ph.get('summary_zh') else ''
+    note = f"部隊位置讀自 {len(m['features'])} 個圖上標註（{m['source']['citation'].split(', Situation Map ')[-1]}）。" if m else ''   # 這是資料備註，不是敘述；畫面放在章節的備註列
+    keyframes.append({'date': d, 'camera': c, 'event_zh': title, 'event_en': '', 'major': bool(ph), 'focus': ['places', 'engagements'], 'focus_units': [], 'places': VIEW['places'][c], 'event_line': line, 'map_note': note})
 
 # ---------- 單位：名冊（R1）＋圖上標註 ----------
 ECH = {'army_group': 'front', 'army': 'army', 'corps': 'corps', 'division': 'division', 'naval_command': 'corps', 'air_command': 'corps', 'other': 'corps'}
@@ -194,13 +195,19 @@ for d in sorted(mark_maps):
 # 只收表示部隊本身所在的關係；開會、指派防區、出發、指揮這類不代表部隊位置的不收。座標是地名中心，精度標 ±5 公里。
 have = {(p['unit_id'], p['date']) for p in positions}
 n_text = 0
+FAM = (L('battle.config.json', {}).get('sourceFamilies') or {}).get('map', {})
+def text_level(p):   # docs/source-rules.md §5：只有對手方＝待查證；一筆 A，或兩個獨立家族的 B＝已查證；其餘待查證
+    cs = [c for c in (p.get('citations') or []) if c.get('grade') in ('A', 'B')]
+    if p.get('sourceSide') == 'opposing' or not cs: return 'needs-check'
+    if any(c['grade'] == 'A' for c in cs): return 'verified'
+    return 'verified' if len({FAM.get(c['sourceKey'], c['sourceKey']) for c in cs}) >= 2 else 'needs-check'
 for p in R3:
     if p.get('unitKey') not in roster_ids or p.get('date') not in kdates or p.get('relation') not in TEXT_REL or (p['unitKey'], p['date']) in have: continue
     ll = lonlat(p.get('place'), 'r3')
     if not ll: continue
     have.add((p['unitKey'], p['date'])); n_text += 1
     positions.append({'unit_id': p['unitKey'], 'date': p['date'], 'lng': ll[0], 'lat': ll[1], 'state': TEXT_ST.get(p['relation'], 'move'), 'status': 'text', 'precision_m': 5000,
-                      'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation'],
+                      'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation'], 'level': text_level(p),
                       **({'opposing': True} if p.get('sourceSide') == 'opposing' else {})})   # 只有對手方出處＝待查證（docs/source-rules.md）
 for p in coarse_later:
     if (p['unit_id'], p['date']) not in have: have.add((p['unit_id'], p['date'])); positions.append(p)

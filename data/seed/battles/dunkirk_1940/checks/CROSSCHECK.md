@@ -2,9 +2,9 @@
 
 由 `tools/battles/crosscheck.py` 產生，不要手改。規則見 `docs/source-rules.md`：已查證＝一筆 A 或兩個獨立家族的 A/B；來源等級不因來源數目更動；對手方出處不能單獨成立。
 
-來源家族（battle.config.json）：ellis-war-in-france-flanders→uk-army-official-bef；gort-gazette-35305→uk-army-official-bef；ramsay-gazette-38017→uk-navy-dover-ramsay；ndb-deutsche-biographie→ndb
+來源家族（battle.config.json）：ellis-war-in-france-flanders→uk-army-official-bef；gort-gazette-35305→uk-army-official-bef；ramsay-gazette-38017→uk-navy-dover-ramsay；ndb-deutsche-biographie→ndb；rothbrust-cut-of-the-scythe→us-cgsc-rothbrust-xix-ktb；halder-war-journal-omgus→de-okh-halder-journal
 
-來源立場：uk-army-official-bef＝allied；uk-navy-dover-ramsay＝allied；ndb＝third
+來源立場：uk-army-official-bef＝allied；uk-navy-dover-ramsay＝allied；ndb＝third；us-cgsc-rothbrust-xix-ktb＝third；de-okh-halder-journal＝axis
 
 | 種類 | 已查證 | 待查證 | 推估 | 單一來源 | 只有對手方說法 | 不到 A/B（不寫入） |
 |---|---|---|---|---|---|---|

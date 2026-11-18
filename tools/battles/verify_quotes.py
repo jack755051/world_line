@@ -46,6 +46,8 @@ def fetch(url):
     out = []
     for enc in ("utf-8", "cp1252"):
         t = raw.decode(enc, "replace")
+        if url.split("?")[0].lower().endswith(".txt"):   # 純文字檔（例：archive.org 的 OCR 文字）：零散的 < > 不是標籤，不去標籤
+            out.append(t); continue
         t = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", t)
         out.append(html.unescape(re.sub(r"<[^>]+>", " ", t)))
     return out, False

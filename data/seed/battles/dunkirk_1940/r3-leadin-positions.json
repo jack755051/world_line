@@ -1,7 +1,7 @@
 {
  "schema": "dunkirk-data/0.1 r3-leadin",
  "researchedOn": "2026-11-15",
- "note": "前導期 5/10–5/25；全部引自英國官方戰史（Ellis，HyperWar 轉錄，第 III–X 章），引文逐字（含轉錄錯字）。地點只給出處地名＋OSM 編號，不含座標；河線／防線取原文點名的一個城鎮為 place，其餘列 alsoPlaces。德軍各筆為對方（英方）史料，標 sourceSide=opposing。命令、意圖不列為位置，改記 notFound。司令部駐地（GHQ Arras、Command Post 等）未列入。datePrecision=approx 表示原文未明寫該日，理由見 attributionNote。2026-11-15 補：另自同書 Supplement（The Planning and Conduct of the German Campaign，p.333–353）與 Appendix II（書中引文的德文原文，只取 Supplement 部分）補入德軍 5/23 各筆；Appendix III（5/24 編組）無地點。Supplement 對 5/10–22 無任何可定位記載。",
+ "note": "前導期 5/10–5/25；全部引自英國官方戰史（Ellis，HyperWar 轉錄，第 III–X 章），引文逐字（含轉錄錯字）。地點只給出處地名＋OSM 編號，不含座標；河線／防線取原文點名的一個城鎮為 place，其餘列 alsoPlaces。德軍各筆為對方（英方）史料，標 sourceSide=opposing。命令、意圖不列為位置，改記 notFound。司令部駐地（GHQ Arras、Command Post 等）未列入。datePrecision=approx 表示原文未明寫該日，理由見 attributionNote。2026-11-15 補：另自同書 Supplement（The Planning and Conduct of the German Campaign，p.333–353）與 Appendix II（書中引文的德文原文，只取 Supplement 部分）補入德軍 5/23 各筆；Appendix III（5/24 編組）無地點。Supplement 對 5/10–22 無任何可定位記載。 2026-11-18 補：德軍第 19、41 軍 5/10–5/22 的位置 10 筆，取自 Rothbrust 的美國陸軍指參學院碩士論文（依第 19 軍戰爭日誌，B，第三方）與 Halder 日記的美軍官方英譯本（B，己方）；兩者都讀 archive.org 的 OCR 文字，引文含 OCR 錯字，關鍵地名與日期另對過掃描頁。第 16、39 軍在這兩份出處裡沒有可定位記載，見 notFound。",
  "positions": [
   {
    "unitKey": "uk-bef",
@@ -3644,6 +3644,369 @@
      "grade": "A"
     }
    ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-10",
+   "datePrecision": "day",
+   "placeAsInSource": "near Bastogne (advance elements)",
+   "place": {
+    "nameOsm": "Bastogne",
+    "osm": {
+     "type": "relation",
+     "id": 2426390
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "Halder 5/10 約 11:00 記下的空軍（Sperrle）回報；指 Guderian（第 19 軍軍長）的先頭部隊，不是軍主力。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "own",
+   "citations": [
+    {
+     "sourceKey": "halder-war-journal-omgus",
+     "locator": "Vol. IV, entry 10 May 1940, p. 2",
+     "quote": "Guderian, with advance elements, reported near Bastogne",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/HalderWarJournal/Halder%20War%20Journal_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-11",
+   "datePrecision": "day",
+   "placeAsInSource": "the line of Nives-Witry",
+   "place": {
+    "nameOsm": "Witry",
+    "osm": {
+     "type": "relation",
+     "id": 12044753
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "Nives",
+     "nameOsm": "Nives",
+     "osm": {
+      "type": "relation",
+      "id": 12234889
+     }
+    }
+   ],
+   "attributionNote": "5/10 夜間持續推進到約 04:30（5/11 凌晨）時該軍北側到達的線；同段接著寫 5/11 的命令。作者依第 19 軍戰爭日誌（NARA T314）。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 4, 約 p. 100（OCR 頁碼不全，位於印刷頁 99 與 104 之間）",
+     "quote": "The corps reached the line of Nives-Witry in the north",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-12",
+   "datePrecision": "day",
+   "placeAsInSource": "the Sedan sector",
+   "place": {
+    "nameOsm": "Sedan",
+    "osm": {
+     "type": "relation",
+     "id": 153920
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "5/12（聖靈降臨節）一節的總述：當天結束時該軍已到色當地段、可渡默茲河；此時仍在默茲河北岸。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 4, “May 12, 1940”, 約 p. 106",
+     "quote": "the corps made up all its shortfalls on the 12th",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    },
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 4, “May 12, 1940”, 約 p. 106",
+     "quote": "tankers reached the Sedan sector",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-13",
+   "datePrecision": "day",
+   "placeAsInSource": "a salient six kilometers deep and five kilometers wide, with elements as far south as Chehery",
+   "place": {
+    "nameOsm": "Chéhéry",
+    "osm": {
+     "type": "relation",
+     "id": 3275025
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "Sedan（渡河點，章節主題）",
+     "nameOsm": "Sedan",
+     "osm": {
+      "type": "relation",
+      "id": 153920
+     }
+    }
+   ],
+   "attributionNote": "5/13 午夜的狀態：默茲河南岸橋頭堡，最南到 Chéhéry。place 取原文點名的 Chéhéry（橋頭堡南緣），不是軍主力所在。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 137",
+     "quote": "the XIXth Panzer Corps had punched a salient six kilometers deep and five",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    },
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 137",
+     "quote": "kilometers wide, with elements as far south as Chehery",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-14",
+   "datePrecision": "day",
+   "placeAsInSource": "Pont-à-Bar (Ardennes Canal)",
+   "place": {
+    "nameOsm": "Pont à Bar",
+    "osm": {
+     "type": "node",
+     "id": 8987383489
+    }
+   },
+   "basis": "text",
+   "relation": "capturing",
+   "attributionNote": "5/14 該軍把橋頭堡向南擴往 Stonne、向西渡過阿登運河；place 取原文點名的運河渡口 Pont-à-Bar（OCR 作 Pont-a-Baar）。同日 Ellis 另記該軍在 Donchery 架橋（相距約 3 公里）。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, “Tuesday, 14 May 1940”, pp. 137–139",
+     "quote": "enlarged the bridgehead south toward Stonne and crossed the Ardennes Canal",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    },
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 144",
+     "quote": "Pont-a-Baar was the forth Bridge over the Ardennes Canal the corps captured",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-15",
+   "datePrecision": "day",
+   "placeAsInSource": "Poix-Terron–La Bascule–La Horgne–Bouvellemont",
+   "place": {
+    "nameOsm": "Poix-Terron",
+    "osm": {
+     "type": "relation",
+     "id": 3285482
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "alsoPlaces": [
+    {
+     "placeAsInSource": "La Horgne",
+     "nameOsm": "La Horgne",
+     "osm": {
+      "type": "relation",
+      "id": 3285519
+     }
+    },
+    {
+     "placeAsInSource": "Bouvellemont",
+     "nameOsm": "Bouvellemont",
+     "osm": {
+      "type": "relation",
+      "id": 3288218
+     }
+    }
+   ],
+   "attributionNote": "5/15 午夜前該軍（第 1、2 裝甲師）在阿登運河以西到達的線；La Bascule 未查 OSM，不列。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, “Victory in Sight”, p. 148",
+     "quote": "advancing to Poix-Terron-La Bascule-La Horgne-Bouvellemont before midnight",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "date": "1940-05-16",
+   "datePrecision": "day",
+   "placeAsInSource": "Montcornet",
+   "place": {
+    "nameOsm": "Montcornet",
+    "osm": {
+     "type": "relation",
+     "id": 153431
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "5/16 清晨該軍（第 1 裝甲師一部）到 Montcornet，與第 41 軍第 6 裝甲師會合。第一句引文的 OCR 把 Montcornet 讀成 Montcarne；第二句拼寫正確。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 148",
+     "quote": "and to Montcarne by early morning the following day",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    },
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 151",
+     "quote": "The link up at Montcornet established a two",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "date": "1940-05-13",
+   "datePrecision": "day",
+   "placeAsInSource": "crossed Meuse near Monthermé",
+   "place": {
+    "nameOsm": "Monthermé",
+    "osm": {
+     "type": "relation",
+     "id": 3258605
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "Halder 5/13「Evening situation」。OCR 作 Montheme，掃描頁（p. 9）作 Monthermé。同一句接著寫「XVI Corps has passed to west bank north and south of Sedan」，掃描頁確實打成 XVI（色當應為第 19 軍），屬原文疑誤，未據此列任何位置。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "own",
+   "citations": [
+    {
+     "sourceKey": "halder-war-journal-omgus",
+     "locator": "Vol. IV, entry 13 May 1940 (Evening situation), p. 9",
+     "quote": "XXXXI Corps has crossed Meuse near Montheme",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/HalderWarJournal/Halder%20War%20Journal_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "date": "1940-05-16",
+   "datePrecision": "day",
+   "placeAsInSource": "Montcornet (6th Panzer Division)",
+   "place": {
+    "nameOsm": "Montcornet",
+    "osm": {
+     "type": "relation",
+     "id": 153431
+    }
+   },
+   "basis": "text",
+   "relation": "arriving",
+   "attributionNote": "5/16 清晨 Guderian 在 Montcornet 與第 41 軍第 6 裝甲師師長會合，原文稱 Kleist 集群自此成兩軍並列；在場的是該軍的第 6 裝甲師，不是軍部。OCR 把 XLIst 讀成 Mist、corps 讀成 corpa。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "third",
+   "citations": [
+    {
+     "sourceKey": "rothbrust-cut-of-the-scythe",
+     "locator": "Ch. 5, p. 151",
+     "quote": "The link up at Montcornet established a two corpa front for the Panzer Group",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/DTIC_ADB125547/DTIC_ADB125547_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "date": "1940-05-22",
+   "datePrecision": "day",
+   "placeAsInSource": "northward between St. Pol and the sea (right wing)",
+   "place": {
+    "nameOsm": "Saint-Pol-sur-Ternoise",
+    "osm": {
+     "type": "relation",
+     "id": 1232837
+    }
+   },
+   "basis": "text",
+   "relation": "attacking",
+   "attributionNote": "Halder 5/22 15:30 第 4 軍團聯絡官的報告：Kleist 自 12:00 起向北攻擊，第 41 軍在右、第 19 軍在左，地段是 St. Pol 到海之間。第 41 軍是右翼（內陸一側），place 取原文唯一點名的城鎮 St. Pol；只表示地段的一端。OCR 作 St.-IPol，掃描頁（p. 27）作 St. Pol。引文照 archive.org 的 OCR 文字逐字抄錄（含 OCR 錯字）。",
+   "sourceSide": "own",
+   "citations": [
+    {
+     "sourceKey": "halder-war-journal-omgus",
+     "locator": "Vol. IV, entry 22 May 1940 (1530 Goth), p. 27",
+     "quote": "XXXXI . Corps on the right and XIX Corps on the left wing",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/HalderWarJournal/Halder%20War%20Journal_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    },
+    {
+     "sourceKey": "halder-war-journal-omgus",
+     "locator": "Vol. IV, entry 22 May 1940 (1530 Goth), p. 27",
+     "quote": "northward between St.-IPol and the sea",
+     "quoteLang": "en",
+     "url": "https://archive.org/download/HalderWarJournal/Halder%20War%20Journal_djvu.txt",
+     "accessedOn": "2026-11-18",
+     "grade": "B"
+    }
+   ]
   }
  ],
  "notFound": [
@@ -4141,6 +4504,46 @@
    "unitKey": "be-armee",
    "period": "1940-05-19/1940-05-23",
    "note": "5/21 Ypres 會議議定退至 Lys（協議，不列位置）；實際位置此數日無記載。"
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "period": "1940-05-17/1940-05-21",
+   "note": "Rothbrust 論文只寫到 5/16 清晨。Halder 日記這幾天只記到達的地點（5/18「Cambrai reached 1130. St. Quentin 0900」等），未寫是哪一個軍。仍缺；可補的出處見 gaps 說明（Frieser、MGFA 第 2 卷、第 19 軍戰爭日誌 NARA T314/612–615）。"
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "period": "1940-05-22",
+   "note": "Halder 5/22：Kleist 自 12:00 起以第 41 軍在右、第 19 軍在左，於「St. Pol 與海之間」向北攻擊（p. 27）；第 19 軍是靠海的左翼，原文沒有點名城鎮。同日上午另記裝甲部隊被停在「St. Pol – Etaples」一線（掃描頁 p. 25），但這一句的 OCR 文字毀損、通不過逐字核對，且未寫明是哪個軍，未列位置。"
+  },
+  {
+   "unitKey": "de-xix-ak",
+   "period": "1940-05-13",
+   "note": "Halder 5/13 Evening situation 寫「XVI Corps has passed to west bank north and south of Sedan」（p. 9，掃描頁確認）；色當是第 19 軍地段，疑為原文筆誤，不據此列第 19 軍或第 16 軍的位置。"
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "period": "1940-05-11/1940-05-12",
+   "note": "Halder 日記與 Rothbrust 論文皆無第 41 軍位置（Rothbrust 只說它是 Kleist 集群的後續梯隊）。"
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "period": "1940-05-14/1940-05-15",
+   "note": "無軍級位置。Rothbrust p. 149：5/15 第 2 裝甲師希望與「advancing from Charleville-Mezieres」的第 41 軍會合——方向，不列位置。"
+  },
+  {
+   "unitKey": "de-xxxxi-ak",
+   "period": "1940-05-17/1940-05-21",
+   "note": "Halder 日記這幾天未提第 41 軍的位置。仍缺。"
+  },
+  {
+   "unitKey": "de-xvi-ak",
+   "period": "1940-05-11/1940-05-22",
+   "note": "Halder 日記（Vol. IV）：5/12「Reichenau has clashed with French tanks … near Hannut」只歸於第 6 軍團；5/13 是命令（第 16 軍在第 4 軍以南）；5/14「Spearhead of XVI Corps reached Sambrelle river at 1540」（p. 10，OCR 誤作 1340）——「Sambrelle」查不到對應地名，未列；5/16–17 是把該軍調往第 4 軍團（經 Mons／Beaumont、Charleroi 以西）的命令；5/22 晨「VIII and perhaps also XVI Corps around Maubeuge」語帶保留（perhaps），未列。仍缺。"
+  },
+  {
+   "unitKey": "de-xxxix-ak",
+   "period": "1940-05-11/1940-05-22",
+   "note": "Halder 日記（Vol. IV）：5/11 16:00「Corps Schmidt placed under Eighteenth Army」（未寫明是否即第 39 軍）；5/17 14:40 命令把第 39 軍連同第 9 裝甲師等調往第 4 軍團地段（經 Huy）。都沒有位置。仍缺。"
   }
  ]
 }

@@ -154,7 +154,7 @@ for u in R1:
     lv = level_of(u, 'verified' if u['status'] == 'sourced' else 'needs-check')
     f = {'oob': {'level': lv, 'used': u['nameOrig'], 'claims': claims(u['citations'], u['nameOrig']), 'note': f"{n_src(u['citations'])} 個來源" + ('；' + why_of(u) if why_of(u) else '')}}
     if cmd_by[u['unitKey']]:
-        c = cmd_by[u['unitKey']][0]
+        c = next((x for x in cmd_by[u['unitKey']] if not x.get('role')), cmd_by[u['unitKey']][0])
         f['commander'] = {'level': level_of(c, 'verified' if c['citations'] else 'needs-check'), 'used': c['name'], 'claims': claims(c['citations'], c['name'])}
     conf['unit:' + u['unitKey']] = {'fields': f, 'level': lv}
 
@@ -284,7 +284,7 @@ asg = []
 for c in R7:
     if c['unitKey'] not in roster_ids: continue
     t = c.get('tenure') or {}
-    asg.append({'unit_id': c['unitKey'], 'role': 'commander', 'name_zh': c['nameZh'], 'name_orig': c['name'], 'title_zh': '指揮官', 'from': t.get('start'), 'to': t.get('end'), 'source': (c['citations'] or [{}])[0].get('url'),
+    asg.append({'unit_id': c['unitKey'], 'role': 'commander', 'post': 'other' if c.get('role') else 'unit', 'post_note': c.get('role'), 'name_zh': c['nameZh'], 'name_orig': c['name'], 'title_zh': '指揮官', 'from': t.get('start'), 'to': t.get('end'), 'from_inferred': t.get('startBasis') == 'inferred-from-context', 'from_why': t.get('startInference'), 'source': (c['citations'] or [{}])[0].get('url'),
                 'confidence': 'high' if c['citations'] else 'low', 'status_zh': '官方戰史' if c['citations'] else '需查證', 'person_key': c.get('personKey'), 'bio_id': c.get('bioId'), 'note': c.get('note'), 'refs': refs(c['citations'])})
 
 # ---------- 寫檔 ----------

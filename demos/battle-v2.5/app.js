@@ -88,7 +88,7 @@ let KD = [], FR = [], PKS = [], unitIdx = {}, posBy = {}, SP = {}, CITYIDX = {};
 let day = 0, playing = false, speed = 0.5, lastT = 0, lastEventKey = -1, selected = null, hover = null, hits = [];
 let TOUR = Q.get('mode') === 'tour';
 let follow = TOUR && Q.get('follow') !== '0', resume = null, dtGlobal = 0.016;
-let lockId = null, ASG = {};
+let lockId = null;
 // ---------- 圖層（醋酸片疊圖）----------
 const LAYERS = {
   forces: { key: 'B', name: '兵力調動', mode: 'on', a: 1, tint: '226,220,206' },
@@ -670,7 +670,7 @@ function drawShocks() {
 // 兵種配對標籤：HTML 小框，跟著交戰點
 function updateTip() {
   const tip = $('#tip');
-  if (hover && hover.type === 'unit') { const u = unitIdx[hover.id]; if (u && u._present && u._mx !== undefined) { const key = u.id + (u._stNow || ''); if (tip._id !== key) { tip._id = key; const c = ASG[u.id];
+  if (hover && hover.type === 'unit') { const u = unitIdx[hover.id]; if (u && u._present && u._mx !== undefined) { const key = u.id + (u._stNow || ''); if (tip._id !== key) { tip._id = key; const c = cmdNow(u.id);
       tip.innerHTML = `<b>${esc(u.name_zh)}</b><span>${ST[u._stNow] || ''}${c ? '｜' + esc(c.name_zh) : ''}</span>`; }
     tip.hidden = false; tip.style.transform = `translate(${Math.round(PX(u._mx) + 20)}px,${Math.round(PY(u._my) + 12)}px)`; return; } } const tgt = (hover && hover.type === 'eng') ? hover : (selected && selected.type === 'eng' ? selected : null);
   const e = TOUR && tgt && D.engagements.find(x => x.id === tgt.id);
@@ -861,10 +861,19 @@ function onPanelClick(ev) { const b = ev.target.closest('[data-src],[data-tg],[d
   else if (b.dataset.day) { pause(); setDay(+b.dataset.day, true); refreshInfo(true); }
   else if (b.dataset.act === 'lock') setLock(lockId === selected.id ? null : selected.id); }
 const ulink = id => `<button class="ul ${unitIdx[id].side}" data-u="${id}">${esc(unitIdx[id].name_zh)}</button>`;
-function cmdHTML(id, compact) { const c = ASG[id];
+// 一個單位可以有好幾筆指揮官紀錄（前後任、不是編制長官的其他職務）。現任依日期選：
+// 有起日的，取起日已到、最晚的那一筆；都沒到就取第一筆。沒有起日的接任者不自動換上去（出處沒有日期，不猜）。
+const ASGL = {};
+function cmdNow(id) { const L = (ASGL[id] || []).filter(a => a.post !== 'other'); if (!L.length) return (ASGL[id] || [])[0];
+  let c = null; L.forEach(a => { if (a.from && dayOf(a.from) <= day + 1e-6 && (!c || dayOf(a.from) >= dayOf(c.from))) c = a; });
+  if (c && c.to && dayOf(c.to) + 1 <= day) c = null;
+  return c || L.find(a => !a.from && (!a.to || dayOf(a.to) + 1 > day)) || L[0]; }
+function cmdOthers(id, c) { return (ASGL[id] || []).filter(a => a !== c).map(a => { const t = a.from || a.to ? `${a.from ? a.from.slice(5).replace('-', '/') + ' 起' + (a.from_inferred ? '（推定）' : '') : ''}${a.to ? ' 至 ' + a.to.slice(5).replace('-', '/') : ''}` : '日期出處未載';
+  return `<p class="cmdo"><b>${esc(a.name_zh)}</b><i>${a.post === 'other' ? '其他職務' : c && c.from && a.to && dayOf(a.to) <= dayOf(c.from) ? '前任' : a.from && c && c.from && dayOf(a.from) < dayOf(c.from) ? '前任' : '接任'}｜${t}</i>${a.post_note || a.from_why || a.note ? `<span>${esc(a.post_note || a.from_why || a.note)}</span>` : ''}</p>`; }).join(''); }
+function cmdHTML(id, compact) { const c = cmdNow(id);
   if (compact) return c ? `<small class="cmd-in">${esc(c.name_zh)}</small>` : '';
   if (!c) return `<div class="cmd none"><small>指揮官</small>資料待補</div>`;
-  return `<div class="cmd"><small>${esc(c.title_zh || '指揮官')}</small><b>${esc(c.name_zh)}</b><span>${esc(c.name_orig || '')}</span><em>任期：${c.from || c.to ? `${c.from || '？'} – ${c.to || '？'}` : '待查'}｜${esc(c.status_zh || '需查證')}</em></div>`; }
+  return `<div class="cmd"><small>${esc(c.title_zh || '指揮官')}</small><b>${esc(c.name_zh)}</b><span>${esc(c.name_orig || '')}</span><em>任期：${c.from || c.to ? `${c.from || '？'}${c.from_inferred ? '（推定）' : ''} – ${c.to || '？'}` : '待查'}｜${esc(c.status_zh || '需查證')}</em>${c.from_inferred && c.from_why ? `<em>${esc(c.from_why)}</em>` : ''}${cmdOthers(id, c)}</div>`; }
 function setView(v) { VIEW = v; if (v !== 'all') oobSide = v; document.body.dataset.view = v; renderChips(); infoKey = ''; refreshInfo(true); }
 // 資訊卡：標題＋分頁。static（有可點的東西，內容變了才重畫）＋ live（純文字，播放時持續更新）
 const tabs = (scope, cur, list) => `<div class="tabs" role="tablist">${list.map(([k, t, n]) => `<button role="tab" data-tab="${k}" data-scope="${scope}" aria-selected="${cur === k}" class="${cur === k ? 'on' : ''}">${t}${n ? `<i>${n}</i>` : ''}</button>`).join('')}</div>`;
@@ -1040,7 +1049,7 @@ function start() {
   DAY0 = Date.parse(D.meta.date_start + 'T00:00:00Z'); BBOX = TH.bbox || BBOX; CITIES = TH.places || []; SEAS = TH.sea_labels || []; KEY_RIVERS = TH.key_rivers || [];
   for (const k in TH.sides || {}) SIDE_NAME[k] = TH.sides[k].name_zh || SIDE_NAME[k];
   if (TH.sides) SIDES = Object.keys(TH.sides).filter(k => PLATE[k]); if (!SIDES.includes(VIEW)) VIEW = 'all'; oobSide = VIEW === 'all' ? SIDES[0] : VIEW; D.areas = D.areas || [];
-  D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') ASG[a.unit_id] = a; }); prep(); prepSourced(); measure(); buildSprites(); initMap(); bindUI();
+  D = data; ENGM = asg.engagements || {}; (asg.assignments || []).forEach(a => { if (a.role === 'commander') (ASGL[a.unit_id] = ASGL[a.unit_id] || []).push(a); }); prep(); prepSourced(); measure(); buildSprites(); initMap(); bindUI();
   const qd = Q.get('date'); if (qd) day = clamp(dayOf(qd), 0, KD[KD.length - 1]); if (Q.get('day')) day = clamp(+Q.get('day'), 0, KD[KD.length - 1]);
   if (!TOUR && day > 0 && !Q.get('view')) { const c = camAt(day); MAP.jumpTo({ center: [ilon(c.x), ilat(c.y)], zoom: c.z }); }   /* 用網址直接開在某一天：鏡頭也對到那一天的範圍 */
   setDay(day, true); $('#follow').hidden = follow || !TOUR;

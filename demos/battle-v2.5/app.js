@@ -237,7 +237,7 @@ function prep() {
   D.engagements.forEach(e => { e.k = D.keyframes.findIndex(k => k.date === e.date); e.x = mx(e.lng); e.y = my(e.lat);
     const em = ENGM[e.id] || {}; e.imp = e.importance || em.importance || 1; e.sum = e.summary_zh || em.summary_zh || ''; e.label = e.name_zh.replace(/（示例）/, '');
     // v2.3：交戰是一段時間。資料有 from／to 就用；沒有就當作關鍵日前後各半天
-    const END = KD[KD.length - 1]; e.t0 = clamp(e.from ? dayOf(e.from) : dayOf(e.date) - 0.5, 0, END); e.t1 = clamp(e.to ? dayOf(e.to) : dayOf(e.date) + 0.5, 0, END); });
+    const END = KD[KD.length - 1]; e.t0 = clamp(e.from ? dayOf(e.from) : dayOf(e.date) - 0.5, 0, END); e.t1 = clamp(e.to ? dayOf(e.to) + 0.999 : dayOf(e.date) + 0.5, 0, END); });   // 迄日含當天整天；原本取當天 00:00，只打一天的交戰（起迄同日）在圖上完全不會出現
   D.units.forEach(u => { u.kpos = D.keyframes.map(k => { const p = posBy[u.id][k.date]; return p ? { x: mx(p.lng), y: my(p.lat), st: p.state, src: p.status === 'map' || p.status === 'text', coarse: !!p.coarse } : null; }); });
   // 補洞：某個關鍵日沒有紀錄點、但前後 fill_days 天內（theatre.json，預設 3）各有一個有出處的紀錄點時，用時間內插補上（推估）。
   // 不補的話，只有少數單位有紀錄的日子（例如 5/31 只有文字位置）其他單位會整批消失再出現。
@@ -379,6 +379,9 @@ function buildSprites() {
   { const c = document.createElement('canvas'), d = 22; c.width = c.height = Math.round(d * DPR); const g = c.getContext('2d'); g.scale(DPR, DPR); g.translate(11, 11);   // 交戰記號：橘色圓點＋白色交叉
     g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 10.5, 0, 7); g.fill(); g.fillStyle = '#d66014'; g.beginPath(); g.arc(0, 0, 8.6, 0, 7); g.fill();
     g.strokeStyle = '#fff'; g.lineWidth = 2.2; g.lineCap = 'round'; g.beginPath(); g.moveTo(-3.6, -3.6); g.lineTo(3.6, 3.6); g.moveTo(3.6, -3.6); g.lineTo(-3.6, 3.6); g.stroke(); SP.swords = add(c, d, d); }
+  { const c = document.createElement('canvas'), d = 22; c.width = c.height = Math.round(d * DPR); const g = c.getContext('2d'); g.scale(DPR, DPR); g.translate(11, 11);   // 空中行動記號：橘色圓點＋白色飛機（機身、主翼、尾翼）
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(0, 0, 10.5, 0, 7); g.fill(); g.fillStyle = '#d66014'; g.beginPath(); g.arc(0, 0, 8.6, 0, 7); g.fill();
+    g.strokeStyle = '#fff'; g.lineCap = 'round'; g.lineWidth = 2; g.beginPath(); g.moveTo(0, -5.2); g.lineTo(0, 5); g.stroke(); g.lineWidth = 1.8; g.beginPath(); g.moveTo(-5.4, 0.4); g.lineTo(0, -1.6); g.lineTo(5.4, 0.4); g.moveTo(-2.4, 4.8); g.lineTo(0, 3.8); g.lineTo(2.4, 4.8); g.stroke(); SP.air = add(c, d, d); }
   { const c = document.createElement('canvas'), d = 16; c.width = c.height = Math.round(d * DPR); const g = c.getContext('2d'); g.scale(DPR, DPR); const r = g.createRadialGradient(8, 8, 0, 8, 8, 8);
     r.addColorStop(0, 'rgba(47,93,155,1)'); r.addColorStop(0.4, 'rgba(47,93,155,0.6)'); r.addColorStop(1, 'rgba(47,93,155,0)'); g.fillStyle = r; g.fillRect(0, 0, d, d); SP.ship = add(c, 8, 8); }
   const fs = MOBILE ? 11 : 13; SP.city = {};
@@ -536,13 +539,13 @@ function unitScreens(S, lam) {
   return out;
 }
 function drawUnits(list, S, LA) {
-  const order = list.slice().sort((a, b) => a.fw - b.fw); let selDrawn = false;
+  const selU = selected && selected.type === 'unit' ? selected.id : null, order = list.slice().sort((a, b) => (a.u.id === selU) - (b.u.id === selU) || a.fw - b.fw); let selDrawn = false;   // 選取的部隊最後畫，不被別的牌子蓋住
   // 選了一場交戰：沒參戰的部隊退到背景
   const selE = !TOUR && selected && selected.type === 'eng' ? D.engagements.find(x => x.id === selected.id) : null; let dimSet = null;
   if (selE) { dimSet = new Set(); selE.units.forEach(x => lineage(x.unit_id).forEach(i => dimSet.add(i))); }
   for (const o of order) {
     const sp = SP.unit[o.u.id][0];
-    const isHover = hover && hover.type === 'unit' && hover.id === o.u.id, isSel = selected && selected.type === 'unit' && selected.id === o.u.id, f = isHover ? 1 : o.fw;
+    const isHover = hover && hover.type === 'unit' && hover.id === o.u.id, isSel = selected && selected.type === 'unit' && selected.id === o.u.id, f = isHover || isSel ? 1 : o.fw;
     const enemy = isEnemy(o.u) && !isHover && !isSel;
     const sc = lerp(0.72, 1, f) * (enemy ? 0.86 : 1); let al = o.al * LA * lerp(0.4, 1, f) * (1 - o.u._st) * (enemy ? 0.6 : 1);
     if (dimSet && !dimSet.has(o.u.id) && !isHover) al *= 0.3;
@@ -553,12 +556,16 @@ function drawUnits(list, S, LA) {
     if (!TOUR && !enemy && !dimSet && o.tx !== undefined && o.st !== 'defend' && o.st !== 'encircled' && o.st !== 'surrendered') { const dx = o.tx - o.X, dy = o.ty - o.Y, dl = Math.hypot(dx, dy), s0 = hw + 3;
       if (dl > s0 + 12) { const ux = dx / dl, uy = dy / dl, L = Math.min(dl, s0 + 20), c = rgba(...SIDE_COL[o.u.side], 0.75 * al), x1 = X + ux * L, y1 = Y + uy * L;
         BGL.line([[X + ux * s0, Y + uy * s0], [x1, y1]], false, 1.6, c); BGL.tris([[x1 + ux * 7, y1 + uy * 7, c], [x1 - uy * 4, y1 + ux * 4, c], [x1 + uy * 4, y1 - ux * 4, c]]); } }
+    if (isSel) glow(X, Y, Math.hypot(hw, hh) + 24, rgba(...ACC, 0.38));
     if (nm) { BGL.sprite(sp, X + 5 * sc, Y - 4 * sc, sc, al * 0.3); BGL.sprite(sp, X + 2.5 * sc, Y - 2 * sc, sc, al * 0.55); }
     BGL.sprite(sp, X, Y, sc, al);
     // 狀態徽章：追蹤模式只在滑過或選取時出現（平常看牌子和箭頭就夠）
     const bd = SP.badge[o.st], showB = TOUR ? f > 0.5 : (isHover || isSel); if (bd && o.st !== 'move' && showB) BGL.sprite(bd, X + hw - 1, Y - hh + 1, 0.95, al * (TOUR ? clamp((f - 0.5) * 2, 0, 1) : 1));
     if (nm) BGL.sprite(SP.count[Math.min(nm, 12)], X - hw - 3, Y - hh + 2, 1, Math.max(al, 0.75 * LA * o.al * (dimSet ? 0.3 : 1)));
-    if (isSel) { selDrawn = true; const x0 = X - hw - 2, y0 = Y - hh - 2, x1 = X + hw + 2, y1 = Y + hh + 2; BGL.line([[x0, y0], [x1, y0], [x1, y1], [x0, y1]], true, 1.5, rgba(...ACC, 1)); }
+    // 選取：不畫框，改用一圈橘色光環（白底襯托），外加慢慢擴散的環
+    if (isSel) { selDrawn = true; const R = Math.hypot(hw, hh) + 5;
+      BGL.circle(X, Y, R, 5, [1, 1, 1, 0.9], 56); BGL.circle(X, Y, R, 2.6, rgba(...ACC, 1), 56);
+      if (!RM) { const ph = (F.now / 1600) % 1; BGL.circle(X, Y, R + ph * 20, 1.6, rgba(...ACC, (1 - ph) * 0.75), 56); } }
     hits.push({ type: 'unit', id: o.u.id, x: o.X, y: o.Y, r: 21, stack: o.members.filter(m => m.al > 0.25).map(m => m.u.id) });
   }
   if (selected && selected.type === 'unit' && !selDrawn) { const u = unitIdx[selected.id]; if (u && u._present && u._mx !== undefined) BGL.circle(PX(u._mx), PY(u._my), 13, 1.5, rgba(...ACC, 0.95), 28); }
@@ -582,7 +589,7 @@ function drawEngagements(S, LA) {
     let al = engAlpha(e, S); e._on = 0;
     if (al <= 0.01) continue;
     if (!engShown(e)) { HIDE++; continue; }
-    const X = PX(e.x), Y = PY(e.y); if (X < -40 || Y < -40 || X > W + 40 || Y > H + 40) continue;
+    const X = PX(e.x), Y = PY(e.y) - (e.kind === 'air' ? 20 : 0); if (X < -40 || Y < -40 || X > W + 40 || Y > H + 40) continue;   // 空中行動畫在地點上方 20px：同一地點常同時有地面交戰，疊在一起會被蓋住
     const isHover = (hover && hover.type === 'eng' && hover.id === e.id) || (selected && selected.type === 'eng' && selected.id === e.id), foc = !TOUR || e.focus;
     const br = RM ? 0.5 : 0.5 + 0.5 * Math.sin(F.now / 1100);
     if (!TOUR) {
@@ -594,7 +601,7 @@ function drawEngagements(S, LA) {
       if (e.imp === 3) { R = 21 + br * 2; glow(X, Y, R + 22, rgba(...ACC, 0.26 * al)); BGL.circle(X, Y, R, 2.2, rgba(...ACC, 0.95 * al), 48);
         if (!RM) { const ph = (F.now / 1700) % 1; BGL.circle(X, Y, R + ph * 26, 1.3, rgba(...ACC, (1 - ph) * 0.7 * al), 48); } }
       else if (imp === 2) { R = 13; BGL.circle(X, Y, R + br, 1.4, rgba(...ACC, 0.8 * al), 32); }
-      BGL.sprite(SP.swords, X, Y, e.imp === 3 ? 1.35 : imp === 2 ? 0.95 : 0.62, al * (imp === 1 ? 0.85 : 1));
+      BGL.sprite(e.kind === 'air' ? SP.air : SP.swords, X, Y, e.kind === 'air' ? Math.max(0.85, e.imp === 3 ? 1.35 : imp === 2 ? 0.95 : 0.62) : e.imp === 3 ? 1.35 : imp === 2 ? 0.95 : 0.62, al * (imp === 1 && e.kind !== 'air' ? 0.85 : 1));
       hits.push({ type: 'eng', id: e.id, x: X, y: Y, r: e.imp === 3 ? 30 : 16 });
       if (imp >= 2) F.engTags.push({ e, X, Y, R: R + (e.imp === 3 ? 14 : 5), al, pin: isHover });
       e._X = X; e._Y = Y; e._on = al; continue;
@@ -603,7 +610,7 @@ function drawEngagements(S, LA) {
     if (foc || isHover) for (const p of e.units) { const q = reprPos(p.unit_id); if (!q) continue;
       BGL.line([[q[0], q[1]], [X, Y]], false, 1, rgba(...SIDE_COL[unitIdx[p.unit_id].side], 0.55 * al), p.role === 'attacker' ? [4, 3] : [1.5, 3]); }
     BGL.circle(X, Y, 11 + br * 2, 1, rgba(...ACC, (0.25 + 0.2 * br) * al), 32);
-    BGL.sprite(SP.swords, X, Y, 1, al);
+    BGL.sprite(e.kind === 'air' ? SP.air : SP.swords, X, Y, 1, al);
     hits.push({ type: 'eng', id: e.id, x: X, y: Y, r: 16 });
     e._X = X; e._Y = Y; e._on = al;
   }
@@ -810,7 +817,7 @@ function haversine(lo1, la1, lo2, la2) { const a = Math.sin((la2 - la1) * R / 2)
 function engAlpha(e, S) {
   if (TOUR) { if (e.k === S.j && S.j !== S.i) return clamp((S.u - 0.55) / 0.35, 0, 1); if (e.k === S.i) return S.i === KD.length - 1 ? 1 : clamp(1 - (S.u - 0.15) / 0.3, 0, 1); return 0; }
   if (day < e.t0 || day > e.t1) return 0; const END = KD[KD.length - 1];
-  return Math.min(e.t0 <= 0 ? 1 : sstep(e.t0, e.t0 + 0.1, day), e.t1 >= END ? 1 : 1 - sstep(e.t1 - 0.1, e.t1, day));
+  return Math.min(e.t0 <= 0 ? 1 : sstep(e.t0 - 0.1, e.t0, day),   /* 開始前淡入，起日 00:00（關鍵日停的地方）就看得到 */ e.t1 >= END ? 1 : 1 - sstep(e.t1 - 0.1, e.t1, day));
 }
 // 自己＋所有上級＋所有下級：交戰資料可能記在軍或師任一層
 function lineage(id) { const s = new Set([id]); let c = unitIdx[id]; while (c && c.parent_id) { s.add(c.parent_id); c = unitIdx[c.parent_id]; }
@@ -844,7 +851,8 @@ function selectUnit(id, fly) { const u = unitIdx[id]; if (!u) return; let S = st
 function selectEng(id, fly) { const e = D.engagements.find(x => x.id === id); if (!e) return;
   if (fly) { if (day < e.t0 || day > e.t1) { pause(); setDay(dayOf(e.date), true); } if (TOUR) setFollow(false); MAP.easeTo({ center: [e.lng, e.lat], zoom: Math.max(MAP.getZoom(), 6.8 - (MOBILE ? 0.9 : 0)), duration: RM ? 0 : 700, offset: [0, -lockOff()] }); if (MOBILE) window.__setOob(false); }
   openInfo({ type: 'eng', id }); }
-function onPanelClick(ev) { const b = ev.target.closest('[data-tg],[data-u],[data-e],[data-day],[data-act],[data-tab],[data-ch],[data-side]'); if (!b) return;
+function onPanelClick(ev) { const b = ev.target.closest('[data-src],[data-tg],[data-u],[data-e],[data-day],[data-act],[data-tab],[data-ch],[data-side]'); if (!b) return;
+  if (b.dataset.src) { if (b.dataset.sd && (day < +b.dataset.sd)) { pause(); setDay(+b.dataset.sd, true); } return openInfo({ type: 'src', id: b.dataset.src }); }
   if (b.dataset.tg) { const id = b.dataset.tg; oobTog.set(id, b.getAttribute('aria-expanded') !== 'true'); oobKey = ''; return refreshInfo(true); }
   if (b.dataset.ch) return gotoChapter(+b.dataset.ch);
   if (b.dataset.side) { oobSide = b.dataset.side; infoKey = ''; return refreshInfo(true); }
@@ -871,26 +879,35 @@ function unitStatic(h) { const u = unitIdx[h.id], S = state(day);
   else if (infoTab === 'org') pane = `<h4>上級</h4><div class="orgt">${chain.map((id, i) => `<div style="padding-left:${i * 18}px">${i ? '<b>└</b>' : ''}${ulink(id)}</div>`).join('')}<div style="padding-left:${chain.length * 18}px">${chain.length ? '<b>└</b>' : ''}<span class="ul self ${u.side}">${esc(u.name_zh)}</span>${chain.length ? '' : '<span class="none">（最上層）</span>'}</div></div>${u.children.length ? `<h4>下轄</h4><div class="links">${u.children.map(ulink).join('')}</div>` : ''}${(h.stack || []).length ? `<h4>地圖上疊在一起</h4><div class="links">${h.stack.map(ulink).join('')}</div>` : ''}`;
   else if (infoTab === 'trk') pane = `<div class="wps">${u.kpos.map((q, k) => q ? `<button class="wp${k === S.i ? ' on' : ''}" data-day="${KD[k]}"><i>${fmtDay(KD[k])}</i><span>${ST[q.st] || q.st}</span>${(posBy[u.id][D.keyframes[k].date] || {}).status === 'derived' ? '<small>推算</small>' : (posBy[u.id][D.keyframes[k].date] || {}).status === 'map' ? '<small class="ok">地圖</small>' : ''}</button>` : '').join('')}</div><p class="hint">點日期跳到那一天。「推算」＝位置由上級單位推出來。</p>`;
   else pane = `${u.map_mark ? `<p class="hint">${esc(u.note)}</p>` : cmdHTML(u.id)}<div id="info-live"></div>${u.roster ? rosterHTML(u) : ''}`;
-  return `<div class="ih"><img class="ic" alt="" src="${iconURL(u)}"><div><h3>${esc(u.name_zh)}</h3><div class="orig">${esc(u.name_orig)}</div></div></div>
-    <div class="meta"><span class="${u.side}">${SIDE_NAME[u.side]}</span><span>${(ECH[u.echelon] || u.echelon).replace(/（.*）/, '')}</span><span>${BR[u.branch] || u.branch}</span>${cfBadge(cfLevel('unit:' + u.id), SRC && u.roster ? '編制' : '')}<button data-act="lock" class="${lockId === u.id ? 'on' : ''}" title="鏡頭跟著這個部隊（快捷鍵 L）">${lockId === u.id ? '◉ 鎖定中' : '◎ 鎖定鏡頭'}</button></div>
+  return `${noCounter(u) ? '' : `<button data-act="lock" class="lockb${lockId === u.id ? ' on' : ''}" aria-pressed="${lockId === u.id}" title="鏡頭跟著這個部隊（快捷鍵 L）">${lockId === u.id ? '◉ 鎖定中' : '◎ 鎖定'}</button>`}<div class="ih${noCounter(u) ? '' : ' haslock'}"><img class="ic" alt="" src="${iconURL(u)}"><div><h3>${esc(u.name_zh)}</h3><div class="orig">${esc(u.name_orig)}</div></div></div>
+    <div class="meta"><span class="${u.side}">${SIDE_NAME[u.side]}</span><span>${(ECH[u.echelon] || u.echelon).replace(/（.*）/, '')}</span><span>${BR[u.branch] || u.branch}</span>${cfBadge(cfLevel('unit:' + u.id), SRC && u.roster ? '編制' : '')}${noCounter(u) ? `<span class="nomap" title="${u.domain === 'sea' ? '海軍指揮機關是司令部，不是艦隊' : '出處沒有記空軍單位的基地位置'}，地圖上不畫部隊牌">不畫部隊牌</span>` : ''}</div>
     ${tabs('info', infoTab, [['ov', '概況'], ['eng', '交戰', nNow || ''], ['org', '編制'], ['trk', '航跡']])}<div class="pane">${pane}</div>
     <div class="foot"><span class="ex">${esc(D.meta.banner || '')}</span></div>`; }
 const REL_ZH = { holding: '據守', attacking: '進攻', withdrew_to: '撤至', at: '位於', conference: '會議', assigned_sector: '負責地段', moving_to: '移往', within_perimeter: '在周界內', rearguard: '後衛', evacuating: '撤離', supporting: '支援', arriving: '抵達', fighting: '交戰', surrounded: '被圍', reserve: '預備', reinforcing: '增援', commanding: '指揮', departed: '離開', surrendered: '投降', capturing: '攻佔' };
 function rosterHTML(u) { if (!SRC) return ''; const tp = u.text_positions || [];
   return `${u.period_note ? `<p class="hint">${esc(u.period_note)}</p>` : ''}<details class="rs"><summary>編制出處（${(u.refs || []).length}）</summary>${refsHTML(u.refs)}</details>
     ${tp.length ? `<details class="rs" open><summary>出處提到的位置（${tp.length}）</summary><p class="hint">出處的文字敘述，只到「某地一帶」。當天沒有讀圖位置時，會畫在該地名的中心（±5 公里）。</p>${tp.map(t => { const pk = posBy[u.id][t.date], r = (t.refs || [])[0] || {};
-      const tag = pk && pk.status === 'text' && pk.place_zh === t.place ? '<em class="on">已畫在地圖上</em>' : pk && pk.status === 'map' ? '<em>當天用讀圖位置</em>' : '<em>未上圖</em>';
+      const tag = noCounter(u) ? (t.relation === 'attacking' && u.domain === 'air' ? '<em>空襲目標，見交戰</em>' : t.relation === 'conference' ? '<em>司令出席會議，未上圖</em>' : ['at', 'commanding'].includes(t.relation) ? '<em>指揮所，未上圖</em>' : '<em>未上圖</em>') : pk && pk.status === 'text' && pk.place_zh === t.place ? '<em class="on">已畫在地圖上</em>' : pk && pk.status === 'map' ? '<em>當天用讀圖位置</em>' : '<em>未上圖</em>';
       return `<div class="tp"><div class="tph"><b>${esc(t.date.slice(5).replace('-', '/'))}</b><i>${esc(REL_ZH[t.relation] || t.relation || '')}</i>${tag}</div><div class="tpp">${esc(t.place)}</div>${r.quote ? `<q>${esc(r.quote)}</q>` : ''}${r.src ? `<small>${esc(srcShort(r.src))}${r.loc ? '，' + esc(r.loc) : ''}</small>` : ''}</div>`; }).join('')}</details>` : '<p class="hint">出處沒有提到這個單位在哪一天位於何處。</p>'}`; }
-function unitLive(h) { const u = unitIdx[h.id], S = state(day); if (!u._present || u._mx === undefined) return `<dl><dt>狀態</dt><dd>${u.roster && !u.kpos.some(Boolean) ? '地圖上沒有畫（位置尚未對到態勢圖標註）' : '這個時間不在戰場上'}</dd></dl>`;
+// 海軍、空軍單位沒有部隊牌：列出它在地圖上看得到的東西（航線、空中行動）和日期，點了就跳到那一天
+function onMapOf(u) { const md = t => fmtDay(t), items = w => { const mine = e => e.kind === 'air' && e.units.some(x => { let c = unitIdx[x.unit_id]; while (c) { if (c.id === w.id) return true; c = unitIdx[c.parent_id]; } return false; });
+    return SRC.arrows.filter(a => a.operator === w.id).map(a => `<button class="srcl" data-src="${a.id}" data-sd="${a.p.t0}"><b>${md(a.p.t0)} 起</b>┄ ${esc(a.unit || '航線')}</button>`)
+      .concat(D.engagements.filter(e => mine(e) && engShown(e)).map(e => `<button class="srcl" data-e="${e.id}" data-fly="1">${e.label.startsWith(md(dayOf(e.date))) ? '' : `<b>${md(dayOf(e.date))}</b>`}✈ ${esc(e.label)}</button>`)); };
+  const own = items(u); if (own.length) return `<p class="hint onm">${u.domain === 'sea' ? '它負責的行動畫成航線' : '它的行動畫成目標地點上的飛機記號'}（點了跳到那一天）：</p>${own.join('')}`;
+  // 自己沒有：出處把行動記在上級名下時，列上級的
+  for (let c = unitIdx[u.parent_id]; c; c = unitIdx[c.parent_id]) { const up = items(c); if (up.length) return `<p class="hint onm">出處把它的行動記在上級「${esc(c.name_zh)}」名下，畫成飛機記號（點了跳到那一天）：</p>${up.join('')}`; }
+  return `<p class="hint onm">${u.domain === 'sea' ? '出處只記了司令部駐地和司令出席的會議（列在下面），沒有可以畫成航線的行動。' : '出處沒有記它的基地，也沒有可以畫成記號的行動。'}</p>`; }
+function unitLive(h) { const u = unitIdx[h.id], S = state(day); if (noCounter(u)) return onMapOf(u);
+  if (!u._present || u._mx === undefined) return `<dl><dt>狀態</dt><dd>${u.roster && !u.kpos.some(Boolean) ? '地圖上沒有畫（位置尚未對到態勢圖標註）' : '這個時間不在戰場上'}</dd></dl>`;
   const lat = ilat(u._my), lng = ilon(u._mx); const pr = (posBy[u.id][D.keyframes[S.i].date] || posBy[u.id][D.keyframes[S.j].date] || {}).precision_m;
   const mv = u._spd > 1 ? `約 ${Math.round(u._spd)} 公里／日，往${DIRS[((Math.round(u._brg / (Math.PI / 4)) % 8) + 8) % 8]}` : '';
   const act = !u._stNow || u._stNow === 'move' ? (mv ? `移動（${mv}）` : '停留') : ST[u._stNow] + (mv ? `，同時移動（${mv}）` : '');   // 狀態與移動合成一列，不再出現「移動／停留」互相矛盾
   return `<dl><dt>行動</dt><dd>${act}</dd><dt>位置</dt><dd>${lat.toFixed(2)}°N　${Math.abs(lng).toFixed(2)}°${lng < 0 ? 'W' : 'E'}${pr ? `（±${Math.round(pr / 1000)} 公里）` : ''}</dd><dt>依據</dt><dd>${(() => { const pk = posBy[u.id][D.keyframes[S.i].date] || {}, dg = pk.status === 'map' && (D.meta.digitized || []).find(x => 'map:' + x.file.slice(0, -5) === pk.source); if (S.atKey && dg) return `${cfBadge('estimate', '位置')} 讀自態勢圖：${esc(dg.short_zh || dg.citation)}（圖上標「${esc(pk.map_label)}」，${esc(pk.map_date)}）${pk.coarse ? '。這是全戰區的小比例尺圖，只表示大致的配置區' : ''}`; if (S.atKey && u.kpos[S.i] && u.kpos[S.i].fill) return '這一天沒有紀錄點：由前後兩個有出處的紀錄點內插（推估）'; if (S.atKey && pk.status === 'text') return `${cfBadge(pk.level || (pk.opposing ? 'needs-check' : 'verified'), '位置')}${pk.opposing ? ' 只有對手方的出處；' : ' '}出處文字寫到在「${esc(pk.place_zh || '')}」；圖上畫在該地名的中心，不是精確位置`; return (S.atKey ? '關鍵日的紀錄點' : '兩個紀錄點之間內插（推估）') + (cfLevel('unit:' + u.id, 'position') === 'estimate' ? '；紀錄點是依敘述手擺的推估' : ''); })()}</dd></dl>`; }
 function engStatic(h) { const e = D.engagements.find(x => x.id === h.id);
   const side = r => e.units.filter(x => x.role === r).map(x => `<div class="pr">${ulink(x.unit_id)}${cmdHTML(x.unit_id, true)}</div>`).join('') || '<span class="none">—</span>';
-  return `<div class="ih"><div class="ic eng i${e.imp}">⚔</div><div><h3>${esc(e.label)}</h3><div class="orig">${e.date}｜${esc(e.interaction_zh)}</div></div></div>
-    <div class="meta">${IMPZ[e.imp] ? `<span class="imp i${e.imp}">${IMPZ[e.imp]}交戰</span>` : '<span>一般交戰</span>'}${cfBadge(cfLevel('eng:' + e.id))}<button data-day="${dayOf(e.date)}">跳到這一天</button></div>
-    ${e.sum ? `<p class="sum">${esc(e.sum)}</p>` : ''}<div id="info-live"></div>
+  return `<div class="ih"><div class="ic eng i${e.imp}">${e.kind === 'air' ? '✈' : '⚔'}</div><div><h3>${esc(e.label)}</h3><div class="orig">${e.date}｜${esc(e.interaction_zh)}</div></div></div>
+    <div class="meta">${e.kind === 'air' ? '<span>空中行動</span>' : IMPZ[e.imp] ? `<span class="imp i${e.imp}">${IMPZ[e.imp]}交戰</span>` : '<span>一般交戰</span>'}${cfBadge(cfLevel('eng:' + e.id))}<button data-day="${dayOf(e.date)}">跳到這一天</button></div>
+    ${e.sum ? `<p class="sum">${esc(e.sum)}</p>` : ''}${e.kind === 'air' ? '<p class="hint">空中行動：記號畫在出處寫到的目標或交戰地點，不代表空軍部隊駐在那裡。</p>' : ''}<div id="info-live"></div>
     <div class="vs"><div><h4>攻方</h4>${side('attacker')}</div><div><h4>守方</h4>${side('defender')}</div></div>${claimsHTML('eng:' + e.id)}
     <div class="foot"><span class="ex">${esc(D.meta.banner || '')}</span><span class="none">${D.meta.is_example ? '結果：示例資料不填' : ''}</span></div>`; }
 function engLive(h) { const e = D.engagements.find(x => x.id === h.id); return `<dl><dt>狀態</dt><dd>${day < e.t0 ? '尚未開始' : day > e.t1 ? '已結束' : '進行中'}</dd><dt>時段</dt><dd>${fmtDay(e.t0)} – ${fmtDay(e.t1)}${cfLevel('eng:' + e.id) ? '（' + CF_ZH[cfLevel('eng:' + e.id)] + '）' : '（起訖需查證）'}</dd></dl>`; }
@@ -916,10 +933,11 @@ function refreshInfo(force) { if (!D) return; const now = performance.now(); if 
   if (nh !== nowKey) { nowKey = nh; const el = $('#now'); el.innerHTML = nh; el.hidden = !nh; const on = TOUR && !MOBILE && el.querySelector('.ch.on'); if (on) el.scrollTop = Math.max(0, on.offsetTop - el.clientHeight / 2 + on.offsetHeight / 2); } }
 function phaseNote(d) { if (!SRC) return ''; const p = SRC.phases.find(q => d >= q.t0 - 1e-6 && d < q.t1); if (!p) return '<span class="np src none">這一天不在主專案考證檔的階段範圍內</span>';
   return `<span class="np src">${cfBadge(p.summary_verified ? 'verified' : 'needs-check')} <b>史料階段 ${p.seq}：${esc(p.name_zh)}</b>（${p.from.slice(5).replace('-', '/')}–${p.to.slice(5).replace('-', '/')}）${esc(p.summary_zh || '')}<cite>${esc([...new Set((p.summary_refs || []).map(r => srcShort(r.src)))].join('、'))}</cite></span>`; }
+const noCounter = u => !!(SRC && u.roster && u.domain && u.domain !== 'ground');   // 海軍、空軍單位不畫部隊牌（design.md R8）
 const oobTog = new Map();   // 部隊清單：最上層單位預設收合；選到的單位所在的那一棵自動展開；手動開合記在這裡
 const rootOf = id => { let p = unitIdx[id]; while (p && p.parent_id) p = unitIdx[p.parent_id]; return p && p.id; };
 function oobHTML() { const sel = selected && selected.type === 'unit' ? selected.id : null, selE = selected && selected.type === 'eng' ? selected.id : null, S = state(day), ci = (S.atKey && S.u > 0.5) ? S.j : S.i;
-  const row = (u, d) => `<button class="ob ${u.side}${u._present ? '' : ' off'}${sel === u.id ? ' sel' : ''}" data-u="${u.id}" style="padding-left:${20 + d * 14}px"><img alt="" src="${iconURL(u)}"><span>${esc(u.name_zh)}</span><small>${u._present ? (STC[u._stNow] || '') : '—'}</small></button>` + u.children.map(id => row(unitIdx[id], d + 1)).join('');
+  const row = (u, d) => `<button class="ob ${u.side}${u._present || noCounter(u) ? '' : ' off'}${sel === u.id ? ' sel' : ''}" data-u="${u.id}" style="padding-left:${20 + d * 14}px"><img alt="" src="${iconURL(u)}"><span>${esc(u.name_zh)}</span><small>${noCounter(u) ? (u.domain === 'sea' ? '海' : '空') : u._present ? (STC[u._stNow] || '') : '—'}</small></button>` + u.children.map(id => row(unitIdx[id], d + 1)).join('');
   const selRoot = sel ? rootOf(sel) : null, cnt = u => u.children.reduce((n, id) => n + 1 + cnt(unitIdx[id]), 0);
   const group = u => { if (!u.children.length) return row(u, 0); const open = oobTog.has(u.id) ? oobTog.get(u.id) : selRoot === u.id;
     return `<div class="obg${open ? ' open' : ''}"><button class="tg" data-tg="${u.id}" aria-expanded="${open}" title="${open ? '收合' : '展開'}轄下 ${cnt(u)} 個單位">${open ? '▾' : '▸'}</button>${open ? row(u, 0) : row({ ...u, children: [] }, 0).replace('</span><small>', `<em>${cnt(u)}</em></span><small>`)}</div>`; };
@@ -938,9 +956,9 @@ function oobHTML() { const sel = selected && selected.type === 'unit' ? selected
         ${kf.map_note ? `<p class="chn"><span>備註</span>${fmtDay(KD[ci])} 的${esc(kf.map_note)}</p>` : ''}</div>` : ''}</div>`; }).join('') + '<p class="hint">一章是考證檔裡的一個階段。點章名跳到那一章的第一天；章內的日期可以逐日跳。</p>'; }
   else if (oobTab === 'ch') body = D.keyframes.map((k, i) => `<button class="ch${i === ci ? ' on' : i < ci ? ' past' : ''}${k.major ? ' major' : ''}" data-ch="${i}"><span class="ct"><i>${fmtDay(KD[i])}</i><strong>${esc(k.event_zh)}</strong></span>${i === ci && k.event_line ? `<span class="np">${esc(k.event_line)}</span>` : ''}${i === ci ? phaseNote(KD[i]) : ''}</button>`).join('') + '<p class="hint">點一章：跳到那一天，鏡頭移到當天的交戰地點。</p>';
   else if (oobTab === 'eng') body = D.engagements.slice().sort((a, b) => a.t0 - b.t0).map(e => { const st = day < e.t0 ? 'pre' : day > e.t1 ? 'post' : 'now';
-    return `<button class="er ${st} i${e.imp}${selE === e.id ? ' sel' : ''}" data-e="${e.id}" data-fly="1"><i>${fmtDay(dayOf(e.date))}</i><span>${esc(e.label)}</span>${IMPZ[e.imp] ? `<em>${IMPZ[e.imp]}</em>` : ''}</button>`; }).join('');
+    return `<button class="er ${st} i${e.imp}${selE === e.id ? ' sel' : ''}" data-e="${e.id}" data-fly="1"><i>${fmtDay(dayOf(e.date))}</i><span>${e.kind === 'air' ? '<u class="airm">✈</u>' : ''}${esc(e.label)}</span>${IMPZ[e.imp] ? `<em>${IMPZ[e.imp]}</em>` : ''}</button>`; }).join('');
   else body = `<div class="sub" role="group" aria-label="陣營">${SIDES.map(k => [k, SIDE_NAME[k]]).map(([k, t]) => `<button data-side="${k}" class="${k}${oobSide === k ? ' on' : ''}" aria-pressed="${oobSide === k}">${t}</button>`).join('')}</div>` + D.units.filter(u => !u.parent_id && u.side === oobSide).map(group).join('');
-  return tabs('oob', oobTab, [['ch', '章節'], ['units', '部隊'], ['eng', '交戰']]) + `<div class="ob-list" data-k="${oobTab}${oobTab === 'units' ? oobSide : ''}">${body}</div>`; }
+  return tabs('oob', oobTab, [['ch', '章節'], ['units', '部隊'], ['eng', '交戰', D.engagements.filter(e => day >= e.t0 && day <= e.t1).length || '']]) + `<div class="ob-list" data-k="${oobTab}${oobTab === 'units' ? oobSide : ''}">${body}</div>`; }
 function openInfo(h) { selected = h; if (h.type === 'unit') oobTog.delete(rootOf(h.id));   /* 選到的單位所在的那一棵要展開 */ if (lockId && !(h.type === 'unit' && h.id === lockId)) lockId = null; infoKey = ''; $('#info').hidden = false; refreshInfo(true); }
 function closeInfo() { selected = null; lockId = null; $('#info').hidden = true; refreshInfo(true); }
 // ---------- v2.10 史料骨架與可信度 ----------
@@ -995,7 +1013,7 @@ function srcStatic(h) { const [kind, key] = [h.id.slice(0, h.id.indexOf(':')), h
   const o = (kind === 'arrow' ? SRC.arrows : SRC.lines)[+key]; if (!o) return ''; const p = o.p;
   return `<div class="ih"><div class="ic src">${kind === 'arrow' ? '➤' : '┄'}</div><div><h3>${kind === 'arrow' ? `${esc(o.from)} → ${esc(o.to)}` : esc((o.vertices || []).length > 1 && o.basis !== 'map' ? o.vertices.join('—') : (o.name || '戰線'))}</h3><div class="orig">${kind === 'arrow' ? (o.schematic ? (o.kind === 'route' ? '示意航線' : '示意箭頭') : '史料進攻箭頭') : '史料戰線'}｜階段 ${o.phase}：${esc(p.name_zh || '')}（${(p.from || '').slice(5).replace('-', '/')}–${(p.to || '').slice(5).replace('-', '/')}）</div></div></div>
     <div class="meta">${o.schematic ? '<span class="cf cf-schematic">示意</span>' : cfBadge(o.level || (o.verified ? 'verified' : 'needs-check'))}<button data-day="${p.t0}">${o.from ? '跳到這一天' : '跳到這個階段'}</button></div>
-    ${o.unit ? `<p class="sum">${esc(o.unit)}</p>` : ''}${kind === 'line' ? (o.basis === 'map' ? `<p class="hint">${o.from ? esc(o.from.slice(5).replace('-', '/')) + '：' : ''}這條線是從態勢圖上讀出來的，屬推估。${esc(o.precision || '')}</p>` : `<p class="hint">代號：${esc(o.name || '')}。頂點是出處明載的地名，中間用直線連接，屬近似。</p>`) : (o.schematic ? '<p class="hint">示意圖形，不是資料：依下面這段出處的敘述畫出方向。起點與終點是出處提到的地名，中間不是實際路線，也不代表部隊當時的位置。</p>' : '<p class="hint">起點與終點是出處提到的地名，箭頭只表示方向，不是實際路線。</p>')}${o.note ? `<p class="hint">${esc(o.note)}</p>` : ''}${refsHTML(o.refs)}${foot}`; }
+    ${o.unit ? `<p class="sum">${esc(o.unit)}</p>` : ''}${o.operator && unitIdx[o.operator] ? `<h4>負責的指揮機關</h4><div class="links">${ulink(o.operator)}</div><p class="hint">海軍不畫部隊牌，用它負責的航線表示。航線的引文本身沒有點名指揮機關，這個對應來自名冊的出處。</p>` : ''}${kind === 'line' ? (o.basis === 'map' ? `<p class="hint">${o.from ? esc(o.from.slice(5).replace('-', '/')) + '：' : ''}這條線是從態勢圖上讀出來的，屬推估。${esc(o.precision || '')}</p>` : `<p class="hint">代號：${esc(o.name || '')}。頂點是出處明載的地名，中間用直線連接，屬近似。</p>`) : (o.schematic ? '<p class="hint">示意圖形，不是資料：依下面這段出處的敘述畫出方向。起點與終點是出處提到的地名，中間不是實際路線，也不代表部隊當時的位置。</p>' : '<p class="hint">起點與終點是出處提到的地名，箭頭只表示方向，不是實際路線。</p>')}${o.note ? `<p class="hint">${esc(o.note)}</p>` : ''}${refsHTML(o.refs)}${foot}`; }
 // 交戰的各說法並列（只在有對照到主專案資料、或說法不一時顯示）
 function claimsHTML(key) { const it = CONF[key]; if (!it) return ''; const FZ = { from: '開始日', to: '結束日', date: '日期' }, T = ['', '官方戰史', '研究', '專書', '百科', '無出處'];
   return Object.entries(it.fields).filter(([, f]) => f.claims && f.claims.length > 1).map(([n, f]) => `<div class="claims ${f.level}"><h4>${FZ[n] || n}的各種說法 ${cfBadge(f.level)}</h4>${f.claims.map(c => `<div class="cl"><i>${T[c.tier]}</i><b>${c.value ? esc(String(c.value).slice(5).replace('-', '/')) : '未載'}</b><span>${esc(c.label.replace(/^Robert M\. /, '').split(/, DA Pam|（/)[0])}${c.quote ? `<q>${esc(c.quote)}</q>` : ''}</span></div>`).join('')}<p class="hint">頁面目前用 ${esc(String(f.used).slice(5).replace('-', '/'))}${f.level === 'conflict' ? '；尚未裁決，沒有自動改用任何一方' : ''}。</p></div>`).join(''); }

@@ -193,16 +193,20 @@ for d in sorted(mark_maps):
                               'source': 'map:' + m['mapKey'], 'map_label': f['label'], 'map_date': d, **({'coarse': True} if m.get('coarse') else {})})   # coarse＝全戰區圖（±十幾公里）：畫部隊牌，不拿來算領地
 # 文字位置（R3）上圖（Tai 2026-11-15）：名冊單位在某個關鍵日沒有圖上位置、但出處文字寫到它「在某地」時，用那個地名的座標畫出來。
 # 只收表示部隊本身所在的關係；開會、指派防區、出發、指揮這類不代表部隊位置的不收。座標是地名中心，精度標 ±5 公里。
+# 海軍、空軍單位不畫部隊牌（design.md 戰役頁規則 R8）：它們是指揮機關，出處寫的是司令部駐地或攻擊目標，不是部隊所在地
+NC = {u['unitKey']: ('sea' if u['echelon'] == 'naval_command' else 'air') for u in R1 if u.get('echelon') in ('naval_command', 'air_command')}
+positions = [p for p in positions if p['unit_id'] not in NC]
 have = {(p['unit_id'], p['date']) for p in positions}
 n_text = 0
 FAM = (L('battle.config.json', {}).get('sourceFamilies') or {}).get('map', {})
 def text_level(p):   # docs/source-rules.md §5：只有對手方＝待查證；一筆 A，或兩個獨立家族的 B＝已查證；其餘待查證
+    if (p.get('confidence') or {}).get('level') in ('verified', 'needs-check'): return p['confidence']['level']   # 主線 crosscheck 已判定的，照用
     cs = [c for c in (p.get('citations') or []) if c.get('grade') in ('A', 'B')]
     if p.get('sourceSide') == 'opposing' or not cs: return 'needs-check'
     if any(c['grade'] == 'A' for c in cs): return 'verified'
     return 'verified' if len({FAM.get(c['sourceKey'], c['sourceKey']) for c in cs}) >= 2 else 'needs-check'
 for p in R3:
-    if p.get('unitKey') not in roster_ids or p.get('date') not in kdates or p.get('relation') not in TEXT_REL or (p['unitKey'], p['date']) in have: continue
+    if p.get('unitKey') not in roster_ids or p.get('date') not in kdates or p.get('relation') not in TEXT_REL or (p['unitKey'], p['date']) in have or p['unitKey'] in NC: continue
     ll = lonlat(p.get('place'), 'r3')
     if not ll: continue
     have.add((p['unitKey'], p['date'])); n_text += 1
@@ -227,8 +231,23 @@ for e in R5:
     kd = next((k for k in kdates if k >= s), kdates[-1])
     engs.append({'id': 'e-' + e['key'], 'date': kd, 'from': s, 'to': t, 'name_zh': e['nameZh'], 'name_orig': e.get('nameOrig'), 'lng': ll[0], 'lat': ll[1], 'units': us, 'interaction_tag': None,
                  'interaction_zh': (e.get('place') or {}).get('asInSource') or '', 'outcome': None, 'summary_zh': e.get('outcomeNote') or '', 'note': e.get('note'), 'status': e['status'], 'refs': refs(e['citations'])})
+    if us and all(x['unit_id'] in NC for x in us) and any(NC[x['unit_id']] == 'air' for x in us): engs[-1]['kind'] = 'air'   # 參戰的只有空軍：空中行動，圖上用飛機記號
     lv = level_of(e, 'verified' if e['status'] == 'sourced' else 'needs-check')
     conf['eng:e-' + e['key']] = {'level': lv, 'fields': {'from': {'level': lv, 'used': s, 'claims': claims(e['citations'][:1], s)}, 'to': {'level': lv, 'used': t, 'claims': claims(e['citations'][:1], t)}}}
+
+# 空軍單位的「進攻某地」（R3）不是部隊位置，是一次空襲：畫成發生在目標地點的空中行動，不畫部隊牌
+n_air = 0
+for p in R3:
+    k = p.get('unitKey')
+    if NC.get(k) != 'air' or k not in roster_ids or p.get('relation') != 'attacking' or not (D0 <= (p.get('date') or '') <= D1): continue
+    ll = lonlat(p.get('place'), 'r3-air')
+    if not ll: continue
+    eid = f"air-{k}-{p['date']}"; lv = text_level(p); n_air += 1
+    engs.append({'id': eid, 'date': next((x for x in kdates if x >= p['date']), kdates[-1]), 'from': p['date'], 'to': p['date'],
+                 'name_zh': f"{int(p['date'][5:7])}/{int(p['date'][8:])} {next(u['nameZh'] for u in R1 if u['unitKey'] == k)}空襲", 'name_orig': None, 'lng': ll[0], 'lat': ll[1],
+                 'units': [{'unit_id': k, 'role': 'attacker'}], 'interaction_tag': None, 'interaction_zh': p.get('placeAsInSource') or '', 'outcome': None, 'summary_zh': '', 'note': p.get('attributionNote'),
+                 'status': 'sourced' if lv == 'verified' else 'partial', 'refs': refs(p['citations']), 'kind': 'air', 'derived_from': 'r3'})
+    conf['eng:' + eid] = {'level': lv, 'fields': {'from': {'level': lv, 'used': p['date'], 'claims': claims(p['citations'][:1], p['date'])}, 'to': {'level': lv, 'used': p['date'], 'claims': claims(p['citations'][:1], p['date'])}}}
 
 # ---------- 史料圖層：前線（R4）、據點（R6） ----------
 lines = []
@@ -306,7 +325,7 @@ for sh in L('schematic.json', {'shapes': []})['shapes']:
                       'precision': None, 'precision_m': None, 'verified': True, 'level': 'estimate', 'basis': 'text', 'schematic': True, 'refs': refs(cits), 'note': sh.get('waypointNote')})
         continue
     schem.append({'phase': ph_of(sh['from']), 'from': sh['path'][0]['place'], 'to': sh['path'][-1]['place'], 'path': [q['lonlat'] for q in sh['path']], 'unit': sh.get('labelZh'), 'side': sh.get('side'),
-                  'verified': True, 'schematic': True, 'kind': sh['kind'], 'date': sh['from'], 'date_to': sh['to'], 'note': sh.get('waypointNote'), 'refs': refs(cits)})
+                  'verified': True, 'schematic': True, 'kind': sh['kind'], 'date': sh['from'], 'date_to': sh['to'], 'note': sh.get('waypointNote'), 'refs': refs(cits), 'operator': sh.get('operatorKey') if sh.get('operatorKey') in roster_ids else None, 'operator_note': sh.get('operatorBasis')})
 
 battle = {'meta': meta, 'keyframes': keyframes, 'units': units, 'positions': positions, 'fronts': [], 'arrows': [], 'engagements': engs}
 W = lambda n, o: json.dump(o, open(OUT + n, 'w'), ensure_ascii=False, indent=1)

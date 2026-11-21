@@ -57,7 +57,7 @@ def cap_text(text, max_chars):
 def build_curl_command(url, dest):
     """與研究提示相同的抓法：-sS -L、60 秒、UA Mozilla/5.0，沒有 -k。"""
     return [
-        "curl", "-sS", "-L", "--proto", "=http,https", "--max-time", "60",
+        "curl", "-sS", "-L", "--compressed", "--proto", "=http,https", "--max-time", "60",
         "-A", USER_AGENT,
         "-o", str(dest),
         "-w", "%{http_code}\t%{content_type}",
@@ -148,8 +148,36 @@ def _pdf_literal_strings(data):
     return out
 
 
+def pdftotext_bin(data):
+    """有裝 poppler 的 pdftotext 就用它（字不會被拆開）；沒有或失敗回 None。"""
+    import shutil, tempfile
+    exe = shutil.which("pdftotext") or next((p for p in ("/opt/homebrew/bin/pdftotext", "/usr/local/bin/pdftotext",
+                                                         "/usr/bin/pdftotext") if Path(p).exists()), None)
+    if not exe or not data.startswith(b"%PDF"):
+        return None
+    with tempfile.NamedTemporaryFile(suffix=".pdf") as tmp:
+        tmp.write(data)
+        tmp.flush()
+        try:
+            proc = subprocess.run([exe, "-enc", "UTF-8", tmp.name, "-"], capture_output=True, timeout=90)
+        except (OSError, subprocess.TimeoutExpired):
+            return None
+    text = proc.stdout.decode("utf-8", errors="replace").strip()
+    return text if proc.returncode == 0 and len(text) >= 200 else None
+
+
+def looks_garbled(text):
+    """舊抽取器留下的二進位雜訊：控制字元／替代字元超過 1%。"""
+    sample = text[:20000]
+    bad = sum(1 for ch in sample if ch == "\ufffd" or (ord(ch) < 32 and ch not in "\n\r\t"))
+    return len(sample) > 0 and bad / len(sample) > 0.01
+
+
 def pdf_to_text(data):
-    """不依賴 pdftotext。只抽出文字繪製運算子裡的字串，足夠做關鍵字摘錄。"""
+    """先用 pdftotext；沒有時只抽出文字繪製運算子裡的字串，足夠做關鍵字摘錄。"""
+    text = pdftotext_bin(data)
+    if text:
+        return text
     parts = []
     for match in re.finditer(rb"stream\r?\n", data):
         start = match.end()
@@ -181,6 +209,48 @@ def to_plain_text(data, kind, content_type):
     if kind == "html":
         return html_to_text(data, content_type)
     return data.decode("utf-8", errors="replace")
+
+
+LOGIN_MARKERS = ("sign in to continue", "please log in", "please sign in", "log in to view", "kirjaudu sisään",
+                 "anmelden um", "請登入", "ログインしてください", "subscribe to read", "paywall")
+
+
+def decompress(data):
+    """伺服器沒照 Accept-Encoding、直接送壓縮內容時（Universalis）：依開頭位元組解 gzip／zlib；br 沒有模組就原樣回傳。"""
+    import zlib
+    if data[:2] == b"\x1f\x8b":
+        try:
+            return zlib.decompress(data, 16 + zlib.MAX_WBITS)
+        except zlib.error:
+            return data
+    if data[:1] == b"\x78" and len(data) > 2 and (data[0] * 256 + data[1]) % 31 == 0:
+        try:
+            return zlib.decompress(data)
+        except zlib.error:
+            return data
+    if data and not data.lstrip()[:1] in (b"<", b"{", b"[", b"%") and data[:4096].count(b"\x00") == 0:
+        try:
+            import brotli  # 選用
+            return brotli.decompress(data)
+        except Exception:
+            return data
+    return data
+
+
+def thin_cache(path):
+    """快取的原文很短（<500 字）而且不是挑戰頁／403／登入頁：可以重抓（例：只抓到「Eduskunta」的殼）。"""
+    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    if len(text.strip()) >= 500:
+        return False
+    sample = text.casefold()
+    for raw in Path(path).parent.glob(Path(path).stem + ".*"):
+        if raw.suffix in (".html", ".htm"):
+            sample += raw.read_bytes()[:12000].decode("utf-8", errors="replace").casefold()
+    if any(m in sample for m in CHALLENGE_MARKERS) or any(m in sample for m in LOGIN_MARKERS):
+        return False
+    if "making sure you're not a bot" in sample or "403 forbidden" in sample or "access denied" in sample:
+        return False
+    return True
 
 
 def sniff_kind(url, content_type, data):
@@ -350,7 +420,15 @@ def cmd_fetch(rawdir, rawmap_path, source_key, url, keywords, max_chars):
     rawdir = Path(rawdir)
     rawdir.mkdir(parents=True, exist_ok=True)
     cached = existing_text(rawdir, rawmap_path, source_key)
-    if cached is not None:
+    pdf = rawdir / f"{source_key}.pdf"
+    if cached is not None and pdf.exists() and looks_garbled(cached.read_text(encoding="utf-8", errors="replace")):
+        better = pdftotext_bin(pdf.read_bytes())      # 本機重抽，不重抓
+        if better:
+            cached.write_text(better, encoding="utf-8")
+    refetch = cached is not None and thin_cache(cached)
+    if cached is not None and not refetch:
+        if source_key not in load_rawmap(rawmap_path):        # 共用 rawDir 的舊原文：補登記到這個 rawmap
+            update_rawmap(rawmap_path, source_key, cached.name)
         text = cached.read_text(encoding="utf-8", errors="replace")
         snippets = matching_snippets(text, keywords)
         lead = "" if snippets else re.sub(r"\s+", " ", text[:400]).strip()
@@ -374,7 +452,7 @@ def cmd_fetch(rawdir, rawmap_path, source_key, url, keywords, max_chars):
         err = proc.stderr.decode("utf-8", errors="replace").strip().splitlines()
         note = err[-1] if err else f"curl exit {proc.returncode}"
         return cap_text(f"RESULT=error\nsourceKey={source_key}\nnote={note}\n", max_chars)
-    body = part.read_bytes() if part.exists() else b""
+    body = decompress(part.read_bytes()) if part.exists() else b""
     if not body.strip():
         part.unlink(missing_ok=True)
         return f"RESULT=error\nsourceKey={source_key}\nnote=空內容，未存成來源\n"
@@ -415,6 +493,8 @@ def cmd_fetch(rawdir, rawmap_path, source_key, url, keywords, max_chars):
         f"textChars={len(text)}",
         "rawmap=" + ("updated" if rawmap_path else "skipped"),
     ]
+    if refetch:
+        header.append("note=快取原文不到 500 字（不是擋頁），已重抓")
     if keywords and not snippets:
         header.append("note=沒有命中關鍵字；下面 LEAD 只是開頭，換關鍵字再用 lookup")
     return format_report(header, snippets, max_chars, lead)

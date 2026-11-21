@@ -31,7 +31,13 @@
  "transcriptionHosts": [
   "wikisource.org"
  ],
- "transcriptionHostsNote": "第三方逐字轉錄官方文件或原始文獻的網站：可以當出處，但原件是 A 的一律記 B。Wikisource 另須附原書掃描（Index 頁）可對照才收。Wikipedia、Wikidata 不在此列，仍然不收。",
+ "transcriptionHostsNote": "第三方逐字轉錄官方文件或原始文獻的網站：可以當出處，但原件是 A 的一律記 B。Wikisource 另須附原書掃描（Index 頁）可對照才收。Wikipedia、Wikidata 不在此列（只准在 C 級補充區，見 supplementCOnlyHosts）。",
+ "supplementCOnlyHosts": [
+  "wikipedia.org",
+  "wikidata.org"
+ ],
+ "supplementCOnlyHostsNote": "這些網域仍在 bannedHosts：主內容一律不收。唯一例外是獨立的 C 級補充區（人物生平 person.supplementC），可當 C 級，只補最低篇幅與起迄日；每條附網址與逐字引文，日期一律待查證，顯示時標「未查證・維基百科補充」。當索引找人照舊。docs/source-rules.md §2「C 級補充區」，Tai 2026-11-18。",
+ "supplementCConflictRule": "A／B 為準：C 和既有 A／B 的日期、職位、地點、數字、任期衝突時以 A／B 為準；衝突的 C 刪除或只留 conflictsWithAB 註記，不顯示。判定程式：tools/c_rules.py。Tai 2026-11-18。",
  "bannedHostLabels": [
   "forum",
   "forums",

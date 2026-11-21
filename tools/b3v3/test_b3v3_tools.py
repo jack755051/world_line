@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """B3 v3 省 token 工具的離線測試。不連外網。"""
 import importlib.util
+import argparse
+import copy
 import json
 import re
 import subprocess
@@ -64,13 +66,22 @@ class FetchTests(unittest.TestCase):
     def test_cached_source_is_not_refetched(self):
         with tempfile.TemporaryDirectory() as tmp:
             raw = Path(tmp)
-            (raw / "demo.txt").write_text("Johannes Schober war Bundeskanzler 1921.", encoding="utf-8")
+            (raw / "demo.txt").write_text("Johannes Schober war Bundeskanzler 1921. " + "Text. " * 100, encoding="utf-8")
             rawmap = raw / "rawmap.json"
-            rawmap.write_text('{"demo": "demo.txt"}\n', encoding="utf-8")
+            rawmap.write_text('{"demo": "demo.txt", "tiny": "tiny.txt"}\n', encoding="utf-8")
             out = fetch.cmd_fetch(raw, rawmap, "demo", "http://127.0.0.1:9/unused", ["Schober"], 2000)
             self.assertIn("RESULT=cached", out)
             self.assertIn("offset=", out)
             self.assertNotIn("RESULT=fetched", out)
+            # 共用 rawDir 已有原文、但 rawmap 沒登記 → 回 cached 並補登記
+            (raw / "shared.txt").write_text("Schober 1921. " * 60, encoding="utf-8")
+            out = fetch.cmd_fetch(raw, rawmap, "shared", "http://127.0.0.1:9/unused", ["Schober"], 2000)
+            self.assertIn("RESULT=cached", out)
+            self.assertEqual(json.loads(rawmap.read_text(encoding="utf-8"))["shared"], "shared.txt")
+            # 不到 500 字又不是擋頁的快取 → 會重抓（這裡連不上，所以是 error，不是 cached）
+            (raw / "tiny.txt").write_text("Eduskunta", encoding="utf-8")
+            out = fetch.cmd_fetch(raw, rawmap, "tiny", "http://127.0.0.1:9/unused", ["Schober"], 2000)
+            self.assertNotIn("RESULT=cached", out)
 
     def test_lookup_offset(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -618,10 +629,8 @@ class PlanTests(unittest.TestCase):
         self.assertTrue(by_nn["122"]["review"])
         self.assertEqual(by_nn["122"]["retry"]["people"], [])
         self.assertEqual(by_nn["095"]["retry"]["mode"], "none")
-        self.assertEqual(
-            [person["name"] for person in by_nn["095"]["shortfall"]],
-            ["Rafael Reyes Prieto", "Teleki Pál", "Hermann Rauschning"],
-        )
+        # 2026-11-20 tiers-run111 併回後，這三人改判「A/B不足，已用C補」，不再列為篇幅不足
+        self.assertEqual([person["name"] for person in by_nn["095"]["shortfall"]], [])
         self.assertTrue(by_nn["096"]["recheck"])
         self.assertFalse(by_nn["096"]["research"])
         trial = subprocess.run(
@@ -1502,6 +1511,915 @@ class LoopTests(unittest.TestCase):
             self.assertEqual(row["calls"], 2)
             self.assertEqual(row["total"], 2 * 1112)
             self.assertEqual(row["maxContext"], 1102)
+
+
+tiers_mod = load("tiers", TOOLS / "tiers.py")
+uncited_mod = load("uncited", TOOLS / "uncited.py")
+c_rules = load("c_rules", TOOLS.parent / "c_rules.py")
+WIKI_TEXT = "Rudolf Ramek (* 12. April 1881 in Teschen; † 24. Juli 1941 in Wien) war ein österreichischer Politiker der CS."
+
+
+def _tier_fixture(root):
+    """一個已組好的單人檔（主內容 A）＋ C 級原文（Wikipedia）在 RAWDIR。"""
+    agent, spec = _write_draft_fixture(root)
+    io_capture(lambda: draft_mod.cmd_check(str(spec), agent["id"], today="2026-11-18"))
+    raw = Path(agent["rawDir"])
+    (raw / "c-wp-de-abc123.txt").write_text(WIKI_TEXT, encoding="utf-8")
+    people = Path(agent["outDir"]) / "people"
+    (people / "bio-ramek.c.json").write_text(json.dumps({"sources": {"c-wp-de-abc123": {
+        "url": "https://de.wikipedia.org/wiki/Rudolf_Ramek", "title": "Rudolf Ramek – Wikipedia（de）",
+        "publisher": "Wikipedia", "lang": "de", "grade": "C", "accessedOn": "2026-11-18"}}}, ensure_ascii=False),
+        encoding="utf-8")
+    tier_agent = dict(agent, id="csupp:123:bio-ramek", kind="csupp", specPath=str(spec))
+    spec.write_text(json.dumps({"agents": [agent, tier_agent]}), encoding="utf-8")
+    return tier_agent, spec, people / "bio-ramek.json"
+
+
+def _add_unit(doc, key, start):
+    """測試用：借主內容第一條引文，補一筆只有起日的職位。"""
+    cite = dict(doc["person"]["paragraphs"][0]["citations"][0])
+    doc["person"].setdefault("positions", []).append({"key": key, "title": {"zh-Hant": "職位", "en": "Post"},
+                                                       "period": {"start": start, "end": None}, "startPrecision": "day",
+                                                       "endPrecision": None, "positionKind": "legislator",
+                                                       "organization": "Test", "citations": [cite]})
+
+
+def _research_of(doc, agent):
+    return {"batch": "t", "rawDir": agent["rawDir"], "rawMap": "rawmap.json", "sources": doc["sources"],
+            "people": [doc["person"]], "alignedTo": "b0b0e0f", "alignNote": "x"}
+
+
+class TierTests(unittest.TestCase):
+    def _supp(self, agent, person_file, patch):
+        base = json.loads(person_file.read_text(encoding="utf-8"))
+        doc, problems = tiers_mod.apply_csupp(agent, base, patch, today="2026-11-18")
+        return doc, problems
+
+    def test_supplement_c_is_isolated_and_quotes_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            doc, problems = self._supp(agent, person_file, {
+                "clauses": [{"target": "paragraph:length", "text": {"zh-Hant": "他是基督教社會黨政治人物。", "en": "CS politician."},
+                             "cKey": "c-wp-de-abc123", "quote": "war ein österreichischer Politiker der CS"}],
+                "dates": [{"target": "position:x.end", "value": "1941-07-24", "precision": "day",
+                           "cKey": "c-wp-de-abc123", "quote": "† 24. Juli 1941 in Wien"}]})
+            self.assertEqual(problems, [])
+            doc["person"]["supplementC"]["dates"][0]["target"] = "position:x.end"
+            _add_unit(doc, "x", "1926-01-01")
+            supp = doc["person"]["supplementC"]
+            self.assertEqual((supp["grade"], supp["status"], supp["displayFlag"]), ("C", "A/B不足，已用C補", "未查證・維基百科補充"))
+            self.assertTrue(all(c["url"].startswith("https://de.wikipedia.org/") for c in supp["clauses"] + supp["dates"]))
+            self.assertTrue(supp["dates"][0]["status"].startswith("待查證"))
+            errors, c_errors, row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertEqual((errors, c_errors), ([], []))  # Wikipedia 網址只在補充區：主內容不報錯
+            # 主段落仍只算 A／B：同一份資料的 check_min 不因 C 改變段數字數
+            self.assertEqual(row["zhChars"], check_min.check({k: v for k, v in doc["person"].items() if k != "supplementC"})["zhChars"])
+            # C 引文不逐字 → 另列 supplementCErrors，主內容 errors 仍空
+            doc["person"]["supplementC"]["clauses"][0]["quote"] = "erfundener Satz"
+            doc["person"]["supplementC"]["dates"][0]["confirmed"] = True
+            errors, c_errors, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertEqual(errors, [])
+            self.assertTrue(any("引文未逐字" in e for e in c_errors))
+            self.assertTrue(any("不能確認日期" in e for e in c_errors))
+
+    def test_supplement_c_conflict_with_ab_is_error_then_moved_to_note(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            doc, _ = self._supp(agent, person_file, {"dates": [{"target": "position:x.end", "value": "1941-07-24", "precision": "day",
+                                                                 "cKey": "c-wp-de-abc123", "quote": "† 24. Juli 1941 in Wien"}]})
+            _add_unit(doc, "x", "1950-01-01")          # A／B 起日 1950：C 迄日 1941 衝突
+            _errors, c_errors, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertTrue(any("以 A／B 為準" in e for e in c_errors))
+            log = tiers_mod.screen_supplement(doc["person"])
+            self.assertEqual(log[0]["action"], "conflict→note")
+            supp = doc["person"]["supplementC"]
+            self.assertEqual(supp["dates"], [])
+            self.assertEqual(supp["conflictNotes"][0]["conflictsWithAB"]["ref"], "position:x.end")
+            errors, c_errors, row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertEqual((errors, c_errors), ([], []))
+            self.assertEqual(row.get("cDates"), 0)        # 衝突註記不算、不顯示
+            doc["person"]["supplementC"]["dates"].append(dict(supp["conflictNotes"][0], target="position:nope.end"))
+            _errors, c_errors, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertTrue(any("主內容沒有 nope" in e for e in c_errors))
+
+    def test_date_conflict_rules_duan_case(self):
+        unit = {"key": "w16", "title": {"zh-Hant": "陸軍總長（兼國務總理）"}, "period": {"start": "1916-04-01", "end": None}}
+        person = {"positions": [unit], "roleCandidates": []}
+        duan = {"target": "position:w16.end", "value": "1915-08-29", "quote": "任期 1912年 3月29日 – 1915年 8月29日"}
+        clash = c_rules.date_conflict(person, duan)
+        self.assertIn("早於 A／B 起日", clash["reason"])
+        self.assertIn("不重疊", clash["reason"])
+        # 同一端 A／B 已有值、不同 → 衝突；同年（year 精度）→ 不衝突
+        person2 = {"positions": [dict(unit, period={"start": "1916-04-01", "end": "1917-05-23"}, endPrecision="day")]}
+        self.assertIn("A／B 已有 end", c_rules.date_conflict(person2, dict(duan, value="1918-01-01", quote="1918"))["reason"])
+        person3 = {"positions": [dict(unit, period={"start": "1916-04-01", "end": "1917-01-01"}, endPrecision="year")]}
+        self.assertIsNone(c_rules.date_conflict(person3, dict(duan, value="1917-05-23", quote="1917年5月23日")))
+        # 落在另一筆同名任期
+        other = {"key": "w12", "title": {"zh-Hant": "陸軍總長"}, "period": {"start": "1912-03-29", "end": "1915-08-29"}}
+        person4 = {"positions": [dict(unit, period={"start": "1912-01-01", "end": None}), other]}
+        self.assertIn("另一筆同名", c_rules.date_conflict(person4, dict(duan, value="1913-01-01", quote="1913"))["reason"])
+        # 正確的 C 日期不擋（田中：1926 起、C 迄日 1929）
+        ok = {"positions": [{"key": "t", "title": {"zh-Hant": "貴族院議員"}, "period": {"start": "1926-01-01", "end": None}}]}
+        self.assertIsNone(c_rules.date_conflict(ok, {"target": "position:t.end", "value": "1929-09-29",
+                                                     "quote": "1926年 1月29日 - 1929年9月29日"}))
+        # 句子層：提到 A／B 職稱但年份全在任期外
+        clause = {"text": {"zh-Hant": "他在1912年出任陸軍總長。"}}
+        self.assertIsNotNone(c_rules.clause_conflict(person, clause))
+        self.assertIsNone(c_rules.clause_conflict(person, {"text": {"zh-Hant": "他在1916年出任陸軍總長。"}}))
+
+    def test_support_gaps_normalize_eras_kanji_months(self):
+        self.assertEqual(c_rules.support_gaps("首相官邸記錄在職期間為大正15年1月30日至昭和2年4月20日。",
+                                              "在職期間 大正15年1月30日 ～昭和2年4月20日"), [])
+        self.assertEqual(c_rules.support_gaps("1918年9月29日就任。", "大正七年九月二十九日"), [])
+        self.assertEqual(c_rules.support_gaps("1917年3月出任總理。", "appointed Premier in March 1917"), [])
+        self.assertEqual(c_rules.support_gaps("陸軍總長，1917年。", "陸軍總長 民國6年"), [])
+        self.assertEqual(c_rules.support_gaps("他在1918年2月被選為議長。", "ザカフカス国会議長に選出された"), ["1918", "2"])
+        self.assertEqual(c_rules.support_gaps("他與Kerensky會面。", "met Lenin"), ["Kerensky"])
+        self.assertEqual(c_rules.support_gaps("他創辦《時報》。", "創辦「時報」"), [])
+        self.assertEqual(c_rules.support_gaps("若槻禮次郎組閣。", "若槻礼次郎が組閣"), [])
+        self.assertEqual(c_rules.norm(c_rules.norm("終年65歲國")), c_rules.norm("終年65歲國"))   # 正規化要冪等
+        self.assertEqual(c_rules.support_gaps("原文：「9月29日去世，終年65歲」", "9月29日去世，終年65歲"), [])
+        self.assertEqual(c_rules.support_gaps("他一度主張嚴懲。", "主張"), [])      # 「一度」不是數字
+        self.assertIsNotNone(c_rules.overreach("中文維基百科稱，皇姑屯事件後田中一度主張嚴懲主謀，後因陸軍反對而改口，受到批評，終在1929年7月被迫辭職。",
+                                               "並於1929年7月2日被迫向天皇辞职"))
+        self.assertIsNone(c_rules.overreach("1929年7月2日被迫辭職。", "並於1929年7月2日被迫向天皇辞职"))
+
+    def test_support_fix_trims_or_falls_back_to_quote(self):
+        clause = {"target": "paragraph:length", "quote": "1929年7月2日被迫向天皇辞职", "quoteLang": "zh",
+                  "text": {"zh-Hant": "1929年7月2日被迫辭職。他在1930年去世。", "en": "He resigned on 2 July 1929. He died in 1930."}}
+        fixed, entry = tiers_mod.support_fix(clause)
+        self.assertEqual(entry["action"], "trimmed-unsupported")
+        self.assertEqual(fixed["text"]["zh-Hant"], "1929年7月2日被迫辭職。")
+        self.assertEqual(fixed["text"]["en"], "He resigned on 2 July 1929.")
+        clause["text"] = {"zh-Hant": "他在1930年去世。", "en": "He died in 1930."}
+        fixed, entry = tiers_mod.support_fix(clause)
+        self.assertEqual(entry["action"], "quote-only")
+        self.assertIn("1929年7月2日被迫向天皇辞职", fixed["text"]["zh-Hant"])
+        self.assertEqual(c_rules.support_gaps(fixed["text"]["zh-Hant"], clause["quote"]), [])
+        # C 日期年份不在引文 → 刪；C 單獨的日期一律 待查證
+        person = {"positions": [{"key": "x", "title": {"zh-Hant": "職"}, "period": {"start": "1920-01-01", "end": None}}],
+                  "supplementC": {"sources": {"k": {}}, "clauses": [],
+                                  "dates": [{"target": "position:x.end", "value": "1931-01-01", "quote": "1930年", "cKey": "k",
+                                             "status": "待查證（只有 C 級來源）", "confirmed": False}]}}
+        log = tiers_mod.screen_supplement(person)
+        self.assertEqual(log[0]["action"], "dropped-unsupported")
+        self.assertNotIn("supplementC", person)
+
+    def test_stage2_support_drops_sentence_with_year_not_in_quote(self):
+        para = {"ord": 4, "body": {"zh-Hant": "1906年任大藏次官。1910年任大臣。", "en": "Vice-minister in 1906. Minister in 1910."},
+                "citations": [{"quote": "1906年（明治39）大蔵次官", "claimSpan": [1, 2]}]}
+        person = {"paragraphs": [para]}
+        log = tiers_mod.stage2_support(person, ["4"])
+        self.assertEqual([(i["s"], i["dropped"]) for i in log], [(2, True)])
+        self.assertEqual(para["body"]["zh-Hant"], "1906年任大藏次官。")
+        self.assertEqual(para["citations"][0]["claimSpan"], [1])
+        # 只缺月日（非年份）：不自動刪，回報
+        para2 = {"ord": 5, "body": {"zh-Hant": "1906年3月任次官。", "en": "In March 1906."},
+                 "citations": [{"quote": "1906年 次官", "claimSpan": [1]}]}
+        log = tiers_mod.stage2_support({"paragraphs": [para2]}, ["5"])
+        self.assertEqual(log[0]["dropped"], False)
+        self.assertIn("3", log[0]["gaps"])
+
+    def test_stage2_candidates_only_short_or_missing_end(self):
+        needs = ["篇幅（現 3 段／182 字，目標 3 段／300 字）", "position:a.start", "position:b.end（已標待查證）", "role:c.end"]
+        self.assertEqual(tiers_mod.stage2_needs(needs), [needs[0], needs[2], needs[3]])
+        self.assertEqual(tiers_mod.stage2_needs(["position:a.start"]), [])
+
+    def test_office_hints_from_index(self):
+        class Offline:
+            offline = True
+            calls = 0
+            cache_dir = Path(tempfile.mkdtemp())
+
+            def get_json(self, url):
+                return None
+        entity = {"claims": {"P39": [{"mainsnak": {"datavalue": {"value": {"id": "Q1"}}},
+                                      "qualifiers": {"P580": [{"datavalue": {"value": {"time": "+1916-04-23T00:00:00Z"}}}],
+                                                     "P582": [{"datavalue": {"value": {"time": "+1917-05-23T00:00:00Z"}}}],
+                                                     "P1366": [{"datavalue": {"value": {"id": "Q2"}}}]}}]}}
+        hints = prefilter.office_hints(Offline(), entity)
+        self.assertEqual((hints[0]["start"], hints[0]["end"], hints[0]["successor"]), ("1916-04-23", "1917-05-23", ["Q2"]))
+        self.assertIn("後任 Q2", prefilter.render_office_hints(hints))
+        self.assertIn("不是出處", prefilter.render_office_hints(hints))
+
+    def test_c_end_date_needs_end_evidence_and_day_precision_needs_day(self):
+        # 齊赫澤：「1919年3月成為制憲議會議長」不能當外高加索議會的迄日
+        self.assertFalse(c_rules.end_quote_ok("1919年 3月、 グルジア民主共和国 憲法制定議会（制憲議会）の議長となった"))
+        self.assertTrue(c_rules.end_quote_ok("1926年 1月29日 - 1929年9月29日"))
+        self.assertTrue(c_rules.end_quote_ok("1918年5月26日に議会は解散した"))
+        person = {"positions": [{"key": "seim", "title": {"zh-Hant": "議長"}, "period": {"start": "1918-01-01", "end": None}}],
+                  "supplementC": {"sources": {"k": {}}, "clauses": [], "dates": [
+                      {"target": "position:seim.end", "value": "1919-03-01", "cKey": "k", "status": "待查證（只有 C 級來源）",
+                       "confirmed": False, "quote": "1919年 3月、 グルジア民主共和国 憲法制定議会（制憲議会）の議長となった"}]}}
+        log = tiers_mod.screen_supplement(person)
+        self.assertEqual(log[0]["action"], "dropped-unsupported")
+        # 段祺瑞：4 月 24 日的電報不能撐 1916-04-01 日精度
+        cites = [{"quote": "American Legation, Peking, April 24, 1916, 6 p.m."}]
+        self.assertTrue(tiers_mod.date_problems("p", {"start": "1916-04-01"}, cites, {"start": "day"}))
+        self.assertEqual(tiers_mod.date_problems("p", {"start": "1916-04-24"}, cites, {"start": "day"}), [])
+        self.assertEqual(tiers_mod.date_problems("p", {"start": "1916-04-01"}, cites, {"start": "month"}), [])
+
+    def test_usage_limit_is_detected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "a.jsonl"
+            log.write_text('{"type":"assistant","error":"rate_limit","api_error":"usage_limit_reached"}\n', encoding="utf-8")
+            self.assertTrue(tiers_mod.usage_limited(log))
+            log.write_text('{"type":"result","subtype":"success"}\n', encoding="utf-8")
+            self.assertFalse(tiers_mod.usage_limited(log))
+
+    def test_merge_back_dry_run_leaves_files_and_apply_writes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            doc = json.loads(person_file.read_text(encoding="utf-8"))
+            out_root = Path(tmp) / "real"
+            batch = out_root / "batch123"
+            (batch / "people").mkdir(parents=True)
+            research = _research_of(doc, agent)
+            (batch / "research.json").write_text(json.dumps(research, ensure_ascii=False), encoding="utf-8")
+            (batch / "rawmap.json").write_text(json.dumps(doc.get("rawMap") or {}), encoding="utf-8")
+            before = (batch / "research.json").read_text(encoding="utf-8")
+            work = Path(tmp) / "work" / "batch123" / "people"
+            work.mkdir(parents=True)
+            new = json.loads(json.dumps(doc))
+            new["person"]["paragraphs"].append(dict(new["person"]["paragraphs"][0], ord=99))
+            new["rawMap"] = dict(new.get("rawMap") or {}, **{"extra-key": "extra-key.txt"})
+            bio = new["person"]["bioId"]
+            (work / f"{bio}.json").write_text(json.dumps(new, ensure_ascii=False), encoding="utf-8")
+            report = tiers_mod.merge_back([f"123:{bio}"], Path(tmp) / "work", out_root, apply=False)
+            entry = report["batches"]["123"]
+            self.assertEqual((batch / "research.json").read_text(encoding="utf-8"), before)   # dry-run 不動正式檔
+            self.assertFalse((batch / "people" / f"{bio}.json").exists())
+            self.assertIn("段落", entry["people"][0]["diff"][0])
+            self.assertEqual(entry["rawmapAdded"], 1)
+            self.assertIn("exit", entry["verify"])
+            self.assertTrue(entry["checkMin"])
+            tiers_mod.merge_back([f"123:{bio}"], Path(tmp) / "work", out_root, apply=True)
+            merged = json.loads((batch / "research.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(merged["people"][0]["paragraphs"]), len(new["person"]["paragraphs"]))
+            self.assertTrue((batch / "people" / f"{bio}.json").exists())
+
+    def test_main_paragraph_cannot_cite_c_or_wikipedia(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            doc, _ = self._supp(agent, person_file, {"clauses": [{"target": "paragraph:length", "text": {"zh-Hant": "政治人物。"},
+                                                                  "cKey": "c-wp-de-abc123", "quote": "österreichischer Politiker"}]})
+            doc["person"]["paragraphs"][0]["citations"].append({"sourceKey": "c-wp-de-abc123", "quote": "österreichischer Politiker",
+                                                                "grade": "C", "locator": "x", "accessedOn": "2026-11-18"})
+            errors, _c, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertTrue(any("未知來源 c-wp-de-abc123" in e for e in errors))
+            doc["person"]["paragraphs"][0]["citations"].pop()
+            doc["sources"]["wp"] = {"url": "https://en.wikipedia.org/wiki/X", "grade": "B", "title": "x"}
+            errors, _c, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertTrue(any("Wikipedia" in e or "網域被排除" in e for e in errors))
+
+    def test_check_min_verdict_with_c(self):
+        person = {"key": "k", "paragraphs": [{"body": {"zh-Hant": "短。"}}], "positions": [], "gaps": [
+            {"target": "paragraph:length", "note": "篇幅不足：只找到一段"}]}
+        self.assertEqual(check_min.check(person)["verdict"], "篇幅不足")
+        person["supplementC"] = {"grade": "C", "clauses": [{"text": {"zh-Hant": "補充一句。"}}], "dates": []}
+        row = check_min.check(person)
+        self.assertEqual(row["verdict"], "A/B不足，已用C補")
+        self.assertFalse(row["meetsMinimum"])
+        self.assertEqual(row["zhChars"], 2)
+
+    def test_prune_when_ab_found(self):
+        person = {"positions": [{"key": "x", "period": {"start": "1920-01-01", "end": "1925-01-01"}}],
+                  "supplementC": {"sources": {"c1": {}}, "clauses": [{"cKey": "c1"}],
+                                  "dates": [{"target": "position:x.end", "cKey": "c1"}]}}
+        removed = tiers_mod.prune_supplement(person, {"paragraphs": 3, "zhChars": 320})
+        self.assertEqual(removed, 2)
+        self.assertNotIn("supplementC", person)
+
+    def test_stage2_patch_applies_and_keeps_old_citation_fields(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, kind="deep")
+            base = json.loads(person_file.read_text(encoding="utf-8"))
+            old = base["person"]["paragraphs"][0]["citations"][0]
+            new_para = dict(base["person"]["paragraphs"][0], ord=4)
+            new_para["citations"] = [{"sourceKey": "oebl-ramek", "quote": old["quote"], "claimSpan": [1]}]
+            doc, problems = tiers_mod.apply_stage2(agent, base, {
+                "paragraphsAppend": [new_para], "gapsRemove": ["role:ramek-chancellor"],
+                "searchLog": [{"sourceType": "official", "query": "JACAR", "url": None, "result": "no_result", "note": "x"}]},
+                today="2026-11-18")
+            self.assertEqual(problems, [])
+            self.assertEqual(len(doc["person"]["paragraphs"]), 4)
+            self.assertEqual(doc["person"]["paragraphs"][3]["citations"][0]["locator"], old["locator"])
+            self.assertEqual(doc["person"]["gaps"], [])
+            self.assertEqual(doc["person"]["searchLog"][-1]["round"], "stage2")
+            errors, _c, _row = draft_mod.check_person_full(doc, agent["rawDir"])
+            self.assertEqual(errors, [])
+            _doc, problems = tiers_mod.apply_stage2(agent, base, {"sources": {"wp": {
+                "url": "https://en.wikipedia.org/wiki/X", "grade": "C", "gradeBasis": "x"}}})
+            self.assertTrue(any("只收 A／B" in p for p in problems))
+
+    def _duan_like(self, base):
+        """段祺瑞式：任期只有起日（month），段落寫了中途免職。"""
+        person = base["person"]
+        cite = dict(person["paragraphs"][0]["citations"][0])
+        person["positions"] = [{"key": "war", "title": {"zh-Hant": "國務總理兼陸軍總長", "en": "Premier"},
+                                "period": {"start": "1916-04-01", "end": None}, "startPrecision": "month",
+                                "endPrecision": None, "positionKind": "executive", "organization": "Test",
+                                "citations": [cite]}]
+        person["paragraphs"][0]["body"]["zh-Hant"] += "1917年5月23日他被免去總理職務。"
+        person["gaps"] = [{"target": "position:war", "status": "待查證", "reason": "缺迄日"}]
+        return base
+
+    def test_stage2_refuses_bad_precision_merged_term_and_caps_inferred_end(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, kind="deep")
+            base = self._duan_like(json.loads(person_file.read_text(encoding="utf-8")))
+            tele = {"sourceKey": "oebl-ramek", "quote": "Peking, November 21, 1917, 8 p.m."}
+            appt = {"sourceKey": "oebl-ramek", "quote": "Wang Shi-chen has been appointed Minister of War"}
+            patch = {"positionsUpdate": {"war": {
+                "period": {"start": "1916-04-01", "end": "1917-11-21"}, "startPrecision": "day", "endPrecision": "day",
+                "evidenceNote": "推論：下一任 1917-11-21 已獲任命", "addCitations": [
+                    {"sourceKey": "oebl-ramek", "quote": "Peking, April 24, 1916"}, tele, appt]}},
+                "gapsRemove": ["position:war"]}
+            doc, problems = tiers_mod.apply_stage2(agent, copy.deepcopy(base), patch)
+            unit = doc["person"]["positions"][0]
+            self.assertEqual(unit["period"], {"start": "1916-04-01", "end": None})   # 整筆退回
+            self.assertEqual(unit["startPrecision"], "month")
+            self.assertEqual(len(unit["citations"]), 1)
+            self.assertIn("position:war", [g["target"] for g in doc["person"]["gaps"]])
+            self.assertTrue(any(p.startswith("REFUSED") and "日精度" in p for p in problems))
+            self.assertTrue(any(p.startswith("CAPPED") for p in problems))
+            self.assertTrue(any("免職" in p and "1917-05-23" in p for p in problems))
+            # 沒有中途免職：推論迄日只封頂到月
+            base2 = copy.deepcopy(base)
+            base2["person"]["paragraphs"][0]["body"]["zh-Hant"] = base["person"]["paragraphs"][0]["body"]["zh-Hant"].replace(
+                "1917年5月23日他被免去總理職務。", "")
+            patch2 = {"positionsUpdate": {"war": {"period": {"end": "1917-11-21"}, "endPrecision": "day",
+                                                  "evidenceNote": "推論：後任已獲任命", "addCitations": [tele, appt]}},
+                      "gapsRemove": ["position:war"]}
+            doc2, problems2 = tiers_mod.apply_stage2(agent, base2, copy.deepcopy(patch2))
+            unit2 = doc2["person"]["positions"][0]
+            self.assertEqual(unit2["period"]["end"], "1917-12-01")   # 下一個月第一天
+            self.assertEqual(tiers_mod.next_month_first("1917-12-21"), "1918-01-01")
+            self.assertEqual(unit2["endPrecision"], "month")
+            self.assertIn("推論上限", unit2["evidenceNote"])
+            self.assertNotIn("position:war", [g["target"] for g in doc2["person"]["gaps"]])
+            # 引文寫出後任任命那一天：保留 day
+            patch2["positionsUpdate"]["war"]["addCitations"] = [
+                {"sourceKey": "oebl-ramek", "quote": "On November 21, 1917 Wang Shi-chen was appointed Minister of War"}]
+            doc3, _p = tiers_mod.apply_stage2(agent, copy.deepcopy(base2), patch2)
+            self.assertEqual(doc3["person"]["positions"][0]["period"]["end"], "1917-11-21")
+
+    def test_term_breaks_and_review_extras(self):
+        person = {"paragraphs": [{"ord": 1, "body": {"zh-Hant": "1916年4月他任總理。6月30日總統再度任命他為總理。1917年5月23日他被免去總理職務。他辭職回家。"}}],
+                  "positions": [{"key": "pm", "title": {"zh-Hant": "國務總理"}, "period": {"start": "1916-04-01", "end": "1917-11-21"},
+                                 "startPrecision": "day", "endPrecision": "day", "evidenceNote": "推論", "citations": []}],
+                  "gaps": []}
+        hits = c_rules.term_breaks(person, person["positions"][0])
+        self.assertEqual([h["date"] for h in hits], ["1916-06-30", "1917-05-23"])
+        self.assertEqual(c_rules.term_breaks(person, person["positions"][0], {"start": "1917-06-01", "end": "1917-11-21"}), [])
+        self.assertEqual(c_rules.term_breaks(person, {"title": {"zh-Hant": "陸軍總長"}, "period": person["positions"][0]["period"]}), [])
+        self.assertEqual(c_rules.term_breaks(person, dict(person["positions"][0], period={"start": "1916-04-01", "end": None})), [])
+        self.assertEqual(c_rules.text_dates("The Premier resigned on May 23, 1917.")[0], ["1917-05-23"])
+        madsen = {"paragraphs": [{"ord": 5, "body": {"zh-Hant": "1933年8月5日他辭去下院議席，1941年辭去自由黨全國組織主席。"}}]}
+        self.assertEqual(c_rules.term_breaks(madsen, {"title": {"zh-Hant": "自由黨全國組織主席"},
+                                                      "period": {"start": "1929-01-01", "end": "1942-01-01"}}), [])
+        stage1 = copy.deepcopy(person)
+        stage1["positions"][0].update(period={"start": "1916-04-01", "end": None}, startPrecision="month", endPrecision=None, evidenceNote=None)
+        stage1["gaps"] = [{"target": "position:pm"}]
+        ex = tiers_mod.review_extras(person, stage1)
+        self.assertEqual(ex["units"][0]["startPrecision"], "day")
+        self.assertEqual(len(ex["units"][0]["termBreaks"]), 2)
+        joined = "\n".join(ex["stage2Changes"])
+        for want in ("startPrecision：month → day", "evidenceNote：None → 推論", "gap 移除 position:pm", "period"):
+            self.assertIn(want, joined)
+        self.assertEqual(tiers_mod.review_extras(person, None)["stage2Changes"], [])
+
+    def test_sync_gaps_dedupes_and_drops_met_length_gap(self):
+        long_body = {"zh-Hant": "甲" * 120}
+        person = {"paragraphs": [{"ord": i, "body": long_body} for i in (1, 2, 3)],
+                  "gaps": [{"target": "paragraph:length", "note": "篇幅不足：舊"},
+                           {"target": "position:x", "note": "待查證：缺迄日"},
+                           {"target": "position:x", "note": "待查證：缺起日"},
+                           {"target": "position:x", "note": "待查證：缺迄日（新）"}]}
+        actions = tiers_mod.sync_gaps(person)
+        self.assertEqual([g["note"] for g in person["gaps"]], ["待查證：缺起日", "待查證：缺迄日（新）"])
+        self.assertEqual(len(actions), 2)
+        short = {"paragraphs": [{"ord": 1, "body": {"zh-Hant": "甲" * 100}}, {"ord": 2, "body": {"zh-Hant": "乙" * 90}}],
+                 "gaps": [{"target": "paragraph:length", "note": "篇幅不足：舊"},
+                          {"target": "paragraph:length", "note": "篇幅不足：現2段"}]}
+        tiers_mod.sync_gaps(short)   # Genden：兩筆篇幅不足留最新的一筆
+        self.assertEqual([g["note"] for g in short["gaps"]], ["篇幅不足：現2段"])
+
+    def test_stage2_gap_add_dedupes_and_length_gap_cleared(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, kind="deep")
+            base = json.loads(person_file.read_text(encoding="utf-8"))
+            base["person"]["gaps"] = [{"target": "role:ramek-chancellor", "note": "待查證：缺迄日"}]
+            doc, _p = tiers_mod.apply_stage2(agent, copy.deepcopy(base), {"gapsAdd": [
+                {"target": "role:ramek-chancellor", "note": "待查證：缺迄日（查過 3 處）"}]})
+            self.assertEqual([g["note"] for g in doc["person"]["gaps"]], ["待查證：缺迄日（查過 3 處）"])
+            base["person"]["gaps"].append({"target": "paragraph:length", "note": "篇幅不足：舊"})
+            body = base["person"]["paragraphs"][0]["body"]["zh-Hant"]
+            if sum(len(p["body"]["zh-Hant"]) for p in base["person"]["paragraphs"]) < 300 or len(base["person"]["paragraphs"]) < 3:
+                self.skipTest("fixture 篇幅不足 300 字")
+            doc, _p = tiers_mod.apply_stage2(agent, copy.deepcopy(base), {})
+            self.assertNotIn("paragraph:length", [g["target"] for g in doc["person"]["gaps"]])
+            self.assertTrue(body)
+
+    def test_need_category_and_skip_flag(self):
+        self.assertEqual(tiers_mod.need_category(["篇幅（現 1 段／70 字，目標 3 段／300 字）"]), "篇幅不足")
+        self.assertEqual(tiers_mod.need_category(["position:a.end（已標待查證）"]), "只缺迄日")
+        self.assertEqual(tiers_mod.need_category(["篇幅（現 1 段）", "role:b.end"]), "兩者")
+        self.assertIsNone(tiers_mod.need_category(["position:a.start"]))
+        on, off = argparse.Namespace(skip_stage2_end_only=True), argparse.Namespace(skip_stage2_end_only=False)
+        self.assertTrue(tiers_mod.skips_stage2(on, ["position:a.end（已標待查證）", "position:a.start"]))
+        self.assertFalse(tiers_mod.skips_stage2(on, ["篇幅（現 1 段）", "position:a.end"]))
+        self.assertFalse(tiers_mod.skips_stage2(off, ["position:a.end"]))
+        with tempfile.TemporaryDirectory() as tmp:
+            f = Path(tmp) / "results.json"
+            f.write_text(json.dumps([{"bioId": "b1"}, {"bioId": "b2"}]), encoding="utf-8")
+            self.assertEqual(tiers_mod.done_bios([str(f), str(Path(tmp) / "missing.json")]), {"b1", "b2"})
+
+    def test_partial_usage_cost_and_retry_restore(self):
+        loop = load("run_loop", TOOLS / "run_loop.py")
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "a.1.jsonl"
+            events = [{"type": "assistant", "message": {"id": "m1", "usage": {"input_tokens": 2, "cache_creation_input_tokens": 1000,
+                                                                              "cache_read_input_tokens": 0, "output_tokens": 5}}},
+                      {"type": "assistant", "message": {"id": "m1", "usage": {"input_tokens": 2, "cache_creation_input_tokens": 1000,
+                                                                              "cache_read_input_tokens": 0, "output_tokens": 50}}},
+                      {"type": "assistant", "message": {"id": "m2", "usage": {"input_tokens": 1, "cache_creation_input_tokens": 0,
+                                                                              "cache_read_input_tokens": 10000, "output_tokens": 100}}}]
+            log.write_text("\n".join(json.dumps(e) for e in events) + "\nnot json\n", encoding="utf-8")
+            usage = loop.partial_usage(log)
+            self.assertEqual(usage["messages"], 2)
+            self.assertEqual(usage["output_tokens"], 150)
+            self.assertAlmostEqual(usage["estCostUSD"], round((3 * 2 + 1000 * 4 + 10000 * 0.2 + 150 * 10) / 1e6, 4))
+            self.assertIsNone(loop.partial_usage(Path(tmp) / "none.jsonl"))
+            cost = tiers_mod.stage_cost([{"modelUsage": None, "partialUsage": usage},
+                                         {"modelUsage": {"s": {"costUSD": 0.05}, "h": {"costUSD": 0.01}}}])
+            self.assertEqual(cost["actual"], 0.06)
+            self.assertEqual(cost["estimatedPartial"], usage["estCostUSD"])
+            # 重試前還原：第一輪寫了一半的 stage2.json 移到 .attempt1-partial，person 檔還原
+            people = Path(tmp) / "people"
+            people.mkdir()
+            (people / "b.json").write_text("orig", encoding="utf-8")
+            runner = tiers_mod.Runner.__new__(tiers_mod.Runner)
+            runner.journal = loop.Journal(Path(tmp) / "logs")
+            before = runner.retry_guard({"id": "deep:1:b", "outDir": tmp, "bioId": "b"})
+            before(1)
+            (people / "b.json").write_text("half", encoding="utf-8")
+            (people / "b.stage2.json").write_text("{half", encoding="utf-8")
+            before(2)
+            self.assertEqual((people / "b.json").read_text(encoding="utf-8"), "orig")
+            self.assertFalse((people / "b.stage2.json").exists())
+            self.assertEqual((people / "b.stage2.json.attempt1-partial").read_text(encoding="utf-8"), "{half")
+            self.assertEqual((people / "b.json.attempt1-partial").read_text(encoding="utf-8"), "half")
+            before(3)   # 第二輪什麼都沒寫：不動
+            self.assertFalse((people / "b.stage2.json.attempt2-partial").exists())
+
+    def test_uncited_detect_map_finalize(self):
+        para = {"ord": 1, "body": {"zh-Hant": "他生於1881年。他是律師。他任總理。", "en": "Born 1881. A lawyer. He was chancellor."},
+                "citations": [{"quote": "geb. 1881"}, {"quote": "Rechtsanwalt"}]}
+        person = {"paragraphs": [para], "gaps": []}
+        found = uncited_mod.find_uncited(person)
+        self.assertEqual([i["s"] for i in found], [2, 3])  # 第 1 句靠年份對上
+        with tempfile.TemporaryDirectory() as tmp:
+            f = Path(tmp) / "p.json"
+            f.write_text(json.dumps({"person": person}, ensure_ascii=False), encoding="utf-8")
+            out = io_capture(lambda: uncited_mod.cmd_map(str(f), '{"1":{"0":[1],"1":[2]},"drop":{"1":[3]}}'))
+            self.assertIn("UNCITED 0", out)
+            data = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(data["person"]["paragraphs"][0]["body"]["zh-Hant"], "他生於1881年。他是律師。")
+            self.assertEqual(data["person"]["paragraphs"][0]["body"]["en"], "Born 1881. A lawyer.")
+            self.assertTrue(data["person"]["gaps"][0]["note"].startswith("待補引文：已刪除"))
+        # 中英句數不同：不刪，標 待補
+        person = {"paragraphs": [{"ord": 2, "body": {"zh-Hant": "甲事。乙事。", "en": "One thing and another."},
+                                  "citations": [{"quote": "x", "claimSpan": [1]}]}], "gaps": []}
+        removed, marked = uncited_mod.finalize(person)
+        self.assertEqual((removed, marked), (0, 1))
+        self.assertEqual(person["paragraphs"][0]["pendingCitation"][0]["status"], "待補")
+        errors = []
+        # 標記與 gap 都讓 verify 照常通過（target 格式 paragraph:<ord>）
+        self.assertTrue(re.fullmatch(r"(field:\w+|position:[\w-]+|role:[\w-]+|paragraph:[\w-]+|identity)",
+                                     person["gaps"][0]["target"]))
+
+    def test_uncited_legacy_fallback_survives_partial_mapping(self):
+        # 補掛一句 claimSpan 之後，其他靠年份推定有出處的舊句子不能變成「沒出處」而被刪
+        para = {"ord": 1, "body": {"zh-Hant": "他生於1881年。他是律師。", "en": "Born 1881. A lawyer."},
+                "citations": [{"quote": "geb. 1881"}, {"quote": "Rechtsanwalt", "claimSpan": [2]}]}
+        self.assertEqual(uncited_mod.find_uncited({"paragraphs": [para]}), [])
+
+    def test_stage2_date_year_must_be_in_quote(self):
+        self.assertEqual(tiers_mod.quote_years("陸軍總長 民國6年"), {1917})
+        self.assertIn(1918, tiers_mod.quote_years("大正7年9月29日"))
+        self.assertIn(1912, tiers_mod.quote_years("大正元年"))
+        bad = tiers_mod.date_problems("positionsUpdate:x", {"end": "1918-01-01"}, [{"quote": "陸軍總長 民國6年"}])
+        self.assertEqual(len(bad), 1)
+        self.assertEqual(tiers_mod.date_problems("positionsUpdate:x", {"end": "1917"}, [{"quote": "陸軍總長 民國6年"}]), [])
+
+    def test_japan_urls_try_new_kanji_on_kotobank(self):
+        class Offline:
+            offline = True
+            cache_dir = Path(tempfile.mkdtemp())
+        urls = prefilter.japan_urls(Offline(), ["若槻禮次郎"])
+        from urllib.parse import quote as q
+        self.assertIn(f"https://kotobank.jp/word/{q('若槻礼次郎')}", urls)
+
+    def test_candidates_include_reeval_and_flagged_ends(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "out"
+            (root / "batch901").mkdir(parents=True)
+            person = {"key": "p1", "bioId": "b1", "name": "P One", "paragraphs": [{"body": {"zh-Hant": "字" * 320}}] * 3,
+                      "positions": [{"key": "x", "period": {"start": "1920-01-01", "end": None}}],
+                      "gaps": [{"target": "position:x", "note": "待查證：缺迄日；查過 A"}],
+                      "searchLog": [{"result": "blocked_403"}]}
+            ok = dict(person, key="p2", bioId="b2", positions=[], gaps=[])
+            (root / "batch901" / "research.json").write_text(json.dumps({"people": [person, ok]}), encoding="utf-8")
+            reeval = Path(tmp) / "reeval.json"
+            reeval.write_text(json.dumps({"people": [{"batch": "777", "key": "z", "bioId": "bz", "name": "Z",
+                                                       "missingEnds": [{"field": "position:z.end"}]}]}), encoding="utf-8")
+            rows = tiers_mod.candidates(root, reeval)
+            self.assertEqual(sorted(r["bioId"] for r in rows), ["b1", "bz"])
+            b1 = next(r for r in rows if r["bioId"] == "b1")
+            self.assertEqual(b1["fetchFailures"], 1)
+            self.assertIn("position:x.end（已標待查證）", b1["needs"])
+
+    def test_tier_profiles_pin_models(self):
+        base = {"outDir": str(REPO / "x"), "bioId": "b"}
+        for kind, model in (("deep", "sonnet"), ("csupp", "sonnet"), ("citefix", "sonnet"), ("discover", "haiku")):
+            prof = specs_mod.launch_profile(dict(base, kind=kind, model="opus" if kind != "discover" else None), REPO)
+            self.assertEqual(prof["model"], model)
+        self.assertLessEqual(specs_mod.launch_profile(dict(base, kind="citefix"), REPO)["maxTurns"], 3)
+        self.assertNotIn("WebSearch", specs_mod.launch_profile(dict(base, kind="csupp"), REPO)["tools"])
+
+
+class Pilot6FixTests(unittest.TestCase):
+    """2026-11-19 pilot5 診斷後的修正：watchdog、壓縮、薄快取、harvest、候選網址關卡、本人語言。"""
+
+    def test_watchdog_ignores_tool_and_assistant_text(self):
+        lines = [
+            json.dumps({"type": "assistant", "message": {"content": [{"type": "text", "text": "fetch failed ENOTFOUND"}]}}),
+            json.dumps({"type": "user", "message": {"content": [{"type": "tool_result", "content": "RESULT=error fetch failed"}]}}),
+            json.dumps({"type": "system", "subtype": "api_retry", "error": "ECONNRESET"}),
+            "Error: getaddrinfo ENOTFOUND api.anthropic.com",
+        ]
+        self.assertEqual(loop_mod.net_hits_in("\n".join(lines[:2])), 0)
+        self.assertGreaterEqual(loop_mod.net_hits_in("\n".join(lines)), 2)
+
+    def test_decompress_gzip_and_zlib(self):
+        import gzip, zlib
+        body = "Lázaro Cárdenas 1932".encode()
+        self.assertEqual(fetch.decompress(gzip.compress(body)), body)
+        self.assertEqual(fetch.decompress(zlib.compress(body)), body)
+        self.assertEqual(fetch.decompress(body), body)
+
+    def test_thin_cache_refetches_only_real_short_pages(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            short = Path(tmp) / "a.txt"
+            short.write_text("Eduskunta", encoding="utf-8")
+            self.assertTrue(fetch.thin_cache(short))
+            bot = Path(tmp) / "b.txt"
+            bot.write_text("Making sure you're not a bot! Anubis", encoding="utf-8")
+            self.assertFalse(fetch.thin_cache(bot))
+            login = Path(tmp) / "c.txt"
+            login.write_text("403 Forbidden", encoding="utf-8")
+            self.assertFalse(fetch.thin_cache(login))
+            long = Path(tmp) / "d.txt"
+            long.write_text("x" * 800, encoding="utf-8")
+            self.assertFalse(fetch.thin_cache(long))
+
+    def test_own_language_native_names(self):
+        natives = {"ja": "ラサロ・カルデナス", "zh": "拉萨罗·卡德纳斯", "es": "Lázaro Cárdenas", "ru": "Ласаро Карденас"}
+        self.assertEqual(tiers_mod.native_names_for({"key": "mx-cardenas"}, natives), {"es": "Lázaro Cárdenas"})
+        self.assertEqual(set(tiers_mod.native_names_for({"key": "cn-song-xilian"}, {"zh": "宋希濂", "ja": "宋希濂"})), {"zh"})
+        self.assertEqual(tiers_mod.own_langs({"key": "kung-hsiang-hsi", "name": "Kung Hsiang-hsi", "nameZh": "孔祥熙"}),
+                         ["zh-hant", "zh"])
+        self.assertIsNone(tiers_mod.own_langs({"key": "zzz", "name": "Somebody"}))
+
+    def test_harvest_host_allowlist(self):
+        h = tiers_mod.harvest_host
+        self.assertEqual(h("https://www.gob.mx/x")[1], "A")
+        self.assertEqual(h("https://historico.colmex.mx/a")[0], "academic")
+        self.assertEqual(h("https://www.iranicaonline.org/articles/reza-shah")[1], "B")
+        self.assertIsNotNone(h("https://www.deutsche-biographie.de/sfz1.html"))
+        self.assertIsNone(h("https://es.wikipedia.org/wiki/L"))
+        self.assertIsNone(h("https://www.generals.dk/general/x.html"))
+        self.assertIsNone(h("https://viaf.org/viaf/1"))
+        self.assertIsNone(h("https://example.com/a"))
+
+    def test_same_site_url_only_switches_to_www(self):
+        ok = {"www.iranicaonline.org"}
+        url, note = tiers_mod.same_site_url("https://mail.iranicaonline.org/articles/x", lambda h: h in ok)
+        self.assertEqual(url, "https://www.iranicaonline.org/articles/x")
+        self.assertIn("同站", note)
+        url, note = tiers_mod.same_site_url("https://dead.example.org/a", lambda h: False)
+        self.assertIsNone(url)
+        self.assertIn("dead host", note)
+
+    def _log(self, path, links, query="Lázaro Cárdenas gobernador Michoacán"):
+        text = f'Web search results for query: "{query}"\n\nLinks: {json.dumps(links)}\n\nsummary'
+        event = {"type": "user", "message": {"content": [{"type": "tool_result", "content": text}]}}
+        path.write_text(json.dumps({"type": "assistant", "message": {}}) + "\n" + json.dumps(event) + "\n",
+                        encoding="utf-8")
+
+    def test_search_links_and_harvest_fetch_order_and_spacing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, id="deep:123:bio-ramek", kind="deep")
+            logdir = Path(tmp) / "logs"
+            logdir.mkdir()
+            links = [{"title": "W", "url": "https://es.wikipedia.org/wiki/X"},
+                     {"title": "N", "url": "https://paperspast.natlib.govt.nz/n/1"},
+                     {"title": "G1", "url": "https://www.gob.mx/a"},
+                     {"title": "G2", "url": "https://www.gob.mx/b"},
+                     {"title": "U", "url": "https://revistas.unam.mx/c"},
+                     {"title": "Z", "url": "https://example.com/z"}]
+            self._log(logdir / "deep-123-bio-ramek.1.jsonl", links)
+            parsed = tiers_mod.search_links(sorted(logdir.glob("*.jsonl")))
+            self.assertEqual(len(parsed), 6)
+            self.assertTrue(parsed[0]["query"].startswith("Lázaro"))
+            calls, sleeps = [], []
+
+            def fetcher(rawdir, rawmap, key, url, kw, mx):
+                calls.append(url)
+                Path(rawdir).mkdir(parents=True, exist_ok=True)
+                (Path(rawdir) / f"{key}.txt").write_text(f"Rudolf Ramek 1926 Bundeskanzler {url}", encoding="utf-8")
+                return "RESULT=fetched\n"
+            report = tiers_mod.harvest(agent, logdir, resolves=lambda h: True, fetcher=fetcher, sleep=sleeps.append)
+            self.assertEqual(calls, ["https://www.gob.mx/a", "https://www.gob.mx/b", "https://revistas.unam.mx/c"])
+            self.assertEqual(len(sleeps), 1)          # 同一 host 第二次才等
+            self.assertEqual(report["nonWikiLinks"], 5)
+            self.assertEqual([c["status"] for c in report["candidates"]][-1], "not_fetched")
+            self.assertTrue((person_file.parent / "bio-ramek.harvest.json").exists())
+            self.assertIn("sourceKey=h-www-gob-mx-", tiers_mod.harvest_text(report))
+            # 關卡：抓了 3 頁 → 過
+            self.assertIsNone(tiers_mod.candidate_gate(agent, {}))
+            # harvest 之後又搜 → 要重跑；重跑時已抓的沿用、不重抓，新的才抓
+            agent = dict(agent, logDir=str(logdir))
+            self._log(logdir / "deep-123-bio-ramek.2.jsonl", [{"title": "D", "url": "https://www.deutsche-biographie.de/x.html"}])
+            self.assertIn("HARVEST", tiers_mod.candidate_gate(agent, {}))
+            calls.clear()
+            report = tiers_mod.harvest(agent, logdir, resolves=lambda h: True, fetcher=fetcher, sleep=sleeps.append)
+            self.assertEqual(calls, ["https://www.deutsche-biographie.de/x.html", "https://paperspast.natlib.govt.nz/n/1"])
+            self.assertIsNone(tiers_mod.candidate_gate(agent, {}))
+
+    def test_harvest_skips_duplicate_pages(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, id="deep:123:bio-ramek", kind="deep")
+            logdir = Path(tmp) / "logs"
+            logdir.mkdir()
+            self._log(logdir / "deep-123-bio-ramek.1.jsonl", [{"title": t, "url": f"https://www.deutsche-biographie.de/{t}.html"}
+                                                              for t in ("a", "b", "c", "d")])
+
+            def fetcher(rawdir, rawmap, key, url, kw, mx):
+                Path(rawdir).mkdir(parents=True, exist_ok=True)
+                body = "same page" if url.endswith(("a.html", "b.html")) else url
+                (Path(rawdir) / f"{key}.txt").write_text(body, encoding="utf-8")
+                return "RESULT=fetched\n"
+            report = tiers_mod.harvest(agent, logdir, resolves=lambda h: True, fetcher=fetcher, sleep=lambda s: None)
+            self.assertEqual([c["status"] for c in report["candidates"]], ["fetched", "skipped", "fetched", "fetched"])
+
+    def test_harvest_stops_on_blocked_host(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, id="deep:123:bio-ramek", kind="deep")
+            logdir = Path(tmp) / "logs"
+            logdir.mkdir()
+            self._log(logdir / "deep-123-bio-ramek.1.jsonl", [{"title": "a", "url": "https://paperspast.natlib.govt.nz/n/1"},
+                                                              {"title": "b", "url": "https://paperspast.natlib.govt.nz/n/2"}])
+            calls = []
+
+            def fetcher(rawdir, rawmap, key, url, kw, mx):
+                calls.append(url)
+                return "RESULT=error\nnote=curl: (47) Maximum (50) redirects followed\n"
+            report = tiers_mod.harvest(agent, logdir, resolves=lambda h: True, fetcher=fetcher, sleep=lambda s: None)
+            self.assertEqual(len(calls), 1)
+            self.assertTrue(all(c["status"] == "skipped" and c["reason"] for c in report["candidates"]))
+            self.assertIn("blocked_bot_protection", report["candidates"][0]["reason"])
+
+    def test_candidate_gate_requires_handled_urls(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            agent, spec, person_file = _tier_fixture(Path(tmp))
+            agent = dict(agent, kind="deep")
+            self.assertIn("HARVEST", tiers_mod.candidate_gate(agent, {}))
+            path = person_file.parent / "bio-ramek.harvest.json"
+            path.write_text(json.dumps({"nonWikiLinks": 4, "candidates": [
+                {"url": "https://a.gob.mx", "status": "skipped", "reason": "dead host（a.gob.mx 解析不到）"}]}),
+                encoding="utf-8")
+            self.assertIn("FETCH", tiers_mod.candidate_gate(agent, {}))
+            self.assertIn("FETCH", tiers_mod.candidate_gate(agent, {"searchLog": [
+                {"url": "https://es.wikipedia.org/x", "result": "fetched"}]}))
+            self.assertIsNone(tiers_mod.candidate_gate(agent, {"searchLog": [
+                {"url": "https://memoria.colmex.mx/x", "result": "skipped:blocked_403 擋頁"}]}))
+            path.write_text(json.dumps({"nonWikiLinks": 0, "candidates": []}), encoding="utf-8")
+            self.assertIsNone(tiers_mod.candidate_gate(agent, {}))
+
+    def test_harvest_snippets_need_name_and_year(self):
+        text = ("Intro. " * 80 + "El general Lázaro Cárdenas fue gobernador de Michoacán hasta 1932. " + "Filler. " * 80 +
+                "Lázaro Cárdenas nació en Jiquilpan.")
+        out = tiers_mod.harvest_snippets(text, {"Cárdenas"}, set(range(1928, 1949)))
+        self.assertEqual(len(out), 1)
+        self.assertIn("1932", out[0])
+        self.assertEqual(tiers_mod.harvest_snippets(text, {"Cárdenas"}, {1950}), [])
+
+    def test_garbled_pdf_text_detection(self):
+        self.assertTrue(fetch.looks_garbled("ab\x01\x02\x03\x04" * 10))
+        self.assertFalse(fetch.looks_garbled("Lázaro Cárdenas gobernador 1932.\n" * 10))
+        self.assertIsNone(fetch.pdftotext_bin(b"not a pdf"))
+
+    def test_harvest_snippets_rank_post_and_end_words(self):
+        text = ("Lazaro Cardenas visitó Morelia en 1930. " + "x " * 300 +
+                "En 1932 Lázaro Cárdenas dejó la gubernatura de Michoacán. " + "y " * 300)
+        out = tiers_mod.harvest_snippets(text, {"Cárdenas"}, {1930, 1932}, radius=60, posts={"michoaca", "gobernad"})
+        self.assertIn("gubernatura", out[0])
+
+    def test_deep_profile_allows_harvest(self):
+        prof = specs_mod.launch_profile({"kind": "deep", "batch": "1", "bioId": "b", "outDir": "o", "rawDir": "r",
+                                         "specPath": "s", "id": "deep:1:b"}, REPO)
+        self.assertTrue(any("tiers.py harvest" in a for a in prof["allowed"]))
+
+
+class BrowserFetchTests(unittest.TestCase):
+    """瀏覽器補抓 pilot（Claude in Chrome）的純 Python 部分。"""
+
+    def setUp(self):
+        self.bf = load("browser_fetch", TOOLS / "browser_fetch.py")
+
+    def test_targets_rewrite_ojs_download_and_drop_duplicate_record(self):
+        urls = ["https://revistas.inah.gob.mx/index.php/historias/article/download/13794/14885/27495",
+                "https://historiamexicana.colmex.mx/index.php/RHM/article/download/1252/2804/3272",
+                "https://revistas.colmex.mx/Record/oai:oai.historiamexicana.colmex.mx:article-1252/Description"]
+        self.assertEqual(self.bf.browser_targets(urls), [
+            "https://revistas.inah.gob.mx/index.php/historias/article/view/13794",
+            "https://historiamexicana.colmex.mx/index.php/RHM/article/view/1252"])
+
+    def test_order_by_host_treats_www_as_same_site(self):
+        out = self.bf.order_by_host(["https://britannica.com/a", "https://www.britannica.com/b", "https://x.org/c"])
+        self.assertEqual(out, ["https://britannica.com/a", "https://x.org/c", "https://www.britannica.com/b"])
+
+    def test_command_is_scoped_and_budgeted(self):
+        cmd = self.bf.session_command(["https://x.org/a"], budget=0.5)
+        self.assertIn("--strict-mcp-config", cmd)
+        self.assertEqual(cmd[cmd.index("--max-budget-usd") + 1], "0.50")
+        self.assertEqual(cmd[cmd.index("--model") + 1], "sonnet")
+        allowed = cmd[cmd.index("--allowedTools") + 1]
+        self.assertIn("browser_batch", allowed)
+        self.assertNotIn("computer", allowed)
+        self.assertNotIn("javascript", allowed)
+        self.assertNotIn("form_input", allowed)
+
+    def _write_log(self, path, events):
+        path.write_text("\n".join(json.dumps(e) for e in events) + "\n", encoding="utf-8")
+
+    def test_parse_log_batch_and_single_calls(self):
+        page = "Title: A\nURL: https://www.x.org/a\nSource element: <main>\n---\n" + "Cárdenas 1932 " * 40
+        page2 = "Title: B\nURL: https://y.org/b\nSource element: <main>\n---\n" + "texto " * 80
+        batch = {"type": "tool_use", "id": "u1", "name": "mcp__claude-in-chrome__browser_batch", "input": {"actions": [
+            {"name": "navigate", "input": {"url": "https://x.org/a", "tabId": 1}}, {"name": "get_page_text", "input": {"tabId": 1}},
+            {"name": "navigate", "input": {"url": "https://y.org/b", "tabId": 1}}, {"name": "get_page_text", "input": {"tabId": 1}},
+            {"name": "navigate", "input": {"url": "https://z.org/c", "tabId": 1}}, {"name": "get_page_text", "input": {"tabId": 1}}]}}
+        events = [
+            {"type": "system", "message": "init"},
+            {"type": "assistant", "message": {"content": [batch]}},
+            {"type": "user", "message": {"content": [{"type": "tool_result", "tool_use_id": "u1",
+                                                       "content": [{"type": "text", "text": page + "\n" + page2}]}]}},
+            {"type": "assistant", "message": {"content": [{"type": "tool_use", "id": "u2", "name": "mcp__claude-in-chrome__navigate",
+                                                            "input": {"url": "https://w.org/d"}}]}},
+            {"type": "assistant", "message": {"content": [{"type": "tool_use", "id": "u3",
+                                                            "name": "mcp__claude-in-chrome__get_page_text", "input": {}}]}},
+            {"type": "user", "message": {"content": [{"type": "tool_result", "tool_use_id": "u3", "is_error": True,
+                                                       "content": "Can't interact with browser-internal or unparseable URLs."}]}},
+            {"type": "result", "result": "OK https://x.org/a\nOK https://y.org/b\nBLOCKED https://z.org/c captcha",
+             "total_cost_usd": 0.12, "num_turns": 4, "modelUsage": {"claude-sonnet-5-5": {"inputTokens": 3}}},
+        ]
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "b.jsonl"
+            self._write_log(log, events)
+            pages, result = self.bf.parse_log(log)
+            self.assertEqual([p["url"] for p in pages], ["https://x.org/a", "https://y.org/b", "https://z.org/c", "https://w.org/d"])
+            self.assertFalse(pages[0]["toolError"])
+            self.assertIn("Cárdenas", pages[0]["text"])
+            self.assertTrue(pages[2]["toolError"] and pages[3]["toolError"])
+            raw = Path(tmp) / "raw"
+            raw.mkdir()
+            saved = self.bf.save_pages(pages, result, raw, raw / "rawmap.json", fetch.update_rawmap)
+            self.assertEqual([s["status"] for s in saved], ["fetched", "fetched", "blocked", "blocked"])
+            meta = json.loads((raw / f"{saved[0]['sourceKey']}.meta.json").read_text(encoding="utf-8"))
+            self.assertIn("via", meta)
+            self.assertIn(saved[0]["sourceKey"], json.loads((raw / "rawmap.json").read_text(encoding="utf-8")))
+            self.assertEqual(self.bf.session_cost(result)["costUSD"], 0.12)
+
+    def test_stop_reason_flags_challenge_login_paywall(self):
+        self.assertTrue(self.bf.stop_reason("Please verify you are human " + "x" * 400))
+        self.assertTrue(self.bf.stop_reason("Subscribe to continue reading " + "x" * 400))
+        self.assertTrue(self.bf.stop_reason("short"))
+        self.assertIsNone(self.bf.stop_reason("Lázaro Cárdenas fue gobernador de Michoacán. " * 20))
+
+    def test_batch_partial_failure_marks_that_page(self):
+        actions = [{"name": "navigate", "input": {"url": "https://a.org/1"}}, {"name": "get_page_text", "input": {}},
+                   {"name": "navigate", "input": {"url": "https://b.org/2"}}, {"name": "get_page_text", "input": {}}]
+        text = ("[navigate] Navigated to https://a.org/1\n\nactions[1] (get_page_text) failed: Permission denied for reading "
+                "page content on this domain (1 completed, 2 remaining)")
+        pages = self.bf.split_batch(actions, text, True)
+        self.assertEqual(len(pages), 1)
+        self.assertEqual(pages[0]["url"], "https://a.org/1")
+        self.assertIn("Permission denied", pages[0]["text"])
+        self.assertTrue(self.bf.stop_reason("historiamexicana.colmex.mx 正在執行安全驗證 此網站使用安全服務抵禦惡意機器人。" * 3))
+
+    def test_tab_context_trailer_is_not_saved(self):
+        text = "Title: A\nURL: https://a.org\n---\nBody text\n\n\nTab Context:\n- Executed on tabId: 1\n"
+        self.assertEqual(self.bf.strip_tab_context(text), "Title: A\nURL: https://a.org\n---\nBody text")
+
+    def test_pdf_like_urls_are_not_opened(self):
+        for url in ("https://ru.dgb.unam.mx/bitstream/20.500/x/0694033.pdf", "https://www.gob.mx/cms/uploads/attachment/file/1/x",
+                    "https://a.org/files/report.PDF", "https://a.org/index.php/j/article/download/1/2/3"):
+            self.assertTrue(self.bf.pdf_like(url), url)
+        self.assertFalse(self.bf.pdf_like("https://revistas.inah.gob.mx/index.php/historias/article/view/13794"))
+        self.assertFalse(self.bf.pdf_like("https://www.britannica.com/topic/Persian-Cossack-Brigade"))
+
+    def test_usage_limit_text_detected(self):
+        self.assertTrue(self.bf.limit_text("You've hit your 5-hour limit · resets 2:20am (Asia/Taipei)"))
+        self.assertFalse(self.bf.limit_text("OK https://a.org"))
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "x.jsonl"
+            log.write_text(json.dumps({"type": "result", "result": "You've hit your 5-hour limit · resets 2:20am"}), encoding="utf-8")
+            self.assertTrue(tiers_mod.usage_limited(log))
+
+    def test_connected_devices_parses_bridge_list(self):
+        class P:
+            stdout = json.dumps({"result": '[{"deviceId":"ef982cf7-0626","name":"Browser 1"}]', "total_cost_usd": 0.006})
+        devices, cost, limited = self.bf.connected_devices(runner=lambda *a, **k: P())
+        self.assertEqual([d["deviceId"] for d in devices], ["ef982cf7-0626"])
+        self.assertFalse(limited)
+        self.assertAlmostEqual(cost, 0.006)
+
+    def test_pinned_browser_device_problem(self):
+        bf = load("browser_fetch", TOOLS / "browser_fetch.py")
+        pin, other = "44c34180-5202-4f69-9685-907c6a3ea7e2", "b7dfec23-2297-467e-92cd-7a67cbb2226e"
+        with tempfile.TemporaryDirectory() as tmp:
+            log, dbg = Path(tmp) / "c.jsonl", Path(tmp) / "c.debug.txt"
+            def write(first_name, first_input, reply, routed):
+                ev = [{"type": "assistant", "message": {"content": [
+                          {"type": "tool_use", "id": "t1", "name": "mcp__claude-in-chrome__" + first_name, "input": first_input}]}},
+                      {"type": "user", "message": {"content": [
+                          {"type": "tool_result", "tool_use_id": "t1", "content": [{"type": "text", "text": reply}]}]}}]
+                log.write_text("\n".join(json.dumps(e) for e in ev), encoding="utf-8")
+                dbg.write_text("".join(f'x {{"type":"routing_ack","routed_to":"{d}"}}\n' for d in routed), encoding="utf-8")
+            write("select_browser", {"deviceId": pin}, 'Selected browser "Browser 2".', [pin, pin])
+            self.assertIsNone(bf.device_problem(log, dbg, pin))
+            write("select_browser", {"deviceId": pin}, 'Selected browser "Browser 2".', [pin, other])
+            self.assertEqual(bf.device_problem(log, dbg, pin), f"routed-to:{other}")
+            write("navigate", {"url": "https://example.com"}, "Navigated", [other])
+            self.assertEqual(bf.device_problem(log, dbg, pin), "first-tool-not-select")
+            write("select_browser", {"deviceId": pin}, "No browser with that id", [])
+            self.assertEqual(bf.device_problem(log, dbg, pin), "select-failed")
+        cmd = bf.session_command(["https://example.com"], device=pin, debug_file="/tmp/d.txt")
+        self.assertIn("mcp__claude-in-chrome__select_browser", cmd[cmd.index("--allowedTools") + 1])
+        self.assertIn("--debug-file", cmd)
+        self.assertIn(pin, cmd[-1])
+        self.assertNotIn("select_browser", bf.session_command(["https://example.com"])[
+            bf.session_command(["https://example.com"]).index("--allowedTools") + 1])
+
+    def test_term_break_ignores_final_month_of_month_precision_end(self):
+        tiers = tiers_mod
+        unit = {"period": {"start": "1931-11-01", "end": "1932-01-01"}, "endPrecision": "month"}
+        self.assertTrue(tiers.in_final_unit("1931-12-01", unit))
+        self.assertFalse(tiers.in_final_unit("1931-11-15", unit))
+        unit = {"period": {"start": "1927-01-01", "end": "1930-01-01"}, "endPrecision": "year"}
+        self.assertTrue(tiers.in_final_unit("1929-06-01", unit))
+        self.assertFalse(tiers.in_final_unit("1928-06-01", unit))
+        self.assertFalse(tiers.in_final_unit("1929-12-01", {"period": {"end": "1930-01-01"}, "endPrecision": "day"}))
+
+    def test_browser_missing_stops_run(self):
+        tiers = tiers_mod
+        class Args: pass
+        runner = tiers.Runner.__new__(tiers.Runner)
+        runner.results = []
+        with tempfile.TemporaryDirectory() as tmp:
+            class J: dir = Path(tmp)
+            runner.journal = J()
+            calls = []
+            def one(nn, bio):
+                calls.append(bio)
+                raise tiers.BrowserMissing("device-missing:" + bio)
+            runner.one = one
+            out = runner.run(["106:a", "107:b"])
+        self.assertEqual(calls, ["a"])
+        self.assertEqual(out[0]["outcome"], "browser-missing-stop")
+
+    def test_log_parsers_tolerate_string_message(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "deep-1-b.1.jsonl"
+            log.write_text("\n".join([
+                json.dumps({"type": "system", "subtype": "permission_denied", "message": "Permission to use Bash has been denied"}),
+                json.dumps({"type": "assistant", "message": {"content": [{"type": "tool_use", "id": "a", "name": "WebSearch", "input": {}}]}}),
+            ]) + "\n", encoding="utf-8")
+            self.assertEqual(tiers_mod.tool_counts(log).get("WebSearch"), 1)
+            self.assertEqual(tiers_mod.search_links([log]), [])
+
+    def test_inah_graded_by_longest_suffix(self):
+        self.assertEqual(tiers_mod.harvest_host("https://revistas.inah.gob.mx/x")[:2], ("academic", "B"))
+        self.assertEqual(tiers_mod.harvest_host("https://www.gob.mx/x")[1], "A")
 
 
 if __name__ == "__main__":

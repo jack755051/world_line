@@ -170,6 +170,23 @@ def kill_group(proc):
         pass
 
 
+def net_hits_in(text):
+    """斷網訊號只看 CLI 自己的輸出（stderr、system 事件如 api_retry），不看 assistant／user 事件：
+    agent 寫的內容或工具結果裡出現「fetch failed」不算斷網（tiers-pilot5 Reza 被誤殺）。"""
+    hits = 0
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("{"):
+            try:
+                obj = json.loads(stripped)
+            except json.JSONDecodeError:
+                obj = None
+            if isinstance(obj, dict) and obj.get("type") in ("assistant", "user", "result"):
+                continue
+        hits += len(NET_RE.findall(line))
+    return hits
+
+
 def watch(proc, log_path, timeout, journal, agent_id, dns_probe=dns_ok):
     """回傳 (結果, rc)。結果：exit、network、timeout、stall。"""
     started = time.time()
@@ -180,6 +197,7 @@ def watch(proc, log_path, timeout, journal, agent_id, dns_probe=dns_ok):
     dns_fails = 0
     last_dns = started
     offset = 0
+    pending = ""
     while True:
         rc = proc.poll()
         if rc is not None:
@@ -191,7 +209,9 @@ def watch(proc, log_path, timeout, journal, agent_id, dns_probe=dns_ok):
                 fh.seek(offset)
                 chunk = fh.read().decode("utf-8", errors="replace")
             offset = size
-            hits = len(NET_RE.findall(chunk))
+            chunk = pending + chunk
+            complete, _, pending = chunk.rpartition("\n")   # 最後半行留到下次（JSON 可能還沒寫完）
+            hits = net_hits_in(complete)
             if hits:
                 net_hits += hits
                 first_net = first_net or now_ts
@@ -248,13 +268,44 @@ def wait_network(journal, agent_id):
         journal.log("network_back", id=agent_id, waited=waited)
 
 
-def launch(agent, prompt, journal, tag=""):
-    """跑一個 agent 到結束。斷網就等網路恢復後重跑同一個。回傳紀錄 dict。"""
+# 中途被砍的 attempt 沒有 result 事件：用串流裡各訊息最後一筆 usage 估算（Sonnet 費率，
+# 對 tiers-pilot4／5 的 89 筆實際 costUSD 校準，誤差約 +0～20%，偏高）。WebSearch 用的 Haiku 子呼叫不在串流裡，沒算。
+EST_RATES = {"input_tokens": 2.0, "cache_creation_input_tokens": 4.0, "cache_read_input_tokens": 0.2, "output_tokens": 10.0}
+
+
+def partial_usage(log_path):
+    """被砍的 attempt：串流 assistant 訊息的 usage（同一訊息取最後一筆）加總與估計費用。沒有就回 None。"""
+    last = {}
+    try:
+        lines = Path(log_path).read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return None
+    for line in lines:
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        msg = obj.get("message") if isinstance(obj.get("message"), dict) else {}
+        if obj.get("type") == "assistant" and isinstance(msg.get("usage"), dict):
+            last[msg.get("id") or len(last)] = msg["usage"]
+    if not last:
+        return None
+    total = {k: sum(int(u.get(k) or 0) for u in last.values()) for k in EST_RATES}
+    total["messages"] = len(last)
+    total["estCostUSD"] = round(sum(total[k] * rate for k, rate in EST_RATES.items()) / 1e6, 4)
+    return total
+
+
+def launch(agent, prompt, journal, tag="", before_attempt=None):
+    """跑一個 agent 到結束。斷網就等網路恢復後重跑同一個。回傳紀錄 dict。
+    before_attempt(attempt)：每次啟動前呼叫（呼叫端用來在重試前還原上一輪寫了一半的檔案）。"""
     profile = specs.launch_profile(agent, REPO)
     safe = (agent["id"] + tag).replace(":", "-")
     attempts = []
     for attempt in range(1, NET_RETRIES + 2):
         wait_network(journal, agent["id"])
+        if before_attempt:
+            before_attempt(attempt)
         session_id = str(uuid.uuid4())
         log_path = journal.dir / f"{safe}.{attempt}.jsonl"
         cmd = build_command(agent, prompt, session_id, profile, f"b3v3-{safe[:60]}")
@@ -272,7 +323,10 @@ def launch(agent, prompt, journal, tag=""):
             "usage": result.get("usage"), "modelUsage": result.get("modelUsage"),
             "durationMs": result.get("duration_ms"), "log": str(log_path),
             "result": (result.get("result") or "")[:300] if isinstance(result.get("result"), str) else None,
+            "attempt": attempt,
         }
+        if not record["modelUsage"]:
+            record["partialUsage"] = partial_usage(log_path)
         attempts.append(record)
         journal.log("agent_end", **{k: v for k, v in record.items() if k not in ("usage", "modelUsage")},
                     usage=record["usage"])

@@ -220,6 +220,12 @@ def assemble(agent, today=None):
 
 def check_person(doc, raw_dir, batch_id="b3-full-v3-selfcheck"):
     """把單人檔包成一人的 research.json，跑原本的 verify.py 與 check_min（規則不變）。"""
+    errors, _c_errors, row = check_person_full(doc, raw_dir, batch_id)
+    return errors, row
+
+
+def check_person_full(doc, raw_dir, batch_id="b3-full-v3-selfcheck"):
+    """同 check_person，另外回傳 C 級補充區的錯誤（verify 報告的 supplementCErrors，分開列）。"""
     with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         research = {
@@ -241,14 +247,16 @@ def check_person(doc, raw_dir, batch_id="b3-full-v3-selfcheck"):
             [sys.executable, "-I", str(VERIFY), str(tmp / "research.json"), "--report", str(tmp / "report.json")],
             capture_output=True, text=True,
         )
-        errors = []
+        errors, c_errors = [], []
         if (tmp / "report.json").exists():
-            errors = json.loads((tmp / "report.json").read_text(encoding="utf-8")).get("errors") or []
+            report = json.loads((tmp / "report.json").read_text(encoding="utf-8"))
+            errors = report.get("errors") or []
+            c_errors = report.get("supplementCErrors") or []
         elif proc.returncode != 0:
             errors = [(proc.stderr or proc.stdout).strip()[-300:]]
         check_min = _load("b3_check_min_draft", CHECK_MIN)
         row = check_min.report_for(research)["people"][0]
-    return errors, row
+    return errors, c_errors, row
 
 
 def summary_line(row):
@@ -279,8 +287,9 @@ def cmd_check(spec, agent_id, done=False, today=None):
         p["person"].write_text(dump(doc), encoding="utf-8")
     else:
         doc = json.loads(p["person"].read_text(encoding="utf-8"))
-    errors, row = check_person(doc, agent["rawDir"], agent.get("batchId") or "b3-full-v3-selfcheck")
+    errors, c_errors, row = check_person_full(doc, agent["rawDir"], agent.get("batchId") or "b3-full-v3-selfcheck")
     lines = [f"ASSEMBLE {problem}" for problem in problems] + [f"VERIFY {error}" for error in errors]
+    lines += [f"VERIFY_C {error}" for error in c_errors]
     status = "ok" if not lines else "fail"
     print(f"SELFCHECK {status} 錯誤 {len(lines)}")
     for line in lines[:MAX_LINES]:

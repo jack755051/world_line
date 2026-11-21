@@ -31,6 +31,13 @@ T14 R0–R6（T14_RECOMMENDATION.md；Tai 2026-11-11 12:47 第 5 項）、黨籍
     R0–R4 只能出現在 roleCandidates（兩層互斥），除非 t14Ambiguous=true。
 17. t14Rule=R6 須 roleEligible=true、roleEligibleKind ∈ 角色層值、roleGap 非空、t14Reason 非空；非 R6 不得有 roleEligible。
 18. positions 若有 originalPositionKind（邊界個案改類別），須與 positionKind 不同且屬原值域；roleCandidates 的 t14Rule 若有，須 ∈ R0–R4。
+C 級補充區（Tai 2026-11-18；docs/source-rules.md §2「C 級補充區」）：
+19. person.supplementC 是選填的獨立區塊，主段落／職位／角色永遠不引它。grade 必須是 "C"；sources 只放在區塊內（鍵不得與頂層 sources 重複）；
+    Wikipedia／Wikidata 只准出現在這個區塊。每條 clauses／dates 要有 cKey（區塊內來源）、url、quote（NFC ≤80、逐字出現在原文）、locator、accessedOn。
+    dates 只能是 待查證（status 以「待查證」開頭、confirmed 不得為 true）：C 單獨不能確認日期。
+    A／B 為準（Tai 2026-11-18）：C 日期或句子和 A／B 衝突（tools/c_rules.py 的 date_conflict／clause_conflict）不得留在 clauses／dates，
+    只能放 conflictNotes（附 conflictsWithAB.ref／reason，不顯示、不計入）；C 句子的年份／數字／拉丁專名／括號詞要出現在引文裡（support_gaps）。
+    區塊的錯誤另列在報告的 supplementCErrors，不算進 errors／ok（主內容的判定不受 C 影響）；有 C 錯誤時 exit 仍是 1。
 """
 import hashlib, json, re, sys, unicodedata
 from pathlib import Path
@@ -40,6 +47,7 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(next(p for p in _Path(__file__).resolve().parents if (p / "data" / "source-policy.json").exists()) / "tools"))
 import source_policy as _sp  # 全專案唯一的來源政策：data/source-policy.json
+import c_rules as _cr  # C 級補充區：A／B 為準、引文支撐（tools/c_rules.py，與 tools/b3v3/tiers.py 共用）
 _DATED = _sp.POLICY["bannedSince"]
 # 後來才禁用的網域由 DATED_BANNED_HOSTS 依生效時間處理，所以不放進一律擋的清單
 EXCLUDED_HOSTS = tuple(h for h in _sp.BANNED_HOSTS if h not in _DATED) + _sp.FILE_HOSTS
@@ -123,6 +131,131 @@ def arg(name, n=1):
     return sys.argv[i + 1:i + 1 + n]
 
 
+C_TARGET_RE = re.compile(r"(paragraph:length|identity|(position|role):[\w-]+\.(start|end))")
+C_ALLOWED_INDEX_HOSTS = tuple(_sp.POLICY.get("supplementCOnlyHosts") or ("wikipedia.org", "wikidata.org"))  # 只在 supplementC 內准用
+C_STATUS_PREFIX = "A/B不足，已用C補"
+
+
+def _c_text(raw_dir, texts, key):
+    """C 來源原文：先看 rawmap 載入的，沒有就讀 RAW_DIR/<key>.txt（C 鍵不一定在批次 rawmap 裡）。"""
+    if key in texts:
+        return texts[key]
+    if raw_dir:
+        path = Path(raw_dir) / f"{key}.txt"
+        if path.is_file():
+            return norm(path.read_bytes().decode("utf-8", errors="replace"))
+    return None
+
+
+def check_supplement_c(p, main_sources, texts, raw, raw_dir, errs):
+    """第 19 項：C 級補充區。錯誤寫進 errs（報告的 supplementCErrors），回傳統計。"""
+    key = p.get("key", "?")
+    block = p.get("supplementC")
+    where = f"{key} supplementC"
+    if not isinstance(block, dict):
+        errs.append(f"{where}：必須是物件"); return {}
+    if block.get("grade") != "C":
+        errs.append(f"{where}：grade 必須是 \"C\"")
+    if not str(block.get("status") or "").startswith(C_STATUS_PREFIX):
+        errs.append(f"{where}：status 須以「{C_STATUS_PREFIX}」開頭")
+    csrc = block.get("sources") or {}
+    if not isinstance(csrc, dict):
+        errs.append(f"{where}：sources 必須是物件"); csrc = {}
+    for k, s in csrc.items():
+        if k in main_sources:
+            errs.append(f"{where} 來源 {k}：鍵與主來源重複（C 來源只放在補充區）")
+        if (s or {}).get("grade") != "C":
+            errs.append(f"{where} 來源 {k}：grade 必須是 C")
+        u = (s or {}).get("url") or ""
+        host = (urlparse(u).hostname or "").lower() if u else ""
+        if not host:
+            errs.append(f"{where} 來源 {k}：缺 url")
+        elif not any(host == h or host.endswith("." + h) for h in C_ALLOWED_INDEX_HOSTS):
+            if any(host == h or host.endswith("." + h) or (("/" in h) and h in u.lower()) for h in C_BANNED_HOSTS) \
+                    or _sp.banned_label(u):
+                errs.append(f"{where} 來源 {k}：C 級網域不收（論壇／部落格／內容農場）：{host}")
+        if not str((s or {}).get("title") or "").strip():
+            errs.append(f"{where} 來源 {k}：缺 title")
+    stats = {"clauses": 0, "dates": 0, "zhChars": 0, "sources": sorted(csrc)}
+
+    def one(w, item):
+        ck = item.get("cKey")
+        if ck not in csrc:
+            errs.append(f"{w}：cKey {ck} 不在 supplementC.sources"); return
+        if not item.get("url"):
+            errs.append(f"{w}：缺 url")
+        elif item.get("url") != (csrc[ck] or {}).get("url"):
+            errs.append(f"{w}：url 與來源 {ck} 不符")
+        q = item.get("quote")
+        if not q or not str(q).strip():
+            errs.append(f"{w}：引文空白"); return
+        n = nfc_len(q)
+        if n > 80:
+            errs.append(f"{w}：引文 {n} 字 > 80：{q}")
+        if raw:
+            text = _c_text(raw_dir, texts, ck)
+            if text is None:
+                errs.append(f"{w}：C 來源 {ck} 沒有原文檔，無法核對引文")
+            elif quote_hit(text, q) is None:
+                errs.append(f"{w}：引文未逐字出現於 {ck}：{q}")
+        for field in ("locator", "accessedOn"):
+            if not item.get(field):
+                errs.append(f"{w}：缺 {field}")
+        if not C_TARGET_RE.fullmatch(str(item.get("target") or "")):
+            errs.append(f"{w}：target 格式（paragraph:length／identity／position:<key>.start|end／role:<key>.start|end）：{item.get('target')}")
+
+    for i, c in enumerate(block.get("clauses") or []):
+        w = f"{where} clause{i}"
+        one(w, c)
+        zh = (c.get("text") or {}).get("zh-Hant") if isinstance(c.get("text"), dict) else None
+        en = (c.get("text") or {}).get("en") if isinstance(c.get("text"), dict) else None
+        if not zh:
+            errs.append(f"{w}：缺 text.zh-Hant")
+        gaps = _cr.support_gaps(zh or "", c.get("quote") or "") + _cr.support_gaps(en or "", c.get("quote") or "", names=False)
+        if gaps:
+            errs.append(f"{w}：C 句子有引文沒有的內容 {sorted(set(gaps))}（要刪掉或改成只照引文寫）")
+        long = _cr.overreach(zh or "", c.get("quote") or "")
+        if long:
+            errs.append(f"{w}：C 句子 {long[0]} 字，超過引文能支撐的 {long[1]} 字（要刪減或改成只照引文寫）")
+        clash = _cr.clause_conflict(p, c)
+        if clash:
+            errs.append(f"{w}：與 A／B 衝突，以 A／B 為準（{clash['ref']}：{clash['reason']}）；要刪或移到 conflictNotes")
+        stats["clauses"] += 1
+        stats["zhChars"] += sum(1 for ch in unicodedata.normalize("NFC", zh or "") if not ch.isspace())
+    for i, d in enumerate(block.get("dates") or []):
+        w = f"{where} date{i}"
+        one(w, d)
+        if d.get("confirmed") is True or not str(d.get("status") or "").startswith("待查證"):
+            errs.append(f"{w}：C 單獨不能確認日期，status 須以「待查證」開頭、confirmed 不得為 true")
+        if d.get("precision") not in PREC - {None}:
+            errs.append(f"{w}：precision 須為 day／month／year")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(d.get("value") or "")):
+            errs.append(f"{w}：value 須為 YYYY-MM-DD")
+        else:
+            m = re.fullmatch(r"(position|role):([\w-]+)\.(start|end)", str(d.get("target") or ""))
+            units = (p.get("positions") or []) + (p.get("roleCandidates") or [])
+            if m and not any(u.get("key") == m.group(2) for u in units):
+                errs.append(f"{w}：主內容沒有 {m.group(2)}")
+            clash = _cr.date_conflict(p, d)
+            if clash:
+                errs.append(f"{w}：與 A／B 衝突，以 A／B 為準（{clash['reason']}）；要刪或移到 conflictNotes")
+            if str(d.get("target") or "").endswith(".end") and not _cr.end_quote_ok(d.get("quote") or ""):
+                errs.append(f"{w}：C 迄日的引文只寫就任／當選（起點事件），不能當這個職位的迄日")
+            if int(str(d["value"])[:4]) not in _cr.years(d.get("quote") or ""):
+                errs.append(f"{w}：value {d['value']} 的年份不在引文裡")
+        stats["dates"] += 1
+    for i, n in enumerate(block.get("conflictNotes") or []):   # 和 A／B 衝突的 C：只當註記，不顯示成事實、不計入
+        w = f"{where} conflictNote{i}"
+        one(w, n)
+        ref = (n.get("conflictsWithAB") or {}) if isinstance(n.get("conflictsWithAB"), dict) else {}
+        if not ref.get("ref") or not ref.get("reason"):
+            errs.append(f"{w}：conflictsWithAB 要有 ref 與 reason")
+        if n.get("confirmed") is True:
+            errs.append(f"{w}：衝突註記不得 confirmed")
+    stats["conflictNotes"] = len(block.get("conflictNotes") or [])
+    return stats
+
+
 def main():
     rp = Path(sys.argv[1])
     data = json.load(open(rp))
@@ -150,7 +283,9 @@ def main():
         elif isinstance(o, list):
             for v in o: _fact_keys(v, cand, out)
         return out
-    fact_keys = _fact_keys(data.get("people") or [])
+    def _main_only(person):
+        return {k: v for k, v in person.items() if k != "supplementC"} if isinstance(person, dict) else person
+    fact_keys = _fact_keys([_main_only(x) for x in data.get("people") or []])
     for k, s in srcs.items():
         for u in (s.get("url"), s.get("archive_url")):
             host = (urlparse(u).hostname or "") if u else ""
@@ -177,7 +312,7 @@ def main():
                 if any(host == h or host.endswith("." + h) or (("/" in h) and h in full) for h in C_BANNED_HOSTS) \
                         or _sp.banned_label(u):
                     errs.append(f"來源 {k}：C 級網域不收（論壇／部落格／維基類／內容農場）：{host}")
-    blob = json.dumps(data, ensure_ascii=False).lower()
+    blob = json.dumps(dict(data, people=[_main_only(x) for x in data.get("people") or []]), ensure_ascii=False).lower()
     if "wikipedia" in blob or "wikidata.org" in blob:
         for m in re.finditer(r"https?://[^\s\"']*(wikipedia|wikidata)[^\s\"']*", blob):
             errs.append(f"檔內出現 Wikipedia／Wikidata 網址：{m.group(0)}")
@@ -352,15 +487,21 @@ def main():
             for i, c in enumerate(g.get("candidateCitations") or []):
                 chk_quote(f"{key} gap {g.get('target')} cand{i}", c.get("sourceKey"), c.get("quote"))
         st["sources"] = sorted(s for s in st["sources"] if s)
+    c_errs, c_stats = [], {}
+    for p in people:
+        if "supplementC" in p:
+            c_stats[p.get("key", "?")] = check_supplement_c(p, srcs, texts, raw, raw[0] if raw else None, c_errs)
     qn = [n for n in qlens if n]
     rep = {"ok": not errs, "rawChecked": bool(raw), "errors": errs, "notes": warns, "people": stats,
-           "quoteLen": {"n": len(qn), "max": max(qn) if qn else 0, "min": min(qn) if qn else 0}, "rawFiles": hashes}
+           "quoteLen": {"n": len(qn), "max": max(qn) if qn else 0, "min": min(qn) if qn else 0}, "rawFiles": hashes,
+           "supplementCOk": not c_errs, "supplementCErrors": c_errs, "supplementC": c_stats}
     if report_path:
         Path(report_path).write_text(json.dumps(rep, ensure_ascii=False, indent=1) + "\n")
-    print(json.dumps({k: rep[k] for k in ("ok", "rawChecked", "errors", "quoteLen")}, ensure_ascii=False, indent=1))
+    print(json.dumps({k: rep[k] for k in ("ok", "rawChecked", "errors", "quoteLen", "supplementCOk", "supplementCErrors")},
+                     ensure_ascii=False, indent=1))
     for k, v in stats.items():
         print(k, v["paragraphs"], "段", v["positions"], "職位", v["gaps"], "缺漏", v["citations"], "引用")
-    sys.exit(0 if not errs else 1)
+    sys.exit(0 if not errs and not c_errs else 1)
 
 
 if __name__ == "__main__":

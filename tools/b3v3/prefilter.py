@@ -16,6 +16,10 @@
     python3 -I tools/b3v3/prefilter.py run --spec SPEC --id ID --extra-urls urls.json
     python3 -I tools/b3v3/prefilter.py run --spec SPEC --id ID --offline   # 只用快取
 stdout 只印一行摘要。
+
+第二階段（tools/b3v3/tiers.py；deep=True）：同樣只收 A／B，但人名用索引上所有語言的原文姓名（日、中、俄、喬治亞…），
+日本人另外直接試 コトバンク 詞條頁與首相官邸歷代內閣頁（從官邸索引頁找連結），抓頁上限 12、段落總長 20000。
+輸出改寫 <bioId>.deep.json／<bioId>.deep.md，不動第一階段的檔。已在人物檔的來源網址不重抓。
 """
 import argparse
 import hashlib
@@ -215,7 +219,7 @@ def person_key(info, bio_id):
     return base
 
 
-def name_variants(info, aliases=()):
+def name_variants(info, aliases=(), deep=False):
     out = []
 
     def add(value):
@@ -235,6 +239,13 @@ def name_variants(info, aliases=()):
             add(surname)
     if CJK_RE.search(info.get("nameZh") or "") and len(info.get("nameZh") or "") >= 3:
         add((info.get("nameZh") or "")[:2])
+    if deep:
+        # 第二階段：所有語言的原文姓名都要（俄文、喬治亞文…的原文頁才找得到人）；日文姓名另加去空白版
+        for alias in aliases:
+            add(alias)
+            if CJK_RE.search(alias or "") and " " in alias:
+                add(alias.replace(" ", ""))
+        return out[:16]
     # 索引的別名只留拉丁字母與漢字／假名（原文語言姓名），其他文字的譯名對原文頁沒有用
     for alias in aliases:
         if re.fullmatch(r"[\w\s.,'’·・\-()（）]+", alias or "") and (
@@ -489,7 +500,140 @@ def index_lookup(http, info):
     if not qid:
         return None, [], []
     entity = entities[qid]
+    LAST_ENTITY["entity"] = entity
     return qid, entity_names(entity), external_urls(http, entity)
+
+
+LAST_ENTITY = {}
+JAPAN_QIDS = {"Q17", "Q188712"}
+NATIVE_LANGS = ("ja", "zh", "zh-hant", "ko", "ru", "uk", "ka", "hy", "pl", "cs", "hu", "ro", "bg", "sr", "el", "tr",
+                "fi", "sv", "da", "no", "is", "et", "lv", "lt", "de", "fr", "it", "es", "pt", "nl", "fa", "ar")
+
+
+def _qual_time(claim, pid):
+    for snak in ((claim.get("qualifiers") or {}).get(pid) or []):
+        value = ((snak.get("datavalue") or {}).get("value") or {})
+        if isinstance(value, dict) and value.get("time"):
+            return value["time"].lstrip("+")[:10]
+    return None
+
+
+def _qual_items(claim, pid):
+    out = []
+    for snak in ((claim.get("qualifiers") or {}).get(pid) or []):
+        value = ((snak.get("datavalue") or {}).get("value") or {})
+        if isinstance(value, dict) and value.get("id"):
+            out.append(value["id"])
+    return out
+
+
+def office_hints(http, entity, langs=("zh-hant", "zh", "ja", "en")):
+    """缺迄日的找法（第二階段）：索引上的「擔任職務」（P39）＋起訖、繼任者（P1366）、前任（P1365）。
+    只是找 A／B 的線索（後任名字、可以搜的職稱），不是出處，日期不能直接用。"""
+    rows = []
+    for claim in ((entity or {}).get("claims") or {}).get("P39") or []:
+        office = (((claim.get("mainsnak") or {}).get("datavalue") or {}).get("value") or {}).get("id")
+        if not office:
+            continue
+        rows.append({"office": office, "start": _qual_time(claim, "P580"), "end": _qual_time(claim, "P582"),
+                     "successor": _qual_items(claim, "P1366"), "predecessor": _qual_items(claim, "P1365")})
+    ids = sorted({r["office"] for r in rows} | {q for r in rows for q in r["successor"] + r["predecessor"]})
+    labels = {}
+    if ids:
+        for qid, ent in wd_entities(http, ids, props="labels").items():
+            lab = (ent or {}).get("labels") or {}
+            labels[qid] = {lang: (lab.get(lang) or {}).get("value") for lang in langs if (lab.get(lang) or {}).get("value")}
+
+    def name(qid):
+        lab = labels.get(qid) or {}
+        return " / ".join(dict.fromkeys(v for v in lab.values() if v)) or qid
+
+    for r in rows:
+        r["officeLabel"] = name(r["office"])
+        r["successorLabels"] = [name(q) for q in r["successor"]]
+        r["predecessorLabels"] = [name(q) for q in r["predecessor"]]
+    return rows[:20]
+
+
+def render_office_hints(hints):
+    if not hints:
+        return ""
+    lines = ["", "## 索引提示：職務與後任（Wikidata；不是出處，日期不能直接用，只拿來搜 A／B）"]
+    for h in hints:
+        succ = "；後任 " + "、".join(h["successorLabels"]) if h["successorLabels"] else ""
+        lines.append(f"- {h['officeLabel']}：{h['start'] or '?'} ～ {h['end'] or '?'}{succ}")
+    return "\n".join(lines) + "\n"
+
+
+def native_names(entity):
+    """索引上的原文姓名（每種語言的標籤）。只拿來搜尋與比對人名，不當出處。"""
+    out = {}
+    labels = (entity or {}).get("labels") or {}
+    for lang in NATIVE_LANGS:
+        value = (labels.get(lang) or {}).get("value")
+        if value and value not in out.values():
+            out[lang] = nfc(value)
+    return out
+
+
+def is_japanese(info, entity):
+    if "japan" in (info.get("region") or "").lower():
+        return True
+    citizenship = {v.get("id") for v in _claim_values(entity or {}, "P27") if isinstance(v, dict)}
+    return bool(citizenship & JAPAN_QIDS)
+
+
+def html_get(http, url):
+    """索引頁（官邸歷代內閣一覽）用：快取在 index 目錄，不當出處。"""
+    key = hashlib.sha256(url.encode("utf-8")).hexdigest()[:24]
+    path = http.cache_dir / f"{key}.html"
+    if path.exists():
+        return path.read_text(encoding="utf-8", errors="replace")
+    if http.offline:
+        return ""
+    http.wait(url)
+    http.calls += 1
+    proc = subprocess.run(["curl", "-sS", "-L", "--proto", "=https", "--max-time", "30", "-A", INDEX_UA, url],
+                          capture_output=True)
+    if proc.returncode != 0:
+        return ""
+    text = proc.stdout.decode("utf-8", errors="replace")
+    http.cache_dir.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    return text
+
+
+KANTEI_INDEX = "https://www.kantei.go.jp/jp/rekidainaikaku/index.html"
+OLD_NEW_KANJI = str.maketrans("禮郎澤濱邊邉齋齊龍廣德榮", "礼郎沢浜辺辺斎斉竜広徳栄")
+
+
+def _jp_key(name):
+    return re.sub(r"\s+", "", nfc(name)).translate(OLD_NEW_KANJI)
+
+
+def japan_urls(http, names):
+    """日本人：コトバンク詞條頁、首相官邸歷代內閣頁（從一覽頁找姓名連結）。JACAR／NDL 交給 agent 用原文姓名搜尋。"""
+    kanji = []
+    for name in names:
+        if CJK_RE.search(name or "") and not re.search(r"[A-Za-z]", name):
+            key = re.sub(r"\s+", "", nfc(name))
+            if key not in kanji:
+                kanji.append(key)
+    words = []
+    for name in kanji[:2]:
+        for form in (name, name.translate(OLD_NEW_KANJI)):   # コトバンク用新字體（若槻禮次郎 → 若槻礼次郎）
+            if form not in words:
+                words.append(form)
+    urls = [f"https://kotobank.jp/word/{quote(name)}" for name in words[:3]]
+    page = html_get(http, KANTEI_INDEX)
+    wanted = {_jp_key(name) for name in kanji}
+    for match in re.finditer(r'<a[^>]+href="([^"]*rekidainaikaku/\d+\.html)"[^>]*>(.*?)</a>', page, re.S):
+        label = _jp_key(re.sub(r"<[^>]+>", "", match.group(2)))
+        if label and label in wanted:
+            url = "https://www.kantei.go.jp" + match.group(1) if match.group(1).startswith("/") else match.group(1)
+            if url not in urls:
+                urls.append(url)
+    return urls[:6]
 
 
 def url_index(out_root):
@@ -556,8 +700,11 @@ def result_label(status, grade, relevant):
     return {"A": "found_A", "B": "found_B"}.get(grade, "unrated")
 
 
-def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None):
+def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None, deep=False):
     today = today or date.today().isoformat()
+    max_fetch = 12 if deep else MAX_FETCH
+    max_per_host = 3 if deep else MAX_PER_HOST
+    known_urls = set(agent.get("knownUrls") or [])
     out_dir = Path(agent["outDir"])
     raw_dir = Path(agent["rawDir"])
     people = out_dir / "people"
@@ -565,7 +712,7 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
     raw_dir.mkdir(parents=True, exist_ok=True)
     rawmap = out_dir / "rawmap.json"
     bio_id = agent["bioId"]
-    pre_path = people / f"{bio_id}.prefilter.json"
+    pre_path = people / (f"{bio_id}.deep.json" if deep else f"{bio_id}.prefilter.json")
     previous = json.loads(pre_path.read_text(encoding="utf-8")) if pre_path.exists() else {}
     info = parse_line(agent.get("line") or agent.get("name") or "", bio_id)
     if agent.get("name") and not info.get("name"):
@@ -576,8 +723,23 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
     logs = list(previous.get("searchLog") or [])
     candidates = list(previous.get("candidates") or [])
     aliases = list(previous.get("aliases") or [])
+    natives = dict(previous.get("nativeNames") or {})
+    japanese = bool(previous.get("japanese"))
+    hints = list(previous.get("officeHints") or [])
     if not previous:
+        LAST_ENTITY.clear()
         qid, aliases, urls = index_lookup(http, info)
+        if deep:
+            natives = native_names(LAST_ENTITY.get("entity"))
+            aliases = list(natives.values()) + [a for a in aliases if a not in natives.values()]
+            japanese = is_japanese(info, LAST_ENTITY.get("entity"))
+            hints = office_hints(http, LAST_ENTITY.get("entity"))
+            if japanese:
+                jp = japan_urls(http, list(natives.values()) + [info.get("nameZh") or "", info.get("name") or ""])
+                urls = jp + [u for u in urls if u not in jp]   # 日本專門來源排前面，免得被抓取上限擋掉
+                logs.append({"sourceType": "official", "query": "日本人物：コトバンク詞條、首相官邸歷代內閣一覽（索引頁）",
+                             "url": None, "result": "unrated" if jp else "no_result",
+                             "note": f"候選 {len(jp)} 頁；JACAR／NDL 由 agent 用原文姓名查"})
         logs.append({
             "sourceType": "authority",
             "query": f"索引查詢（名稱 → 權威檔／辭典識別碼）：{info.get('name')}",
@@ -599,24 +761,34 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
             unique.append(url)
     candidates = unique
 
-    names = name_variants(info, aliases)
+    names = name_variants(info, aliases, deep=deep)
     extras = list(info.get("years") or []) + list(info.get("titles") or [])
     mapping = fetch_source.load_rawmap(rawmap)
     sources = dict(previous.get("sources") or {})
     done_urls = {item.get("url") for item in sources.values()}
     done_urls |= {log.get("url") for log in logs if log.get("url")}
-    reused = url_index(Path(agent["outDir"]).parent) if not offline else {}
+    reused = url_index(Path(agent.get("reuseRoot") or Path(agent["outDir"]).parent)) if not offline else {}
     per_host = {}
     for item in sources.values():
         per_host[item.get("host")] = per_host.get(item.get("host"), 0) + 1
     fetched = sum(1 for item in sources.values() if item.get("status") in ("fetched", "cached", "copied"))
+    blocked_hosts = set()
+    if deep:   # 第二階段：本批已回 401／403／challenge 的網域不再試（不繞過防護，只是省次數）
+        for item in sources.values():
+            if str(item.get("status") or "").startswith(("blocked", "challenge")):
+                blocked_hosts.add(item.get("host"))
     for url in candidates:
-        if url in done_urls:
+        if url in done_urls or url in known_urls:
             continue
-        if fetched >= MAX_FETCH + len(extra_urls):
+        if deep and host_info(url)["host"] in blocked_hosts:
+            logs.append({"sourceType": host_info(url)["sourceType"], "query": "候選網址", "url": url,
+                         "result": "not_relevant", "note": "同網域本輪已被擋，不再試"})
+            done_urls.add(url)
+            continue
+        if fetched >= max_fetch + len(extra_urls):
             break
         meta = host_info(url)
-        if per_host.get(meta["host"], 0) >= MAX_PER_HOST:
+        if per_host.get(meta["host"], 0) >= max_per_host:
             continue
         banned = blocked_host(url)
         if banned:
@@ -625,8 +797,11 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
             continue
         key = source_key_for(url, info, {k: v.get("url") for k, v in sources.items()})
         status = None
-        if fetch_source.existing_text(raw_dir, rawmap, key) is not None:
+        cached_path = fetch_source.existing_text(raw_dir, rawmap, key)
+        if cached_path is not None:
             status = "cached"
+            if key not in fetch_source.load_rawmap(rawmap):    # 共用 rawDir 已有原文，但這個 outDir 的 rawmap 沒登記
+                fetch_source.update_rawmap(rawmap, key, cached_path.name)
         elif url in reused and not offline:
             src = reused[url]
             shutil.copyfile(src, raw_dir / f"{key}.txt")
@@ -648,6 +823,8 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
         per_host[meta["host"]] = per_host.get(meta["host"], 0) + 1
         if status in ("fetched", "cached", "copied"):
             fetched += 1
+        elif deep and str(status or "").startswith(("blocked", "challenge")):
+            blocked_hosts.add(meta["host"])
         sources[key] = {
             "url": url, "host": meta["host"], "sourceType": meta["sourceType"],
             "suggestedGrade": meta["grade"], "label": meta["label"], "title": title,
@@ -686,6 +863,9 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
             "thickness": info.get("thickness"),
         },
         "aliases": aliases,
+        "nativeNames": natives,
+        "japanese": japanese,
+        "officeHints": hints,
         "names": names,
         "candidates": candidates,
         "sources": sources,
@@ -693,8 +873,10 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
         "indexCalls": http.calls,
     }
     pre_path.write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    md, chars, relevant = render_snippets(doc, raw_dir, rawmap, names, extras)
-    (people / f"{bio_id}.snippets.md").write_text(md, encoding="utf-8")
+    md, chars, relevant = render_snippets(doc, raw_dir, rawmap, names, extras, total_limit=20000 if deep else TOTAL_CHARS)
+    if deep:
+        md += render_office_hints(hints)
+    (people / (f"{bio_id}.deep.md" if deep else f"{bio_id}.snippets.md")).write_text(md, encoding="utf-8")
     doc_summary = {
         "bioId": bio_id, "relevant": relevant, "sources": len(sources),
         "snippetChars": chars, "indexCalls": http.calls,
@@ -705,7 +887,8 @@ def run(agent, offline=False, extra_urls=(), http=None, today=None, fetcher=None
     return doc_summary
 
 
-def render_snippets(doc, raw_dir, rawmap, names, extras):
+def render_snippets(doc, raw_dir, rawmap, names, extras, total_limit=None):
+    TOTAL = total_limit or TOTAL_CHARS
     grade_order = {"A": 0, "B": 1, None: 2}
     items = sorted(doc["sources"].items(), key=lambda kv: (grade_order.get(kv[1].get("suggestedGrade"), 2), kv[0]))
     lines = [
@@ -743,12 +926,12 @@ def render_snippets(doc, raw_dir, rawmap, names, extras):
         relevant += 1
         lines.append(f"\n## [{key}] {item.get('suggestedGrade') or '未評'}｜{item.get('label')}")
         for offset, snippet in picked:
-            if total + len(snippet) > TOTAL_CHARS:
+            if total + len(snippet) > TOTAL:
                 lines.append("（已達總長上限，其餘用 lookup 查）")
                 break
             lines.append(f"@{offset}: {snippet}")
             total += len(snippet)
-        if total >= TOTAL_CHARS:
+        if total >= TOTAL:
             break
     if not relevant:
         lines.append("\n（沒有任何來源含人名段落。）")

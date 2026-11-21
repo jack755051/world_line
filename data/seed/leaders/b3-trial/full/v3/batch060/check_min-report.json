@@ -13,7 +13,9 @@
    "termCoverage": null,
    "meetsMinimum": true,
    "documentedShortfall": false,
-   "startGapsInGaps": 3
+   "startGapsInGaps": 3,
+   "openTerms": [],
+   "verdict": "OK"
   },
   {
    "key": "lt-stulginskis",
@@ -27,7 +29,26 @@
    "termCoverage": 0.8,
    "meetsMinimum": false,
    "documentedShortfall": false,
-   "startGapsInGaps": 0
+   "startGapsInGaps": 0,
+   "openTerms": [
+    {
+     "kind": "position",
+     "key": "stulginskis-farmers-union-chair",
+     "missing": "end",
+     "flagged": true
+    },
+    {
+     "kind": "role",
+     "key": "stulginskis-christian-democrat-leader",
+     "missing": "end",
+     "flagged": true
+    }
+   ],
+   "cClauses": 2,
+   "cZhChars": 30,
+   "cDates": 0,
+   "cSupplement": true,
+   "verdict": "A/B不足，已用C補"
   },
   {
    "key": "cl-aguirre-cerda",
@@ -41,7 +62,20 @@
    "termCoverage": 0.875,
    "meetsMinimum": false,
    "documentedShortfall": false,
-   "startGapsInGaps": 2
+   "startGapsInGaps": 2,
+   "openTerms": [
+    {
+     "kind": "role",
+     "key": "aguirre-radical-party-president",
+     "missing": "end",
+     "flagged": true
+    }
+   ],
+   "cClauses": 2,
+   "cZhChars": 40,
+   "cDates": 0,
+   "cSupplement": true,
+   "verdict": "A/B不足，已用C補"
   }
  ],
  "failingKeys": [

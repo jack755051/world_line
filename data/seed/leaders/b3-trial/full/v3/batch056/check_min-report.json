@@ -12,8 +12,10 @@
    "termsMissing": 0,
    "termCoverage": null,
    "meetsMinimum": false,
-   "documentedShortfall": false,
-   "startGapsInGaps": 1
+   "documentedShortfall": true,
+   "startGapsInGaps": 1,
+   "openTerms": [],
+   "verdict": "篇幅不足"
   },
   {
    "key": "lu-reuter",
@@ -27,7 +29,26 @@
    "termCoverage": 0.667,
    "meetsMinimum": false,
    "documentedShortfall": false,
-   "startGapsInGaps": 0
+   "startGapsInGaps": 0,
+   "openTerms": [
+    {
+     "kind": "position",
+     "key": "reuter-depute",
+     "missing": "end",
+     "flagged": true
+    },
+    {
+     "kind": "position",
+     "key": "reuter-apc",
+     "missing": "end",
+     "flagged": true
+    }
+   ],
+   "cClauses": 2,
+   "cZhChars": 59,
+   "cDates": 0,
+   "cSupplement": true,
+   "verdict": "A/B不足，已用C補"
   },
   {
    "key": "pa-juan-d-arosemena",
@@ -41,7 +62,26 @@
    "termCoverage": 0.0,
    "meetsMinimum": false,
    "documentedShortfall": false,
-   "startGapsInGaps": 1
+   "startGapsInGaps": 1,
+   "openTerms": [
+    {
+     "kind": "position",
+     "key": "aros-chief-justice",
+     "missing": "end",
+     "flagged": true
+    },
+    {
+     "kind": "position",
+     "key": "aros-colon-governor",
+     "missing": "end",
+     "flagged": true
+    }
+   ],
+   "cClauses": 2,
+   "cZhChars": 41,
+   "cDates": 0,
+   "cSupplement": true,
+   "verdict": "A/B不足，已用C補"
   }
  ],
  "failingKeys": [

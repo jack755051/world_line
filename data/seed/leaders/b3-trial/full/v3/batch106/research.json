@@ -184,7 +184,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -220,7 +222,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -324,7 +328,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -714,8 +720,167 @@
      "url": null,
      "result": "not_found",
      "note": "已存原文均無杜馬議員或外高加索議會主席迄日；維持待查證：缺迄日 gap，不用未評等頁補"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Nikoloz Chkheidze",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 8 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Nikoloz Chkheidze（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Nikoloz%20Chkheidze&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "Nikoloz Chkheidze（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Nikoloz%20Chkheidze&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/309649078",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/n2002060965",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/1054310696",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/1050544854",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（Britannica（須具名作者））",
+     "url": "https://www.britannica.com/biography/Nikolay-Semyonovich-Chkheidze",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（Большая российская энциклопедия）",
+     "url": "https://bigenc.ru/c/chkheidze-nikolai-semionovich-385541",
+     "result": "blocked_403",
+     "note": "blocked_401；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1054310696.html",
+     "result": "found_A",
+     "note": "cached；1115 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/000000043561765X",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "query": "Закавказский сейм председатель Чхеидзе 1918 распущен 26 мая",
+     "result": "只見 archontology（X）與維基鏡像，無 A/B 迄日",
+     "round": "stage2"
+    },
+    {
+     "step": 24,
+     "query": "ნიკოლოზ ჩხეიძე ამიერკავკასიის სეიმის თავმჯდომარე 1918",
+     "result": "georgianencyclopedia 20438 已抓但 PDF 文字亂碼，lookup 無命中",
+     "round": "stage2"
+    },
+    {
+     "step": 25,
+     "query": "Чхеидзе Николай Семёнович депутат IV Государственной думы полномочия прекращены 1917 роспуск Думы",
+     "result": "僅見維基鏡像與無作者條目，無 A/B 迄日",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-19",
+    "sources": {
+     "c-wp-ja-0619b8": {
+      "url": "https://ja.wikipedia.org/wiki/%E3%83%8B%E3%82%B3%E3%83%A9%E3%82%A4%E3%83%BB%E3%83%81%E3%83%98%E3%82%A4%E3%82%BC",
+      "title": "ニコライ・チヘイゼ – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-19"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-0619b8",
+      "url": "https://ja.wikipedia.org/wiki/%E3%83%8B%E3%82%B3%E3%83%A9%E3%82%A4%E3%83%BB%E3%83%81%E3%83%98%E3%82%A4%E3%82%BC",
+      "quote": "1926年 6月13日 パリ近郊で自殺した",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-19",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3126）",
+      "text": {
+       "zh-Hant": "日文維基百科記載，他於1926年6月13日自殺。",
+       "en": "Japanese Wikipedia records that he killed himself on 13 June 1926."
+      }
+     }
+    ],
+    "dates": [],
+    "auditLog": [
+     {
+      "action": "dropped-unsupported",
+      "target": "position:chkheidze-seim.end",
+      "value": "1919-03-01",
+      "reason": "引文寫的是就任／當選（起點事件），不是這個職位的結束"
+     }
+    ]
+   }
   },
   {
    "key": "dk-madsen-mygdal-thomas",
@@ -790,7 +955,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -802,7 +969,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -858,7 +1027,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -894,7 +1065,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "month",
-       "claimSpan": null,
+       "claimSpan": [
+        5
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -962,7 +1135,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -974,7 +1149,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1030,7 +1207,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1098,7 +1277,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1110,7 +1291,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1600,7 +1783,63 @@
      "result": "found_B",
      "note": "Lex 寫1919-1933，與 DBL 1920 辭任相衝突；迄日維持 null 並記 gap"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-pl-cbd46d": {
+      "url": "https://pl.wikipedia.org/wiki/Thomas_Madsen-Mygdal",
+      "title": "Thomas Madsen-Mygdal – Wikipedia（pl）",
+      "publisher": "Wikipedia",
+      "lang": "pl",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ru-eea5e1": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B4%D1%81%D0%B5%D0%BD-%D0%9C%D1%8E%D0%B3%D0%B4%D0%B0%D0%BB%D1%8C%2C_%D0%A2%D0%BE%D0%BC%D0%B0%D1%81",
+      "title": "Мадсен-Мюгдаль, Томас – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-cbd46d",
+      "url": "https://pl.wikipedia.org/wiki/Thomas_Madsen-Mygdal",
+      "quote": "w latach 1929 do 1933 będąc przewodniczącym frakcji parlamentarnej Venstre",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1969）",
+      "text": {
+       "zh-Hant": "1929至1933年他擔任自由黨（Venstre）議會黨團主席。",
+       "en": "From 1929 to 1933 he chaired the parliamentary group of Venstre."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-eea5e1",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D0%B0%D0%B4%D1%81%D0%B5%D0%BD-%D0%9C%D1%8E%D0%B3%D0%B4%D0%B0%D0%BB%D1%8C%2C_%D0%A2%D0%BE%D0%BC%D0%B0%D1%81",
+      "quote": "Во времена его управления был основан Орхусский университет",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2939）",
+      "text": {
+       "zh-Hant": "俄文維基百科記載，奧胡斯大學創立於他執政期間。",
+       "en": "Russian Wikipedia says Aarhus University was founded during his government."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "pt-silva-antonio-maria-da",

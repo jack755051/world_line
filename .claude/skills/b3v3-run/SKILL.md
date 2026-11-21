@@ -97,6 +97,64 @@ python3 -I tools/b3v3/run_chunk.py next \
 - 已審查的 093、097、098、100、105 不要再進清單。093 的佩納被拿掉推論迄日，維持現況。
 - 審查不要把已有出處或標成推論的起迄日改成 null。要改就留下「待查證：缺迄日」或「待查證：缺起日」，並寫原因。
 
+## 分層補查（tools/b3v3/tiers.py，2026-11-18）
+
+- 第一階段：原本的便宜 A／B 流程。結果是「篇幅不足」或有缺迄日的人，才進第二階段。
+- 第二階段（`deep`，Sonnet）：再做一次較大的 A／B 補查。預查會用索引上所有語言的原文姓名；日本人另外先抓コトバンク與首相官邸歷代內閣頁。agent 再用 WebSearch 查 3–5 次，至少 2 次用原文姓名，日本人加查 JACAR／NDL。已被 403 擋過的網域不再試。新的起迄日年份必須出現在引文裡，民國與日本年號會換算。
+- 第三階段（`csupp`，Sonnet，不能 WebSearch）：第二階段仍不夠才做。用 Wikipedia（從 Wikidata sitelinks 找頁面）寫 `person.supplementC`，只補到最低篇幅，以及補起迄日。
+- 審查：沿用原本的 Sonnet 審查，只在內容有改時才審。接著由 Python 找主段落裡沒有出處的句子（`tools/b3v3/uncited.py`）。有找到才給 Sonnet 1–2 輪補 claimSpan（`citefix`）；補不到的就刪掉（中英句數一致時），否則標「待補」，兩種情況都會加 `paragraph:<ord>` gap。
+- 用法：`python3 tools/b3v3/tiers.py candidates`，以及 `python3 tools/b3v3/tiers.py run --people NNN:bioId,... --work-root .dev/b3v3/run/tiers-xxx --log-dir ~/wl-b3v3-runs/tiers-xxx`。結果寫在工作目錄，不會自動併回 research.json。
+
+### supplementC（C 級補充區，加在 person 下，不改主 schema）
+
+```json
+"supplementC": {
+  "grade": "C", "status": "A/B不足，已用C補", "displayFlag": "未查證・維基百科補充",
+  "note": "…", "addedOn": "2026-11-18",
+  "sources": {"c-wp-ja-xxxxxx": {"url": "https://ja.wikipedia.org/wiki/…", "title": "…", "grade": "C"}},
+  "clauses": [{"target": "paragraph:length", "zh-Hant": "…", "en": "…",
+               "cKey": "c-wp-ja-xxxxxx", "url": "https://…", "quote": "逐字 ≤80 字"}],
+  "dates": [{"target": "position:<key>.end", "value": "1929-09-29", "cKey": "…", "url": "…",
+             "quote": "…", "status": "待查證（只有 C 級來源）", "confirmed": false}]
+}
+```
+
+- 主段落、職位、角色都不能引 C（verify 規則 19）。check_min 與查證程度只算 A／B；有 C 時 verdict 是「A/B不足，已用C補」。
+- C 引文仍要逐字、≤80 字。verify 會查，但錯誤另外列在 `supplementCErrors`。
+- 只有 C 的日期一律待查證，不算已確認。之後 A／B 補到同一欄位，`tiers.py prune` 會刪掉對應的 C。
+- 前端或匯入要顯示 C 內容時，必須加註 `displayFlag`「未查證・維基百科補充」。前端還沒做。
+
+### A／B 為準與引文支撐（tools/c_rules.py，verify 與 tiers 共用）
+
+- C 和 A／B 衝突就以 A／B 為準。以下情況算衝突：同一端 A／B 已有不同值；C 迄日早於 A／B 起日，或 C 起日晚於 A／B 迄日；C 引文寫的年–年任期和 A／B 任期不重疊；C 日期落在另一筆同名 A／B 任期裡；C 句子提到 A／B 職稱，但年份都在任期外。
+- 衝突的 C 會被 Python 移到 `supplementC.conflictNotes`，並附 `conflictsWithAB`（ref、abValue、reason），不顯示、不計入。verify 對還留在 clauses／dates 的衝突報 C 錯誤。
+- C 句子的年份、月日、數字、拉丁專名、「」《》裡的詞都要出現在引文裡，比對前會換算民國、日本年號、漢數字、外文月名、新舊字形。整條字數也不能超過引文份量（1.6 倍＋12 字）。沒有支撐的句子會被刪掉，全條都沒有就改成「維基百科（ja）原文：「…」」。每次處理都記在 `supplementC.auditLog`。漢字人名、地名無法自動認出來，所以沒查。
+- 第二階段新寫的 A／B 句子也查：年份不在 claimSpan 指到的引文裡，就自動刪掉；只缺月日或數字的，回報給 agent 改。
+- 缺迄日的找法：預查附上 Wikidata 的職務、起訖與後任（只當線索），agent 用來搜後任就任日、官方歷任名單、在任中去世。用後任就任日推出的迄日，要在 evidenceNote 標「推論：下一任…」。只有 C 的迄日一律待查證。
+- 併回正式批次用 `python3 tools/b3v3/tiers.py merge --people NNN:bioId,... --work-root <工作目錄> [--report out.json]`。預設是 dry-run：在暫存複本上合併，再跑 verify 與 check_min，正式檔不動。加 `--apply` 才會寫 research.json、people/<id>.json、rawmap.json。
+- 第二階段的條件只有篇幅不足或缺迄日；搜尋紀錄裡的 403 不算條件。
+
+### 第二階段日期的把關（2026-11-19，段祺瑞陸軍總長案後加）
+
+- 第二階段改日期時，Python 會退回三種改法，並在 problems 記 `REFUSED`／`CAPPED`：
+  - 改成 day 精度，但引文沒寫那一天：退回該端，保留原值、原精度和 gap。
+  - 任期中間有免職、辭職或復任：本人段落裡同一子句同時有中斷詞和職稱，而且那個日期落在新任期內。這可能是兩段任期被合成一段，整筆退回，gap 保留。唯讀檢查用 `python3 tools/b3v3/tiers.py terms --file <research.json|單人檔>`。
+  - 推論迄日（evidenceNote 有「推論」）是 day 精度，但沒有引文同時寫「任命／就任」和那一天：封頂成 `YYYY-MM-01`、month 精度，evidenceNote 加註「推論上限：不晚於 …」。
+- 審查切片 `<bio>.evidence.json` 多了兩項。`units` 列每個職位／角色的起訖精度、evidenceNote 和 termBreaks。`stage2Changes` 是和 `.stage1.json` 的逐欄差異。有改動時，審查提示會加一段說明：第二階段改過的日期不適用「維持原日期」，day 精度要引文寫出那一天，推論迄日要寫出後任任命那一天。
+- 這段說明讓每人審查成本約多 $0.003–0.01（原本約 $0.04–0.06）。termBreaks 在全部 v3 批次的唯讀掃描中有 6 筆誤報，例如別人辭職、職稱末兩字相同。誤報只會讓修改被退回、gap 保留，不會寫進錯誤資料。
+
+### pilot5 後修正（2026-11-19）
+
+- **gaps 整理（`sync_gaps`）。** 第二階段套用後和收尾各跑一次：
+  - 同一個 target、同一類的 gap 只留最新一筆。類別看 note 冒號前；「待查證」再分缺迄日／缺起日。
+  - 篇幅已達 3 段、300 字，就移除 `paragraph:length`。
+  - 正式批次裡有 49 人掛著這種舊的篇幅 gap（39 人 verdict 因此顯示「篇幅不足」）。這次沒動正式資料，等這些人跑分層補查時會順手清掉。
+- **候選分類。** `candidates` 多一個 `category`：篇幅不足／只缺迄日／兩者，依實際段數、字數和缺的迄日算，不看 check_min 的 verdict 字樣。`--exclude-results a.json,b.json` 會排除已跑過的人。
+- **斷網重試。** 每次重試前，把 person、stage2、supplementC、review、done 這幾個檔還原成第一次啟動前的樣子。中斷那輪寫了一半的檔留作 `.attemptN-partial`，journal 記 `retry_restore`。
+  - 中斷那輪的用量從串流估算，記在 `partialUsage.estCostUSD`。Sonnet 費率對 pilot 實際費用校準過，誤差在 +20% 以內；Haiku 搜尋子呼叫沒算。
+  - results 每人多記 `cost`（各階段 actual／estimatedPartial）和 `costTotal`。
+- **`run --skip-stage2-end-only`（備而未用）。** 篇幅已夠、只缺迄日的人跳過第二階段，直接進 C 補充。這些人的迄日只會拿到 C，一律待查證。
+
 ## 不要做的事
 
 - 不要 git add、commit、push。
@@ -105,3 +163,10 @@ python3 -I tools/b3v3/run_chunk.py next \
 - 不要 Read、cat、head 整份 raw。
 - `~/wl-source-cache/b3full-v3` 裡已有的 sourceKey 不要重抓。先 `fetch_source.py status`，再用 lookup。
 - 單人檔的 `rawMap` 必須是物件（sourceKey → 檔名），不可以寫成字串 `"rawmap.json"`。
+
+## pilot6 前修正（2026-11-19）
+- watchdog 只數 stderr／system 事件的網路錯誤，不看 agent 或工具輸出的文字。
+- fetch_source：解 gzip／deflate（br 要有 brotli 模組）；快取原文 <500 字且不是擋頁／登入頁時會重抓。
+- 推論上限改成「下一個月第一天」（寫作規則）；已合併資料沒有用到舊上限。
+- 階段二缺迄日：搜完跑 `tiers.py harvest --spec --id`（從搜尋結果挑 A／B 網域、自動抓前 3 頁、同 host 間隔 1 秒、只回姓名＋年份片段；host 解析不到只換同站 www.）。self-check 要 harvest.json 存在，且至少 2 個非 wiki 候選網址已抓或寫明略過原因（`<bio>.harvest.json`＋searchLog url/result）。
+- 原文姓名只給本人語言（key 前綴對照）＋英文。deep maxTurns 20、工具呼叫上限 18。

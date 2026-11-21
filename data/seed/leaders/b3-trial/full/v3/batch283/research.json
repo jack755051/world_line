@@ -127,20 +127,34 @@
      "periodStartPrecision": "year",
      "periodEndPrecision": "year",
      "body": {
-      "zh-Hant": "1939 年波蘭戰役中，由派往東普魯士的裝甲旅升格而成的臨時師，以 Panzer Division Kempf 之名投入作戰；美軍出版品未載其指揮官全名。",
-      "en": "In the 1939 Polish campaign the Panzer brigade sent to East Prussia was raised to a provisional division and committed as Panzer Division Kempf; the US Army publication does not name its commander."
+      "zh-Hant": "1939 年波蘭戰役中，由派往東普魯士的裝甲旅升格而成的臨時師，以 Panzer Division Kempf 之名投入作戰。",
+      "en": "In the 1939 Polish campaign the Panzer brigade sent to East Prussia was raised to a provisional division and committed as Panzer Division Kempf."
      },
      "citations": [
       {
        "sourceKey": "kennedy-dapam-20-255",
        "locator": "DA Pam 20-255 Chap. II, 1939 order of battle",
-       "quote": "The Panzer brigade sent to East Prussia had been raised to the status of a provisional division and would be committed to operations as Panzer Division Kempf.",
+       "quote": "committed to operations as Panzer Division Kempf",
        "quoteLang": "en",
        "evidenceNote": "美國陸軍官方出版品；僅稱 Panzer Division Kempf，未載指揮官名",
        "accessedOn": "2026-11-18",
        "grade": "A",
-       "claimSpan": "東普魯士裝甲旅升格為臨時師，以 Panzer Division Kempf 名義作戰",
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "pendingCitation": [
+      {
+       "s": 2,
+       "zh": "美軍出版品未載其指揮官全名。",
+       "status": "待補"
+      },
+      {
+       "s": 2,
+       "zh": "美軍出版品未載其指揮官全名。",
+       "status": "待補"
       }
      ]
     }
@@ -162,6 +176,12 @@
      "target": "paragraph:length",
      "gapKind": "not_found",
      "note": "篇幅不足：目前 2 段、約 100 字；已查權威檔（GND/lobid/Deutsche Biographie）、官方出版品（DA Pam 20-255）；VIAF 403；Britannica、Bundesarchiv、國家級傳記辭典無可抓條目。"
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待補引文：保留待補「美軍出版品未載其指揮官全名。」",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -244,6 +264,135 @@
      "url": null,
      "result": "no_result",
      "note": "無 Britannica／CMH 條目"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Kempf",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 4 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Kempf（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Kempf&count=5",
+     "result": "found_A",
+     "note": "5 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Kempf（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Kempf&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/122837940",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/000000001547754X",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/8279071",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd122837940.html",
+     "result": "found_A",
+     "note": "fetched；1349 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/names/no2024033944.html",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "authority",
+     "query": "候選網址",
+     "url": "https://id.loc.gov/authorities/names/n2012017631.html",
+     "result": "not_relevant",
+     "note": "同網域本輪已被擋，不再試",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1036236560.json",
+     "result": "found_A",
+     "note": "fetched；2864 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1036236560.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1042316244.json",
+     "result": "found_A",
+     "note": "fetched；2469 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1042316244.html",
+     "result": "found_A",
+     "note": "fetched；926 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 24,
+     "query": "Werner Kempf General Panzer-Division Kempf 1939 Polen Kommandeur",
+     "result": "只有 Wikipedia、generals.dk、tracesofwar 等 C／X／未評等來源，無 A／B",
+     "round": "stage2"
+    },
+    {
+     "step": 25,
+     "query": "Werner Kempf general Panzer Division Kempf 1939 Poland commander biography",
+     "result": "同上，無 A／B 來源可採",
+     "round": "stage2"
     }
    ]
   }

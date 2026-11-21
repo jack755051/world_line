@@ -57,7 +57,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -81,7 +83,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -105,7 +109,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -227,8 +233,133 @@
      "url": null,
      "result": "no_result",
      "note": "無可抓的 A／B 頁面"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Władysław Langner",
+     "url": null,
+     "result": "no_result",
+     "note": "取得 0 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Władysław Langner（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=W%C5%82adys%C5%82aw%20Langner&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Władysław Langner（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=W%C5%82adys%C5%82aw%20Langner&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/120249804.json",
+     "result": "found_A",
+     "note": "fetched；5712 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd120249804.html",
+     "result": "not_relevant",
+     "note": "fetched；2108 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "query": "Władysław Langner generał obrona Lwowa 1939 biografia",
+     "result": "only dzieje.pl (blocked), Wikipedia mirrors (not allowed)",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "query": "Władysław Langner general Lwów 1939 surrender biography born 1896",
+     "result": "same; bazhum PDF fetch 403",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "query": "\"Władysław Langner\" Okręg Korpusu VI Lwów dowódca 1938 Polski Słownik Biograficzny",
+     "result": "no PSB; bazhum PHW 2014 PDF fetch 403",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ru-718c33": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BD%D0%B3%D0%BD%D0%B5%D1%80%2C_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2",
+      "title": "Лангнер, Владислав – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-718c33",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BD%D0%B3%D0%BD%D0%B5%D1%80%2C_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2",
+      "quote": "С 22 сентября по ноябрь 1939 года находился в Москве",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 4890）",
+      "text": {
+       "zh-Hant": "俄文維基百科稱，朗格納自 22 日起至 1939 年 11 月間待在莫斯科。",
+       "en": "Russian Wikipedia says Langner stayed in Moscow from the 22nd until November 1939."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-718c33",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BD%D0%B3%D0%BD%D0%B5%D1%80%2C_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2",
+      "quote": "20 ноября 1939 года он добрался до Румынии по реке Черемош",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 4951）",
+      "text": {
+       "zh-Hant": "同一條目稱，他於 1939 年循切列莫什河抵達羅馬尼亞。",
+       "en": "The same entry says he reached Romania via the river in 1939."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-718c33",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9B%D0%B0%D0%BD%D0%B3%D0%BD%D0%B5%D1%80%2C_%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D1%81%D0%BB%D0%B0%D0%B2",
+      "quote": "С октября 1940 года проживал в Великобритании",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 5088）",
+      "text": {
+       "zh-Hant": "自 1940 年起，他居住在英國。",
+       "en": "From 1940 he lived in Great Britain."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

@@ -780,7 +780,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -792,7 +794,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1004,7 +1008,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1060,7 +1066,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1072,7 +1080,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1132,7 +1142,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1144,7 +1156,9 @@
        "accessedOn": "2026-11-17",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1168,7 +1182,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1231,12 +1247,6 @@
      "gapKind": "not_found",
      "note": "Britannica 回應 403、1914-1918-online（Richard C. Hall 條目）被 Anubis 擋下，皆未取得原文；依規則不繞過。",
      "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前3段／450字已達段數與字數，但任期完整度未達最低標準（激進農民黨領袖缺迄日，已有「待查證：缺迄日」gap）。重試輪已查：國家傳記辭典（Treccani）、官方（保加利亞國家圖書館、國會、政府頁、BNR）、百科（encyclopedia.com、Britannica 403、1914-1918-online Anubis），皆無來源明寫黨領袖終止日。",
-     "checkedOn": "2026-11-17"
     },
     {
      "target": "position:stamboliyski-public-works-minister",
@@ -1386,7 +1396,55 @@
      "result": "blocked_403",
      "note": "不繞過"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-64b641": {
+      "url": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%C2%B7%E6%96%AF%E5%9D%A6%E5%8D%9A%E5%88%A9%E6%96%AF%E5%9F%BA",
+      "title": "亚历山大·斯坦博利斯基 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-64b641",
+      "url": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%C2%B7%E6%96%AF%E5%9D%A6%E5%8D%9A%E5%88%A9%E6%96%AF%E5%9F%BA",
+      "quote": "条约虽不受欢迎，但他仍在1920年的大选中获得胜利",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1424）",
+      "text": {
+       "zh-Hant": "條約雖不受歡迎，他仍在1920年的大選中獲勝。",
+       "en": "Although the treaty was unpopular, he still won the 1920 election."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-64b641",
+      "url": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%C2%B7%E6%96%AF%E5%9D%A6%E5%8D%9A%E5%88%A9%E6%96%AF%E5%9F%BA",
+      "quote": "他的政府反对城市化和工业化，但向农民重新分配土地，改革司法制度",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1450）",
+      "text": {
+       "zh-Hant": "他的政府反對城市化和工業化，但向農民重新分配土地，並改革司法制度。",
+       "en": "His government opposed urbanization and industrialization, but redistributed land to peasants and reformed the judicial system."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "at-schuschnigg",
@@ -1411,8 +1469,8 @@
       "en": "Origins and legal training"
      },
      "body": {
-      "zh-Hant": "許士尼格1897年12月14日生於里瓦（加爾達湖畔），父親是一名少將；他1907至1915年就讀費爾德基希的耶穌會中學，1915年第一次世界大戰期間志願入伍。戰後他在因斯布魯克與弗賴堡攻讀法律，之後在因斯布魯克執業律師。博士學位年份，LeMO寫1922年、議會頁寫1921年，兩者不同。",
-      "en": "Kurt Schuschnigg was born on 14 December 1897 in Riva on Lake Garda, the son of a major general. He attended the Jesuit gymnasium at Feldkirch from 1907 to 1915 and volunteered for service in the First World War. Afterwards he studied law at Innsbruck and Freiburg and practised as a lawyer in Innsbruck. The year of his doctorate differs between sources: 1922 in LeMO, 1921 on the parliament page."
+      "zh-Hant": "許士尼格1897年12月14日生於里瓦（加爾達湖畔），父親是一名少將；他1907至1915年就讀費爾德基希的耶穌會中學，1915年第一次世界大戰期間志願入伍。戰後他在因斯布魯克與弗賴堡攻讀法律，之後在因斯布魯克執業律師。",
+      "en": "Kurt Schuschnigg was born on 14 December 1897 in Riva on Lake Garda, the son of a major general. He attended the Jesuit gymnasium at Feldkirch from 1907 to 1915 and volunteered for service in the First World War. Afterwards he studied law at Innsbruck and Freiburg and practised as a lawyer in Innsbruck."
      },
      "relatedRecordIds": [],
      "citations": [
@@ -1473,7 +1531,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1485,7 +1545,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1649,7 +1711,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1661,7 +1725,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1673,7 +1739,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1813,7 +1881,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1825,7 +1895,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1837,7 +1909,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1869,7 +1943,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1881,7 +1957,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1893,7 +1971,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1905,7 +1985,9 @@
        "accessedOn": "2026-11-17",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -2407,10 +2489,10 @@
      "checkedOn": "2026-11-15"
     },
     {
-     "target": "paragraph:length",
+     "target": "paragraph:1",
      "gapKind": "not_found",
-     "note": "篇幅不足：目前4段／515字已達段數與字數，但愛國陣線聯邦領袖缺迄日（已有「待查證：缺迄日」gap）。重試輪已查：國家傳記辭典（NDB 全文，只寫「1936」起）、議會（Parlament Österreich）、官方（Bundeskanzleramt 404、DÖW 404）、HLS 403、wiki 類只作索引；無A／B來源明寫迄日。",
-     "checkedOn": "2026-11-17"
+     "note": "待補引文：已刪除「博士學位年份，LeMO寫1922年、議會頁寫1921年，兩者不同。」",
+     "candidateCitations": []
     }
    ],
    "searchLog": [

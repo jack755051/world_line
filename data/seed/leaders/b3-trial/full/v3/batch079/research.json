@@ -812,7 +812,9 @@
        "accessedOn": "2026-11-17",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -824,7 +826,9 @@
        "accessedOn": "2026-11-17",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1220,7 +1224,9 @@
        "accessedOn": "2026-11-17",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1483,12 +1489,6 @@
        "quoteLang": "hr"
       }
      ],
-     "checkedOn": "2026-11-17"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 4 段、中文合計 683 字（段數與字數已達標），但 3 筆任期（權利黨領導層、烏斯塔沙領袖、國民議會議員）皆缺迄日，任期涵蓋未達最低標準。已查來源類型：權威檔（lobid／GND 已抓；LoC、VIAF 被擋）、國家級傳記辭典（HBL、DB~e、NDB 無條目）、具名百科（Lex.dk 具名 B；Britannica、Brockhaus、Treccani、SNL、Universalis 被擋／無署名／付費牆）、官方（JUSP A；USHMM、Yad Vashem、LoC Country Studies 被擋或逾時）、議會（Sabor 無名錄）。本輪新增 25 筆查詢、實際抓取 25 個頁面。",
      "checkedOn": "2026-11-17"
     }
    ],
@@ -1822,7 +1822,92 @@
      "result": "no_result",
      "note": "已抓；無該條目"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-27f7ba": {
+      "url": "https://zh.wikipedia.org/wiki/%E5%AE%89%E7%89%B9%C2%B7%E5%B8%95%E9%9F%A6%E5%88%A9%E5%A5%87",
+      "title": "安特·帕韦利奇 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ja-655bae": {
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%86%E3%83%BB%E3%83%91%E3%83%B4%E3%82%A7%E3%83%AA%E3%83%83%E3%83%81",
+      "title": "アンテ・パヴェリッチ – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-27f7ba",
+      "url": "https://zh.wikipedia.org/wiki/%E5%AE%89%E7%89%B9%C2%B7%E5%B8%95%E9%9F%A6%E5%88%A9%E5%A5%87",
+      "quote": "第1任克罗地亚独立国首相 任期 1941年4月16日—1943年9月2日",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1220）",
+      "text": {
+       "zh-Hant": "1941年4月16日至1943年9月2日，他兼任克羅埃西亞獨立國首任首相。",
+       "en": "From 16 April 1941 to 2 September 1943 he also served as the first prime minister of the Independent State of Croatia."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "position:pavelic-national-assembly-1927.end",
+      "cKey": "c-wp-ja-655bae",
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%86%E3%83%BB%E3%83%91%E3%83%B4%E3%82%A7%E3%83%AA%E3%83%83%E3%83%81",
+      "quote": "国会議員 （ 1927年 - 1929年 ）",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3424）",
+      "value": "1929-01-01",
+      "precision": "year",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     },
+     {
+      "target": "role:pavelic-hsp-leadership.end",
+      "cKey": "c-wp-zh-27f7ba",
+      "url": "https://zh.wikipedia.org/wiki/%E5%AE%89%E7%89%B9%C2%B7%E5%B8%95%E9%9F%A6%E5%88%A9%E5%A5%87",
+      "quote": "权利党 （ 英语 ： Party of Rights ） （1910年–1929年）",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1795）",
+      "value": "1929-01-01",
+      "precision": "year",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     },
+     {
+      "target": "role:pavelic-ustasha-poglavnik.end",
+      "cKey": "c-wp-ja-655bae",
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%86%E3%83%BB%E3%83%91%E3%83%B4%E3%82%A7%E3%83%AA%E3%83%83%E3%83%81",
+      "quote": "ウスタシャ ポグラヴニク 1929年1月7日 – 1945年5月8日",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 7088）",
+      "value": "1945-05-08",
+      "precision": "day",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   },
   {
    "key": "ir-mohammad-reza",

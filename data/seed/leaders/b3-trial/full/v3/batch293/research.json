@@ -155,7 +155,7 @@
       {
        "sourceKey": "pilsudski-biogram",
        "locator": "biogram, para 1",
-       "quote": "On November 16, 1918, Sosnkowski became the commander of the Warsaw Military District",
+       "quote": "Sosnkowski became the commander of the Warsaw Military District",
        "quoteLang": "en",
        "evidenceNote": null,
        "accessedOn": "2026-11-18",
@@ -185,7 +185,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -265,7 +267,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -277,13 +281,15 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
        "sourceKey": "ipn-wrzesien-1939",
        "locator": "tekst, Lwów",
-       "quote": "Obrońcy Lwowa nie doczekali też odsieczy, prowadzonej przez wojska frontu południowego na czele z gen. Kazimierzem Sosnkowskim",
+       "quote": "wojska frontu południowego na czele z gen. Kazimierzem Sosnkowskim",
        "quoteLang": "pl",
        "evidenceNote": null,
        "accessedOn": "2026-11-18",
@@ -301,7 +307,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": "month",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -931,7 +939,63 @@
      "result": "found_A",
      "note": "提供 ZWZ 1939–1940 與 1943–1944 總司令"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-98a692": {
+      "url": "https://zh.wikipedia.org/wiki/%E5%8D%A1%E9%BD%90%E7%B1%B3%E6%97%A5%C2%B7%E7%B4%A2%E6%A3%AE%E7%A7%91%E5%A4%AB%E6%96%AF%E5%9F%BA",
+      "title": "卡齐米日·索森科夫斯基 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-pl-511ec2": {
+      "url": "https://pl.wikipedia.org/wiki/Kazimierz_Sosnkowski",
+      "title": "Kazimierz Sosnkowski – Wikipedia（pl）",
+      "publisher": "Wikipedia",
+      "lang": "pl",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-98a692",
+      "url": "https://zh.wikipedia.org/wiki/%E5%8D%A1%E9%BD%90%E7%B1%B3%E6%97%A5%C2%B7%E7%B4%A2%E6%A3%AE%E7%A7%91%E5%A4%AB%E6%96%AF%E5%9F%BA",
+      "quote": "是 波兰 将军 、 外交官 和 建筑师",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1003）",
+      "text": {
+       "zh-Hant": "他是波蘭將軍、外交官和建築師，也是戰間期波蘭重要的政治人物。",
+       "en": "He was a Polish general, diplomat and architect, and an important political figure of interwar Poland."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-511ec2",
+      "url": "https://pl.wikipedia.org/wiki/Kazimierz_Sosnkowski",
+      "quote": "11 października 1969 w Arundel",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 5572）",
+      "text": {
+       "zh-Hant": "他於1969年10月11日在加拿大阿倫德爾逝世。",
+       "en": "He died in Arundel, Canada, on 11 October 1969."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

@@ -47,6 +47,17 @@
    "license_code": null,
    "grade": "B",
    "gradeBasis": "官方戰史原件經第三方轉錄本，A 記 B"
+  },
+  "deutsche-bio-falkenhorst-0ae0": {
+   "title": "Deutsche Biographie - Falkenhorst, Nikolaus von (NDB-online)",
+   "authors": [
+    "Christian Hartmann"
+   ],
+   "publisher": "Deutsche Biographie (NDB-online)",
+   "published_text": "Deutsche Biographie（NDB／ADB）",
+   "url": "https://www.deutsche-biographie.de/pnd123489059.html",
+   "grade": "A",
+   "gradeBasis": "國家級傳記辭典 NDB-online，具名作者"
   }
  },
  "people": [
@@ -153,7 +164,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -165,7 +178,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -177,7 +192,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -329,6 +346,68 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "ord": 5,
+     "period": {
+      "start": "1885-01-17",
+      "end": "1968-06-18"
+     },
+     "periodStartPrecision": "day",
+     "periodEndPrecision": "day",
+     "heading": {
+      "zh-Hant": "生卒與挪威入侵",
+      "en": "Life dates and the Norway invasion"
+     },
+     "body": {
+      "zh-Hant": "法爾肯霍斯特1885年1月17日生於布雷斯勞。他在1940年實現了對挪威的入侵與占領。他於1968年6月18日卒於霍爾茨明登。",
+      "en": "Falkenhorst was born in Breslau on 17 January 1885. In 1940 he carried out the invasion and occupation of Norway. He died in Holzminden on 18 June 1968."
+     },
+     "citations": [
+      {
+       "sourceKey": "deutsche-bio-falkenhorst-0ae0",
+       "locator": "正文（正規化後字元位置 3772）",
+       "quote": "Geboren am 17. Januar 1885 in Breslau",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-20",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": [
+        1
+       ],
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "deutsche-bio-falkenhorst-0ae0",
+       "locator": "正文（正規化後字元位置 3471）",
+       "quote": "Er realisierte 1940 die Invasion und Okkupation Norwegens.",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-20",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": [
+        2
+       ],
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "deutsche-bio-falkenhorst-0ae0",
+       "locator": "正文（正規化後字元位置 3850）",
+       "quote": "Gestorben am 18. Juni 1968 in Holzminden",
+       "quoteLang": "de",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-20",
+       "grade": "A",
+       "datePrecision": "day",
+       "claimSpan": [
+        3
+       ],
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "relatedRecordIds": []
     }
    ],
    "positions": [
@@ -526,11 +605,6 @@
      "target": "identity",
      "gapKind": "conflict",
      "note": "Deutsche Biographie 索引條目寫 1885–1965，SNL 寫卒於1968-06-18；兩份已抓來源互相矛盾，正文未寫卒年。"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前4段、約270字；已查 NDB-online、SNL、HyperWar 美軍研究；Bundesarchiv N 300 目錄未抓取。"
     }
    ],
    "searchLog": [
@@ -597,6 +671,105 @@
      "url": null,
      "result": "found_B",
      "note": ""
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Nikolaus von Falkenhorst",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 5 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Nikolaus von Falkenhorst（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Nikolaus%20von%20Falkenhorst&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Nikolaus von Falkenhorst（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Nikolaus%20von%20Falkenhorst&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "2 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/69836672",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/no95038338",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/123489059",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/0000000088768137",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd123489059.html",
+     "result": "found_A",
+     "note": "fetched；14725 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/123489059.json",
+     "result": "found_A",
+     "note": "fetched；7891 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/105277207.json",
+     "result": "found_A",
+     "note": "fetched；5031 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd105277207.html",
+     "result": "found_A",
+     "note": "fetched；12174 字；有人名命中段落",
+     "round": "stage2"
     }
    ]
   }

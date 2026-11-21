@@ -521,6 +521,13 @@
      "note": "待查證：原正文（已刪）所述『王室攝政團』攝政者的完整名單與任期，Hrvatska enciklopedija（未評等）只寫以『knez P. Karađorđević』為首，未給全名與日期；未取得其他 A／B 原文。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:length",
+     "gapKind": "not_found",
+     "note": "篇幅不足：現 1 段／59 字。查過 Deutsche Biographie（GND 索引頁，僅生卒與名稱變體，無敘事）、Britannica（403）、Visuotinė lietuvių enciklopedija（無具名作者，未評等）、網路搜尋（僅百科／家族網站），未得 A／B 級敘事來源。",
+     "checkedOn": "2026-11-20",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -587,6 +594,102 @@
      "url": null,
      "result": "no_result",
      "note": "本 session WebSearch 額度用盡，未執行；未以其他方式繞過"
+    },
+    {
+     "step": 9,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Petar II Karađorđević",
+     "url": null,
+     "result": "no_result",
+     "note": "索引沒有可確認的同名人物",
+     "round": "stage2"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "Petar II Karađorđević（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Petar%20II%20Kara%C4%91or%C4%91evi%C4%87&count=5",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Petar II Karađorđević（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Petar%20II%20Kara%C4%91or%C4%91evi%C4%87&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/names/no92018737.html",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/119072351.json",
+     "result": "found_A",
+     "note": "fetched；8107 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd119072351.html",
+     "result": "not_relevant",
+     "note": "fetched；3698 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1230331727.json",
+     "result": "found_A",
+     "note": "fetched；4084 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1230331727.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "query": "Petar II Karađorđević kralj Jugoslavije 1934 1941 biografija",
+     "result": "只有未評等百科與家族網站",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "query": "Peter II. Jugoslawien König Biographie 1941 Putsch Exil Deutsche Biographie",
+     "result": "Deutsche Biographie 僅索引資料",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "query": "Petar II Karađorđević 27. mart 1941 preuzeo vlast regent knez Pavle London",
+     "result": "無 A／B 級辭典條目",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "query": "Pietro II di Iugoslavia Treccani Enciclopedia",
+     "result": "無 Treccani 條目",
+     "round": "stage2"
     }
    ]
   },
@@ -779,7 +882,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -803,7 +908,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1420,7 +1527,55 @@
      "result": "no_result",
      "note": "結果僅 Wikipedia 類索引與 chd.lu 會期 PDF（只見其任 section centrale 主席，無議員起迄）；之後搜尋額度用盡"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-en-a7c662": {
+      "url": "https://en.wikipedia.org/wiki/%C3%89mile_Reuter",
+      "title": "Émile Reuter – Wikipedia（en）",
+      "publisher": "Wikipedia",
+      "lang": "en",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-en-a7c662",
+      "url": "https://en.wikipedia.org/wiki/%C3%89mile_Reuter",
+      "quote": "After finishing school in 1893 at the Athénée de Luxembourg",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2100）",
+      "text": {
+       "zh-Hant": "1893年他從Athénée de Luxembourg中學畢業。",
+       "en": "He finished school in 1893 at the Athénée de Luxembourg."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-en-a7c662",
+      "url": "https://en.wikipedia.org/wiki/%C3%89mile_Reuter",
+      "quote": "The Avenue Émile-Reuter was named after him in the city.",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3268）",
+      "text": {
+       "zh-Hant": "盧森堡市以他命名了Avenue Émile-Reuter。",
+       "en": "The Avenue Émile-Reuter was named after him in the city."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "pa-juan-d-arosemena",
@@ -1608,7 +1763,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1945,7 +2102,55 @@
      "result": "no_result",
      "note": "搜尋額度用盡，未執行"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-pl-ba65cf": {
+      "url": "https://pl.wikipedia.org/wiki/Juan_Dem%C3%B3stenes_Arosemena",
+      "title": "Juan Demóstenes Arosemena – Wikipedia（pl）",
+      "publisher": "Wikipedia",
+      "lang": "pl",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-ba65cf",
+      "url": "https://pl.wikipedia.org/wiki/Juan_Dem%C3%B3stenes_Arosemena",
+      "quote": "zm. 16 grudnia 1939 w Penonomé",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1677）",
+      "text": {
+       "zh-Hant": "他於1939年12月16日在Penonomé去世。",
+       "en": "He died on 16 December 1939 in Penonomé."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-ba65cf",
+      "url": "https://pl.wikipedia.org/wiki/Juan_Dem%C3%B3stenes_Arosemena",
+      "quote": "minister spraw zagranicznych, rolnictwa i robót publicznych",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1747）",
+      "text": {
+       "zh-Hant": "他曾任外交、農業與公共工程部長。",
+       "en": "He served as minister of foreign affairs, agriculture and public works."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

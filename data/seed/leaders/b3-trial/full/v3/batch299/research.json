@@ -59,7 +59,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -71,7 +73,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -89,8 +93,8 @@
       "en": "Kovalev commands the White Russian Front"
      },
      "body": {
-      "zh-Hant": "Kennedy 記載，北面的白俄羅斯方面軍由「集團軍指揮員」科瓦廖夫（Kovalev）指揮，司令部設在明斯克。書中未寫其名字與父名。",
-      "en": "Kennedy records that the White Russian Front in the north was commanded by Army Commander Kovalev, with headquarters in Minsk. The study gives no first name or patronymic."
+      "zh-Hant": "Kennedy 記載，北面的白俄羅斯方面軍由「集團軍指揮員」科瓦廖夫（Kovalev）指揮，司令部設在明斯克。",
+      "en": "Kennedy records that the White Russian Front in the north was commanded by Army Commander Kovalev, with headquarters in Minsk."
      },
      "relatedRecordIds": [],
      "citations": [
@@ -115,7 +119,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -147,7 +153,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -159,7 +167,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -186,7 +196,15 @@
     {
      "target": "paragraph:length",
      "gapKind": "not_found",
-     "note": "篇幅不足：目前3段、約200字；僅取得 Kennedy 一個 B 來源原文，其餘官方頁被擋或逾時。"
+     "note": "篇幅不足：3段／約199字；僅 Kennedy 一個 B 來源。第二階段搜尋（俄文、英文共4次）僅得 wiki 類頁面；brl.by 館藏 PDF 抓取逾時，prlib.ru 為挑戰頁，GND 預查為同名他人。",
+     "checkedOn": "2026-11-20",
+     "candidateCitations": []
+    },
+    {
+     "target": "paragraph:2",
+     "gapKind": "not_found",
+     "note": "待補引文：已刪除「書中未寫其名字與父名。」",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -261,6 +279,129 @@
      "url": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html",
      "result": "found_B",
      "note": "https://www.ibiblio.org/hyperwar/USA/DAP-Poland/Campaign-III.html"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Kovalev",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 2 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Kovalev（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Kovalev&count=5",
+     "result": "found_A",
+     "note": "5 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Kovalev（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Kovalev&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/311232818",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/0000000438029669",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/names/n90615201.html",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "候選網址",
+     "url": "https://id.loc.gov/authorities/names/n98094654.html",
+     "result": "not_relevant",
+     "note": "同網域本輪已被擋，不再試",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1230414398.json",
+     "result": "found_A",
+     "note": "fetched；3194 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1230414398.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1281275662.json",
+     "result": "found_A",
+     "note": "fetched；2862 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1281275662.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "query": "Николай Васильевич Ковалёв командующий Белорусским фронтом 1939",
+     "result": "only wiki-type; brl.by PDF timed out",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "query": "Mikhail Prokofievich Kovalev Belorussian Front commander 1939 Polish campaign biography",
+     "result": "only wiki-type",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "query": "Ковалёв Михаил Прокофьевич командарм 2-го ранга Белорусский фронт биография",
+     "result": "only wiki-type",
+     "round": "stage2"
+    },
+    {
+     "step": 24,
+     "query": "Ковалёв командующий войсками Белорусского фронта сентябрь 1939 назначен приказ НКО",
+     "result": "prlib.ru challenge page; no appointment date",
+     "round": "stage2"
     }
    ]
   }

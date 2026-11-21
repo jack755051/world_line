@@ -565,7 +565,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -892,13 +894,6 @@
      "note": "首相任期（1932-10-01～1936-10-06）已在名單5442（recordId 01a1aa4a-4a5b-76c9-99b4-0ab9e36fa6bb），本檔未重建。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前3段、中文約548字，段落與字數已達標，但4筆任期中僅1筆有完整起迄、其餘缺迄日或起日（國防部長、MOVE主席、小農黨議席迄日；NEP領袖、統一黨副主席起日）。本輪重試已查官方（kormany.hu、parlament.hu、EHRI［Anubis］）、傳記辭典（mek.oszk.hu 404）、具名百科（Britannica 403、DHM 404）、學術論文（Klestenitz、Tóth RDSG、Kurucz）共4類來源，仍無合格出處載明起迄日。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-17"
     }
    ],
    "searchLog": [
@@ -1162,7 +1157,78 @@
      "result": "no_result",
      "note": "pdftotext 無文字"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ja-230ce9": {
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%B3%E3%83%99%E3%82%B7%E3%83%A5%E3%83%BB%E3%82%B8%E3%83%A5%E3%83%A9",
+      "title": "ゲンベシュ・ジュラ – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ru-8c6501": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%93%D1%91%D0%BC%D0%B1%D1%91%D1%88%2C_%D0%94%D1%8C%D1%8E%D0%BB%D0%B0",
+      "title": "Гёмбёш, Дьюла – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-230ce9",
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%B2%E3%83%B3%E3%83%99%E3%82%B7%E3%83%A5%E3%83%BB%E3%82%B8%E3%83%A5%E3%83%A9",
+      "quote": "1886年 12月26日 - 1936年 10月6日",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1626）",
+      "text": {
+       "zh-Hant": "日語維基百科載他生於1886年12月26日。",
+       "en": "Japanese Wikipedia gives his birth as 26 December 1886."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-8c6501",
+      "url": "https://ru.wikipedia.org/wiki/%D0%93%D1%91%D0%BC%D0%B1%D1%91%D1%88%2C_%D0%94%D1%8C%D1%8E%D0%BB%D0%B0",
+      "quote": "скончался в Мюнхене от почечной недостаточности",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 10378）",
+      "text": {
+       "zh-Hant": "俄語維基百科載他在慕尼黑因腎功能衰竭去世。",
+       "en": "Russian Wikipedia says he died in Munich of kidney failure."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "position:gombos-defence-minister.end",
+      "cKey": "c-wp-ru-8c6501",
+      "url": "https://ru.wikipedia.org/wiki/%D0%93%D1%91%D0%BC%D0%B1%D1%91%D1%88%2C_%D0%94%D1%8C%D1%8E%D0%BB%D0%B0",
+      "quote": "10 ноября 1929 года — 2 сентября 1936 года",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2139）",
+      "value": "1936-09-02",
+      "precision": "day",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   },
   {
    "key": "pa-arosemena",

@@ -421,7 +421,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -433,7 +435,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -469,7 +473,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -905,13 +911,6 @@
      "note": "名單內 1926-07-09 至 1926-11-26 的元首紀錄標題為「)」（疑資料殘缺），總統博物館寫 7 月 9 日起實際行使元首職權、11 月 26 日以法令正式化、29 日代理就職；屬庫內標題問題，不在本批改動範圍，僅提醒。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 4 段／499 字（段數與字數已達標），但 position:carmona-war-minister-1926 仍缺迄日（待查證），未達最低標準。本輪（retry）已查來源類型：官方（總統博物館 Carmona 與 Gomes da Costa 傳記頁、政府歷史檔案頁 historico.portugal.gov.pt 為純外殼無內容、Diário da República 為 JS 外殼、parlamento.pt）、權威檔（id.loc.gov 403）、具名百科（Infopédia 挑戰頁）、學術（ap1.sib.uc.pt 無法解析）；能找到 1926 戰爭部長迄日的僅有 Archontology／Wikipedia 類（不合格），故未寫入。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-15"
     }
    ],
    "searchLog": [
@@ -1135,7 +1134,63 @@
      "note": "僅 Wikipedia 類／Infopédia 摘要，不合格",
      "round": "retry"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ja-42adc9": {
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%82%AA%E3%83%BB%E3%82%AA%E3%82%B9%E3%82%AB%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%AB%E3%83%A2%E3%83%8A",
+      "title": "アントニオ・オスカル・カルモナ – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-zh-fc6e7f": {
+      "url": "https://zh.wikipedia.org/wiki/%E5%AE%89%E6%9D%B1%E5%B0%BC%E5%A5%A7%C2%B7%E5%A5%A7%E6%96%AF%E5%8D%A1%C2%B7%E5%BE%B7%C2%B7%E5%BC%97%E6%8B%89%E6%88%88%E7%B4%A2%C2%B7%E5%8D%A1%E7%88%BE%E8%8E%AB%E7%B4%8D",
+      "title": "安東尼奧·奧斯卡·德·弗拉戈索·卡爾莫納 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-42adc9",
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%82%AA%E3%83%BB%E3%82%AA%E3%82%B9%E3%82%AB%E3%83%AB%E3%83%BB%E3%82%AB%E3%83%AB%E3%83%A2%E3%83%8A",
+      "quote": "1888年 に コレジオ・ミリタール を卒業、 1892年 に陸軍学校を卒業して騎兵将校となった",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1667）",
+      "text": {
+       "zh-Hant": "日文維基百科稱他1888年畢業於軍事學院，1892年自陸軍學校畢業，成為騎兵軍官。",
+       "en": "Japanese Wikipedia says he graduated from the military college in 1888 and from the army school in 1892, becoming a cavalry officer."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-fc6e7f",
+      "url": "https://zh.wikipedia.org/wiki/%E5%AE%89%E6%9D%B1%E5%B0%BC%E5%A5%A7%C2%B7%E5%A5%A7%E6%96%AF%E5%8D%A1%C2%B7%E5%BE%B7%C2%B7%E5%BC%97%E6%8B%89%E6%88%88%E7%B4%A2%C2%B7%E5%8D%A1%E7%88%BE%E8%8E%AB%E7%B4%8D",
+      "quote": "1914年1月，他娶了玛丽亚·多·卡莫·费雷拉·达·席尔瓦",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2962）",
+      "text": {
+       "zh-Hant": "1914年1月，他娶了玛丽亚·多·卡莫·费雷拉·达·席尔瓦。",
+       "en": "In January 1914 he married."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "tr-inonu",
@@ -1334,7 +1389,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1542,7 +1599,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1969,13 +2028,6 @@
      "note": "兩份已抓來源日期不同：TCCB 寫簽署洛桑條約為 1923-07-24，Lüleci 文中寫「23 Temmuz 1924」（年份疑為筆誤）；正文不寫條約簽署日，待第三份 A 級來源（如 TBMM、條約文本）核實。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 4 段／588 字（段數字數已達標），但 position:inonu-general-staff-minister、inonu-western-front-north、inonu-foreign-minister-1922 與 role:inonu-chp-vice-chair-1923 仍缺迄日（待查證）。本輪（retry）已查：具名百科（TDV 條目經 kureansiklopedi 轉載，補得起日與埃迪爾內議員迄日）、官方（tbmm.gov.tr 議員頁 404／連線重置、www5.tbmm 為無內容外殼、tccb.gov.tr 歷任政府頁、ataturkansiklopedisi.gov.tr 為 JS 外殼）、學術（meforum 書評）；TDV 原站 403 未繞過；迄日僅見未評等來源，故未寫入。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-15"
     }
    ],
    "searchLog": [
@@ -2218,7 +2270,56 @@
      "note": "無新增任期日期",
      "round": "retry"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-da23e9": {
+      "url": "https://zh.wikipedia.org/wiki/%E4%BC%8A%E6%96%AF%E9%BA%A6%E7%89%B9%C2%B7%E4%BC%8A%E8%AF%BA%E5%8A%AA",
+      "title": "伊斯麦特·伊诺努 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-da23e9",
+      "url": "https://zh.wikipedia.org/wiki/%E4%BC%8A%E6%96%AF%E9%BA%A6%E7%89%B9%C2%B7%E4%BC%8A%E8%AF%BA%E5%8A%AA",
+      "quote": "至今土耳其超過70%的土地仍然由國家擁有",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3618）",
+      "text": {
+       "zh-Hant": "伊諾努主導國家干預經濟，據維基百科，土耳其超過70%的土地至今仍由國家擁有。",
+       "en": "Inönü pursued state intervention in the economy; Wikipedia says over 70% of Turkish land is still state-owned."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "position:inonu-foreign-minister-1922.end",
+      "cKey": "c-wp-zh-da23e9",
+      "url": "https://zh.wikipedia.org/wiki/%E4%BC%8A%E6%96%AF%E9%BA%A6%E7%89%B9%C2%B7%E4%BC%8A%E8%AF%BA%E5%8A%AA",
+      "quote": "1922年10月26日—1924年11月21日",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1624）",
+      "value": "1924-11-21",
+      "precision": "day",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   },
   {
    "key": "cl-alessandri",

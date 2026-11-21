@@ -125,7 +125,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -137,7 +139,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -149,7 +153,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -161,7 +167,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -173,7 +181,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -480,8 +490,161 @@
      "url": "https://www.gmw.cn/01wzb/2007-06/28/content_630699.htm",
      "result": "unrated",
      "note": "chinatimes 403 放棄；光明網、台大英千里網站為新聞／轉載，非 A／B"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Sun Yuanliang",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 5 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "Sun Yuanliang（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Sun%20Yuanliang&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "Sun Yuanliang（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Sun%20Yuanliang&filter=type:Person&format=json&size=3",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/n2009003093",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/36404133",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/000000008028957X",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（Britannica（須具名作者））",
+     "url": "https://www.britannica.com/biography/Sun-Yun-liang",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "official",
+     "query": "直接開啟候選頁（中央研究院）",
+     "url": "https://mhdb.mh.sinica.edu.tw/mhpeople/result.php?peopleId=ybfebuuouhuxhfe",
+     "result": "found_A",
+     "note": "fetched；1732 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "query": "孙元良 第八十八师 师长 淞沪会战 传记",
+     "url": "https://www.thepaper.cn/newsDetail_forward_1368701",
+     "result": "skipped:新聞媒體非A/B",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "query": "孙元良 第八十八师 师长 淞沪会战 传记",
+     "url": "https://www.chinatimes.com/cn/opinion/20220128000008-262107",
+     "result": "skipped:評論／新聞非A/B",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "query": "Sun Yuanliang 88th Division commander biography",
+     "url": "https://generals.dk/nation/China/Sun.html",
+     "result": "skipped:私人彙編非A/B",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-b36dcb": {
+      "url": "https://zh.wikipedia.org/wiki/%E5%AD%99%E5%85%83%E8%89%AF",
+      "title": "孙元良 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-b36dcb",
+      "url": "https://zh.wikipedia.org/wiki/%E5%AD%99%E5%85%83%E8%89%AF",
+      "quote": "1937年12月，参加 南京保卫战 ，时任第七十二軍军长兼第八十八師师长",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1801）",
+      "text": {
+       "zh-Hant": "維基百科（zh）原文：「1937年12月，参加 南京保卫战 ，时任第七十二軍军长兼第八十八師师长」",
+       "en": "Wikipedia (zh) says: \"1937年12月，参加 南京保卫战 ，时任第七十二軍军长兼第八十八師师长\""
+      },
+      "quoteOnly": true
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-b36dcb",
+      "url": "https://zh.wikipedia.org/wiki/%E5%AD%99%E5%85%83%E8%89%AF",
+      "quote": "第88师战前约6,000余人，战后仅1,000多人收容归队",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3041）",
+      "text": {
+       "zh-Hant": "第88師戰前約6,000餘人，戰後僅1,000多人收容歸隊。",
+       "en": "The 88th Division had about 6,000 men before the battle, and only over 1,000 were collected afterward."
+      }
+     }
+    ],
+    "dates": [],
+    "auditLog": [
+     {
+      "action": "quote-only",
+      "target": "paragraph:length",
+      "gaps": [
+       "72",
+       "88"
+      ],
+      "text": "1937年12月，孫元良參加南京保衛戰，時任第七十二軍軍長兼第八十八師師長。"
+     }
+    ]
+   }
   }
  ]
 }

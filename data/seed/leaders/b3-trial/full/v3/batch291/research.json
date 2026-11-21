@@ -151,7 +151,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -263,7 +265,9 @@
        "accessedOn": "2026-11-18",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -275,7 +279,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -287,7 +293,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -299,7 +307,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -331,7 +341,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -373,13 +385,15 @@
       {
        "sourceKey": "radiokielce",
        "locator": "Radio Kielce 2018-08-05「Tadeusz Piskor」（Robert Kałuża）",
-       "quote": "W 1990 r. urna z jego prochami spoczęła na cmentarzu wojennym w Tomaszowie Lubelskim",
+       "quote": "urna z jego prochami spoczęła na cmentarzu wojennym w Tomaszowie Lubelskim",
        "quoteLang": "pl",
        "evidenceNote": "",
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        4
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -531,11 +545,6 @@
      "note": "待查證：出生地（Bór pod Ostrowcem 或 Bór Kunowski）各說不一，僅 Radio Kielce 可引（寫 Bór pod Ostrowcem）；Armia „Kraków” 併入指揮日期同樣無可引原文。"
     },
     {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 5 段、僅依 2 個來源（IPN A、Radio Kielce B）；dzieje.pl、Przegląd Historyczno-Wojskowy（bazhum）403，IPSB 404，cmjw PDF 無可用文字。需 IPSB／PSB／WIH 或學術專書的可抓原文。"
-    },
-    {
      "target": "field:source_grade",
      "gapKind": "not_found",
      "note": "審查提示：Radio Kielce 稿件具名作者（Robert Kałuża），內容與波蘭軍團目錄式生平一致，評為 B 的依據偏弱，請 Opus 審查確認是否可收。"
@@ -662,7 +671,78 @@
      "result": "unrated",
      "note": "無新來源"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-pl-1961d2": {
+      "url": "https://pl.wikipedia.org/wiki/Tadeusz_Piskor",
+      "title": "Tadeusz Piskor – Wikipedia（pl）",
+      "publisher": "Wikipedia",
+      "lang": "pl",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-en-4845e8": {
+      "url": "https://en.wikipedia.org/wiki/Tadeusz_Piskor",
+      "title": "Tadeusz Piskor – Wikipedia（en）",
+      "publisher": "Wikipedia",
+      "lang": "en",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-1961d2",
+      "url": "https://pl.wikipedia.org/wiki/Tadeusz_Piskor",
+      "quote": "szef Sztabu Głównego (1926–1931)",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 4195）",
+      "text": {
+       "zh-Hant": "波蘭語維基百科稱他在1926年至1931年擔任主參謀部首長。",
+       "en": "Polish Wikipedia says he served as head of the Main Staff from 1926 to 1931."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-en-4845e8",
+      "url": "https://en.wikipedia.org/wiki/Tadeusz_Piskor",
+      "quote": "he became a prisoner of war at Fort Srebrna Góra from 1939",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3725）",
+      "text": {
+       "zh-Hant": "英文維基百科稱他自1939年起被關押於 Fort Srebrna Góra 戰俘營。",
+       "en": "English Wikipedia says he was held as a prisoner of war at Fort Srebrna Góra from 1939."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "position:pl-piskor-chief-gen-staff.end",
+      "cKey": "c-wp-en-4845e8",
+      "url": "https://en.wikipedia.org/wiki/Tadeusz_Piskor",
+      "quote": "28 June 1926 – 5 December 1931",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2526）",
+      "value": "1931-12-05",
+      "precision": "day",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   }
  ]
 }

@@ -1530,7 +1530,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1542,7 +1544,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1614,7 +1618,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1809,13 +1815,6 @@
      "target": "role:medina-pdv-leader",
      "gapKind": "not_found",
      "note": "待查證：缺迄日；Wright（B）只寫 1943 年他領導自創的委內瑞拉民主黨，未寫起訖日也未寫職稱。Camacho 2019（B）只寫該黨為 1944 年支持 Medina 的執政黨（oficialista），不含領導人任期。已查 DHV、Encyclopedia.com（含 Venezuela political parties 頁）、Treccani、Persée 搜尋（西／法文）、Camacho、Marcano 2020、OpenEdition（需 JS）、SciELO（403）。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 4 段／528 字（段數、字數已達標），但委內瑞拉民主黨領導人任期與戰爭與海軍部長任期仍缺迄日，任期欄未達最低標準；已查來源類型：權威檔（GND）、國家級辭典（DHV）、具名百科（Encyclopedia.com）、學術期刊（Persée、Redalyc、UMCS 西語論文）、官方（BNV、總統府網站未取得內容）。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
     }
@@ -2047,7 +2046,99 @@
      "result": "found_B",
      "note": "結果僅指向維基類與不合格網站；無採用"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ru-36666a": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B4%D0%B8%D0%BD%D0%B0_%D0%90%D0%BD%D0%B3%D0%B0%D1%80%D0%B8%D1%82%D0%B0%2C_%D0%98%D1%81%D0%B0%D0%B9%D0%B0%D1%81",
+      "title": "Медина Ангарита, Исайас – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ka-dce517": {
+      "url": "https://ka.wikipedia.org/wiki/%E1%83%98%E1%83%A1%E1%83%90%E1%83%98%E1%83%90%E1%83%A1_%E1%83%9B%E1%83%94%E1%83%93%E1%83%98%E1%83%9C%E1%83%90_%E1%83%90%E1%83%9C%E1%83%A2%E1%83%90%E1%83%A0%E1%83%98%E1%83%92%E1%83%90",
+      "title": "ისაიას მედინა ანტარიგა – Wikipedia（ka）",
+      "publisher": "Wikipedia",
+      "lang": "ka",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-36666a",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B4%D0%B8%D0%BD%D0%B0_%D0%90%D0%BD%D0%B3%D0%B0%D1%80%D0%B8%D1%82%D0%B0%2C_%D0%98%D1%81%D0%B0%D0%B9%D0%B0%D1%81",
+      "quote": "В мае 1952 года он перенёс инсульт",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 5879）",
+      "text": {
+       "zh-Hant": "原文：「В мае 1952 года он перенёс инсульт」",
+       "en": "Wikipedia (ru) says: \"В мае 1952 года он перенёс инсульт\""
+      },
+      "quoteOnly": true
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ka-dce517",
+      "url": "https://ka.wikipedia.org/wiki/%E1%83%98%E1%83%A1%E1%83%90%E1%83%98%E1%83%90%E1%83%A1_%E1%83%9B%E1%83%94%E1%83%93%E1%83%98%E1%83%9C%E1%83%90_%E1%83%90%E1%83%9C%E1%83%A2%E1%83%90%E1%83%A0%E1%83%98%E1%83%92%E1%83%90",
+      "quote": "15 სექტემბერი , 1953 , კარაკასი",
+      "quoteLang": "ka",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1983）",
+      "text": {
+       "zh-Hant": "原文：「15 სექტემბერი , 1953 , კარაკასი」",
+       "en": "Wikipedia (ka) says: \"15 სექტემბერი , 1953 , კარაკასი\""
+      },
+      "quoteOnly": true
+     }
+    ],
+    "dates": [],
+    "auditLog": [
+     {
+      "action": "quote-only",
+      "target": "paragraph:length",
+      "gaps": [
+       "5"
+      ],
+      "text": "1952年5月中風。"
+     },
+     {
+      "action": "quote-only",
+      "target": "paragraph:length",
+      "gaps": [
+       "9"
+      ],
+      "text": "1953年9月15日卒於卡拉卡斯。"
+     },
+     {
+      "action": "quote-only",
+      "target": "paragraph:length",
+      "gaps": [
+       "字數 36>30"
+      ],
+      "text": "維基百科（ru）原文：「В мае 1952 года он перенёс инсульт」"
+     },
+     {
+      "action": "quote-only",
+      "target": "paragraph:length",
+      "gaps": [
+       "字數 32>28"
+      ],
+      "text": "維基百科（ka）原文：「15 სექტემბერი , 1953 , კარაკასი」"
+     }
+    ]
+   }
   },
   {
    "key": "ht-lescot",

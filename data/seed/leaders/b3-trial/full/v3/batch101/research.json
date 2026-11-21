@@ -2118,8 +2118,168 @@
      "url": null,
      "result": "no_result",
      "note": "WebSearch 額度用盡，未能執行；本輪未達 15 次查詢"
+    },
+    {
+     "step": 36,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Nikola Mushanov",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 4 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 37,
+     "sourceType": "authority",
+     "query": "Nikola Mushanov（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Nikola%20Mushanov&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 38,
+     "sourceType": "authority",
+     "query": "Nikola Mushanov（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Nikola%20Mushanov&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 39,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/20485097",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 40,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/1112150676",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 41,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/n93122685",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 42,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/0000000013506191",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 43,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1112150676.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 44,
+     "query": "Никола Мушанов министър-председател 1931 1934 биография",
+     "result": "只有 BTA(C)與維基類轉錄，無 A/B",
+     "round": "stage2"
+    },
+    {
+     "step": 45,
+     "query": "Nikola Mushanov Bulgarian prime minister biography Democratic Party",
+     "result": "無 A/B",
+     "round": "stage2"
+    },
+    {
+     "step": 46,
+     "query": "Мушанов Никола Стойков Дряново 1872 министър правителство Министерски съвет gov.bg",
+     "result": "無 gov.bg/議會/國家辭典頁",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-pl-52164a": {
+      "url": "https://pl.wikipedia.org/wiki/Niko%C5%82a_Muszanow",
+      "title": "Nikoła Muszanow – Wikipedia（pl）",
+      "publisher": "Wikipedia",
+      "lang": "pl",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ru-cbadc8": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D1%83%D1%88%D0%B0%D0%BD%D0%BE%D0%B2%2C_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0",
+      "title": "Мушанов, Никола – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-52164a",
+      "url": "https://pl.wikipedia.org/wiki/Niko%C5%82a_Muszanow",
+      "quote": "przewodniczący Partii Demokratycznej (1938-1947)",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1964）",
+      "text": {
+       "zh-Hant": "波蘭語維基百科稱，穆沙諾夫是法學家與政治人物，在1938至1947年間擔任民主黨主席。",
+       "en": "Polish Wikipedia describes Mushanov as a jurist and politician who chaired the Democratic Party in 1938-1947."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-pl-52164a",
+      "url": "https://pl.wikipedia.org/wiki/Niko%C5%82a_Muszanow",
+      "quote": "minister oświaty narodowej (1908-1910), spraw wewnętrznych (1910-1911)",
+      "quoteLang": "pl",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2066）",
+      "text": {
+       "zh-Hant": "同一條目列出他1908至1910年任國民教育大臣，1910至1911年任內政大臣。",
+       "en": "The same entry lists him as education minister in 1908-1910 and interior minister in 1910-1911, before his premiership."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-cbadc8",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D1%83%D1%88%D0%B0%D0%BD%D0%BE%D0%B2%2C_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0",
+      "quote": "Окончил юридический факультет в Экс-ан-Провансе во Франции (1893)",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2337）",
+      "text": {
+       "zh-Hant": "俄語維基百科稱，他於1893年在法國完成法學院學業，其後從事司法工作與政治活動。",
+       "en": "Russian Wikipedia says he finished law studies in France in 1893, before turning to judicial work and politics."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

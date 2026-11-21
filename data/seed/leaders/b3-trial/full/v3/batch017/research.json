@@ -131,6 +131,15 @@
    "license_code": null,
    "grade": null,
    "gradeBasis": "署名為編輯部服務，無具名作者，只作 gap 候選（Q9）"
+  },
+  "catalogue-egypt-2739": {
+   "title": "Notice de personne Fu'ād I (1868-1936 ; roi d'Egypte)",
+   "authors": [],
+   "publisher": "Bibliothèque nationale de France",
+   "published_text": "BnF 權威檔",
+   "url": "https://catalogue.bnf.fr/ark:/12148/cb160039126",
+   "grade": "A",
+   "gradeBasis": "國家圖書館人名權威檔"
   }
  },
  "people": [
@@ -680,7 +689,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": "year",
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -716,7 +727,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -728,7 +741,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -740,7 +755,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -912,7 +929,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1203,7 +1222,70 @@
      "result": "no_result",
      "note": "HTTP 526，無內容"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-f135ca": {
+      "url": "https://zh.wikipedia.org/wiki/%E7%B4%A2%E5%8F%A4%E4%B8%80%E4%B8%96",
+      "title": "索古一世 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-f135ca",
+      "url": "https://zh.wikipedia.org/wiki/%E7%B4%A2%E5%8F%A4%E4%B8%80%E4%B8%96",
+      "quote": "内政部长（1920年3月－11月、1921年－1924年）",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2216）",
+      "text": {
+       "zh-Hant": "中文維基百科稱，索古於1921年至1924年擔任內政部長。",
+       "en": "Chinese Wikipedia says Zog served as interior minister from 1921 to 1924."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-f135ca",
+      "url": "https://zh.wikipedia.org/wiki/%E7%B4%A2%E5%8F%A4%E4%B8%80%E4%B8%96",
+      "quote": "阿尔巴尼亚参谋长（1921年－1922年）",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2246）",
+      "text": {
+       "zh-Hant": "同一條目稱他在1921年至1922年出任參謀長。",
+       "en": "The same entry says he was chief of staff from 1921 to 1922."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "position:zog-interior-minister-1921.end",
+      "cKey": "c-wp-zh-f135ca",
+      "url": "https://zh.wikipedia.org/wiki/%E7%B4%A2%E5%8F%A4%E4%B8%80%E4%B8%96",
+      "quote": "内政部长（1920年3月－11月、1921年－1924年）",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2216）",
+      "value": "1924-01-01",
+      "precision": "year",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   },
   {
    "key": "eg-fuad-i",
@@ -1283,6 +1365,54 @@
        "policyVersion": "bio-2026-11-v0"
       }
      ]
+    },
+    {
+     "ord": 2,
+     "period": {
+      "start": "1868-01-01",
+      "end": "1936-01-01"
+     },
+     "periodStartPrecision": "year",
+     "periodEndPrecision": "year",
+     "heading": {
+      "zh-Hant": "出身與生卒地",
+      "en": "Origins and places of birth and death"
+     },
+     "body": {
+      "zh-Hant": "法國國家圖書館的人名權威檔記他生於1868年開羅，卒於1936年開羅。該檔稱他為伊斯邁爾總督之子，並簡註他為1922至1936年的埃及國王。",
+      "en": "The BnF authority record gives his birth in Cairo in 1868 and his death in Cairo in 1936. It calls him a son of Khedive Ismail and notes that he was King of Egypt from 1922 to 1936."
+     },
+     "citations": [
+      {
+       "sourceKey": "catalogue-egypt-2739",
+       "locator": "正文（正規化後字元位置 1290）",
+       "quote": "Naissance : 1868, Le Caire Mort : 1936, Le Caire",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-20",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": [
+        1
+       ],
+       "policyVersion": "bio-2026-11-v0"
+      },
+      {
+       "sourceKey": "catalogue-egypt-2739",
+       "locator": "正文（正規化後字元位置 1339）",
+       "quote": "Roi d'Egypte de 1922 à 1936. - Fils du khédive Ismā'ïl Ahmad Fu'ād.",
+       "quoteLang": "fr",
+       "evidenceNote": null,
+       "accessedOn": "2026-11-20",
+       "grade": "A",
+       "datePrecision": "year",
+       "claimSpan": [
+        2
+       ],
+       "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "relatedRecordIds": []
     }
    ],
    "positions": [],
@@ -1501,8 +1631,223 @@
      "url": "https://www.globalsecurity.org/military/world/egypt/history-1.htm",
      "result": "no_result",
      "note": "404"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Fuʼād I, King of Egypt",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 11 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Fuʼād I, King of Egypt（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Fu%CA%BC%C4%81d%20I%2C%20King%20of%20Egypt&count=5",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "Fuʼād I, King of Egypt（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Fu%CA%BC%C4%81d%20I%2C%20King%20of%20Egypt&filter=type:Person&format=json&size=3",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/n82268145",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/13675160",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "候選網址",
+     "url": "http://viaf.org/viaf/77504507",
+     "result": "not_relevant",
+     "note": "同網域本輪已被擋，不再試",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（DNB））",
+     "url": "https://d-nb.info/gnd/133467503",
+     "result": "no_result",
+     "note": "error；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/0000000121212705",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（Britannica（須具名作者））",
+     "url": "https://www.britannica.com/biography/Fuad-I",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（BnF 權威檔）",
+     "url": "https://catalogue.bnf.fr/ark:/12148/cb160039126",
+     "result": "found_A",
+     "note": "fetched；2937 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（Treccani 百科條目）",
+     "url": "https://www.treccani.it/enciclopedia/fu-ad-i_(Dizionario-di-Storia)",
+     "result": "not_relevant",
+     "note": "fetched；838 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd133467503.html",
+     "result": "found_A",
+     "note": "fetched；2198 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "sourceType": "named_encyclopedia",
+     "query": "直接開啟候選頁（TDV İslâm Ansiklopedisi）",
+     "url": "https://islamansiklopedisi.org.tr/fuad--kral",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 24,
+     "sourceType": "authority",
+     "query": "候選網址",
+     "url": "https://viaf.org/processed/EGAXA%7Cvtls1996461",
+     "result": "not_relevant",
+     "note": "同網域本輪已被擋，不再試",
+     "round": "stage2"
+    },
+    {
+     "step": 25,
+     "sourceType": "authority",
+     "query": "候選網址",
+     "url": "https://id.loc.gov/authorities/names/n82268145.html",
+     "result": "not_relevant",
+     "note": "同網域本輪已被擋，不再試",
+     "round": "stage2"
+    },
+    {
+     "step": 26,
+     "query": "أحمد فؤاد الأول ملك مصر ولد 1868 دراسته إيطاليا",
+     "result": "presidency.eg 挑戰頁；其餘無署名或 Wikipedia 類，無可用 A／B",
+     "round": "stage2"
+    },
+    {
+     "step": 27,
+     "query": "فؤاد الأول ملك مصر سيرة",
+     "result": "presidency.eg 為挑戰頁，無原文；其餘為無署名或 Wikipedia 類",
+     "round": "stage2"
+    },
+    {
+     "step": 28,
+     "query": "Fuad I of Egypt biography sultan 1917",
+     "result": "Britannica 403；encyclopedia.com 無署名",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-f9e1ef": {
+      "url": "https://zh.wikipedia.org/wiki/%E7%A6%8F%E9%98%BF%E5%BE%B7%E4%B8%80%E4%B8%96",
+      "title": "福阿德一世 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-f9e1ef",
+      "url": "https://zh.wikipedia.org/wiki/%E7%A6%8F%E9%98%BF%E5%BE%B7%E4%B8%80%E4%B8%96",
+      "quote": "福阿德一世幼年时期随父亲被流放到意大利",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1550）",
+      "text": {
+       "zh-Hant": "維基百科中文條目稱，他幼年時期隨父親被流放到意大利。",
+       "en": "Chinese Wikipedia says that in his childhood he was exiled with his father to Italy."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-f9e1ef",
+      "url": "https://zh.wikipedia.org/wiki/%E7%A6%8F%E9%98%BF%E5%BE%B7%E4%B8%80%E4%B8%96",
+      "quote": "1915年-1918年，福阿德一世还担任埃及地理协会（Egyptian Geographic Society）的会长。",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1730）",
+      "text": {
+       "zh-Hant": "該條目又稱，1915年至1918年他擔任埃及地理協會（Egyptian Geographic Society）會長。",
+       "en": "It also says that from 1915 to 1918 he was president of the Egyptian Geographic Society."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-f9e1ef",
+      "url": "https://zh.wikipedia.org/wiki/%E7%A6%8F%E9%98%BF%E5%BE%B7%E4%B8%80%E4%B8%96",
+      "quote": "1930年，福阿德一世试图强化集权，废除了1923年的宪法并颁布了新的宪法。",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1995）",
+      "text": {
+       "zh-Hant": "該條目並稱，1930年他廢除1923年的憲法並頒布新憲法。",
+       "en": "It adds that in 1930 he abolished the 1923 constitution and issued a new one."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

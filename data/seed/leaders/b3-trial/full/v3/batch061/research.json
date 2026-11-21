@@ -548,7 +548,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -560,7 +562,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -896,7 +900,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -908,7 +914,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -944,7 +952,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1024,7 +1034,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1036,7 +1048,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1050,6 +1064,13 @@
        "datePrecision": null,
        "claimSpan": null,
        "policyVersion": "bio-2026-11-v0"
+      }
+     ],
+     "pendingCitation": [
+      {
+       "s": 2,
+       "zh": "德國國家圖書館權威檔也記他生於1873年4月15日、卒於1933年12月12日，並稱他為捷克政治人物。",
+       "status": "待補"
       }
      ]
     }
@@ -1157,6 +1178,12 @@
      "note": "待查證：缺迄日；ÖBL（A）只寫1909年起任捷克農業黨主席，未寫黨主席離任日（「1929年12月辭去所有職務」未明指黨主席，不可據以推定迄日）；已查 ÖBL、lobid.org／GND。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
+    },
+    {
+     "target": "paragraph:5",
+     "gapKind": "not_found",
+     "note": "待補引文：保留待補「德國國家圖書館權威檔也記他生於1873年4月15日、卒於1933年12月12日，並稱他為捷克政治人物。」",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -1240,7 +1267,64 @@
      "result": "no_result",
      "note": "工作階段搜尋額度用盡，未能執行搜尋"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ru-aa1b24": {
+      "url": "https://ru.wikipedia.org/wiki/%D0%A8%D0%B2%D0%B5%D0%B3%D0%BB%D0%B0%2C_%D0%90%D0%BD%D1%82%D0%BE%D0%BD%D0%B8%D0%BD",
+      "title": "Швегла, Антонин – Wikipedia（ru）",
+      "publisher": "Wikipedia",
+      "lang": "ru",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     },
+     "c-wp-ja-a394bd": {
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%83%BC%E3%83%B3%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%B4%E3%82%A7%E3%83%95%E3%83%A9",
+      "title": "アントニーン・シュヴェフラ – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ru-aa1b24",
+      "url": "https://ru.wikipedia.org/wiki/%D0%A8%D0%B2%D0%B5%D0%B3%D0%BB%D0%B0%2C_%D0%90%D0%BD%D1%82%D0%BE%D0%BD%D0%B8%D0%BD",
+      "quote": "В 1927 году Швегле было предложено выставить свою кандидатуру в президенты",
+      "quoteLang": "ru",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 5026）",
+      "text": {
+       "zh-Hant": "1927年有人提議他參選捷克斯洛伐克總統。",
+       "en": "In 1927 he was proposed as a presidential candidate."
+      }
+     }
+    ],
+    "dates": [
+     {
+      "target": "role:svehla-agrarian-chair.end",
+      "cKey": "c-wp-ja-a394bd",
+      "url": "https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%B3%E3%83%88%E3%83%8B%E3%83%BC%E3%83%B3%E3%83%BB%E3%82%B7%E3%83%A5%E3%83%B4%E3%82%A7%E3%83%95%E3%83%A9",
+      "quote": "党首（1909年-1933年）",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 846）",
+      "value": "1933-01-01",
+      "precision": "year",
+      "status": "待查證（只有 C 級來源）",
+      "confirmed": false
+     }
+    ]
+   }
   },
   {
    "key": "pe-prado",

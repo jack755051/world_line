@@ -1321,8 +1321,160 @@
      "url": null,
      "result": "no_result",
      "note": "WebSearch 額度用盡，未執行"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Jin Yunpeng",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 1 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Jin Yunpeng（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Jin%20Yunpeng&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Jin Yunpeng（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Jin%20Yunpeng&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "official",
+     "query": "直接開啟候選頁（中央研究院）",
+     "url": "https://mhdb.mh.sinica.edu.tw/mhpeople/result.php?peopleId=gdfiexiyikxekxx",
+     "result": "found_A",
+     "note": "fetched；1798 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1380225868.json",
+     "result": "found_A",
+     "note": "fetched；1912 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1380225868.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1209692589.json",
+     "result": "found_A",
+     "note": "fetched；2533 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1209692589.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "query": "靳雲鵬 國務總理 生平 山東濮縣 字翼青",
+     "result": "only Wikipedia/mirrors; no A/B source",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "query": "Jin Yunpeng premier Republic of China 1919 biography Beiyang",
+     "result": "only Wikipedia/mirrors; no A/B source",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "query": "靳雲鵬 1877 1951 傳記 陸軍總長 國務總理 辭典",
+     "result": "Wikipedia mirrors plus an aisixiang repost; no A/B source fetched",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-ja-bcce91": {
+      "url": "https://ja.wikipedia.org/wiki/%E9%9D%B3%E9%9B%B2%E9%B5%AC",
+      "title": "靳雲鵬 – Wikipedia（ja）",
+      "publisher": "Wikipedia",
+      "lang": "ja",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-bcce91",
+      "url": "https://ja.wikipedia.org/wiki/%E9%9D%B3%E9%9B%B2%E9%B5%AC",
+      "quote": "安徽派 の有力軍人で、 段祺瑞 配下の「 四大金剛 」の筆頭",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1307）",
+      "text": {
+       "zh-Hant": "靳雲鵬是安徽派的有力軍人，被視為段祺瑞配下「四大金剛」之首。",
+       "en": "Jin Yunpeng was a leading Anhui-clique military figure, regarded as the foremost of Duan Qirui's \"Four Vajras\" (四大金剛)."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-bcce91",
+      "url": "https://ja.wikipedia.org/wiki/%E9%9D%B3%E9%9B%B2%E9%B5%AC",
+      "quote": "天津 のイギリス 租界 に移住して、日本との合弁会社を営む",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 2842）",
+      "text": {
+       "zh-Hant": "後來他移居天津租界，經營與日本合資的公司，專注於經濟活動。",
+       "en": "He later moved to the Tianjin concession and ran a joint venture with Japanese partners, focusing on business."
+      }
+     },
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-ja-bcce91",
+      "url": "https://ja.wikipedia.org/wiki/%E9%9D%B3%E9%9B%B2%E9%B5%AC",
+      "quote": "晩年は仏門に入り、 中華人民共和国 建国後も天津に留まっている",
+      "quoteLang": "ja",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 3194）",
+      "text": {
+       "zh-Hant": "晚年他入佛門，中華人民共和國成立後仍留在天津。",
+       "en": "In his later years he turned to Buddhism and remained in Tianjin after the founding of the People's Republic of China."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

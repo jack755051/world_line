@@ -1624,7 +1624,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1636,7 +1638,9 @@
        "accessedOn": "2026-11-15",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1668,7 +1672,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1855,8 +1861,105 @@
      "url": null,
      "result": "unrated",
      "note": "Infopédia 與維基；無新 A／B 來源"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Domingos Augusto Alves da Costa Oliveira",
+     "url": null,
+     "result": "unrated",
+     "note": "取得 2 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "authority",
+     "query": "Domingos Augusto Alves da Costa Oliveira（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Domingos%20Augusto%20Alves%20da%20Costa%20Oliveira&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "Domingos Augusto Alves da Costa Oliveira（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Domingos%20Augusto%20Alves%20da%20Costa%20Oliveira&filter=type:Person&format=json&size=3",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（VIAF）",
+     "url": "http://viaf.org/viaf/99980631",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（ISNI）",
+     "url": "https://isni.org/isni/0000000069624760",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "query": "Domingos Augusto Alves da Costa Oliveira general 1873 Presidente do Ministério 1930 biografia",
+     "result": "only Infopedia (unrated) and Wikipedia mirrors; no A/B source",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "query": "Domingos Oliveira general Portuguese prime minister 1930 1932 biography",
+     "result": "same; no A/B source",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "query": "\"Domingos Oliveira\" general Supremo Tribunal Militar Ditadura Nacional Salazar presidente do Ministério",
+     "result": "same; no A/B source",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-en-2b6656": {
+      "url": "https://en.wikipedia.org/wiki/Domingos_Oliveira",
+      "title": "Domingos Oliveira – Wikipedia（en）",
+      "publisher": "Wikipedia",
+      "lang": "en",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-en-2b6656",
+      "url": "https://en.wikipedia.org/wiki/Domingos_Oliveira",
+      "quote": "failed military uprising of April and May 1931 in Madeira and the Azores",
+      "quoteLang": "en",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 4986）",
+      "text": {
+       "zh-Hant": "1931年，馬德拉與亞速爾群島發生軍事起義，但告失敗；奧利韋拉作為保守派反對恢復民主的各種嘗試。",
+       "en": "In 1931 a military uprising in Madeira and the Azores failed; as a conservative, Oliveira opposed attempts to restore democracy."
+      }
+     }
+    ],
+    "dates": []
+   }
   }
  ]
 }

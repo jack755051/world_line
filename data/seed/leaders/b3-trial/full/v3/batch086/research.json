@@ -1148,7 +1148,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1272,7 +1274,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -1296,8 +1300,9 @@
     {
      "target": "paragraph:length",
      "gapKind": "not_found",
-     "note": "篇幅不足：審查刪除湊字數句與無引文支撐子句後為 3 段／283 字；已查來源類型為權威檔（GND、Deutsche Biographie、LoC、BnF、VIAF 被擋）、具名百科（Britannica 被擋）、學術（1914-1918-online 被擋）、國家辭典（lex.dk 404）；尚未做希臘文原文查詢與希臘官方來源（加強搜尋 round: retry 未做）。",
-     "checkedOn": "2026-11-17"
+     "note": "篇幅不足：3 段／283 字；已查權威檔（GND、Deutsche Biographie、LoC）與 Britannica（403 擋，未繞過）、希臘語與英語搜尋，只得未評等或私人來源，無 A／B 可補。",
+     "checkedOn": "2026-11-20",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -1396,8 +1401,129 @@
      "url": "https://royalfamily.org/?p=55107",
      "result": "unrated",
      "note": "私人／王室網站，未評等，不引用"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Alexander of Greece",
+     "url": null,
+     "result": "no_result",
+     "note": "取得 0 個白名單網址；索引只用來找網址，不當出處",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "Alexander of Greece（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Alexander%20of%20Greece&count=5",
+     "result": "no_result",
+     "note": "沒有命中",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "authority",
+     "query": "Alexander of Greece（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Alexander%20of%20Greece&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1157507697.json",
+     "result": "found_A",
+     "note": "fetched；2148 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1157507697.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/171738977.json",
+     "result": "found_A",
+     "note": "fetched；3071 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd171738977.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "query": "Αλέξανδρος Α΄ βασιλιάς της Ελλάδας 1917 Βενιζέλος Ασπασία Μάνου",
+     "result": "無可用 A／B",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "query": "Alexander King of Greece Britannica Aspasia Manos 1920",
+     "result": "Britannica 403，未繞過",
+     "round": "stage2"
+    },
+    {
+     "step": 22,
+     "query": "Αλέξανδρος Α΄ της Ελλάδας βασιλιάς 1893 1920 βιογραφία",
+     "result": "只有維基系／未評等頁",
+     "round": "stage2"
+    },
+    {
+     "step": 23,
+     "query": "Alexander I King of the Hellenes 1917 accession biography parliament.gr OR royal.gr",
+     "result": "無官方頁；Britannica 403",
+     "round": "stage2"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-5d381d": {
+      "url": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%E4%B8%80%E4%B8%96_%28%E5%B8%8C%E8%85%8A%29",
+      "title": "亚历山大一世 (希腊) – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-5d381d",
+      "url": "https://zh.wikipedia.org/wiki/%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%E4%B8%80%E4%B8%96_%28%E5%B8%8C%E8%85%8A%29",
+      "quote": "亚历山大并无从政经验，韦尼泽洛斯党人借此剥夺其实权，将其软禁宫中",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1648）",
+      "text": {
+       "zh-Hant": "中文維基百科稱他沒有從政經驗，實權被剝奪。",
+       "en": "Chinese Wikipedia says he had no political experience and his real power was stripped away."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "es-dato",

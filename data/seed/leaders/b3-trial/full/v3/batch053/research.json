@@ -492,7 +492,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": "day",
-       "claimSpan": null,
+       "claimSpan": [
+        5
+       ],
        "policyVersion": "bio-2026-11-v0"
       }
      ]
@@ -652,7 +654,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -664,7 +668,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        2
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -676,7 +682,9 @@
        "accessedOn": "2026-11-15",
        "grade": "A",
        "datePrecision": null,
-       "claimSpan": null,
+       "claimSpan": [
+        3
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -1040,13 +1048,6 @@
      "note": "待查證：僅 president.lv 一個機構來源寫 1859-09-14（中英兩版同一機構），未取得第二個獨立來源交叉確認；無衝突。",
      "candidateCitations": [],
      "checkedOn": "2026-11-15"
-    },
-    {
-     "target": "paragraph:length",
-     "gapKind": "not_found",
-     "note": "篇幅不足：目前 5 段、中文 657 字，段數與字數已達標，但仍有 3 筆職位（Tēvija 編輯、難民救濟中央委員會主席、庫爾蘭土地大會主席）缺迄日、1 筆黨職缺起日而未達任期標準；本輪已查來源類型：官方（總統府、Saeima、Latvijas Vēstnesis）、國家辭典／百科（Latvijas Nacionālā enciklopēdija 404、Britannica 403）、學術（LU Akadēmiskā Dzīve、journal.lu.lv）、其他（lvportals）；WebSearch 額度用盡，僅完成 1 次檢索與 8 次 curl，未達加強搜尋量。",
-     "candidateCitations": [],
-     "checkedOn": "2026-11-15"
     }
    ],
    "searchLog": [
@@ -1212,7 +1213,41 @@
      "note": "WebSearch 額度用盡，無法繼續；LoC／VIAF 等未查",
      "round": "retry"
     }
-   ]
+   ],
+   "supplementC": {
+    "grade": "C",
+    "status": "A/B不足，已用C補",
+    "displayFlag": "未查證・維基百科補充",
+    "note": "主內容 A／B 不足時的 C 級補充；主段落不引用，達標判定不計入，日期一律待查證。之後 A／B 找到就取代。",
+    "addedOn": "2026-11-20",
+    "sources": {
+     "c-wp-zh-62d7c8": {
+      "url": "https://zh.wikipedia.org/wiki/%E9%9B%85%E5%B0%BC%E6%96%AF%C2%B7%E6%81%B0%E5%85%8B%E6%96%AF%E7%89%B9",
+      "title": "雅尼斯·恰克斯特 – Wikipedia（zh）",
+      "publisher": "Wikipedia",
+      "lang": "zh",
+      "grade": "C",
+      "accessedOn": "2026-11-20"
+     }
+    },
+    "clauses": [
+     {
+      "target": "paragraph:length",
+      "cKey": "c-wp-zh-62d7c8",
+      "url": "https://zh.wikipedia.org/wiki/%E9%9B%85%E5%B0%BC%E6%96%AF%C2%B7%E6%81%B0%E5%85%8B%E6%96%AF%E7%89%B9",
+      "quote": "1927年3月14日 ( 1927-03-14 ) （67歲） 拉脫維亞 里加",
+      "quoteLang": "zh",
+      "accessedOn": "2026-11-20",
+      "grade": "C",
+      "locator": "條目正文（正規化後字元位置 1100）",
+      "text": {
+       "zh-Hant": "他於1927年3月14日在里加去世，享年67歲。",
+       "en": "He died on 14 March 1927, aged 67."
+      }
+     }
+    ],
+    "dates": []
+   }
   },
   {
    "key": "nl-colijn",

@@ -39,8 +39,8 @@
       "end": null
      },
      "body": {
-      "zh-Hant": "1939年9月波蘭戰役期間，德軍以邊境指揮部的營、第62步兵師的一個團及第252步兵師部分單位組成特遣群，稱為吉南特群（Group Gienanth），負責防衛南方集團軍群暴露的左翼。來源只提到此群之名，未寫其指揮官全名與任期。",
-      "en": "During the September 1939 Polish campaign, German frontier-command battalions, a regiment of the 62d Infantry Division and elements of the 252d Infantry Division were formed into a task force called Group Gienanth, responsible for defending Army Group South's exposed left flank. The source gives only the group's name, not its commander's full name or tenure."
+      "zh-Hant": "1939年9月波蘭戰役期間，德軍以邊境指揮部的營、第62步兵師的一個團及第252步兵師部分單位組成特遣群，稱為吉南特群（Group Gienanth），負責防衛南方集團軍群暴露的左翼。",
+      "en": "During the September 1939 Polish campaign, German frontier-command battalions, a regiment of the 62d Infantry Division and elements of the 252d Infantry Division were formed into a task force called Group Gienanth, responsible for defending Army Group South's exposed left flank."
      },
      "citations": [
       {
@@ -52,7 +52,9 @@
        "accessedOn": "2026-11-18",
        "grade": "B",
        "datePrecision": null,
-       "claimSpan": "Group Gienanth 為特遣群",
+       "claimSpan": [
+        1
+       ],
        "policyVersion": "bio-2026-11-v0"
       },
       {
@@ -90,6 +92,12 @@
      "target": "paragraph:length",
      "gapKind": "not_found",
      "note": "篇幅不足：目前 1 段、約 100 字；已查官方（US Army）、權威檔、國家級傳記辭典、Bundesarchiv，DDB 被擋。"
+    },
+    {
+     "target": "paragraph:1",
+     "gapKind": "not_found",
+     "note": "待補引文：已刪除「來源只提到此群之名，未寫其指揮官全名與任期。」",
+     "candidateCitations": []
     }
    ],
    "searchLog": [
@@ -164,6 +172,102 @@
      "url": null,
      "result": "unrated",
      "note": "僅有 wiki 類索引頁，不可引"
+    },
+    {
+     "step": 10,
+     "sourceType": "authority",
+     "query": "索引查詢（名稱 → 權威檔／辭典識別碼）：Gienanth",
+     "url": null,
+     "result": "no_result",
+     "note": "索引沒有可確認的同名人物",
+     "round": "stage2"
+    },
+    {
+     "step": 11,
+     "sourceType": "authority",
+     "query": "Gienanth（LoC suggest2）",
+     "url": "https://id.loc.gov/authorities/names/suggest2?q=Gienanth&count=5",
+     "result": "found_A",
+     "note": "1 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 12,
+     "sourceType": "authority",
+     "query": "Gienanth（GND／lobid）",
+     "url": "https://lobid.org/gnd/search?q=Gienanth&filter=type:Person&format=json&size=3",
+     "result": "found_A",
+     "note": "3 筆候選",
+     "round": "stage2"
+    },
+    {
+     "step": 13,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（LoC Name Authority）",
+     "url": "https://id.loc.gov/authorities/names/n87949848.html",
+     "result": "blocked_403",
+     "note": "blocked_403；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 14,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1061292193.json",
+     "result": "found_A",
+     "note": "fetched；2630 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 15,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1061292193.html",
+     "result": "found_A",
+     "note": "fetched；890 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 16,
+     "sourceType": "authority",
+     "query": "直接開啟候選頁（GND 權威檔（lobid））",
+     "url": "https://lobid.org/gnd/1165354365.json",
+     "result": "found_A",
+     "note": "fetched；4034 字；有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 17,
+     "sourceType": "national_dictionary",
+     "query": "直接開啟候選頁（Deutsche Biographie（NDB／ADB））",
+     "url": "https://www.deutsche-biographie.de/pnd1165354365.html",
+     "result": "no_result",
+     "note": "http_404；0 字；沒有人名命中段落",
+     "round": "stage2"
+    },
+    {
+     "step": 18,
+     "query": "Gruppe Gienanth 1939 Polenfeldzug Grenzschutz Kommandeur Gienanth",
+     "result": "僅得私人彙編與論壇，無 A/B 來源",
+     "round": "stage2"
+    },
+    {
+     "step": 19,
+     "query": "Group Gienanth September 1939 Poland Army Group South left flank",
+     "result": "未載指揮官；nationalww2museum 403 放棄",
+     "round": "stage2"
+    },
+    {
+     "step": 20,
+     "query": "Curt Freiherr von Gienanth General der Kavallerie 1876 1961",
+     "result": "僅 generals.dk／tracesofwar（X／未評等），不可引",
+     "round": "stage2"
+    },
+    {
+     "step": 21,
+     "query": "Gienanth Höheres Kommando z.b.V. XXXVI 1939 Grenzschutz-Abschnittskommando 14",
+     "result": "檔案入口摘要僅見 Gen.Kdo. Gienanth 稱呼，無可抓 A/B 全文",
+     "round": "stage2"
     }
    ]
   }

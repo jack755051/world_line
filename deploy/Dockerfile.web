@@ -12,7 +12,8 @@ ENV WL_COMMIT=${WL_COMMIT}
 ENV WL_BUILD_TIME=${WL_BUILD_TIME}
 RUN node scripts/write-version.mjs
 RUN pnpm exec ng build --configuration production --output-path /out \
- && rm -rf /out/browser/campaigns   # 戰役不上第一版：不帶戰役 JSON
+ && rm -rf /out/browser/campaigns /out/browser/battle   # 戰役不上線：不帶戰役 JSON，也不帶新版戰役頁 /battle/（.dockerignore 已擋 public/battle，這裡再保險一次）
+# 之後要讓 /battle/ 上線（通過憲法 Decision 5 最低上線標準、WL_INCLUDE_BATTLE=1）時，要另外 COPY demos/battle-v2.5 並跑 scripts/sync-battle-page.mjs，並拿掉上面的 /out/browser/battle
 
 FROM nginx:1.27-alpine
 COPY deploy/nginx.web.conf /etc/nginx/conf.d/default.conf

@@ -11,7 +11,7 @@ leader_bio_paragraphs／person_positions／person_roles（無衝突者）＋各�
 
 規則摘要
 - 別名正規化只動 gap 的 field: 目標（birth_date→birthDate…）；不在 LeaderBioFields 的（recordIds、positions、biography…）留 seed、不入庫。
-- 字串型 claimSpan 併入該筆 evidence_note（已有內容就接在後面，以「；」連接）；claim_span 欄一律空。
+- 字串型 claimSpan 併入該筆 evidence_note（已有內容就接在後面，以「；」連接），claim_span 欄空；整數清單型（b3v3：支撐第幾句）寫入 claim_span int4range，不連續就拆成多筆。
 - T14 過程註記（t14Overlap、roleEligible…）不入庫；roleCandidates 的 t14Rule 入 person_roles.t14_rule；reason 併入 note。
 - person_positions 拒絕 head_of_state／head_of_government／de_facto_leader（應走角色層）。
 - 沒有 period.start 的經歷／角色（Tai 2026-11-11 19:14）：不寫 person_positions／person_roles，改記 leader_bio_gaps
@@ -79,6 +79,22 @@ def norm_field_target(target):
             return None, False
         return "field:" + g, g != f
     return target, False
+
+
+def claim_span_ranges(span):
+    """整數清單 claimSpan（支撐 zh-Hant 第幾句，1 起算；b3v3 新流程）→ 連續句號的 int4range 字串清單，例 [1,2,4] → ['[1,3)','[4,5)']。
+    不連續時拆成多筆引文（與 2026-11-23 第一次同步 tiers 併回資料時的寫法相同）。非清單回傳 None。"""
+    if not isinstance(span, list) or not span:
+        return None
+    if not all(isinstance(x, int) and not isinstance(x, bool) and x >= 1 for x in span):
+        raise ValueError("claimSpan 清單須為 ≥1 的整數：%r" % (span,))
+    xs = sorted(set(span)); runs = []; start = prev = xs[0]
+    for x in xs[1:]:
+        if x != prev + 1:
+            runs.append((start, prev)); start = x
+        prev = x
+    runs.append((start, prev))
+    return ["[%d,%d)" % (a, b + 1) for a, b in runs]
 
 
 def merge_claim_span(note, span):
@@ -258,12 +274,14 @@ def plan(batches, st, overrides):
             if not (c.get("locator") or "").strip() or not (c.get("quote") or "").strip() or c.get("grade") not in GRADES_OK:
                 P["cit_dropped"].append((owner, c.get("sourceKey"), "locator／quote 空白或 grade 非 A/B/C"))
                 continue
-            note, merged = merge_claim_span(c.get("evidenceNote"), c.get("claimSpan"))
+            ranges = claim_span_ranges(c.get("claimSpan"))
+            note, merged = (c.get("evidenceNote"), False) if ranges else merge_claim_span(c.get("evidenceNote"), c.get("claimSpan"))
             P["claimspan_merged"] += merged
-            out.append({"source_id": sid, "locator": c["locator"], "quote": c["quote"], "quote_lang": c.get("quoteLang"),
-                        "evidence_note": note, "accessed_on": c["accessedOn"], "grade": c.get("grade"),
-                        "date_precision": c.get("datePrecision") if c.get("datePrecision") in PRECISIONS else None,
-                        "policy_version": c.get("policyVersion")})
+            for rng in ranges or [None]:
+                out.append({"source_id": sid, "locator": c["locator"], "quote": c["quote"], "quote_lang": c.get("quoteLang"),
+                            "evidence_note": note, "accessed_on": c["accessedOn"], "grade": c.get("grade"),
+                            "date_precision": c.get("datePrecision") if c.get("datePrecision") in PRECISIONS else None,
+                            "policy_version": c.get("policyVersion"), "claim_span": rng})
         return out
 
     def prec(v, bounded):
@@ -441,9 +459,11 @@ def build_sql(P):
           ",".join(sql_lit(s[k]) for k in ("id", "kind", "title", "publisher", "authors", "published_text", "url", "archive_url", "catalog_id", "license_code")))
 
     def cit(table, fk, pid, c):
-        A("INSERT INTO %s (%s,source_id,locator,quote,quote_lang,evidence_note,accessed_on,grade,date_precision,policy_version) VALUES (%s);" %
+        span = c.get("claim_span")
+        A("INSERT INTO %s (%s,source_id,locator,quote,quote_lang,evidence_note,accessed_on,grade,date_precision,policy_version,claim_span) VALUES (%s,%s);" %
           (table, fk, ",".join(sql_lit(x) for x in (pid, c["source_id"], c["locator"], c["quote"], c["quote_lang"], c["evidence_note"],
-                                                    c["accessed_on"], c["grade"], c["date_precision"], c["policy_version"]))))
+                                                    c["accessed_on"], c["grade"], c["date_precision"], c["policy_version"])),
+           (sql_lit(span) + "::int4range") if span else "NULL"))
     for g in P["par"]:
         pid = str(uuid.uuid4())
         A("INSERT INTO leader_bio_paragraphs (id,bio_id,ord,period,period_start_precision,period_end_precision,heading,body) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);" %

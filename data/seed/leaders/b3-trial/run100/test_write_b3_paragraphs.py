@@ -22,6 +22,15 @@ class Transforms(unittest.TestCase):
         self.assertIsNone(w.norm_field_target("position: bad")[0])
         self.assertIsNone(w.norm_field_target("paragraph:" + "x" * 60)[0])
 
+    def test_claim_span_ranges(self):
+        self.assertEqual(w.claim_span_ranges([2]), ["[2,3)"])
+        self.assertEqual(w.claim_span_ranges([1, 2, 4]), ["[1,3)", "[4,5)"])
+        self.assertEqual(w.claim_span_ranges([3, 1, 2]), ["[1,4)"])
+        self.assertIsNone(w.claim_span_ranges(None))
+        self.assertIsNone(w.claim_span_ranges("說明"))
+        with self.assertRaises(ValueError):
+            w.claim_span_ranges([0])
+
     def test_claim_span_merge(self):
         self.assertEqual(w.merge_claim_span(None, "支撐『對德協議』"), ("支撐『對德協議』", True))
         self.assertEqual(w.merge_claim_span("只寫年份", "支撐A"), ("只寫年份；支撐A", True))

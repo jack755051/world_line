@@ -137,7 +137,7 @@ scripts/release-db.sh              # 正式執行；動正式庫前會兩次要�
 
 ```bash
 cd ~/worldline
-docker login ghcr.io -u <GitHub 帳號> --password-stdin   # 用只有 read:packages 的 token；套件改成公開後就不需要登入
+docker login ghcr.io -u <user> --password-stdin   # api 套件是私有的：用另一把只有 read:packages 的 PAT（不要用推送用的 token）
 
 docker compose -f docker-compose.prod.yml --env-file .env.prod pull
 docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --remove-orphans

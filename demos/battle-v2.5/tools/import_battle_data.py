@@ -37,6 +37,7 @@ R1 = L('r1-units.json')['units']
 R3 = L('r3-unit-positions.json', {'positions': []})['positions'] + L('r3-leadin-positions.json', {'positions': []})['positions']   # 後者＝前段（5/10–5/25）集團軍／軍層級的文字位置
 R4 = L('r4-fronts.json', {'fronts': []})
 R4L = L('r4-leadin-fronts.json', {'fronts': []})['fronts']
+R4T = L('r4-text-fronts.json', {'fronts': []})['fronts']   # 主期沒有態勢圖的日子，文字出處點名的城鎮連成的線（只畫當天）
 R5 = L('r5-engagements.json', {'engagements': []})['engagements']
 R6 = L('r6-site-control.json', {'sites': []})['sites']
 R7 = L('r7-commanders.json', {'commanders': []})['commanders']
@@ -95,7 +96,7 @@ TEXT_REL = {'holding', 'attacking', 'withdrew_to', 'at', 'within_perimeter', 're
 TEXT_ST = {'attacking': 'attack', 'capturing': 'attack', 'holding': 'defend', 'rearguard': 'defend', 'within_perimeter': 'defend', 'fighting': 'defend', 'withdrew_to': 'retreat', 'evacuating': 'evacuating', 'surrounded': 'encircled', 'surrendered': 'surrendered'}
 # 有文字位置的日期也當關鍵日（否則 5/31、6/2 這些沒有態勢圖的日子，出處明明寫到部隊在哪，卻畫不出來）
 kdates = sorted({p['from'] for p in phases} | set(mark_map) | {D1} | {p['date'] for p in R3 if p.get('relation') in TEXT_REL and D0 <= (p.get('date') or '') <= D1}
-                | {f['date'] for f in R4L if D0 <= f['date'] <= D1}
+                | {f['date'] for f in R4L + R4T if D0 <= f['date'] <= D1}
                 | {x['from'] for x in L('schematic.json', {'shapes': []})['shapes'] if x['kind'] in ('country', 'arrow') and D0 <= x['from'] <= D1} | {x['to'] for x in L('schematic.json', {'shapes': []})['shapes'] if x['kind'] == 'arrow' and D0 <= x['to'] <= D1})   # 文字防線生效的日期也當關鍵日（示意領地要在那一天換線）
 def cam(d):
     c = VIEW['camera_from'][0][1]
@@ -213,6 +214,18 @@ for p in R3:
     positions.append({'unit_id': p['unitKey'], 'date': p['date'], 'lng': ll[0], 'lat': ll[1], 'state': TEXT_ST.get(p['relation'], 'move'), 'status': 'text', 'precision_m': 5000,
                       'place_zh': p.get('placeAsInSource'), 'source': 'text:' + (p['citations'][0]['sourceKey'] if p.get('citations') else ''), 'relation': p['relation'], 'level': text_level(p),
                       **({'opposing': True} if p.get('sourceSide') == 'opposing' else {})})   # 只有對手方出處＝待查證（docs/source-rules.md）
+# 空軍基地：出處寫明某單位以某地為基地（relation = based_in）時，那段期間的每個關鍵日都放一個位置。
+# 出處通常只到郡或地區的範圍，精度照實放大；這是基地所在的區域，不是機場座標（design.md R8）。
+n_base = 0
+for p in R3:
+    if p.get('relation') != 'based_in' or p.get('unitKey') not in roster_ids: continue
+    ll = lonlat(p.get('place'), 'r3')
+    if not ll: continue
+    for kd in sorted(kdates):
+        if not (p['date'] <= kd <= (p.get('dateTo') or p['date'])) or (p['unitKey'], kd) in have: continue
+        have.add((p['unitKey'], kd)); n_base += 1
+        positions.append({'unit_id': p['unitKey'], 'date': kd, 'lng': ll[0], 'lat': ll[1], 'state': 'move', 'status': 'text', 'precision_m': 35000, 'place_zh': p.get('placeAsInSource'),
+                          'source': 'text:' + p['citations'][0]['sourceKey'], 'relation': 'based_in', 'level': text_level(p), 'region': True})
 for p in coarse_later:
     if (p['unit_id'], p['date']) not in have: have.add((p['unit_id'], p['date'])); positions.append(p)
 for uid, u in marks.items():
@@ -260,11 +273,12 @@ for f in R4['fronts']:
                   'refs': [{'src': sid('map:' + f['mapRef']['mapKey'], f['mapRef'].get('url'), f['mapRef']['citation']), 'quote': None, 'loc': None, 'url': f['mapRef'].get('url'), 'grade': f['mapRef'].get('grade')}],
                   'note': f.get('readNote')})
 ldates = sorted({f['date'] for f in R4L})
-for f in R4L:
-    pts = [(v['placeAsInSource'], lonlat(v.get('place'), 'r4-leadin')) for v in f['vertices']]
+for f in R4L + R4T:
+    pts = [(v['placeAsInSource'], lonlat(v.get('place'), 'r4-text')) for v in f['vertices']]
     path = [ll for _, ll in pts if ll]
     if len(path) < 2: continue
-    i = ldates.index(f['date']); to = plus(ldates[i + 1], -1) if i + 1 < len(ldates) else plus(RES['phases'][0]['start'], -1)
+    if f in R4T: to = f['date']
+    else: i = ldates.index(f['date']); to = plus(ldates[i + 1], -1) if i + 1 < len(ldates) else plus(RES['phases'][0]['start'], -1)
     lines.append({'phase': ph_of(f['date']), 'from': f['date'], 'to': max(to, f['date']), 'name': f.get('label'), 'side': f.get('side'), 'kind': 'front', 'vertices': [n for n, ll in pts if ll], 'path': path,
                   'precision': f.get('precisionNote'), 'verified': False, 'level': 'estimate', 'basis': 'text', 'refs': refs(f['citations']), 'note': f.get('lineNote'),
                   **({'missing_vertices': [n for n, ll in pts if not ll]} if any(not ll for _, ll in pts) else {})})
@@ -352,7 +366,7 @@ rep = f"""# 匯入報告：{bid}
 | 態勢圖 | {len(MAPS)} | {len(mark_map)} | 未通過配準門檻不用：{'、'.join(skipped_maps) or '—'}；同日多張只取一張的標註 |
 | 圖上標註 | {sum(len(m['features']) for m in MAPS)} | {len(positions)} | **已對到名冊 {linked} 個**；其餘 {npos_mark} 個位置歸成 {nmark} 個「圖上標註」 |
 | 前線（R4 主期，讀圖） | {len(R4['fronts'])} | {sum(1 for l in lines if l['basis'] == 'map')} | 推估，虛線 |
-| 前線（R4 前段，文字） | {len(R4L)} | {sum(1 for l in lines if l['basis'] == 'text')} | |
+| 前線（R4 文字：前段＋主期無圖日） | {len(R4L)}＋{len(R4T)} | {sum(1 for l in lines if l['basis'] == 'text')} | 推估，城鎮連線 |
 | 交戰（R5） | {len(R5)} | {len(engs)} | 未匯入：{'；'.join(f'{k}（{w}）' for k, w in eng_skip) or '—'} |
 | 據點（R6） | {len(R6)} | {sum(len(s['changes']) for s in sites.values())} 筆／{len(sites)} 處 | 控制方未載的 {sum(1 for s in R6 if not s.get('controllerAfter'))} 筆照樣帶入，標待查證 |
 

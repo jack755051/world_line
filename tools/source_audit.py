@@ -165,7 +165,7 @@ def battles():
         kind = f"戰役 {D.name}"; src = load(D / "sources.json") or {}; src = src.get("sources", src)
         for k, v in src.items():
             if isinstance(v, dict) and banned(v.get("url")) and v.get("grade") != "C": hit(kind, "違規：禁用網域的來源評為 A/B", D / "sources.json")
-        for fn in ("r1-units", "r3-unit-positions", "r4-fronts", "r4-leadin-fronts", "r5-engagements", "r6-site-control", "r7-commanders", "phase-leadin"):
+        for fn in ("r1-units", "r3-unit-positions", "r4-fronts", "r4-leadin-fronts", "r4-text-fronts", "r5-engagements", "r6-site-control", "r7-commanders", "phase-leadin"):
             d = load(D / (fn + ".json"))
             if not isinstance(d, dict): continue
             for r in next((v for v in d.values() if isinstance(v, list) and v and isinstance(v[0], dict) and ("citations" in v[0] or "mapRef" in v[0])), []):

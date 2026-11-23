@@ -1,0 +1,109 @@
+{
+ "schema": "battle-data/0.1 r4-text-fronts",
+ "researchedOn": "2026-11-19",
+ "note": "主期沒有態勢圖、或圖上沒畫前線的日子，由文字出處當天點名的交戰城鎮連成的線；一律推估，只畫當天。來源：battle-run 2026-11-19（staging dunkirk_1940-full，b08），戰役 session 補齊頂點後併入。",
+ "fronts": [
+  {
+   "date": "1940-05-31",
+   "datePrecision": "day",
+   "label": "5/31 橋頭堡南線與比利時段交戰地點連線（Bergues—Bulscamp—Furnes—Nieuport）",
+   "side": "allied",
+   "basis": "text-vertices",
+   "vertices": [
+    {
+     "placeAsInSource": "Bergues",
+     "place": {
+      "nameOsm": "Bergues",
+      "osm": {
+       "type": "relation",
+       "id": 139259
+      }
+     }
+    },
+    {
+     "placeAsInSource": "Bulscamp",
+     "place": {
+      "nameOsm": "Bulskamp",
+      "osm": {
+       "type": "relation",
+       "id": 2242979
+      }
+     }
+    },
+    {
+     "placeAsInSource": "Furnes",
+     "place": {
+      "nameOsm": "Veurne",
+      "osm": {
+       "type": "relation",
+       "id": 1516302
+      }
+     }
+    },
+    {
+     "placeAsInSource": "Nieuport",
+     "place": {
+      "nameOsm": "Nieuwpoort",
+      "osm": {
+       "type": "relation",
+       "id": 1292926
+      }
+     }
+    }
+   ],
+   "estimate": "推估",
+   "precisionNote": "文字地名頂點，非測繪線；出處只寫這幾處當天有戰鬥，線依地理順序由西南到東北連接，精度約為地名間距",
+   "lineNote": "同段另寫 50 師防區始於 the frontier（法比邊界），不是城鎮，沒有當頂點。",
+   "citations": [
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Ch. XV, p. 234 (HyperWar UK-NWE-Flanders-15.html)",
+     "quote": "especially near Bergues, the enemy's attack on this day (31st May) was",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "accessedOn": "2026-11-19",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Ch. XV, p. 234 (HyperWar UK-NWE-Flanders-15.html)",
+     "quote": "On the 50th Division front between the frontier and Bulscamp",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "accessedOn": "2026-11-19",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Ch. XV, p. 234 (HyperWar UK-NWE-Flanders-15.html)",
+     "quote": "on the 3rd Division front near Furnes, and in the 4th",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "accessedOn": "2026-11-19",
+     "grade": "A"
+    },
+    {
+     "sourceKey": "ellis-war-in-france-flanders",
+     "locator": "Ch. XV, p. 234 (HyperWar UK-NWE-Flanders-15.html)",
+     "quote": "Division sector at Nieuport, the enemy attacked heavily",
+     "quoteLang": "en",
+     "url": "https://www.ibiblio.org/hyperwar/UN/UK/UK-NWE-Flanders/UK-NWE-Flanders-15.html",
+     "accessedOn": "2026-11-19",
+     "grade": "A"
+    }
+   ],
+   "confidence": {
+    "level": "needs-check",
+    "why": "一筆 A 級出處（uk-army-official-bef）；位置／線形為推估",
+    "singleSource": true,
+    "opposingOnly": false,
+    "sourceFamilies": [
+     "uk-army-official-bef"
+    ],
+    "effectiveGrade": "A",
+    "battleFact": true,
+    "tool": "tools/battles/crosscheck.py"
+   }
+  }
+ ]
+}

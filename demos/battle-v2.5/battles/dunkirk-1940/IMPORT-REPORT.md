@@ -6,11 +6,11 @@
 |---|---|---|---|
 | 名冊單位（R1） | 67 | 64 | 未匯入 3 個標為查無：fr-68-di、fr-32-di、de-luftflotte-2；只有一個來源的 62 個 |
 | 指揮官（R7） | 41 | 41 | |
-| 文字位置（R3） | 241 | 241 | 其中 124 筆畫上地圖（該單位當天沒有圖上位置、且關係表示部隊所在）；其餘只顯示在單位卡片 |
+| 文字位置（R3） | 242 | 242 | 其中 124 筆畫上地圖（該單位當天沒有圖上位置、且關係表示部隊所在）；其餘只顯示在單位卡片 |
 | 態勢圖 | 15 | 11 | 未通過配準門檻不用：usma-13-4jun；同日多張只取一張的標註 |
-| 圖上標註 | 706 | 364 | **已對到名冊 242 個**；其餘 0 個位置歸成 0 個「圖上標註」 |
+| 圖上標註 | 706 | 391 | **已對到名冊 262 個**；其餘 0 個位置歸成 0 個「圖上標註」 |
 | 前線（R4 主期，讀圖） | 27 | 27 | 推估，虛線 |
-| 前線（R4 前段，文字） | 7 | 8 | |
+| 前線（R4 文字：前段＋主期無圖日） | 7＋1 | 9 | 推估，城鎮連線 |
 | 交戰（R5） | 28 | 18 | 未匯入：cand-hannut（來源檔標為查無）；cand-sedan（來源檔標為查無）；cand-dinant（來源檔標為查無）；cand-gembloux（來源檔標為查無）；cand-stonne（來源檔標為查無）；cand-montcornet（來源檔標為查無）；cand-abbeville（來源檔標為查無）；cand-arras（來源檔標為查無）；cand-aa（來源檔標為查無）；cand-boulogne（來源檔標為查無）；cand-abb2（來源檔標為查無） |
 | 據點（R6） | 23 | 22 筆／15 處 | 控制方未載的 8 筆照樣帶入，標待查證 |
 
@@ -20,8 +20,8 @@
 
 ## 沒對到名冊的圖上標註（待辦）
 
-設計規則 R2：不上圖、不進清單。242 個位置、129 種標號。補上 `unitKey` 後重跑就會掛到名冊單位上。
-德「12」×4、德「19」×4、德「208」×4、德「217」×4、盟「23」×4、德「251」×4、德「253」×4、德「255」×4、德「267」×4、德「30」×4、德「31」×4、德「32」×4、德「35」×4、德「6」×4、盟「68」×4、盟「THIRD」×4、德「11」×3、德「13 Mot」×3、盟「2」×3、德「225」×3、德「269」×3、盟「32」×3、德「46」×3、德「C」×3、盟「FIRST」×3、盟「FOURTH」×3、盟「I」×3、盟「NINTH」×3、德「SECOND」×3、盟「SECOND」×3、盟「SEVENTH」×3、盟「SFF」×3、德「SIXTEENTH」×3、盟「1」×2、盟「1 DWR」×2、盟「1 E Lan R」×2、盟「1 KSLI」×2、盟「1 Loyals」×2、德「1, 28, 8, 83」×2、盟「2 Hamps」×2、德「2 Mot」×2、盟「2/5 Foresters」×2、盟「2/5 Leicesters」×2、德「227」×2、德「27」×2、德「28」×2、德「29 Mot」×2、盟「3」×2、盟「5 Border」×2、盟「9 Foresters」×2、德「A」×2、德「B」×2、盟「BEF」×2、盟「BELG.」×2、德「EIGHTEENTH」×2、德「FOURTH」×2、德「HOTH」×2、盟「III」×2、德「KLEIST」×2、德「NINTH」×2、德「SIXTH」×2、盟「SIXTH」×2、德「SST」×2、德「TWELVE」×2、盟「」×1、德「1 ARMY」×1、盟「1 Coldm Gds」×1、盟「1 Gren Gds」×1、盟「1 KOSB」×1、盟「1 S Lan R」×1、盟「1 Suffolk」×1、盟「1/6 S Staffords」×1、盟「1/6 Surreys」×1、德「12 ARMY」×1、德「16 ARMY」×1、德「2」×1、德「2 ARMY」×1、盟「2 Bedfs Herts」×1、盟「2 C?」×1、盟「2 DCLI」×1、盟「2 E Yorks」×1、盟「2 Gren Gds」×1、盟「2 Lincolns」×1、盟「2 RF」×1、盟「2 RUR」×1、盟「21 C.I.DIV」×1、德「223」×1、盟「23 DIV」×1、盟「3 Gren Gds」×1、盟「32 DI」×1、盟「32 DIV」×1、盟「4 E Yorks」×1、盟「4 Green Howards」×1、盟「4 NF」×1、盟「4 R Berks」×1、盟「5 Green Howards」×1、德「6 (Flank-guard)」×1、盟「6 Bw」×1、盟「6 DLI」×1、盟「6 Lincolns」×1、盟「6 Y&L」×1、盟「68 DIV」×1、德「68 DIV」×1、德「7」×1、德「7 ARMY」×1、德「8」×1、盟「8 DLI」×1、德「83」×1、盟「88 A Fd R?」×1、盟「9 DLI」×1、德「?」×1、盟「? Own」×1、盟「ADAMFORCE」×1、德「ARMY GROUP C」×1、盟「Det 2 Foresters」×1、盟「EIGHTH」×1、盟「FIFTH」×1、德「FIRST」×1、盟「FR. XVI」×1、德「GUDERIAN」×1、盟「IX CORPS」×1、盟「King's Own」×1、德「REINHARDT」×1、德「SEVENTH」×1、盟「SIXTH RES.」×1、盟「TENTH」×1、德「TWELFTH」×1、盟「V」×1、德「XIV CORPS」×1
+設計規則 R2：不上圖、不進清單。216 個位置、118 種標號。補上 `unitKey` 後重跑就會掛到名冊單位上。
+德「12」×4、德「19」×4、德「208」×4、德「217」×4、盟「23」×4、德「251」×4、德「253」×4、德「255」×4、德「267」×4、德「30」×4、德「31」×4、德「32」×4、德「35」×4、盟「68」×4、盟「THIRD」×4、德「11」×3、德「13 Mot」×3、德「225」×3、德「269」×3、盟「32」×3、德「46」×3、德「A」×3、德「B」×3、德「C」×3、盟「FOURTH」×3、盟「I」×3、盟「NINTH」×3、德「SECOND」×3、盟「SECOND」×3、盟「SEVENTH」×3、盟「SFF」×3、德「SIXTEENTH」×3、盟「1 DWR」×2、盟「1 E Lan R」×2、盟「1 KSLI」×2、盟「1 Loyals」×2、德「1, 28, 8, 83」×2、盟「2 Hamps」×2、德「2 Mot」×2、盟「2/5 Foresters」×2、盟「2/5 Leicesters」×2、德「227」×2、德「27」×2、德「28」×2、德「29 Mot」×2、盟「5 Border」×2、盟「9 Foresters」×2、盟「III」×2、德「NINTH」×2、盟「SIXTH」×2、德「TWELVE」×2、盟「」×1、德「1 ARMY」×1、盟「1 Coldm Gds」×1、盟「1 Gren Gds」×1、盟「1 KOSB」×1、盟「1 S Lan R」×1、盟「1 Suffolk」×1、盟「1/6 S Staffords」×1、盟「1/6 Surreys」×1、德「12 ARMY」×1、德「16 ARMY」×1、德「18 ARMY」×1、德「2 ARMY」×1、盟「2 Bedfs Herts」×1、盟「2 C?」×1、盟「2 DCLI」×1、盟「2 E Yorks」×1、盟「2 Gren Gds」×1、盟「2 Lincolns」×1、盟「2 RF」×1、盟「2 RUR」×1、盟「21 C.I.DIV」×1、德「223」×1、盟「23 DIV」×1、盟「3 Gren Gds」×1、盟「32 DI」×1、盟「32 DIV」×1、德「4 ARMY」×1、盟「4 E Yorks」×1、盟「4 Green Howards」×1、盟「4 NF」×1、盟「4 R Berks」×1、盟「5 Green Howards」×1、德「6 (Flank-guard)」×1、德「6 ARMY」×1、盟「6 Bw」×1、盟「6 DLI」×1、盟「6 Lincolns」×1、盟「6 Y&L」×1、盟「68 DIV」×1、德「68 DIV」×1、德「7 ARMY」×1、盟「8 DLI」×1、德「83」×1、盟「88 A Fd R?」×1、盟「9 DLI」×1、德「?」×1、盟「? Own」×1、盟「ADAMFORCE」×1、德「ARMY GROUP A」×1、德「ARMY GROUP B」×1、德「ARMY GROUP C」×1、盟「Det 2 Foresters」×1、盟「EIGHTH」×1、盟「FIFTH」×1、德「FIRST」×1、盟「FR. XVI」×1、德「GUDERIAN」×1、盟「IX CORPS」×1、盟「King's Own」×1、德「REINHARDT」×1、德「SEVENTH」×1、盟「SIXTH RES.」×1、盟「TENTH」×1、德「TWELFTH」×1、盟「V」×1、德「XIV CORPS」×1
 
 ## 示意圖形
 

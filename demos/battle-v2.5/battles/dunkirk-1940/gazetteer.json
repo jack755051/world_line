@@ -1,5 +1,5 @@
 {
- "note": "OSM 物件編號 → 座標（Nominatim lookup，2026-11-13 取）。只收態勢圖控制點沒有涵蓋的地點；座標是地理參照，不是史料。河流取的是關係的代表點，只能當大略位置。（2026-11-15 補前段文字位置的地點，同樣取自 Nominatim。）（2026-11-18 補德軍第 19、41 軍文字位置的地點，取自 Nominatim search。）",
+ "note": "OSM 物件編號 → 座標（Nominatim lookup，2026-11-13 取）。只收態勢圖控制點沒有涵蓋的地點；座標是地理參照，不是史料。河流取的是關係的代表點，只能當大略位置。（2026-11-15 補前段文字位置的地點，同樣取自 Nominatim。）（2026-11-18 補德軍第 19、41 軍文字位置的地點，取自 Nominatim search。）（2026-11-18 補肯特郡，取郡的代表點；郡的範圍約東西 100 公里，只能當區域位置。）",
  "fetched_from": "https://nominatim.openstreetmap.org/lookup",
  "items": {
   "relation/1201127": {
@@ -640,6 +640,13 @@
    ],
    "class": "boundary",
    "type": "administrative"
+  },
+  "relation/88071": {
+   "lonlat": [
+    0.721,
+    51.2071
+   ],
+   "name": "Kent"
   }
  }
 }

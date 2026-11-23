@@ -24,6 +24,7 @@ COLLECTIONS = [  # (檔名, 陣列欄位, 鍵產生方式, 種類)
     ("r1-units.json", "units", lambda r, i: r["unitKey"], "R1 部隊"),
     ("r3-unit-positions.json", "positions", lambda r, i: f'{r["unitKey"]}@{r["date"]}#{i}', "R3 部隊位置（文字）"),
     ("r4-leadin-fronts.json", "fronts", lambda r, i: f'{r["date"]}#{i}', "R4 前段前線（文字）"),
+    ("r4-text-fronts.json", "fronts", lambda r, i: f'{r["date"]}#{i}', "R4 主期前線（文字）"),
     ("r4-fronts.json", "fronts", lambda r, i: r["lineKey"], "R4 主期前線（地圖）"),
     ("r5-engagements.json", "engagements", lambda r, i: r["key"], "R5 交戰"),
     ("r6-site-control.json", "sites", lambda r, i: f'{r["placeAsInSource"]}@{r["date"]}#{i}', "R6 據點易手"),

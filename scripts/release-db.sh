@@ -58,7 +58,7 @@ mkdir -p "$BACKUP_DIR"
 say "1) 正式環境檢查（唯讀）"
 remote "test -f docker-compose.prod.yml && test -f .env.prod && test -d restore && echo 'compose／.env.prod／restore 都在'"
 pg "pg_isready -U \"\$POSTGRES_USER\" -d postgres && $PSQL -d postgres -c 'select version()'"
-pg "if $DB_EXISTS; then echo \"prod db \$POSTGRES_DB exists\"; $PSQL -d \"\$POSTGRES_DB\" -c \"select 'postgis', extversion from pg_extension where extname='postgis'\"; $PSQL -d \"\$POSTGRES_DB\" -c \"$COUNTS_SQL\"; else echo \"prod db \$POSTGRES_DB not found (first release)\"; fi"
+pg "if $DB_EXISTS; then echo \"prod db \$POSTGRES_DB exists\"; $PSQL -d \"\$POSTGRES_DB\" -c \"select 'postgis', extversion from pg_extension where extname='postgis'\"; $PSQL -d \"\$POSTGRES_DB\" -c \"$COUNTS_SQL\" || echo \"(prod counts unavailable: older schema without some tables; informational only)\"; else echo \"prod db \$POSTGRES_DB not found (first release)\"; fi"
 
 say "2) dump 開發庫 → $DEV_DUMP"
 if [ -n "$DUMP" ]; then

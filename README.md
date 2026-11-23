@@ -39,7 +39,7 @@ world_line/
 
 | 項目 | 位置 | 說明 |
 |---|---|---|
-| api 映像 | `registry.digitalocean.com/sanring/worldline-api:<API_IMAGE_TAG>` | DigitalOcean Container Registry（私有） |
+| api 映像 | `ghcr.io/sanringtech/worldline-api:<API_IMAGE_TAG>` | GitHub Container Registry（sanringtech 組織） |
 | web 映像 | `jackdai850817/worldline-web:<WEB_IMAGE_TAG>` | Docker Hub（公開）；前端靜態檔＋nginx |
 | compose | `docker-compose.prod.yml` | postgres、redis、api、martin、web；只有 web 綁 `127.0.0.1:4080` |
 | 環境檔 | `.env.prod`（由 `env.prod.example` 複製） | 映像標籤、埠、Postgres 帳密、API key |
@@ -61,7 +61,7 @@ cd frontend && pnpm install && pnpm start
 ```bash
 cp env.prod.example .env.prod         # 第一次：填 POSTGRES_USER、POSTGRES_PASSWORD、WORLDLINE_API_KEY
 
-docker login registry.digitalocean.com   # 推 api 用（DO 讀寫 token）
+gh auth token | docker login ghcr.io -u jack755051 --password-stdin   # 推 api 用（gh 需有 write:packages：gh auth refresh -h github.com -s write:packages）
 docker login                             # 推 web 用（Docker Hub jackdai850817）
 
 ./scripts/prod-images.sh build-push        # api、web 都建＋推（沿用 .env.prod 標籤）
@@ -137,7 +137,7 @@ scripts/release-db.sh              # 正式執行；動正式庫前會兩次要�
 
 ```bash
 cd ~/worldline
-docker login registry.digitalocean.com          # 用 DO 唯讀 token（api 是私有映像）
+docker login ghcr.io -u <GitHub 帳號> --password-stdin   # 用只有 read:packages 的 token；套件改成公開後就不需要登入
 
 docker compose -f docker-compose.prod.yml --env-file .env.prod pull
 docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --remove-orphans

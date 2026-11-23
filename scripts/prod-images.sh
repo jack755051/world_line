@@ -48,7 +48,7 @@ fi
 case "$ENV_FILE" in /*) ef="$ENV_FILE" ;; *) ef="./$ENV_FILE" ;; esac
 set -a; . "$ef"; set +a
 for s in "${services[@]}"; do
-  if [ "$s" = api ]; then img="${API_IMAGE:-registry.digitalocean.com/sanring/worldline-api}:${API_IMAGE_TAG:-latest}"
+  if [ "$s" = api ]; then img="${API_IMAGE:-ghcr.io/sanringtech/worldline-api}:${API_IMAGE_TAG:-latest}"
   else img="${WEB_IMAGE:-jackdai850817/worldline-web}:${WEB_IMAGE_TAG:-latest}"; fi
   echo "$s → ${img}（$(docker image inspect -f '{{.Os}}/{{.Architecture}}' "$img" 2>/dev/null || echo 未在本機)）"
 done

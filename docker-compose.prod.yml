@@ -40,7 +40,7 @@ services:
     restart: unless-stopped
 
   api:
-    image: ${API_IMAGE:-registry.digitalocean.com/sanring/worldline-api}:${API_IMAGE_TAG:-latest}
+    image: ${API_IMAGE:-ghcr.io/sanringtech/worldline-api}:${API_IMAGE_TAG:-latest}
     build:
       context: ./backend
       dockerfile: Dockerfile

@@ -243,7 +243,7 @@ battlePageMode(); // 開頁當下就記住（之後網址會被改寫）
                 }
               }
               <ng-template #conflictTpl let-c>
-                <wl-conflict-card [props]="c.props" [nameA]="c.nameA" [nameB]="c.nameB" [lang]="lang()" [peek]="mobile() && !conflictHalf()" [inSheet]="mobile()"
+                <wl-conflict-card class="flex min-h-0 max-h-[inherit] flex-col" [props]="c.props" [nameA]="c.nameA" [nameB]="c.nameB" [lang]="lang()" [peek]="mobile() && !conflictHalf()" [inSheet]="mobile()"
                   [colorA]="tileRegimeColors()[c.props.regimeAId] ?? slugColor(c.props.regimeASlug)" [colorB]="tileRegimeColors()[c.props.regimeBId] ?? slugColor(c.props.regimeBSlug)"
                   [campaigns]="conflictCampaigns()" (closed)="closeConflict()" (regimeSelect)="openConflictRegime($event)"
                   (timelineShow)="showConflictInTimeline()" (campaignOpen)="closeConflict(); openCampaign($event)" />

@@ -112,6 +112,27 @@ docker compose -f docker-compose.prod.yml --env-file .env.prod exec postgres \
   pg_restore -U "$POSTGRES_USER" -d "$POSTGRES_DB" --no-owner --no-privileges /restore/worldline.dump
 ```
 
+## 資料發佈（開發庫 → 正式庫，之後每次更新）
+
+正式庫內容全部來自開發庫（5442 `worldline_borders_dev`），所以每次發佈都是整包取代：
+
+```bash
+scripts/release-db.sh --dry-run    # 先看：只做本機唯讀檢查並列出每一步指令（不 ssh、不寫庫）
+scripts/release-db.sh              # 正式執行；動正式庫前會兩次要求輸入 release
+```
+
+腳本流程（ssh 別名 `sanring-worldline`，VPS 目錄 `~/worldline`；可用 `VPS=`、`REMOTE_DIR=`、`BACKUP_DIR=` 覆寫）：
+
+1. 檢查開發庫容器與 VPS 上的 compose、`.env.prod`、`restore/`、postgres 版本與現有筆數。
+2. `pg_dump -Fc` 開發庫到 `~/wl-db-backups/release-<時間>-dev.dump`（`--dump FILE` 可沿用現成 dump），記 sha256。
+3. 備份正式庫：VPS 上 `backups/prod-<時間>.dump`，並拉回本機 `~/wl-db-backups/`。
+4. `scp` 到 `~/worldline/restore/`，比對 sha256。
+5. 還原到新資料庫 `worldline_release_<時間>`（此時正式庫不受影響）。
+6. 停 api → 舊庫改名 `<POSTGRES_DB>_prev_<時間>`、新庫改名為 `POSTGRES_DB` → 起 api。
+7. 健康檢查（`/api/healthz`、首頁）與筆數對照；最後印出回滾指令（把兩個名字改回、起 api）。
+
+腳本不刪任何資料庫或備份；確認新版沒問題後再手動 DROP `_prev_` 庫。只換資料時不需要重建映像；schema 有新 migration 時資料隨 dump 一起帶過去（`WORLDLINE_MIGRATE_ON_STARTUP=false`），但 api 映像要同時換成相同版本。
+
 ## VPS：啟動／停止／更新
 
 ```bash

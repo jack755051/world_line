@@ -1,7 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideArrowLeft } from '@lucide/angular';
 import { versionInfo } from '../../core/version';
+import { ReleaseInfoService, shortTime } from '../../core/release-info';
 
 /** 版本與變更紀錄頁（ccq 03-version-page）。 */
 @Component({
@@ -16,8 +17,19 @@ import { versionInfo } from '../../core/version';
         <dl class="flex flex-col gap-2 text-sm">
           <div class="flex gap-3">
             <dt class="w-24 shrink-0 font-semibold opacity-60">版本號</dt>
-            <dd data-testid="version-number">{{ version }}</dd>
+            <dd data-testid="version-number">{{ release.version() }}</dd>
           </div>
+          @if (release.info(); as info) {
+            <div class="flex gap-3">
+              <dt class="w-24 shrink-0 font-semibold opacity-60">資料</dt>
+              <dd data-testid="version-data">
+                @if (info.db?.releasedAt) { <div>資料庫 {{ shortTime(info.db?.releasedAt) }}</div> }
+                @if (info.overlay?.version) { <div>overlay <span class="font-mono">{{ info.overlay?.version }}</span> {{ shortTime(info.overlay?.releasedAt) }}</div> }
+                @if (info.boundaries?.version) { <div>疆界 <span class="font-mono">{{ info.boundaries?.version }}</span> {{ shortTime(info.boundaries?.releasedAt) }}</div> }
+                @if (info.image?.tag || info.image?.commit) { <div>映像 <span class="font-mono">{{ info.image?.tag }} {{ info.image?.commit }}</span></div> }
+              </dd>
+            </div>
+          }
           <div class="flex gap-3">
             <dt class="w-24 shrink-0 font-semibold opacity-60">建置時間</dt>
             <dd data-testid="version-build-time">{{ buildTime }}</dd>
@@ -52,7 +64,8 @@ import { versionInfo } from '../../core/version';
   `,
 })
 export class VersionPage implements OnInit {
-  protected readonly version = versionInfo.version;
+  protected readonly release = inject(ReleaseInfoService);
+  protected readonly shortTime = shortTime;
   protected readonly buildTime = versionInfo.buildTime;
   protected readonly commit = versionInfo.commit;
 

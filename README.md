@@ -86,6 +86,26 @@ ssh root@<VPS_IP> 'ls -l ~/worldline/tiles/boundaries.pmtiles ~/worldline/tiles/
 
 換新版圖磚：傳新版本檔、改 symlink，再 `docker compose -f docker-compose.prod.yml --env-file .env.prod restart martin`。
 
+之後換版用腳本（傳帶版本的檔、不刪舊檔、比對 sha256、原子切換 symlink、有 `.pmtiles` 時重啟 martin、更新 `version.json`，結尾印回滾指令）：
+
+```bash
+scripts/release-tiles.sh --dry-run tools/tiles/out/overlay-v<hash>.json
+scripts/release-tiles.sh tools/tiles/out/overlay-v<hash>.json [tools/tiles/out/boundaries-v<hash>.pmtiles ...]
+```
+
+## 版本檔 version.json（頁首版本）
+
+頁首的版本號與提示讀 VPS 上的 `tiles/version.json`（nginx 以 `/version.json` 提供、`no-cache`；web 容器已掛 `tiles/` 到 `/srv/tiles`）。它不在映像裡，只換資料時也會更新；檔案不在或內容不對時，前端退回建置時的 `package.json` 版本。
+
+```json
+{ "version": "0.0.4", "updatedAt": "…", "image": { "tag": "v0.0.4", "commit": "abc1234" },
+  "db": { "releasedAt": "…" }, "overlay": { "version": "<hash>", "releasedAt": "…" }, "boundaries": { "version": "<hash>" } }
+```
+
+- `scripts/set-version.sh --version 0.0.4 --commit <sha>`：換映像（程式版本）後
+- `scripts/release-db.sh` 結尾自動跑 `set-version.sh --db`；`scripts/release-tiles.sh` 結尾自動跑 `set-version.sh --tiles`（讀 symlink 記版本）
+- 只換資料時 `version` 不動（仍是部署中的程式版本）；資料的日期在提示與「版本資訊」頁
+
 ## 資料搬遷（開發庫 → 正式庫，第一次上線）
 
 ```bash

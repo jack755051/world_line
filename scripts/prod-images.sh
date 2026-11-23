@@ -10,6 +10,9 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
+# web 映像的版本資訊（Dockerfile.web 的 WL_COMMIT／WL_BUILD_TIME；映像內沒有 .git）
+export WL_COMMIT="${WL_COMMIT:-$(git rev-parse --short HEAD 2>/dev/null || echo unknown)}"
+export WL_BUILD_TIME="${WL_BUILD_TIME:-$(date -u +%Y-%m-%dT%H:%M:%SZ)}"
 ENV_FILE="${ENV_FILE:-.env.prod}"
 COMPOSE=(docker compose -f docker-compose.prod.yml --env-file "$ENV_FILE")
 

@@ -79,11 +79,15 @@ services:
     build:
       context: .
       dockerfile: deploy/Dockerfile.web
+      args:
+        # 建置時的提交與時間（映像裡沒有 .git）；scripts/prod-images.sh 會設定
+        WL_COMMIT: ${WL_COMMIT:-}
+        WL_BUILD_TIME: ${WL_BUILD_TIME:-}
     ports:
       # 只綁本機；Cloudflare Tunnel 指到 http://127.0.0.1:${WEB_PORT}（與 sanring 4000/4001/5000 不衝突）
       - "127.0.0.1:${WEB_PORT:-4080}:80"
     volumes:
-      # overlay.json（與 overlay-v{hash}.json）由 nginx 直接當靜態檔提供
+      # overlay.json（與 overlay-v{hash}.json）、version.json 由 nginx 直接當靜態檔提供
       - ${TILES_DIR:-./tiles}:/srv/tiles:ro
     depends_on: [api, martin]
     healthcheck:

@@ -6,7 +6,7 @@
 #   scripts/release-db.sh --dump FILE      用現成的開發庫 dump（不重新 pg_dump）
 # 環境變數：VPS（預設 ssh 別名 sanring-worldline）、REMOTE_DIR（預設 ~/worldline）、BACKUP_DIR（預設 ~/wl-db-backups）
 # 流程：檢查 → dump 開發庫 → 備份正式庫（VPS backups/ 一份、拉回本機一份）→ scp 到 restore/ →
-#       還原到新資料庫（正式庫不受影響）→ 停 api → 舊庫改名 <db>_prev_<時間>、新庫改成 <db> → 起 api → 健康檢查與筆數對照。
+#       還原到新資料庫（正式庫不受影響）→ 停 api → 舊庫改名 <db>_prev_<時間>、新庫改成 <db> → 起 api → 健康檢查與筆數對照 → 更新 version.json。
 # 不刪任何資料庫或備份；出問題照結尾印的回滾指令把名字改回、起 api。遠端 shell 需為 bash（root 預設）。
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -94,6 +94,9 @@ say "7) 健康檢查"
 remote "P=\$(sed -n 's/^WEB_PORT=//p' .env.prod); P=\${P:-4080}; for i in \$(seq 1 30); do curl -fsS http://127.0.0.1:\$P/api/healthz && break; sleep 2; done; echo; curl -s -o /dev/null -w 'web %{http_code}\n' http://127.0.0.1:\$P/"
 pg "$PSQL -d \"\$POSTGRES_DB\" -c \"$COUNTS_SQL\""
 echo "  （筆數應與步驟 0 的開發庫相同）"
+
+say "8) 更新 version.json（頁首提示的資料庫發佈時間）"
+if [ "$DRY" = 1 ]; then echo "  [dry-run] scripts/set-version.sh --db"; else scripts/set-version.sh --db || echo "  （version.json 更新失敗：資料庫已換好，之後手動跑 scripts/set-version.sh --db）"; fi
 
 say "完成。回滾（舊庫保留為 <POSTGRES_DB>_prev_${TSU}）："
 cat <<RB

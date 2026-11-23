@@ -10,7 +10,7 @@ import { formatDisplayDate } from '../../core/dates';
 import { MOTION_DURATION, MotionService } from '../../core/motion';
 import { t, type I18nKey, type Lang } from '../../core/i18n';
 import { InterpChip } from '../../shared/interp-chip/interp-chip';
-import { versionInfo } from '../../core/version';
+import { ReleaseInfoService } from '../../core/release-info';
 
 /**
  * 頂部列（PRD §8.1，`layout/top-bar`）。
@@ -56,7 +56,7 @@ import { versionInfo } from '../../core/version';
                 (click)="menuOpen.set(false); legendToggle.emit()"><span>{{ tr('legend.title') }}</span><svg lucideBookOpen class="size-4 text-wl-on-surface-variant"></svg></button>
               <div class="my-1 h-px bg-wl-outline-variant" aria-hidden="true"></div>
               <a href="version" role="menuitem" data-testid="topbar-menu-version" class="flex min-h-11 items-center justify-between gap-3 px-3 text-[12px] text-wl-on-surface-variant hover:bg-wl-surface-container"
-                [attr.aria-label]="versionTitle"><span>{{ lang() === 'en' ? 'Version' : '版本' }}</span><span class="font-mono">{{ versionText }}</span></a>
+                [attr.aria-label]="versionTitle()"><span>{{ lang() === 'en' ? 'Version' : '版本' }}</span><span class="font-mono">{{ versionText() }}</span></a>
               <div data-testid="topbar-menu-credit" class="px-3 pb-2 pt-1 text-[10px] leading-[16px] tracking-[0.04em] text-wl-on-surface-variant/75">{{ tr('app.copyright') }}<br />{{ tr('app.credit') }}</div>
             </div>
           }
@@ -70,7 +70,7 @@ import { versionInfo } from '../../core/version';
         <!-- 版本號（Tai 2026-11-15：一眼看得出目前版本）：只寫版本號，與 logo 同高置中；點了到「版本資訊」頁。平板寬度（md，768–1023px）頂列放不下，不顯示 -->
         @if (bp() !== 'md') {
         <a href="version" data-testid="topbar-version" class="inline-flex h-7 items-center whitespace-nowrap font-mono text-[11px] leading-none text-wl-on-surface-variant hover:text-wl-on-surface hover:underline"
-          [attr.title]="versionTitle" [attr.aria-label]="versionTitle">{{ versionText }}</a>
+          [attr.title]="versionTitle()" [attr.aria-label]="versionTitle()">{{ versionText() }}</a>
         }
       </span>
       <span class="h-6 w-px bg-wl-outline-variant" aria-hidden="true"></span>
@@ -109,9 +109,10 @@ import { versionInfo } from '../../core/version';
   `,
 })
 export class TopBar {
-  /** 頁首的版本字樣：只寫版本號（v0.0.1；Tai 2026-11-15：不需要提交編號）。提交編號與建置時間在提示與「版本資訊」頁。資料來自建置時產生的 core/version.ts。 */
-  protected readonly versionText = `v${versionInfo.version}`;
-  protected readonly versionTitle = `版本 ${versionInfo.version}${versionInfo.ahead > 0 ? '（標籤之後第 ' + versionInfo.ahead + ' 個提交）' : ''}，提交 ${versionInfo.commit}，建置時間 ${versionInfo.buildTime}`;
+  /** 頁首的版本字樣：只寫版本號（v0.0.1；Tai 2026-11-15：不需要提交編號）。版本以正式站的 /version.json 為準（部署腳本更新），抓不到時用建置時的 core/version.ts；提示列出資料庫／overlay 發佈時間與映像提交。 */
+  private readonly release = inject(ReleaseInfoService);
+  protected readonly versionText = computed(() => `v${this.release.version()}`);
+  protected readonly versionTitle = this.release.title;
   readonly date = input.required<string>();
   readonly lang = input<Lang>('zh-Hant');
   readonly loading = input(false);

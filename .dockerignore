@@ -15,3 +15,5 @@ deploy/restore
 # 新版戰役頁的開發複本（sync-battle-page.mjs 產生，不進版控）：正式映像不帶 /battle/。
 # Dockerfile.web 直接跑 ng build、不經 prebuild 的 WL_INCLUDE_BATTLE 閘門，所以在這裡擋。
 frontend/public/battle
+# 執行期版本檔只在 VPS（tiles/version.json）；本機測試用的複本不進映像
+frontend/public/version.json

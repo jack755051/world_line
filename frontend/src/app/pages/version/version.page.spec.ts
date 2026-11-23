@@ -6,9 +6,8 @@ import { VersionPage } from './version.page';
 
 describe('VersionPage', () => {
   beforeEach(() => {
-    vi.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response('# Changelog\n\n## [0.0.1]', { status: 200 }),
-    );
+    // 每次呼叫給新的 Response（頁面同時會抓 /version.json 與 /CHANGELOG.md，body 只能讀一次）
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => new Response('# Changelog\n\n## [0.0.1]', { status: 200 }));
     TestBed.configureTestingModule({ imports: [VersionPage], providers: [provideRouter([])] });
   });
 
@@ -16,7 +15,7 @@ describe('VersionPage', () => {
     vi.restoreAllMocks();
   });
 
-  it('顯示目前的版號（來自建置時產生的 core/version.ts）', async () => {
+  it('顯示目前的版號（沒有 /version.json 時退回建置時產生的 core/version.ts）', async () => {
     const fixture = TestBed.createComponent(VersionPage);
     await fixture.whenStable();
     fixture.detectChanges();
